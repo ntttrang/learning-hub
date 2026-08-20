@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d6-q07",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-org-settings-teams",
+  "prompt": "An administrator is tired of granting repository access person by person. What is the recommended pattern?",
+  "explanation": "Teams are the delivery mechanism for access: group people, grant the team its role, and membership does the rest — new joiners get everything on arrival, leavers lose it on removal. Team-based access over per-person grants is nearly an exam answer verbatim.",
+  "docIds": [
+    "about-teams"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Give the permission to a team once — every member inherits it"
+    },
+    {
+      "id": "o2",
+      "text": "Create a shared personal account named `dev-team`"
+    },
+    {
+      "id": "o3",
+      "text": "Email credentials to new joiners"
+    },
+    {
+      "id": "o4",
+      "text": "Make everyone an organization owner"
+    }
+  ],
+  "correct": "o1"
+}

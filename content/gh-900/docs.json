@@ -1,0 +1,242 @@
+{
+  "about-code-owners": {
+    "title": "About code owners",
+    "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners"
+  },
+  "about-discussions": {
+    "title": "About discussions",
+    "url": "https://docs.github.com/en/discussions/collaborating-with-your-community-using-discussions/about-discussions"
+  },
+  "about-forks": {
+    "title": "About forks",
+    "url": "https://docs.github.com/en/pull-requests/reference/forks"
+  },
+  "about-gists": {
+    "title": "Creating gists",
+    "url": "https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists"
+  },
+  "about-git": {
+    "title": "About Git",
+    "url": "https://docs.github.com/en/get-started/using-git/about-git"
+  },
+  "about-github-pages": {
+    "title": "What is GitHub Pages?",
+    "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages"
+  },
+  "about-issues": {
+    "title": "About issues",
+    "url": "https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/about-issues"
+  },
+  "about-milestones": {
+    "title": "About milestones",
+    "url": "https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones"
+  },
+  "about-notifications": {
+    "title": "About notifications",
+    "url": "https://docs.github.com/en/subscriptions-and-notifications/concepts/about-notifications"
+  },
+  "about-organizations": {
+    "title": "About organizations",
+    "url": "https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations"
+  },
+  "about-passkeys": {
+    "title": "About passkeys",
+    "url": "https://docs.github.com/en/authentication/authenticating-with-a-passkey/about-passkeys"
+  },
+  "about-project-insights": {
+    "title": "About insights for Projects",
+    "url": "https://docs.github.com/en/issues/planning-and-tracking-with-projects/viewing-insights-from-your-project/about-insights-for-projects"
+  },
+  "about-projects": {
+    "title": "About Projects",
+    "url": "https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects"
+  },
+  "about-protected-branches": {
+    "title": "About protected branches",
+    "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+  },
+  "about-pull-requests": {
+    "title": "About pull requests",
+    "url": "https://docs.github.com/en/pull-requests/reference/pull-requests"
+  },
+  "about-readmes": {
+    "title": "About READMEs",
+    "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+  },
+  "about-repository-graphs": {
+    "title": "About repository graphs",
+    "url": "https://docs.github.com/en/repositories/viewing-activity-and-data-for-your-repository/about-repository-graphs"
+  },
+  "about-saved-replies": {
+    "title": "About saved replies",
+    "url": "https://docs.github.com/en/get-started/writing-on-github/working-with-saved-replies/about-saved-replies"
+  },
+  "about-teams": {
+    "title": "About teams",
+    "url": "https://docs.github.com/en/organizations/organizing-members-into-teams/about-teams"
+  },
+  "about-wikis": {
+    "title": "About wikis",
+    "url": "https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis"
+  },
+  "add-security-policy": {
+    "title": "Adding a security policy to your repository",
+    "url": "https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/add-security-policy"
+  },
+  "built-in-automations": {
+    "title": "Using the built-in automations",
+    "url": "https://docs.github.com/en/issues/planning-and-tracking-with-projects/automating-your-project/using-the-built-in-automations"
+  },
+  "codespaces-list": {
+    "title": "Your codespaces (github.com/codespaces)",
+    "url": "https://github.com/codespaces"
+  },
+  "community-health-files": {
+    "title": "Creating a default community health file",
+    "url": "https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file"
+  },
+  "configure-2fa": {
+    "title": "Configuring two-factor authentication",
+    "url": "https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication"
+  },
+  "contributing-guidelines": {
+    "title": "Setting guidelines for repository contributors",
+    "url": "https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors"
+  },
+  "copilot-agent-mode": {
+    "title": "Build applications with GitHub Copilot Agent Mode",
+    "url": "https://learn.microsoft.com/en-us/training/modules/github-copilot-agent-mode/"
+  },
+  "copilot-cloud-agent": {
+    "title": "About the GitHub Copilot cloud agent",
+    "url": "https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent"
+  },
+  "copilot-get-started": {
+    "title": "Get started with GitHub Copilot",
+    "url": "https://docs.github.com/en/copilot/get-started"
+  },
+  "copilot-plans": {
+    "title": "Copilot plans",
+    "url": "https://docs.github.com/en/copilot/get-started/plans"
+  },
+  "creating-a-repository": {
+    "title": "Creating a new repository",
+    "url": "https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository"
+  },
+  "dev-containers": {
+    "title": "Introduction to dev containers",
+    "url": "https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers"
+  },
+  "enterprise-managed-users": {
+    "title": "About Enterprise Managed Users",
+    "url": "https://docs.github.com/en/enterprise-cloud@latest/admin/concepts/identity-and-access-management/enterprise-managed-users"
+  },
+  "filtering-issues": {
+    "title": "Filtering and searching issues and pull requests",
+    "url": "https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/filtering-and-searching-issues-and-pull-requests"
+  },
+  "following-organizations": {
+    "title": "Following organizations",
+    "url": "https://docs.github.com/en/get-started/exploring-projects-on-github/following-organizations"
+  },
+  "following-people": {
+    "title": "Following people",
+    "url": "https://docs.github.com/en/get-started/exploring-projects-on-github/following-people"
+  },
+  "gh-docs-actions": {
+    "title": "GitHub Actions documentation",
+    "url": "https://docs.github.com/en/actions"
+  },
+  "gh-docs-repositories": {
+    "title": "Repositories documentation",
+    "url": "https://docs.github.com/en/repositories"
+  },
+  "github-desktop": {
+    "title": "GitHub Desktop documentation",
+    "url": "https://docs.github.com/en/desktop"
+  },
+  "github-flow": {
+    "title": "GitHub flow",
+    "url": "https://docs.github.com/en/get-started/using-github/github-flow"
+  },
+  "github-marketplace": {
+    "title": "GitHub Marketplace",
+    "url": "https://docs.github.com/en/apps/github-marketplace"
+  },
+  "github-mobile": {
+    "title": "GitHub Mobile",
+    "url": "https://docs.github.com/en/get-started/using-github/github-mobile"
+  },
+  "github-sponsors": {
+    "title": "GitHub Sponsors documentation",
+    "url": "https://docs.github.com/en/sponsors"
+  },
+  "githubdev-editor": {
+    "title": "The github.dev web-based editor",
+    "url": "https://docs.github.com/en/codespaces/the-githubdev-web-based-editor"
+  },
+  "hello-world": {
+    "title": "Hello World",
+    "url": "https://docs.github.com/en/get-started/using-github/hello-world"
+  },
+  "innersource-best-practices": {
+    "title": "Using innersource in your enterprise",
+    "url": "https://docs.github.com/en/enterprise-cloud@latest/admin/concepts/enterprise-best-practices/use-innersource"
+  },
+  "innersource-module": {
+    "title": "Manage an InnerSource program by using GitHub",
+    "url": "https://learn.microsoft.com/en-us/training/modules/manage-innersource-program-github/"
+  },
+  "issue-pr-templates": {
+    "title": "About issue and pull request templates",
+    "url": "https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates"
+  },
+  "licensing-a-repository": {
+    "title": "Licensing a repository",
+    "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository"
+  },
+  "linking-pr-to-issue": {
+    "title": "Linking a pull request to an issue",
+    "url": "https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue"
+  },
+  "managing-labels": {
+    "title": "Managing labels",
+    "url": "https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels"
+  },
+  "markdown-formatting": {
+    "title": "Basic writing and formatting syntax",
+    "url": "https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax"
+  },
+  "project-view-layouts": {
+    "title": "Changing the layout of a view",
+    "url": "https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/changing-the-layout-of-a-view"
+  },
+  "repository-roles": {
+    "title": "Repository roles for an organization",
+    "url": "https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization"
+  },
+  "roles-in-an-organization": {
+    "title": "Roles in an organization",
+    "url": "https://docs.github.com/en/organizations/managing-peoples-access-to-your-organization-with-roles/roles-in-an-organization"
+  },
+  "setting-repository-visibility": {
+    "title": "Setting repository visibility",
+    "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility"
+  },
+  "template-repositories": {
+    "title": "Creating a template repository",
+    "url": "https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository"
+  },
+  "types-of-github-accounts": {
+    "title": "Types of GitHub accounts",
+    "url": "https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts"
+  },
+  "ways-to-contribute": {
+    "title": "Finding ways to contribute to open source on GitHub",
+    "url": "https://docs.github.com/en/get-started/exploring-projects-on-github/finding-ways-to-contribute-to-open-source-on-github"
+  },
+  "what-are-codespaces": {
+    "title": "What are GitHub Codespaces?",
+    "url": "https://docs.github.com/en/codespaces/about-codespaces/what-are-codespaces"
+  }
+}

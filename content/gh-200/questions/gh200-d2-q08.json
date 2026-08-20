@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d2-q08",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-templates",
+  "prompt": "Where do starter workflows surface when a developer clicks \"New workflow\" from a repository’s Actions tab?",
+  "explanation": "The New workflow page offers GitHub’s starter set alongside templates your organization publishes, so company-standard pipelines sit next to the defaults. Choosing one copies the YAML into your `.github/workflows/` to edit freely.",
+  "docIds": [
+    "workflow-templates"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "From GitHub’s curated set plus any templates your organization publishes"
+    },
+    {
+      "id": "o2",
+      "text": "Only from GitHub’s curated set — organizations cannot add their own"
+    },
+    {
+      "id": "o3",
+      "text": "From every workflow file in every public repository you follow"
+    },
+    {
+      "id": "o4",
+      "text": "From the repository’s `docs/` directory"
+    }
+  ],
+  "correct": "o1"
+}

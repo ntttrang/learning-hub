@@ -1,0 +1,40 @@
+{
+  "id": "gh900-d6-q18",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-2fa-passkeys",
+  "prompt": "Order the steps for enabling 2FA with an authenticator app.",
+  "explanation": "Setup runs app-first: get an authenticator, start in account settings, bind it by scanning, prove it with a live code, then bank the recovery codes — losing the phone without those codes is a support ticket.",
+  "docIds": [
+    "configure-2fa"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Install a TOTP authenticator app on the phone"
+    },
+    {
+      "id": "o2",
+      "text": "Open Settings → Password and authentication"
+    },
+    {
+      "id": "o3",
+      "text": "Scan the QR code with the app"
+    },
+    {
+      "id": "o4",
+      "text": "Enter the six-digit code the app generates to confirm"
+    },
+    {
+      "id": "o5",
+      "text": "Download the recovery codes"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

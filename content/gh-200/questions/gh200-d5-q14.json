@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d5-q14",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-token-permissions",
+  "prompt": "Which statements about the GITHUB_TOKEN are true? Choose all that apply.",
+  "explanation": "The job token is ephemeral, repo-scoped, and right-sizeable through `permissions:`. A PAT is neither automatically safer nor bound to one job — it is a longer-lived, broader credential, and cross-repo work is precisely where you cannot avoid one.",
+  "docIds": [
+    "github-token"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "It is created for each job and expires with it"
+    },
+    {
+      "id": "o2",
+      "text": "It works in any repository owned by your account"
+    },
+    {
+      "id": "o3",
+      "text": "The `permissions:` block can narrow it per workflow or job"
+    },
+    {
+      "id": "o4",
+      "text": "A personal access token is automatically safer"
+    },
+    {
+      "id": "o5",
+      "text": "Reaching another repository you do not own requires different credentials"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o3",
+    "o5"
+  ]
+}

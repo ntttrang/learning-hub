@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d3-q12",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-gists-wikis-pages",
+  "prompt": "Where should a project’s long-form handbook — setup guides, architecture notes, FAQ — live when it needs easy collaborative editing?",
+  "explanation": "The wiki holds multi-page Markdown documentation right beside the code, editable in the browser and versioned. It suits manuals and handbooks; gists suit snippets; licenses grant rights.",
+  "docIds": [
+    "about-wikis"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The repository wiki, a set of linked Markdown pages"
+    },
+    {
+      "id": "o2",
+      "text": "The commit messages"
+    },
+    {
+      "id": "o3",
+      "text": "A secret gist per chapter"
+    },
+    {
+      "id": "o4",
+      "text": "The LICENSE file"
+    }
+  ],
+  "correct": "o1"
+}

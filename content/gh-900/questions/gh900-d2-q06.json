@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d2-q06",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-templates-and-branches",
+  "prompt": "Your team stamps out identical starter repos: same README, same CI workflow, same ignore file. What is the built-in GitHub feature for this?",
+  "explanation": "Marking a repository as a template adds a \"Use this template\" action that starts a brand-new repository from its contents — fresh history, no shared lineage. A fork stays linked to the upstream and carries its history.",
+  "docIds": [
+    "template-repositories"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A template repository, whose \"Use this template\" button creates a fresh repository with the same files"
+    },
+    {
+      "id": "o2",
+      "text": "A fork, which copies the repository with its full history"
+    },
+    {
+      "id": "o3",
+      "text": "A GitHub gist"
+    },
+    {
+      "id": "o4",
+      "text": "Re-cloning and deleting `.git` by hand every time"
+    }
+  ],
+  "correct": "o1"
+}

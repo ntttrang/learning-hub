@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d1-q14",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-version-control",
+  "prompt": "Which benefits does version control actually provide? Choose all that apply.",
+  "explanation": "Version control gives recoverable history, precise diffs, and safe parallel work. It says nothing about code correctness — that is what review, tests, and CI are for — and it documents changes, not the product itself.",
+  "docIds": [
+    "about-git"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Restoring any earlier version of a file"
+    },
+    {
+      "id": "o2",
+      "text": "Comparing two versions to see exactly what changed"
+    },
+    {
+      "id": "o3",
+      "text": "Letting several people work in parallel and blending their changes"
+    },
+    {
+      "id": "o4",
+      "text": "Guaranteeing that merged code is bug-free"
+    },
+    {
+      "id": "o5",
+      "text": "Automatically writing the project documentation"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

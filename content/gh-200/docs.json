@@ -1,0 +1,198 @@
+{
+  "artifact-attestations": {
+    "title": "Using artifact attestations to establish provenance for builds",
+    "url": "https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/use-artifact-attestations"
+  },
+  "aws-codeartifact": {
+    "title": "What is AWS CodeArtifact?",
+    "url": "https://docs.aws.amazon.com/codeartifact/latest/ug/what-is-codeartifact.html"
+  },
+  "aws-codebuild": {
+    "title": "What is AWS CodeBuild?",
+    "url": "https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html"
+  },
+  "aws-codedeploy": {
+    "title": "What is AWS CodeDeploy?",
+    "url": "https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html"
+  },
+  "aws-codepipeline": {
+    "title": "What is AWS CodePipeline?",
+    "url": "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html"
+  },
+  "billing-actions": {
+    "title": "About billing for GitHub Actions",
+    "url": "https://docs.github.com/en/billing/concepts/product-billing/github-actions"
+  },
+  "contexts": {
+    "title": "Contexts",
+    "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/contexts"
+  },
+  "create-composite-action": {
+    "title": "Creating a composite action",
+    "url": "https://docs.github.com/en/actions/tutorials/create-actions/create-a-composite-action"
+  },
+  "dependency-caching": {
+    "title": "Caching dependencies to speed up workflows",
+    "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching"
+  },
+  "disable-workflows": {
+    "title": "Disabling and enabling a workflow",
+    "url": "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/disable-and-enable-workflows"
+  },
+  "expressions": {
+    "title": "Expressions",
+    "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/expressions"
+  },
+  "gh-docs-actions": {
+    "title": "GitHub Actions documentation",
+    "url": "https://docs.github.com/en/actions"
+  },
+  "github-hosted-runners": {
+    "title": "About GitHub-hosted runners",
+    "url": "https://docs.github.com/en/actions/concepts/runners/github-hosted-runners"
+  },
+  "github-marketplace": {
+    "title": "GitHub Marketplace",
+    "url": "https://docs.github.com/en/apps/github-marketplace"
+  },
+  "github-token": {
+    "title": "Authenticating with the GITHUB_TOKEN",
+    "url": "https://docs.github.com/en/actions/tutorials/authenticate-with-github_token"
+  },
+  "ip-allow-lists": {
+    "title": "Restricting network traffic with an IP allow list",
+    "url": "https://docs.github.com/en/enterprise-cloud@latest/admin/configuring-settings/hardening-security-for-your-enterprise/restricting-network-traffic-to-your-enterprise-with-an-ip-allow-list"
+  },
+  "jenkins-agents": {
+    "title": "Using Jenkins agents",
+    "url": "https://www.jenkins.io/doc/book/using/using-agents/"
+  },
+  "jenkins-docs": {
+    "title": "Jenkins user documentation",
+    "url": "https://www.jenkins.io/doc/"
+  },
+  "jenkins-installing": {
+    "title": "Installing Jenkins",
+    "url": "https://www.jenkins.io/doc/book/installing/"
+  },
+  "jenkins-pipeline-syntax": {
+    "title": "Pipeline syntax (Jenkins)",
+    "url": "https://www.jenkins.io/doc/book/pipeline/syntax/"
+  },
+  "jenkins-plugins": {
+    "title": "Jenkins plugins index",
+    "url": "https://plugins.jenkins.io/"
+  },
+  "manage-environments": {
+    "title": "Using environments for deployment",
+    "url": "https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments"
+  },
+  "metadata-syntax": {
+    "title": "Metadata syntax for GitHub Actions",
+    "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/metadata-syntax"
+  },
+  "openid-connect": {
+    "title": "About security hardening with OpenID Connect",
+    "url": "https://docs.github.com/en/actions/concepts/security/openid-connect"
+  },
+  "org-actions-policy": {
+    "title": "Disabling or limiting GitHub Actions for your organization",
+    "url": "https://docs.github.com/en/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization"
+  },
+  "publish-actions": {
+    "title": "Publishing actions in the GitHub Marketplace",
+    "url": "https://docs.github.com/en/actions/how-tos/create-and-publish-actions/publish-in-github-marketplace"
+  },
+  "release-actions": {
+    "title": "Releasing and maintaining actions",
+    "url": "https://docs.github.com/en/actions/how-tos/create-and-publish-actions/release-and-maintain-actions"
+  },
+  "repo-actions-runs": {
+    "title": "This repository’s Actions runs",
+    "url": "https://github.com/ntttrang/learn-gh-200/actions"
+  },
+  "repo-deploy-workflow": {
+    "title": "This site’s deploy workflow (.github/workflows/deploy.yml)",
+    "url": "https://github.com/ntttrang/learn-gh-200/blob/main/.github/workflows/deploy.yml"
+  },
+  "rest-actions": {
+    "title": "GitHub Actions REST API",
+    "url": "https://docs.github.com/en/rest/actions"
+  },
+  "reuse-config": {
+    "title": "Reusing workflow configurations (YAML anchors)",
+    "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/reusing-workflow-configurations"
+  },
+  "reuse-workflows": {
+    "title": "Reusing workflows",
+    "url": "https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows"
+  },
+  "runner-groups": {
+    "title": "Managing access to self-hosted runners using groups",
+    "url": "https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/manage-access"
+  },
+  "runner-images": {
+    "title": "GitHub-hosted runner images (preinstalled software)",
+    "url": "https://github.com/actions/runner-images"
+  },
+  "secure-use": {
+    "title": "Security hardening for GitHub Actions",
+    "url": "https://docs.github.com/en/actions/reference/security/secure-use"
+  },
+  "self-hosted-runners": {
+    "title": "About self-hosted runners",
+    "url": "https://docs.github.com/en/actions/concepts/runners/self-hosted-runners"
+  },
+  "service-containers": {
+    "title": "About service containers",
+    "url": "https://docs.github.com/en/actions/tutorials/use-containerized-services/use-docker-service-containers"
+  },
+  "share-with-enterprise": {
+    "title": "Share actions and workflows with your enterprise",
+    "url": "https://docs.github.com/en/enterprise-cloud@latest/actions/how-tos/reuse-automations/share-with-your-enterprise"
+  },
+  "status-badges": {
+    "title": "Adding a workflow status badge",
+    "url": "https://docs.github.com/en/actions/how-tos/monitor-workflows/add-a-status-badge"
+  },
+  "store-artifacts": {
+    "title": "Storing and sharing data from your workflow",
+    "url": "https://docs.github.com/en/actions/tutorials/store-and-share-data"
+  },
+  "template-repositories": {
+    "title": "Creating a template repository",
+    "url": "https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository"
+  },
+  "troubleshoot-workflows": {
+    "title": "Troubleshooting workflows",
+    "url": "https://docs.github.com/en/actions/how-tos/troubleshoot-workflows"
+  },
+  "use-secrets": {
+    "title": "Using secrets in GitHub Actions",
+    "url": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets"
+  },
+  "use-variables": {
+    "title": "Variables and environment files",
+    "url": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-variables"
+  },
+  "view-run-history": {
+    "title": "Viewing workflow run history",
+    "url": "https://docs.github.com/en/actions/how-tos/monitor-workflows/view-workflow-run-history"
+  },
+  "workflow-commands": {
+    "title": "Workflow commands for GitHub Actions",
+    "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands"
+  },
+  "workflow-events": {
+    "title": "Events that trigger workflows",
+    "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows"
+  },
+  "workflow-syntax": {
+    "title": "Workflow syntax for GitHub Actions",
+    "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax"
+  },
+  "workflow-templates": {
+    "title": "Using starter workflows and workflow templates",
+    "url": "https://docs.github.com/en/actions/how-tos/write-workflows/use-workflow-templates"
+  }
+}

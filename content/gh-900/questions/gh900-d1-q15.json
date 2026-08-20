@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d1-q15",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-repos-commits-branches",
+  "prompt": "Which statements about branches are true? Choose all that apply.",
+  "explanation": "Branches are lightweight labels that keep parallel lines of work separate — creatable locally in Git or on GitHub. No folder duplication happens; Git tracks lines of commits, not copies of files.",
+  "docIds": [
+    "github-flow"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A branch is a movable label pointing at a line of commits"
+    },
+    {
+      "id": "o2",
+      "text": "Branches let several people work without stepping on each other"
+    },
+    {
+      "id": "o3",
+      "text": "By convention the default branch is called `main`"
+    },
+    {
+      "id": "o4",
+      "text": "A branch physically duplicates the repository folder on disk"
+    },
+    {
+      "id": "o5",
+      "text": "Branches can only be created on the GitHub website"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

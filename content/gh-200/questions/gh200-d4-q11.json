@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d4-q11",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-secrets-variables",
+  "prompt": "Where should a deployment domain like `app.example.com` live, given it is configuration rather than a credential?",
+  "explanation": "Secrets are for values that must stay hidden; anything else belongs in variables, read with `${{ vars.NAME }}` and changeable without touching YAML. Hard-coded values spread silently and demand a pull request to rotate.",
+  "docIds": [
+    "use-variables"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "In a secret, to keep it private"
+    },
+    {
+      "id": "o2",
+      "text": "In a configuration variable, read through the `vars` context"
+    },
+    {
+      "id": "o3",
+      "text": "Hard-coded in every workflow that needs it"
+    },
+    {
+      "id": "o4",
+      "text": "In an artifact downloaded at run time"
+    }
+  ],
+  "correct": "o2"
+}

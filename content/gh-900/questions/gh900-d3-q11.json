@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d3-q11",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-gists-wikis-pages",
+  "prompt": "A developer wants to share a 20-line regex with a colleague for quick review. Which GitHub surface is built for that?",
+  "explanation": "Gists are mini-repositories for single snippets: forkable, commentable, versioned. A full repository is heavyweight for one file, and Pages or issues solve different problems entirely.",
+  "docIds": [
+    "about-gists"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A gist — a snippet with its own URL, comments, and versioning"
+    },
+    {
+      "id": "o2",
+      "text": "A full repository with a README"
+    },
+    {
+      "id": "o3",
+      "text": "A GitHub Pages site"
+    },
+    {
+      "id": "o4",
+      "text": "An issue on the colleague’s repository"
+    }
+  ],
+  "correct": "o1"
+}

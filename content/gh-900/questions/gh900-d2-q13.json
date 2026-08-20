@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d2-q13",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-maintenance",
+  "prompt": "Which set of files best describes the community standards GitHub checks on the Community Standards page?",
+  "explanation": "The community standards checklist tracks the files that make a repository welcoming and safe to use: documentation, licensing, contribution guidance, conduct, security reporting, and templates for issues and pull requests.",
+  "docIds": [
+    "community-health-files"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "README, license, contributing guide, code of conduct, security policy, and issue templates"
+    },
+    {
+      "id": "o2",
+      "text": "Source code, tests, and CI configuration"
+    },
+    {
+      "id": "o3",
+      "text": "Release tags, changelog, and binaries"
+    },
+    {
+      "id": "o4",
+      "text": "Branch protection rules and deploy keys"
+    }
+  ],
+  "correct": "o1"
+}

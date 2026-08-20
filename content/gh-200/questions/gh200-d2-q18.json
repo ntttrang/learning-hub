@@ -1,0 +1,23 @@
+{
+  "id": "gh200-d2-q18",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-diagnose-failures",
+  "prompt": "The test step fails with `Error: Cannot find module 'jest'` — a devDependency. The log points at step 3, but the cause sits earlier. Click the line at fault.",
+  "explanation": "The error surfaces in step 3, but step 2 planted it: `npm install --production` skips devDependencies, so the test tooling never installed. `npm ci` installs everything the lockfile declares — the read-the-whole-log lesson is that the failing step is not always the guilty one.",
+  "docIds": [
+    "troubleshoot-workflows"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "name: PR checks",
+    "on: pull_request",
+    "jobs:",
+    "  verify:",
+    "    runs-on: ubuntu-latest",
+    "    steps:",
+    "      - uses: actions/checkout@v4",
+    "      - run: npm install --production",
+    "      - run: npm test"
+  ],
+  "buggyLineIndex": 7
+}

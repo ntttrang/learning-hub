@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d1-q02",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-triggers",
+  "prompt": "Tests should run on pushes, but only when something under `src/` or `tests/` changes. Which filter does that?",
+  "explanation": "`paths` narrows a push trigger to commits that touch the given globs — a docs-only change will not start the workflow. `paths-ignore` is the inverse (run unless these change), and `branches` filters by ref name, never by file path.",
+  "docIds": [
+    "workflow-events"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "`on:\n  push:\n    branches: [src/**, tests/**]`"
+    },
+    {
+      "id": "o2",
+      "text": "`on:\n  push:\n    paths: [src/**, tests/**]`"
+    },
+    {
+      "id": "o3",
+      "text": "`on:\n  push:\n    paths-ignore: [src/**, tests/**]`"
+    },
+    {
+      "id": "o4",
+      "text": "`on:\n  push:\n    filters: [src/**, tests/**]`"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d2-q03",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-repo-structure-key-files",
+  "prompt": "New contributors keep opening pull requests with missing tests and wrong branch names. Which file should the maintainers add to spell out their expectations?",
+  "explanation": "CONTRIBUTING.md communicates how to participate — style, tests, branch naming, PR etiquette — and GitHub links it when someone opens an issue or PR. CODEOWNERS routes reviews, SECURITY.md handles vulnerability reports.",
+  "docIds": [
+    "contributing-guidelines"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "CONTRIBUTING.md"
+    },
+    {
+      "id": "o2",
+      "text": "CODEOWNERS"
+    },
+    {
+      "id": "o3",
+      "text": "SECURITY.md"
+    },
+    {
+      "id": "o4",
+      "text": ".gitignore"
+    }
+  ],
+  "correct": "o1"
+}

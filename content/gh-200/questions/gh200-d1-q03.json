@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d1-q03",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-dispatch-call-inputs",
+  "prompt": "A maintenance workflow gets a manual trigger, and whoever starts it must pick the target environment from a fixed list of three names. Which `workflow_dispatch` input fits?",
+  "explanation": "For a fixed shortlist, `choice` is the type: it renders a dropdown built from its `options` list, so the environment is picked from exactly the values you allow. `boolean`, `string`, `number`, and `environment` are the other supported types — there is no `list` or `enum`.",
+  "docIds": [
+    "workflow-syntax"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "An input with `type: list`"
+    },
+    {
+      "id": "o2",
+      "text": "An input with `type: choice` plus an `options:` list"
+    },
+    {
+      "id": "o3",
+      "text": "An input with `type: enum`"
+    },
+    {
+      "id": "o4",
+      "text": "An input with `type: boolean` rendered as a dropdown"
+    }
+  ],
+  "correct": "o2"
+}

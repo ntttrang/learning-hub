@@ -1,0 +1,22 @@
+{
+  "id": "gh200-d3-q19",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-troubleshoot-actions",
+  "prompt": "The action fails on first use with `Required property \"shell\" is missing`. Exactly one step is missing its declaration — click it.",
+  "explanation": "In a composite action every `run:` step needs an explicit `shell:` — line 6 has one, line 5 does not, and the failure names the missing property precisely. The fix is one line of `shell: bash`, not a rethink of the action.",
+  "docIds": [
+    "create-composite-action"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "name: Greet",
+    "description: Prints a greeting",
+    "runs:",
+    "  using: composite",
+    "  steps:",
+    "    - run: echo \"Hello\"",
+    "    - run: echo \"Done\"",
+    "      shell: bash"
+  ],
+  "buggyLineIndex": 5
+}

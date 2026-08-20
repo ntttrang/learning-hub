@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d7-q02",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-open-source-sponsors",
+  "prompt": "What is the difference between starring a project and sponsoring it?",
+  "explanation": "Stars are applause — bookmarks that feed discovery. Sponsors are fuel — actual money that keeps maintainers maintaining. Both are visible on the repository; only one pays the rent.",
+  "docIds": [
+    "github-sponsors"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A star bookmarks it and signals interest; sponsorship sends money to sustain it"
+    },
+    {
+      "id": "o2",
+      "text": "A star notifies the maintainer; sponsorship does not"
+    },
+    {
+      "id": "o3",
+      "text": "Stars are public but sponsorships are secret"
+    },
+    {
+      "id": "o4",
+      "text": "There is no difference — sponsorship is a paid star"
+    }
+  ],
+  "correct": "o1"
+}

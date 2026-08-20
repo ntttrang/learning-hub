@@ -1,0 +1,72 @@
+[
+  {
+    "id": "gh900-d1",
+    "order": 1,
+    "title": "Understand Git and GitHub basics",
+    "weight": {
+      "min": 25,
+      "max": 30
+    },
+    "summary": "Version control purpose, Git versus GitHub, repositories and commits, GitHub Flow, Markdown, and the desktop and mobile clients."
+  },
+  {
+    "id": "gh900-d2",
+    "order": 2,
+    "title": "Work with GitHub repositories",
+    "weight": {
+      "min": 10,
+      "max": 15
+    },
+    "summary": "Repository structure and key files, templates and branches, managing files, insights and metrics, and maintenance best practices."
+  },
+  {
+    "id": "gh900-d3",
+    "order": 3,
+    "title": "Collaborate using GitHub",
+    "weight": {
+      "min": 10,
+      "max": 15
+    },
+    "summary": "Issues, pull requests, and discussions; linking and templates; notifications; gists, wikis, and GitHub Pages."
+  },
+  {
+    "id": "gh900-d4",
+    "order": 4,
+    "title": "Apply modern development practices",
+    "weight": {
+      "min": 10,
+      "max": 15
+    },
+    "summary": "GitHub Actions purpose and capabilities, Copilot plans and agents, Codespaces and dev containers, and the github.dev editor."
+  },
+  {
+    "id": "gh900-d5",
+    "order": 5,
+    "title": "Manage projects with GitHub",
+    "weight": {
+      "min": 5,
+      "max": 10
+    },
+    "summary": "Projects and layouts, labels and milestones, saved replies and assignees, and project insights."
+  },
+  {
+    "id": "gh900-d6",
+    "order": 6,
+    "title": "Understand privacy, security, and administration",
+    "weight": {
+      "min": 10,
+      "max": 15
+    },
+    "summary": "2FA and passkeys, repository and organization permissions, Enterprise Managed Users, visibility, branch protection, and org settings."
+  },
+  {
+    "id": "gh900-d7",
+    "order": 7,
+    "title": "Explore the GitHub community",
+    "weight": {
+      "min": 5,
+      "max": 10
+    },
+    "summary": "Open source and Sponsors, following people and organizations, Marketplace, InnerSource, forks and templates."
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d3-q05",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-structure-metadata",
+  "prompt": "An input is declared `required: true` with no default. What happens when a caller omits it?",
+  "explanation": "Required means required: the workflow referencing the action fails validation up front, telling you which input is missing, rather than letting the action run half-configured. Optional inputs are the ones that fall back to their `default`.",
+  "docIds": [
+    "metadata-syntax"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The workflow fails with a validation error before the job starts"
+    },
+    {
+      "id": "o2",
+      "text": "The action receives an empty string and decides for itself"
+    },
+    {
+      "id": "o3",
+      "text": "GitHub prompts the caller interactively"
+    },
+    {
+      "id": "o4",
+      "text": "The input is silently dropped from the `inputs` context"
+    }
+  ],
+  "correct": "o1"
+}

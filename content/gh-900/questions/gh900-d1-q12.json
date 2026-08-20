@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d1-q12",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-desktop-mobile",
+  "prompt": "A designer is comfortable in a GUI and avoids the terminal. Which tool lets them branch, view diffs, and open pull requests visually on their own machine?",
+  "explanation": "GitHub Desktop is the visual Git client: branches, diffs, and pull requests without typing commands. Mobile handles review and triage on the go, the API is for programs, and Codespaces is a cloud environment for running code.",
+  "docIds": [
+    "github-desktop"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "GitHub Desktop"
+    },
+    {
+      "id": "o2",
+      "text": "GitHub Mobile"
+    },
+    {
+      "id": "o3",
+      "text": "The REST API"
+    },
+    {
+      "id": "o4",
+      "text": "Codespaces"
+    }
+  ],
+  "correct": "o1"
+}

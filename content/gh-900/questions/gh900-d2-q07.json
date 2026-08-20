@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d2-q07",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-templates-and-branches",
+  "prompt": "Which statement correctly separates a template repository from a fork?",
+  "explanation": "Templates are molds: new repository, empty history, no relationship to the mold. Forks are contributions-in-waiting: full copy of history, linked so you can open pull requests back upstream and sync changes down.",
+  "docIds": [
+    "template-repositories"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A template starts a new history; a fork copies history and stays linked to its upstream"
+    },
+    {
+      "id": "o2",
+      "text": "A fork starts a new history; a template copies history and stays linked"
+    },
+    {
+      "id": "o3",
+      "text": "Both create fresh histories with no upstream link"
+    },
+    {
+      "id": "o4",
+      "text": "Both copy history and stay linked to the upstream"
+    }
+  ],
+  "correct": "o1"
+}

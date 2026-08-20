@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d6-q15",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-permissions-roles",
+  "prompt": "Which statements about repository roles in an organization are true? Choose all that apply.",
+  "explanation": "The ladder read → triage → write → maintain → admin stacks capabilities cleanly. Read is view-only and merges nothing — and pushing a branch needs just write, not admin.",
+  "docIds": [
+    "repository-roles"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Triage can manage labels and close issues without pushing code"
+    },
+    {
+      "id": "o2",
+      "text": "Write can push branches and merge pull requests"
+    },
+    {
+      "id": "o3",
+      "text": "Admin controls repository settings and access"
+    },
+    {
+      "id": "o4",
+      "text": "Read can merge pull requests into protected branches"
+    },
+    {
+      "id": "o5",
+      "text": "Admin access is required before anyone can push a branch"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

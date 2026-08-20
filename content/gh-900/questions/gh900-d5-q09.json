@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d5-q09",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-labels-milestones",
+  "prompt": "Which of these is a built-in project automation?",
+  "explanation": "Built-in automations handle the mechanical state sync — closing an issue or merging a PR can flip its project item to Done. Merges and deletions stay human decisions.",
+  "docIds": [
+    "built-in-automations"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "When an issue in the project closes, its item moves to Done automatically"
+    },
+    {
+      "id": "o2",
+      "text": "Auto-deleting closed issues after a week"
+    },
+    {
+      "id": "o3",
+      "text": "Auto-merging pull requests assigned to the project"
+    },
+    {
+      "id": "o4",
+      "text": "Auto-creating a repository for every draft item"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "gh900-d1-q19",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-repos-commits-branches",
+  "prompt": "Order the everyday loop for publishing a small change from your laptop.",
+  "explanation": "The loop is always: branch, edit, stage, commit, push. Staging picks what goes into the snapshot, the commit records it, and pushing shares the branch so a pull request can follow.",
+  "docIds": [
+    "hello-world"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Create and switch to a new branch"
+    },
+    {
+      "id": "o2",
+      "text": "Edit the file"
+    },
+    {
+      "id": "o3",
+      "text": "Stage the change with `git add`"
+    },
+    {
+      "id": "o4",
+      "text": "Commit with a message"
+    },
+    {
+      "id": "o5",
+      "text": "Push the branch to GitHub"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d2-q15",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-reusable-vs-composite",
+  "prompt": "Which statements correctly separate reusable workflows from composite actions? Choose all that apply.",
+  "explanation": "The split is the unit: reusable workflows contribute jobs with their own runners, composite actions contribute steps inside yours. Both are referenced with `uses:` and pinned like any action; neither knows about your dependency graph.",
+  "docIds": [
+    "reuse-workflows"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A reusable workflow runs as its own job, on its own runner"
+    },
+    {
+      "id": "o2",
+      "text": "A composite action’s steps execute inside the calling job"
+    },
+    {
+      "id": "o3",
+      "text": "Both can be versioned and called with `uses:` pinned to a ref"
+    },
+    {
+      "id": "o4",
+      "text": "A composite action declares its own `runs-on:` in `action.yml`"
+    },
+    {
+      "id": "o5",
+      "text": "Calling a reusable workflow removes the need for `needs:` between jobs"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "gh900-d6-q19",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-visibility-protection",
+  "prompt": "Order the steps for protecting the default branch so every change is reviewed and green.",
+  "explanation": "Protection flows: settings → rule → requirements → save → verify. The last step matters: enforcement is proven by GitHub refusing a direct push, not by the checkbox existing.",
+  "docIds": [
+    "about-protected-branches"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Open the repository Settings → Branches page"
+    },
+    {
+      "id": "o2",
+      "text": "Add a branch protection rule for `main`"
+    },
+    {
+      "id": "o3",
+      "text": "Require one approving review before merging"
+    },
+    {
+      "id": "o4",
+      "text": "Require status checks to pass"
+    },
+    {
+      "id": "o5",
+      "text": "Save the rule and verify a direct push is rejected"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

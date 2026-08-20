@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d5-q11",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-project-insights",
+  "prompt": "A program manager needs to share project insights with people who are not repository collaborators. What is possible?",
+  "explanation": "Project insights are shareable: expose the charts to a wider audience while editing stays with project members. The data follows the project, not the repository permission list.",
+  "docIds": [
+    "about-project-insights"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Insights can be shared so viewers can see the charts without project edit rights"
+    },
+    {
+      "id": "o2",
+      "text": "Nothing — insights are private to project administrators forever"
+    },
+    {
+      "id": "o3",
+      "text": "Insights must be screenshotted and emailed"
+    },
+    {
+      "id": "o4",
+      "text": "Sharing requires transferring the project to an organization"
+    }
+  ],
+  "correct": "o1"
+}

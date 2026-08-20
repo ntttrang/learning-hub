@@ -1,0 +1,16 @@
+{
+  "id": "gh-900",
+  "code": "GH-900",
+  "title": "GitHub Foundations",
+  "subtitle": "GitHub Foundations · 7 domains",
+  "description": "Git, repos, collaboration & GitHub fundamentals — the on-ramp certification.",
+  "accent": "corgi-orange",
+  "enabledModes": [
+    "learn",
+    "labs",
+    "practice",
+    "exams",
+    "notes",
+    "revision"
+  ]
+}

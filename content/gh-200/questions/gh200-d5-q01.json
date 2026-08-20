@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d5-q01",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-environments",
+  "prompt": "A deploy to production must wait until two named engineers click approve in the run itself. What provides that gate?",
+  "explanation": "Environments carry protection rules: required reviewers pause any job referencing the environment until they approve or reject, right on the run page. Branch protection governs merges; the environment gate governs the deployment job.",
+  "docIds": [
+    "manage-environments"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A required reviewer configured on the production environment"
+    },
+    {
+      "id": "o2",
+      "text": "A branch protection rule on `main`"
+    },
+    {
+      "id": "o3",
+      "text": "A CODEOWNERS file listing the engineers"
+    },
+    {
+      "id": "o4",
+      "text": "A manual `workflow_dispatch` input"
+    }
+  ],
+  "correct": "o1"
+}

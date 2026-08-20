@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d2-q04",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-diagnose-failures",
+  "prompt": "A matrix run failed in 3 of 10 combinations. What is the cheapest path to a clean, fully green run?",
+  "explanation": "Re-run failed jobs recreates exactly the failed combinations, keeping the passed ones green in place. Re-running everything burns the minutes you already paid for, and deleting a run erases the evidence you were about to learn from.",
+  "docIds": [
+    "view-run-history"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Re-run all jobs and hope the flaky ones pass this time"
+    },
+    {
+      "id": "o2",
+      "text": "Re-run failed jobs — only the 3 failed combinations execute again"
+    },
+    {
+      "id": "o3",
+      "text": "Edit the matrix to drop the failing combinations"
+    },
+    {
+      "id": "o4",
+      "text": "Delete the run and push a new commit"
+    }
+  ],
+  "correct": "o2"
+}

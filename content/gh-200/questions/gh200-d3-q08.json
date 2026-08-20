@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d3-q08",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-distribution",
+  "prompt": "An enterprise wants internal actions shared company-wide but invisible to the public. What is the supported path?",
+  "explanation": "Actions live in repositories, and an enterprise can share the ones in its internal repositories with all its organizations — no Marketplace, no public exposure. Workflows then reference them by `owner/repo/path@ref` like any other action.",
+  "docIds": [
+    "share-with-enterprise"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Publish to the Marketplace with hidden visibility"
+    },
+    {
+      "id": "o2",
+      "text": "Keep the actions in internal repositories and allow them via enterprise sharing"
+    },
+    {
+      "id": "o3",
+      "text": "Ship them as encrypted archives downloaded by each workflow"
+    },
+    {
+      "id": "o4",
+      "text": "Fork them into every repository that needs them"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d6-q05",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-permissions-roles",
+  "prompt": "Which repository role suits a deputy maintainer who should run the repository day to day but not change dangerous settings or access?",
+  "explanation": "Maintain grants repository management — issues, milestones, project boards — while reserving settings and access control for admin. It is the \"trusted, but the keys stay with admin\" tier.",
+  "docIds": [
+    "repository-roles"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Maintain"
+    },
+    {
+      "id": "o2",
+      "text": "Read"
+    },
+    {
+      "id": "o3",
+      "text": "Triage"
+    },
+    {
+      "id": "o4",
+      "text": "Admin"
+    }
+  ],
+  "correct": "o1"
+}

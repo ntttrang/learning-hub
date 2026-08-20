@@ -34,8 +34,11 @@ progress store) sit under the study UI (`src/ui/`), which renders every mode a
 pack enables: lessons with knowledge checks and notes, labs, shuffled practice,
 timed exams with reviews and per-domain breakdowns, comparisons, and a
 notes/bookmarks tab. Progress, attempts, notes, and bookmarks persist locally
-per subject. The `content/fixture/` pack exercises the whole schema
-(`npm test`, `npm run content:check`). See
+per subject. Installed packs: GH-900 (GitHub Foundations), GH-200 (GitHub
+Actions), and the `content/fixture/` pack that exercises the whole schema
+(`npm test`, `npm run content:check`). On first load the hub also imports, one
+time, any progress left in the same browser by the retired standalone GH-200
+app (lessons, labs, and exam history). See
 [docs/unified-learning-hub-plan.md](docs/unified-learning-hub-plan.md) for the
 full plan, schema, and target structure.
 

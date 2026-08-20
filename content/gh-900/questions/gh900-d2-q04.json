@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d2-q04",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-repo-structure-key-files",
+  "prompt": "Every pull request that touches `docs/` should be reviewed by the documentation team before merging. Which file automates that routing?",
+  "explanation": "CODEOWNERS maps path patterns like `docs/` or `*.md` to owners; GitHub automatically requests their review when a pull request changes those paths. It routes reviews — it does not enforce merges by itself.",
+  "docIds": [
+    "about-code-owners"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "CODEOWNERS, which auto-requests review from the owners of matching paths"
+    },
+    {
+      "id": "o2",
+      "text": "CONTRIBUTING.md, which GitHub parses for review rules"
+    },
+    {
+      "id": "o3",
+      "text": "A `docs-review.yml` file at the repository root"
+    },
+    {
+      "id": "o4",
+      "text": "SECURITY.md with a reviewers section"
+    }
+  ],
+  "correct": "o1"
+}

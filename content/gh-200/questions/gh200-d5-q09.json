@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d5-q09",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-pinning",
+  "prompt": "Why do hardening guides tell you to reference third-party actions by full commit SHA rather than tag?",
+  "explanation": "A tag or branch is a pointer someone can move, so `@v3` today is not a promise about tomorrow; a full commit SHA names exactly one immutable tree. Pinning is how you make a third-party dependency in your pipeline reviewable and stable.",
+  "docIds": [
+    "secure-use"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "SHAs resolve faster on the runner"
+    },
+    {
+      "id": "o2",
+      "text": "Tags are mutable — they can be re-pointed at different code; a SHA cannot"
+    },
+    {
+      "id": "o3",
+      "text": "Tags are deprecated for actions"
+    },
+    {
+      "id": "o4",
+      "text": "SHAs unlock Marketplace verification"
+    }
+  ],
+  "correct": "o2"
+}

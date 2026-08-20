@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d5-q05",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-token-permissions",
+  "prompt": "When is the `GITHUB_TOKEN` created, and when does it stop working?",
+  "explanation": "The token’s lifecycle is the job: generated before your steps run, scoped to that repository, and invalidated when the job finishes. That ephemerality is exactly why it beats a personal access token for in-workflow git and API work.",
+  "docIds": [
+    "github-token"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "It is minted fresh for each job and revoked when the job ends"
+    },
+    {
+      "id": "o2",
+      "text": "It is a permanent repository credential rotated yearly"
+    },
+    {
+      "id": "o3",
+      "text": "It exists from repository creation until deleted by an admin"
+    },
+    {
+      "id": "o4",
+      "text": "It is issued per workflow file and shared across its jobs"
+    }
+  ],
+  "correct": "o1"
+}

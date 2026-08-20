@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d1-q05",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-jobs-steps",
+  "prompt": "In a workflow, job `deploy` may start only after job `build` has finished successfully. Which key expresses that?",
+  "explanation": "`needs: build` creates the dependency: `deploy` waits for `build`, and it is skipped entirely when `build` fails. Chains of `needs` form a graph GitHub executes in parallel wherever nothing forces an ordering.",
+  "docIds": [
+    "workflow-syntax"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "`order: build`"
+    },
+    {
+      "id": "o2",
+      "text": "`needs: build`"
+    },
+    {
+      "id": "o3",
+      "text": "`after: build`"
+    },
+    {
+      "id": "o4",
+      "text": "`depends_on: build`"
+    }
+  ],
+  "correct": "o2"
+}

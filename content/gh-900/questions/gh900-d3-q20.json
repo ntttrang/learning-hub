@@ -1,0 +1,18 @@
+{
+  "id": "gh900-d3-q20",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-issues-prs-discussions",
+  "prompt": "A pull request should carry a typo fix into the default branch. One setting sends it to the wrong place. Click the broken line.",
+  "explanation": "The base is where the change lands, and a typo fix belongs in the default branch — `main`. Basing it on `feature/nav-redesign` tucks the fix into an unrelated long-lived branch instead of shipping it.",
+  "docIds": [
+    "about-pull-requests"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "# Pull request setup",
+    "base: feature/nav-redesign",
+    "compare: fix-typo",
+    "title: Fix typo in README"
+  ],
+  "buggyLineIndex": 1
+}

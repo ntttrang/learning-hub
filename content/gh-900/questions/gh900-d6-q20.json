@@ -1,0 +1,18 @@
+{
+  "id": "gh900-d6-q20",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-visibility-protection",
+  "prompt": "The requirement: no direct pushes to `main` and at least one review — enforced, not requested. One line in the plan fails that requirement. Click it.",
+  "explanation": "A CONTRIBUTING.md rule is a request — it cannot stop anyone. Only the branch protection rule enforces: requiring reviews and checks makes \"no direct pushes, always reviewed\" a technical fact.",
+  "docIds": [
+    "about-protected-branches"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "Document the review rule in CONTRIBUTING.md",
+    "Enable a branch protection rule on main",
+    "Require one approving review before merge",
+    "Require status checks to pass before merge"
+  ],
+  "buggyLineIndex": 0
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d5-q02",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-environments",
+  "prompt": "Which set describes what environment protection rules can enforce?",
+  "explanation": "Protection rules cover who approves (reviewers), how long to pause (wait timer), and which branches may deploy to the environment — the levers of a controlled rollout. Authentication policy and runner capacity live elsewhere entirely.",
+  "docIds": [
+    "manage-environments"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Required reviewers, a wait timer, and deploy-branch restrictions"
+    },
+    {
+      "id": "o2",
+      "text": "Required reviewers only"
+    },
+    {
+      "id": "o3",
+      "text": "Two-factor authentication and SSO"
+    },
+    {
+      "id": "o4",
+      "text": "Runner sizing and job timeouts"
+    }
+  ],
+  "correct": "o1"
+}

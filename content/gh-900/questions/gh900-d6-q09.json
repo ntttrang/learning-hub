@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d6-q09",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-visibility-protection",
+  "prompt": "Which visibility settings can a repository have?",
+  "explanation": "Visibility is who can see the code: public (everyone), private (invited collaborators only), internal (all members of the organization). Archiving is a frozen state, not a visibility.",
+  "docIds": [
+    "setting-repository-visibility"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Public, private, and — on organization paid plans — internal"
+    },
+    {
+      "id": "o2",
+      "text": "Public and hidden"
+    },
+    {
+      "id": "o3",
+      "text": "Public, private, and archived"
+    },
+    {
+      "id": "o4",
+      "text": "Visible and invisible"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d4-q10",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-secrets-variables",
+  "prompt": "A secret named `PROD_KEY` exists at organization, repository, and environment level, and the job references that environment. Which value does `${{ secrets.PROD_KEY }}` read?",
+  "explanation": "When one name exists at several levels, the closest wins: environment over repository over organization. Shadowing is deliberate — broad defaults with narrow overrides, and no failure, ever, for reusing a name across scopes.",
+  "docIds": [
+    "use-secrets"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The organization-level value, as the broadest scope"
+    },
+    {
+      "id": "o2",
+      "text": "The environment-level value, as the closest scope"
+    },
+    {
+      "id": "o3",
+      "text": "All three concatenated"
+    },
+    {
+      "id": "o4",
+      "text": "The job fails for a name conflict"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d3-q02",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-issues-prs-discussions",
+  "prompt": "What is a pull request, in one sentence?",
+  "explanation": "A pull request says \"here is a branch; I propose merging it, here is exactly what changes, review it\" — the conversation, reviews, and checks all hang off that proposal.",
+  "docIds": [
+    "about-pull-requests"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A proposal to merge one branch into another, with the diff, review, and discussion attached"
+    },
+    {
+      "id": "o2",
+      "text": "A request for somebody to pull your repository"
+    },
+    {
+      "id": "o3",
+      "text": "A copy of the repository for independent work"
+    },
+    {
+      "id": "o4",
+      "text": "An automated deployment pipeline"
+    }
+  ],
+  "correct": "o1"
+}

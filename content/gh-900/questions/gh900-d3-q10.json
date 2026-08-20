@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d3-q10",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-notifications",
+  "prompt": "Notifications are flooding in from a repository the developer no longer cares about. What stops them at the source?",
+  "explanation": "Notification volume is controlled per repository: unwatch stops the subscription, and ignore silences even @mentions from it. Global notification settings then shape how arriving notifications reach you.",
+  "docIds": [
+    "about-notifications"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Unwatch the repository (or set it to ignore)"
+    },
+    {
+      "id": "o2",
+      "text": "Delete the account and start again"
+    },
+    {
+      "id": "o3",
+      "text": "Close every issue in the repository"
+    },
+    {
+      "id": "o4",
+      "text": "Turn off email everywhere and check the site hourly"
+    }
+  ],
+  "correct": "o1"
+}

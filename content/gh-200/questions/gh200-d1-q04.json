@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d1-q04",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-dispatch-call-inputs",
+  "prompt": "A reusable workflow declares a required `deploy-key` secret. A caller wants to forward everything it can see without naming secrets one by one. Which call does that?",
+  "explanation": "`secrets: inherit` forwards every secret the calling workflow can see, in place of an explicit name-by-name map. Nothing is passed implicitly: without `inherit` or explicit names, the called workflow sees none of the caller’s secrets.",
+  "docIds": [
+    "reuse-workflows"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "`uses:` the workflow with `secrets: all`"
+    },
+    {
+      "id": "o2",
+      "text": "`uses:` the workflow with `secrets: env`"
+    },
+    {
+      "id": "o3",
+      "text": "`uses:` the workflow with `secrets: inherit`"
+    },
+    {
+      "id": "o4",
+      "text": "Nothing — a called workflow receives all caller secrets automatically"
+    }
+  ],
+  "correct": "o3"
+}

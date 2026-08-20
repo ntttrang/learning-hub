@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d1-q05",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-repos-commits-branches",
+  "prompt": "What exactly is a commit?",
+  "explanation": "A commit records the state of whatever you staged, plus metadata — author, time, and a message explaining why. It is not a folder backup or an upload; pushing to GitHub is a separate step.",
+  "docIds": [
+    "hello-world"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A saved snapshot of the staged files, carrying a message, author, and timestamp"
+    },
+    {
+      "id": "o2",
+      "text": "A compressed backup of the whole repository folder"
+    },
+    {
+      "id": "o3",
+      "text": "A note appended to the previous commit without a new snapshot"
+    },
+    {
+      "id": "o4",
+      "text": "A copy of the files uploaded to GitHub"
+    }
+  ],
+  "correct": "o1"
+}

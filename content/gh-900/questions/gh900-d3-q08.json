@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d3-q08",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-notifications",
+  "prompt": "Priya left one comment on a stranger’s issue and now gets notified about every reply. Why?",
+  "explanation": "You are automatically subscribed to threads you participate in — authoring, commenting, or being @mentioned. Participating is one of the two main notification sources, alongside deliberately watching a repository.",
+  "docIds": [
+    "about-notifications"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Participating in a conversation subscribes her to its thread"
+    },
+    {
+      "id": "o2",
+      "text": "She is following the repository author"
+    },
+    {
+      "id": "o3",
+      "text": "GitHub notifies everyone in the organization"
+    },
+    {
+      "id": "o4",
+      "text": "Commenting assigns the issue to her"
+    }
+  ],
+  "correct": "o1"
+}

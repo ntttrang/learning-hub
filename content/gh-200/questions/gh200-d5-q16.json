@@ -1,0 +1,23 @@
+{
+  "id": "gh200-d5-q16",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-oidc",
+  "prompt": "Wire up cloud federation: grant the OIDC permission and take the role from storage.",
+  "explanation": "Federation needs exactly two things in the workflow: `id-token: write` so the job can mint OIDC tokens, and the cloud role to assume — stored as a secret and read through `${{ secrets.… }}`. The cloud side trusts the issuer; no keys ever change hands.",
+  "docIds": [
+    "openid-connect"
+  ],
+  "kind": "fill",
+  "template": "name: Deploy to AWS\non: push\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    permissions:\n      id-token: ___\n      contents: read\n    steps:\n      - uses: aws-actions/configure-aws-credentials@v4\n        with:\n          role-to-assume: ${{ ___ }}\n          aws-region: us-east-1\n",
+  "blanks": [
+    {
+      "answer": "write"
+    },
+    {
+      "answer": "secrets.AWS_ROLE_ARN",
+      "alternatives": [
+        "secrets.AWS_ROLE"
+      ]
+    }
+  ]
+}

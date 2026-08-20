@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d7-q13",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-open-source-sponsors",
+  "prompt": "A newcomer wants to start contributing but has no idea where. What is the documented first move?",
+  "explanation": "GitHub’s own guide to finding ways to contribute: browse topics and projects you already use, then filter repositories for `good first issue` — labels maintained exactly for newcomers.",
+  "docIds": [
+    "ways-to-contribute"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Explore GitHub for projects and topics, filtering for `good first issue` labels"
+    },
+    {
+      "id": "o2",
+      "text": "Email the maintainers of the Linux kernel"
+    },
+    {
+      "id": "o3",
+      "text": "Open a pull request to the most starred repository"
+    },
+    {
+      "id": "o4",
+      "text": "Pay for a GitHub Enterprise plan first"
+    }
+  ],
+  "correct": "o1"
+}

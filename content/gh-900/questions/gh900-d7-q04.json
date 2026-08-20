@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d7-q04",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-following",
+  "prompt": "How do you keep an eye on what an organization — say, the one behind your database — releases?",
+  "explanation": "Organizations can be followed just like people, folding their public activity into your feed — one follow instead of starring dozens of repositories.",
+  "docIds": [
+    "following-organizations"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Follow the organization; its activity joins your dashboard feed"
+    },
+    {
+      "id": "o2",
+      "text": "Star every repository it owns"
+    },
+    {
+      "id": "o3",
+      "text": "Email the organization’s contact address weekly"
+    },
+    {
+      "id": "o4",
+      "text": "Fork all of its repositories"
+    }
+  ],
+  "correct": "o1"
+}

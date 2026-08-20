@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d7-q12",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-forks-templates-discovery",
+  "prompt": "A teacher found a repository whose file structure is perfect for class assignments, but students’ work must be entirely independent. What should students click?",
+  "explanation": "Template = fresh start (new history, no upstream relationship). Fork = contribution copy (linked, history intact). Independent student projects want the former; proposing fixes back to the teacher’s original wants the latter.",
+  "docIds": [
+    "template-repositories"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "\"Use this template\" — a fresh repository with no link or shared history"
+    },
+    {
+      "id": "o2",
+      "text": "\"Fork\" — a linked copy under each student’s account"
+    },
+    {
+      "id": "o3",
+      "text": "\"Star\" — a bookmark of the repository"
+    },
+    {
+      "id": "o4",
+      "text": "\"Watch\" — notifications for the repository"
+    }
+  ],
+  "correct": "o1"
+}

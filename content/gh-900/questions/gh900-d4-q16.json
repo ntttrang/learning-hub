@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d4-q16",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-copilot",
+  "prompt": "Which are real Copilot capabilities on GitHub today? Choose all that apply.",
+  "explanation": "Copilot spans completions, chat, and agents that propose changes for review. Merging without humans is not a Copilot feature — review stays a person’s call.",
+  "docIds": [
+    "copilot-get-started"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Inline code completions in supported editors"
+    },
+    {
+      "id": "o2",
+      "text": "Chat about your code in the editor"
+    },
+    {
+      "id": "o3",
+      "text": "An agent that takes an issue and opens a pull request"
+    },
+    {
+      "id": "o4",
+      "text": "Silently merging pull requests without human review"
+    },
+    {
+      "id": "o5",
+      "text": "Writing commit messages as its only function"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

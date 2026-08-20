@@ -1,0 +1,52 @@
+[
+  {
+    "id": "gh200-d1",
+    "order": 1,
+    "title": "Author and manage workflows",
+    "weight": {
+      "min": 20,
+      "max": 25
+    },
+    "summary": "Workflow triggers and inputs, jobs/steps/dependencies, matrix strategy, service containers, contexts and expressions, caching/artifacts, and job summaries."
+  },
+  {
+    "id": "gh200-d2",
+    "order": 2,
+    "title": "Consume and troubleshoot workflows",
+    "weight": {
+      "min": 15,
+      "max": 20
+    },
+    "summary": "Reading workflows and their logs, diagnosing failures, expanding anchors and matrices, fetching logs/artifacts via UI and API, starter vs reusable vs composite, disable vs delete."
+  },
+  {
+    "id": "gh200-d3",
+    "order": 3,
+    "title": "Author and maintain actions",
+    "weight": {
+      "min": 15,
+      "max": 20
+    },
+    "summary": "Action types (JavaScript, Docker, composite), action.yml metadata, workflow commands inside actions, distribution models, and versioning strategies."
+  },
+  {
+    "id": "gh200-d4",
+    "order": 4,
+    "title": "Manage GitHub Actions for the enterprise",
+    "weight": {
+      "min": 20,
+      "max": 25
+    },
+    "summary": "Org use policies and governance, GitHub-hosted vs self-hosted runners, runner groups, IP allow lists, preinstalled software, and secrets/variables scoping with REST management."
+  },
+  {
+    "id": "gh200-d5",
+    "order": 5,
+    "title": "Secure and optimize automation",
+    "weight": {
+      "min": 10,
+      "max": 15
+    },
+    "summary": "Script injection, GITHUB_TOKEN permissions vs PAT, OIDC federation, SHA pinning, allow lists and reviewers, environment approvals, artifact attestations, caching and retention."
+  }
+]

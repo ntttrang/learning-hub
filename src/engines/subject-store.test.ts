@@ -6,6 +6,7 @@ import {
   useSubjectDataStore,
   type SubjectDataState,
 } from './subject-store';
+import type { SubjectUserData } from '../sdk/types';
 
 type Store = ReturnType<typeof createSubjectDataStore>;
 
@@ -121,8 +122,56 @@ describe('subject-data store: namespacing', () => {
   });
 });
 
-describe('subject-data store: persistence round-trip', () => {
-  it('rehydrates from the adapter on a fresh store instance', async () => {
+describe('subject-data store: importLegacyData bulk merge', () => {
+  let store: Store;
+  beforeEach(() => {
+    ({ store } = freshStore());
+  });
+
+  it('existing keys win, new keys append, deterministic ids dedup — never clobber', () => {
+    const current: SubjectUserData = {
+      lessons: { 'lesson-1': { status: 'in-progress', lastVisited: '2026-08-19T00:00:00.000Z' } },
+      completedLabs: ['lab-1'],
+      quizAttempts: [],
+      examAttempts: [examAttempt('legacy-x-0')],
+      srs: {},
+      notes: [],
+      bookmarks: [],
+    };
+    store.setState({ subjects: { s1: current } });
+
+    store.getState().importLegacyData('s1', {
+      lessons: {
+        'lesson-1': { status: 'completed', lastVisited: '2020-01-01T00:00:00.000Z' },
+        'lesson-2': { status: 'completed', lastVisited: '2020-01-02T00:00:00.000Z' },
+      },
+      completedLabs: ['lab-1', 'lab-2'],
+      examAttempts: [examAttempt('legacy-x-0'), examAttempt('legacy-x-1')],
+    });
+
+    const data = store.getState().subjects['s1'];
+    expect(data.lessons['lesson-1']).toEqual({
+      status: 'in-progress',
+      lastVisited: '2026-08-19T00:00:00.000Z',
+    });
+    expect(data.lessons['lesson-2']).toEqual({
+      status: 'completed',
+      lastVisited: '2020-01-02T00:00:00.000Z',
+    });
+    expect(data.completedLabs).toEqual(['lab-1', 'lab-2']);
+    expect(data.examAttempts.map((attempt) => attempt.id)).toEqual(['legacy-x-0', 'legacy-x-1']);
+  });
+
+  it('imports without bumping the streak or ingesting SRS — no synthetic activity', () => {
+    store.getState().importLegacyData('fresh', { examAttempts: [examAttempt('legacy-y-0')] });
+    const state = store.getState();
+    expect(state.streak).toEqual({ current: 0, longest: 0 });
+    expect(state.subjects['fresh'].srs).toEqual({});
+    expect(state.subjects['fresh'].examAttempts).toHaveLength(1);
+  });
+});
+
+describe('subject-data store: persistence round-trip', () => {  it('rehydrates from the adapter on a fresh store instance', async () => {
     const { store: writer, adapter } = freshStore();
     writer.getState().markLesson('fixture', 'lesson-storage-models', 'completed');
     writer.getState().recordQuiz('fixture', quizAttempt('qa-1'));

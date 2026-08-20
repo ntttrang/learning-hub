@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d2-q16",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-templates",
+  "prompt": "Which statements about starter and organization workflow templates are true? Choose all that apply.",
+  "explanation": "A template is a starting point: the picker (GitHub’s starters plus your organization’s) copies YAML into `.github/workflows/`, after which it is yours. Nothing flows back later — when the template improves, you re-copy deliberately.",
+  "docIds": [
+    "workflow-templates"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Choosing a starter workflow copies its YAML into your repository to edit"
+    },
+    {
+      "id": "o2",
+      "text": "An organization publishes its own templates from its `.github` repository"
+    },
+    {
+      "id": "o3",
+      "text": "Template metadata files control the category and description shown in the picker"
+    },
+    {
+      "id": "o4",
+      "text": "Templates update your workflow automatically whenever the template changes"
+    },
+    {
+      "id": "o5",
+      "text": "Only GitHub can author templates that appear in the New workflow list"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

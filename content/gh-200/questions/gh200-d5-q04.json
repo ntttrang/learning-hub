@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d5-q04",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-script-injection",
+  "prompt": "Which of these values must be treated as untrusted input to a workflow?",
+  "explanation": "Anything an outside contributor can author — issue titles, PR bodies, branch names — is attacker-controlled text that flows in through `github.event`. Platform-provided facts like the SHA or `runner.os`, and your own authored config, are the trusted side of that line.",
+  "docIds": [
+    "secure-use"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The commit SHA that triggered the run"
+    },
+    {
+      "id": "o2",
+      "text": "An issue title arriving through `github.event`"
+    },
+    {
+      "id": "o3",
+      "text": "The `runner.os` of the allocated machine"
+    },
+    {
+      "id": "o4",
+      "text": "The workflow file’s own `env:` block"
+    }
+  ],
+  "correct": "o2"
+}

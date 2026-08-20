@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d2-q08",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-managing-files",
+  "prompt": "Which ways can a file land in a GitHub repository? Pick the true statement.",
+  "explanation": "However a file arrives — browser edit, drag-and-drop upload, API call, or push — the change is recorded as a commit on a branch. The route differs; the mechanism does not.",
+  "docIds": [
+    "gh-docs-repositories"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Through the web editor, a Git push, the API, or by uploading in the file list — all become commits on a branch"
+    },
+    {
+      "id": "o2",
+      "text": "Only by `git push` from a local clone"
+    },
+    {
+      "id": "o3",
+      "text": "Only through the web interface"
+    },
+    {
+      "id": "o4",
+      "text": "Uploads and web edits bypass commits entirely"
+    }
+  ],
+  "correct": "o1"
+}

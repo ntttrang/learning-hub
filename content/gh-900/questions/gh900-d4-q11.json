@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d4-q11",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-githubdev",
+  "prompt": "While browsing a repository on github.com, a developer presses the `.` (period) key. What happens?",
+  "explanation": "The period key is the shortcut into github.dev (equivalently, swap `github.com` for `github.dev` in the URL): the repo opens in a web-based editor tied to your GitHub identity.",
+  "docIds": [
+    "githubdev-editor"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The repository opens in github.dev, a browser-based VS Code editor"
+    },
+    {
+      "id": "o2",
+      "text": "The repository’s README reloads"
+    },
+    {
+      "id": "o3",
+      "text": "A new codespace starts and billing begins"
+    },
+    {
+      "id": "o4",
+      "text": "Nothing — that shortcut is desktop-only"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "gh900-d4-q20",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-actions-purpose",
+  "prompt": "This workflow is meant to run `npm test` inside the `test` job. One line sits at the wrong indentation, so the job never sees its step. Click the misindented line.",
+  "explanation": "`steps:` is indented as a sibling of the `test:` job instead of inside it, so the job owns no steps and the workflow is invalid. In YAML, indentation is structure: steps must nest under their job.",
+  "docIds": [
+    "gh-docs-actions"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "name: CI",
+    "on: push",
+    "jobs:",
+    "  test:",
+    "    runs-on: ubuntu-latest",
+    "  steps:",
+    "    - run: npm test"
+  ],
+  "buggyLineIndex": 5
+}

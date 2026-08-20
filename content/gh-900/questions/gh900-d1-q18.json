@@ -1,0 +1,40 @@
+{
+  "id": "gh900-d1-q18",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-github-flow",
+  "prompt": "Order the GitHub flow steps from start to finish.",
+  "explanation": "GitHub flow: branch for one idea, commit as you go, open the pull request early to start the conversation, review together, then merge — and delete the branch afterwards.",
+  "docIds": [
+    "github-flow"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Create a topic branch for the change"
+    },
+    {
+      "id": "o2",
+      "text": "Commit your work to the branch"
+    },
+    {
+      "id": "o3",
+      "text": "Open a pull request"
+    },
+    {
+      "id": "o4",
+      "text": "Review and discuss with the team"
+    },
+    {
+      "id": "o5",
+      "text": "Merge into the default branch"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d5-q04",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-labels-milestones",
+  "prompt": "A maintainer wants newcomers to find all \"good first issue\" work quickly. What is the lightest built-in mechanism?",
+  "explanation": "Labels classify issues and pull requests; `good first issue` even ships as a default label and powers discovery pages for contributors. Milestones group by deadline, not by audience.",
+  "docIds": [
+    "managing-labels"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Labels — classify items and filter on them, including default labels like `good first issue`"
+    },
+    {
+      "id": "o2",
+      "text": "A milestone named `newcomers`"
+    },
+    {
+      "id": "o3",
+      "text": "A new repository for easy tasks"
+    },
+    {
+      "id": "o4",
+      "text": "Renaming branches to start with `easy-`"
+    }
+  ],
+  "correct": "o1"
+}

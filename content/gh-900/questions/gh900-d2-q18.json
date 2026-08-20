@@ -1,0 +1,40 @@
+{
+  "id": "gh900-d2-q18",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-managing-files",
+  "prompt": "Order the steps to publish a brand-new local project as a GitHub repository.",
+  "explanation": "The classic publish loop: make the remote, clone it, fill it, commit, push. Cloning first means the local folder is already connected to the right remote from the start.",
+  "docIds": [
+    "creating-a-repository"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Create an empty repository on GitHub"
+    },
+    {
+      "id": "o2",
+      "text": "Copy its URL and clone it locally"
+    },
+    {
+      "id": "o3",
+      "text": "Copy the project files in and stage them"
+    },
+    {
+      "id": "o4",
+      "text": "Commit the first snapshot"
+    },
+    {
+      "id": "o5",
+      "text": "Push the branch to GitHub"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

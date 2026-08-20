@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d3-q14",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-action-types",
+  "prompt": "Which statements about the three action types are true? Choose all that apply.",
+  "explanation": "The three types are one ladder of isolation: JavaScript runs on the runner, Docker brings its own container (Linux runners only), composite brings nothing — just steps folded into the caller. All three may be listed on the Marketplace.",
+  "docIds": [
+    "metadata-syntax"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A JavaScript action runs code directly on the runner under its declared Node runtime"
+    },
+    {
+      "id": "o2",
+      "text": "A Docker action executes inside a container built from your Dockerfile"
+    },
+    {
+      "id": "o3",
+      "text": "A composite action bundles steps, including `uses:` of other actions, with no runtime of its own"
+    },
+    {
+      "id": "o4",
+      "text": "Docker actions run natively on Windows and macOS runners"
+    },
+    {
+      "id": "o5",
+      "text": "Only composite actions can be published to the Marketplace"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

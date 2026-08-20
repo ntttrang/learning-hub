@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d2-q02",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-repo-structure-key-files",
+  "prompt": "A team publishes a utility library with no LICENSE file. What may others legally assume they can do with the code?",
+  "explanation": "Copyright does not vanish when code becomes public. Without an explicit license, nobody receives reuse, modification, or distribution rights — the default is \"all rights reserved\". Choosing and committing a license grants those permissions.",
+  "docIds": [
+    "licensing-a-repository"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Nothing beyond viewing it — without a license, all rights stay with the authors"
+    },
+    {
+      "id": "o2",
+      "text": "They may reuse it freely because it is public"
+    },
+    {
+      "id": "o3",
+      "text": "Public code is automatically placed in the public domain"
+    },
+    {
+      "id": "o4",
+      "text": "The MIT license applies by default to public repositories"
+    }
+  ],
+  "correct": "o1"
+}

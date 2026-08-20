@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d3-q10",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-versioning",
+  "prompt": "A maintainer releases `v2.0.0`, then `v2.1.0` with a fix. Consumers pinned to `@v2` should get the fix automatically. Which release strategy does that?",
+  "explanation": "The documented strategy: cut `v2.1.0`, then move the `v2` tag to it, so `@v2` consumers receive the fix on their next run while anyone needing to freeze can still pin `@v2.0.0` or a SHA. Breaking changes are exactly what bumps the major.",
+  "docIds": [
+    "release-actions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Semver releases with a moving major tag that is re-pointed at each minor release"
+    },
+    {
+      "id": "o2",
+      "text": "Only ever publishing full commit SHAs to consumers"
+    },
+    {
+      "id": "o3",
+      "text": "Releasing fixes as new major versions"
+    },
+    {
+      "id": "o4",
+      "text": "Tagging releases only on a schedule, never on demand"
+    }
+  ],
+  "correct": "o1"
+}

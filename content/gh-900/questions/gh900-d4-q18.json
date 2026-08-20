@@ -1,0 +1,17 @@
+{
+  "id": "gh900-d4-q18",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-actions-purpose",
+  "prompt": "Complete the workflow so it triggers on pushes to the `main` branch.",
+  "explanation": "The `on` key declares the workflow’s triggers. Without it the file is not attached to any event, so nothing — not even a push to `main` — starts it.",
+  "docIds": [
+    "gh-docs-actions"
+  ],
+  "kind": "fill",
+  "template": "name: CI\n___:\n  push:\n    branches: [main]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - run: npm test\n",
+  "blanks": [
+    {
+      "answer": "on"
+    }
+  ]
+}

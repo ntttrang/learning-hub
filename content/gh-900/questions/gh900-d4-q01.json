@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d4-q01",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-actions-purpose",
+  "prompt": "In one sentence, what is GitHub Actions?",
+  "explanation": "Actions is event-driven automation: a push, pull request, schedule, or release starts a workflow — a YAML file in `.github/workflows/` — that runs your jobs on GitHub-hosted machines.",
+  "docIds": [
+    "gh-docs-actions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "An automation layer that runs workflows in response to repository events"
+    },
+    {
+      "id": "o2",
+      "text": "A code editor that runs in the browser"
+    },
+    {
+      "id": "o3",
+      "text": "A hosting service for static websites"
+    },
+    {
+      "id": "o4",
+      "text": "A package registry for dependencies"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d3-q09",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-distribution",
+  "prompt": "What does listing an action in the GitHub Marketplace give consumers?",
+  "explanation": "Marketplace listing is distribution and discovery: a public page where each release tag is documented and installable by name. It confers no special runtime treatment — and certainly no GitHub endorsement beyond the verified-publisher badges it shows.",
+  "docIds": [
+    "publish-actions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Automatic security scanning of every release"
+    },
+    {
+      "id": "o2",
+      "text": "A discoverable, versioned catalog page with the action’s releases and README"
+    },
+    {
+      "id": "o3",
+      "text": "Faster runner allocation for workflows that use it"
+    },
+    {
+      "id": "o4",
+      "text": "A guarantee the action is officially maintained by GitHub"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d4-q08",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-preinstalled",
+  "prompt": "A job assumes the AWS CLI is present on `ubuntu-latest` and it is. Where would you check what else ships on that image?",
+  "explanation": "Each GitHub-hosted image publishes its preinstalled software in the runner-images repository — the canonical inventory before you add an install step. Trusting the image blindly works until the day the tool you assumed moves.",
+  "docIds": [
+    "runner-images"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The runner image repository’s installed-software tables"
+    },
+    {
+      "id": "o2",
+      "text": "The workflow syntax reference"
+    },
+    {
+      "id": "o3",
+      "text": "The organization’s runner groups page"
+    },
+    {
+      "id": "o4",
+      "text": "The GitHub changelog only"
+    }
+  ],
+  "correct": "o1"
+}

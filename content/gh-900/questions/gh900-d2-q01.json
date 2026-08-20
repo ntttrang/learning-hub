@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d2-q01",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-repo-structure-key-files",
+  "prompt": "A visitor opens a repository page for the first time. Which file’s content appears front and center below the file list?",
+  "explanation": "GitHub renders the README on the repository’s front page, which is why it should say what the project is, how to install it, and how to start. Other community files render when you open them, not on the landing page.",
+  "docIds": [
+    "about-readmes"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The README, rendered on the repository home page"
+    },
+    {
+      "id": "o2",
+      "text": "The LICENSE, printed in full at the top"
+    },
+    {
+      "id": "o3",
+      "text": "The most recent commit message"
+    },
+    {
+      "id": "o4",
+      "text": "The CONTRIBUTING.md guidelines"
+    }
+  ],
+  "correct": "o1"
+}

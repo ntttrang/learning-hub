@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d7-q07",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-marketplace",
+  "prompt": "Which kinds of things does GitHub Marketplace offer?",
+  "explanation": "Marketplace is a software catalog: GitHub Apps and ready-made Actions, installable per repository or organization. No t-shirts, no laptops, no jobs.",
+  "docIds": [
+    "github-marketplace"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Apps and Actions that extend repositories and organizations"
+    },
+    {
+      "id": "o2",
+      "text": "Physical merchandise"
+    },
+    {
+      "id": "o3",
+      "text": "Official GitHub employment contracts"
+    },
+    {
+      "id": "o4",
+      "text": "Second-hand developer hardware"
+    }
+  ],
+  "correct": "o1"
+}

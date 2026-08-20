@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d7-q01",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-open-source-sponsors",
+  "prompt": "A library your product depends on has saved your team hundreds of hours. What does GitHub Sponsors let you do about that?",
+  "explanation": "GitHub Sponsors is the platform’s funding rail: sponsor an individual or project once or monthly, and GitHub covers the payment fees so the full amount lands with the maintainer.",
+  "docIds": [
+    "github-sponsors"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Fund the maintainers with one-time or recurring payments"
+    },
+    {
+      "id": "o2",
+      "text": "Buy a support contract with an SLA"
+    },
+    {
+      "id": "o3",
+      "text": "Hire the maintainers as contractors automatically"
+    },
+    {
+      "id": "o4",
+      "text": "Donate compute credits for their CI"
+    }
+  ],
+  "correct": "o1"
+}

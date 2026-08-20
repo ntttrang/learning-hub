@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d5-q12",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-cost-optimization",
+  "prompt": "A monorepo’s CI is the biggest Actions line item. Which change most directly cuts billed minutes per run?",
+  "explanation": "Billed time is wall-clock on runners, and repeated dependency installs are usually the largest compressible chunk — a cache hit turns minutes into seconds. Log volume and file names do not bill; failing faster hides cost without saving it.",
+  "docIds": [
+    "dependency-caching"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Caching restored dependencies so install steps stop repeating"
+    },
+    {
+      "id": "o2",
+      "text": "Renaming the workflow file"
+    },
+    {
+      "id": "o3",
+      "text": "Adding `continue-on-error` to slow steps"
+    },
+    {
+      "id": "o4",
+      "text": "Printing fewer log lines"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d2-q05",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-expand-config",
+  "prompt": "The Actions tab shows a job named `verify (18, ubuntu-latest)`. What is that name telling you?",
+  "explanation": "Matrix jobs are displayed as the job name plus the axis values in parentheses, so `verify (18, ubuntu-latest)` is the `verify` job for Node 18 on Ubuntu — reading the axis off the display is half of expanding a matrix by eye.",
+  "docIds": [
+    "view-run-history"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The workflow file name and its author"
+    },
+    {
+      "id": "o2",
+      "text": "The values from the matrix combination this particular job ran with"
+    },
+    {
+      "id": "o3",
+      "text": "The runner’s host name and its CPU count"
+    },
+    {
+      "id": "o4",
+      "text": "The job’s retry count and queue position"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d2-q17",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-templates-and-branches",
+  "prompt": "A repository is marked as a template. Which statements are true? Choose all that apply.",
+  "explanation": "A template is a reusable mold: \"Use this template\" produces an independent repository with its own history that you can change freely. The template itself stays untouched and reusable.",
+  "docIds": [
+    "template-repositories"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Anyone with access can generate a new repository from it with one click"
+    },
+    {
+      "id": "o2",
+      "text": "The generated repository starts with a fresh commit history"
+    },
+    {
+      "id": "o3",
+      "text": "The generated repository is not a fork of the template"
+    },
+    {
+      "id": "o4",
+      "text": "Generating from the template deletes the template repository"
+    },
+    {
+      "id": "o5",
+      "text": "Files from the template cannot be changed in the new repository"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

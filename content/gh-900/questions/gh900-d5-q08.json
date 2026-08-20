@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d5-q08",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-saved-replies-assignees",
+  "prompt": "What does assigning an issue communicate?",
+  "explanation": "Assignment is the ownership signal — the assignee owes the next action. It changes nothing about the issue’s state or deadline; status and dates live elsewhere (labels, milestones, projects).",
+  "docIds": [
+    "about-saved-replies"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "That a specific person is responsible for moving it forward"
+    },
+    {
+      "id": "o2",
+      "text": "That the issue is fixed"
+    },
+    {
+      "id": "o3",
+      "text": "That the issue is blocked"
+    },
+    {
+      "id": "o4",
+      "text": "That the issue must close within 24 hours"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d4-q17",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-githubdev",
+  "prompt": "Which statements correctly compare github.dev and a codespace? Choose all that apply.",
+  "explanation": "github.dev is free light editing in the browser — no execution, no codespace billing. A codespace is the executing environment, and it opens from the browser or your editor alike.",
+  "docIds": [
+    "githubdev-editor"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "github.dev opens with the `.` key on any repository"
+    },
+    {
+      "id": "o2",
+      "text": "github.dev cannot run your code or a terminal"
+    },
+    {
+      "id": "o3",
+      "text": "A codespace can build, run, and debug the project"
+    },
+    {
+      "id": "o4",
+      "text": "github.dev requires a paid Codespaces plan"
+    },
+    {
+      "id": "o5",
+      "text": "A codespace cannot be opened in a browser"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "gh900-d5-q18",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-projects-layouts",
+  "prompt": "Order the steps for standing up a new Project for a team.",
+  "explanation": "Setup flows container-first: create the project, fill it with items, enrich with fields, shape views for each audience, then let insights narrate progress from real activity.",
+  "docIds": [
+    "about-projects"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Create the Project"
+    },
+    {
+      "id": "o2",
+      "text": "Add items — issues, pull requests, and drafts"
+    },
+    {
+      "id": "o3",
+      "text": "Define custom fields like Priority or Team"
+    },
+    {
+      "id": "o4",
+      "text": "Build the views the team needs (board, table, roadmap)"
+    },
+    {
+      "id": "o5",
+      "text": "Review insights as work progresses"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

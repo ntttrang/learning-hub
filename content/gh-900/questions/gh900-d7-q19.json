@@ -1,0 +1,18 @@
+{
+  "id": "gh900-d7-q19",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-forks-templates-discovery",
+  "prompt": "A developer plans to propose a fix to an open source project. One step in the plan will not produce a pull request. Click the broken line.",
+  "explanation": "\"Use this template\" stamps out a brand-new repository — it opens nothing and stays unlinked. Pull requests are opened from your pushed branch toward the upstream repository.",
+  "docIds": [
+    "about-forks"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "Fork the project repository",
+    "Create a branch for the fix",
+    "Commit and push the branch to the fork",
+    "Click \"Use this template\" to generate the pull request"
+  ],
+  "buggyLineIndex": 3
+}

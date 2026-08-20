@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d4-q04",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-org-policies",
+  "prompt": "An organization must permit only `actions/*` and its own internal actions. Where is that configured?",
+  "explanation": "Organization Actions settings control what may run: allow all, allow local only, or allow a specified list of actions and reusable workflows — patterns like `actions/*` included. The `permissions:` block scopes tokens, which is a different axis of control entirely.",
+  "docIds": [
+    "org-actions-policy"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "In each workflow’s `permissions:` block"
+    },
+    {
+      "id": "o2",
+      "text": "In organization Actions settings, as an allow list of actions and reusable workflows"
+    },
+    {
+      "id": "o3",
+      "text": "In the enterprise billing page"
+    },
+    {
+      "id": "o4",
+      "text": "In each repository’s branch protection rules"
+    }
+  ],
+  "correct": "o2"
+}

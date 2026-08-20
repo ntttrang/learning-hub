@@ -1,0 +1,158 @@
+{
+  "id": "lesson-gh200-d4",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-govern-components",
+  "title": "Manage GitHub Actions for the enterprise",
+  "minutes": 20,
+  "blocks": [
+    {
+      "kind": "heading",
+      "text": "The enterprise picture",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "Above the repository sit two layers of control. An **organization** owns policies (which actions are allowed), runners, and shared automation. An **enterprise** adds cross-org governance: IP allow lists, policy enforcement over every org, and shared workflow/action publishing through the enterprise `.github` repository — the pattern [share with your enterprise](share-with-enterprise) documents. Exam questions usually hand you a requirement (\"compliance must approve every third-party action\") and ask which layer answers it."
+    },
+    {
+      "kind": "heading",
+      "text": "Hosted versus self-hosted runners",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "[GitHub-hosted runners](github-hosted-runners) are ephemeral VMs GitHub patches and throws away — zero maintenance, per-minute billing, and a fresh machine every job. [Self-hosted runners](self-hosted-runners) are machines you register: your network, your toolchain, your cost model, and your patching duty — and they persist between jobs unless you configure ephemeral mode. The security rule the exam tests: **never combine public repositories with self-hosted runners** — a fork PR can execute arbitrary code on your hardware."
+    },
+    {
+      "kind": "table",
+      "headers": [
+        "Dimension",
+        "GitHub-hosted",
+        "Self-hosted"
+      ],
+      "rows": [
+        [
+          "Maintenance",
+          "None — images patched by GitHub",
+          "You patch the OS and runner"
+        ],
+        [
+          "Network position",
+          "Public egress from shared IP ranges",
+          "Inside your network; reaches private resources"
+        ],
+        [
+          "Isolation",
+          "Fresh VM per job",
+          "Persistent unless ephemeral mode"
+        ],
+        [
+          "Cost",
+          "Per-minute (free quota first)",
+          "Your hardware and operations"
+        ]
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Runner groups",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "[Runner groups](runner-groups) are the access boundary for self-hosted capacity: an org (or enterprise) groups runners and grants the group to selected repositories and teams — a payments-runner group visible only to the payments repos. Jobs target runners by label: `runs-on: [self-hosted, linux, x64]` matches any registered runner whose labels fit, and a group’s membership decides whether that match is allowed. Troubleshooting a stuck self-hosted job usually starts with labels and group access: \"queued forever\" means no eligible runner could pick the job up."
+    },
+    {
+      "kind": "code",
+      "language": "yaml",
+      "code": "jobs:\n  deploy:\n    runs-on: [self-hosted, linux, payments]   # label match within an allowed group\n    steps:\n      - run: ./deploy-internal.sh"
+    },
+    {
+      "kind": "heading",
+      "text": "Networking and IP allow lists",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "When an organization or enterprise [restricts traffic with an IP allow list](ip-allow-lists), two flows must keep working: the runner phoning home to GitHub, and API calls from automation. Self-hosted runners need the runner machine’s own IP added to the allow list (or the runner sits inside the allowed network). GitHub-hosted runners arrive from large, changing IP ranges — you cannot pin them individually; the allow list settings provide the option to permit GitHub Actions traffic instead of enumerating those ranges."
+    },
+    {
+      "kind": "heading",
+      "text": "What is already on the runner",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "Hosted images ship with a large preinstalled stack — languages, clouds CLIs, browsers — versioned per image and listed in the [runner images](runner-images) repository’s readme; when an image deprecates an OS or tool version, workflows pinning the old label break, which is why matrix pins should be deliberate. Additional tooling installs at runtime with `setup-*` actions, package managers, or a container image; pre-cached tools live in the **toolcache** directory for fast `setup-*` hits."
+    },
+    {
+      "kind": "code",
+      "language": "bash",
+      "code": "ls /opt/hostedtoolcache   # the toolcache: pre-cached tool versions\n# setup-* actions prefer a toolcache hit over a download"
+    },
+    {
+      "kind": "heading",
+      "text": "Governance: what may run",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "The [organization policy page](org-actions-policy) is the master switch: allow all actions, allow only local actions, or **allow a selected list** — by marketplace verification (\"actions created by GitHub\" or verified creators) and by explicitly named actions or organizations. Policies cascade: the enterprise can lock what orgs may permit, and the stricter setting wins where they overlap. Combine that with domain 1’s reuse machinery and you get the full governance story the exam describes: centrally [reusable workflows](reuse-workflows) published to selected repos, plus a policy wall around everything else."
+    },
+    {
+      "kind": "table",
+      "headers": [
+        "Policy lever",
+        "Effect"
+      ],
+      "rows": [
+        [
+          "Allow all actions",
+          "Any `uses:` resolves; least admin control"
+        ],
+        [
+          "Allow local actions only",
+          "Only actions and workflows in the org"
+        ],
+        [
+          "Allow specified actions",
+          "Explicit allowlist + verification toggles"
+        ],
+        [
+          "Enterprise policy",
+          "Caps what each org beneath it may allow"
+        ]
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Secrets and variables at three levels",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "[Secrets](use-secrets) and [variables](use-variables) live at **organization**, **repository**, and **environment** scope. A job sees secrets by name; when the same name exists at several levels, the most specific one wins — an environment secret for a job that declares `environment:`, otherwise the repository’s, and org-level as the shared fallback. Environments are also the only level that can carry protection rules (domain 5). Everything is scriptable through the [Actions REST API](rest-actions): create and rotate org or repo secrets and variables without visiting the UI — the exam’s \"programmatically manage\" bullet."
+    },
+    {
+      "kind": "code",
+      "language": "bash",
+      "code": "# manage secrets and variables without the UI\ngh secret set ORG_DEPLOY_KEY --org my-org --app actions\ngh secret set STAGING_TOKEN --env staging\ngh variable set BUILD_CHANNEL --body \"nightly\"\ngh api orgs/my-org/actions/secrets --jq \".secrets[].name\""
+    },
+    {
+      "kind": "heading",
+      "text": "Before you move on",
+      "level": 3
+    },
+    {
+      "kind": "list",
+      "items": [
+        "Org owns policies, runners, shared automation; enterprise adds IP allow lists and cross-org enforcement; stricter policy wins.",
+        "Hosted = ephemeral, patched, billed; self-hosted = your network, persistent unless ephemeral; never self-hosted on public repos.",
+        "Runner groups scope self-hosted access to selected repos/teams; labels route jobs; \"queued forever\" = no eligible runner.",
+        "Allow lists must admit the runner’s traffic; hosted runners need the Actions-traffic option, not enumerated IPs.",
+        "Preinstalled stack is listed in runner-images; extra tooling installs at runtime; toolcache speeds setup-* actions.",
+        "Secrets/variables exist at org/repo/environment scope; the narrowest scope wins; REST manages them all."
+      ]
+    }
+  ]
+}

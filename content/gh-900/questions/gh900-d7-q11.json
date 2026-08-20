@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d7-q11",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-forks-templates-discovery",
+  "prompt": "What distinguishes `git clone` from forking on GitHub?",
+  "explanation": "They answer different needs: clone = get the code onto your machine; fork = get a copy onto GitHub under your account so pull requests back to the original are possible. Contribution typically does both.",
+  "docIds": [
+    "about-forks"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Clone gives you a local working copy; a fork gives you a GitHub-hosted copy you can propose changes from"
+    },
+    {
+      "id": "o2",
+      "text": "Clone and fork are two commands for the same thing"
+    },
+    {
+      "id": "o3",
+      "text": "Cloning requires write access; forking does not"
+    },
+    {
+      "id": "o4",
+      "text": "A fork is local; a clone is on GitHub"
+    }
+  ],
+  "correct": "o1"
+}

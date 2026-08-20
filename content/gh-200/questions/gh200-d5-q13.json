@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d5-q13",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-environments",
+  "prompt": "Which statements about environments are true? Choose all that apply.",
+  "explanation": "Environments bundle three things: gates (reviewers), reach (secrets and protection scoped to jobs that name the environment), and a record (deployment history). They are created on demand, never by default, and never leak secrets upward.",
+  "docIds": [
+    "manage-environments"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "An environment can require reviewers before a job proceeds"
+    },
+    {
+      "id": "o2",
+      "text": "A job can read an environment’s secrets without referencing the environment"
+    },
+    {
+      "id": "o3",
+      "text": "Protection rules can restrict which branches deploy to the environment"
+    },
+    {
+      "id": "o4",
+      "text": "Every repository is created with a `production` environment"
+    },
+    {
+      "id": "o5",
+      "text": "Deployment history per environment is visible on its page"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o3",
+    "o5"
+  ]
+}

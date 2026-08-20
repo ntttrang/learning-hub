@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d2-q01",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-read-config",
+  "prompt": "A teammate hands you `on: push: branches: [main]` and asks when the workflow runs. What is the honest answer?",
+  "explanation": "The `branches` filter matches pushes whose head ref is `main` — however the commits got there. A pull request merge that updates `main` arrives as a push event, while the pull request itself is a different trigger entirely.",
+  "docIds": [
+    "workflow-events"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "On any push to any branch in the repository"
+    },
+    {
+      "id": "o2",
+      "text": "On pushes that update `main`, including merges and fast-forwards that land on it"
+    },
+    {
+      "id": "o3",
+      "text": "Only on direct pushes by administrators"
+    },
+    {
+      "id": "o4",
+      "text": "On pushes to `main` and on pull requests targeting `main`"
+    }
+  ],
+  "correct": "o2"
+}

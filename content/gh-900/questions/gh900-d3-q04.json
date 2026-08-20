@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d3-q04",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-linking-filtering",
+  "prompt": "A pull request description ends with `Closes #12`. What happens?",
+  "explanation": "Closing keywords link the pull request to the issue so the issue shuts automatically on merge — into the default branch specifically. Opening the PR alone leaves the issue open.",
+  "docIds": [
+    "linking-pr-to-issue"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Issue #12 automatically closes when the pull request merges into the default branch"
+    },
+    {
+      "id": "o2",
+      "text": "Issue #12 closes the moment the pull request is opened"
+    },
+    {
+      "id": "o3",
+      "text": "Nothing — `Closes` is decorative text"
+    },
+    {
+      "id": "o4",
+      "text": "The pull request merges itself when issue #12 is closed"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "gh-200",
+  "code": "GH-200",
+  "title": "GitHub Actions",
+  "subtitle": "GitHub Actions · 5 domains",
+  "description": "CI/CD workflows, runners, secrets, and pipeline automation with hands-on labs.",
+  "accent": "hub-green",
+  "enabledModes": [
+    "learn",
+    "labs",
+    "practice",
+    "exams",
+    "compare",
+    "notes",
+    "revision"
+  ]
+}

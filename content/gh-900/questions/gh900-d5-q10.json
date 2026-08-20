@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d5-q10",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-project-insights",
+  "prompt": "Stakeholders ask \"is the current plan on track?\" Which Project feature answers with charts instead of opinions?",
+  "explanation": "Insights chart the project’s own history — items completed over time, sliced by status, assignee, or any custom field — turning the board into evidence about pace and trajectory.",
+  "docIds": [
+    "about-project-insights"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Project insights — graphs of item completion over time, by field"
+    },
+    {
+      "id": "o2",
+      "text": "The repository star count"
+    },
+    {
+      "id": "o3",
+      "text": "The contributors graph"
+    },
+    {
+      "id": "o4",
+      "text": "The pull request review count"
+    }
+  ],
+  "correct": "o1"
+}

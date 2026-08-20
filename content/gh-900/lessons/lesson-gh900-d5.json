@@ -1,0 +1,96 @@
+{
+  "id": "lesson-gh900-d5",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-projects-layouts",
+  "title": "Managing projects on GitHub",
+  "minutes": 10,
+  "blocks": [
+    {
+      "kind": "heading",
+      "text": "Projects: a spreadsheet that knows your issues",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "[Projects](about-projects) is GitHub’s planning surface — a flexible table of items where items can be issues, pull requests, or draft ideas, enriched with custom fields (status, date, single-select, iteration). A project is not a folder: one issue can appear in many projects, and the project adds its own fields and views on top without changing the issue itself."
+    },
+    {
+      "kind": "md",
+      "body": "Every project ships multiple **views**, and each view picks a [layout](project-view-layouts): **table** for fields and editing, **board** for status-by-column flow, and **roadmap** or **timeline** when dates matter. Views are saved lenses on the same data — filter and group freely; nothing is moved or copied."
+    },
+    {
+      "kind": "heading",
+      "text": "Labels and milestones: the shared vocabulary",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "**Labels** ([managing labels](managing-labels)) tag issues and PRs for filtering and routing — every repo starts with defaults like `bug`, `enhancement`, `documentation`. **Milestones** ([about milestones](about-milestones)) group work toward a dated goal and show a progress bar of open versus closed items. Labels answer \"what kind of thing is this?\", milestones answer \"which deadline does it belong to?\""
+    },
+    {
+      "kind": "list",
+      "items": [
+        "Label per kind of work; keep the set small and meaningful.",
+        "Milestone per release or sprint; dates optional but progress is automatic.",
+        "A project workflow can automate label/board moves — see [built-in automations](built-in-automations) for field-sync and item-archiving presets."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Small helpers with exam weight",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "**Saved replies** ([about saved replies](about-saved-replies)) are canned responses for the comments you type twice a day — clarifications, merge-request checklists, thanks. **Assignees** put a person on the hook for an issue or PR (up to ten each); assigning is a signal of ownership, not a permission. On pull requests, being requested as **reviewer** and being **assignee** are different roles — the exam checks that you know the difference."
+    },
+    {
+      "kind": "heading",
+      "text": "Project insights",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "A project can chart its own data — [insights](about-project-insights) builds configurable charts (burn-up, cumulative flow, custom) from the items in the project, and the charts can be shared with people outside the project. Where repository insights (domain 2) show code activity, project insights show planning progress."
+    },
+    {
+      "kind": "table",
+      "headers": [
+        "Tool",
+        "Question it answers"
+      ],
+      "rows": [
+        [
+          "Project (board/table)",
+          "What is the state of the work?"
+        ],
+        [
+          "Milestone",
+          "How far along is this dated goal?"
+        ],
+        [
+          "Label",
+          "What kind of item is this?"
+        ],
+        [
+          "Project insights",
+          "Is the work trending toward done?"
+        ]
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Before you move on",
+      "level": 3
+    },
+    {
+      "kind": "list",
+      "items": [
+        "Projects hold issues, PRs, and drafts; custom fields and multiple views with different layouts.",
+        "Labels classify; milestones group toward dated goals.",
+        "Saved replies speed up repeated comments; assignees signal ownership.",
+        "Project insights chart planning progress and can be shared."
+      ]
+    }
+  ]
+}

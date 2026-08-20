@@ -1,0 +1,111 @@
+{
+  "id": "lesson-gh900-d3",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-issues-prs-discussions",
+  "title": "Collaborating on GitHub",
+  "minutes": 11,
+  "blocks": [
+    {
+      "kind": "heading",
+      "text": "Three containers for three kinds of talk",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "GitHub gives conversations a shape. An **[issue](about-issues)** tracks a unit of work — a bug, a task, a question with an owner and a lifecycle. A **[pull request](about-pull-requests)** proposes a change and carries its review. A **[discussion](about-discussions)** is the open-ended space for questions and ideas that are not yet work items. Choosing the right container is half the collaboration battle: work → issues, changes → pull requests, ideas → discussions."
+    },
+    {
+      "kind": "table",
+      "headers": [
+        "Surface",
+        "Best for",
+        "Lifecycle"
+      ],
+      "rows": [
+        [
+          "Issue",
+          "Trackable work — bugs, tasks, feature requests",
+          "Opens and closes"
+        ],
+        [
+          "Pull request",
+          "Proposing and reviewing a change",
+          "Merges or closes"
+        ],
+        [
+          "Discussion",
+          "Q&A, ideas, announcements",
+          "Categories; answered or outdated"
+        ]
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Linking work together",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "A pull request can close the issue it fixes automatically: put a keyword — `closes`, `fixes`, or `resolves` — before the issue number in the PR body or a commit message ([linking a pull request to an issue](linking-pr-to-issue)). `Closes #12` in the description means merging the PR closes issue 12 — the trace the exam loves to test. Cross-references work too: mentioning `owner/repo#34` links across repositories."
+    },
+    {
+      "kind": "tip",
+      "text": "Closing keywords only work from the default branch (usually `main`). If the PR targets a feature branch, the issue stays open after merge."
+    },
+    {
+      "kind": "heading",
+      "text": "Templates, filters, and assignments",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "**Templates** pre-fill issue and PR bodies so reports arrive with the information you need — repro steps, screenshots, checklists. Keep them in `.github/ISSUE_TEMPLATE/` or a `.github` repo for organization-wide defaults; see [about issue and pull request templates](issue-pr-templates). **Assignees** put a name on an issue or PR (up to ten); **filters** find everything else. The search bar is a query language:"
+    },
+    {
+      "kind": "code",
+      "language": "text",
+      "code": "is:open is:issue author:octocat label:bug assignee:@me\ndraft:false is:pr review:approved"
+    },
+    {
+      "kind": "md",
+      "body": "[Filtering and searching](filtering-issues) is worth ten minutes of play — the exam rarely asks syntax, but it does ask what filters can isolate (state, author, label, assignee, review status)."
+    },
+    {
+      "kind": "heading",
+      "text": "Notifications — subscribe on your terms",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "You participate, you get notified — [notifications](about-notifications) arrive for threads you author, are @mentioned in, or explicitly watch. Configure them per repo (watch all, just releases, or ignore) and globally in settings: email and/or the web inbox, and which events warrant each channel. A common exam framing: @mention in the body of a conversation notifies the person regardless of their watch settings on the repo."
+    },
+    {
+      "kind": "heading",
+      "text": "The lighter surfaces: gists, wikis, Pages",
+      "level": 3
+    },
+    {
+      "kind": "list",
+      "items": [
+        "**Gists** ([creating gists](about-gists)) — single-file snippets, public or secret; forkable and versioned like tiny repos.",
+        "**Wikis** ([about wikis](about-wikis)) — multi-page docs inside a repository; convenient but separate from the repo’s code history.",
+        "**GitHub Pages** ([what is Pages](about-github-pages)) — publishes a site straight from a repository on a chosen branch. This very site ships that way."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Before you move on",
+      "level": 3
+    },
+    {
+      "kind": "list",
+      "items": [
+        "Issues track work, PRs propose changes, discussions hold ideas.",
+        "`Closes #12` in a PR targeting the default branch closes the issue on merge.",
+        "Templates live in `.github/ISSUE_TEMPLATE/`; a `.github` repo sets org-wide defaults.",
+        "Notifications follow participation and watching; configure per repo and globally.",
+        "Gists for snippets, wikis for docs, Pages for published sites."
+      ]
+    }
+  ]
+}

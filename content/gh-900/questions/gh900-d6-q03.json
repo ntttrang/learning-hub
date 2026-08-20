@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d6-q03",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-2fa-passkeys",
+  "prompt": "A developer wants to contribute code on GitHub.com. What is GitHub’s policy on 2FA for them?",
+  "explanation": "GitHub requires two-factor authentication for code contributors on GitHub.com — securing the software supply chain one account at a time, and making \"how do I enable 2FA\" a genuinely practical exam answer.",
+  "docIds": [
+    "configure-2fa"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "2FA is required to contribute code on GitHub.com"
+    },
+    {
+      "id": "o2",
+      "text": "2FA is required only for organization owners"
+    },
+    {
+      "id": "o3",
+      "text": "2FA is optional for everyone and always will be"
+    },
+    {
+      "id": "o4",
+      "text": "2FA is required only when signing in from a new country"
+    }
+  ],
+  "correct": "o1"
+}

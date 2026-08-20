@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d5-q16",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-labels-milestones",
+  "prompt": "Which statements about milestones are true? Choose all that apply.",
+  "explanation": "Milestones are dated containers for issues and pull requests, charting completion as work closes. Closing one closes nothing and deletes nothing — and labels still classify within it.",
+  "docIds": [
+    "about-milestones"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A milestone has a target due date"
+    },
+    {
+      "id": "o2",
+      "text": "Issues and pull requests can both belong to a milestone"
+    },
+    {
+      "id": "o3",
+      "text": "A milestone page tracks completion progress"
+    },
+    {
+      "id": "o4",
+      "text": "Closing a milestone deletes its issues"
+    },
+    {
+      "id": "o5",
+      "text": "Milestones replace the need for labels"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

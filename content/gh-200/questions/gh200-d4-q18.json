@@ -1,0 +1,22 @@
+{
+  "id": "gh200-d4-q18",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-runner-choice",
+  "prompt": "The installer step is a PowerShell script, but the job never gets past it on the runner shown. Click the misconfigured line.",
+  "explanation": "A PowerShell script needs a Windows runner: line 5 should say `runs-on: windows-latest`. The job as written hands a `.ps1` to a Linux machine — the script is fine, the venue is wrong.",
+  "docIds": [
+    "github-hosted-runners"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "name: Windows installer",
+    "on: push",
+    "jobs:",
+    "  package:",
+    "    runs-on: ubuntu-latest",
+    "    steps:",
+    "      - uses: actions/checkout@v4",
+    "      - run: ./build-windows-msi.ps1"
+  ],
+  "buggyLineIndex": 4
+}

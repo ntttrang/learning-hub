@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d5-q10",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-usage-policy",
+  "prompt": "A repository administrator wants to limit which actions run in that one repository, below the organization’s ceiling. Can they?",
+  "explanation": "Policy flows downward: an organization sets the ceiling, and a repository may tighten below it with its own allow list. What a repository can never do is exceed the organization’s or enterprise’s allowance — restrictions compose, permissions do not.",
+  "docIds": [
+    "org-actions-policy"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "No — repository settings cannot act below organization policy"
+    },
+    {
+      "id": "o2",
+      "text": "Yes — repository Actions settings can be more restrictive than the organization’s"
+    },
+    {
+      "id": "o3",
+      "text": "Yes — and more permissive too"
+    },
+    {
+      "id": "o4",
+      "text": "Only by disabling Actions in the repository"
+    }
+  ],
+  "correct": "o2"
+}

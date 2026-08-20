@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d6-q16",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-visibility-protection",
+  "prompt": "Which rules can branch protection enforce on `main`? Choose all that apply.",
+  "explanation": "Branch protection is the rulebook for a branch: required reviews, passing checks, restricted pushers, even read-only locks. Open issues never gate a merge — that is tracker territory, not branch policy.",
+  "docIds": [
+    "about-protected-branches"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Require pull request reviews before merging"
+    },
+    {
+      "id": "o2",
+      "text": "Require status checks (like CI) to pass"
+    },
+    {
+      "id": "o3",
+      "text": "Require every open issue to be closed before merging"
+    },
+    {
+      "id": "o4",
+      "text": "Restrict who can push to the branch"
+    },
+    {
+      "id": "o5",
+      "text": "Automatically delete old issues"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o4"
+  ]
+}

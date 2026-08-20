@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d5-q14",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-projects-layouts",
+  "prompt": "Which item types can you add to a GitHub Project? Choose all that apply.",
+  "explanation": "Projects plan: issues, pull requests, and drafts. Commits and releases belong to repository history — a board tracks work, not code artifacts.",
+  "docIds": [
+    "about-projects"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "An existing issue"
+    },
+    {
+      "id": "o2",
+      "text": "An existing pull request"
+    },
+    {
+      "id": "o3",
+      "text": "A draft issue"
+    },
+    {
+      "id": "o4",
+      "text": "A git commit"
+    },
+    {
+      "id": "o5",
+      "text": "A repository release"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

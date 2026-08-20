@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d5-q06",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-labels-milestones",
+  "prompt": "Opening a milestone page, what does the team see at a glance?",
+  "explanation": "The milestone page aggregates its items’ state into progress, so \"are we going to make the date?\" is answerable in one look — that is the whole reason to group work by milestone.",
+  "docIds": [
+    "about-milestones"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A progress breakdown — how many of its issues and pull requests are open versus closed"
+    },
+    {
+      "id": "o2",
+      "text": "The repository’s commit graph"
+    },
+    {
+      "id": "o3",
+      "text": "A list of everyone who ever starred the repository"
+    },
+    {
+      "id": "o4",
+      "text": "The label definitions for the repository"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d5-q15",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-labels-milestones",
+  "prompt": "Which statements about labels are true? Choose all that apply.",
+  "explanation": "Labels classify and filter, with a default set out of the box; deadlines live on milestones, not labels. Creating or editing labels requires write access — visitors cannot redefine your taxonomy.",
+  "docIds": [
+    "managing-labels"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Labels classify issues and pull requests"
+    },
+    {
+      "id": "o2",
+      "text": "You can filter issue lists by label"
+    },
+    {
+      "id": "o3",
+      "text": "Repositories ship with default labels like `bug` and `enhancement`"
+    },
+    {
+      "id": "o4",
+      "text": "Anyone can create labels in any repository"
+    },
+    {
+      "id": "o5",
+      "text": "Labels can set a due date on an issue"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

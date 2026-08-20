@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d4-q10",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-codespaces-devcontainers",
+  "prompt": "What makes a codespace reproducible — the same tools and extensions for everyone who opens one?",
+  "explanation": "The dev container pins the image, tools, extensions, and settings as code in the repository. Everyone’s codespace builds from that definition, ending \"works on my machine\" stories.",
+  "docIds": [
+    "dev-containers"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A dev container definition committed to the repository (`.devcontainer/`)"
+    },
+    {
+      "id": "o2",
+      "text": "Each developer configuring their own machine identically"
+    },
+    {
+      "id": "o3",
+      "text": "A wiki page listing the required tools"
+    },
+    {
+      "id": "o4",
+      "text": "Nothing — codespaces pick random tool versions"
+    }
+  ],
+  "correct": "o1"
+}

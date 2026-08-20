@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d3-q11",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-versioning",
+  "prompt": "An action’s next release renames an input — a breaking change. What does the maintainer owe consumers?",
+  "explanation": "Renaming an input breaks every workflow that passes the old name, so it lands as a new major tag (`v3`) while `v2` keeps serving the old contract. Force-moving an existing tag silently breaks the very consumers who pinned for stability.",
+  "docIds": [
+    "release-actions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A patch release; consumers will adapt"
+    },
+    {
+      "id": "o2",
+      "text": "A new major version tag, with the old major kept working for existing users"
+    },
+    {
+      "id": "o3",
+      "text": "Nothing — inputs are not part of the contract"
+    },
+    {
+      "id": "o4",
+      "text": "A force-push of the existing tag to the new code"
+    }
+  ],
+  "correct": "o2"
+}

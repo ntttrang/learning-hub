@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d3-q12",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-troubleshoot-actions",
+  "prompt": "A workflow in another repository fails with `unable to resolve action … repository not found` for your brand-new action. The action works in its own repo. Most likely cause?",
+  "explanation": "A private action resolves only where it is shared — inside its own repository, the enterprises or organizations it was shared with, or nowhere else. Marketplace publishing is one distribution route, never a prerequisite for sharing code that is properly visible.",
+  "docIds": [
+    "share-with-enterprise"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The action’s `action.yml` is malformed"
+    },
+    {
+      "id": "o2",
+      "text": "The action repository is private and not shared with the caller’s scope"
+    },
+    {
+      "id": "o3",
+      "text": "The caller’s runner lacks internet access"
+    },
+    {
+      "id": "o4",
+      "text": "The action must be published to the Marketplace before any external use"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "gh900-d5-q20",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-labels-milestones",
+  "prompt": "A team wrote this triage plan. One step misuses milestones. Click the offending line.",
+  "explanation": "Milestones are dated goals, not buckets for all incoming work — parking everything in a \"Backlog\" milestone makes progress meaningless. New issues stay unlabeled-by-milestone; a project view or label serves as the backlog.",
+  "docIds": [
+    "about-milestones"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "Create a \"triage\" label to classify incoming issues",
+    "Create milestone \"Sprint 42\" with a due date",
+    "Assign every new issue to milestone \"Backlog\"",
+    "Add the sprint issues to the Sprint 42 board view"
+  ],
+  "buggyLineIndex": 2
+}

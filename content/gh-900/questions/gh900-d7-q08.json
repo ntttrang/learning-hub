@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d7-q08",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-innersource",
+  "prompt": "A large company wants its 40 teams to collaborate on internal code the way strangers collaborate on open source. What is this practice called?",
+  "explanation": "InnerSource borrows the machinery of open source — transparent repositories, contribution guidelines, public-by-default inside the walls — so any team can contribute to any internal project through pull requests.",
+  "docIds": [
+    "innersource-module"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "InnerSource — applying open source practices inside the organization"
+    },
+    {
+      "id": "o2",
+      "text": "OuterSource"
+    },
+    {
+      "id": "o3",
+      "text": "Enterprise forking"
+    },
+    {
+      "id": "o4",
+      "text": "Private crowdfunding"
+    }
+  ],
+  "correct": "o1"
+}

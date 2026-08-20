@@ -1,0 +1,40 @@
+{
+  "id": "gh900-d2-q19",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-templates-and-branches",
+  "prompt": "Order the steps to start working from a template repository.",
+  "explanation": "Templates flow: start from the mold, name your copy, clone it down, then make it yours. Every step keeps the template itself pristine for the next person.",
+  "docIds": [
+    "template-repositories"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Open the template repository page"
+    },
+    {
+      "id": "o2",
+      "text": "Click \"Use this template\""
+    },
+    {
+      "id": "o3",
+      "text": "Name and create the new repository"
+    },
+    {
+      "id": "o4",
+      "text": "Clone the new repository locally"
+    },
+    {
+      "id": "o5",
+      "text": "Customize the files and push"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

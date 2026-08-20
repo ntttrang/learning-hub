@@ -1,0 +1,18 @@
+{
+  "id": "gh900-d7-q20",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-innersource",
+  "prompt": "A company writes this InnerSource rollout plan. One line defeats the whole idea. Click it.",
+  "explanation": "InnerSource runs on internal transparency: if other teams cannot read the repository, guidelines and labels are decoration. Visibility across the organization is the precondition, not an option.",
+  "docIds": [
+    "innersource-best-practices"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "Make internal repositories discoverable across the org",
+    "Add a CONTRIBUTING guide to each major repository",
+    "Label cross-team-friendly issues with \"help wanted\"",
+    "Keep every repository visible only to its owning team"
+  ],
+  "buggyLineIndex": 3
+}

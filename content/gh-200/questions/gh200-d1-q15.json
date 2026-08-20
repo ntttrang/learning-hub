@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d1-q15",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-matrix",
+  "prompt": "Which statements about `strategy.matrix` are true? Choose all that apply.",
+  "explanation": "Matrix keys multiply into one run per combination, `include` layers on more, and `max-parallel` throttles how many run at once. Values are read through the `matrix` context — there is no `strategy` context — and `fail-fast` cancels or allows runs, it never retries them.",
+  "docIds": [
+    "workflow-syntax"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "`include` adds extra combinations on top of the ones generated from the matrix keys"
+    },
+    {
+      "id": "o2",
+      "text": "Setting `fail-fast: false` makes failed combinations retry automatically"
+    },
+    {
+      "id": "o3",
+      "text": "`max-parallel: 1` runs the matrix combinations one at a time"
+    },
+    {
+      "id": "o4",
+      "text": "Steps read matrix values through the `strategy` context"
+    },
+    {
+      "id": "o5",
+      "text": "Every combination of the matrix keys becomes its own job run"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o3",
+    "o5"
+  ]
+}

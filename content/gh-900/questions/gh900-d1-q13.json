@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d1-q13",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-desktop-mobile",
+  "prompt": "Which task is GitHub Mobile genuinely good for while commuting?",
+  "explanation": "GitHub Mobile shines at review and triage — reading and merging pull requests, handling issues and notifications. Deep configuration editing and key management belong on a real machine.",
+  "docIds": [
+    "github-mobile"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Reviewing a pull request, leaving a comment, and merging it"
+    },
+    {
+      "id": "o2",
+      "text": "Authoring a new dev container configuration"
+    },
+    {
+      "id": "o3",
+      "text": "Debugging a failing workflow by editing its YAML inline"
+    },
+    {
+      "id": "o4",
+      "text": "Generating a new SSH key pair for the laptop you left at home"
+    }
+  ],
+  "correct": "o1"
+}

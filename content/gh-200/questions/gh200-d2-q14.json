@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d2-q14",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-diagnose-failures",
+  "prompt": "Which statements about diagnosing failed runs are true? Choose all that apply.",
+  "explanation": "Annotations, selective re-runs, and debug logging are the diagnosis loop. Run history outlives the workflow file, and plenty of failures come from the code or environment on a perfectly valid workflow.",
+  "docIds": [
+    "view-run-history"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Annotations on the run page summarize detected errors and link into the logs"
+    },
+    {
+      "id": "o2",
+      "text": "Re-run failed jobs repeats only the combinations that failed"
+    },
+    {
+      "id": "o3",
+      "text": "Runner debug logs can be enabled for a re-run when the normal logs are not enough"
+    },
+    {
+      "id": "o4",
+      "text": "Deleting the workflow file deletes its run history"
+    },
+    {
+      "id": "o5",
+      "text": "A failed job always means the workflow YAML itself is invalid"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

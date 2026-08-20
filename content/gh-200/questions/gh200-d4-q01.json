@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d4-q01",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-runner-choice",
+  "prompt": "Builds need a GPU pool, a route into the private network, and full control of the base image. Which runner model fits?",
+  "explanation": "Custom hardware, network position, and OS control are the three classic reasons to self-host: your machines, registered with GitHub, targeted by label. GitHub-hosted runners offer managed convenience and bigger sizes, never your GPUs or your subnet.",
+  "docIds": [
+    "self-hosted-runners"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "GitHub-hosted runners with a larger size"
+    },
+    {
+      "id": "o2",
+      "text": "Self-hosted runners on your own machines"
+    },
+    {
+      "id": "o3",
+      "text": "GitHub-hosted runners with `runs-on: gpu`"
+    },
+    {
+      "id": "o4",
+      "text": "Service containers with extra options"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d3-q03",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-action-types",
+  "prompt": "A JavaScript action’s `action.yml` says `using: node20`. What does that declare?",
+  "explanation": "`using:` names the runtime the runner executes your `main` file with — Node 20 in this case, already available on the runner rather than installed by it. Docker actions declare `using: docker` plus an `image` instead.",
+  "docIds": [
+    "metadata-syntax"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The Node version the runner must install before the action runs"
+    },
+    {
+      "id": "o2",
+      "text": "The runtime GitHub uses to execute the action’s compiled entrypoint"
+    },
+    {
+      "id": "o3",
+      "text": "A Docker image tagged node20"
+    },
+    {
+      "id": "o4",
+      "text": "The minimum runner generation the action supports"
+    }
+  ],
+  "correct": "o2"
+}

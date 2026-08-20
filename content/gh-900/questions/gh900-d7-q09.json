@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d7-q09",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-innersource",
+  "prompt": "Which practice best exemplifies InnerSource inside a company?",
+  "explanation": "InnerSource lives on internal transparency: readable repositories, discoverable issues, and contribution norms — so a developer in another team can fix a bug where they found it instead of filing a ticket and waiting.",
+  "docIds": [
+    "innersource-best-practices"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Internal repositories stay readable across the org, with CONTRIBUTING guides and issues open to all employees"
+    },
+    {
+      "id": "o2",
+      "text": "Each team keeps its repositories invisible to other teams"
+    },
+    {
+      "id": "o3",
+      "text": "All code review happens by email attachments"
+    },
+    {
+      "id": "o4",
+      "text": "The security team approves every character of every pull request"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d2-q05",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-maintenance",
+  "prompt": "A security researcher finds a flaw in your open source project. Where should the repository tell them to report it privately?",
+  "explanation": "SECURITY.md states where and how to report vulnerabilities privately. Public issues are the wrong channel — they advertise the flaw before a fix ships.",
+  "docIds": [
+    "add-security-policy"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "SECURITY.md — the security policy shown under the Security tab"
+    },
+    {
+      "id": "o2",
+      "text": "A public issue labeled `security`"
+    },
+    {
+      "id": "o3",
+      "text": "The README’s changelog section"
+    },
+    {
+      "id": "o4",
+      "text": "A comment on the latest release"
+    }
+  ],
+  "correct": "o1"
+}

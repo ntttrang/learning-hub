@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d2-q03",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-diagnose-failures",
+  "prompt": "A workflow triggers fine but the first `run:` step fails immediately with `No such file or directory` when touching repository files. What is the classic cause?",
+  "explanation": "Jobs start on an empty workspace: until `actions/checkout` copies the repository onto the runner, no project files exist there. A missing checkout is one of the most common first-step failures, and permissions have nothing to do with it.",
+  "docIds": [
+    "troubleshoot-workflows"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The runner is out of disk space"
+    },
+    {
+      "id": "o2",
+      "text": "The `actions/checkout` step is missing, so the repository was never copied onto the runner"
+    },
+    {
+      "id": "o3",
+      "text": "The workflow YAML is indented incorrectly"
+    },
+    {
+      "id": "o4",
+      "text": "The `GITHUB_TOKEN` lacks write permissions"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "gh900-d3-q19",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-linking-filtering",
+  "prompt": "This pull request description is meant to close issue #12 automatically when it merges. One line breaks that promise. Click it.",
+  "explanation": "`handles` is not a closing keyword — GitHub links nothing and closes nothing. It must read `Closes #12`, `Fixes #12`, or `Resolves #12` for the issue to shut automatically on merge.",
+  "docIds": [
+    "linking-pr-to-issue"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "## What changes",
+    "Rewrites the header component for small screens.",
+    "",
+    "## Linked issue",
+    "This PR handles #12"
+  ],
+  "buggyLineIndex": 4
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d4-q08",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-copilot",
+  "prompt": "Which sentence correctly separates Copilot’s two agent surfaces?",
+  "explanation": "The exam loves this split: same idea, different venue. Agent Mode = IDE + your checkout; cloud agent = GitHub workspace + a pull request for review. Where the work happens is the differentiator.",
+  "docIds": [
+    "copilot-cloud-agent"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agent Mode works in your IDE on your local checkout; the cloud agent works on GitHub and opens a pull request"
+    },
+    {
+      "id": "o2",
+      "text": "Agent Mode runs on GitHub servers; the cloud agent runs on your laptop"
+    },
+    {
+      "id": "o3",
+      "text": "Both run on your laptop with identical capabilities"
+    },
+    {
+      "id": "o4",
+      "text": "Both run on GitHub and always open pull requests"
+    }
+  ],
+  "correct": "o1"
+}

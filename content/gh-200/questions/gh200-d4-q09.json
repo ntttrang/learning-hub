@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d4-q09",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-preinstalled",
+  "prompt": "A pipeline needs Node 22, which is not the image’s default. What is the dependable approach?",
+  "explanation": "Explicit setup steps — like `actions/setup-node` with the exact version — make the toolchain part of the workflow’s own definition instead of an accident of the image. Preinstalled software is a convenience, never a contract.",
+  "docIds": [
+    "github-hosted-runners"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Assume the image updates soon and pin nothing"
+    },
+    {
+      "id": "o2",
+      "text": "Set it up explicitly in the job with the setup action, versioned"
+    },
+    {
+      "id": "o3",
+      "text": "Bake a custom Docker image per workflow"
+    },
+    {
+      "id": "o4",
+      "text": "Ask developers to install Node manually before pushing"
+    }
+  ],
+  "correct": "o2"
+}

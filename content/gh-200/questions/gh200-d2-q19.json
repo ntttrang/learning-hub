@@ -1,0 +1,24 @@
+{
+  "id": "gh200-d2-q19",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-diagnose-failures",
+  "prompt": "The job reports green and ships an image — but the image was built from stale code, because the build actually failed and nothing stopped the pipeline. Click the line that let the failure through.",
+  "explanation": "`continue-on-error: true` converts the build’s failure into a warning, so the job marches on and pushes whatever the previous build left behind. Reserve it for steps whose failure genuinely should not gate the pipeline — a build step is the opposite of that.",
+  "docIds": [
+    "troubleshoot-workflows"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "name: Build and ship",
+    "on: push",
+    "jobs:",
+    "  build:",
+    "    runs-on: ubuntu-latest",
+    "    steps:",
+    "      - uses: actions/checkout@v4",
+    "      - run: make build",
+    "        continue-on-error: true",
+    "      - run: docker push myapp:latest"
+  ],
+  "buggyLineIndex": 8
+}

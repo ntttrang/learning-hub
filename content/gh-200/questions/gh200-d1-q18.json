@@ -1,0 +1,20 @@
+{
+  "id": "gh200-d1-q18",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-contexts-expressions",
+  "prompt": "Complete the branch guard and the commit capture.",
+  "explanation": "The `github` context carries the event payload: `github.ref` is the full ref that triggered the run, so comparing it to `refs/heads/main` gates deploys to the default branch, and `github.sha` is the exact commit being built.",
+  "docIds": [
+    "contexts"
+  ],
+  "kind": "fill",
+  "template": "name: Guarded deploy\non: push\njobs:\n  deploy:\n    if: github.___ == 'refs/heads/main'\n    runs-on: ubuntu-latest\n    steps:\n      - run: ./deploy.sh\n        env:\n          COMMIT: ${{ ___.sha }}\n",
+  "blanks": [
+    {
+      "answer": "ref"
+    },
+    {
+      "answer": "github"
+    }
+  ]
+}

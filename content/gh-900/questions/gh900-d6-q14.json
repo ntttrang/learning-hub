@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d6-q14",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-2fa-passkeys",
+  "prompt": "Which can serve as a second factor for GitHub 2FA? Choose all that apply.",
+  "explanation": "GitHub 2FA accepts TOTP codes, passkeys and security keys, and GitHub Mobile prompts (SMS where available). Secret questions and backup emails are not factors — they are account-recovery fossils.",
+  "docIds": [
+    "configure-2fa"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A time-based one-time password (TOTP) app"
+    },
+    {
+      "id": "o2",
+      "text": "A passkey or security key"
+    },
+    {
+      "id": "o3",
+      "text": "GitHub Mobile approvals"
+    },
+    {
+      "id": "o4",
+      "text": "A secret question chosen at signup"
+    },
+    {
+      "id": "o5",
+      "text": "A second email address"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

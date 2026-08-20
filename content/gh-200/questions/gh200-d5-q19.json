@@ -1,0 +1,23 @@
+{
+  "id": "gh200-d5-q19",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-token-permissions",
+  "prompt": "Security review flags this job: it only reads code and runs a script, yet its token can change anything in the repository. Click the line to fix.",
+  "explanation": "`write-all` hands the job every scope at full write for no reason — the fix is `contents: read`, or removing the block to inherit a restrictive default. Granting everything and hoping the job behaves is the posture least privilege exists to replace.",
+  "docIds": [
+    "secure-use"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "name: Docs build",
+    "on: push",
+    "jobs:",
+    "  build:",
+    "    runs-on: ubuntu-latest",
+    "    permissions: write-all",
+    "    steps:",
+    "      - uses: actions/checkout@v4",
+    "      - run: ./build-docs.sh"
+  ],
+  "buggyLineIndex": 5
+}

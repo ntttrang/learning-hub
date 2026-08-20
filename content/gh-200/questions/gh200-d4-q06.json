@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d4-q06",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-networking",
+  "prompt": "What does an enterprise IP allow list actually restrict?",
+  "explanation": "An IP allow list locks the enterprise’s front door — web, API, and git access from approved addresses only. It governs who can talk to GitHub, not what the runners reach outbound; that egress side lives in your own network design.",
+  "docIds": [
+    "ip-allow-lists"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Which IP addresses GitHub-hosted runners may reach"
+    },
+    {
+      "id": "o2",
+      "text": "Which IP addresses can access the enterprise over supported interfaces, like the web UI, API, and git"
+    },
+    {
+      "id": "o3",
+      "text": "Which runners may register with the organization"
+    },
+    {
+      "id": "o4",
+      "text": "Which regions workflows may deploy to"
+    }
+  ],
+  "correct": "o2"
+}

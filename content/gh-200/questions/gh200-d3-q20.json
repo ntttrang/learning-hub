@@ -1,0 +1,40 @@
+{
+  "id": "gh200-d3-q20",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-versioning",
+  "prompt": "Put a new action release in order, from code to consumers.",
+  "explanation": "Ship in order: merge, test what you merged, reconcile the metadata, then cut tags and point the listing at them. Consumers pin the tags — so the tags are the last thing you touch, after everything they refer to is true.",
+  "docIds": [
+    "release-actions"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Land the change on the action’s default branch"
+    },
+    {
+      "id": "o2",
+      "text": "Run the action’s test workflows against that ref"
+    },
+    {
+      "id": "o3",
+      "text": "Update `action.yml` if inputs, outputs, or branding changed"
+    },
+    {
+      "id": "o4",
+      "text": "Tag the release — the version tag, plus the moving major tag"
+    },
+    {
+      "id": "o5",
+      "text": "Publish or update the Marketplace listing pointing at the tag"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

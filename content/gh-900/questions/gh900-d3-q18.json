@@ -1,0 +1,40 @@
+{
+  "id": "gh900-d3-q18",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-issues-prs-discussions",
+  "prompt": "Order the steps for contributing to a repository you cannot push to directly.",
+  "explanation": "Without write access you work through a fork: copy, branch, commit in your copy, then propose the change upstream. This loop is the heart of open source contribution on GitHub.",
+  "docIds": [
+    "about-pull-requests"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Fork the repository"
+    },
+    {
+      "id": "o2",
+      "text": "Clone your fork locally"
+    },
+    {
+      "id": "o3",
+      "text": "Create a branch for the change"
+    },
+    {
+      "id": "o4",
+      "text": "Commit and push the branch to your fork"
+    },
+    {
+      "id": "o5",
+      "text": "Open a pull request toward the upstream repository"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

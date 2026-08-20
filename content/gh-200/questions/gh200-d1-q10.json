@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d1-q10",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-yaml-anchors",
+  "prompt": "Several jobs in one workflow file repeat the same three steps. Which feature collapses the duplication — and what is its reach?",
+  "explanation": "An anchor (`&name`) marks a block once and an alias (`*name`) expands it again — inside a single file, which is exactly the fix for repeated steps. Crossing files or repositories needs reusable workflows or composite actions, because anchors never leave their document.",
+  "docIds": [
+    "reuse-config"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A reusable workflow — usable across files and repositories"
+    },
+    {
+      "id": "o2",
+      "text": "A composite action — usable across repositories once published"
+    },
+    {
+      "id": "o3",
+      "text": "A workflow template — copied into each repository"
+    },
+    {
+      "id": "o4",
+      "text": "YAML anchors and aliases — but only inside that one file"
+    }
+  ],
+  "correct": "o4"
+}

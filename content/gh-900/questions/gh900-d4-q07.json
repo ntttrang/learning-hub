@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d4-q07",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-copilot",
+  "prompt": "A maintainer assigns a well-scoped issue to Copilot. Later, a pull request appears from a separate workspace for the team to review. Which feature did this?",
+  "explanation": "The cloud agent works on GitHub itself: hand it an issue and it develops on its own branch in its own workspace, then opens a pull request you review like any contributor’s.",
+  "docIds": [
+    "copilot-cloud-agent"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The Copilot cloud agent"
+    },
+    {
+      "id": "o2",
+      "text": "Agent Mode in the IDE"
+    },
+    {
+      "id": "o3",
+      "text": "A GitHub Actions schedule"
+    },
+    {
+      "id": "o4",
+      "text": "A codespace template"
+    }
+  ],
+  "correct": "o1"
+}

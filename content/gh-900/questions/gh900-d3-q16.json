@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d3-q16",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-notifications",
+  "prompt": "Which situations generate a notification for you by default? Choose all that apply.",
+  "explanation": "Notifications follow @mentions, assignments, and threads you participate in or watch. The rest of the platform’s activity stays quiet unless you subscribed to it.",
+  "docIds": [
+    "about-notifications"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Someone @mentions your username"
+    },
+    {
+      "id": "o2",
+      "text": "Someone comments on an issue you opened"
+    },
+    {
+      "id": "o3",
+      "text": "You are assigned an issue or pull request"
+    },
+    {
+      "id": "o4",
+      "text": "Any repository on GitHub gains a star"
+    },
+    {
+      "id": "o5",
+      "text": "A stranger forks a repository you have never touched"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

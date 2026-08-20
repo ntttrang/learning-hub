@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d2-q13",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-disable-vs-delete",
+  "prompt": "What is the practical difference between disabling a workflow and deleting its file?",
+  "explanation": "Disabling is the pause button: the documented way to stop a workflow without deleting the file from the repository, and Enable brings it straight back. Deleting is the permanent route — you would restore it from git history, not from a button.",
+  "docIds": [
+    "disable-workflows"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Deleting erases the workflow’s past runs along with the file"
+    },
+    {
+      "id": "o2",
+      "text": "Disabling stops the triggers while keeping the file — one click re-enables it later"
+    },
+    {
+      "id": "o3",
+      "text": "They are the same action under two names"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling also removes the workflow from the Actions tab"
+    }
+  ],
+  "correct": "o2"
+}

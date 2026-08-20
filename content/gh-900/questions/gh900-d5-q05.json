@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d5-q05",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-labels-milestones",
+  "prompt": "What is a milestone for?",
+  "explanation": "A milestone is a dated bucket: attach the work that must land, and its page charts completion as items close — the sprint or release pulse. Labels classify; tags mark releases; access is roles.",
+  "docIds": [
+    "about-milestones"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Grouping issues and pull requests toward a goal with a target date"
+    },
+    {
+      "id": "o2",
+      "text": "Labeling items by difficulty"
+    },
+    {
+      "id": "o3",
+      "text": "Marking a release tag in Git history"
+    },
+    {
+      "id": "o4",
+      "text": "Granting a contributor write access"
+    }
+  ],
+  "correct": "o1"
+}

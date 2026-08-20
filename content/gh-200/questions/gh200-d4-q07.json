@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d4-q07",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-networking",
+  "prompt": "Self-hosted runners sit in a subnet that must reach GitHub over HTTPS, and GitHub’s responses must survive the allow list. What is the documented mechanism for that pairing?",
+  "explanation": "Runners need bidirectional reachability, so the documented path is allow-listing the addresses runners use — the meta API publishes GitHub’s ranges for exactly this kind of configuration. The alternatives are either security theatre or a permanent hole.",
+  "docIds": [
+    "ip-allow-lists"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Open the allow list to the whole internet permanently"
+    },
+    {
+      "id": "o2",
+      "text": "Add the runner egress addresses to the allow list, using the meta API’s CIDR list where the product supports it"
+    },
+    {
+      "id": "o3",
+      "text": "Route runner traffic through a third-party proxy GitHub whitelists"
+    },
+    {
+      "id": "o4",
+      "text": "Disable the allow list whenever jobs are queued"
+    }
+  ],
+  "correct": "o2"
+}

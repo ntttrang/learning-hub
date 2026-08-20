@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d6-q08",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-emu-policy",
+  "prompt": "With Enterprise Managed Users, where do members’ accounts come from and how do they sign in?",
+  "explanation": "EMU moves identity to the enterprise: accounts are provisioned and managed through the company’s IdP, sign-in uses corporate credentials, and the enterprise controls the account lifecycle and where it can act.",
+  "docIds": [
+    "enterprise-managed-users"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The enterprise’s identity provider provisions them, and members sign in with corporate credentials"
+    },
+    {
+      "id": "o2",
+      "text": "Members create personal accounts and link them by email"
+    },
+    {
+      "id": "o3",
+      "text": "GitHub generates anonymous accounts for each member"
+    },
+    {
+      "id": "o4",
+      "text": "Members sign in with a shared enterprise password"
+    }
+  ],
+  "correct": "o1"
+}

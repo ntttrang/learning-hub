@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d3-q05",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-linking-filtering",
+  "prompt": "`Closes #12` sits in a pull request that merges into a long-lived feature branch, not `main`. Does issue #12 close?",
+  "explanation": "The auto-close behavior triggers when the pull request reaches the default branch. Merging elsewhere (like a staging or feature branch) leaves the issue open — the link stays, the close does not fire.",
+  "docIds": [
+    "linking-pr-to-issue"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "No — the automatic close fires only on merges into the default branch"
+    },
+    {
+      "id": "o2",
+      "text": "Yes — any merge closes the linked issue"
+    },
+    {
+      "id": "o3",
+      "text": "Yes, but only after a maintainer approves"
+    },
+    {
+      "id": "o4",
+      "text": "No — closing keywords never work on branches"
+    }
+  ],
+  "correct": "o1"
+}

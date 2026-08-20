@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d4-q05",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-org-policies",
+  "prompt": "Workflows from first-time outside contributors keep running before anyone reviews them. Which org setting addresses exactly this?",
+  "explanation": "The approval setting gates workflow runs from new external contributors until a maintainer with write access approves them. Read-only tokens limit blast radius but do not withhold execution, and disabling Actions forgoes the project’s automation outright.",
+  "docIds": [
+    "org-actions-policy"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Requiring approval for workflows from first-time contributors"
+    },
+    {
+      "id": "o2",
+      "text": "Disabling Actions on all public repositories"
+    },
+    {
+      "id": "o3",
+      "text": "Setting default workflow permissions to read-only"
+    },
+    {
+      "id": "o4",
+      "text": "Requiring signed commits"
+    }
+  ],
+  "correct": "o1"
+}

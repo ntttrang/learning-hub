@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d5-q07",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-token-permissions",
+  "prompt": "A workflow must open pull requests against a different repository it does not own. What does that require?",
+  "explanation": "The `GITHUB_TOKEN` is scoped to its own repository, so cross-repository work needs credentials that live where the permissions do: a PAT or a GitHub App token granted on the target. Widening the job token cannot reach across that boundary.",
+  "docIds": [
+    "github-token"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The `GITHUB_TOKEN`, with `pull-requests: write`"
+    },
+    {
+      "id": "o2",
+      "text": "A personal access token (or GitHub App token) with rights on the target repository"
+    },
+    {
+      "id": "o3",
+      "text": "Nothing — any workflow can PR anywhere"
+    },
+    {
+      "id": "o4",
+      "text": "Forking the target repository first"
+    }
+  ],
+  "correct": "o2"
+}

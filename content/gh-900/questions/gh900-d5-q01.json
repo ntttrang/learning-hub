@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d5-q01",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-projects-layouts",
+  "prompt": "A scrum team wants one flexible surface to plan and track their sprint — mixing issues, pull requests, and rough notes. What should they use?",
+  "explanation": "Projects are GitHub’s planning surface: pull in issues and pull requests, add draft items, slice the work through multiple views, and watch progress with insights. Wikis document; milestones and branches serve other jobs.",
+  "docIds": [
+    "about-projects"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A GitHub Project with table, board, and roadmap layouts"
+    },
+    {
+      "id": "o2",
+      "text": "A repository wiki"
+    },
+    {
+      "id": "o3",
+      "text": "A milestone per person"
+    },
+    {
+      "id": "o4",
+      "text": "A long-lived branch named `planning`"
+    }
+  ],
+  "correct": "o1"
+}

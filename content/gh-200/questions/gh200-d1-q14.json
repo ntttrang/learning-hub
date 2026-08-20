@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d1-q14",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-triggers",
+  "prompt": "Which of these can start a workflow? Choose all that apply.",
+  "explanation": "Workflows start on GitHub-side signals: schedules, manual dispatch, and repository events like branch or tag creation all qualify. A commit that never reaches GitHub triggers nothing, and settings changes are not workflow events by themselves.",
+  "docIds": [
+    "workflow-events"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A cron schedule via `on: schedule`"
+    },
+    {
+      "id": "o2",
+      "text": "A manual run started from the Actions tab via `workflow_dispatch`"
+    },
+    {
+      "id": "o3",
+      "text": "A `create` event, such as a new branch or tag"
+    },
+    {
+      "id": "o4",
+      "text": "A commit made locally that has not been pushed"
+    },
+    {
+      "id": "o5",
+      "text": "Any repository settings change, whatever it is"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d2-q14",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-repo-structure-key-files",
+  "prompt": "Which files help a newcomer answer \"what is this and may I use it?\" Choose all that apply.",
+  "explanation": "README explains the project, LICENSE grants usage rights, CONTRIBUTING shows how to participate. Dependency folders and CI wiring are plumbing — useful, but not community orientation.",
+  "docIds": [
+    "about-readmes"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "README.md"
+    },
+    {
+      "id": "o2",
+      "text": "LICENSE"
+    },
+    {
+      "id": "o3",
+      "text": "CONTRIBUTING.md"
+    },
+    {
+      "id": "o4",
+      "text": "node_modules/"
+    },
+    {
+      "id": "o5",
+      "text": "The CI workflow file"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d3-q07",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-linking-filtering",
+  "prompt": "In the issues list, a maintainer types `is:open label:bug assignee:@me`. What appears?",
+  "explanation": "The issue list doubles as a search engine: qualifiers like `is:open`, `label:`, and `assignee:@me` intersect, so the list shows exactly the open bugs assigned to you.",
+  "docIds": [
+    "filtering-issues"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Open issues labeled `bug` and assigned to the person searching"
+    },
+    {
+      "id": "o2",
+      "text": "All issues that mention the word bug"
+    },
+    {
+      "id": "o3",
+      "text": "Closed issues anyone assigned to them"
+    },
+    {
+      "id": "o4",
+      "text": "Every pull request in the repository"
+    }
+  ],
+  "correct": "o1"
+}

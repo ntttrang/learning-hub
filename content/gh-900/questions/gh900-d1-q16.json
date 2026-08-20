@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d1-q16",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-account-types",
+  "prompt": "Which statements about GitHub account types are correct? Choose all that apply.",
+  "explanation": "Personal accounts are identities; organizations are shared owners with teams; enterprises centralize policy and billing across organizations — and members are always personal accounts. Any account type, including personal ones, can own public repositories.",
+  "docIds": [
+    "types-of-github-accounts"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A personal account is your individual identity on GitHub"
+    },
+    {
+      "id": "o2",
+      "text": "An organization can own repositories and group members into teams"
+    },
+    {
+      "id": "o3",
+      "text": "An organization signs in through one shared account that everyone uses"
+    },
+    {
+      "id": "o4",
+      "text": "An enterprise manages multiple organizations under one owner"
+    },
+    {
+      "id": "o5",
+      "text": "Public repositories require an organization"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o4"
+  ]
+}

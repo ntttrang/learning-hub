@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d6-q17",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-emu-policy",
+  "prompt": "Which statements about Enterprise Managed Users are true? Choose all that apply.",
+  "explanation": "EMU centralizes identity: IdP-provisioned accounts, corporate sign-in, enterprise-managed lifecycle — and those accounts are restricted to the enterprise’s corner of GitHub, not open contributors. Organizations still exist inside it.",
+  "docIds": [
+    "enterprise-managed-users"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Member accounts are provisioned by the enterprise identity provider"
+    },
+    {
+      "id": "o2",
+      "text": "Members authenticate with corporate credentials"
+    },
+    {
+      "id": "o3",
+      "text": "The enterprise governs the accounts’ lifecycle"
+    },
+    {
+      "id": "o4",
+      "text": "EMU accounts can contribute to any public repository without restriction"
+    },
+    {
+      "id": "o5",
+      "text": "EMU replaces the need for organizations"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

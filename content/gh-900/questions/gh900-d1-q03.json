@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d1-q03",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-git-vs-github",
+  "prompt": "A teammate drafts a script and includes the line `git pull-request`. It fails. Why?",
+  "explanation": "Git handles local version control; the pull request — proposing a merge, collecting review, hosting the discussion — lives on GitHub. There is no `git pull-request` subcommand in Git itself.",
+  "docIds": [
+    "hello-world"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A pull request is a GitHub collaboration feature, not a Git command"
+    },
+    {
+      "id": "o2",
+      "text": "The command exists but needs the `--web` flag"
+    },
+    {
+      "id": "o3",
+      "text": "Pull requests only work from GitHub Desktop"
+    },
+    {
+      "id": "o4",
+      "text": "Git commands must run inside a pull request"
+    }
+  ],
+  "correct": "o1"
+}

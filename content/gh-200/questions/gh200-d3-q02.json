@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d3-q02",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-action-types",
+  "prompt": "A team wants to bundle five existing steps — two `run:` scripts and three `uses:` of other actions — into one reusable unit that runs inside the caller’s job. Which type fits?",
+  "explanation": "Composite actions exist precisely for this: a list of steps, including `uses:` of other actions, executed inside the caller’s job with no runtime of their own. Reusable workflows would spin up their own job and runner instead.",
+  "docIds": [
+    "metadata-syntax"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A composite action"
+    },
+    {
+      "id": "o2",
+      "text": "A Docker action"
+    },
+    {
+      "id": "o3",
+      "text": "A reusable workflow"
+    },
+    {
+      "id": "o4",
+      "text": "An organization workflow template"
+    }
+  ],
+  "correct": "o1"
+}

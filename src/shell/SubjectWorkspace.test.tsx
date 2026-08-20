@@ -3,25 +3,28 @@ import { describe, expect, it, vi } from 'vitest';
 
 // Stub the content seam: a pack that lists as installed but fails validation,
 // plus a healthy pack whose id collides with a placeholder (dp-800).
+const stubSubjects = vi.hoisted(() => [
+  {
+    id: 'broken',
+    code: 'BRK-1',
+    title: 'Broken Pack',
+    accent: 'sky-cyan',
+    enabledModes: ['learn'],
+  },
+  {
+    id: 'dp-800',
+    code: 'DP-800',
+    title: 'DP-800 Installed Pack',
+    accent: 'sky-cyan',
+    enabledModes: ['learn', 'labs'],
+  },
+]);
+
 vi.mock('../content/registry', () => ({
   contentSource: {
-    listSubjects: () => [
-      {
-        id: 'broken',
-        code: 'BRK-1',
-        title: 'Broken Pack',
-        accent: 'sky-cyan',
-        enabledModes: ['learn'],
-      },
-      {
-        id: 'dp-800',
-        code: 'DP-800',
-        title: 'DP-800 Installed Pack',
-        accent: 'sky-cyan',
-        enabledModes: ['learn', 'labs'],
-      },
-    ],
-    loadSubject: vi.fn(),
+    listSubjectIds: () => stubSubjects.map((s) => s.id),
+    listSubjects: () => stubSubjects,
+    loadSubject: (id: string) => ({ subject: stubSubjects.find((s) => s.id === id) }),
   },
   loadSubjectWithIndex: () => {
     throw new Error('subject.json: missing required field "enabledModes"');

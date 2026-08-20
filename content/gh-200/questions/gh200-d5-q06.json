@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d5-q06",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-token-permissions",
+  "prompt": "A security review asks for the least-privilege default across dozens of repositories. What is the recommended posture?",
+  "explanation": "Restrictive by default, expansive by exception: read-only tokens everywhere, and a `permissions:` block on the few jobs that write. A PAT in a secret is the anti-pattern — long-lived, broadly scoped, and copied into every run that reads it.",
+  "docIds": [
+    "secure-use"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Keep broad read/write defaults for compatibility"
+    },
+    {
+      "id": "o2",
+      "text": "Set default workflow permissions to read-only, granting writes job by job"
+    },
+    {
+      "id": "o3",
+      "text": "Grant `write-all` on the workflows that need any write"
+    },
+    {
+      "id": "o4",
+      "text": "Store a classic PAT with full repo scope as an organization secret"
+    }
+  ],
+  "correct": "o2"
+}

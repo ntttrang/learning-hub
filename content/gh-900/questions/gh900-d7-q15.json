@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d7-q15",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-marketplace",
+  "prompt": "Which statements about GitHub Marketplace are true? Choose all that apply.",
+  "explanation": "Marketplace aggregates third-party (and some first-party) apps and Actions, installable at repository or organization scope. Most of the catalog is community-built, and browsing needs no enterprise plan.",
+  "docIds": [
+    "github-marketplace"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "It lists GitHub Apps and Actions"
+    },
+    {
+      "id": "o2",
+      "text": "Listings can be installed for a repository or an organization"
+    },
+    {
+      "id": "o3",
+      "text": "Listings cover categories like CI, code review, and security"
+    },
+    {
+      "id": "o4",
+      "text": "Everything in Marketplace is built and operated by GitHub itself"
+    },
+    {
+      "id": "o5",
+      "text": "Marketplace requires an enterprise account"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

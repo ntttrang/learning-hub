@@ -1,0 +1,23 @@
+{
+  "id": "gh200-d1-q19",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-passing-data",
+  "prompt": "The second step should print `1.4.0` but the version never arrives. One line fails to expose the output — click it.",
+  "explanation": "Step outputs are set by appending `key=value` lines to the `$GITHUB_OUTPUT` file: `echo \"version=1.4.0\" >> $GITHUB_OUTPUT`. Echoing to stdout only writes to the log, so `steps.prep.outputs.version` stays empty downstream even though the step succeeded.",
+  "docIds": [
+    "workflow-commands"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "name: Pass the version along",
+    "on: push",
+    "jobs:",
+    "  build:",
+    "    runs-on: ubuntu-latest",
+    "    steps:",
+    "      - id: prep",
+    "        run: echo \"version=1.4.0\"",
+    "      - run: echo \"Version is ${{ steps.prep.outputs.version }}\""
+  ],
+  "buggyLineIndex": 7
+}

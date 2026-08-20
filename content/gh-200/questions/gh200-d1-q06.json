@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d1-q06",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-jobs-steps",
+  "prompt": "A cleanup step must run at the end of the job even when earlier steps failed. Which `if:` condition does that?",
+  "explanation": "`always()` lets a step run no matter how the preceding ones ended — the tool for cleanup and reporting. `failure()` runs only after a failure, `cancelled()` only when the run was cancelled, and `success()` is the default you never need to write.",
+  "docIds": [
+    "workflow-syntax"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "`if: success()`"
+    },
+    {
+      "id": "o2",
+      "text": "`if: failure()`"
+    },
+    {
+      "id": "o3",
+      "text": "`if: cancelled()`"
+    },
+    {
+      "id": "o4",
+      "text": "`if: always()`"
+    }
+  ],
+  "correct": "o4"
+}

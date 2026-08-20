@@ -59,10 +59,36 @@ export class ContentValidationError extends Error {
 /* ------------------------------- the interface ----------------------------- */
 
 export interface ContentSource {
-  /** Metadata for every installed pack (for subject pickers). */
+  /** Directory ids of every pack on disk, without loading or validating them. */
+  listSubjectIds(): string[];
+  /** Metadata for every installed pack. Strict: throws if any pack is invalid. */
   listSubjects(): Subject[];
   /** Load, shape-parse, and fully validate one pack. Throws on invalid content. */
   loadSubject(id: string): SubjectContent;
+}
+
+/**
+ * Load pack metadata for every id, isolating failures per pack: an id whose
+ * pack fails validation is logged (id + first issue) and skipped, while the
+ * healthy packs still list. The strict counterpart stays `listSubjects` /
+ * `loadAllContent` — fault tolerance lives here, never in the source, so the
+ * `content:check` gate keeps failing on bad packs. Pure over the injected
+ * loader so isolation is testable without the glob layer.
+ */
+export function loadSubjectsTolerant(ids: string[], load: (id: string) => Subject): Subject[] {
+  const loaded: Subject[] = [];
+  for (const id of ids) {
+    try {
+      loaded.push(load(id));
+    } catch (error) {
+      const first =
+        error instanceof ContentValidationError && error.issues[0]
+          ? ` [${error.issues[0].code}] ${error.issues[0].path}: ${error.issues[0].message}`
+          : '';
+      console.error(`content pack "${id}" failed to load and was skipped —${first || ` ${String(error)}`}`);
+    }
+  }
+  return loaded;
 }
 
 /* ------------------------------ path classify ------------------------------ */
@@ -457,6 +483,12 @@ export function createFileContentSource(options?: ValidateOptions): ContentSourc
     bucket.push(file);
     bySubject.set(subjectId, bucket);
   }
+  // Path-sorted buckets make per-domain question pool order a local contract
+  // (golden-paper parity depends on authored `q01..qNN` file order) instead of
+  // relying on glob emission order, which Vite does not document.
+  for (const bucket of bySubject.values()) {
+    bucket.sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0));
+  }
 
   const load = (id: string): SubjectContent => {
     const files = bySubject.get(id);
@@ -469,6 +501,7 @@ export function createFileContentSource(options?: ValidateOptions): ContentSourc
   };
 
   return {
+    listSubjectIds: () => [...bySubject.keys()].sort(),
     listSubjects: () => [...bySubject.keys()].sort().map((id) => load(id).subject),
     loadSubject: load,
   };

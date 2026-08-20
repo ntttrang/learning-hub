@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d1-q02",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-version-control",
+  "prompt": "A developer finishes commits while on a flight with no internet, then syncs after landing. Which Git property makes this possible?",
+  "explanation": "Because Git is distributed, your clone contains the complete history, and committing, branching, and diffing are local operations. Network access is only needed to push, pull, or fetch when you exchange work with others.",
+  "docIds": [
+    "about-git"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Git is distributed — each collaborator holds the full repository history locally"
+    },
+    {
+      "id": "o2",
+      "text": "Git queues commits in the cloud and replays them when you reconnect"
+    },
+    {
+      "id": "o3",
+      "text": "Git only stores the latest snapshot, so there is nothing to sync"
+    },
+    {
+      "id": "o4",
+      "text": "Git requires a central server to authorize every commit"
+    }
+  ],
+  "correct": "o1"
+}

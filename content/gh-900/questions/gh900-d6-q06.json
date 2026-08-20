@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d6-q06",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-permissions-roles",
+  "prompt": "What is the difference between organization roles and repository roles?",
+  "explanation": "Two different ladders: org roles manage the organization (membership, billing, defaults), while repository roles (read through admin) apply to one repository. Teams are how the latter get delivered in bulk.",
+  "docIds": [
+    "roles-in-an-organization"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Organization roles govern the organization itself (owner, member, plus base permissions); repository roles grant per-repository capabilities"
+    },
+    {
+      "id": "o2",
+      "text": "They are two names for the same ladder"
+    },
+    {
+      "id": "o3",
+      "text": "Organization roles only apply to public repositories"
+    },
+    {
+      "id": "o4",
+      "text": "Repository roles outrank organization roles"
+    }
+  ],
+  "correct": "o1"
+}

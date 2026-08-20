@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d7-q06",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-marketplace",
+  "prompt": "A team wants CI previews on every pull request and auto-labeling of stale issues. Where do they look first?",
+  "explanation": "Marketplace lists apps and Actions you can install or plug into repositories — CI, labeling, security scanning, and thousands of other capabilities somebody has already built.",
+  "docIds": [
+    "github-marketplace"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "GitHub Marketplace — the catalog of apps and Actions that extend repositories"
+    },
+    {
+      "id": "o2",
+      "text": "The GitHub REST API reference"
+    },
+    {
+      "id": "o3",
+      "text": "GitHub Sponsors"
+    },
+    {
+      "id": "o4",
+      "text": "Their enterprise billing page"
+    }
+  ],
+  "correct": "o1"
+}

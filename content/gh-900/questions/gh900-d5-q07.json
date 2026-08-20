@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d5-q07",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-saved-replies-assignees",
+  "prompt": "A maintainer types the same \"please add reproduction steps\" response ten times a week. Which feature removes the repetition?",
+  "explanation": "Saved replies store your frequent responses and insert them into any comment box, keeping triage consistent and fast. They are personal settings, not repository configuration.",
+  "docIds": [
+    "about-saved-replies"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Saved replies — canned responses inserted with a click"
+    },
+    {
+      "id": "o2",
+      "text": "Milestones"
+    },
+    {
+      "id": "o3",
+      "text": "Custom project fields"
+    },
+    {
+      "id": "o4",
+      "text": "Branch protection"
+    }
+  ],
+  "correct": "o1"
+}

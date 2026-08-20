@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d1-q08",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-account-types",
+  "prompt": "A company wants one invoice and centralized security policy across its twelve GitHub organizations. What should it set up?",
+  "explanation": "The enterprise tier sits above organizations: unified billing, central policy, and security management across every organization it contains. Teams and owners operate inside a single organization.",
+  "docIds": [
+    "types-of-github-accounts"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "An enterprise, which centralizes billing, policy, and security across organizations"
+    },
+    {
+      "id": "o2",
+      "text": "A team in each organization"
+    },
+    {
+      "id": "o3",
+      "text": "One organization with twelve owners"
+    },
+    {
+      "id": "o4",
+      "text": "A repository with a billing README"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "gh900-d5-q19",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-labels-milestones",
+  "prompt": "Order the lifecycle of a milestone.",
+  "explanation": "A milestone ages well only in this order: define the target, commit the work to it, burn it down while watching progress, then close it out — open issues left behind are a planning signal, not an error.",
+  "docIds": [
+    "about-milestones"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Create the milestone with a due date and description"
+    },
+    {
+      "id": "o2",
+      "text": "Attach the issues and pull requests that must land"
+    },
+    {
+      "id": "o3",
+      "text": "Close the tracked work as pull requests merge"
+    },
+    {
+      "id": "o4",
+      "text": "Watch the milestone progress as items complete"
+    },
+    {
+      "id": "o5",
+      "text": "Close the milestone when the goal date arrives"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

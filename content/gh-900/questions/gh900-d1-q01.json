@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d1-q01",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-version-control",
+  "prompt": "A four-person team edits trip reports in a shared network folder. Every week someone pastes over a colleague’s file and the wording is gone forever. Which capability does version control add that fixes this?",
+  "explanation": "Version control keeps the project’s full history — who changed what, when, and why — so you can revert to any previous state and compare versions. File locking and nightly backups do not give you per-change history or easy merging of parallel work.",
+  "docIds": [
+    "about-git"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "It records every change as a recoverable snapshot, so any earlier version can be restored and compared"
+    },
+    {
+      "id": "o2",
+      "text": "It locks each file so only one person can edit it at a time"
+    },
+    {
+      "id": "o3",
+      "text": "It backs up the folder to the cloud once per night"
+    },
+    {
+      "id": "o4",
+      "text": "It emails a copy of every file to the whole team after each edit"
+    }
+  ],
+  "correct": "o1"
+}

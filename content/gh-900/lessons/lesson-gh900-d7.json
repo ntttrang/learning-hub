@@ -1,0 +1,107 @@
+{
+  "id": "lesson-gh900-d7",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-open-source-sponsors",
+  "title": "The GitHub community",
+  "minutes": 10,
+  "blocks": [
+    {
+      "kind": "heading",
+      "text": "Open source is the default setting",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "GitHub grew around public, forkable, contributable code — [finding ways to contribute](ways-to-contribute) is a documented workflow: explore topics, check a repo’s good-first-issue style labels, read the CONTRIBUTING, and open a PR. The whole machinery you learned in domains 1–3 exists to let a stranger say \"here is a fix\" in five minutes."
+    },
+    {
+      "kind": "md",
+      "body": "**[GitHub Sponsors](github-sponsors)** is the funding side: sponsor the people and projects whose work you rely on, monthly or one-time; maintainers set tiers. Know the pairing the exam tests — Stars signal interest, Sponsors move money."
+    },
+    {
+      "kind": "heading",
+      "text": "Keeping up: following",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "Follow [people](following-people) to see their public activity in your dashboard feed — a discover-communities signal, not a notification firehose. Follow [organizations](following-organizations) to surface their repositories. Following is public; watching a repository (domain 3) is the tool for notifications about that repo."
+    },
+    {
+      "kind": "tip",
+      "text": "Follow ≠ watch. Following shows a person’s public activity in your feed; watching subscribes you to a repository’s notifications."
+    },
+    {
+      "kind": "heading",
+      "text": "The Marketplace",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "[GitHub Marketplace](github-marketplace) lists apps and Actions that extend GitHub — CI providers, dependency bots, deployment tools. Some are free, some paid; anything with broad repository access should be reviewed before installing, and organization installs are governed by org policy. Think of it as the app store for repository automation."
+    },
+    {
+      "kind": "heading",
+      "text": "InnerSource: open source mechanics, inside walls",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "**InnerSource** applies open source practices — transparency, contribution over assignment, discoverable work — to software built inside an organization. The payoff is reuse: anyone can find, read, and propose changes to a teammate team’s repository instead of rebuilding it. GitHub’s guidance ([manage an InnerSource program](innersource-module), [using innersource in your enterprise](innersource-best-practices)) boils down to discoverability, contribution guidelines, and receptive maintainers — the same key files from domain 2, pointed inward."
+    },
+    {
+      "kind": "heading",
+      "text": "Forks, templates, and discoverability",
+      "level": 3
+    },
+    {
+      "kind": "md",
+      "body": "A **fork** ([about forks](about-forks)) is your own copy of someone’s repository, still linked to the original for pull requests back upstream — the unit of open source contribution. A **template repository** starts a new, unlinked project with the original’s structure. One exam-flavored distinction: a fork carries history and a relationship; a template copies a shape and starts fresh."
+    },
+    {
+      "kind": "table",
+      "headers": [
+        "Start from",
+        "You get",
+        "Linked to original?"
+      ],
+      "rows": [
+        [
+          "Fork",
+          "Full copy with history",
+          "Yes — PRs can flow back upstream"
+        ],
+        [
+          "Template repository",
+          "Structure and files, fresh history",
+          "No"
+        ],
+        [
+          "Import",
+          "Code and history from another host",
+          "No"
+        ]
+      ]
+    },
+    {
+      "kind": "md",
+      "body": "Discoverability ties the domain together: topics, descriptions, a good README, and stars make repositories findable; for your own organization, discoverability is what makes InnerSource work."
+    },
+    {
+      "kind": "heading",
+      "text": "Before you move on",
+      "level": 3
+    },
+    {
+      "kind": "list",
+      "items": [
+        "Contribution path: explore → labels → CONTRIBUTING → PR.",
+        "Sponsors fund people; stars bookmark them.",
+        "Follow = feed activity; watch = notifications.",
+        "Marketplace extends repos with apps and Actions.",
+        "InnerSource = open source practices inside an org.",
+        "Fork = linked copy for contribution; template = fresh start."
+      ]
+    }
+  ]
+}

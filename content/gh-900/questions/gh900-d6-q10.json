@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d6-q10",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-visibility-protection",
+  "prompt": "An organization on a paid plan sets a repository to `internal`. Who can see it?",
+  "explanation": "Internal is the \"inside the company\" tier: organization members see it without individual invitations, while the outside world cannot — inner-source work without making it public.",
+  "docIds": [
+    "setting-repository-visibility"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Every member of the organization, by default"
+    },
+    {
+      "id": "o2",
+      "text": "Only invited collaborators"
+    },
+    {
+      "id": "o3",
+      "text": "Anyone on the internet"
+    },
+    {
+      "id": "o4",
+      "text": "Only organization owners"
+    }
+  ],
+  "correct": "o1"
+}

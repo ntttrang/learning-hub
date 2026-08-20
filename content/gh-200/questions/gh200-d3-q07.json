@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d3-q07",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-commands-in-actions",
+  "prompt": "An action logs diagnostic detail through debug commands, but users report seeing nothing. Why?",
+  "explanation": "Debug lines are emitted always but displayed only when the run re-runs with debug logging enabled (or the `ACTIONS_STEP_DEBUG` secret is set). That is the design: verbose diagnostics stay out of the way until someone asks for them.",
+  "docIds": [
+    "workflow-commands"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Debug output requires debug logging to be enabled for the run"
+    },
+    {
+      "id": "o2",
+      "text": "Debug commands only work in Docker actions"
+    },
+    {
+      "id": "o3",
+      "text": "The runner strips debug lines from composite actions"
+    },
+    {
+      "id": "o4",
+      "text": "Debug output is reserved for GitHub’s own actions"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d4-q14",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-org-policies",
+  "prompt": "Which organizational Actions policies are real? Choose all that apply.",
+  "explanation": "Org settings can allow-list by pattern or SHA, gate first-time contributors, and switch Actions off per repository — but the allow list accepts friendly refs, not SHAs only, and an enterprise policy is the ceiling an organization cannot exceed.",
+  "docIds": [
+    "org-actions-policy"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Restricting which actions may run, via an allow list"
+    },
+    {
+      "id": "o2",
+      "text": "Allow lists may reference actions only by exact commit SHA"
+    },
+    {
+      "id": "o3",
+      "text": "Requiring approval before workflows from new contributors run"
+    },
+    {
+      "id": "o4",
+      "text": "Organization policy overrides an enterprise-level allow list"
+    },
+    {
+      "id": "o5",
+      "text": "Disabling Actions for selected repositories in the organization"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o3",
+    "o5"
+  ]
+}

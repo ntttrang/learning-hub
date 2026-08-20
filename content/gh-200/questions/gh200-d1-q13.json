@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d1-q13",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-summaries-badges",
+  "prompt": "A workflow should publish a human-readable report — tables, lists, rendered markdown — right on the run page. Which mechanism does that?",
+  "explanation": "Whatever a step appends to `$GITHUB_STEP_SUMMARY` renders as markdown on the run page under the job — the built-in home for test tables and release notes. Logs and artifacts hold the same text, but nothing renders them as a report.",
+  "docIds": [
+    "workflow-commands"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Echo markdown into the job log between `::group::` markers"
+    },
+    {
+      "id": "o2",
+      "text": "Append markdown to the `$GITHUB_STEP_SUMMARY` environment file"
+    },
+    {
+      "id": "o3",
+      "text": "Upload a `summary.md` artifact next to the build outputs"
+    },
+    {
+      "id": "o4",
+      "text": "Have the workflow open a pull request that carries the report"
+    }
+  ],
+  "correct": "o2"
+}

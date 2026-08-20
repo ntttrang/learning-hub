@@ -1,0 +1,282 @@
+[
+  {
+    "id": "gh900-lab-01",
+    "domainId": "gh900-d1",
+    "title": "Ship your first change with GitHub Flow",
+    "minutes": 25,
+    "summary": "Create a repository, make a branch and a commit in the browser, then merge it through a pull request — the full GitHub Flow loop.",
+    "steps": [
+      {
+        "instructions": "Create a new public repository named `first-flow` with a README — see [creating a repository](creating-a-repository)."
+      },
+      {
+        "instructions": "In the browser, open `README.md`, click the pencil, add one sentence, and choose **Create a new branch** when committing; name the branch `feature/intro`."
+      },
+      {
+        "instructions": "On the \"Open a pull request\" prompt, write a title and a body using Markdown: one `## What changed` heading and one task-list item."
+      },
+      {
+        "instructions": "Open the pull request, review the **Files changed** tab, then merge it with a merge commit."
+      },
+      {
+        "instructions": "Delete the branch when GitHub offers to; confirm `main` now carries your sentence."
+      },
+      {
+        "instructions": "Clone the repository locally (`git clone` your repo URL), create branch `feature/local-edit`, edit any file, and run `git add` → `git commit` → `git push -u origin feature/local-edit`."
+      },
+      {
+        "instructions": "Open a second pull request from your machine’s branch and merge it."
+      }
+    ],
+    "outcomes": [
+      "Repository `first-flow` exists with a merged pull request on `main`.",
+      "Two closed PRs appear under the Pull requests tab, one from the web editor and one from a local clone.",
+      "The branch list shows no leftover `feature/*` branches after merges."
+    ],
+    "checks": [
+      "Open the repository’s **Insights → Pulse** and find both merges recorded in the last week ([about repository graphs](about-repository-graphs)).",
+      "Run `git log --oneline` locally and find the two merge commits on `main`.",
+      "Visit your pull request and confirm the issue-style Markdown (heading, task list) rendered in the body."
+    ]
+  },
+  {
+    "id": "gh900-lab-02",
+    "domainId": "gh900-d2",
+    "title": "Give a repository a proper community profile",
+    "minutes": 20,
+    "summary": "Add the key community files — README, LICENSE, CONTRIBUTING, CODEOWNERS, and an issue template — then read the Community Standards checklist.",
+    "steps": [
+      {
+        "instructions": "In repo `first-flow` (or any repo you own), add a `LICENSE` file via **Add file → Create new file**, choosing a license from the chooser; see [licensing a repository](licensing-a-repository)."
+      },
+      {
+        "instructions": "Create `CONTRIBUTING.md` with three short sections: how to propose a change, code style, and what a good issue contains ([setting guidelines](contributing-guidelines))."
+      },
+      {
+        "instructions": "Create `.github/CODEOWNERS` mapping `/README.md @your-username` and `/` to yourself ([about code owners](about-code-owners))."
+      },
+      {
+        "instructions": "Create `.github/ISSUE_TEMPLATE/bug-report.md` with a template body — repro steps, expected, actual ([about templates](issue-pr-templates))."
+      },
+      {
+        "instructions": "Create `SECURITY.md` with a contact for vulnerability reports ([add a security policy](add-security-policy))."
+      },
+      {
+        "instructions": "Open **Insights → Community** and read the Community Standards checklist."
+      },
+      {
+        "instructions": "Star the repository and open **Insights** to see where stars and traffic appear ([about repository graphs](about-repository-graphs))."
+      }
+    ],
+    "outcomes": [
+      "The Community Standards checklist shows all key files present and green.",
+      "Editing `README.md` in a new PR auto-requests you as reviewer via CODEOWNERS.",
+      "Creating a new issue offers your bug report template."
+    ],
+    "checks": [
+      "Open **Insights → Community** and confirm every section is checked, with links to each file.",
+      "Start a new PR changing `README.md` and confirm the reviewers list pre-fills from CODEOWNERS.",
+      "Click **New issue** and confirm the bug-report template appears as an option, then cancel."
+    ]
+  },
+  {
+    "id": "gh900-lab-03",
+    "domainId": "gh900-d3",
+    "title": "Link an issue to a pull request and close it by merging",
+    "minutes": 20,
+    "summary": "File an issue, fix it on a branch, and let a closing keyword in the pull request do the bookkeeping — then tune notifications.",
+    "steps": [
+      {
+        "instructions": "Open a new issue titled \"Fix typo in README\" with a label and yourself as assignee ([about issues](about-issues))."
+      },
+      {
+        "instructions": "Create branch `fix/readme-typo`, correct the typo, and commit to the branch."
+      },
+      {
+        "instructions": "Open a pull request whose description contains `Closes #1` (use your issue’s real number) — see [linking a pull request to an issue](linking-pr-to-issue)."
+      },
+      {
+        "instructions": "Confirm the PR sidebar shows the issue linked under \"Development\"."
+      },
+      {
+        "instructions": "Merge the pull request into `main` and watch the issue close automatically."
+      },
+      {
+        "instructions": "In the repo’s **Watch** dropdown (top right), set a custom watch level; then check your [notification settings](about-notifications) under personal settings → notifications."
+      },
+      {
+        "instructions": "Filter your issues list with `is:closed is:issue reason:completed` to see the auto-closed issue ([filtering and searching](filtering-issues))."
+      }
+    ],
+    "outcomes": [
+      "The issue is closed by the merge, with a back-reference to the PR.",
+      "The PR shows the issue in its Development section before merge.",
+      "Your watch level for the repo is set deliberately, not by default."
+    ],
+    "checks": [
+      "Open the closed issue and confirm the timeline says it was closed by the PR merge, not manually.",
+      "Open the merged PR and confirm the linked-issue badge in the sidebar.",
+      "Visit the notifications inbox (web) and find one notification generated by this exercise."
+    ]
+  },
+  {
+    "id": "gh900-lab-04",
+    "domainId": "gh900-d4",
+    "title": "Run your first workflow and meet the modern surfaces",
+    "minutes": 25,
+    "summary": "Enable a starter GitHub Actions workflow on a branch, read its run log, then open the same repo in a codespace and in github.dev.",
+    "steps": [
+      {
+        "instructions": "In your repo, open the **Actions** tab and enable a starter workflow on a new branch (any suggested \"simple\" workflow) — see [GitHub Actions docs](gh-docs-actions)."
+      },
+      {
+        "instructions": "Merge the branch’s PR (or run the workflow on the branch) and open the run from the Actions list."
+      },
+      {
+        "instructions": "Read the run: find the job, expand one step, and locate the log line that prints your runner’s operating system."
+      },
+      {
+        "instructions": "Press `.` on any repository page (or swap `github.com` → `github.dev`) to open the web editor — [github.dev](githubdev-editor)."
+      },
+      {
+        "instructions": "Edit any file in github.dev, open the Source Control panel, and commit to a branch."
+      },
+      {
+        "instructions": "From the **Code** button, open the repo in a Codespace — [what are Codespaces](what-are-codespaces)."
+      },
+      {
+        "instructions": "In the codespace terminal run `git status`, then stop the codespace from the codespaces list."
+      }
+    ],
+    "outcomes": [
+      "One completed workflow run visible under the Actions tab with green checks.",
+      "A commit made from github.dev on a branch.",
+      "A stopped codespace listed under your account (not deleted, not running)."
+    ],
+    "checks": [
+      "In the workflow run, confirm each step’s log expands and the runner name appears ([GitHub Actions docs](gh-docs-actions)).",
+      "In github.dev, confirm the editor opened your repository files without a running environment.",
+      "On [your codespaces list](codespaces-list) confirm the codespace state is \"Stopped\" to avoid idle billing."
+    ]
+  },
+  {
+    "id": "gh900-lab-05",
+    "domainId": "gh900-d5",
+    "title": "Plan work with a Project, labels, and milestones",
+    "minutes": 25,
+    "summary": "Build an organization Project with table and board views, wire labels and a milestone to issues, and let built-in automation do the sorting.",
+    "steps": [
+      {
+        "instructions": "Create a new Project (organization-level or user-level) and add two of your existing issues plus one draft item — [about Projects](about-projects)."
+      },
+      {
+        "instructions": "Add a single-select field `Status` with columns Backlog / In progress / Done."
+      },
+      {
+        "instructions": "Create a second view with the **board** layout grouped by Status — see [changing the layout of a view](project-view-layouts)."
+      },
+      {
+        "instructions": "Add a milestone \"v0.1\" with a due date and assign it to both issues ([about milestones](about-milestones))."
+      },
+      {
+        "instructions": "Create or edit a label `docs` and apply it to one issue ([managing labels](managing-labels))."
+      },
+      {
+        "instructions": "Enable a built-in automation, such as \"auto-move to Done when the item closes\" — [using the built-in automations](built-in-automations)."
+      },
+      {
+        "instructions": "Close one linked issue and reopen the Project to see the automation move it."
+      }
+    ],
+    "outcomes": [
+      "A Project with at least a table view and a board view over the same items.",
+      "A milestone showing partial completion (one closed, one open issue).",
+      "The closed issue moved to Done without you dragging it."
+    ],
+    "checks": [
+      "Switch between the two views and confirm the same items appear with different layouts.",
+      "Open the milestone and confirm its progress bar counts exactly your two issues.",
+      "Open **Insights** on the project and confirm a chart renders from your items ([about insights](about-project-insights))."
+    ]
+  },
+  {
+    "id": "gh900-lab-06",
+    "domainId": "gh900-d6",
+    "title": "Harden a repository: 2FA, permissions, branch protection",
+    "minutes": 25,
+    "summary": "Verify your account’s 2FA/passkey state, exercise collaborator permissions, and enforce branch protection on `main`.",
+    "steps": [
+      {
+        "instructions": "Open personal **Settings → Password and authentication** and confirm 2FA is active; note whether a passkey is registered — [configuring 2FA](configure-2fa), [about passkeys](about-passkeys)."
+      },
+      {
+        "instructions": "In your repo’s **Settings → Collaborators**, note that personal collaborators get write access (the single rung on personal repos) — contrast with [repository roles](repository-roles) in organizations."
+      },
+      {
+        "instructions": "Under **Settings → Branches**, add a branch protection rule for `main` ([about protected branches](about-protected-branches)): require a pull request before merging, with one approval."
+      },
+      {
+        "instructions": "Require status checks (pick any check if one exists from lab 04) and enable \"Do not allow bypassing the above settings\"."
+      },
+      {
+        "instructions": "Try to push a commit directly to `main` from your local clone."
+      },
+      {
+        "instructions": "Check the repo’s visibility setting under **Settings → General** — read [setting repository visibility](setting-repository-visibility) for what changes when visibility flips."
+      },
+      {
+        "instructions": "If you have an organization: create a team, add yourself, and grant the team `read` on a repo — [about teams](about-teams)."
+      }
+    ],
+    "outcomes": [
+      "Branch protection on `main` with required review and checks.",
+      "A rejected direct push to `main` with a protection-message from GitHub.",
+      "Team-based access visible in the repo’s Collaborators and teams settings (org step only)."
+    ],
+    "checks": [
+      "Run `git push origin main` locally and confirm GitHub rejects it, quoting the branch protection rule.",
+      "Open **Settings → Branches** and confirm the rule lists `main` with both protections ticked.",
+      "Open your authentication settings page and point to where 2FA methods and passkeys are listed."
+    ]
+  },
+  {
+    "id": "gh900-lab-07",
+    "domainId": "gh900-d7",
+    "title": "Contribute upstream: fork, propose, polish",
+    "minutes": 20,
+    "summary": "Fork a real open source repository, propose a documentation change upstream, and tour Sponsors and the Marketplace.",
+    "steps": [
+      {
+        "instructions": "Pick a small active open source repo you use (or your own second repo) and fork it — [about forks](about-forks)."
+      },
+      {
+        "instructions": "In your fork, create branch `docs/clarify-readme` and improve one sentence of the README."
+      },
+      {
+        "instructions": "Open a pull request **against the upstream repository** (not your fork’s `main`)."
+      },
+      {
+        "instructions": "On the upstream repo, check its contribution path: CONTRIBUTING file, good first issue labels — see [finding ways to contribute](ways-to-contribute)."
+      },
+      {
+        "instructions": "Visit the profile of the upstream maintainer and open their **Sponsors** section — [GitHub Sponsors](github-sponsors)."
+      },
+      {
+        "instructions": "Open [GitHub Marketplace](github-marketplace) and browse one CI app and one Action; note install permissions before closing the page."
+      },
+      {
+        "instructions": "Follow the maintainer ([following people](following-people)) and confirm the feed shows their public activity on your dashboard."
+      }
+    ],
+    "outcomes": [
+      "A fork under your account with one branch ahead of upstream.",
+      "An open (or merged) upstream PR from your fork.",
+      "A follow on the maintainer reflected in your home feed."
+    ],
+    "checks": [
+      "Open the upstream PR and confirm the base repository is upstream, not your fork.",
+      "Confirm your fork page shows \"forked from <upstream>\" at the top.",
+      "Open your GitHub dashboard and find one public activity card from the maintainer you followed."
+    ]
+  }
+]

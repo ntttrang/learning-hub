@@ -1,0 +1,20 @@
+{
+  "id": "gh200-d2-q17",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-expand-config",
+  "prompt": "Two jobs share one step list: define an anchor named `shared` on the first, then reuse it with an alias.",
+  "explanation": "The anchor `&shared` tags the step list where it is first written; the alias `*shared` expands that same list for the second job. Anchor and alias must agree on the name, and both must live in this one file — that is the whole scope of YAML reuse.",
+  "docIds": [
+    "reuse-config"
+  ],
+  "kind": "fill",
+  "template": "name: DRY steps\non: push\njobs:\n  lint:\n    runs-on: ubuntu-latest\n    steps: &___\n      - uses: actions/checkout@v4\n      - run: npm run lint\n  audit:\n    runs-on: ubuntu-latest\n    steps: *___\n",
+  "blanks": [
+    {
+      "answer": "shared"
+    },
+    {
+      "answer": "shared"
+    }
+  ]
+}

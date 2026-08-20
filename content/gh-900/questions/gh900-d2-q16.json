@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d2-q16",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-insights-metrics",
+  "prompt": "What can you learn from a repository’s Insights tab? Choose all that apply.",
+  "explanation": "Insights turns repository history into graphs: commit pace, contributor activity, pull request and issue lifecycle, code frequency. It never exposes private billing or credentials — those are not activity data.",
+  "docIds": [
+    "about-repository-graphs"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "How commits and contributors trend over time"
+    },
+    {
+      "id": "o2",
+      "text": "How long pull requests stay open before merging"
+    },
+    {
+      "id": "o3",
+      "text": "Which files changed most often"
+    },
+    {
+      "id": "o4",
+      "text": "The credit card used for the organization’s billing"
+    },
+    {
+      "id": "o5",
+      "text": "The passwords of contributors"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

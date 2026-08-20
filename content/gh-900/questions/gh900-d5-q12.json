@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d5-q12",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-projects-layouts",
+  "prompt": "During planning, someone floats an idea that is too vague for a real issue. How can it still join the sprint board?",
+  "explanation": "Draft issues are project-native placeholder items: they sit on the board like any item, and convert into real issues when the idea firms up. No repository noise in the meantime.",
+  "docIds": [
+    "about-projects"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Add it as a draft issue item in the Project"
+    },
+    {
+      "id": "o2",
+      "text": "Open a placeholder issue and close it immediately"
+    },
+    {
+      "id": "o3",
+      "text": "Put it in the wiki and hope"
+    },
+    {
+      "id": "o4",
+      "text": "Tag the next release with it"
+    }
+  ],
+  "correct": "o1"
+}

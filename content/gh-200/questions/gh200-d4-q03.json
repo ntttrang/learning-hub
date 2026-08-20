@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d4-q03",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-runner-groups",
+  "prompt": "An organization wants its payment-team runners usable only by payment-team repositories. Which mechanism does that?",
+  "explanation": "Runner groups are the policy boundary: create a group, register the runners into it, and scope which repositories — or teams — may use it. Labels route jobs; groups decide who is allowed to route jobs there at all.",
+  "docIds": [
+    "runner-groups"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Runner labels named after the repositories"
+    },
+    {
+      "id": "o2",
+      "text": "A runner group with access restricted to selected repositories"
+    },
+    {
+      "id": "o3",
+      "text": "A separate GitHub organization"
+    },
+    {
+      "id": "o4",
+      "text": "An IP allow list on the runners"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d3-q17",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-gists-wikis-pages",
+  "prompt": "Which statements about gists, wikis, and GitHub Pages are true? Choose all that apply.",
+  "explanation": "Gists share snippets, wikis document, Pages publishes. A secret gist is unlisted, not access-controlled — anyone with the URL can read it — and Pages ships a default `github.io` domain, custom domains optional.",
+  "docIds": [
+    "about-gists"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Gists are mini-repositories for sharing snippets"
+    },
+    {
+      "id": "o2",
+      "text": "Wikis hold multi-page Markdown documentation beside the code"
+    },
+    {
+      "id": "o3",
+      "text": "Pages publishes a website from repository content"
+    },
+    {
+      "id": "o4",
+      "text": "Secret gists are visible only to the account that created them"
+    },
+    {
+      "id": "o5",
+      "text": "Pages sites can only use a custom domain"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

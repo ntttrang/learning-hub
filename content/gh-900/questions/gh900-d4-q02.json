@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d4-q02",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-actions-purpose",
+  "prompt": "Which of these can trigger a GitHub Actions workflow?",
+  "explanation": "Workflows hook into a long list of events — pushes, pull requests, schedules, releases, issues, and more — plus manual dispatch. Restricting triggers to pushes is a choice a workflow makes, not a limit of the platform.",
+  "docIds": [
+    "gh-docs-actions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A push, a pull request, a schedule, or the publication of a release"
+    },
+    {
+      "id": "o2",
+      "text": "Only pushes to the default branch"
+    },
+    {
+      "id": "o3",
+      "text": "Only manual runs started by an administrator"
+    },
+    {
+      "id": "o4",
+      "text": "Any edit made in the GitHub UI"
+    }
+  ],
+  "correct": "o1"
+}

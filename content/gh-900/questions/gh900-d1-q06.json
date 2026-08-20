@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d1-q06",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-repos-commits-branches",
+  "prompt": "A team names one branch the agreed source of truth that stays deployable and receives merged work. What is this branch conventionally called?",
+  "explanation": "Every repository has a default branch — `main` by convention — which is the source of truth other branches merge into. Tags mark releases, and `origin` is the nickname of the remote server.",
+  "docIds": [
+    "github-flow"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The default branch, usually `main`"
+    },
+    {
+      "id": "o2",
+      "text": "The release tag"
+    },
+    {
+      "id": "o3",
+      "text": "The origin remote"
+    },
+    {
+      "id": "o4",
+      "text": "The staging clone"
+    }
+  ],
+  "correct": "o1"
+}

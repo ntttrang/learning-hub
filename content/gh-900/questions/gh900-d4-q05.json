@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d4-q05",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-copilot",
+  "prompt": "A company wants organization-level policy over who can use Copilot and which models are allowed. Which plan tier provides those controls?",
+  "explanation": "Organization-wide policy — who has access, which features and models — arrives with Copilot Business and continues in Enterprise. Individual plans have no organizational management surface.",
+  "docIds": [
+    "copilot-plans"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Copilot Business (and Enterprise above it)"
+    },
+    {
+      "id": "o2",
+      "text": "Copilot Free for individuals"
+    },
+    {
+      "id": "o3",
+      "text": "Any tier — policies exist everywhere"
+    },
+    {
+      "id": "o4",
+      "text": "None — Copilot policy is per repository"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d1-q04",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-git-vs-github",
+  "prompt": "Which of these tasks can be completed entirely in Git on your own machine, with no GitHub connection?",
+  "explanation": "Branching, staging, committing, merging, and inspecting history are local Git operations. Reviews, issues, notifications, and pull request conversations are GitHub features that need the hosting layer.",
+  "docIds": [
+    "about-git"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Creating a branch, staging files, and committing a snapshot"
+    },
+    {
+      "id": "o2",
+      "text": "Requesting a review on a pull request"
+    },
+    {
+      "id": "o3",
+      "text": "Filing an issue on a repository you do not own"
+    },
+    {
+      "id": "o4",
+      "text": "Watching a repository for notifications"
+    }
+  ],
+  "correct": "o1"
+}

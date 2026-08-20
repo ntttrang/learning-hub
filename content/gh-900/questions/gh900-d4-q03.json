@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d4-q03",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-actions-purpose",
+  "prompt": "Where must workflow files live for GitHub Actions to find them?",
+  "explanation": "GitHub discovers workflows in `.github/workflows/` — that fixed location is what turns a YAML file into automation that shows up on the Actions tab.",
+  "docIds": [
+    "gh-docs-actions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "In the `.github/workflows/` directory of the repository"
+    },
+    {
+      "id": "o2",
+      "text": "In the repository root, with a `.workflow` extension"
+    },
+    {
+      "id": "o3",
+      "text": "Inside the `.devcontainer/` directory"
+    },
+    {
+      "id": "o4",
+      "text": "Anywhere, as long as the file is named `ci.yml`"
+    }
+  ],
+  "correct": "o1"
+}

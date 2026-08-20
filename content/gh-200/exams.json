@@ -1,0 +1,39 @@
+[
+  {
+    "id": "gh200-mock-a",
+    "title": "GH-200 mock exam A",
+    "durationMinutes": 100,
+    "passingScore": 700,
+    "selection": {
+      "kind": "sampled",
+      "domainPlan": {
+        "gh200-d1": 8,
+        "gh200-d2": 7,
+        "gh200-d3": 7,
+        "gh200-d4": 8,
+        "gh200-d5": 5
+      },
+      "seed": 2001
+    }
+  },
+  {
+    "id": "gh200-mock-b",
+    "title": "GH-200 mock exam B",
+    "durationMinutes": 100,
+    "passingScore": 700,
+    "selection": {
+      "kind": "sampled",
+      "domainPlan": {
+        "gh200-d1": 8,
+        "gh200-d2": 7,
+        "gh200-d3": 7,
+        "gh200-d4": 8,
+        "gh200-d5": 5
+      },
+      "seed": 2002,
+      "excludeExamIds": [
+        "gh200-mock-a"
+      ]
+    }
+  }
+]

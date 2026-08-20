@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d2-q09",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-managing-files",
+  "prompt": "A build directory keeps regenerating and cluttering diffs. Where should the team record that it must never be committed?",
+  "explanation": "`.gitignore` lists files and directories Git should not track, so generated artifacts never reach diffs or history. Anything already committed must be removed from the index too — ignoring alone does not untrack it.",
+  "docIds": [
+    "gh-docs-repositories"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "`.gitignore`, listing the paths Git should leave untracked"
+    },
+    {
+      "id": "o2",
+      "text": "CONTRIBUTING.md, in a paragraph about tidiness"
+    },
+    {
+      "id": "o3",
+      "text": "CODEOWNERS, pointing the path at a robot account"
+    },
+    {
+      "id": "o4",
+      "text": "The repository description field"
+    }
+  ],
+  "correct": "o1"
+}

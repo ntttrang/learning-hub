@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d3-q01",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-action-types",
+  "prompt": "Which action type packages everything — toolchain, dependencies, scripts — inside an image you fully control?",
+  "explanation": "A Docker action builds its environment from a Dockerfile you author, so the action runs inside exactly the image you shipped. The price is a Linux-only runtime and slower cold starts, which is why the lighter types come first when they suffice.",
+  "docIds": [
+    "metadata-syntax"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A composite action"
+    },
+    {
+      "id": "o2",
+      "text": "A JavaScript action"
+    },
+    {
+      "id": "o3",
+      "text": "A Docker action"
+    },
+    {
+      "id": "o4",
+      "text": "A starter workflow"
+    }
+  ],
+  "correct": "o3"
+}

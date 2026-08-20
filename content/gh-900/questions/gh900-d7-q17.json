@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d7-q17",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-forks-templates-discovery",
+  "prompt": "Which are recognized first steps for contributing to an unfamiliar open source project? Choose all that apply.",
+  "explanation": "Etiquette is the entry ticket: read the norms, pick a starter issue, make sure you are not the third person on the same bug. Direct pushes upstream are what write access — and tact — prevent.",
+  "docIds": [
+    "ways-to-contribute"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Read the README and CONTRIBUTING guide"
+    },
+    {
+      "id": "o2",
+      "text": "Look for issues labeled `good first issue`"
+    },
+    {
+      "id": "o3",
+      "text": "Check existing issues and pull requests before opening your own"
+    },
+    {
+      "id": "o4",
+      "text": "Push your branch straight to the upstream repository"
+    },
+    {
+      "id": "o5",
+      "text": "Start by rewriting the project’s architecture"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

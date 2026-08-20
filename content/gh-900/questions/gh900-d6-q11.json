@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d6-q11",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-visibility-protection",
+  "prompt": "Management demands: \"no one pushes directly to `main`, and every change gets at least one review.\" Which feature makes that an enforced fact?",
+  "explanation": "Documents and CODEOWNERS guide behavior; branch protection enforces it — required reviews, required status checks, no direct pushes. The exam pattern is \"guarantee\" → branch protection.",
+  "docIds": [
+    "about-protected-branches"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Branch protection on `main` with required pull request reviews"
+    },
+    {
+      "id": "o2",
+      "text": "A CONTRIBUTING.md rule asking for reviews"
+    },
+    {
+      "id": "o3",
+      "text": "A CODEOWNERS file alone"
+    },
+    {
+      "id": "o4",
+      "text": "Renaming `main` to `protected-main`"
+    }
+  ],
+  "correct": "o1"
+}

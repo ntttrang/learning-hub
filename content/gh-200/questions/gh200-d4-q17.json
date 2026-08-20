@@ -1,0 +1,20 @@
+{
+  "id": "gh200-d4-q17",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-secrets-variables",
+  "prompt": "Route each value to its context: the public domain through variables, the credential through secrets.",
+  "explanation": "Two contexts, two jobs: `vars` serves configuration stored as variables, `secrets` serves credentials stored masked. Routing each value to the right context is the daily habit this domain wants you to have.",
+  "docIds": [
+    "use-variables"
+  ],
+  "kind": "fill",
+  "template": "name: Configured build\non: push\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - run: ./build.sh --domain ${{ ___.DEPLOY_DOMAIN }}\n        env:\n          TOKEN: ${{ ___.ORG_TOKEN }}\n",
+  "blanks": [
+    {
+      "answer": "vars"
+    },
+    {
+      "answer": "secrets"
+    }
+  ]
+}

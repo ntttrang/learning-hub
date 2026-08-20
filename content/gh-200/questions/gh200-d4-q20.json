@@ -1,0 +1,40 @@
+{
+  "id": "gh200-d4-q20",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-runner-groups",
+  "prompt": "Put the onboarding of a new self-hosted runner for a team in order.",
+  "explanation": "Policy first, machine second: the group decides who may use the runner before it exists, registration puts it on the network, labels make it addressable, the Idle status proves the connection, and only then does a real job land on it.",
+  "docIds": [
+    "runner-groups"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Create a runner group in organization settings and scope which repositories may use it"
+    },
+    {
+      "id": "o2",
+      "text": "Register the runner: download and configure it on the machine, then start the service"
+    },
+    {
+      "id": "o3",
+      "text": "Confirm labels so workflows can target the runner precisely"
+    },
+    {
+      "id": "o4",
+      "text": "Verify the runner appears Idle in the organization’s runner list"
+    },
+    {
+      "id": "o5",
+      "text": "Run a workflow whose `runs-on:` targets those labels and watch it land"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

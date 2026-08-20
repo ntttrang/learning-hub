@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d4-q14",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-actions-purpose",
+  "prompt": "Which tasks can GitHub Actions workflows take over? Choose all that apply.",
+  "explanation": "Workflows automate repository work: test, build, deploy, schedule. They run on GitHub’s machines — not your laptop — and they do not host stateful services like databases.",
+  "docIds": [
+    "gh-docs-actions"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Running tests on every pull request"
+    },
+    {
+      "id": "o2",
+      "text": "Building and deploying a site on merge"
+    },
+    {
+      "id": "o3",
+      "text": "Running a scheduled nightly cleanup job"
+    },
+    {
+      "id": "o4",
+      "text": "Hosting your production database"
+    },
+    {
+      "id": "o5",
+      "text": "Editing files on your personal laptop while it is closed"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d5-q03",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-projects-layouts",
+  "prompt": "A project has one view grouped by status as a board, and another view grouped by assignee as a table. How is this possible?",
+  "explanation": "Views are saved perspectives: same project, same items, different layout, grouping, and filtering. You add as many views as useful — a board for the standup, a table for triage, a roadmap for the long arc.",
+  "docIds": [
+    "project-view-layouts"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Each view keeps its own layout, grouping, and filters — views are alternate lenses on the same items"
+    },
+    {
+      "id": "o2",
+      "text": "Each project can only define one view"
+    },
+    {
+      "id": "o3",
+      "text": "The team maintains two separate Projects"
+    },
+    {
+      "id": "o4",
+      "text": "Boards and tables cannot show the same items"
+    }
+  ],
+  "correct": "o1"
+}

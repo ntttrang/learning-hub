@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d4-q12",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-govern-components",
+  "prompt": "Thirty repositories should consume one centrally maintained, versioned CI workflow owned by the platform team. Which governance arrangement fits?",
+  "explanation": "A reusable workflow gives the platform team one file, one version, and one place to fix things: callers pin it with `uses: owner/repo/path@ref`, and the organization’s allow list governs who may call what. Copies and wikis drift; references do not.",
+  "docIds": [
+    "reuse-workflows"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A reusable workflow in a central repository, allowed by organization policy and called with `uses:`"
+    },
+    {
+      "id": "o2",
+      "text": "A composite action copied into each repository’s `.github/`"
+    },
+    {
+      "id": "o3",
+      "text": "One giant workflow dispatched manually per repository"
+    },
+    {
+      "id": "o4",
+      "text": "A wiki page describing the steps each team should reimplement"
+    }
+  ],
+  "correct": "o1"
+}

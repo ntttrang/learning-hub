@@ -1,0 +1,40 @@
+{
+  "id": "gh200-d2-q20",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-expand-config",
+  "prompt": "A matrix run failed overnight in a few combinations. Put the recovery in order.",
+  "explanation": "Scope, re-run, then diagnose what persists: see which combinations failed, re-run exactly those, and only dig into logs when the failure survives a clean retry. Flakes die at step 3; real bugs introduce themselves at step 5.",
+  "docIds": [
+    "view-run-history"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Open the failed run on the Actions tab"
+    },
+    {
+      "id": "o2",
+      "text": "Expand the matrix to see which job combinations failed"
+    },
+    {
+      "id": "o3",
+      "text": "Choose Re-run failed jobs"
+    },
+    {
+      "id": "o4",
+      "text": "Watch the re-run recreate only the failed combinations"
+    },
+    {
+      "id": "o5",
+      "text": "If the re-run fails again, read the failed jobs’ logs for the real cause"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

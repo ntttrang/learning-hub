@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d4-q16",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-secrets-variables",
+  "prompt": "Which statements about scoping secrets and variables are true? Choose all that apply.",
+  "explanation": "The three scopes apply to secrets and variables alike, with the closest scope winning. But organization-level values must be explicitly granted to repositories, and secrets are write-only — you can list names, never read values back.",
+  "docIds": [
+    "use-secrets"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Both exist at organization, repository, and environment level"
+    },
+    {
+      "id": "o2",
+      "text": "Environment-scoped values reach only jobs that reference that environment"
+    },
+    {
+      "id": "o3",
+      "text": "Organization secrets are automatically available to every repository in the organization"
+    },
+    {
+      "id": "o4",
+      "text": "Variables are the right home for non-sensitive configuration like image names"
+    },
+    {
+      "id": "o5",
+      "text": "A secret’s value can be read back later through the REST API"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o4"
+  ]
+}

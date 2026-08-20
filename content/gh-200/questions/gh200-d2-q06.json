@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d2-q06",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-logs-artifacts",
+  "prompt": "An auditor needs the raw logs of a specific run and wants to fetch them programmatically. Which surface serves them?",
+  "explanation": "The Actions REST API exposes run logs at the runs endpoint, returning an archive you can script against for audits and retention. REST covers Actions thoroughly — and no repository branch ever stores run logs.",
+  "docIds": [
+    "rest-actions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The Actions REST API, with the run id under `/repos/{owner}/{repo}/actions/runs/{run_id}/logs`"
+    },
+    {
+      "id": "o2",
+      "text": "The git protocol, by cloning the `.github/logs` branch"
+    },
+    {
+      "id": "o3",
+      "text": "The GraphQL API only — REST has no Actions endpoints"
+    },
+    {
+      "id": "o4",
+      "text": "There is no API; logs are downloadable from the browser alone"
+    }
+  ],
+  "correct": "o1"
+}

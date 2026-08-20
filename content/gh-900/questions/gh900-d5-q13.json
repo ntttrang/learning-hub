@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d5-q13",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-projects-layouts",
+  "prompt": "A team wants to slice project items by \"Priority\" and \"Team\" on top of status. What mechanism adds those columns?",
+  "explanation": "Projects grow their own metadata: custom fields of several types, defined per project, usable for grouping, filtering, and sorting — status and dates come built in, priority and team are yours to add.",
+  "docIds": [
+    "about-projects"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Custom fields on the Project (single select, number, date, iteration…)"
+    },
+    {
+      "id": "o2",
+      "text": "Extra repositories"
+    },
+    {
+      "id": "o3",
+      "text": "New default labels"
+    },
+    {
+      "id": "o4",
+      "text": "A second GitHub account"
+    }
+  ],
+  "correct": "o1"
+}

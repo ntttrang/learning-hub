@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d6-q13",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-visibility-protection",
+  "prompt": "A public repository is switched to private. What happens to the forks that already exist?",
+  "explanation": "Visibility changes are not retroactive: forks made while the repository was public stay in their owners’ hands — which is why \"make it private later\" is a weak secrecy strategy.",
+  "docIds": [
+    "setting-repository-visibility"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Existing forks remain visible to the people who made them"
+    },
+    {
+      "id": "o2",
+      "text": "All forks are deleted immediately"
+    },
+    {
+      "id": "o3",
+      "text": "All forks turn private too"
+    },
+    {
+      "id": "o4",
+      "text": "Fork owners receive the repository by transfer"
+    }
+  ],
+  "correct": "o1"
+}

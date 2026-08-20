@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d1-q09",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-matrix",
+  "prompt": "A 12-combination matrix should always run to completion so the team sees every failure, not just the first. Which setting does that?",
+  "explanation": "`fail-fast: false` stops GitHub from cancelling the remaining in-flight combinations when one fails, so the whole matrix reports. `max-parallel` caps concurrency, and `continue-on-error` merely repaints failure as success — it does not keep the matrix running.",
+  "docIds": [
+    "workflow-syntax"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "`continue-on-error: true` on the job"
+    },
+    {
+      "id": "o2",
+      "text": "`strategy:\n  fail-fast: false`"
+    },
+    {
+      "id": "o3",
+      "text": "`strategy:\n  max-parallel: 12`"
+    },
+    {
+      "id": "o4",
+      "text": "`retry: full` on the failing job"
+    }
+  ],
+  "correct": "o2"
+}

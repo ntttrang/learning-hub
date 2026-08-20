@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d3-q14",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-issues-prs-discussions",
+  "prompt": "Which features ship with every issue? Choose all that apply.",
+  "explanation": "Issues carry labels, assignees, and milestones out of the box. Review approvals and merging code belong to pull requests, not issues — the tracker records work, the pull request delivers it.",
+  "docIds": [
+    "about-issues"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Labels for classification"
+    },
+    {
+      "id": "o2",
+      "text": "Assignees for ownership"
+    },
+    {
+      "id": "o3",
+      "text": "Milestones for grouping toward a target"
+    },
+    {
+      "id": "o4",
+      "text": "Code-owner review approvals before merging"
+    },
+    {
+      "id": "o5",
+      "text": "Automatic merges into the default branch"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d3-q13",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-troubleshoot-actions",
+  "prompt": "A Docker action runs fine in CI on `ubuntu-latest` but fails on `macos-latest` runners. Why?",
+  "explanation": "Docker actions execute in Linux containers, and GitHub’s macOS runners do not run them — the constraint is documented with the metadata itself. Composite or JavaScript actions are the portable answer when the pipeline must build on every OS.",
+  "docIds": [
+    "metadata-syntax"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Docker actions require a Linux runner — they do not run on macOS or Windows runners"
+    },
+    {
+      "id": "o2",
+      "text": "The image needs rebuilding for ARM"
+    },
+    {
+      "id": "o3",
+      "text": "macOS runners block all container jobs by policy"
+    },
+    {
+      "id": "o4",
+      "text": "The `action.yml` is missing a macOS entrypoint"
+    }
+  ],
+  "correct": "o1"
+}

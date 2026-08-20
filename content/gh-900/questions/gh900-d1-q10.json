@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d1-q10",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-markdown",
+  "prompt": "An issue body contains `- [ ] book the venue` and `- [x] send invites`. What happens on the issue page?",
+  "explanation": "Task list syntax (`- [ ]` / `- [x]`) renders interactive checkboxes and drives a progress bar on the issue — a detail the exam likes because it is specific and visual.",
+  "docIds": [
+    "markdown-formatting"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Checkboxes render and the issue shows a task-progress indicator that updates as boxes are ticked"
+    },
+    {
+      "id": "o2",
+      "text": "The lines render as plain hyphen bullets; the brackets are ignored"
+    },
+    {
+      "id": "o3",
+      "text": "GitHub opens a pull request for each unticked task"
+    },
+    {
+      "id": "o4",
+      "text": "The issue is automatically assigned to the repository owner"
+    }
+  ],
+  "correct": "o1"
+}

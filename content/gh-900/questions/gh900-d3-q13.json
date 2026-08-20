@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d3-q13",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-gists-wikis-pages",
+  "prompt": "A student wants to publish a portfolio page straight from a repository named after the project. What is the fit?",
+  "explanation": "GitHub Pages turns repository content into a published website — pick a branch and a theme and the site builds. Gists hold snippets, and the other options are not publishing surfaces.",
+  "docIds": [
+    "about-github-pages"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "GitHub Pages, which serves a static site directly from the repository"
+    },
+    {
+      "id": "o2",
+      "text": "A GitHub gist with HTML in it"
+    },
+    {
+      "id": "o3",
+      "text": "A discussion pinned to the repository"
+    },
+    {
+      "id": "o4",
+      "text": "GitHub Desktop"
+    }
+  ],
+  "correct": "o1"
+}

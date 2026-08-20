@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d2-q11",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-reusable-vs-composite",
+  "prompt": "Twelve repositories must run an identical, centrally versioned deploy job — one fix should reach all of them. Which construct fits?",
+  "explanation": "A reusable workflow is called with `uses:` — including from another repository, pinned to a tag or SHA — so one central file serves many callers and one merge propagates everywhere. Anchors cannot cross files, and copies drift.",
+  "docIds": [
+    "reuse-workflows"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A composite action referenced by path in each repository"
+    },
+    {
+      "id": "o2",
+      "text": "A reusable workflow, called with `uses:` and pinned to a ref"
+    },
+    {
+      "id": "o3",
+      "text": "A YAML anchor shared through a symlink"
+    },
+    {
+      "id": "o4",
+      "text": "Copying the deploy job into each repository’s workflow"
+    }
+  ],
+  "correct": "o2"
+}

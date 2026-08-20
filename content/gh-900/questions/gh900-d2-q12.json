@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d2-q12",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-maintenance",
+  "prompt": "A user owns eight repositories and keeps pasting the same bug-report template into each one. What is the least-effort fix?",
+  "explanation": "A repository named `.github` under your account supplies default community health files — issue templates, pull request template, CONTRIBUTING, SECURITY, and more — to all your repositories unless a repository overrides them with its own.",
+  "docIds": [
+    "community-health-files"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Create a `.github` repository — its default community health files apply to every repository they own"
+    },
+    {
+      "id": "o2",
+      "text": "Email the template to reporters"
+    },
+    {
+      "id": "o3",
+      "text": "Turn every repository into a template"
+    },
+    {
+      "id": "o4",
+      "text": "Pin the template as a starred gist"
+    }
+  ],
+  "correct": "o1"
+}

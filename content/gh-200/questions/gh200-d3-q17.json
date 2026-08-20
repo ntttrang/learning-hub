@@ -1,0 +1,20 @@
+{
+  "id": "gh200-d3-q17",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-structure-metadata",
+  "prompt": "Complete the composite action’s declaration: the type and the shell each `run:` step must name.",
+  "explanation": "`using: composite` declares the type inside `runs`, and every `run:` step in a composite must state its `shell` — there is no default the runner may assume. Get either wrong and the action fails before your script ever executes.",
+  "docIds": [
+    "metadata-syntax"
+  ],
+  "kind": "fill",
+  "template": "name: Setup Terraform\ndescription: Installs the Terraform CLI\nruns:\n  ___: composite\n  steps:\n    - run: ./install.sh\n      ___: bash\n",
+  "blanks": [
+    {
+      "answer": "using"
+    },
+    {
+      "answer": "shell"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d2-q10",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-insights-metrics",
+  "prompt": "A maintainer wants to see commit frequency, contribution counts, and how quickly pull requests get handled over the last month. Where should they look?",
+  "explanation": "The Insights tab aggregates a repository’s activity into graphs — commits, contributors, pull request lifecycle, and more — turning raw history into trends a maintainer can act on.",
+  "docIds": [
+    "about-repository-graphs"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The Insights tab, which graphs repository activity"
+    },
+    {
+      "id": "o2",
+      "text": "The repository’s releases page"
+    },
+    {
+      "id": "o3",
+      "text": "The traffic badge on the README"
+    },
+    {
+      "id": "o4",
+      "text": "GitHub Sponsors"
+    }
+  ],
+  "correct": "o1"
+}

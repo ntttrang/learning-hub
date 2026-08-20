@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d3-q09",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-notifications",
+  "prompt": "A developer wants to hear about every issue and pull request in a repository, not just threads they join. What should they do?",
+  "explanation": "Watching opts into notifications for all conversation in a repository. Starring only bookmarks; forking copies code; a catch-all CODEOWNERS entry is a review-routing hack, not a subscription.",
+  "docIds": [
+    "about-notifications"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Watch the repository"
+    },
+    {
+      "id": "o2",
+      "text": "Star the repository"
+    },
+    {
+      "id": "o3",
+      "text": "Fork the repository"
+    },
+    {
+      "id": "o4",
+      "text": "Add themselves to CODEOWNERS for `*`"
+    }
+  ],
+  "correct": "o1"
+}

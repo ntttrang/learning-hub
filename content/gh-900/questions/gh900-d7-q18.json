@@ -1,0 +1,40 @@
+{
+  "id": "gh900-d7-q18",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-forks-templates-discovery",
+  "prompt": "Order the classic first-contribution flow for a project you cannot push to directly.",
+  "explanation": "Explore first, then a starter issue, then the mechanics — fork, branch, commit, push, propose. The order exists because a PR that ignores the project’s norms creates work for exactly the people you hoped to help.",
+  "docIds": [
+    "ways-to-contribute"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Find a project and read its README and CONTRIBUTING guide"
+    },
+    {
+      "id": "o2",
+      "text": "Pick an issue labeled good first issue"
+    },
+    {
+      "id": "o3",
+      "text": "Fork the repository and create a branch"
+    },
+    {
+      "id": "o4",
+      "text": "Commit the fix and push it to your fork"
+    },
+    {
+      "id": "o5",
+      "text": "Open a pull request upstream"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

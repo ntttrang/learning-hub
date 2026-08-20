@@ -1,0 +1,19 @@
+{
+  "id": "gh900-d2-q20",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-managing-files",
+  "prompt": "A reviewer inspects the committed file tree below. One entry should never have been committed. Click the offending line.",
+  "explanation": "`node_modules/` is a regenerable dependency folder — it belongs in `.gitignore`, not in history, where it bloats every clone. Source files like the README, license, and contributing guide are exactly what should be committed.",
+  "docIds": [
+    "gh-docs-repositories"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "README.md",
+    "LICENSE",
+    ".gitignore",
+    "CONTRIBUTING.md",
+    "node_modules/"
+  ],
+  "buggyLineIndex": 4
+}

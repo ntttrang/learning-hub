@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d3-q06",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-linking-filtering",
+  "prompt": "Maintainers want every new bug report to arrive with steps to reproduce and environment details. What should they set up?",
+  "explanation": "Issue templates present structured forms for common reports — bug, feature, config — so the information arrives complete. Pull request templates shape PR descriptions instead, and the other options are unrelated.",
+  "docIds": [
+    "issue-pr-templates"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Issue templates in `.github/ISSUE_TEMPLATE/`"
+    },
+    {
+      "id": "o2",
+      "text": "A CODEOWNERS file"
+    },
+    {
+      "id": "o3",
+      "text": "A protected branch rule"
+    },
+    {
+      "id": "o4",
+      "text": "A pull request template"
+    }
+  ],
+  "correct": "o1"
+}

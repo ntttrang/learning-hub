@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d2-q10",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-reusable-vs-composite",
+  "prompt": "A team wants to call the same set of steps from many workflows in one repository, running inside the calling job with no extra runner. Which construct fits?",
+  "explanation": "A composite action bundles steps that execute inside the caller’s job on the caller’s runner — no new job, no new machine. A reusable workflow brings its own job and runner, which is exactly the overhead this team wants to avoid.",
+  "docIds": [
+    "create-composite-action"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A reusable workflow"
+    },
+    {
+      "id": "o2",
+      "text": "A composite action"
+    },
+    {
+      "id": "o3",
+      "text": "A starter workflow copied into each repository"
+    },
+    {
+      "id": "o4",
+      "text": "A workflow template with YAML anchors"
+    }
+  ],
+  "correct": "o2"
+}

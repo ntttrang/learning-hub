@@ -1,0 +1,18 @@
+{
+  "id": "gh900-d1-q20",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-repos-commits-branches",
+  "prompt": "A developer follows the loop below to propose a typo fix. One line defeats the purpose of the branch. Click the broken line.",
+  "explanation": "The work lives on `fix-typo`, but the push targets `main` — publishing straight to the default branch instead of the branch just created. It should be `git push -u origin fix-typo`, so the change can go through a pull request.",
+  "docIds": [
+    "hello-world"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "git switch -c fix-typo",
+    "git add README.md",
+    "git commit -m \"Fix typo in setup steps\"",
+    "git push -u origin main"
+  ],
+  "buggyLineIndex": 3
+}

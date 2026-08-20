@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d3-q15",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-structure-metadata",
+  "prompt": "Which statements about `action.yml` are true? Choose all that apply.",
+  "explanation": "The metadata contract: a required `name` and `description`, documented inputs with defaults, and — for composites — outputs resolved through `value:` expressions. `runs.using` is mandatory whenever there is a `runs` block, while `branding` is pure cosmetics and optional.",
+  "docIds": [
+    "metadata-syntax"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "`name` and `description` are required metadata"
+    },
+    {
+      "id": "o2",
+      "text": "Inputs can declare `required`, `default`, and a description shown to callers"
+    },
+    {
+      "id": "o3",
+      "text": "Composite outputs map names to expressions like a step’s output"
+    },
+    {
+      "id": "o4",
+      "text": "`runs.using` is optional when a `main` entrypoint is present"
+    },
+    {
+      "id": "o5",
+      "text": "The `branding` icon and color are required fields"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

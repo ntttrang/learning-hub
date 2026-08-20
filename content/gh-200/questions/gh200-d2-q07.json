@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d2-q07",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-logs-artifacts",
+  "prompt": "A build publishes a test report as an artifact. Three weeks later a developer cannot download it. Most likely reason?",
+  "explanation": "Artifacts live only as long as the retention setting allows — then they are garbage-collected, and the run page shows nothing to download. Grab what you need within the window, or raise retention if the reports must outlive it.",
+  "docIds": [
+    "store-artifacts"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Artifacts are encrypted per runner and unreadable elsewhere"
+    },
+    {
+      "id": "o2",
+      "text": "The artifact passed its retention period and was deleted"
+    },
+    {
+      "id": "o3",
+      "text": "Artifacts can only be downloaded while the run is in progress"
+    },
+    {
+      "id": "o4",
+      "text": "Artifacts require the `packages: write` permission"
+    }
+  ],
+  "correct": "o2"
+}

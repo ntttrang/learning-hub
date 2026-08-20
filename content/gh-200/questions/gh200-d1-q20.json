@@ -1,0 +1,40 @@
+{
+  "id": "gh200-d1-q20",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-jobs-steps",
+  "prompt": "Put one workflow run in execution order, from trigger to report.",
+  "explanation": "An event fires, the trigger filters decide whether the workflow starts, jobs receive runners, steps run top to bottom inside each job, and only then do the run history and badges reflect the result. Every troubleshooting session starts by locating a run inside that sequence.",
+  "docIds": [
+    "workflow-syntax"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A developer pushes a commit to the repository"
+    },
+    {
+      "id": "o2",
+      "text": "GitHub matches the event against the workflow’s `on` triggers"
+    },
+    {
+      "id": "o3",
+      "text": "A runner is allocated for each job in the workflow"
+    },
+    {
+      "id": "o4",
+      "text": "The job’s steps run in their listed order"
+    },
+    {
+      "id": "o5",
+      "text": "The outcome lands on the Actions tab and any status badge updates"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

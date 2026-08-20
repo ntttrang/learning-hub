@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d5-q17",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-projects-layouts",
+  "prompt": "Which statements about project views are true? Choose all that apply.",
+  "explanation": "Views are lenses, not copies: many views, each with its own layout and slicing, over one shared set of items. The \"one board per project\" world ended when views arrived.",
+  "docIds": [
+    "project-view-layouts"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A project can have multiple saved views"
+    },
+    {
+      "id": "o2",
+      "text": "Each view can use a different layout, such as table, board, or roadmap"
+    },
+    {
+      "id": "o3",
+      "text": "Each view can group, sort, and filter differently"
+    },
+    {
+      "id": "o4",
+      "text": "Every project is limited to a single board layout"
+    },
+    {
+      "id": "o5",
+      "text": "Views are separate copies of the items"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

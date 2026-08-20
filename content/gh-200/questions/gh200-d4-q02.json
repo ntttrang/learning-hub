@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d4-q02",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-runner-choice",
+  "prompt": "A team has no hardware, no special network needs, and wants zero maintenance of build machines. What is the sensible default?",
+  "explanation": "GitHub-hosted runners arrive maintained: images are updated, software is preinstalled, and each job gets a clean machine. Self-hosting buys control at the price of operating the fleet — a price this team has no reason to pay.",
+  "docIds": [
+    "github-hosted-runners"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Self-hosted runners in autoscaling containers"
+    },
+    {
+      "id": "o2",
+      "text": "GitHub-hosted runners — patched and managed by GitHub"
+    },
+    {
+      "id": "o3",
+      "text": "A single oversized self-hosted VM under a desk"
+    },
+    {
+      "id": "o4",
+      "text": "Running workflows locally with the `act` tool"
+    }
+  ],
+  "correct": "o2"
+}

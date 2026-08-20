@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d1-q11",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-markdown",
+  "prompt": "Which syntax renders the words `ship it` in bold in an issue comment?",
+  "explanation": "Double asterisks mark bold (`**bold**`) and single asterisks mark italics. A single `#` makes a heading, and a leading `-` makes a list item — neither styles text as bold.",
+  "docIds": [
+    "markdown-formatting"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "`**ship it**`"
+    },
+    {
+      "id": "o2",
+      "text": "`__ship it__` in angle brackets"
+    },
+    {
+      "id": "o3",
+      "text": "`# ship it`"
+    },
+    {
+      "id": "o4",
+      "text": "``` - ship it - ```"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d3-q16",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-versioning",
+  "prompt": "Which are sound release practices for a published action? Choose all that apply.",
+  "explanation": "Tags are the consumer-facing contract: exact releases to pin to, a moving major for automatic fixes, SHAs when reproducibility is non-negotiable. Deleting tags or shipping only to a branch leaves consumers with no stable reference at all.",
+  "docIds": [
+    "release-actions"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Tag each release so consumers can reference a stable point"
+    },
+    {
+      "id": "o2",
+      "text": "Deleting a published tag silently upgrades consumers to the newest code"
+    },
+    {
+      "id": "o3",
+      "text": "Maintain a moving major tag, like `v2`, alongside patch and minor tags"
+    },
+    {
+      "id": "o4",
+      "text": "Let consumers pin to a full commit SHA when they need exact reproducibility"
+    },
+    {
+      "id": "o5",
+      "text": "Push releases only to the default branch, never as tags"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o3",
+    "o4"
+  ]
+}

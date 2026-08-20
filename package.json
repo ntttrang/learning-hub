@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "test": "vitest run",
     "content:check": "vitest run src/content/content-check.test.ts",
-    "lint": "oxlint src",
+    "content:extract-gh": "tsx scripts/extract-gh-packs.ts",
+    "lint": "oxlint src scripts",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -32,6 +33,7 @@
     "@vitejs/plugin-react": "^6.0.4",
     "jsdom": "^29.1.1",
     "oxlint": "^1.75.0",
+    "tsx": "^4.23.12",
     "typescript": "~6.0.2",
     "vite": "^8.2.0",
     "vitest": "^4.1.11"

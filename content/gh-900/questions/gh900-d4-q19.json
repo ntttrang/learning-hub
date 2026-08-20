@@ -1,0 +1,23 @@
+{
+  "id": "gh900-d4-q19",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-actions-purpose",
+  "prompt": "Fill in both blanks: the workflow’s job list and the runner selection.",
+  "explanation": "Jobs live under the `jobs` key, and each job names its runner with `runs-on` — here GitHub’s `ubuntu-latest` image. Those two keys carry almost every workflow you will read.",
+  "docIds": [
+    "gh-docs-actions"
+  ],
+  "kind": "fill",
+  "template": "name: Deploy\non:\n  push:\n    branches: [main]\n___:\n  deploy:\n    ___: ubuntu-latest\n    steps:\n      - run: ./deploy.sh\n",
+  "blanks": [
+    {
+      "answer": "jobs"
+    },
+    {
+      "answer": "runs-on",
+      "alternatives": [
+        "runs_on"
+      ]
+    }
+  ]
+}

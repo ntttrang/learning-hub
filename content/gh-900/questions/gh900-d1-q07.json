@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d1-q07",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-account-types",
+  "prompt": "A study group wants a shared place that owns their repositories, with teams and permission levels. Which GitHub account type fits?",
+  "explanation": "Organizations are shared accounts for groups: they own repositories and organize people into teams with roles. Sharing one personal account breaks identity and attribution, and an enterprise is for many organizations under one owner.",
+  "docIds": [
+    "types-of-github-accounts"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "An organization — a shared owner for repositories, teams, and roles"
+    },
+    {
+      "id": "o2",
+      "text": "A second personal account shared by everyone"
+    },
+    {
+      "id": "o3",
+      "text": "An enterprise with a billing plan"
+    },
+    {
+      "id": "o4",
+      "text": "A gist with collaborators"
+    }
+  ],
+  "correct": "o1"
+}

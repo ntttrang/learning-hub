@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d4-q06",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-copilot",
+  "prompt": "In the IDE, a developer asks Copilot to \"add pagination to the list view, install the dependency, and run the tests\". Copilot edits several files and executes terminal commands across iterations. What is this capability called?",
+  "explanation": "Agent Mode works inside your IDE on your local checkout: it plans multi-file work, runs terminal commands, and iterates on results — versus completions, which only suggest text as you type.",
+  "docIds": [
+    "copilot-agent-mode"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agent Mode in the IDE"
+    },
+    {
+      "id": "o2",
+      "text": "The Copilot cloud agent"
+    },
+    {
+      "id": "o3",
+      "text": "Code completions"
+    },
+    {
+      "id": "o4",
+      "text": "GitHub Pages"
+    }
+  ],
+  "correct": "o1"
+}

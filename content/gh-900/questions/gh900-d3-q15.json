@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d3-q15",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-issues-prs-discussions",
+  "prompt": "Which statements about pull requests are true? Choose all that apply.",
+  "explanation": "Pull requests package a diff, a conversation, and a review workflow — including drafts for early feedback. Merging stays gated by permissions, and the base branch is a choice: any branch can receive a proposal.",
+  "docIds": [
+    "about-pull-requests"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A pull request shows the diff between two branches"
+    },
+    {
+      "id": "o2",
+      "text": "Reviewers leave comments and approve or request changes"
+    },
+    {
+      "id": "o3",
+      "text": "A pull request can be opened as a draft to signal work in progress"
+    },
+    {
+      "id": "o4",
+      "text": "Anyone on the internet can merge a pull request in any public repository"
+    },
+    {
+      "id": "o5",
+      "text": "Pull requests can only target the default branch as their base"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

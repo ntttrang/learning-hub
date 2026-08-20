@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d2-q09",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-templates",
+  "prompt": "An organization wants its 40 repositories to start from the same hardened CI template. Where do the template files live?",
+  "explanation": "Workflow templates for an organization live in its `.github` repository inside `workflow-templates/`, each with a metadata file that controls how it appears in the New workflow list. Repositories then start from one maintained source instead of forty copies.",
+  "docIds": [
+    "workflow-templates"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "In each repository, synced by hand"
+    },
+    {
+      "id": "o2",
+      "text": "In the organization’s `.github` repository, under `workflow-templates/`"
+    },
+    {
+      "id": "o3",
+      "text": "In a special branch of every repository named `templates`"
+    },
+    {
+      "id": "o4",
+      "text": "In the organization’s profile README"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d2-q12",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-disable-vs-delete",
+  "prompt": "A nightly job is too noisy for the next two weeks, but the team wants its configuration intact for later. What is the right move?",
+  "explanation": "Disabling a workflow stops its triggers immediately while keeping the file, its runs, and one click to re-enable. Deleting the file or mangling its path loses that round trip and buries the intent in git history instead.",
+  "docIds": [
+    "disable-workflows"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Delete the workflow file from the default branch"
+    },
+    {
+      "id": "o2",
+      "text": "Disable the workflow from the Actions tab"
+    },
+    {
+      "id": "o3",
+      "text": "Comment out the whole YAML file"
+    },
+    {
+      "id": "o4",
+      "text": "Rename `.github/workflows/` to `.github/workflows-off/`"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d4-q04",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-actions-purpose",
+  "prompt": "Which nesting correctly describes a workflow’s anatomy?",
+  "explanation": "The shape GH-900 wants: an event triggers a workflow; the workflow holds jobs (which run on their own runners); each job runs steps in order. Learning the containment order makes every YAML file readable.",
+  "docIds": [
+    "gh-docs-actions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A workflow contains jobs, and each job contains steps"
+    },
+    {
+      "id": "o2",
+      "text": "A job contains workflows, and each workflow contains steps"
+    },
+    {
+      "id": "o3",
+      "text": "Steps contain jobs, and jobs contain events"
+    },
+    {
+      "id": "o4",
+      "text": "Events contain steps, and steps contain runners"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d7-q14",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-open-source-sponsors",
+  "prompt": "Which statements about GitHub Sponsors are true? Choose all that apply.",
+  "explanation": "Sponsors handles people and projects, once or monthly, from anyone with a payment method. Money never buys commit rights — access is a roles decision, not a billing one.",
+  "docIds": [
+    "github-sponsors"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "You can sponsor individual maintainers"
+    },
+    {
+      "id": "o2",
+      "text": "You can sponsor projects and organizations"
+    },
+    {
+      "id": "o3",
+      "text": "Sponsorships can be one-time or recurring"
+    },
+    {
+      "id": "o4",
+      "text": "Sponsors automatically receive write access to the repository"
+    },
+    {
+      "id": "o5",
+      "text": "Only large companies can be sponsors"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

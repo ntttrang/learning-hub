@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d2-q02",
+  "domainId": "gh200-d2",
+  "moduleId": "d2-read-config",
+  "prompt": "A nightly run failed at 03:00 and you were not watching. Where do you look first for the shortest path to the error?",
+  "explanation": "Run history is the entry point: open the run, and annotations summarize the errors GitHub extracted, each linking straight to the failing step’s expanded log. The workflow file matters after you know what broke, and green runs send no mail.",
+  "docIds": [
+    "view-run-history"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The workflow file in `.github/workflows/`"
+    },
+    {
+      "id": "o2",
+      "text": "The failed run on the Actions tab — its annotations point at the failing steps"
+    },
+    {
+      "id": "o3",
+      "text": "The repository’s audit log"
+    },
+    {
+      "id": "o4",
+      "text": "The emails GitHub sends for every green run"
+    }
+  ],
+  "correct": "o2"
+}

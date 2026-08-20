@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d6-q01",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-2fa-passkeys",
+  "prompt": "What does enabling two-factor authentication change about signing in to GitHub?",
+  "explanation": "2FA stacks a second proof on top of the password — typically a time-based code or a passkey — so a stolen password alone no longer opens the account.",
+  "docIds": [
+    "configure-2fa"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "After the password, a second factor — a code or security credential — is also required"
+    },
+    {
+      "id": "o2",
+      "text": "The password becomes optional"
+    },
+    {
+      "id": "o3",
+      "text": "GitHub sends a new password by email each week"
+    },
+    {
+      "id": "o4",
+      "text": "Nothing changes; it only affects the profile badge"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d5-q02",
+  "domainId": "gh900-d5",
+  "moduleId": "d5-projects-layouts",
+  "prompt": "Which kinds of items can live in a Project?",
+  "explanation": "A Project holds any mix of issues, pull requests, and draft issues — the drafts capture ideas that are not yet worth a full issue. Commits, tags, and releases are repository history, not planning items.",
+  "docIds": [
+    "about-projects"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Issues, pull requests, and draft issues"
+    },
+    {
+      "id": "o2",
+      "text": "Only issues"
+    },
+    {
+      "id": "o3",
+      "text": "Commits and tags"
+    },
+    {
+      "id": "o4",
+      "text": "Repository releases and deploy keys"
+    }
+  ],
+  "correct": "o1"
+}

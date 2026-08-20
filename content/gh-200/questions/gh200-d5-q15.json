@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d5-q15",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-cost-optimization",
+  "prompt": "Which practices reduce Actions cost or duration? Choose all that apply.",
+  "explanation": "Cheaper means less runner time and less stored data: caches shrink installs, shorter retention trims storage, and concurrency cancellation stops paying for runs the world no longer wants. Bigger machines and flat-rate assumptions move the bill the wrong way.",
+  "docIds": [
+    "billing-actions"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Restoring dependency caches instead of reinstalling every run"
+    },
+    {
+      "id": "o2",
+      "text": "Shortening artifact retention to what audits actually need"
+    },
+    {
+      "id": "o3",
+      "text": "Cancelling superseded runs for the same ref with a concurrency group"
+    },
+    {
+      "id": "o4",
+      "text": "Choosing larger runners for every job regardless of workload"
+    },
+    {
+      "id": "o5",
+      "text": "Treating every OS as billed at the same per-minute rate"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d4-q13",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-codespaces-devcontainers",
+  "prompt": "Where can a developer review, reopen, or delete the codespaces they have created across repositories?",
+  "explanation": "Your codespaces are gathered under your account at github.com/codespaces — one place to manage, stop, and delete environments (and where personal timeout settings live), regardless of which repository spawned them.",
+  "docIds": [
+    "codespaces-list"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Their personal codespaces page at github.com/codespaces"
+    },
+    {
+      "id": "o2",
+      "text": "Each repository’s Insights tab"
+    },
+    {
+      "id": "o3",
+      "text": "The organization’s billing page only"
+    },
+    {
+      "id": "o4",
+      "text": "GitHub Mobile exclusively"
+    }
+  ],
+  "correct": "o1"
+}

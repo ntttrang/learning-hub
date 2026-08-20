@@ -1,0 +1,40 @@
+{
+  "id": "gh200-d5-q20",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-pinning",
+  "prompt": "Harden a workflow’s third-party actions. Put the steps in order.",
+  "explanation": "Pin deliberately, not blindly: know what you use, judge whether you should, resolve each moving ref to the exact commit, swap the references, and prove the pipeline still runs. The SHA is the last step of judgment, not a substitute for it.",
+  "docIds": [
+    "secure-use"
+  ],
+  "kind": "order",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Inventory every `uses:` line and where each action comes from"
+    },
+    {
+      "id": "o2",
+      "text": "Check each action’s repository for maintenance, issues, and release hygiene"
+    },
+    {
+      "id": "o3",
+      "text": "Resolve each referenced tag to its full commit SHA"
+    },
+    {
+      "id": "o4",
+      "text": "Replace the tag references with `owner/action@<sha>`"
+    },
+    {
+      "id": "o5",
+      "text": "Re-run the workflow and confirm the pinned refs still build"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3",
+    "o4",
+    "o5"
+  ]
+}

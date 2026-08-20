@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d5-q11",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-attestations",
+  "prompt": "What do artifact attestations add to a build artifact?",
+  "explanation": "An attestation is a signed statement bound to the artifact: where it was built, from which source, by which workflow. Consumers verify the signature chain instead of trusting the artifact’s travel story — the provenance idea behind SLSA.",
+  "docIds": [
+    "artifact-attestations"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Encryption at rest in the artifact store"
+    },
+    {
+      "id": "o2",
+      "text": "Signed provenance — verifiable claims about how, where, and from what the artifact was built"
+    },
+    {
+      "id": "o3",
+      "text": "Longer default retention"
+    },
+    {
+      "id": "o4",
+      "text": "Automatic vulnerability scanning"
+    }
+  ],
+  "correct": "o2"
+}

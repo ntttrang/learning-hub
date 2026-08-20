@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d6-q12",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-org-settings-teams",
+  "prompt": "An organization owner wants every member of the organization to have 2FA enabled before they can keep contributing. Where is that requirement configured?",
+  "explanation": "Organization-level security settings — including a 2FA requirement for members — belong to the organization administration surface, one level above any repository.",
+  "docIds": [
+    "about-organizations"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Organization settings, under the security section"
+    },
+    {
+      "id": "o2",
+      "text": "Each repository’s Settings → Branches page"
+    },
+    {
+      "id": "o3",
+      "text": "The enterprise billing page"
+    },
+    {
+      "id": "o4",
+      "text": "A `.github` repository policy file"
+    }
+  ],
+  "correct": "o1"
+}

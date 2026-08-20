@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d1-q07",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-commands-env",
+  "prompt": "A step computes `VERSION=2.1.0`, and later steps in the same job need it as an environment variable. Which mechanism does that?",
+  "explanation": "A line appended to `$GITHUB_ENV` becomes an environment variable for every later step in the job. Plain `echo` only writes to the log, workflow `env:` is fixed at authoring time, and `$GITHUB_PATH` extends `PATH` with directories, not variables.",
+  "docIds": [
+    "use-variables"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Append `VERSION=2.1.0` to the `$GITHUB_ENV` file"
+    },
+    {
+      "id": "o2",
+      "text": "Print `VERSION=2.1.0` with `echo` so the runner captures stdout"
+    },
+    {
+      "id": "o3",
+      "text": "Declare it in the workflow-level `env:` block when authoring"
+    },
+    {
+      "id": "o4",
+      "text": "Add the line to `$GITHUB_PATH`"
+    }
+  ],
+  "correct": "o1"
+}

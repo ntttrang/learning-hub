@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d1-q17",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-github-flow",
+  "prompt": "Which are real steps of GitHub flow? Choose all that apply.",
+  "explanation": "GitHub flow is branch → commit → pull request → review → merge into the default branch (then delete the branch). Skipping review with direct pushes, like forced rebasing of other branches, is not the flow at all.",
+  "docIds": [
+    "github-flow"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Create a branch for your change"
+    },
+    {
+      "id": "o2",
+      "text": "Commit your work with messages explaining why"
+    },
+    {
+      "id": "o3",
+      "text": "Open a pull request and discuss the change"
+    },
+    {
+      "id": "o4",
+      "text": "Push straight to the default branch to ship faster"
+    },
+    {
+      "id": "o5",
+      "text": "Rebase every other branch before merging"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

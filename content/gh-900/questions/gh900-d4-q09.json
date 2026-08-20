@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d4-q09",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-codespaces-devcontainers",
+  "prompt": "A new hire waits three days to get a laptop configured with the team’s toolchain. Which GitHub feature exists precisely to remove that wait?",
+  "explanation": "A codespace is a container-based environment — editor, terminal, tools — that spins up from the repository, so \"getting set up\" stops being a rite of passage.",
+  "docIds": [
+    "what-are-codespaces"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Codespaces — a full cloud development environment ready in seconds"
+    },
+    {
+      "id": "o2",
+      "text": "GitHub Pages — a website documenting the setup steps"
+    },
+    {
+      "id": "o3",
+      "text": "GitHub Mobile — for configuring laptops remotely"
+    },
+    {
+      "id": "o4",
+      "text": "GitHub Sponsors — funding to buy a faster laptop"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d7-q05",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-following",
+  "prompt": "Following a person and watching a repository are easy to mix up. Which sentence is correct?",
+  "explanation": "Follow = feed content about a person or organization. Watch = notifications about a repository’s conversations. One is for staying inspired, the other for staying informed.",
+  "docIds": [
+    "following-people"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Following shapes your dashboard feed; watching subscribes you to a repository’s notifications"
+    },
+    {
+      "id": "o2",
+      "text": "Following sends notifications; watching fills your feed"
+    },
+    {
+      "id": "o3",
+      "text": "Both do exactly the same thing on different pages"
+    },
+    {
+      "id": "o4",
+      "text": "Neither affects anything until you enable email"
+    }
+  ],
+  "correct": "o1"
+}

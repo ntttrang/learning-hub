@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d7-q03",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-following",
+  "prompt": "You follow a developer whose libraries you admire. Where does their public activity now show up?",
+  "explanation": "Following adds a person’s public activity to the feed on your dashboard — a lightweight way to keep tabs on people whose work teaches you things.",
+  "docIds": [
+    "following-people"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "In your personal dashboard feed"
+    },
+    {
+      "id": "o2",
+      "text": "In your email inbox as attachments"
+    },
+    {
+      "id": "o3",
+      "text": "In every repository you own"
+    },
+    {
+      "id": "o4",
+      "text": "In your commit messages"
+    }
+  ],
+  "correct": "o1"
+}

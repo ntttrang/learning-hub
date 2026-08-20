@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d3-q01",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-issues-prs-discussions",
+  "prompt": "A tester finds a crash in the checkout flow. Which GitHub surface should carry the report?",
+  "explanation": "Issues track work: they carry assignees, labels, milestones, and cross-references, and they close when the fixing pull request merges. Discussions hold ideas; gists and wikis hold content.",
+  "docIds": [
+    "about-issues"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "An issue — the trackable unit of work for bugs and tasks"
+    },
+    {
+      "id": "o2",
+      "text": "A discussion — the place for open-ended conversation"
+    },
+    {
+      "id": "o3",
+      "text": "A gist — the place for sharing code snippets"
+    },
+    {
+      "id": "o4",
+      "text": "A wiki page — the place for documentation"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d5-q08",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-oidc",
+  "prompt": "What does OIDC federation replace in a workflow that deploys to AWS?",
+  "explanation": "With OIDC, the job presents a short-lived signed token to the cloud’s trust configuration and receives scoped credentials — no access key sitting in a secret for years. The `id-token: write` permission and a trust relationship on the cloud side are what make it work.",
+  "docIds": [
+    "openid-connect"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The need for a `permissions:` block"
+    },
+    {
+      "id": "o2",
+      "text": "Long-lived cloud credentials stored as secrets"
+    },
+    {
+      "id": "o3",
+      "text": "The need for `actions/checkout`"
+    },
+    {
+      "id": "o4",
+      "text": "The runner itself"
+    }
+  ],
+  "correct": "o2"
+}

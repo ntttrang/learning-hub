@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d5-q03",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-trustworthy-actions",
+  "prompt": "Choosing a third-party action from the Marketplace, which signal is the weakest basis for trust?",
+  "explanation": "Stars measure popularity, not safety or upkeep — the exam point is that trust comes from verifiable signals: publisher verification, maintained source and issues, and your own read of what the code does with its permissions.",
+  "docIds": [
+    "github-marketplace"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A verified publisher badge on the listing"
+    },
+    {
+      "id": "o2",
+      "text": "The repository’s issue tracker showing active maintenance"
+    },
+    {
+      "id": "o3",
+      "text": "The action’s star count alone"
+    },
+    {
+      "id": "o4",
+      "text": "Reading its source before first use"
+    }
+  ],
+  "correct": "o3"
+}

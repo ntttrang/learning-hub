@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d4-q13",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-runner-choice",
+  "prompt": "A workflow says `runs-on: [self-hosted, linux, gpu]`. What does that label list mean?",
+  "explanation": "A self-hosted job lands on a runner whose labels include every label in `runs-on` — `self-hosted` plus your own taxonomy. Label sets are how one fleet serves many teams without queues colliding, and the match is conjunctive.",
+  "docIds": [
+    "self-hosted-runners"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Run the job three times, once per label"
+    },
+    {
+      "id": "o2",
+      "text": "The job may run on any runner that has all of those labels"
+    },
+    {
+      "id": "o3",
+      "text": "The job runs on a GitHub-hosted runner in the gpu region"
+    },
+    {
+      "id": "o4",
+      "text": "The labels are documentation only; any runner may pick the job up"
+    }
+  ],
+  "correct": "o2"
+}

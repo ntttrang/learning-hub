@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d2-q15",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-repo-structure-key-files",
+  "prompt": "Which statements about CODEOWNERS are true? Choose all that apply.",
+  "explanation": "CODEOWNERS declares ownership and auto-requests reviews. Enforcement — blocking a merge without approval — comes from branch protection rules, not the file itself, and it says nothing about contribution guidance.",
+  "docIds": [
+    "about-code-owners"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "It maps file paths to the people or teams responsible for them"
+    },
+    {
+      "id": "o2",
+      "text": "GitHub automatically requests review from owners when their paths change"
+    },
+    {
+      "id": "o3",
+      "text": "It can live in the repository root or in `.github/`"
+    },
+    {
+      "id": "o4",
+      "text": "It blocks merges that the owners have not approved by itself"
+    },
+    {
+      "id": "o5",
+      "text": "It replaces the need for a CONTRIBUTING guide"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

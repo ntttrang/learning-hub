@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d4-q12",
+  "domainId": "gh900-d4",
+  "moduleId": "d4-githubdev",
+  "prompt": "A technical writer needs to fix a typo in the docs and open a pull request from the browser — without spinning up a whole environment. Which surface fits exactly?",
+  "explanation": "github.dev is the light-edit middle ground: full editor in the browser, no terminal or process execution. When you need to build, run, or debug, that is the codespace’s job.",
+  "docIds": [
+    "githubdev-editor"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "github.dev — quick edits and PRs, nothing executing"
+    },
+    {
+      "id": "o2",
+      "text": "A codespace — because editing requires a container"
+    },
+    {
+      "id": "o3",
+      "text": "GitHub Desktop — because every edit needs a local clone"
+    },
+    {
+      "id": "o4",
+      "text": "The Copilot cloud agent — because it edits files for you"
+    }
+  ],
+  "correct": "o1"
+}

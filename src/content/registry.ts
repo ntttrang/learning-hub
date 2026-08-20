@@ -15,7 +15,7 @@ export const contentSource: ContentSource = createFileContentSource({ assemblePa
 
 /** Every installed pack, loaded and fully validated (throws on any bad pack). */
 export function loadAllContent(): SubjectContent[] {
-  return contentSource.listSubjects().map((s) => contentSource.loadSubject(s.id));
+  return contentSource.listSubjectIds().map((id) => contentSource.loadSubject(id));
 }
 
 /** Convenience: load one pack and its accessor index in one call. */

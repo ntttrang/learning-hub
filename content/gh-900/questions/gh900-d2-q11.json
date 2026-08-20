@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d2-q11",
+  "domainId": "gh900-d2",
+  "moduleId": "d2-insights-metrics",
+  "prompt": "What does starring a repository do?",
+  "explanation": "A star is a bookmark plus a popularity signal — it shows in the star count and your starred list. Watching is what subscribes you to notifications, and it is a different button.",
+  "docIds": [
+    "about-repository-graphs"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Bookmarks it for you and counts as a signal of interest"
+    },
+    {
+      "id": "o2",
+      "text": "Subscribes you to every notification from it"
+    },
+    {
+      "id": "o3",
+      "text": "Adds it to your organization"
+    },
+    {
+      "id": "o4",
+      "text": "Requests review access"
+    }
+  ],
+  "correct": "o1"
+}

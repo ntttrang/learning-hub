@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d4-q15",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-runner-choice",
+  "prompt": "Which statements about runner models are true? Choose all that apply.",
+  "explanation": "Managed versus owned is the whole trade: GitHub hosts and refreshes theirs; yours bring control and responsibility. Public repositories are the documented anti-case for self-hosting, and no hosted runner ever joins your private network.",
+  "docIds": [
+    "self-hosted-runners"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "GitHub-hosted runners are maintained, patched, and provided fresh per job by GitHub"
+    },
+    {
+      "id": "o2",
+      "text": "Self-hosted runners suit custom hardware, private networks, and OS control"
+    },
+    {
+      "id": "o3",
+      "text": "Self-hosted runners are recommended for public repositories"
+    },
+    {
+      "id": "o4",
+      "text": "Runner groups scope which repositories may use a set of self-hosted runners"
+    },
+    {
+      "id": "o5",
+      "text": "GitHub-hosted runners can join your VPN automatically"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o4"
+  ]
+}

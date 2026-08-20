@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d3-q06",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-commands-in-actions",
+  "prompt": "From JavaScript action code, what is the toolkit equivalent of emitting a `key=value` output line?",
+  "explanation": "The actions toolkit wraps every workflow command: `core.setOutput` emits the properly escaped `::set-output` machinery for you, just as `core.debug`, `core.warning`, and `core.exportVariable` wrap their commands. Hand-rolled prefixes only look like the real thing.",
+  "docIds": [
+    "workflow-commands"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "`console.log` with a `::output` prefix"
+    },
+    {
+      "id": "o2",
+      "text": "`core.setOutput('key', value)`"
+    },
+    {
+      "id": "o3",
+      "text": "`process.env.OUTPUT_KEY = value`"
+    },
+    {
+      "id": "o4",
+      "text": "Writing straight to stdout — the runner parses everything"
+    }
+  ],
+  "correct": "o2"
+}

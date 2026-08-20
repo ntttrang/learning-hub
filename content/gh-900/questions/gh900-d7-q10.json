@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d7-q10",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-forks-templates-discovery",
+  "prompt": "What is a fork?",
+  "explanation": "A fork is your server-side copy of someone’s repository: you get full history, the link to upstream stays, and your branches can flow back as pull requests — the standard route when you lack write access.",
+  "docIds": [
+    "about-forks"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A copy of a repository under your own account, linked to the original so you can propose changes back"
+    },
+    {
+      "id": "o2",
+      "text": "A completely unrelated copy with no connection to the original"
+    },
+    {
+      "id": "o3",
+      "text": "A branch that lives on someone else’s repository"
+    },
+    {
+      "id": "o4",
+      "text": "A compressed download of the source"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d6-q02",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-2fa-passkeys",
+  "prompt": "What makes a passkey more phishing-resistant than a one-time code sent by SMS?",
+  "explanation": "Passkeys are origin-bound key pairs — the authentication happens with the genuine site, so a look-alike phishing page gets nothing usable. SMS codes can be relayed or intercepted; that is the gap passkeys close.",
+  "docIds": [
+    "about-passkeys"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "It is a cryptographic credential bound to the device and the real GitHub domain, so a fake site cannot capture it"
+    },
+    {
+      "id": "o2",
+      "text": "It is longer than six digits"
+    },
+    {
+      "id": "o3",
+      "text": "It changes every 30 seconds, unlike SMS codes"
+    },
+    {
+      "id": "o4",
+      "text": "It is stored in the browser’s cache"
+    }
+  ],
+  "correct": "o1"
+}

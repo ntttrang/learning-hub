@@ -1,4 +1,5 @@
 import { contentSource } from '../content/registry';
+import { loadSubjectsTolerant } from '../sdk/content-source';
 import { TOOL_REGISTRY } from '../sdk/registry/tools';
 import type { AccentToken, Subject } from '../sdk/types';
 
@@ -85,21 +86,20 @@ function subjectToCard(subject: Subject): SubjectCard {
 
 /**
  * Installed-pack cards, read once per session. Pack metadata is static for a
- * build, so a module-scope memo keeps home renders cheap. Known limit: the
- * file source's `listSubjects()` loads+validates every pack all-or-nothing,
- * so one invalid pack makes the whole listing throw and the hub falls back to
- * placeholders-only for the session. Per-pack fault tolerance belongs to the
- * content-seam work that ships with the second real pack.
+ * build, so a module-scope memo keeps home renders cheap. Packs load
+ * individually through `loadSubjectsTolerant`: an invalid pack is logged and
+ * skipped — its placeholder card (if any) stays up, and with no placeholder it
+ * is simply absent — while healthy packs still list. Strict whole-repo loading
+ * remains in `loadAllContent` for the `content:check` gate.
  */
 let installedCardsMemo: SubjectCard[] | undefined;
 
 function installedCards(): SubjectCard[] {
   if (!installedCardsMemo) {
-    try {
-      installedCardsMemo = contentSource.listSubjects().map(subjectToCard);
-    } catch {
-      installedCardsMemo = [];
-    }
+    installedCardsMemo = loadSubjectsTolerant(
+      contentSource.listSubjectIds(),
+      (id) => contentSource.loadSubject(id).subject,
+    ).map(subjectToCard);
   }
   return installedCardsMemo;
 }

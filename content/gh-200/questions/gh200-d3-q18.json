@@ -1,0 +1,20 @@
+{
+  "id": "gh200-d3-q18",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-structure-metadata",
+  "prompt": "Give the input its fallback and point the output at a step’s value.",
+  "explanation": "An optional input falls back through `default`, and a composite action’s outputs are computed from `value:` expressions — typically `${{ steps.<id>.outputs.<name> }}` reading a step the action itself ran. Both keys are how actions advertise their contract.",
+  "docIds": [
+    "metadata-syntax"
+  ],
+  "kind": "fill",
+  "template": "name: Setup tool\ndescription: Installs the CLI tool\ninputs:\n  version:\n    description: Version to install\n    required: false\n    ___: latest\noutputs:\n  install-path:\n    description: Where the tool was installed\n    value: ${{ ___.install.outputs.path }}\n",
+  "blanks": [
+    {
+      "answer": "default"
+    },
+    {
+      "answer": "steps"
+    }
+  ]
+}

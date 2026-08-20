@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d1-q12",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-cache-artifacts-retention",
+  "prompt": "A cache step must try the exact npm lockfile key first, then fall back to any cache saved on the same branch, then the default branch. Which arrangement does that?",
+  "explanation": "`key` names the exact hit to look for; `restore-keys` lists progressively looser prefixes tried on a miss — branch-scoped entries before the default-branch prefix. A fallback restore is then resaved under the exact key once the step completes.",
+  "docIds": [
+    "dependency-caching"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "`key` holds the exact hash; `restore-keys` lists the broader prefixes in fallback order"
+    },
+    {
+      "id": "o2",
+      "text": "`restore-keys` holds the exact hash; `key` lists the broader prefixes"
+    },
+    {
+      "id": "o3",
+      "text": "Three stacked cache steps, one per fallback level"
+    },
+    {
+      "id": "o4",
+      "text": "`key` accepts a list and the action tries each entry in order"
+    }
+  ],
+  "correct": "o1"
+}

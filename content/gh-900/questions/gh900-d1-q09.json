@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d1-q09",
+  "domainId": "gh900-d1",
+  "moduleId": "d1-github-flow",
+  "prompt": "In GitHub flow, why is each change built on its own short-lived branch?",
+  "explanation": "GitHub flow keeps the default branch always shippable; topic branches isolate one idea each so review stays small and merges stay safe. Git does not forbid direct commits — that is a convention (later enforced with branch protection).",
+  "docIds": [
+    "github-flow"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The default branch stays deployable, and each branch carries one reviewable idea"
+    },
+    {
+      "id": "o2",
+      "text": "Branches are required because Git forbids committing to the default branch"
+    },
+    {
+      "id": "o3",
+      "text": "Short branches use less storage on GitHub"
+    },
+    {
+      "id": "o4",
+      "text": "Every branch automatically deploys to production"
+    }
+  ],
+  "correct": "o1"
+}

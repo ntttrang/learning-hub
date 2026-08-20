@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d6-q04",
+  "domainId": "gh900-d6",
+  "moduleId": "d6-permissions-roles",
+  "prompt": "A long-trusted volunteer should manage issues, labels, and milestones — but must not write code. Which repository role is the smallest that fits?",
+  "explanation": "The organization repository-role ladder is read → triage → write → maintain → admin. Triage manages the issue tracker without push access — exactly a moderator’s job description.",
+  "docIds": [
+    "repository-roles"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Triage"
+    },
+    {
+      "id": "o2",
+      "text": "Write"
+    },
+    {
+      "id": "o3",
+      "text": "Maintain"
+    },
+    {
+      "id": "o4",
+      "text": "Admin"
+    }
+  ],
+  "correct": "o1"
+}

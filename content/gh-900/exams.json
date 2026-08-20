@@ -1,0 +1,43 @@
+[
+  {
+    "id": "gh900-mock-a",
+    "title": "GH-900 mock exam A",
+    "durationMinutes": 100,
+    "passingScore": 700,
+    "selection": {
+      "kind": "sampled",
+      "domainPlan": {
+        "gh900-d1": 10,
+        "gh900-d2": 5,
+        "gh900-d3": 5,
+        "gh900-d4": 5,
+        "gh900-d5": 3,
+        "gh900-d6": 5,
+        "gh900-d7": 2
+      },
+      "seed": 9001
+    }
+  },
+  {
+    "id": "gh900-mock-b",
+    "title": "GH-900 mock exam B",
+    "durationMinutes": 100,
+    "passingScore": 700,
+    "selection": {
+      "kind": "sampled",
+      "domainPlan": {
+        "gh900-d1": 10,
+        "gh900-d2": 5,
+        "gh900-d3": 5,
+        "gh900-d4": 5,
+        "gh900-d5": 3,
+        "gh900-d6": 5,
+        "gh900-d7": 2
+      },
+      "seed": 9002,
+      "excludeExamIds": [
+        "gh900-mock-a"
+      ]
+    }
+  }
+]

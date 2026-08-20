@@ -1,0 +1,17 @@
+{
+  "id": "gh200-d5-q17",
+  "domainId": "gh200-d5",
+  "moduleId": "d5-token-permissions",
+  "prompt": "The notes job reads the repository and writes pull-request metadata — nothing else. Grant exactly that.",
+  "explanation": "Granular permissions name each scope and its level: `contents: read` for the checkout side, `pull-requests: write` to label and comment. Least privilege is expressed per scope, not by reaching for `write-all` when one scope needs one verb.",
+  "docIds": [
+    "secure-use"
+  ],
+  "kind": "fill",
+  "template": "name: Release notes\non: push\njobs:\n  notes:\n    runs-on: ubuntu-latest\n    permissions:\n      contents: read\n      pull-requests: ___\n    steps:\n      - run: ./gen-notes.sh\n",
+  "blanks": [
+    {
+      "answer": "write"
+    }
+  ]
+}

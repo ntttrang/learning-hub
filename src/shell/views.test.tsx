@@ -32,8 +32,8 @@ describe('hub views', () => {
 
   it('reports installed packs and placeholders honestly', () => {
     render(<App />);
-    expect(screen.getAllByText('Pack not installed')).toHaveLength(4);
-    expect(screen.getByText('Installed')).toBeInTheDocument();
+    expect(screen.getAllByText('Pack not installed')).toHaveLength(2); // dp-800 + gh-600
+    expect(screen.getAllByText('Installed')).toHaveLength(3); // fixture + both GitHub packs
   });
 
   it('cards and rail links point at subject workspaces', () => {
@@ -55,11 +55,43 @@ describe('hub views', () => {
     expect(screen.getByText('This pack is not in the hub yet')).toBeInTheDocument();
   });
 
-  it('renders an empty workspace for GH-900 — never another subject’s content', () => {
+  it('renders the installed GH-900 workspace with its six content modes', () => {
     window.location.hash = '#/subject/gh-900';
     render(<App />);
     expect(screen.getByRole('heading', { name: 'GH-900 study hub' })).toBeInTheDocument();
+    expect(screen.getAllByRole('tab').map((tab) => tab.textContent)).toEqual([
+      'Overview',
+      'Learn',
+      'Labs',
+      'Practice',
+      'Exams',
+      'Notes',
+      'Revision',
+    ]);
     expect(screen.queryByText('DP-800 study hub')).not.toBeInTheDocument();
+  });
+
+  it('renders the installed GH-200 workspace with its seven content modes', () => {
+    window.location.hash = '#/subject/gh-200';
+    render(<App />);
+    expect(screen.getByRole('heading', { name: 'GH-200 study hub' })).toBeInTheDocument();
+    expect(screen.getAllByRole('tab').map((tab) => tab.textContent)).toEqual([
+      'Overview',
+      'Learn',
+      'Labs',
+      'Practice',
+      'Exams',
+      'Compare',
+      'Notes',
+      'Revision',
+    ]);
+  });
+
+  it('renders GH-200 compare mode with both comparison datasets', () => {
+    window.location.hash = '#/subject/gh-200/compare';
+    render(<App />);
+    expect(screen.getByText('GitHub Actions vs Jenkins')).toBeInTheDocument();
+    expect(screen.getByText('GitHub Actions vs AWS CI/CD services')).toBeInTheDocument();
   });
 
   it('renders an Unknown subject state instead of a blank page', () => {

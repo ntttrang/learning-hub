@@ -25,7 +25,7 @@ import { createLocalStorageAdapter, type StorageAdapter } from './storage';
 export const SUBJECT_DATA_STORE_KEY = 'cc-subject-data';
 const SUBJECT_DATA_VERSION = 1;
 
-const emptySubjectData = (): SubjectUserData => ({
+export const emptySubjectData = (): SubjectUserData => ({
   lessons: {},
   completedLabs: [],
   quizAttempts: [],
@@ -50,6 +50,12 @@ export interface SubjectDataState {
   deleteNote: (subjectId: string, id: string) => void;
   recordQuiz: (subjectId: string, attempt: QuizAttempt) => void;
   recordExam: (subjectId: string, attempt: ExamAttempt) => void;
+  /**
+   * Bulk-merge externally computed data (legacy import). Deliberately free of
+   * the record* actions' side effects: no history caps, no streak bumps, no
+   * SRS ingestion — imported history must not look like fresh activity.
+   */
+  importLegacyData: (subjectId: string, partial: Partial<SubjectUserData>) => void;
   resetSubject: (subjectId: string) => void;
 }
 
@@ -160,6 +166,27 @@ export function createSubjectDataStore(adapter: StorageAdapter = createLocalStor
             })),
             streak: bumpStreak(s.streak, now()),
           })),
+
+        importLegacyData: (subjectId, partial) =>
+          set((s) =>
+            patchSubject(s, subjectId, (data) => ({
+              ...data,
+              // Per-key skip-if-present: data already in the hub always wins,
+              // and deterministic legacy ids make re-runs write nothing.
+              // (Spreading an absent partial key is a no-op.)
+              lessons: { ...partial.lessons, ...data.lessons },
+              completedLabs: [
+                ...data.completedLabs,
+                ...(partial.completedLabs ?? []).filter((id) => !data.completedLabs.includes(id)),
+              ],
+              examAttempts: [
+                ...data.examAttempts,
+                ...(partial.examAttempts ?? []).filter(
+                  (attempt) => !data.examAttempts.some((existing) => existing.id === attempt.id),
+                ),
+              ],
+            })),
+          ),
 
         resetSubject: (subjectId) =>
           set((s) => ({

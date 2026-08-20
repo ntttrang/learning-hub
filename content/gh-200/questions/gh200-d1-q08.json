@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d1-q08",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-service-containers",
+  "prompt": "A job starts a Redis service container and its steps talk to it on `localhost:6379`. Which `ports` entry makes that work?",
+  "explanation": "Service-container ports are written `host:container`, so `6379:6379` publishes the container’s Redis to the job on the runner host’s localhost. Without the mapping the port is not exposed to the job at all, and a lone number leaves the host side unspecified.",
+  "docIds": [
+    "service-containers"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "`ports: - 6379` (container port only)"
+    },
+    {
+      "id": "o2",
+      "text": "`ports: - 127.0.0.1:6379` (host address only)"
+    },
+    {
+      "id": "o3",
+      "text": "`ports: - 6379:6379` (host:container)"
+    },
+    {
+      "id": "o4",
+      "text": "No `ports` key — service containers are always reachable on localhost"
+    }
+  ],
+  "correct": "o3"
+}

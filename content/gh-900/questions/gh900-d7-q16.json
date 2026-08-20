@@ -1,0 +1,38 @@
+{
+  "id": "gh900-d7-q16",
+  "domainId": "gh900-d7",
+  "moduleId": "d7-innersource",
+  "prompt": "Which practices belong to InnerSource? Choose all that apply.",
+  "explanation": "InnerSource is open source’s culture, kept inside: transparent internal repos, contribution norms, cross-team pull requests. Nothing goes public, and owning teams stay — they just accept guests.",
+  "docIds": [
+    "innersource-module"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Discoverable, readable internal repositories across the organization"
+    },
+    {
+      "id": "o2",
+      "text": "Contribution guidelines for internal projects"
+    },
+    {
+      "id": "o3",
+      "text": "Accepting pull requests from any internal team"
+    },
+    {
+      "id": "o4",
+      "text": "Publishing all company code publicly on GitHub.com"
+    },
+    {
+      "id": "o5",
+      "text": "Removing team ownership of repositories"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o3"
+  ]
+}

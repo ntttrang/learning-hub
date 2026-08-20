@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d1-q11",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-authoring-tooling",
+  "prompt": "While editing a workflow in VS Code, a developer wants unknown keys and broken indentation flagged before anything is pushed. What provides that?",
+  "explanation": "Editor tooling — the GitHub Actions extension plus the workflow JSON schema — marks invalid keys and structure while you type. Pushing to watch the run fail also works, but it is the slow way to learn about a typo.",
+  "docIds": [
+    "gh-docs-actions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The GitHub CLI, via `gh workflow lint`"
+    },
+    {
+      "id": "o2",
+      "text": "The GitHub Actions extension with the published workflow schema, validating as you type"
+    },
+    {
+      "id": "o3",
+      "text": "The web editor on github.com only — desktop editors cannot validate workflows"
+    },
+    {
+      "id": "o4",
+      "text": "Nothing — a workflow can only be validated by running it"
+    }
+  ],
+  "correct": "o2"
+}

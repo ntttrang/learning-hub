@@ -1,0 +1,397 @@
+[
+  {
+    "id": "d1-triggers",
+    "domainId": "gh200-d1",
+    "order": 1,
+    "title": "Configure scheduled, manual, webhook, and repository event triggers",
+    "docIds": [
+      "workflow-events",
+      "workflow-syntax"
+    ]
+  },
+  {
+    "id": "d1-dispatch-call-inputs",
+    "domainId": "gh200-d1",
+    "order": 2,
+    "title": "workflow_dispatch inputs and workflow_call inputs/secrets mapping",
+    "docIds": [
+      "workflow-syntax",
+      "reuse-workflows"
+    ]
+  },
+  {
+    "id": "d1-jobs-steps",
+    "domainId": "gh200-d1",
+    "order": 3,
+    "title": "Jobs, steps, conditionals, and job dependencies",
+    "docIds": [
+      "workflow-syntax"
+    ]
+  },
+  {
+    "id": "d1-commands-env",
+    "domainId": "gh200-d1",
+    "order": 4,
+    "title": "Workflow commands and environment variables",
+    "docIds": [
+      "workflow-commands",
+      "use-variables"
+    ]
+  },
+  {
+    "id": "d1-service-containers",
+    "domainId": "gh200-d1",
+    "order": 5,
+    "title": "Service containers: ports, health checks, container options",
+    "docIds": [
+      "service-containers"
+    ]
+  },
+  {
+    "id": "d1-matrix",
+    "domainId": "gh200-d1",
+    "order": 6,
+    "title": "Matrix strategy: include, exclude, fail-fast, max-parallel",
+    "docIds": [
+      "workflow-syntax"
+    ]
+  },
+  {
+    "id": "d1-yaml-anchors",
+    "domainId": "gh200-d1",
+    "order": 7,
+    "title": "YAML anchors and aliases for reuse within one file",
+    "docIds": [
+      "reuse-config"
+    ]
+  },
+  {
+    "id": "d1-contexts-expressions",
+    "domainId": "gh200-d1",
+    "order": 8,
+    "title": "Predefined contexts and ${{ }} expressions",
+    "docIds": [
+      "contexts",
+      "expressions"
+    ]
+  },
+  {
+    "id": "d1-authoring-tooling",
+    "domainId": "gh200-d1",
+    "order": 9,
+    "title": "Author with editor tooling and schema validation",
+    "docIds": [
+      "gh-docs-actions"
+    ]
+  },
+  {
+    "id": "d1-cache-artifacts-retention",
+    "domainId": "gh200-d1",
+    "order": 10,
+    "title": "Caching, artifacts, and retention via REST",
+    "docIds": [
+      "dependency-caching",
+      "store-artifacts",
+      "rest-actions"
+    ]
+  },
+  {
+    "id": "d1-passing-data",
+    "domainId": "gh200-d1",
+    "order": 11,
+    "title": "Pass data: job outputs, environment files, artifacts",
+    "docIds": [
+      "workflow-commands",
+      "store-artifacts"
+    ]
+  },
+  {
+    "id": "d1-summaries-badges",
+    "domainId": "gh200-d1",
+    "order": 12,
+    "title": "Job summaries and workflow status badges",
+    "docIds": [
+      "workflow-commands",
+      "status-badges"
+    ]
+  },
+  {
+    "id": "d2-read-config",
+    "domainId": "gh200-d2",
+    "order": 1,
+    "title": "Identify triggers and effects from configuration and logs",
+    "docIds": [
+      "workflow-events",
+      "view-run-history"
+    ]
+  },
+  {
+    "id": "d2-diagnose-failures",
+    "domainId": "gh200-d2",
+    "order": 2,
+    "title": "Diagnose failed runs from logs and run history",
+    "docIds": [
+      "troubleshoot-workflows",
+      "view-run-history"
+    ]
+  },
+  {
+    "id": "d2-expand-config",
+    "domainId": "gh200-d2",
+    "order": 3,
+    "title": "Expand YAML anchors and matrix axes; rerun individual matrix jobs",
+    "docIds": [
+      "workflow-syntax",
+      "view-run-history"
+    ]
+  },
+  {
+    "id": "d2-logs-artifacts",
+    "domainId": "gh200-d2",
+    "order": 4,
+    "title": "Locate and download logs and artifacts (UI and API)",
+    "docIds": [
+      "rest-actions",
+      "store-artifacts"
+    ]
+  },
+  {
+    "id": "d2-templates",
+    "domainId": "gh200-d2",
+    "order": 5,
+    "title": "Starter workflows and organization workflow templates",
+    "docIds": [
+      "workflow-templates",
+      "template-repositories"
+    ]
+  },
+  {
+    "id": "d2-reusable-vs-composite",
+    "domainId": "gh200-d2",
+    "order": 6,
+    "title": "Starter vs reusable workflows vs composite actions",
+    "docIds": [
+      "reuse-workflows",
+      "create-composite-action"
+    ]
+  },
+  {
+    "id": "d2-disable-vs-delete",
+    "domainId": "gh200-d2",
+    "order": 7,
+    "title": "Disabling versus deleting a workflow",
+    "docIds": [
+      "disable-workflows"
+    ]
+  },
+  {
+    "id": "d3-action-types",
+    "domainId": "gh200-d3",
+    "order": 1,
+    "title": "Action types: JavaScript, Docker, composite — and immutable actions",
+    "docIds": [
+      "metadata-syntax"
+    ]
+  },
+  {
+    "id": "d3-troubleshoot-actions",
+    "domainId": "gh200-d3",
+    "order": 2,
+    "title": "Create and troubleshoot custom actions",
+    "docIds": [
+      "create-composite-action",
+      "troubleshoot-workflows"
+    ]
+  },
+  {
+    "id": "d3-structure-metadata",
+    "domainId": "gh200-d3",
+    "order": 3,
+    "title": "Required files, directory structure, and metadata",
+    "docIds": [
+      "metadata-syntax",
+      "create-composite-action"
+    ]
+  },
+  {
+    "id": "d3-commands-in-actions",
+    "domainId": "gh200-d3",
+    "order": 4,
+    "title": "Implement workflow commands within actions",
+    "docIds": [
+      "workflow-commands"
+    ]
+  },
+  {
+    "id": "d3-distribution",
+    "domainId": "gh200-d3",
+    "order": 5,
+    "title": "Distribution: public, private, Marketplace",
+    "docIds": [
+      "publish-actions",
+      "share-with-enterprise"
+    ]
+  },
+  {
+    "id": "d3-versioning",
+    "domainId": "gh200-d3",
+    "order": 6,
+    "title": "Versioning and release strategies",
+    "docIds": [
+      "release-actions"
+    ]
+  },
+  {
+    "id": "d4-govern-components",
+    "domainId": "gh200-d4",
+    "order": 1,
+    "title": "Govern reusable components, templates, and their access",
+    "docIds": [
+      "reuse-workflows",
+      "share-with-enterprise"
+    ]
+  },
+  {
+    "id": "d4-org-policies",
+    "domainId": "gh200-d4",
+    "order": 2,
+    "title": "Configure organizational use policies (allow/deny lists, approvals)",
+    "docIds": [
+      "org-actions-policy"
+    ]
+  },
+  {
+    "id": "d4-runner-choice",
+    "domainId": "gh200-d4",
+    "order": 3,
+    "title": "GitHub-hosted vs self-hosted runners",
+    "docIds": [
+      "github-hosted-runners",
+      "self-hosted-runners"
+    ]
+  },
+  {
+    "id": "d4-networking",
+    "domainId": "gh200-d4",
+    "order": 4,
+    "title": "IP allow lists and networking settings",
+    "docIds": [
+      "ip-allow-lists"
+    ]
+  },
+  {
+    "id": "d4-runner-groups",
+    "domainId": "gh200-d4",
+    "order": 5,
+    "title": "Manage runner groups and troubleshoot runners",
+    "docIds": [
+      "runner-groups",
+      "self-hosted-runners"
+    ]
+  },
+  {
+    "id": "d4-preinstalled",
+    "domainId": "gh200-d4",
+    "order": 6,
+    "title": "Preinstalled software, toolcache, and runtime installs",
+    "docIds": [
+      "github-hosted-runners",
+      "runner-images"
+    ]
+  },
+  {
+    "id": "d4-secrets-variables",
+    "domainId": "gh200-d4",
+    "order": 7,
+    "title": "Scope and manage secrets and variables (org/repo/environment)",
+    "docIds": [
+      "use-secrets",
+      "use-variables",
+      "rest-actions"
+    ]
+  },
+  {
+    "id": "d5-environments",
+    "domainId": "gh200-d5",
+    "order": 1,
+    "title": "Environment protections and approval gates",
+    "docIds": [
+      "manage-environments"
+    ]
+  },
+  {
+    "id": "d5-trustworthy-actions",
+    "domainId": "gh200-d5",
+    "order": 2,
+    "title": "Identify trustworthy actions from the Marketplace",
+    "docIds": [
+      "github-marketplace",
+      "secure-use"
+    ]
+  },
+  {
+    "id": "d5-script-injection",
+    "domainId": "gh200-d5",
+    "order": 3,
+    "title": "Mitigate script injection",
+    "docIds": [
+      "secure-use"
+    ]
+  },
+  {
+    "id": "d5-token-permissions",
+    "domainId": "gh200-d5",
+    "order": 4,
+    "title": "GITHUB_TOKEN lifecycle, granular permissions, vs PAT",
+    "docIds": [
+      "github-token",
+      "secure-use"
+    ]
+  },
+  {
+    "id": "d5-oidc",
+    "domainId": "gh200-d5",
+    "order": 5,
+    "title": "OIDC token federation with id-token permission",
+    "docIds": [
+      "openid-connect"
+    ]
+  },
+  {
+    "id": "d5-pinning",
+    "domainId": "gh200-d5",
+    "order": 6,
+    "title": "Pin third-party actions to full commit SHAs",
+    "docIds": [
+      "secure-use"
+    ]
+  },
+  {
+    "id": "d5-usage-policy",
+    "domainId": "gh200-d5",
+    "order": 7,
+    "title": "Allow/deny lists and required reviewers for actions",
+    "docIds": [
+      "org-actions-policy"
+    ]
+  },
+  {
+    "id": "d5-attestations",
+    "domainId": "gh200-d5",
+    "order": 8,
+    "title": "Artifact attestations and provenance (SLSA)",
+    "docIds": [
+      "artifact-attestations"
+    ]
+  },
+  {
+    "id": "d5-cost-optimization",
+    "domainId": "gh200-d5",
+    "order": 9,
+    "title": "Caching, retention, and scaling for cost and performance",
+    "docIds": [
+      "dependency-caching",
+      "billing-actions"
+    ]
+  }
+]

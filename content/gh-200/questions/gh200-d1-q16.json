@@ -1,0 +1,38 @@
+{
+  "id": "gh200-d1-q16",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-service-containers",
+  "prompt": "Which statements about service containers are true? Choose all that apply.",
+  "explanation": "Service containers come up alongside the job and answer on localhost through the mapped ports, with `options:` carrying health checks and other Docker flags. They are torn down with the job, and any registry the runner can pull from works — not just Docker Hub.",
+  "docIds": [
+    "service-containers"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "o1",
+      "text": "They are Docker containers started before the job’s steps run"
+    },
+    {
+      "id": "o2",
+      "text": "The `options:` key passes extra Docker flags, such as `--health-cmd`"
+    },
+    {
+      "id": "o3",
+      "text": "They keep running after the job completes, for later debugging"
+    },
+    {
+      "id": "o4",
+      "text": "Steps reach them through mapped ports on the runner’s localhost"
+    },
+    {
+      "id": "o5",
+      "text": "They can only run images hosted on Docker Hub"
+    }
+  ],
+  "correct": [
+    "o1",
+    "o2",
+    "o4"
+  ]
+}

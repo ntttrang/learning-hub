@@ -1,0 +1,30 @@
+{
+  "id": "gh200-d3-q04",
+  "domainId": "gh200-d3",
+  "moduleId": "d3-structure-metadata",
+  "prompt": "What must exist at the root of a repository for GitHub to treat a directory as an action?",
+  "explanation": "The metadata file `action.yml` — or `action.yaml`, either name works — is the contract that makes an action an action: it declares the type, inputs, outputs, and entrypoint. Everything else in the repository serves what that file describes.",
+  "docIds": [
+    "metadata-syntax"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A `Dockerfile`"
+    },
+    {
+      "id": "o2",
+      "text": "An `action.yml` (or `action.yaml`) metadata file"
+    },
+    {
+      "id": "o3",
+      "text": "A `main.workflow` file"
+    },
+    {
+      "id": "o4",
+      "text": "A `package.json` with an `action` field"
+    }
+  ],
+  "correct": "o2"
+}

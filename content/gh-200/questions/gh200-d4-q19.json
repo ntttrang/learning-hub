@@ -1,0 +1,23 @@
+{
+  "id": "gh200-d4-q19",
+  "domainId": "gh200-d4",
+  "moduleId": "d4-org-policies",
+  "prompt": "Organization policy allows only `actions/*` and internal actions. This workflow fails with `action not allowed`. Click the line that violates the policy.",
+  "explanation": "The checkout step matches the `actions/*` pattern; the third-party linter does not, and the allow list rejects it at run time. The organization lists exactly what may execute — reading a `uses:` line against that list is the review habit.",
+  "docIds": [
+    "org-actions-policy"
+  ],
+  "kind": "bug",
+  "codeLines": [
+    "name: CI",
+    "on: push",
+    "jobs:",
+    "  build:",
+    "    runs-on: ubuntu-latest",
+    "    steps:",
+    "      - uses: actions/checkout@v4",
+    "      - uses: some-rand0m-user/super-linter@v3",
+    "      - run: npm test"
+  ],
+  "buggyLineIndex": 7
+}

@@ -1,0 +1,20 @@
+{
+  "id": "gh200-d1-q17",
+  "domainId": "gh200-d1",
+  "moduleId": "d1-matrix",
+  "prompt": "Fill in both blanks so the job runs once per OS-and-Node combination and installs the matching Node version.",
+  "explanation": "The `matrix:` key sits under `strategy`, and its lists multiply into one job per combination; steps read the current values through the `matrix` context — here `${{ matrix.node }}`. Two OSes times two Node versions means four runs of the same job.",
+  "docIds": [
+    "workflow-syntax"
+  ],
+  "kind": "fill",
+  "template": "name: Cross-platform CI\non: push\njobs:\n  test:\n    runs-on: ${{ matrix.os }}\n    strategy:\n      ___:\n        os: [ubuntu-latest, windows-latest]\n        node: [18, 20]\n    steps:\n      - uses: actions/setup-node@v4\n        with:\n          node-version: ${{ ___ }}\n",
+  "blanks": [
+    {
+      "answer": "matrix"
+    },
+    {
+      "answer": "matrix.node"
+    }
+  ]
+}

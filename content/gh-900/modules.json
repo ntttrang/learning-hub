@@ -1,0 +1,336 @@
+[
+  {
+    "id": "d1-version-control",
+    "domainId": "gh900-d1",
+    "order": 1,
+    "title": "Version control purpose and benefits",
+    "docIds": [
+      "about-git"
+    ]
+  },
+  {
+    "id": "d1-git-vs-github",
+    "domainId": "gh900-d1",
+    "order": 2,
+    "title": "Git and GitHub — what each one owns",
+    "docIds": [
+      "about-git",
+      "hello-world"
+    ]
+  },
+  {
+    "id": "d1-repos-commits-branches",
+    "domainId": "gh900-d1",
+    "order": 3,
+    "title": "Repositories, commits, and branches",
+    "docIds": [
+      "hello-world",
+      "github-flow"
+    ]
+  },
+  {
+    "id": "d1-account-types",
+    "domainId": "gh900-d1",
+    "order": 4,
+    "title": "Accounts, organizations, and enterprise options",
+    "docIds": [
+      "types-of-github-accounts"
+    ]
+  },
+  {
+    "id": "d1-github-flow",
+    "domainId": "gh900-d1",
+    "order": 5,
+    "title": "GitHub Flow",
+    "docIds": [
+      "github-flow"
+    ]
+  },
+  {
+    "id": "d1-markdown",
+    "domainId": "gh900-d1",
+    "order": 6,
+    "title": "Markdown in issues and pull requests",
+    "docIds": [
+      "markdown-formatting"
+    ]
+  },
+  {
+    "id": "d1-desktop-mobile",
+    "domainId": "gh900-d1",
+    "order": 7,
+    "title": "GitHub Desktop and GitHub Mobile",
+    "docIds": [
+      "github-desktop",
+      "github-mobile"
+    ]
+  },
+  {
+    "id": "d2-repo-structure-key-files",
+    "domainId": "gh900-d2",
+    "order": 1,
+    "title": "Repository structure and key files",
+    "docIds": [
+      "about-readmes",
+      "licensing-a-repository",
+      "contributing-guidelines"
+    ]
+  },
+  {
+    "id": "d2-templates-and-branches",
+    "domainId": "gh900-d2",
+    "order": 2,
+    "title": "Templates and branches",
+    "docIds": [
+      "creating-a-repository",
+      "template-repositories"
+    ]
+  },
+  {
+    "id": "d2-managing-files",
+    "domainId": "gh900-d2",
+    "order": 3,
+    "title": "Adding and managing files",
+    "docIds": [
+      "creating-a-repository",
+      "gh-docs-repositories"
+    ]
+  },
+  {
+    "id": "d2-insights-metrics",
+    "domainId": "gh900-d2",
+    "order": 4,
+    "title": "Insights, stars, and dependency data",
+    "docIds": [
+      "about-repository-graphs"
+    ]
+  },
+  {
+    "id": "d2-maintenance",
+    "domainId": "gh900-d2",
+    "order": 5,
+    "title": "Maintenance best practices",
+    "docIds": [
+      "community-health-files",
+      "add-security-policy"
+    ]
+  },
+  {
+    "id": "d3-issues-prs-discussions",
+    "domainId": "gh900-d3",
+    "order": 1,
+    "title": "Issues, pull requests, and discussions",
+    "docIds": [
+      "about-issues",
+      "about-pull-requests",
+      "about-discussions"
+    ]
+  },
+  {
+    "id": "d3-linking-filtering",
+    "domainId": "gh900-d3",
+    "order": 2,
+    "title": "Linking, templates, filters, and assignments",
+    "docIds": [
+      "linking-pr-to-issue",
+      "issue-pr-templates",
+      "filtering-issues"
+    ]
+  },
+  {
+    "id": "d3-notifications",
+    "domainId": "gh900-d3",
+    "order": 3,
+    "title": "Notifications and configuration",
+    "docIds": [
+      "about-notifications"
+    ]
+  },
+  {
+    "id": "d3-gists-wikis-pages",
+    "domainId": "gh900-d3",
+    "order": 4,
+    "title": "Gists, wikis, and GitHub Pages",
+    "docIds": [
+      "about-gists",
+      "about-wikis",
+      "about-github-pages"
+    ]
+  },
+  {
+    "id": "d4-actions-purpose",
+    "domainId": "gh900-d4",
+    "order": 1,
+    "title": "GitHub Actions purpose and capabilities",
+    "docIds": [
+      "gh-docs-actions"
+    ]
+  },
+  {
+    "id": "d4-copilot",
+    "domainId": "gh900-d4",
+    "order": 2,
+    "title": "Copilot: plans, agents, Agent Mode",
+    "docIds": [
+      "copilot-get-started",
+      "copilot-plans",
+      "copilot-cloud-agent"
+    ]
+  },
+  {
+    "id": "d4-codespaces-devcontainers",
+    "domainId": "gh900-d4",
+    "order": 3,
+    "title": "Codespaces and dev containers",
+    "docIds": [
+      "what-are-codespaces",
+      "dev-containers"
+    ]
+  },
+  {
+    "id": "d4-githubdev",
+    "domainId": "gh900-d4",
+    "order": 4,
+    "title": "The github.dev editor",
+    "docIds": [
+      "githubdev-editor"
+    ]
+  },
+  {
+    "id": "d5-projects-layouts",
+    "domainId": "gh900-d5",
+    "order": 1,
+    "title": "Projects and layout options",
+    "docIds": [
+      "about-projects",
+      "project-view-layouts"
+    ]
+  },
+  {
+    "id": "d5-labels-milestones",
+    "domainId": "gh900-d5",
+    "order": 2,
+    "title": "Labels, milestones, and workflows",
+    "docIds": [
+      "managing-labels",
+      "about-milestones"
+    ]
+  },
+  {
+    "id": "d5-saved-replies-assignees",
+    "domainId": "gh900-d5",
+    "order": 3,
+    "title": "Saved replies and assignees",
+    "docIds": [
+      "about-saved-replies"
+    ]
+  },
+  {
+    "id": "d5-project-insights",
+    "domainId": "gh900-d5",
+    "order": 4,
+    "title": "Project insights",
+    "docIds": [
+      "about-project-insights"
+    ]
+  },
+  {
+    "id": "d6-2fa-passkeys",
+    "domainId": "gh900-d6",
+    "order": 1,
+    "title": "Two-factor authentication and passkeys",
+    "docIds": [
+      "configure-2fa",
+      "about-passkeys"
+    ]
+  },
+  {
+    "id": "d6-permissions-roles",
+    "domainId": "gh900-d6",
+    "order": 2,
+    "title": "Repository and organization permissions and roles",
+    "docIds": [
+      "repository-roles",
+      "roles-in-an-organization"
+    ]
+  },
+  {
+    "id": "d6-emu-policy",
+    "domainId": "gh900-d6",
+    "order": 3,
+    "title": "Enterprise Managed Users and Copilot policy",
+    "docIds": [
+      "enterprise-managed-users",
+      "copilot-plans"
+    ]
+  },
+  {
+    "id": "d6-visibility-protection",
+    "domainId": "gh900-d6",
+    "order": 4,
+    "title": "Visibility settings and branch protection",
+    "docIds": [
+      "setting-repository-visibility",
+      "about-protected-branches"
+    ]
+  },
+  {
+    "id": "d6-org-settings-teams",
+    "domainId": "gh900-d6",
+    "order": 5,
+    "title": "Organization settings, teams, and roles",
+    "docIds": [
+      "about-organizations",
+      "about-teams"
+    ]
+  },
+  {
+    "id": "d7-open-source-sponsors",
+    "domainId": "gh900-d7",
+    "order": 1,
+    "title": "Open source and GitHub Sponsors",
+    "docIds": [
+      "ways-to-contribute",
+      "github-sponsors"
+    ]
+  },
+  {
+    "id": "d7-following",
+    "domainId": "gh900-d7",
+    "order": 2,
+    "title": "Following users and organizations",
+    "docIds": [
+      "following-people",
+      "following-organizations"
+    ]
+  },
+  {
+    "id": "d7-marketplace",
+    "domainId": "gh900-d7",
+    "order": 3,
+    "title": "GitHub Marketplace",
+    "docIds": [
+      "github-marketplace"
+    ]
+  },
+  {
+    "id": "d7-innersource",
+    "domainId": "gh900-d7",
+    "order": 4,
+    "title": "InnerSource",
+    "docIds": [
+      "innersource-module",
+      "innersource-best-practices"
+    ]
+  },
+  {
+    "id": "d7-forks-templates-discovery",
+    "domainId": "gh900-d7",
+    "order": 5,
+    "title": "Forks, templates, and discoverable repositories",
+    "docIds": [
+      "about-forks",
+      "template-repositories"
+    ]
+  }
+]

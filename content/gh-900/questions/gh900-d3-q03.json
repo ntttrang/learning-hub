@@ -1,0 +1,30 @@
+{
+  "id": "gh900-d3-q03",
+  "domainId": "gh900-d3",
+  "moduleId": "d3-issues-prs-discussions",
+  "prompt": "The team debates \"should we drop support for Node 16?\" — an open-ended question with no code to merge. Which surface fits?",
+  "explanation": "Discussions are for open-ended topics — questions, ideas, announcements — organized in categories and marked answered, without the merge-or-close pressure of an issue.",
+  "docIds": [
+    "about-discussions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A discussion, built for conversations and community Q&A"
+    },
+    {
+      "id": "o2",
+      "text": "A pull request, so the debate happens next to code"
+    },
+    {
+      "id": "o3",
+      "text": "An issue with the `question` label"
+    },
+    {
+      "id": "o4",
+      "text": "A fork of the repository"
+    }
+  ],
+  "correct": "o1"
+}
