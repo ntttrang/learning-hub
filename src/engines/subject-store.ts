@@ -179,12 +179,30 @@ export function createSubjectDataStore(adapter: StorageAdapter = createLocalStor
                 ...data.completedLabs,
                 ...(partial.completedLabs ?? []).filter((id) => !data.completedLabs.includes(id)),
               ],
+              quizAttempts: [
+                ...data.quizAttempts,
+                ...(partial.quizAttempts ?? []).filter(
+                  (attempt) => !data.quizAttempts.some((existing) => existing.id === attempt.id),
+                ),
+              ],
               examAttempts: [
                 ...data.examAttempts,
                 ...(partial.examAttempts ?? []).filter(
                   (attempt) => !data.examAttempts.some((existing) => existing.id === attempt.id),
                 ),
               ],
+              notes: [
+                ...data.notes,
+                ...(partial.notes ?? []).filter(
+                  (note) => !data.notes.some((existing) => existing.id === note.id),
+                ),
+              ],
+              bookmarks: [
+                ...data.bookmarks,
+                ...(partial.bookmarks ?? []).filter((id) => !data.bookmarks.includes(id)),
+              ],
+              srs: { ...partial.srs, ...data.srs },
+              lastLessonId: data.lastLessonId ?? partial.lastLessonId,
             })),
           ),
 

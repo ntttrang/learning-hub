@@ -32,7 +32,8 @@ describe('LabViewer', () => {
     expect(screen.queryByText('lesson-storage-models')).toBeNull();
     const prereqLink = screen.getByRole('link', { name: 'Storage models' });
     expect(prereqLink.getAttribute('href')).toBe('#/subject/fixture/learn/storage-models');
-    expect(screen.getByText('Runs on: postgresql, fabric')).toBeInTheDocument();
+    // Known engines render pretty labels; unknown ids (fabric) stay raw.
+    expect(screen.getByText('Runs on: PostgreSQL, fabric')).toBeInTheDocument();
 
     // Schema + seed code blocks (hljs splits text; assert on aggregates).
     expect(container.textContent).toContain('CREATE TABLE trips');
@@ -49,6 +50,9 @@ describe('LabViewer', () => {
     // Engine notes, outcomes, checks, and the explanation.
     expect(screen.getByText('Other engines')).toBeInTheDocument();
     expect(screen.getByText('Any version 14+ works for this lab.')).toBeInTheDocument();
+    // Note headers use the same labels as the engines line.
+    expect(screen.getByText('PostgreSQL')).toBeInTheDocument();
+    expect(screen.getByText('fabric')).toBeInTheDocument();
     expect(screen.getByText('Expected outcomes')).toBeInTheDocument();
     expect(screen.getByText('Self-check')).toBeInTheDocument();
     expect(screen.getByText('Solution explanation')).toBeInTheDocument();

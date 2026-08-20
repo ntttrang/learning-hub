@@ -13,6 +13,10 @@ import {
 } from '../sdk/content-source';
 import { assertKindsRegistered } from '../sdk/registry/coverage';
 import { contentSource, loadAllContent } from './registry';
+// DP-800 block renderers register on import. This gate's module graph
+// excludes the app entry, so the registration seam is imported here
+// directly; App.tsx carries it for the app and App-rendering tests.
+import './dp-800/renderers';
 
 describe('content:check — every installed pack validates', () => {
   it('at least one pack is installed', () => {

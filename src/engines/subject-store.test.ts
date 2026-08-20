@@ -6,7 +6,7 @@ import {
   useSubjectDataStore,
   type SubjectDataState,
 } from './subject-store';
-import type { SubjectUserData } from '../sdk/types';
+import type { SubjectUserData, SrsCard } from '../sdk/types';
 
 type Store = ReturnType<typeof createSubjectDataStore>;
 
@@ -38,6 +38,15 @@ const examAttempt = (id: string) => ({
   perDomain: [{ domainId: 'd1', correct: 1, total: 2 }],
   answers: {},
   results: [{ questionId: 'q-order', correct: false }],
+});
+
+const srsCard = (questionId: string, box = 2): SrsCard => ({
+  questionId,
+  box,
+  due: '2026-09-01T00:00:00.000Z',
+  lastSeen: '2026-08-01T00:00:00.000Z',
+  timesCorrect: 1,
+  timesWrong: 0,
 });
 
 describe('subject-data store: namespacing', () => {
@@ -168,6 +177,97 @@ describe('subject-data store: importLegacyData bulk merge', () => {
     expect(state.streak).toEqual({ current: 0, longest: 0 });
     expect(state.subjects['fresh'].srs).toEqual({});
     expect(state.subjects['fresh'].examAttempts).toHaveLength(1);
+  });
+
+  it('merges the full user-data set hub-wins per key — quiz, notes, bookmarks, srs, lastLessonId', () => {
+    const current: SubjectUserData = {
+      lessons: {},
+      completedLabs: [],
+      quizAttempts: [quizAttempt('qa-hub')],
+      examAttempts: [],
+      srs: { 'q-single': srsCard('q-single', 4) },
+      notes: [
+        { id: 'n-1', lessonId: 'lesson-1', title: 'Hub note', body: 'hub', updated: '2026-08-19T00:00:00.000Z' },
+      ],
+      bookmarks: ['lesson-1'],
+      lastLessonId: 'lesson-hub',
+    };
+    store.setState({ subjects: { s1: current } });
+
+    store.getState().importLegacyData('s1', {
+      quizAttempts: [quizAttempt('qa-legacy'), quizAttempt('qa-hub')],
+      notes: [
+        { id: 'n-2', title: 'New legacy note', body: 'new', updated: '2020-01-02T00:00:00.000Z' },
+        { id: 'n-1', title: 'Legacy note', body: 'legacy', updated: '2020-01-01T00:00:00.000Z' },
+      ],
+      bookmarks: ['lesson-2', 'lesson-1'],
+      srs: { 'q-single': srsCard('q-single', 1), 'q-fill': srsCard('q-fill', 2) },
+      lastLessonId: 'lesson-legacy',
+    });
+
+    const data = store.getState().subjects['s1'];
+    // quizAttempts: existing first, then legacy ids the hub did not have.
+    expect(data.quizAttempts.map((a) => a.id)).toEqual(['qa-hub', 'qa-legacy']);
+    // notes: hub entry wins by id; new legacy ids append after.
+    expect(data.notes.map((n) => [n.id, n.title])).toEqual([
+      ['n-1', 'Hub note'],
+      ['n-2', 'New legacy note'],
+    ]);
+    // bookmarks: existing order first, then unseen legacy ids.
+    expect(data.bookmarks).toEqual(['lesson-1', 'lesson-2']);
+    // srs: hub wins per questionId; new cards merge in.
+    expect(data.srs['q-single'].box).toBe(4);
+    expect(data.srs['q-fill'].box).toBe(2);
+    expect(Object.keys(data.srs).sort()).toEqual(['q-fill', 'q-single']);
+    // lastLessonId: hub's own pointer wins.
+    expect(data.lastLessonId).toBe('lesson-hub');
+  });
+
+  it('imports lastLessonId into a subject that had none', () => {
+    store.getState().importLegacyData('fresh', { lastLessonId: 'lesson-legacy' });
+    expect(store.getState().subjects['fresh'].lastLessonId).toBe('lesson-legacy');
+  });
+
+  it('a gh-shaped 3-key partial leaves the newer keys untouched', () => {
+    const current: SubjectUserData = {
+      lessons: { 'lesson-1': { status: 'in-progress', lastVisited: '2026-08-19T00:00:00.000Z' } },
+      completedLabs: ['lab-1'],
+      quizAttempts: [quizAttempt('qa-hub')],
+      examAttempts: [],
+      srs: { 'q-single': srsCard('q-single') },
+      notes: [{ id: 'n-1', title: 'Hub note', body: 'hub', updated: '2026-08-19T00:00:00.000Z' }],
+      bookmarks: ['lesson-1'],
+      lastLessonId: 'lesson-hub',
+    };
+    store.setState({ subjects: { s1: current } });
+
+    // Exactly the keys the gh shim passes — nothing more.
+    store.getState().importLegacyData('s1', {
+      lessons: { 'lesson-2': { status: 'completed', lastVisited: '2020-01-01T00:00:00.000Z' } },
+      completedLabs: ['lab-2'],
+      examAttempts: [examAttempt('legacy-x-9')],
+    });
+
+    const data = store.getState().subjects['s1'];
+    // Key insertion order is a spread artifact; the contract is per-key values.
+    expect(Object.keys(data.lessons).sort()).toEqual(['lesson-1', 'lesson-2']);
+    expect(data.lessons['lesson-1'].status).toBe('in-progress'); // hub wins
+    expect(data.lessons['lesson-2'].status).toBe('completed'); // legacy lands
+    expect(data.completedLabs).toEqual(['lab-1', 'lab-2']);
+    expect(data.examAttempts.map((a) => a.id)).toEqual(['legacy-x-9']);
+    // The keys the gh shim never passes are exactly as they were.
+    expect(data.quizAttempts.map((a) => a.id)).toEqual(['qa-hub']);
+    expect(data.srs).toEqual(current.srs);
+    expect(data.notes).toEqual(current.notes);
+    expect(data.bookmarks).toEqual(['lesson-1']);
+    expect(data.lastLessonId).toBe('lesson-hub');
+  });
+
+  it('an empty partial is a no-op — absent keys never wipe existing data', () => {
+    store.getState().markLesson('s1', 'lesson-1', 'completed');
+    const before = store.getState().subjects['s1'];
+    store.getState().importLegacyData('s1', {});
+    expect(store.getState().subjects['s1']).toEqual(before);
   });
 });
 

@@ -17,6 +17,7 @@ import { CodeBlock } from './CodeBlock';
 import { EmptyState } from './EmptyState';
 import { Markdown } from './Markdown';
 import { Pill } from './Pill';
+import { engineLabel } from './engine-labels';
 
 interface LabViewerProps {
   subjectId: string;
@@ -118,7 +119,7 @@ export function LabViewer({ subjectId, index, id }: LabViewerProps) {
             </div>
           )}
           {lab.engines && lab.engines.length > 0 && (
-            <p className="lab-engines">Runs on: {lab.engines.join(', ')}</p>
+            <p className="lab-engines">Runs on: {lab.engines.map(engineLabel).join(', ')}</p>
           )}
         </section>
       )}
@@ -150,7 +151,7 @@ export function LabViewer({ subjectId, index, id }: LabViewerProps) {
           <div className="lab-notes-grid">
             {Object.entries(lab.engineNotes).map(([engine, note]) => (
               <div key={engine} className="lab-note">
-                <p className="lab-note-engine">{engine}</p>
+                <p className="lab-note-engine">{engineLabel(engine)}</p>
                 <p>{note}</p>
               </div>
             ))}
