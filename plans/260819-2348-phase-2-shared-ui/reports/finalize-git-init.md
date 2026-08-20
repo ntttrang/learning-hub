@@ -58,4 +58,6 @@ Date: 2026-08-20 · Branch: `main` · Single initial commit
   already in the original commit, remain tracked).
 - Amended the initial commit (local-only, never pushed); concern 2 and the
   runtime-log part of concern 3 are resolved. Concern 1 (donor gitlinks)
-  remains a user decision.
+  was resolved by user decision: the three donor apps are registered as git
+  submodules (`.gitmodules` pins url + SHA, `ignore = dirty` so reference
+  pins stay quiet in `git status`) in a follow-up commit.
