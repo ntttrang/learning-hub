@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--clay-cream); }
+  .wrap { padding: 22px 24px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .badge { font-family: var(--font-body); font-weight: 700; font-size: 12px; padding: 5px 11px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; letter-spacing: 0.02em; }
+  .dot { width: 7px; height: 7px; border-radius: 999px; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.85); } }
+
+  .new      { background: var(--star-yellow); color: var(--ink); }
+  .live     { background: var(--captain-red); color: #FFFFFF; }
+  .live .dot { background: #FFFFFF; box-shadow: 0 0 0 2px rgba(255,255,255,0.4); animation: pulse 1.2s infinite; }
+  .success  { background: rgba(59,178,131,0.18); color: var(--hub-green-deep); }
+  .success .dot { background: var(--hub-green); }
+  .info     { background: rgba(81,187,215,0.18); color: var(--sky-cyan-deep); }
+  .neutral  { background: var(--clay-cream-2); color: var(--ink-2); }
+  .topic    { background: white; color: var(--ink); border: var(--bw) solid var(--border-strong); padding: 4px 10px; }
+  .soft     { background: var(--petal-pink-soft); color: var(--petal-pink-deep); }
+</style></head>
+<body>
+<div class="wrap">
+  <span class="badge new">NEW</span>
+  <span class="badge live"><span class="dot"></span>LIVE</span>
+  <span class="badge success"><span class="dot"></span>Shipped</span>
+  <span class="badge info">Tutorial</span>
+  <span class="badge neutral">12 min</span>
+  <span class="badge soft">Community</span>
+  <span class="badge topic">#ai</span>
+  <span class="badge topic">#go</span>
+  <span class="badge topic">#kubernetes</span>
+  <span class="badge topic">#postgres</span>
+  <span class="badge topic">#rag</span>
+</div></body></html>

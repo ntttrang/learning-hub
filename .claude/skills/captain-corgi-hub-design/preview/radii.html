@@ -1,0 +1,21 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--clay-cream); }
+  .wrap { padding: 18px 24px; display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-end; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .shape { background: var(--bg-elevated); border: var(--bw) solid var(--border); }
+  .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.04em; }
+  .px { font-family: var(--font-mono); font-size: 11px; color: var(--ink); font-weight: 600; }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="item"><div class="shape" style="width:60px;height:60px;border-radius:6px"></div><div class="px">--r-xs</div><div class="lbl">6 px</div></div>
+  <div class="item"><div class="shape" style="width:60px;height:60px;border-radius:8px"></div><div class="px">--r-sm</div><div class="lbl">8 px</div></div>
+  <div class="item"><div class="shape" style="width:60px;height:60px;border-radius:12px"></div><div class="px">--r-md</div><div class="lbl">12 px</div></div>
+  <div class="item"><div class="shape" style="width:60px;height:60px;border-radius:20px"></div><div class="px">--r-lg</div><div class="lbl">20 px</div></div>
+  <div class="item"><div class="shape" style="width:60px;height:60px;border-radius:28px"></div><div class="px">--r-xl</div><div class="lbl">28 px</div></div>
+  <div class="item"><div class="shape" style="width:60px;height:60px;border-radius:40px"></div><div class="px">--r-2xl</div><div class="lbl">40 px</div></div>
+  <div class="item"><div class="shape" style="width:60px;height:60px;border-radius:999px"></div><div class="px">--r-full</div><div class="lbl">pill</div></div>
+</div></body></html>

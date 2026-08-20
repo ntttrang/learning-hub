@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--clay-cream); }
+  .wrap { padding: 18px 24px; }
+  .row { display: grid; grid-template-columns: 60px 80px 1fr; gap: 16px; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--border-soft); }
+  .row:last-child { border-bottom: 0; }
+  .tok { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); }
+  .px { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); }
+  .sample { font-family: var(--font-display); color: var(--ink); line-height: 1; font-weight: 700; letter-spacing: -0.01em; }
+  .sample.body { font-family: var(--font-body); font-weight: 400; letter-spacing: 0; }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="row"><span class="tok">--fs-76</span><span class="px">76 / 1.05</span><span class="sample" style="font-size:38px">Display</span></div>
+  <div class="row"><span class="tok">--fs-48</span><span class="px">48 / 1.05</span><span class="sample" style="font-size:30px">Heading 1</span></div>
+  <div class="row"><span class="tok">--fs-30</span><span class="px">30 / 1.20</span><span class="sample" style="font-size:24px">Heading 3</span></div>
+  <div class="row"><span class="tok">--fs-20</span><span class="px">20 / 1.45</span><span class="sample body" style="font-size:18px">Lead paragraph</span></div>
+  <div class="row"><span class="tok">--fs-16</span><span class="px">16 / 1.45</span><span class="sample body" style="font-size:16px">Body — default size</span></div>
+  <div class="row"><span class="tok">--fs-14</span><span class="px">14 / 1.45</span><span class="sample body" style="font-size:14px">Caption / small</span></div>
+  <div class="row"><span class="tok">--fs-12</span><span class="px">12 / 1.45</span><span class="sample body" style="font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;color:var(--ink-3)">Micro / overline</span></div>
+</div></body></html>

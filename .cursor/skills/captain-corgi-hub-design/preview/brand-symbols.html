@@ -1,0 +1,20 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--clay-cream); }
+  .wrap { padding: 24px; display: flex; gap: 20px; align-items: center; }
+  .col { flex: 1; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+  .frame { width: 100%; aspect-ratio: 1.4; border-radius: var(--r-lg); display: flex; align-items: center; justify-content: center; border: var(--bw) solid var(--border-soft); }
+  .frame.cream { background: var(--clay-cream-2); }
+  .frame.dark  { background: var(--ink); }
+  .name { font-family: var(--font-mono); font-size: 11px; color: var(--ink); font-weight: 700; }
+  .lbl  { font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); }
+  img { width: 60%; height: 60%; }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="col"><div class="frame cream"><img src="../assets/icons/star.svg" alt="star"/></div><div class="name">star.svg</div><div class="lbl">Primary brand symbol</div></div>
+  <div class="col"><div class="frame cream"><img src="../assets/icons/anchor.svg" alt="anchor"/></div><div class="name">anchor.svg</div><div class="lbl">Secondary motif</div></div>
+  <div class="col"><div class="frame dark"><img src="../assets/icons/star.svg" alt="star"/></div><div class="name">star — on ink</div><div class="lbl">Inverse</div></div>
+</div></body></html>

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "exam-practice",
+    "title": "Practice set",
+    "description": "Sampled across both domains with a fixed seed.",
+    "durationMinutes": 15,
+    "passingScore": 700,
+    "selection": {
+      "kind": "sampled",
+      "domainPlan": { "d1": 2, "d2": 2 },
+      "seed": 42
+    }
+  },
+  {
+    "id": "exam-case-study",
+    "title": "Case-study set",
+    "description": "Fixed selection that opens on a shared case-study background.",
+    "durationMinutes": 10,
+    "passingScore": 700,
+    "selection": { "kind": "fixed", "questionIds": ["q-single", "q-multi"] },
+    "caseStudies": [
+      {
+        "id": "cs-contoso",
+        "title": "Contoso's lakehouse",
+        "background": "Contoso lands taxi trips as Parquet files in object storage and wants analysts to query them through SQL. **Every question in this set refers to this setup.**",
+        "questionIds": ["q-single"]
+      }
+    ]
+  }
+]

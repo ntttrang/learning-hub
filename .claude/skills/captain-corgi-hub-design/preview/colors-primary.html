@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--clay-cream); font-family: var(--font-body); color: var(--ink); }
+  .wrap { padding: 20px 24px; }
+  .row { display: flex; gap: 12px; align-items: stretch; }
+  .swatch { flex: 1; aspect-ratio: 1.2; border-radius: var(--r-md); padding: 12px; display: flex; flex-direction: column; justify-content: space-between; border: var(--bw) solid var(--border-soft); position: relative; overflow: hidden; }
+  .swatch .name { font-family: var(--font-display); font-weight: 700; font-size: 14px; line-height: 1.1; }
+  .swatch .hex { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; opacity: 0.78; }
+  .dark { color: var(--clay-cream); }
+  .light { color: var(--ink); }
+</style></head>
+<body class="cc-body">
+<div class="wrap">
+  <div class="row">
+    <div class="swatch dark" style="background:#FC8903"><span class="name">Corgi Orange</span><span class="hex">#FC8903</span></div>
+    <div class="swatch dark" style="background:#E13429"><span class="name">Captain's Red</span><span class="hex">#E13429</span></div>
+    <div class="swatch light" style="background:#FBC00A"><span class="name">Star Yellow</span><span class="hex">#FBC00A</span></div>
+    <div class="swatch dark" style="background:#51BBD7"><span class="name">Sky Cyan</span><span class="hex">#51BBD7</span></div>
+    <div class="swatch dark" style="background:#3BB283"><span class="name">Hub Green</span><span class="hex">#3BB283</span></div>
+    <div class="swatch light" style="background:#F2A8BC"><span class="name">Petal Pink</span><span class="hex">#F2A8BC</span></div>
+  </div>
+</div></body></html>

@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+
+# Editor / IDE
+.idea/
+*.swp
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Claude Code: rules and the design-authority skill ship with the repo;
+# machine-local AgentKit skills (and their test fixtures) stay out.
+# Ignore children (not the directory itself) so the re-includes below work.
+.claude/*
+!.claude/rules/
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/captain-corgi-hub-design/
+
+# Cursor mirror of the same policy: rules and the design-authority skill
+# ship; AgentKit machinery (skills, agents, hooks, runtime logs) stays out.
+.cursor/*
+!.cursor/rules/
+!.cursor/skills/
+.cursor/skills/*
+!.cursor/skills/captain-corgi-hub-design/
+
+# AgentKit local state (plans.db is a rebuildable index over plans/)
+.agentkit
+
+# Node / Vite
+node_modules
+dist
+*.local
+
+# Test coverage
+coverage
+
+# Session memory is personal
+.claude/agent-memory/
+.claude/hooks/.logs/

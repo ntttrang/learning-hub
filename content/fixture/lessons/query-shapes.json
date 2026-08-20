@@ -1,0 +1,43 @@
+{
+  "id": "lesson-query-shapes",
+  "domainId": "d2",
+  "moduleId": "m-querying",
+  "order": 1,
+  "slug": "query-shapes",
+  "title": "Query shapes",
+  "summary": "The handful of SQL shapes that cover most analytical questions.",
+  "minutes": 8,
+  "difficulty": "beginner",
+  "blocks": [
+    { "kind": "heading", "text": "The analytic core", "level": 2 },
+    {
+      "kind": "md",
+      "body": "Almost every reporting query is one of three shapes: aggregate, join, or window."
+    },
+    {
+      "kind": "list",
+      "items": [
+        "Aggregate — collapse rows into a metric",
+        "Join — combine facts with dimensions",
+        "Window — rank or trend without collapsing"
+      ],
+      "ordered": true
+    },
+    {
+      "kind": "code",
+      "language": "sql",
+      "code": "SELECT city, COUNT(*) AS trips\nFROM trips\nGROUP BY city\nORDER BY trips DESC;"
+    },
+    { "kind": "tip", "text": "Filter before you aggregate; aggregate before you join when row counts allow." },
+    {
+      "kind": "table",
+      "headers": ["Shape", "Typical question"],
+      "rows": [
+        ["Aggregate", "How many per group?"],
+        ["Join", "How do entities relate?"],
+        ["Window", "Who is first in each group?"]
+      ]
+    }
+  ],
+  "questionIds": ["q-fill"]
+}

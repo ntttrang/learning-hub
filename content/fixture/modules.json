@@ -1,0 +1,20 @@
+[
+  {
+    "id": "m-storage",
+    "domainId": "d1",
+    "order": 1,
+    "code": "01",
+    "title": "Storage models",
+    "summary": "Files, tables, and the lakehouse pattern.",
+    "officialSkills": ["Describe storage models for analytical workloads"],
+    "docIds": ["ms-lakehouse-doc"]
+  },
+  {
+    "id": "m-querying",
+    "domainId": "d2",
+    "order": 2,
+    "title": "Querying",
+    "summary": "Reading data back out with SQL.",
+    "docIds": ["sql-ref"]
+  }
+]

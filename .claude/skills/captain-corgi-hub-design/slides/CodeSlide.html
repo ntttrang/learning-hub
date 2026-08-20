@@ -1,0 +1,57 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<title>Code walkthrough — Captain Corgi</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--ink); overflow: hidden; }
+  .slide { width: 1280px; height: 720px; position: relative; overflow: hidden;
+    background: var(--clay-cream); color: var(--ink); font-family: var(--font-body); display: grid; grid-template-columns: 1.2fr 1fr; }
+  .left { padding: 80px 64px 64px; display: flex; flex-direction: column; gap: 24px; justify-content: space-between; }
+  .right { padding: 64px 64px 64px 0; display: flex; align-items: center; }
+  .kicker { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-weight: 700; font-size: 16px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--captain-red); }
+  .star-pill { width: 28px; height: 28px; }
+  h1 { font-family: var(--font-display); font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+  ul { padding: 0; margin: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  li { display: flex; gap: 14px; font-family: var(--font-body); font-size: 20px; line-height: 1.45; color: var(--ink); }
+  li .num { font-family: var(--font-mono); font-weight: 700; color: var(--corgi-orange); min-width: 32px; }
+  li b { font-weight: 700; color: var(--ink); }
+  .code { background: var(--ink); border-radius: var(--r-xl); padding: 36px 32px; font-family: var(--font-mono); font-size: 20px; line-height: 1.6; color: var(--clay-cream); width: 100%; box-shadow: var(--shadow-3); position: relative; overflow: hidden; }
+  .code::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 36px; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .code::after { content: "rag.go"; position: absolute; top: 9px; left: 24px; font-family: var(--font-mono); font-size: 13px; color: rgba(246,242,234,0.55); letter-spacing: 0.04em; }
+  .dots { position: absolute; top: 13px; right: 24px; display: flex; gap: 6px; }
+  .dots span { width: 10px; height: 10px; border-radius: 999px; }
+  .code pre { margin: 36px 0 0; }
+  .kw { color: #FBC00A; }
+  .str { color: #3BB283; }
+  .fn { color: #51BBD7; }
+  .com { color: #8A9AA5; font-style: italic; }
+  .footer { display: flex; gap: 14px; align-items: center; font-family: var(--font-mono); font-size: 13px; color: var(--ink-3); letter-spacing: 0.06em; text-transform: uppercase; }
+</style></head>
+<body>
+<div class="slide">
+  <div class="left">
+    <div>
+      <span class="kicker"><img class="star-pill" src="../assets/icons/star.svg"/>Walkthrough</span>
+      <h1>Embed, store, retrieve — that's the whole game.</h1>
+    </div>
+    <ul>
+      <li><span class="num">01</span><span><b>Embed</b> the document with the OpenAI API.</span></li>
+      <li><span class="num">02</span><span><b>Store</b> the 1536-dim vector with its id.</span></li>
+      <li><span class="num">03</span><span><b>Query</b>, then return top-K by cosine distance.</span></li>
+    </ul>
+    <div class="footer">Episode 042 · 04:12</div>
+  </div>
+  <div class="right">
+    <div class="code">
+      <div class="dots"><span style="background:#E13429"></span><span style="background:#FBC00A"></span><span style="background:#3BB283"></span></div>
+<pre><span class="com">// embed + store</span>
+<span class="kw">func</span> <span class="fn">Embed</span>(text <span class="kw">string</span>) Vec {
+  v := openai.<span class="fn">Embed</span>(text)
+  <span class="kw">if</span> len(v) != <span class="str">1536</span> {
+    <span class="kw">panic</span>(<span class="str">"wrong dim"</span>)
+  }
+  <span class="kw">return</span> v
+}</pre>
+    </div>
+  </div>
+</div></body></html>

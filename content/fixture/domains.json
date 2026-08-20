@@ -1,0 +1,18 @@
+[
+  {
+    "id": "d1",
+    "order": 1,
+    "code": "D1",
+    "title": "Core concepts",
+    "weight": "35-40%",
+    "summary": "Storage models and how data lands in a lake."
+  },
+  {
+    "id": "d2",
+    "order": 2,
+    "code": "D2",
+    "title": "Applied skills",
+    "weight": { "min": 20, "max": 25 },
+    "summary": "Getting data back out with queries."
+  }
+]

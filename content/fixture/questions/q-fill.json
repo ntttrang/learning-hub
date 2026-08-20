@@ -1,0 +1,16 @@
+{
+  "id": "q-fill",
+  "kind": "fill",
+  "domainId": "d2",
+  "moduleId": "m-querying",
+  "lessonId": "lesson-query-shapes",
+  "difficulty": "beginner",
+  "prompt": "Complete the query so it counts trips per city.",
+  "explanation": "COUNT(*) collapses rows; GROUP BY city produces one output row per city.",
+  "template": "SELECT city, ___(*) FROM trips ___ city;",
+  "blanks": [
+    { "answer": "COUNT", "alternatives": ["count"] },
+    { "answer": "GROUP BY", "alternatives": ["group by"] }
+  ],
+  "tags": ["sql"]
+}

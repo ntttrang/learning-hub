@@ -1,0 +1,17 @@
+{
+  "id": "q-order",
+  "kind": "order",
+  "domainId": "d1",
+  "moduleId": "m-storage",
+  "lessonId": "lesson-storage-models",
+  "difficulty": "beginner",
+  "prompt": "Order the medallion architecture stages from rawest to most refined.",
+  "explanation": "Data lands in bronze, is cleansed into silver, and is served from gold.",
+  "options": [
+    { "id": "bronze", "text": "Bronze" },
+    { "id": "silver", "text": "Silver" },
+    { "id": "gold", "text": "Gold" }
+  ],
+  "correct": ["bronze", "silver", "gold"],
+  "tags": ["medallion"]
+}

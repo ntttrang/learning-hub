@@ -1,0 +1,42 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<title>Lower third — Captain Corgi</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: #111; overflow: hidden; }
+  .slide { width: 1280px; height: 720px; position: relative;
+    background: linear-gradient(135deg, #1F2A33 0%, #2C3A45 50%, #1F2A33 100%); }
+  /* fake camera frame */
+  .stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .stage::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(81,187,215,0.18), transparent 50%); }
+  .mascot-big { width: 480px; height: 480px; border-radius: 999px; object-fit: cover; box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
+  /* lower third */
+  .third { position: absolute; bottom: 56px; left: 56px; right: 56px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+  .left { display: flex; align-items: center; gap: 22px; }
+  .star-bg { width: 96px; height: 96px; background: var(--star-yellow); border-radius: var(--r-lg); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 24px rgba(0,0,0,0.35); }
+  .info { background: rgba(31,42,51,0.78); backdrop-filter: blur(12px); padding: 16px 24px; border-radius: var(--r-lg); border: 1.5px solid rgba(246,242,234,0.10); }
+  .name { font-family: var(--font-display); font-weight: 800; font-size: 36px; color: var(--clay-cream); letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
+  .role { font-family: var(--font-mono); font-size: 14px; color: var(--star-yellow); letter-spacing: 0.10em; text-transform: uppercase; font-weight: 700; }
+  .right { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+  .ep-chip { background: var(--captain-red); color: white; font-family: var(--font-mono); font-size: 13px; padding: 6px 14px; border-radius: 999px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; box-shadow: var(--shadow-2); }
+  .handle { font-family: var(--font-mono); font-size: 14px; color: rgba(246,242,234,0.7); letter-spacing: 0.06em; }
+</style></head>
+<body>
+<div class="slide">
+  <div class="stage">
+    <img class="mascot-big" src="../assets/captain-corgi-avatar.png" alt=""/>
+  </div>
+  <div class="third">
+    <div class="left">
+      <div class="star-bg"><img src="../assets/icons/star.svg" width="64" height="64"/></div>
+      <div class="info">
+        <div class="name">Captain Corgi</div>
+        <div class="role">Host · Software & AI</div>
+      </div>
+    </div>
+    <div class="right">
+      <span class="ep-chip">● Live · Episode 042</span>
+      <span class="handle">@captain-corgi</span>
+    </div>
+  </div>
+</div></body></html>

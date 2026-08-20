@@ -1,0 +1,48 @@
+[
+  {
+    "id": "cmp-engines",
+    "title": "Three engines, one lake",
+    "description": "How three query engines read the same files differently.",
+    "columns": [
+      { "id": "postgres", "label": "PostgreSQL" },
+      { "id": "fabric", "label": "Fabric Warehouse" },
+      { "id": "duckdb", "label": "DuckDB" }
+    ],
+    "rows": [
+      {
+        "aspect": "Primary niche",
+        "cells": {
+          "postgres": "Operational + analytics on moderate data",
+          "fabric": "Enterprise lakehouse analytics",
+          "duckdb": "Single-node embedded analytics"
+        }
+      },
+      {
+        "aspect": "Lake file reads",
+        "cells": {
+          "postgres": "Via foreign data wrappers",
+          "fabric": "Native over OneLake",
+          "duckdb": "Native Parquet extension"
+        }
+      },
+      {
+        "aspect": "Setup weight",
+        "cells": {
+          "postgres": "Server process",
+          "fabric": "Cloud tenant",
+          "duckdb": "Single binary / npm install"
+        }
+      }
+    ],
+    "samples": [
+      {
+        "label": "Count rows in a Parquet file",
+        "code": {
+          "postgres": "SELECT COUNT(*) FROM parquet_fdw('trips.parquet');",
+          "fabric": "SELECT COUNT(*) FROM OPENROWSET(BULK 'trips.parquet') AS r;",
+          "duckdb": "SELECT COUNT(*) FROM 'trips.parquet';"
+        }
+      }
+    ]
+  }
+]

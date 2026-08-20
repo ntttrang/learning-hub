@@ -1,0 +1,17 @@
+{
+  "id": "q-multi",
+  "kind": "multi",
+  "domainId": "d1",
+  "moduleId": "m-storage",
+  "lessonId": "lesson-storage-models",
+  "difficulty": "beginner",
+  "prompt": "Which two are open columnar file formats? (choose two)",
+  "explanation": "Parquet and Delta are columnar file formats; a rowstore heap and page cache are not file formats.",
+  "options": [
+    { "id": "parquet", "text": "Parquet" },
+    { "id": "delta", "text": "Delta" },
+    { "id": "heap", "text": "Rowstore heap" }
+  ],
+  "correct": ["parquet", "delta"],
+  "tags": ["formats"]
+}

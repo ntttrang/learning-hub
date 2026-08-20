@@ -1,0 +1,86 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { background: #2A2A2A; padding: 14px; font-family: var(--font-body); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .panel { border-radius: var(--r-md); overflow: hidden; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; min-height: 280px; }
+  .panel .head { padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase; font-weight: 700; }
+  .dot { width: 9px; height: 9px; border-radius: 999px; box-shadow: 0 0 0 2px rgba(0,0,0,0.18); }
+  .body { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+  .title { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; line-height: 1.05; margin: 0; }
+  .sub { font-size: 12px; line-height: 1.45; margin: 0; }
+  .row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; }
+  .pill { padding: 4px 10px; border-radius: 999px; font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.04em; }
+  .btn { padding: 7px 12px; border-radius: var(--r-sm); font-family: var(--font-body); font-weight: 700; font-size: 12px; border: none; }
+  .code { font-family: var(--font-mono); font-size: 11px; padding: 7px 10px; border-radius: var(--r-xs); }
+
+  /* Light panel — force the theme inside via inline data-theme on the panel itself */
+  .panel.light  { background: #F6F2EA; color: #1F2A33; }
+  .panel.light  .head { background: #EFE9DC; color: #6B7780; border-bottom: 1px solid rgba(31,42,51,0.10); }
+  .panel.light  .sub { color: #38454F; }
+  .panel.light  .btn { background: #FC8903; color: #FFFFFF; box-shadow: 0 2px 4px rgba(225,52,41,0.18); }
+  .panel.light  .pill.a { background: #FBC00A; color: #1F2A33; }
+  .panel.light  .pill.b { background: rgba(81,187,215,0.18); color: #2E9CBA; }
+  .panel.light  .code { background: #1F2A33; color: #F6F2EA; }
+
+  .panel.dark   { background: #161D24; color: #ECE2D0; }
+  .panel.dark   .head { background: #1F2A33; color: #BCB1A0; border-bottom: 1px solid rgba(236,226,208,0.10); }
+  .panel.dark   .sub { color: #BCB1A0; }
+  .panel.dark   .btn { background: #FC8903; color: #FFF3DD; box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 2px 4px rgba(0,0,0,0.4); }
+  .panel.dark   .pill.a { background: #FBC00A; color: #1F2A33; }
+  .panel.dark   .pill.b { background: rgba(127,208,230,0.18); color: #7FD0E6; }
+  .panel.dark   .code { background: #0F151A; color: #ECE2D0; }
+
+  .panel.night  { background: #15100A; color: #C9A878; }
+  .panel.night  .head { background: #1E1610; color: #9A8158; border-bottom: 1px solid rgba(201,168,120,0.14); }
+  .panel.night  .sub { color: #9A8158; }
+  .panel.night  .btn { background: #B86E1A; color: #FFE0B2; box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 2px 4px rgba(0,0,0,0.6); }
+  .panel.night  .pill.a { background: #D9A209; color: #1A130C; }
+  .panel.night  .pill.b { background: rgba(168,134,84,0.22); color: #D9A209; }
+  .panel.night  .code { background: #0A0703; color: #C9A878; }
+</style></head>
+<body>
+<div class="grid">
+  <div class="panel light">
+    <div class="head"><span>Light</span><span class="dot" style="background:#F6F2EA;box-shadow:inset 0 0 0 1.5px #E6DECB"></span></div>
+    <div class="body">
+      <h3 class="title">Set sail</h3>
+      <p class="sub">Clay paper. The default mode — warm, friendly, daylight.</p>
+      <div class="code">const ok = true;</div>
+      <div class="row">
+        <span class="pill a">New</span>
+        <span class="pill b">Tutorial</span>
+        <button class="btn">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="panel dark">
+    <div class="head"><span>Dark</span><span class="dot" style="background:#161D24"></span></div>
+    <div class="body">
+      <h3 class="title">Set sail</h3>
+      <p class="sub">Warm-tinted night. Brand accents stay vivid; surfaces a touch teal.</p>
+      <div class="code">const ok = true;</div>
+      <div class="row">
+        <span class="pill a">New</span>
+        <span class="pill b">Tutorial</span>
+        <button class="btn">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="panel night">
+    <div class="head"><span>Deep night</span><span class="dot" style="background:#15100A"></span></div>
+    <div class="body">
+      <h3 class="title">Set sail</h3>
+      <p class="sub">Amber-on-near-black. Low blue light, low contrast — for 2am reading.</p>
+      <div class="code">const ok = true;</div>
+      <div class="row">
+        <span class="pill a">New</span>
+        <span class="pill b">Tutorial</span>
+        <button class="btn">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

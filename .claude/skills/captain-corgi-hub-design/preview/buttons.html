@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--clay-cream); }
+  .wrap { padding: 24px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn { font-family: var(--font-body); font-weight: 700; font-size: 15px; padding: 12px 22px; border-radius: var(--r-lg); border: var(--bw) solid transparent; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: transform var(--dur-fast) var(--ease-clay), box-shadow var(--dur-fast) var(--ease-out); box-shadow: var(--shadow-1); }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+  .btn:active { transform: scale(0.97); box-shadow: var(--shadow-1); }
+  .primary { background: var(--corgi-orange); color: white; }
+  .secondary { background: white; color: var(--ink); border-color: var(--border-strong); }
+  .danger { background: var(--captain-red); color: white; }
+  .ghost { background: transparent; color: var(--ink); box-shadow: none; }
+  .ghost:hover { background: var(--clay-cream-2); box-shadow: none; transform: none; }
+  .link { background: transparent; color: var(--sky-cyan-deep); box-shadow: none; padding: 6px 8px; text-decoration: underline; text-underline-offset: 4px; }
+  .star { width: 14px; height: 14px; }
+</style></head>
+<body>
+<div class="wrap">
+  <button class="btn primary">Subscribe<svg class="star" viewBox="0 0 24 24" fill="white"><path d="M12 2 L14.6 9 L22 9.5 L16.2 14.5 L18 22 L12 18 L6 22 L7.8 14.5 L2 9.5 L9.4 9 Z"/></svg></button>
+  <button class="btn secondary">Watch later</button>
+  <button class="btn danger">Unsubscribe</button>
+  <button class="btn ghost">Share</button>
+  <button class="btn link">Open in YouTube →</button>
+</div></body></html>

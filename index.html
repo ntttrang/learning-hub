@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // Theme before first paint: pin data-theme only for explicit
+      // light/dark/night. 'auto' (or nothing) leaves <html> bare so the
+      // prefers-color-scheme fallback in tokens.css drives the scheme.
+      try {
+        var t = localStorage.getItem('cc-theme');
+        if (t === 'light' || t === 'dark' || t === 'night') {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      } catch (e) {}
+    </script>
+    <link rel="icon" type="image/svg+xml" href="brand/icons/star.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Captain Corgi Learning Hub — one hub for every subject you study: lessons, labs, practice questions, and mock exams."
+    />
+    <title>Captain Corgi Learning Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="cc-body">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

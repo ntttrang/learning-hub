@@ -1,0 +1,18 @@
+{
+  "id": "q-single",
+  "kind": "single",
+  "domainId": "d1",
+  "moduleId": "m-storage",
+  "lessonId": "lesson-storage-models",
+  "difficulty": "beginner",
+  "prompt": "In a lakehouse, what physically stores the data?",
+  "explanation": "The physical layer is files in object storage; tables are metadata layered on top.",
+  "options": [
+    { "id": "files", "text": "Files in object storage" },
+    { "id": "rowstore", "text": "A rowstore heap" },
+    { "id": "memory", "text": "Engine memory only" }
+  ],
+  "correct": "files",
+  "tags": ["storage"],
+  "docIds": ["ms-lakehouse-doc"]
+}

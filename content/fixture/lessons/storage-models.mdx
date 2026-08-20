@@ -1,0 +1,36 @@
+---
+id: lesson-storage-models
+domainId: d1
+moduleId: m-storage
+order: 1
+slug: storage-models
+title: Storage models
+summary: When to store data as files, tables, or both in a lakehouse.
+minutes: 12
+difficulty: beginner
+flagship: true
+labId: lab-explore
+questionIds:
+  - q-single
+  - q-multi
+  - q-order
+references:
+  - title: Lakehouse docs
+    url: https://example.com/docs/lakehouse
+docIds:
+  - ms-lakehouse-doc
+---
+
+Every analytical platform answers the same question first: **where do the bytes live?**
+A lakehouse answers "in files in object storage, with table semantics layered on top".
+
+That single sentence carries three ideas worth separating:
+
+- Files are the physical layer — Parquet on cheap, durable storage.
+- Tables are metadata — schemas, statistics, and transactional guarantees.
+- The engine is replaceable because it reads the same files either way.
+
+## Why it matters
+
+When storage and compute are decoupled, one copy of data can serve many engines.
+You stop copying data into each tool and start granting each tool access instead.

@@ -1,0 +1,41 @@
+[
+  {
+    "id": "lab-explore",
+    "domainId": "d1",
+    "lessonId": "lesson-storage-models",
+    "title": "Explore a lakehouse table",
+    "minutes": 20,
+    "summary": "Query files through table semantics on a trips dataset.",
+    "difficulty": "beginner",
+    "scenario": "A city bike-share dumps raw trips into the lake hourly; analysts read them through a table.",
+    "objective": "Prove you can read lake files through SQL.",
+    "prerequisites": ["lesson-storage-models"],
+    "engines": ["postgresql", "fabric"],
+    "schemaSql": "CREATE TABLE trips (id INT, city TEXT, started_at TIMESTAMP);",
+    "seedSql": "INSERT INTO trips VALUES (1, 'Oslo', NOW()), (2, 'Lima', NOW());",
+    "engineNotes": {
+      "postgresql": "Any version 14+ works for this lab.",
+      "fabric": "Use the warehouse SQL endpoint."
+    },
+    "outcomes": ["Row counts over lake files via SQL"],
+    "checks": ["COUNT query returns exactly one row"],
+    "steps": [
+      {
+        "title": "Count the trips",
+        "instructions": "Count all rows in the `trips` table.",
+        "starterSql": "SELECT ___ FROM trips;",
+        "hint": "COUNT(*) counts every row.",
+        "solution": "SELECT COUNT(*) FROM trips;",
+        "expectedOutput": "| count |\n|------|\n| 2 |",
+        "validation": "Exactly one row with one column."
+      },
+      {
+        "title": "Per-city counts",
+        "instructions": "Count trips grouped by city.",
+        "hint": "GROUP BY city",
+        "solution": "SELECT city, COUNT(*) FROM trips GROUP BY city;"
+      }
+    ],
+    "solutionExplanation": "Both steps are aggregates; the second adds a grouping key."
+  }
+]

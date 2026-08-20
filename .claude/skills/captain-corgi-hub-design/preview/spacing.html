@@ -1,0 +1,28 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--clay-cream); }
+  .wrap { padding: 20px 24px; }
+  .row { display: flex; gap: 6px; align-items: flex-end; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .bar { background: var(--corgi-orange); border-radius: 4px; }
+  .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); }
+  .px { font-family: var(--font-mono); font-size: 10px; color: var(--ink); font-weight: 600; }
+  h4 { font-family: var(--font-display); margin: 0 0 12px; font-size: 14px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+</style></head>
+<body>
+<div class="wrap">
+  <h4>Spacing scale — 4 px base</h4>
+  <div class="row">
+    <div class="item"><div class="bar" style="width:4px;height:8px"></div><div class="px">1</div><div class="lbl">4</div></div>
+    <div class="item"><div class="bar" style="width:8px;height:12px"></div><div class="px">2</div><div class="lbl">8</div></div>
+    <div class="item"><div class="bar" style="width:12px;height:18px"></div><div class="px">3</div><div class="lbl">12</div></div>
+    <div class="item"><div class="bar" style="width:16px;height:26px"></div><div class="px">4</div><div class="lbl">16</div></div>
+    <div class="item"><div class="bar" style="width:24px;height:36px"></div><div class="px">5</div><div class="lbl">24</div></div>
+    <div class="item"><div class="bar" style="width:32px;height:48px"></div><div class="px">6</div><div class="lbl">32</div></div>
+    <div class="item"><div class="bar" style="width:48px;height:64px"></div><div class="px">7</div><div class="lbl">48</div></div>
+    <div class="item"><div class="bar" style="width:64px;height:80px"></div><div class="px">8</div><div class="lbl">64</div></div>
+    <div class="item"><div class="bar" style="width:96px;height:96px"></div><div class="px">9</div><div class="lbl">96</div></div>
+  </div>
+</div></body></html>

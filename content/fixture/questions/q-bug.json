@@ -1,0 +1,15 @@
+{
+  "id": "q-bug",
+  "kind": "bug",
+  "domainId": "d2",
+  "difficulty": "intermediate",
+  "prompt": "The query fails. Which line is responsible?",
+  "explanation": "The alias `n` is defined in the SELECT list, but the WHERE clause runs before SELECT — filter on `name` instead.",
+  "codeLines": [
+    "SELECT name AS n",
+    "FROM users",
+    "WHERE n = 'Ada'"
+  ],
+  "buggyLineIndex": 2,
+  "tags": ["sql", "scoping"]
+}

@@ -1,0 +1,468 @@
+/*
+  Hub application styles — layout shell, views, and chrome ported from
+  mockups/learning-hub-mockup.html, expressed through the brand tokens in
+  tokens.css. Subject-specific looks come from accent vars, never hex.
+*/
+
+/* Lucide icon contract for the whole app: 1.75 stroke, rounded caps. */
+svg.lucide {
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: var(--link);
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ============ Layout shell ============ */
+.app {
+  display: grid;
+  grid-template-columns: 248px 1fr;
+  min-height: 100vh;
+}
+.rail {
+  background: var(--bg-elevated);
+  border-right: var(--bw) solid var(--border);
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px 14px;
+  text-decoration: none;
+  color: inherit;
+}
+.brand .star {
+  width: 34px;
+  height: 34px;
+  flex: none;
+}
+.brand .wordmark {
+  height: 30px;
+  width: auto;
+  color: var(--fg);
+}
+.rail .grp {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-4);
+  font-weight: 800;
+  padding: 14px 10px 4px;
+}
+.navi {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--r-md);
+  color: var(--fg-2);
+  font-weight: 700;
+  font-size: 14px;
+  border: var(--bw) solid transparent;
+  background: none;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+.navi:hover {
+  background: var(--bg-sunken);
+}
+.navi.on {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: var(--fg);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.pip {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-full);
+  flex: none;
+}
+.rail-foot {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: var(--bw) solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.avatar-img {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-full);
+  object-fit: cover;
+  flex: none;
+}
+.rail-foot .who {
+  font-size: 12.5px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.rail-foot .who span {
+  color: var(--fg-3);
+  font-weight: 700;
+}
+
+/* ============ Topbar ============ */
+.main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: var(--bw) solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 26px;
+}
+.crumb {
+  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.menu-btn {
+  display: none;
+  border: var(--bw) solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--fg-2);
+  border-radius: var(--r-md);
+  padding: 7px;
+  line-height: 0;
+}
+.menu-btn:hover {
+  color: var(--fg);
+}
+
+/* Drawer scrim — only visible while the mobile drawer is open. */
+.scrim {
+  display: none;
+}
+
+/* ============ Content ============ */
+.view {
+  padding: 26px 30px 60px;
+  max-width: 1280px;
+  width: 100%;
+}
+.eyebrow {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  color: var(--accent);
+}
+.h-hero {
+  font-size: 38px;
+  line-height: 1.05;
+  margin: 6px 0;
+}
+.sub {
+  color: var(--fg-2);
+  font-size: 16px;
+  max-width: 64ch;
+}
+.hub-hero {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 4px 0 10px;
+}
+.hub-hero img {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--r-lg);
+  object-fit: cover;
+  box-shadow: var(--shadow-2);
+  flex: none;
+}
+
+.section-h {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 34px 0 14px;
+}
+.section-h h2 {
+  font-size: 22px;
+}
+.section-h .hint {
+  color: var(--fg-3);
+  font-size: 13px;
+  margin-left: auto;
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.card {
+  background: var(--bg-elevated);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-1);
+  transition:
+    transform var(--dur-fast) var(--ease-clay),
+    box-shadow var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+  border-color: var(--border-strong);
+}
+.card .top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.badge {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-md);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--accent-fg);
+  font-size: 11.5px;
+  flex: none;
+  box-shadow: var(--shadow-1);
+  text-align: center;
+  line-height: 1.1;
+  padding: 2px;
+}
+.card h3 {
+  font-size: 17px;
+}
+.card .meta {
+  color: var(--fg-3);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+.card p {
+  margin: 0;
+  color: var(--fg-2);
+  font-size: 13.5px;
+  flex: 1;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: var(--r-full);
+  background: var(--bg-sunken);
+  color: var(--fg-2);
+}
+.card .foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--fg-3);
+  font-weight: 800;
+}
+.status {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--r-full);
+}
+.status.soon {
+  background: var(--bg-sunken);
+  color: var(--fg-3);
+}
+
+/* ============ Subject workspace ============ */
+.subject-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-elevated);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-1);
+}
+.subject-head .head-text {
+  flex: 1;
+  min-width: 0;
+}
+.badge-lg {
+  width: 60px;
+  height: 60px;
+  font-size: 13px;
+}
+.ws-title {
+  font-size: 28px;
+  margin: 2px 0;
+}
+.ws-sub {
+  font-size: 14px;
+  margin: 0;
+}
+.tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 20px 0 18px;
+  border-bottom: var(--bw) solid var(--border);
+}
+.tab {
+  border: none;
+  background: none;
+  padding: 10px 15px;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--fg-3);
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1.5px;
+}
+.tab.on {
+  color: var(--fg);
+  border-color: var(--accent);
+}
+.tab:hover:not(:disabled) {
+  color: var(--fg);
+}
+.tab:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ============ Empty state ============ */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 56px 24px;
+}
+.empty-state-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--r-full);
+  background: var(--bg-sunken);
+  color: var(--fg-3);
+}
+.empty-state h2 {
+  margin: 0;
+}
+.empty-state p {
+  margin: 0;
+  color: var(--fg-2);
+  max-width: 52ch;
+}
+
+/* ============ Mobile: rail becomes a drawer ============ */
+@media (max-width: 900px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+  .rail {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(280px, 84vw);
+    height: 100vh;
+    z-index: 40;
+    transform: translateX(-102%);
+    transition: transform var(--dur-fast) var(--ease-out);
+    box-shadow: var(--shadow-3);
+  }
+  .app.nav-open .rail {
+    transform: none;
+  }
+  .app.nav-open .scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    background: color-mix(in srgb, black 42%, transparent);
+  }
+  .menu-btn {
+    display: inline-flex;
+  }
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hub-hero img {
+    width: 72px;
+    height: 72px;
+  }
+  .view {
+    padding: 20px 18px 60px;
+  }
+}
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .h-hero {
+    font-size: 30px;
+  }
+}
+
+/* ============ Reduced motion ============ */
+/* Zero-duration pattern rather than `transform: none`: the mobile drawer's
+   hidden position is itself a transform, and forcing it to none would pin
+   the drawer open for reduced-motion users. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

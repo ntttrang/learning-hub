@@ -1,0 +1,16 @@
+{
+  "id": "q-code-reading",
+  "kind": "codeReading",
+  "domainId": "d2",
+  "difficulty": "intermediate",
+  "prompt": "What does this query return?",
+  "explanation": "DISTINCT collapses duplicate cities, so each city appears exactly once.",
+  "code": "SELECT DISTINCT city\nFROM customers\nORDER BY city;",
+  "options": [
+    { "id": "unique-cities", "text": "Each city once, alphabetically" },
+    { "id": "all-rows", "text": "Every row of customers" },
+    { "id": "city-counts", "text": "One row per city with its row count" }
+  ],
+  "correct": "unique-cities",
+  "tags": ["sql", "distinct"]
+}

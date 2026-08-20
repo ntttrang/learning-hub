@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Captain Corgi Learning Hub — unified platform mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+(() => {
+  try {
+    const t = localStorage.getItem('cc-theme');
+    if (t === 'light' || t === 'dark' || t === 'night') document.documentElement.setAttribute('data-theme', t);
+  } catch (_) {}
+})();
+</script>
+<style>
+/* ============ Captain Corgi brand tokens (subset) ============ */
+:root{
+  --corgi-orange:#FC8903;--captain-red:#E13429;--star-yellow:#FBC00A;--sky-cyan:#51BBD7;
+  --hub-green:#3BB283;--hub-coral:#DD5D5D;--deep-teal:#3D768E;--petal-pink:#F2A8BC;
+  color-scheme:light;
+  --bg:#F6F2EA;--bg-elevated:#FFFFFF;--bg-sunken:#EFE9DC;
+  --fg:#1F2A33;--fg-2:#38454F;--fg-3:#6B7780;--fg-4:#A0A9B0;
+  --border:rgba(31,42,51,.10);--border-soft:rgba(31,42,51,.06);--border-strong:rgba(31,42,51,.18);
+  --accent:#FC8903;--accent-fg:#fff;--info:#51BBD7;--success:#3BB283;--warning:#FBC00A;--danger:#E13429;
+  --link:#2E9CBA;
+  --shadow-1:0 1px 2px rgba(31,42,51,.06),0 1px 1px rgba(31,42,51,.04);
+  --shadow-2:0 6px 14px rgba(225,52,41,.08),0 2px 4px rgba(31,42,51,.06);
+  --shadow-3:0 16px 32px rgba(225,52,41,.10),0 4px 8px rgba(31,42,51,.08);
+  --font-display:'Bricolage Grotesque','Nunito',system-ui,sans-serif;
+  --font-body:'Nunito',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r-sm:8px;--r-md:12px;--r-lg:20px;--r-xl:28px;--r-full:999px;
+  --bw:1.5px;
+  --ease-clay:cubic-bezier(0.34,1.56,0.64,1);
+  --ease-out:cubic-bezier(0.22,1,0.36,1);
+  --dur-fast:180ms;--dur-base:240ms;
+  --ring-color:rgba(251,192,10,.9);
+}
+[data-theme="dark"]{
+  color-scheme:dark;--bg:#0E1318;--bg-elevated:#1F2A33;--bg-sunken:#060A0E;
+  --fg:#F8EFDB;--fg-2:#D8CCB5;--fg-3:#A39988;--fg-4:#6E665A;
+  --border:rgba(236,226,208,.12);--border-soft:rgba(236,226,208,.06);--border-strong:rgba(236,226,208,.22);
+  --link:#7FD0E6;--danger:#FF7A6F;
+  --shadow-1:0 1px 2px rgba(0,0,0,.4);--shadow-2:0 6px 14px rgba(0,0,0,.45);--shadow-3:0 16px 32px rgba(0,0,0,.5);
+  --ring-color:rgba(251,192,10,.7);
+}
+[data-theme="night"]{
+  color-scheme:dark;--bg:#0A0704;--bg-elevated:#211710;--bg-sunken:#050301;
+  --fg:#E8C58E;--fg-2:#BFA070;--fg-3:#8A7654;--fg-4:#5C4E36;
+  --border:rgba(201,168,120,.14);--border-soft:rgba(201,168,120,.07);--border-strong:rgba(201,168,120,.24);
+  --accent:#B86E1A;--info:#A88654;--success:#8B7440;--warning:#D9A209;--danger:#C97A2B;--link:#D9A209;
+  --shadow-1:0 1px 2px rgba(0,0,0,.55);--shadow-2:0 4px 10px rgba(0,0,0,.55);--shadow-3:0 12px 24px rgba(0,0,0,.6);
+  --ring-color:rgba(217,162,9,.7);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme:dark;--bg:#0E1318;--bg-elevated:#1F2A33;--bg-sunken:#060A0E;
+    --fg:#F8EFDB;--fg-2:#D8CCB5;--fg-3:#A39988;--fg-4:#6E665A;
+    --border:rgba(236,226,208,.12);--border-soft:rgba(236,226,208,.06);--border-strong:rgba(236,226,208,.22);
+    --link:#7FD0E6;--danger:#FF7A6F;
+    --shadow-1:0 1px 2px rgba(0,0,0,.4);--shadow-2:0 6px 14px rgba(0,0,0,.45);--shadow-3:0 16px 32px rgba(0,0,0,.5);
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--font-body);background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;line-height:1.45}
+h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-.02em;margin:0}
+a{color:var(--link)}
+:focus-visible{outline:3px solid var(--ring-color);outline-offset:4px;box-shadow:none;border-radius:var(--r-sm)}
+button{font-family:inherit;cursor:pointer}
+.mono{font-family:var(--font-mono)}
+.ico{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.ico-sm{width:14px;height:14px}
+
+/* ============ Layout shell ============ */
+.app{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+.rail{background:var(--bg-elevated);border-right:var(--bw) solid var(--border);padding:18px 14px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;padding:6px 8px 14px}
+.brand .star{width:34px;height:34px;flex:none}
+.brand b{font-family:var(--font-display);font-size:16px;line-height:1.05;display:block}
+.brand small{color:var(--fg-3);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.rail .grp{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--fg-4);font-weight:800;padding:14px 10px 4px}
+.navi{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--r-md);color:var(--fg-2);font-weight:700;font-size:14px;border:var(--bw) solid transparent;background:none;width:100%;text-align:left;transition:background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out)}
+.navi:hover{background:var(--bg-sunken)}
+.navi.on{background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--fg);border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
+.navi .cnt{margin-left:auto;font-size:11px;font-weight:800;background:var(--bg-sunken);padding:1px 7px;border-radius:var(--r-full);color:var(--fg-3)}
+.pip{width:8px;height:8px;border-radius:var(--r-full);flex:none;background:currentColor}
+.rail-foot{margin-top:auto;padding-top:12px;border-top:var(--bw) solid var(--border);display:flex;align-items:center;gap:10px}
+.avatar{width:32px;height:32px;border-radius:var(--r-full);background:var(--deep-teal);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px;flex:none}
+
+/* ============ Topbar ============ */
+.main{min-width:0;display:flex;flex-direction:column}
+.topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(12px);border-bottom:var(--bw) solid var(--border);display:flex;align-items:center;gap:14px;padding:12px 26px}
+.crumb{font-weight:800;font-family:var(--font-display);font-size:15px;display:flex;align-items:center;gap:8px}
+.crumb .sep{color:var(--fg-4)}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--bg-elevated);border:var(--bw) solid var(--border);border-radius:var(--r-full);padding:8px 14px;color:var(--fg-3);font-size:13px;min-width:230px}
+.search kbd{margin-left:auto;font-family:var(--font-mono);font-size:11px;background:var(--bg-sunken);padding:1px 6px;border-radius:6px}
+.pill{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--star-yellow) 22%,transparent);color:var(--fg);border-radius:var(--r-full);padding:7px 13px;font-weight:800;font-size:13px;border:var(--bw) solid color-mix(in srgb,var(--star-yellow) 45%,transparent)}
+
+/* ============ Content ============ */
+.view{padding:26px 30px 60px;max-width:1280px;width:100%}
+.view[hidden]{display:none}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--accent)}
+.h-hero{font-size:38px;line-height:1.05;margin:6px 0 6px}
+.sub{color:var(--fg-2);font-size:16px;max-width:64ch}
+
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:22px 0 6px}
+.stat{background:var(--bg-elevated);border:var(--bw) solid var(--border);border-radius:var(--r-lg);padding:20px 24px;box-shadow:var(--shadow-1)}
+.stat .n{font-family:var(--font-display);font-size:30px;font-weight:800;line-height:1}
+.stat .l{color:var(--fg-3);font-size:13px;font-weight:700;margin-top:6px}
+.stat .n small{font-size:14px;color:var(--fg-3);font-weight:700}
+
+.continue{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;background:var(--deep-teal);color:#F6F2EA;border-radius:var(--r-xl);padding:22px 140px 22px 26px;margin:22px 0;box-shadow:var(--shadow-3);position:relative;overflow:hidden}
+.continue::after{content:"";position:absolute;right:-20px;top:-50px;width:80%;height:220px;border-radius:50%;background:radial-gradient(circle at 40% 40%,color-mix(in srgb,var(--sky-cyan) 35%,transparent),transparent 70%);pointer-events:none}
+.continue > *{position:relative;z-index:1}
+.continue .mascot{position:absolute;right:22px;top:50%;transform:translateY(-50%);width:96px;height:96px;object-fit:cover;border-radius:var(--r-lg);z-index:1;pointer-events:none;box-shadow:var(--shadow-2)}
+.continue .lab{font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--star-yellow)}
+.continue h3{font-size:24px;margin:6px 0}
+.continue p{margin:0;color:rgba(246,242,234,.82);font-size:14px}
+.btn{border:none;border-radius:var(--r-lg);padding:12px 22px;font-weight:800;font-size:14px;background:var(--accent);color:var(--accent-fg);box-shadow:var(--shadow-2);transition:transform var(--dur-fast) var(--ease-clay), box-shadow var(--dur-fast) var(--ease-out)}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-3)}
+.btn:active{transform:scale(0.97);box-shadow:var(--shadow-1)}
+.btn.ghost{background:rgba(255,255,255,.14);color:#fff;box-shadow:none;border:var(--bw) solid rgba(255,255,255,.28)}
+.btn.soft{background:var(--bg-elevated);color:var(--fg);border:var(--bw) solid var(--border);box-shadow:var(--shadow-1)}
+.btn .row{display:inline-flex;align-items:center;gap:8px}
+
+.section-h{display:flex;align-items:center;gap:12px;margin:34px 0 14px}
+.section-h h2{font-size:22px}
+.section-h .hint{color:var(--fg-3);font-size:13px;margin-left:auto;font-weight:700}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--bg-elevated);border:var(--bw) solid var(--border);border-radius:var(--r-lg);padding:24px;box-shadow:var(--shadow-1);transition:transform var(--dur-fast) var(--ease-clay), box-shadow var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);text-align:left;display:flex;flex-direction:column;gap:12px}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-2);border-color:var(--border-strong)}
+.card .top{display:flex;align-items:center;gap:12px}
+.badge{width:46px;height:46px;border-radius:var(--r-md);display:grid;place-items:center;font-family:var(--font-display);font-weight:800;color:#fff;font-size:13px;flex:none;box-shadow:var(--shadow-1);text-align:center;line-height:1}
+.card h3{font-size:17px}
+.card .meta{color:var(--fg-3);font-size:12.5px;font-weight:700}
+.card p{margin:0;color:var(--fg-2);font-size:13.5px;flex:1}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:11px;font-weight:800;padding:3px 9px;border-radius:var(--r-full);background:var(--bg-sunken);color:var(--fg-2)}
+.prog{height:8px;border-radius:var(--r-full);background:var(--bg-sunken);overflow:hidden}
+.prog i{display:block;height:100%;border-radius:var(--r-full);background:var(--accent)}
+.card .foot{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--fg-3);font-weight:800}
+.status{font-size:11px;font-weight:800;padding:2px 8px;border-radius:var(--r-full)}
+.status.live{background:color-mix(in srgb,var(--success) 20%,transparent);color:var(--success)}
+.status.mig{background:color-mix(in srgb,var(--warning) 26%,transparent);color:#8a6d00}
+.status.soon{background:var(--bg-sunken);color:var(--fg-3)}
+.card.add{border-style:dashed;align-items:center;justify-content:center;text-align:center;color:var(--fg-3);min-height:200px;gap:8px}
+.card.add .plus{width:52px;height:52px;border-radius:var(--r-full);display:grid;place-items:center;background:var(--bg-sunken);color:var(--accent)}
+.card.add .plus .ico{width:26px;height:26px}
+
+.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tool{background:var(--bg-elevated);border:var(--bw) solid var(--border);border-radius:var(--r-lg);padding:16px 24px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--shadow-1)}
+.tool .ic{width:40px;height:40px;border-radius:var(--r-md);display:grid;place-items:center;flex:none;color:#fff}
+.tool .ic .ico{width:18px;height:18px}
+.tool b{font-size:14px}.tool span{display:block;color:var(--fg-3);font-size:12.5px;font-weight:700;margin-top:2px}
+
+.subject-head{display:flex;align-items:center;gap:16px;background:var(--bg-elevated);border:var(--bw) solid var(--border);border-radius:var(--r-xl);padding:20px 24px;box-shadow:var(--shadow-1)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:20px 0 18px;border-bottom:var(--bw) solid var(--border);padding-bottom:0}
+.tab{border:none;background:none;padding:10px 15px;font-weight:800;font-size:14px;color:var(--fg-3);border-bottom:3px solid transparent;margin-bottom:-1.5px}
+.tab.on{color:var(--fg);border-color:var(--accent)}
+.tab:hover{color:var(--fg)}
+
+.domain{background:var(--bg-elevated);border:var(--bw) solid var(--border);border-radius:var(--r-lg);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow-1)}
+.domain>.dh{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--bg-sunken)}
+.domain .dcode{font-family:var(--font-display);font-weight:800;font-size:13px;color:#fff;padding:5px 10px;border-radius:var(--r-sm)}
+.domain .weight{margin-left:auto;font-size:12px;font-weight:800;color:var(--fg-3)}
+.lesson{display:flex;align-items:center;gap:12px;padding:13px 18px;border-top:var(--bw) solid var(--border-soft);font-size:14px}
+.lesson .lc{width:22px;height:22px;border-radius:var(--r-full);border:2px solid var(--border-strong);display:grid;place-items:center;flex:none}
+.lesson .lc .ico{width:12px;height:12px}
+.lesson .lc.done{background:var(--success);border-color:var(--success);color:#fff}
+.lesson .lc.prog{border-color:var(--accent);color:var(--accent)}
+.lesson .lm{margin-left:auto;color:var(--fg-4);font-size:12px;font-weight:700}
+.lesson .ftag{font-size:10px;font-weight:800;color:var(--captain-red);background:color-mix(in srgb,var(--captain-red) 14%,transparent);padding:2px 7px;border-radius:var(--r-full)}
+
+.panel{background:var(--bg-elevated);border:var(--bw) solid var(--border);border-radius:var(--r-lg);padding:20px 24px;box-shadow:var(--shadow-1);margin-bottom:16px}
+.panel h3{font-size:18px;margin-bottom:6px}
+.panel p{color:var(--fg-2);font-size:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.callout{border-left:4px solid var(--accent);background:var(--bg-sunken);padding:12px 16px;border-radius:0 var(--r-md) var(--r-md) 0;font-size:13.5px;color:var(--fg-2)}
+
+.arch{display:flex;flex-direction:column;gap:0;align-items:center}
+.layer{width:100%;border:var(--bw) dashed var(--border-strong);border-radius:var(--r-lg);padding:14px 18px;background:var(--bg-elevated);box-shadow:var(--shadow-1)}
+.layer .lt{font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--fg-3);margin-bottom:10px}
+.layer .row{display:flex;gap:10px;flex-wrap:wrap}
+.box{flex:1;min-width:130px;border:var(--bw) solid var(--border);border-radius:var(--r-md);padding:11px 13px;background:var(--bg-sunken);font-size:13px;font-weight:700}
+.box small{display:block;color:var(--fg-3);font-weight:700;font-size:11.5px;margin-top:3px}
+.arrow{color:var(--fg-4);margin:6px 0;display:grid;place-items:center}
+.arrow .ico{width:22px;height:22px}
+.pluggable{border-color:color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent) 8%,transparent)}
+
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:12px;font-weight:700;color:var(--fg-3)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-1px}
+
+.reg{width:100%;border-collapse:collapse;font-size:13.5px}
+.reg th,.reg td{text-align:left;padding:10px 12px;border-bottom:var(--bw) solid var(--border-soft)}
+.reg th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--fg-3)}
+.reg td.mono{font-family:var(--font-mono);font-size:12.5px;color:var(--fg-2)}
+.check-row{display:flex;align-items:flex-start;gap:8px}
+.check-row .ico{color:var(--success);margin-top:2px}
+.tag{font-size:11px;font-weight:800;padding:2px 8px;border-radius:var(--r-full);background:var(--bg-sunken);color:var(--fg-2)}
+.tag.core{background:color-mix(in srgb,var(--sky-cyan) 22%,transparent);color:var(--deep-teal)}
+.tag.plug{background:color-mix(in srgb,var(--accent) 18%,transparent);color:#9a5300}
+
+.note{font-size:12.5px;color:var(--fg-3);margin-top:8px}
+@media(max-width:1000px){.app{grid-template-columns:1fr}.rail{position:static;height:auto;flex-direction:row;flex-wrap:wrap}.stats{grid-template-columns:repeat(2,1fr)}.grid,.tools{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.continue{grid-template-columns:1fr;padding:22px 26px 96px}.continue .mascot{top:auto;bottom:12px;transform:none;right:18px}}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* Theme toggle — Auto / Light / Dark / Night */
+.cc-theme-toggle {
+  position: fixed; bottom: 18px; right: 18px; z-index: 9999;
+  display: inline-flex; padding: 4px; border-radius: 999px;
+  background: var(--bg-elevated); border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-2); font-family: var(--font-mono);
+  backdrop-filter: blur(8px);
+}
+.cc-theme-toggle button {
+  border: none; background: transparent; cursor: pointer;
+  padding: 7px 12px; border-radius: 999px;
+  color: var(--fg-3); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 6px;
+  white-space: nowrap; overflow: hidden;
+  max-width: 32px;
+  transition:
+    max-width 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    padding   280ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity   200ms ease,
+    background 180ms, color 180ms;
+}
+.cc-theme-toggle button:hover { color: var(--fg); }
+.cc-theme-toggle button[aria-pressed="true"] {
+  background: var(--accent); color: var(--accent-fg);
+}
+.cc-theme-toggle button[data-auto-shadow="true"] {
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+  color: var(--fg);
+}
+.cc-theme-toggle button:not([aria-pressed="true"]) {
+  max-width: 0; padding-left: 0; padding-right: 0;
+  opacity: 0; pointer-events: none;
+}
+.cc-theme-label {
+  display: inline-block; max-width: 0; overflow: hidden;
+  transition: max-width 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cc-theme-toggle:hover button,
+.cc-theme-toggle:focus-within button {
+  max-width: 140px; padding: 7px 12px;
+  opacity: 1; pointer-events: auto;
+}
+.cc-theme-toggle:hover .cc-theme-label,
+.cc-theme-toggle:focus-within .cc-theme-label {
+  max-width: 80px;
+}
+.cc-theme-toggle svg { width: 13px; height: 13px; stroke-width: 2; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+</style>
+</head>
+<body class="cc-body">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 4.5-9 4.5L3 6.5 12 2z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 17.5 9 4.5 9-4.5"/></symbol>
+  <symbol id="i-blocks" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="i-repeat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></symbol>
+  <symbol id="i-bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1.5-3-1 2-3 2.5-3 5a4 4 0 0 0 8 0c0-2.5-2-4.5-4-6.5 1.5 1 3.5 2.5 3.5 5.5a6 6 0 0 1-12 0c0-3 2-5.5 4-7.5 0 2 .5 3.5 2.5 5.5z"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></symbol>
+  <symbol id="i-columns" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18"/></symbol>
+</svg>
+
+<div class="app">
+  <aside class="rail">
+    <div class="brand">
+      <img class="star" src="assets/star.svg" alt="" width="34" height="34" />
+      <div><b>Captain Corgi</b><small>Learning Hub</small></div>
+    </div>
+    <button class="navi on" data-go="home"><svg class="ico"><use href="#i-home"/></svg> Hub home</button>
+    <button class="navi" data-go="subject"><svg class="ico"><use href="#i-layers"/></svg> Subject workspace</button>
+    <button class="navi" data-go="arch"><svg class="ico"><use href="#i-blocks"/></svg> Architecture</button>
+    <button class="navi" data-go="extend"><svg class="ico"><use href="#i-plus"/></svg> Extensibility</button>
+
+    <div class="grp">My subjects</div>
+    <button class="navi" data-go="subject"><span class="pip" style="color:var(--sky-cyan)"></span> DP-800 <span class="cnt">62%</span></button>
+    <button class="navi" data-go="subject"><span class="pip" style="color:var(--hub-green)"></span> GH-200 <span class="cnt">28%</span></button>
+    <button class="navi" data-go="subject"><span class="pip" style="color:var(--corgi-orange)"></span> GH-900 <span class="cnt">80%</span></button>
+    <button class="navi" data-go="subject"><span class="pip" style="color:var(--hub-coral)"></span> GH-600 <span class="cnt">15%</span></button>
+
+    <div class="grp">Tools</div>
+    <button class="navi"><svg class="ico"><use href="#i-repeat"/></svg> Practice <span class="cnt">12 due</span></button>
+    <button class="navi"><svg class="ico"><use href="#i-pencil"/></svg> Notes</button>
+    <button class="navi"><svg class="ico"><use href="#i-bookmark"/></svg> Bookmarks</button>
+
+    <div class="rail-foot">
+      <div class="avatar">TT</div>
+      <div style="font-size:12.5px;font-weight:800;line-height:1.1">Trang<br><span style="color:var(--fg-3);font-weight:700">Local profile</span></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="crumb" id="crumb">Hub home</div>
+      <div class="search"><svg class="ico ico-sm"><use href="#i-search"/></svg> Search subjects, lessons, labs… <kbd>⌘K</kbd></div>
+      <span class="pill"><svg class="ico ico-sm"><use href="#i-flame"/></svg> 7-day streak</span>
+    </div>
+
+    <section class="view" id="v-home">
+      <div class="eyebrow">Unified learning platform</div>
+      <h1 class="h-hero">One hub for every subject you study</h1>
+      <p class="sub">Three separate study apps — DP-800, the GitHub certs, and the GH-600 labs — now live under one roof, sharing the same navigation, progress, practice engine, and brand. New subjects, content types, and tools plug in without a rebuild.</p>
+
+      <div class="stats">
+        <div class="stat"><div class="n">4</div><div class="l">Subjects</div></div>
+        <div class="stat"><div class="n">118</div><div class="l">Lessons</div></div>
+        <div class="stat"><div class="n">27</div><div class="l">Labs</div></div>
+        <div class="stat"><div class="n">870<small>/1000</small></div><div class="l">Best mock score</div></div>
+        <div class="stat"><div class="n">7</div><div class="l">Day streak</div></div>
+      </div>
+
+      <div class="continue">
+        <div>
+          <div class="lab">Continue learning</div>
+          <h3>DP-800 · D2 · Row-Level Security</h3>
+          <p>You're 60% through this flagship lesson. 4 min left, then a 5-question knowledge check.</p>
+        </div>
+        <img class="mascot" src="assets/captain-corgi-hub-avatar.png" alt="Hub crew" width="96" height="96" />
+        <button class="btn" data-go="subject"><span class="row">Resume <svg class="ico"><use href="#i-arrow-right"/></svg></span></button>
+      </div>
+
+      <div class="section-h"><h2>Your subjects</h2><span class="hint">4 active · continuous expansion</span></div>
+      <div class="grid">
+        <button class="card" data-go="subject">
+          <div class="top"><div class="badge" style="background:var(--sky-cyan)">DP<br>800</div>
+            <div><h3>DP-800</h3><div class="meta">SQL AI Developer · 3 domains</div></div></div>
+          <p>Databases, T-SQL, vector search — with cross-engine compare &amp; Docker labs.</p>
+          <div class="chips"><span class="chip">Learn</span><span class="chip">Labs</span><span class="chip">Practice</span><span class="chip">Exams</span><span class="chip">Compare</span></div>
+          <div class="prog"><i style="width:62%"></i></div>
+          <div class="foot"><span>62% complete</span><span class="status live">Live</span></div>
+        </button>
+
+        <button class="card" data-go="subject">
+          <div class="top"><div class="badge" style="background:var(--hub-green)">GH<br>200</div>
+            <div><h3>GH-200</h3><div class="meta">GitHub Actions · 4 domains</div></div></div>
+          <p>CI/CD workflows, runners, secrets, and pipeline automation with hands-on labs.</p>
+          <div class="chips"><span class="chip">Learn</span><span class="chip">Labs</span><span class="chip">Practice</span><span class="chip">Exams</span><span class="chip">Compare</span></div>
+          <div class="prog"><i style="width:28%"></i></div>
+          <div class="foot"><span>28% complete</span><span class="status live">Live</span></div>
+        </button>
+
+        <button class="card" data-go="subject">
+          <div class="top"><div class="badge" style="background:var(--corgi-orange)">GH<br>900</div>
+            <div><h3>GH-900</h3><div class="meta">GitHub Foundations · 4 domains</div></div></div>
+          <p>Git, repos, collaboration &amp; GitHub fundamentals — the on-ramp certification.</p>
+          <div class="chips"><span class="chip">Learn</span><span class="chip">Practice</span><span class="chip">Exams</span></div>
+          <div class="prog"><i style="width:80%"></i></div>
+          <div class="foot"><span>80% complete</span><span class="status live">Live</span></div>
+        </button>
+
+        <button class="card" data-go="subject">
+          <div class="top"><div class="badge" style="background:var(--hub-coral)">GH<br>600</div>
+            <div><h3>GH-600</h3><div class="meta">Go · Docker Hub · AWS · 8 labs</div></div></div>
+          <p>Legacy static exams &amp; labs being migrated into the shared content model.</p>
+          <div class="chips"><span class="chip">Study plan</span><span class="chip">Labs</span><span class="chip">Exams</span></div>
+          <div class="prog"><i style="width:15%"></i></div>
+          <div class="foot"><span>Migrating content</span><span class="status mig">Porting</span></div>
+        </button>
+
+        <button class="card" data-go="extend">
+          <div class="top"><div class="badge" style="background:var(--petal-pink);color:var(--fg)">AZ<br>900</div>
+            <div><h3>AZ-900</h3><div class="meta">Azure Fundamentals</div></div></div>
+          <p>Example of a future subject — drops in as a content pack, no code changes.</p>
+          <div class="chips"><span class="chip">Planned</span></div>
+          <div class="prog"><i style="width:0%"></i></div>
+          <div class="foot"><span>Content pack</span><span class="status soon">Soon</span></div>
+        </button>
+
+        <button class="card add" data-go="extend">
+          <div class="plus"><svg class="ico"><use href="#i-plus"/></svg></div>
+          <b>Add a subject</b>
+          <span class="meta">Scaffold a new content pack from the shared schema</span>
+        </button>
+      </div>
+
+      <div class="section-h"><h2>Learning tools</h2><span class="hint">shared across every subject</span></div>
+      <div class="tools">
+        <div class="tool"><div class="ic" style="background:var(--accent)"><svg class="ico"><use href="#i-repeat"/></svg></div><div><b>Spaced repetition</b><span>12 cards due today across 4 subjects</span></div></div>
+        <div class="tool"><div class="ic" style="background:var(--sky-cyan)"><svg class="ico"><use href="#i-clipboard"/></svg></div><div><b>Mock exam engine</b><span>Timed, per-domain scoring, revision plan</span></div></div>
+        <div class="tool"><div class="ic" style="background:var(--hub-green)"><svg class="ico"><use href="#i-pencil"/></svg></div><div><b>Notes &amp; bookmarks</b><span>34 notes · synced to your profile</span></div></div>
+        <div class="tool"><div class="ic" style="background:var(--hub-coral)"><svg class="ico"><use href="#i-columns"/></svg></div><div><b>Compare matrices</b><span>Cross-tool &amp; cross-engine tables</span></div></div>
+      </div>
+    </section>
+
+    <section class="view" id="v-subject" hidden>
+      <div class="subject-head">
+        <div class="badge" style="background:var(--sky-cyan);width:60px;height:60px;font-size:15px">DP<br>800</div>
+        <div style="flex:1">
+          <div class="eyebrow">Microsoft Certified · SQL AI Developer</div>
+          <h1 style="font-size:28px;margin:2px 0">DP-800 study hub</h1>
+          <p class="sub" style="font-size:14px;margin:0">3 domains · 11 modules · 43 lessons · 3 labs · 2 mock exams</p>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:var(--font-display);font-size:30px;font-weight:800">62%</div>
+          <div style="color:var(--fg-3);font-size:12px;font-weight:800">complete</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab on">Overview</button>
+        <button class="tab">Learn</button>
+        <button class="tab">Labs</button>
+        <button class="tab">Practice</button>
+        <button class="tab">Mock exams</button>
+        <button class="tab">Compare</button>
+        <button class="tab">Notes</button>
+      </div>
+
+      <div class="callout">Every subject inherits the <b>same tab set</b>. A subject only lights up the modes its content pack provides — GH-900 has no Labs tab, GH-600 shows a Study-plan tab. The shell is generic; content drives the UI.</div>
+
+      <div class="section-h"><h2 style="font-size:19px">Curriculum · Learn</h2><span class="hint">domains → modules → lessons</span></div>
+
+      <div class="domain">
+        <div class="dh"><span class="dcode" style="background:var(--sky-cyan)">D1</span><b>Design &amp; implement data storage</b><span class="weight">35–40%</span></div>
+        <div class="lesson"><span class="lc done"><svg class="ico"><use href="#i-check"/></svg></span> JSON columns &amp; functions <span class="ftag">flagship</span><span class="lm">18 min</span></div>
+        <div class="lesson"><span class="lc done"><svg class="ico"><use href="#i-check"/></svg></span> Table design &amp; normalization <span class="lm">12 min</span></div>
+        <div class="lesson"><span class="lc prog"><svg class="ico"><use href="#i-circle"/></svg></span> Indexing strategies <span class="lm">15 min</span></div>
+      </div>
+      <div class="domain">
+        <div class="dh"><span class="dcode" style="background:var(--hub-green)">D2</span><b>Develop data processing</b><span class="weight">40–45%</span></div>
+        <div class="lesson"><span class="lc done"><svg class="ico"><use href="#i-check"/></svg></span> Row-Level Security <span class="ftag">flagship</span><span class="lm">20 min</span></div>
+        <div class="lesson"><span class="lc prog"><svg class="ico"><use href="#i-circle"/></svg></span> Stored procedures &amp; functions <span class="lm">14 min</span></div>
+        <div class="lesson"><span class="lc"><svg class="ico"><use href="#i-circle"/></svg></span> Error handling &amp; transactions <span class="lm">16 min</span></div>
+      </div>
+      <div class="domain">
+        <div class="dh"><span class="dcode" style="background:var(--captain-red)">D3</span><b>AI &amp; vector features</b><span class="weight">20–25%</span></div>
+        <div class="lesson"><span class="lc"><svg class="ico"><use href="#i-circle"/></svg></span> Vector search <span class="ftag">flagship</span><span class="lm">22 min</span></div>
+        <div class="lesson"><span class="lc"><svg class="ico"><use href="#i-circle"/></svg></span> Embeddings &amp; external models <span class="lm">18 min</span></div>
+      </div>
+    </section>
+
+    <section class="view" id="v-arch" hidden>
+      <div class="eyebrow">System design</div>
+      <h1 class="h-hero">How three apps become one platform</h1>
+      <p class="sub">A single React app shell reads typed <b>content packs</b>. Each of the three current apps becomes a content pack conforming to one shared schema, so features built once (practice, SRS, exams, notes, themes) work for every subject.</p>
+
+      <div class="section-h"><h2>Layered architecture</h2></div>
+      <div class="arch">
+        <div class="layer pluggable">
+          <div class="lt">Content packs · pluggable (add subjects here)</div>
+          <div class="row">
+            <div class="box">DP-800 pack <small>from Next.js app → typed data</small></div>
+            <div class="box">GH-200 pack <small>already typed (Vite app)</small></div>
+            <div class="box">GH-900 pack <small>already typed</small></div>
+            <div class="box">GH-600 pack <small>ported from static HTML</small></div>
+            <div class="box pluggable">+ AZ-900 …<small>future packs</small></div>
+          </div>
+        </div>
+        <div class="arrow"><svg class="ico"><use href="#i-chevron-down"/></svg></div>
+        <div class="layer">
+          <div class="lt">Content SDK · one schema + registries</div>
+          <div class="row">
+            <div class="box">Subject / Domain / Module / Lesson</div>
+            <div class="box">Question union <small>single·multi·fill·order·bug·match</small></div>
+            <div class="box">Lab · Exam · Compare</div>
+            <div class="box pluggable">Block-type registry <small>renderer per kind</small></div>
+            <div class="box pluggable">Tool registry <small>opt-in modes</small></div>
+          </div>
+        </div>
+        <div class="arrow"><svg class="ico"><use href="#i-chevron-down"/></svg></div>
+        <div class="layer">
+          <div class="lt">Core engines · built once, reused everywhere</div>
+          <div class="row">
+            <div class="box">Progress</div><div class="box">Spaced repetition</div>
+            <div class="box">Scoring &amp; grading</div><div class="box">Search (⌘K)</div>
+            <div class="box">Streaks &amp; achievements</div>
+          </div>
+        </div>
+        <div class="arrow"><svg class="ico"><use href="#i-chevron-down"/></svg></div>
+        <div class="layer">
+          <div class="lt">App shell · routing, theming, persistence</div>
+          <div class="row">
+            <div class="box">Hub + subject router</div>
+            <div class="box">4 themes (auto/light/dark/night)</div>
+            <div class="box">Storage adapter <small>localStorage → cloud later</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="legend"><span><i style="background:color-mix(in srgb,var(--accent) 55%,#fff)"></i>Pluggable extension point</span><span><i style="background:var(--bg-sunken);border:1.5px solid var(--border)"></i>Shared core</span></div>
+
+      <div class="two" style="margin-top:26px">
+        <div class="panel">
+          <h3>What each app contributes</h3>
+          <table class="reg">
+            <tr><th>App</th><th>Today</th><th>Becomes</th></tr>
+            <tr><td class="mono">learn-dp-800</td><td>Next.js 15</td><td>Content pack + richest content model → base schema</td></tr>
+            <tr><td class="mono">learn-gh-200</td><td>Vite + React 19</td><td>Base of the unified shell + GH-200/900 packs</td></tr>
+            <tr><td class="mono">learn-gh-600</td><td>Static HTML</td><td>Ported to a content pack (exams, labs, plan)</td></tr>
+          </table>
+          <p class="note">Recommendation: build the shell on the Vite + React 19 stack (lightest, already SPA-shaped), adopt DP-800's typed content model as the schema, and migrate content pack by pack.</p>
+        </div>
+        <div class="panel">
+          <h3>Why this shape</h3>
+          <p>All three apps already model the same ideas (Subject → Domain → Lesson/Lab/Question/Exam/Compare + progress, SRS, notes, themes). The only real differences are the <b>stack</b> and the <b>content shapes</b>.</p>
+          <div class="callout">Unify the shell + engines once, express every subject as data, and expansion becomes “write a content pack,” never “fork the app.”</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="v-extend" hidden>
+      <div class="eyebrow">Designed for continuous expansion</div>
+      <h1 class="h-hero">Three ways the platform grows</h1>
+      <p class="sub">Expansion never means editing the core. You add a <b>subject</b>, register a <b>content type</b>, or register a <b>learning tool</b> — each is a self-contained plug-in the shell discovers automatically.</p>
+
+      <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-top:20px">
+        <div class="card"><div class="top"><div class="badge" style="background:var(--sky-cyan)">1</div><h3>New subject</h3></div>
+          <p>Drop a folder of typed content that satisfies the schema. It appears on the hub with progress, practice, and exams for free.</p>
+          <div class="chips"><span class="tag core">no core changes</span></div></div>
+        <div class="card"><div class="top"><div class="badge" style="background:var(--accent)">2</div><h3>New content type</h3></div>
+          <p>Register a block or question renderer (e.g. video, flashcard, interactive diagram). Scoring &amp; SRS pick it up via the registry.</p>
+          <div class="chips"><span class="tag plug">registry entry</span></div></div>
+        <div class="card"><div class="top"><div class="badge" style="background:var(--hub-green)">3</div><h3>New learning tool</h3></div>
+          <p>Register a mode (e.g. flashcards, cheat-sheets, AI tutor). It becomes an opt-in tab any subject can enable.</p>
+          <div class="chips"><span class="tag plug">registry entry</span></div></div>
+      </div>
+
+      <div class="section-h"><h2 style="font-size:19px">Content-type registry</h2><span class="hint">example entries</span></div>
+      <div class="panel" style="padding:6px 22px">
+        <table class="reg">
+          <tr><th>Kind</th><th>Renderer</th><th>Gradable</th><th>Source</th></tr>
+          <tr><td class="mono">lesson.block.markdown</td><td>Markdown + GFM</td><td>—</td><td><span class="tag core">core</span></td></tr>
+          <tr><td class="mono">lesson.block.mermaid</td><td>Diagram</td><td>—</td><td><span class="tag core">core</span></td></tr>
+          <tr><td class="mono">question.single / multi</td><td>Choice</td><td>auto</td><td><span class="tag core">core</span></td></tr>
+          <tr><td class="mono">question.fill / order / bug</td><td>Interactive</td><td>auto</td><td><span class="tag core">core</span></td></tr>
+          <tr><td class="mono">lesson.block.video</td><td>Player + transcript</td><td>—</td><td><span class="tag plug">plug-in</span></td></tr>
+          <tr><td class="mono">tool.flashcards</td><td>Deck mode</td><td>self-rated</td><td><span class="tag plug">plug-in</span></td></tr>
+        </table>
+      </div>
+
+      <div class="two">
+        <div class="panel">
+          <h3>Add-a-subject wizard <span class="tag" style="vertical-align:middle">mock</span></h3>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+            <div class="box">Subject code &nbsp;<span class="mono" style="color:var(--fg-3)">AZ-900</span></div>
+            <div class="box">Title &nbsp;<span class="mono" style="color:var(--fg-3)">Azure Fundamentals</span></div>
+            <div class="box">Modes &nbsp;<span class="chip">Learn</span><span class="chip">Practice</span><span class="chip">Exams</span></div>
+            <div class="box pluggable">Accent token &nbsp;<span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--petal-pink);vertical-align:-2px"></span> petal-pink</div>
+            <button class="btn" style="align-self:flex-start;margin-top:4px">Scaffold content pack</button>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Guarantees the shell enforces</h3>
+          <table class="reg">
+            <tr><td><span class="check-row"><svg class="ico"><use href="#i-check"/></svg> Every referenced lesson / question / lab id resolves</span></td></tr>
+            <tr><td><span class="check-row"><svg class="ico"><use href="#i-check"/></svg> Each question is answerable with its own key</span></td></tr>
+            <tr><td><span class="check-row"><svg class="ico"><use href="#i-check"/></svg> Progress &amp; SRS keys are namespaced per subject</span></td></tr>
+            <tr><td><span class="check-row"><svg class="ico"><use href="#i-check"/></svg> A subject only shows modes it provides content for</span></td></tr>
+            <tr><td><span class="check-row"><svg class="ico"><use href="#i-check"/></svg> Themes &amp; a11y (keyboard, reduced-motion) apply globally</span></td></tr>
+          </table>
+          <p class="note">These are the content-integrity checks DP-800 &amp; GH-200 already test — promoted to platform-level contracts.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="cc-theme-toggle" role="radiogroup" aria-label="Theme">
+  <button data-theme-set="auto" aria-pressed="false" title="Auto — follow system">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg>
+    <span class="cc-theme-label">Auto</span>
+  </button>
+  <button data-theme-set="light" aria-pressed="false" title="Light — clay cream">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <span class="cc-theme-label">Light</span>
+  </button>
+  <button data-theme-set="dark" aria-pressed="false" title="Dark — warm clay night">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <span class="cc-theme-label">Dark</span>
+  </button>
+  <button data-theme-set="night" aria-pressed="false" title="Deep night — amber, low-blue-light">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 0 0 8 6 6 0 0 0 0-8z"/><path d="M12 14v7M9 18l3-1 3 1"/></svg>
+    <span class="cc-theme-label">Night</span>
+  </button>
+</div>
+
+<script>
+const views={home:'v-home',subject:'v-subject',arch:'v-arch',extend:'v-extend'};
+const crumbLabels={home:'Hub home',subject:'DP-800 workspace',arch:'Architecture',extend:'Extensibility'};
+function go(key){
+  Object.values(views).forEach(id=>document.getElementById(id).hidden=true);
+  document.getElementById(views[key]).hidden=false;
+  document.querySelectorAll('.rail .navi[data-go]').forEach(b=>b.classList.toggle('on',b.dataset.go===key));
+  document.getElementById('crumb').textContent=crumbLabels[key]||'Hub';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',()=>go(el.dataset.go)));
+
+document.querySelectorAll('.tabs .tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tabs .tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');
+}));
+
+(() => {
+  const root = document.documentElement, KEY = 'cc-theme';
+  const valid = ['auto','light','dark','night'];
+  const mql = matchMedia('(prefers-color-scheme: dark)');
+  function render(choice) {
+    const sys = mql.matches ? 'dark' : 'light';
+    document.querySelectorAll('.cc-theme-toggle button[data-theme-set]').forEach(b => {
+      b.setAttribute('aria-pressed', b.dataset.themeSet === choice ? 'true' : 'false');
+      b.removeAttribute('data-auto-shadow');
+      if (choice === 'auto' && b.dataset.themeSet === sys) b.setAttribute('data-auto-shadow','true');
+    });
+  }
+  function apply(t, persist = true) {
+    if (!valid.includes(t)) t = 'auto';
+    if (t === 'auto') {
+      root.removeAttribute('data-theme');
+      if (persist) { try { localStorage.removeItem(KEY); } catch(_){} }
+    } else {
+      root.setAttribute('data-theme', t);
+      if (persist) { try { localStorage.setItem(KEY, t); } catch(_){} }
+    }
+    render(t);
+  }
+  let initial = 'auto';
+  try { const s = localStorage.getItem(KEY); if (['light','dark','night'].includes(s)) initial = s; } catch(_){}
+  apply(initial, false);
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('.cc-theme-toggle button[data-theme-set]');
+    if (b) apply(b.dataset.themeSet);
+  });
+  const onSys = () => { if (!root.hasAttribute('data-theme')) render('auto'); };
+  if (mql.addEventListener) mql.addEventListener('change', onSys); else if (mql.addListener) mql.addListener(onSys);
+})();
+</script>
+</body>
+</html>

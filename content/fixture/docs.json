@@ -1,0 +1,13 @@
+{
+  "ms-lakehouse-doc": {
+    "title": "Lakehouse architecture documentation",
+    "url": "https://example.com/docs/lakehouse",
+    "publisher": "Example Press",
+    "accessed": "2026-08-01"
+  },
+  "sql-ref": {
+    "title": "SQL reference",
+    "url": "https://example.com/docs/sql",
+    "publisher": "Example Press"
+  }
+}

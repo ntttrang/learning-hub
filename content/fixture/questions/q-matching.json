@@ -1,0 +1,14 @@
+{
+  "id": "q-matching",
+  "kind": "matching",
+  "domainId": "d1",
+  "difficulty": "beginner",
+  "prompt": "Match each term to its definition.",
+  "explanation": "These three terms separate the physical, logical, and compute layers of a lakehouse.",
+  "pairs": [
+    { "left": "Lakehouse", "right": "Files plus table semantics" },
+    { "left": "Warehouse", "right": "Native table storage" },
+    { "left": "Engine", "right": "Query processor over either" }
+  ],
+  "tags": ["definitions"]
+}

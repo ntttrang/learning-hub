@@ -1,0 +1,10 @@
+{
+  "id": "fixture",
+  "code": "FX-100",
+  "title": "Fixture Subject",
+  "subtitle": "Schema dogfooding pack",
+  "description": "A tiny but complete pack exercising every question kind, both lesson formats, a sampled exam, and a 3-column comparison.",
+  "accent": "sky-cyan",
+  "disclaimers": ["Fixture content — not real curriculum."],
+  "enabledModes": ["learn", "labs", "practice", "exams", "compare", "notes"]
+}
