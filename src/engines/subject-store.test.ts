@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createMemoryAdapter } from './storage';
 import {
   createSubjectDataStore,
+  emptySubjectData,
   SUBJECT_DATA_STORE_KEY,
   useSubjectDataStore,
   type SubjectDataState,
@@ -387,5 +388,86 @@ describe('app singleton (localStorage-backed)', () => {
       status: 'completed',
     });
     expect(useSubjectDataStore.getState().subjects).toEqual({});
+  });
+});
+
+describe('subject-data store: achievements', () => {
+  it('awards first-lesson on completion, never on a mere visit', () => {
+    const { store } = freshStore();
+    store.getState().visitLesson('fixture', 'lesson-query-shapes');
+    expect(store.getState().achievements).toEqual([]);
+
+    store.getState().markLesson('fixture', 'lesson-query-shapes', 'completed');
+    const earned = store.getState().achievements.map((a) => a.id);
+    expect(earned).toContain('first-lesson');
+    // Exactly-once: completing another lesson must not duplicate the award.
+    store.getState().markLesson('fixture', 'lesson-another', 'completed');
+    expect(store.getState().achievements.filter((a) => a.id === 'first-lesson')).toHaveLength(1);
+  });
+
+  it('awards quiz-ace and mock-pass from recorded attempts', () => {
+    const { store } = freshStore();
+    store.getState().recordQuiz('fixture', {
+      ...quizAttempt('q1'),
+      total: 2,
+      correct: 2,
+      questionResults: [
+        { questionId: 'q-single', correct: true },
+        { questionId: 'q-fill', correct: true },
+      ],
+    });
+    store.getState().recordExam('fixture', examAttempt('e1'));
+    const earned = store.getState().achievements.map((a) => a.id);
+    expect(earned).toContain('quiz-ace');
+    expect(earned).toContain('mock-pass');
+  });
+
+  it('importLegacyData awards earned achievements without bumping the streak', () => {
+    const { store } = freshStore();
+    store.getState().importLegacyData('fixture', {
+      lessons: { 'lesson-query-shapes': { status: 'completed', lastVisited: '2026-07-01T00:00:00.000Z' } },
+    });
+    const state = store.getState();
+    expect(state.achievements.map((a) => a.id)).toContain('first-lesson');
+    expect(state.streak).toEqual({ current: 0, longest: 0 });
+
+    // Re-import is a no-op: nothing re-awards, nothing changes.
+    store.getState().importLegacyData('fixture', {
+      lessons: { 'lesson-query-shapes': { status: 'completed', lastVisited: '2026-07-01T00:00:00.000Z' } },
+    });
+    expect(store.getState().achievements).toHaveLength(1);
+  });
+
+  it('resetSubject clears the subject slice but keeps hub achievements', () => {
+    const { store } = freshStore();
+    store.getState().markLesson('fixture', 'lesson-query-shapes', 'completed');
+    expect(store.getState().achievements).toHaveLength(1);
+
+    store.getState().resetSubject('fixture');
+    expect(store.getState().subjects['fixture']).toEqual(emptySubjectData());
+    expect(store.getState().achievements).toHaveLength(1);
+  });
+
+  it('rehydrates achievements from the adapter and default-fills old blobs', async () => {
+    const { store, adapter } = freshStore();
+    store.getState().markLesson('fixture', 'lesson-query-shapes', 'completed');
+    const earned = store.getState().achievements;
+
+    const second = createSubjectDataStore(adapter);
+    await vi.waitFor(() => expect(second.persist.hasHydrated()).toBe(true));
+    expect(second.getState().achievements).toEqual(earned);
+
+    // A pre-achievements blob (no achievements key) upgrades to [] silently.
+    const bare = createMemoryAdapter();
+    bare.setItem(
+      SUBJECT_DATA_STORE_KEY,
+      JSON.stringify({
+        state: { version: 1, streak: { current: 1, longest: 1 }, subjects: {} },
+        version: 1,
+      }),
+    );
+    const third = createSubjectDataStore(bare);
+    await vi.waitFor(() => expect(third.persist.hasHydrated()).toBe(true));
+    expect(third.getState().achievements).toEqual([]);
   });
 });

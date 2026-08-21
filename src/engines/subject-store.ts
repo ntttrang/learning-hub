@@ -1,12 +1,14 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import type {
+  Achievement,
   ExamAttempt,
   LessonProgress,
   Note,
   QuizAttempt,
   SubjectUserData,
 } from '../sdk/types';
+import { evaluateAchievements } from './achievements';
 import { adapterAsStateStorage } from './store';
 import { ingestResults } from './srs';
 import { bumpStreak } from './streak';
@@ -15,8 +17,8 @@ import { createLocalStorageAdapter, type StorageAdapter } from './storage';
 /**
  * Per-subject persisted user data, namespaced under `subjects[subjectId]` so
  * ids from different packs can never collide. (Actions ported from
- * learn-dp-800/src/lib/store.ts; achievements wait for the Phase 6 roadmap.
- * Theme stays in the Phase 0 hub store — no duplication.)
+ * learn-dp-800/src/lib/store.ts; hub achievements live here too — see
+ * engines/achievements. Theme stays in the Phase 0 hub store — no duplication.)
  *
  * The store is a factory over a StorageAdapter so tests inject a memory
  * adapter and a future cloud adapter swaps in without touching callers.
@@ -40,6 +42,8 @@ export interface SubjectDataState {
   version: number;
   /** Hub-level daily streak, bumped by any subject's activity. */
   streak: { current: number; longest: number; lastActive?: string };
+  /** Hub-level achievements, each awarded exactly once (engines/achievements). */
+  achievements: Achievement[];
   subjects: Record<string, SubjectUserData>;
 
   markLesson: (subjectId: string, lessonId: string, status: LessonProgress['status']) => void;
@@ -71,42 +75,64 @@ function patchSubject(
   return { subjects: { ...state.subjects, [subjectId]: patch(current) } };
 }
 
+/**
+ * Evaluate achievements over the *next* state (the patch plus any streak bump
+ * it rides with) and append newly earned ids. Actions that shouldn't look like
+ * fresh activity (notes, bookmarks) simply don't route through here.
+ */
+function withNewAchievements(
+  s: SubjectDataState,
+  next: Partial<SubjectDataState>,
+): Partial<SubjectDataState> {
+  const earned = evaluateAchievements(
+    { streak: next.streak ?? s.streak, subjects: next.subjects ?? s.subjects },
+    s.achievements.map((a) => a.id),
+    now(),
+  );
+  return earned.length ? { ...next, achievements: [...s.achievements, ...earned] } : next;
+}
+
 export function createSubjectDataStore(adapter: StorageAdapter = createLocalStorageAdapter()) {
   return create<SubjectDataState>()(
     persist(
       (set) => ({
         version: SUBJECT_DATA_VERSION,
         streak: { current: 0, longest: 0 },
+        achievements: [],
         subjects: {},
 
         markLesson: (subjectId, lessonId, status) =>
-          set((s) => ({
-            ...patchSubject(s, subjectId, (data) => ({
-              ...data,
-              lessons: {
-                ...data.lessons,
-                [lessonId]: { ...data.lessons[lessonId], status, lastVisited: now() },
-              },
-            })),
-            streak: bumpStreak(s.streak, now()),
-          })),
+          set((s) =>
+            withNewAchievements(s, {
+              ...patchSubject(s, subjectId, (data) => ({
+                ...data,
+                lessons: {
+                  ...data.lessons,
+                  [lessonId]: { ...data.lessons[lessonId], status, lastVisited: now() },
+                },
+              })),
+              streak: bumpStreak(s.streak, now()),
+            }),
+          ),
 
         visitLesson: (subjectId, lessonId) =>
-          set((s) => ({
-            ...patchSubject(s, subjectId, (data) => ({
-              ...data,
-              lastLessonId: lessonId,
-              lessons: {
-                ...data.lessons,
-                [lessonId]: {
-                  ...data.lessons[lessonId],
-                  status: data.lessons[lessonId]?.status ?? 'in-progress',
-                  lastVisited: now(),
+          set((s) =>
+            withNewAchievements(s, {
+              ...patchSubject(s, subjectId, (data) => ({
+                ...data,
+                lastLessonId: lessonId,
+                lessons: {
+                  ...data.lessons,
+                  [lessonId]: {
+                    ...data.lessons[lessonId],
+                    status: data.lessons[lessonId]?.status ?? 'in-progress',
+                    lastVisited: now(),
+                  },
                 },
-              },
-            })),
-            streak: bumpStreak(s.streak, now()),
-          })),
+              })),
+              streak: bumpStreak(s.streak, now()),
+            }),
+          ),
 
         toggleBookmark: (subjectId, lessonId) =>
           set((s) =>
@@ -119,15 +145,17 @@ export function createSubjectDataStore(adapter: StorageAdapter = createLocalStor
           ),
 
         completeLab: (subjectId, labId) =>
-          set((s) => ({
-            ...patchSubject(s, subjectId, (data) => ({
-              ...data,
-              completedLabs: data.completedLabs.includes(labId)
-                ? data.completedLabs
-                : [...data.completedLabs, labId],
-            })),
-            streak: bumpStreak(s.streak, now()),
-          })),
+          set((s) =>
+            withNewAchievements(s, {
+              ...patchSubject(s, subjectId, (data) => ({
+                ...data,
+                completedLabs: data.completedLabs.includes(labId)
+                  ? data.completedLabs
+                  : [...data.completedLabs, labId],
+              })),
+              streak: bumpStreak(s.streak, now()),
+            }),
+          ),
 
         upsertNote: (subjectId, note) =>
           set((s) =>
@@ -148,28 +176,34 @@ export function createSubjectDataStore(adapter: StorageAdapter = createLocalStor
           ),
 
         recordQuiz: (subjectId, attempt) =>
-          set((s) => ({
-            ...patchSubject(s, subjectId, (data) => ({
-              ...data,
-              quizAttempts: [attempt, ...data.quizAttempts].slice(0, 200),
-              srs: ingestResults(data.srs, attempt.questionResults, now()),
-            })),
-            streak: bumpStreak(s.streak, now()),
-          })),
+          set((s) =>
+            withNewAchievements(s, {
+              ...patchSubject(s, subjectId, (data) => ({
+                ...data,
+                quizAttempts: [attempt, ...data.quizAttempts].slice(0, 200),
+                srs: ingestResults(data.srs, attempt.questionResults, now()),
+              })),
+              streak: bumpStreak(s.streak, now()),
+            }),
+          ),
 
         recordExam: (subjectId, attempt) =>
-          set((s) => ({
-            ...patchSubject(s, subjectId, (data) => ({
-              ...data,
-              examAttempts: [attempt, ...data.examAttempts].slice(0, 50),
-              srs: ingestResults(data.srs, attempt.results, now()),
-            })),
-            streak: bumpStreak(s.streak, now()),
-          })),
+          set((s) =>
+            withNewAchievements(s, {
+              ...patchSubject(s, subjectId, (data) => ({
+                ...data,
+                examAttempts: [attempt, ...data.examAttempts].slice(0, 50),
+                srs: ingestResults(data.srs, attempt.results, now()),
+              })),
+              streak: bumpStreak(s.streak, now()),
+            }),
+          ),
 
         importLegacyData: (subjectId, partial) =>
           set((s) =>
-            patchSubject(s, subjectId, (data) => ({
+            withNewAchievements(
+              s,
+              patchSubject(s, subjectId, (data) => ({
               ...data,
               // Per-key skip-if-present: data already in the hub always wins,
               // and deterministic legacy ids make re-runs write nothing.
@@ -204,6 +238,7 @@ export function createSubjectDataStore(adapter: StorageAdapter = createLocalStor
               srs: { ...partial.srs, ...data.srs },
               lastLessonId: data.lastLessonId ?? partial.lastLessonId,
             })),
+              ),
           ),
 
         resetSubject: (subjectId) =>
@@ -222,6 +257,14 @@ export function createSubjectDataStore(adapter: StorageAdapter = createLocalStor
           return {
             ...current,
             streak: p?.streak ?? current.streak,
+            // Pre-achievements blobs simply start with none earned; a corrupt
+            // entry must not crash boot (same guard style as subjects below).
+            achievements: Array.isArray(p?.achievements)
+              ? p.achievements.filter(
+                  (a): a is Achievement =>
+                    typeof a === 'object' && a !== null && typeof a.id === 'string',
+                )
+              : current.achievements,
             // Default-fill every entry: an older blob missing an array key
             // would make importLegacyData's spreads throw inside the boot-time
             // effect, and an unset legacy-migration guard would re-crash on

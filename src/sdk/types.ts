@@ -376,6 +376,14 @@ export interface StreakState {
   lastActive?: string; // ISO
 }
 
+/** A hub-level badge, earned once and kept (see engines/achievements). */
+export interface Achievement {
+  id: string;
+  title: string;
+  description: string;
+  earnedAt: string; // ISO
+}
+
 /** One subject's persisted user data. */
 export interface SubjectUserData {
   lessons: Record<string, LessonProgress>;
