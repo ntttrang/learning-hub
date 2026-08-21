@@ -1,7 +1,7 @@
 ---
 title: "Phase 7 CI/CD Deploy"
-description: "Roadmap Phase 7 of docs/unified-learning-hub-plan.md: a GitHub Actions workflow that gates every change on lint + hermetic tests + content-integrity + build, and publishes the unified hub to GitHub Pages on push to main — in a new private repo, with Docker/AWS deferred."
-status: pending
+description: "Roadmap Phase 7 of docs/unified-learning-hub-plan.md: a GitHub Actions workflow that gates every change on lint + full donor-backed tests + content-integrity + build, and publishes the unified hub to GitHub Pages on push to main — repo made public by user decision after the Free-plan Pages gate, with Docker/AWS deferred."
+status: completed
 priority: P1
 effort: 4h
 tags: [ci, deploy, github-pages, devops]
@@ -47,23 +47,24 @@ no `test:ci` slice.
 | Decision | Choice | Consequence |
 | --- | --- | --- |
 | Git remote | **Create private repo** `ntttrang/learning-hub` | GitHub Pages on a private repo requires GitHub Pro; the deploy step gates on this (phase 3 surfaces the choice — never auto-flips to public) |
+| Git remote visibility (**reversed 2026-08-21**) | **Made public** — `gh repo edit --visibility public` | Enabling Pages on a private repo returned 422 on GitHub Free; user chose public over upgrading to Pro. Site is live at a public URL |
 | Optional Docker/AWS track | **Defer** | Dockerfile + Docker Hub publish + AWS deploy stay a documented follow-up, out of this plan's scope |
 
 ## Goals
 
 | # | Goal | Priority |
 |---|------|----------|
-| 1 | CI workflow gates every push/PR on lint + hermetic tests + content-integrity + build | P1 |
-| 2 | Push to `main` publishes the unified hub to GitHub Pages from the new private repo | P1 |
+| 1 | CI workflow gates every push/PR on lint + full donor-backed tests + content-integrity + build | P1 |
+| 2 | Push to `main` publishes the unified hub to GitHub Pages from the new repo (public since 2026-08-21) | P1 |
 | 3 | Published site verified live (assets, deep links, themes) and CI/deploy documented in README | P1 |
 
 ## Phases
 
 | # | Phase | Status |
 |---|-------|--------|
-| 1 | [CI Workflow](./phase-01-start.md) | Pending |
-| 2 | [Pages Publish](./phase-02-pages-publish.md) | Pending |
-| 3 | [Verify Published Site](./phase-03-verify-published-site.md) | Pending |
+| 1 | [CI Workflow](./phase-01-start.md) | Completed |
+| 2 | [Pages Publish](./phase-02-pages-publish.md) | Completed |
+| 3 | [Verify Published Site](./phase-03-verify-published-site.md) | Completed |
 
 Phase order rationale: the workflow file must exist locally before the first
 push (phase 2's push triggers it), and the site must be published before live
@@ -71,19 +72,19 @@ verification (phase 3).
 
 ## Success Criteria
 
-- [ ] CI runs on every push and pull request: `npm run lint`, `npm test`
+- [x] CI runs on every push and pull request: `npm run lint`, `npm test`
       (full, donor-backed), `npm run content:check`, `npm run build` — all
       green. **(Roadmap: build + lint + tests + content-integrity validation
       in CI.)**
-- [ ] Push to `main` publishes the unified site to GitHub Pages; the Actions run
+- [x] Push to `main` publishes the unified site to GitHub Pages; the Actions run
       is green end-to-end. **(Roadmap done-when: green CI publishes the unified
       site on push to `main`.)**
-- [ ] The live site serves `index.html` with resolving relative assets, working
+- [x] The live site serves `index.html` with resolving relative assets, working
       hash deep links (e.g. `#/subject/dp-800`), and Auto/Light/Dark/Night themes.
-- [ ] Pull-request runs build + test but never deploy.
-- [ ] CI and local run the identical command set (the `test:ci` slice was
+- [x] Pull-request runs build + test but never deploy.
+- [x] CI and local run the identical command set (the `test:ci` slice was
       removed; donor-anchored suites run in both).
-- [ ] README documents the CI gate, the deploy flow, the Pages URL, and the
+- [x] README documents the CI gate, the deploy flow, the Pages URL, and the
       deferred Docker/AWS follow-up.
 
 ## Constraints & Non-Goals
@@ -104,9 +105,9 @@ verification (phase 3).
 | Node version in CI | `node-version: 24` | Matches local dev (v24.8.0) where the toolchain (Vite 8, vitest 4, TS 6) is proven green |
 | CI test slice | **Reversed 2026-08-21:** CI checks out `submodules: recursive` and runs full `npm test` — no `test:ci` script | Maiden runs proved the gate is donor-coupled at three levels (vitest suite, tsc project graph, build); a "hermetic slice" diverged from the local gate and failed twice. One command set, identical local and CI |
 | Submodules in CI | `actions/checkout` with `submodules: recursive` | All three donors are public; the extractors compile and the parity suites test against donor sources at pinned SHAs — donors are build inputs after all |
-| Content-integrity step | Explicit `npm run content:check` step, separate from `test:ci` | Names the roadmap contract in the Actions log for direct failure triage, even though `test:ci` also covers it |
+| Content-integrity step | Explicit `npm run content:check` step, separate from `test` | Names the roadmap contract in the Actions log for direct failure triage, even though the full suite also covers it |
 | Asset/deploy details | No `BASE_PATH` env, no `.nojekyll` | `base: './'` is already relative (donor's BASE_PATH was Next-specific); `deploy-pages@v4` serves the artifact raw (donor's `.nojekyll` served its `out/` Next artifacts) |
-| Private-repo Pages gate | Detect-and-surface, never auto-flip | User chose private knowing Pages needs Pro; the deploy failure (or Pages API 403) is the signal — phase 3 presents Pro-vs-public as a user decision |
+| Private-repo Pages gate | Detect-and-surface, never auto-flip | Fired as predicted: 422 on Pages enablement. Surfaced to the user, who chose public (2026-08-21); visibility flipped only on that explicit decision |
 | First-publish ordering | Create repo without pushing → enable Pages (`build_type=workflow`) → push | The deploy job fails if Pages isn't enabled when the workflow first runs; enabling first makes the maiden run green |
 
 ## Risks & Mitigations

@@ -50,6 +50,24 @@ review scheduling). See
 [docs/unified-learning-hub-plan.md](docs/unified-learning-hub-plan.md) for the
 full plan, schema, and target structure.
 
+## CI & deploy
+
+GitHub Actions (`.github/workflows/ci.yml`) runs on every push and pull
+request: `npm ci` → `npm run lint` → `npm test` → `npm run content:check` →
+`npm run build` — the identical command set as the local gate. The checkout
+includes git submodules because the extractor scripts compile and the GH-600
+parity suites test against the `learn-*` donor sources at their pinned SHAs;
+the donors are build inputs, not optional extras.
+
+A push to `main` — and only that — additionally publishes the built `dist/`
+to GitHub Pages once the gate is green. The site is live at
+<https://ntttrang.github.io/learning-hub/>; pull requests run the full gate
+but never deploy. The repository is public because GitHub Pages on a private
+repository requires a paid plan.
+
+Docker image publishing and an AWS deploy are a deferred follow-up (the
+optional track of roadmap Phase 7), not part of this pipeline.
+
 ## License
 
 [MIT](LICENSE)

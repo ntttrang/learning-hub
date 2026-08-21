@@ -22,7 +22,8 @@ work — then document the CI/deploy flow in the README and close the roadmap.
   workspace on direct load; hub chrome (mascot, wordmark) renders; the
   Auto/Light/Dark/Night toggle cycles and persists across reload.
 - Functional: README gains a "CI & deploy" section documenting the gate, the
-  publish flow, the Pages URL, `test:ci` vs `npm test`, and the deferred
+  publish flow, the Pages URL, why CI checks out submodules and runs the full
+  `npm test` (reversal of the original `test:ci` slice), and the deferred
   Docker/AWS follow-up.
 - Non-functional: docs claims verified against live state; roadmap journal
   entry written.
@@ -62,9 +63,10 @@ Verification layers, cheapest first:
    navigate to `#/subject/dp-800` via direct URL entry, cycle the four themes,
    reload — theme choice persists, route holds.
 3. README "CI & deploy" section — cover: push/PR runs the gate
-   (lint → test:ci → content:check → build), push to `main` publishes Pages at
-   the URL, why CI runs `test:ci` (donor-anchored suites stay local), and the
-   deferred Docker/AWS follow-up pointer.
+   (lint → test → content:check → build — full `npm test`, no `test:ci` slice,
+   per the phase-1 reversal), push to `main` publishes Pages at the URL, why
+   CI checks out submodules (donors are build inputs), and the deferred
+   Docker/AWS follow-up pointer.
 4. Verify every doc claim against live state (URL works, commands exist in
    `package.json`, workflow file matches prose).
 5. Close out: `ak plan check` each phase file, write the journal entry
@@ -73,17 +75,17 @@ Verification layers, cheapest first:
 
 ## Todo
 
-- [ ] HTTP checks green (root 200, asset 200)
-- [ ] Browser pass green (home, deep link, themes, persistence)
-- [ ] README section written and claim-verified
-- [ ] Phases checked, journal written, committed
+- [x] HTTP checks green (root 200, asset 200)
+- [x] Browser pass green (home, deep link, themes, persistence)
+- [x] README section written and claim-verified
+- [x] Phases checked, journal written, committed
 
 ## Success Criteria
 
-- [ ] Live URL serves the hub; assets resolve under the sub-path.
-- [ ] Hash deep link renders the target route on a cold load.
-- [ ] README documents CI + deploy + `test:ci` rationale + deferred Docker/AWS.
-- [ ] Roadmap done-when fully met: **green CI publishes the unified site on
+- [x] Live URL serves the hub; assets resolve under the sub-path.
+- [x] Hash deep link renders the target route on a cold load.
+- [x] README documents CI + deploy + submodule rationale + deferred Docker/AWS.
+- [x] Roadmap done-when fully met: **green CI publishes the unified site on
       push to `main`**, verified live.
 
 ## Risk Assessment

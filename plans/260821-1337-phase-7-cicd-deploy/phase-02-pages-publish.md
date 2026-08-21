@@ -89,18 +89,21 @@ their availability is irrelevant to the pipeline.
 
 ## Todo
 
-- [ ] Tree committed clean; secret audit passed
-- [ ] Private repo created, `origin` wired
-- [ ] Pages enabled (`build_type=workflow`)
-- [ ] `main` pushed; maiden run green (build + deploy)
-- [ ] Pages URL captured
+- [x] Tree committed clean; secret audit passed
+- [x] Private repo created, `origin` wired
+- [x] Pages enabled (`build_type=workflow`)
+- [x] `main` pushed; maiden run green (build + deploy)
+- [x] Pages URL captured
 
 ## Success Criteria
 
-- [ ] `gh repo view ntttrang/learning-hub --json visibility` → `PRIVATE`.
-- [ ] `gh run list` shows the maiden CI run with conclusion `success` for both
+- [x] `gh repo view ntttrang/learning-hub --json visibility` → `PRIVATE` at
+      creation; **flipped to `PUBLIC` 2026-08-21** by explicit user decision
+      after the Pages API returned 422 on GitHub Free (risk below fired as
+      predicted). Final live state: `PUBLIC`, Pages serving.
+- [x] `gh run list` shows the maiden CI run with conclusion `success` for both
       jobs — **green CI on push to `main`** (roadmap done-when, pipeline half).
-- [ ] Pages API returns an `html_url`.
+- [x] Pages API returns an `html_url`.
 
 ## Risk Assessment
 
