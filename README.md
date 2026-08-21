@@ -35,11 +35,13 @@ pack enables: lessons with knowledge checks and notes, labs, shuffled practice,
 timed exams with reviews and per-domain breakdowns, comparisons, and a
 notes/bookmarks tab. Progress, attempts, notes, and bookmarks persist locally
 per subject. Installed packs: GH-900 (GitHub Foundations), GH-200 (GitHub
-Actions), GH-600 (Agentic AI Developer), and the `content/fixture/` pack that
-exercises the whole schema (`npm test`, `npm run content:check`). On first
-load the hub also imports, one time, any progress left in the same browser by
-the retired standalone GH-200 app (lessons, labs, and exam history) and by the
-GH-600 study companion (passed domains). See
+Actions), GH-600 (Agentic AI Developer), DP-800 (SQL AI Developer), and the
+`content/fixture/` pack that exercises the whole schema (`npm test`, `npm run
+content:check`). On first load the hub also imports, one time, any progress
+left in the same browser by the retired standalone GH-200 app (lessons, labs,
+and exam history), by the GH-600 study companion (passed domains), and by the
+DP-800 donor app (lessons, labs, practice, exams, notes, bookmarks, and
+review scheduling). See
 [docs/unified-learning-hub-plan.md](docs/unified-learning-hub-plan.md) for the
 full plan, schema, and target structure.
 
