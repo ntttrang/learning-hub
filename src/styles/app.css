@@ -143,16 +143,8 @@ button {
   border-bottom: var(--bw) solid var(--border);
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   padding: 12px 26px;
-}
-.crumb {
-  font-weight: 800;
-  font-family: var(--font-display);
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
 .menu-btn {
   display: none;
@@ -165,6 +157,178 @@ button {
 }
 .menu-btn:hover {
   color: var(--fg);
+}
+
+/* ---- Header search ---- */
+.searchbox {
+  position: relative;
+  flex: 1;
+  max-width: 720px;
+  min-width: 0;
+}
+.searchbox .field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 14px;
+  background: var(--bg-sunken);
+  border: var(--bw) solid transparent;
+  border-radius: var(--r-md);
+  color: var(--fg-3);
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+.searchbox:focus-within .field {
+  background: var(--bg-elevated);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.searchbox input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: none;
+  outline: none;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--fg);
+}
+.searchbox input::placeholder {
+  color: var(--fg-3);
+}
+.searchbox kbd {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--bg-elevated);
+  border: var(--bw) solid var(--border-soft);
+  padding: 2px 7px;
+  border-radius: 6px;
+  color: var(--fg-3);
+  flex: none;
+}
+.search-pop {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 30;
+  background: var(--bg-elevated);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-3);
+  padding: 6px;
+  max-height: min(60vh, 480px);
+  overflow-y: auto;
+}
+.search-pop a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+.search-pop a.on,
+.search-pop a:hover {
+  background: var(--bg-sunken);
+}
+.search-pop .kind {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: var(--r-full);
+  background: var(--bg-sunken);
+  color: var(--fg-3);
+  flex: none;
+}
+.search-pop .hit {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.search-pop .where {
+  color: var(--fg-3);
+  font-size: 11.5px;
+  font-family: var(--font-mono);
+  flex: none;
+}
+.search-empty {
+  padding: 14px 12px;
+  color: var(--fg-3);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ---- Header actions ---- */
+.topbar-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+}
+/* Shared topbar icon button — the streak badge and the theme quartet.
+   The active mode fills accent and morphs square → round (clay ease). */
+.ibtn {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: var(--r-md);
+  border: var(--bw) solid transparent;
+  background: var(--bg-sunken);
+  color: var(--fg-3);
+  display: grid;
+  place-items: center;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    border-radius var(--dur-base) var(--ease-clay),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+.ibtn:hover {
+  color: var(--fg);
+  background: color-mix(in srgb, var(--fg) 8%, var(--bg-sunken));
+}
+.ibtn[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-radius: var(--r-full);
+}
+/* When auto is the user's pick, ring whichever concrete mode the OS
+   resolved to. */
+.ibtn[data-auto-shadow="true"] {
+  box-shadow: inset 0 0 0 2px var(--accent);
+  color: var(--fg);
+}
+.ibtn .cnt {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: var(--r-full);
+  background: var(--danger);
+  color: var(--danger-fg);
+  font-size: 10px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 0 2px var(--bg);
+}
+/* Streak — a status icon button: accent flame, count badge. */
+.streak-chip .lucide {
+  color: var(--accent);
 }
 
 /* Drawer scrim — only visible while the mobile drawer is open. */
@@ -433,6 +597,13 @@ button {
   .menu-btn {
     display: inline-flex;
   }
+  .topbar {
+    padding: 10px 16px;
+    gap: 10px;
+  }
+  .searchbox kbd {
+    display: none;
+  }
   .grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -450,6 +621,16 @@ button {
   }
   .h-hero {
     font-size: 30px;
+  }
+  .searchbox {
+    max-width: none;
+  }
+  .searchbox input {
+    font-size: 12.5px;
+  }
+  .ibtn {
+    width: 34px;
+    height: 34px;
   }
 }
 

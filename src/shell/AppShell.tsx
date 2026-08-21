@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { Home, Menu } from 'lucide-react';
+import { Flame, Home, Menu } from 'lucide-react';
 import BrandWordmark from './BrandWordmark';
 import ThemeToggle from './ThemeToggle';
-import { accentVar, findSubject, listSubjectCards } from './subjects';
+import TopbarSearch from './TopbarSearch';
+import { accentVar, listSubjectCards } from './subjects';
+import { useSubjectDataStore } from '../engines/subject-store';
 import type { HubRoute } from './router';
 
 interface AppShellProps {
@@ -11,14 +13,16 @@ interface AppShellProps {
 }
 
 /**
- * Generic app frame: brand rail (hub navigation + subjects + local profile)
- * and a topbar with a crumb. Knows nothing about any subject's content —
- * views render into `children`. Below 900px the rail becomes a drawer
- * opened from the topbar.
+ * Generic app frame: brand rail (hub navigation + subjects, with the local
+ * profile at its foot) and a header banner with hub-wide search, the
+ * daily-streak badge, and the theme quartet. Knows nothing about any
+ * subject's content — views render into `children`. Below 900px the rail
+ * becomes a drawer opened from the topbar.
  */
 export default function AppShell({ route, children }: AppShellProps) {
   const [navOpen, setNavOpen] = useState(false);
   const mainRef = useRef<HTMLElement>(null);
+  const streak = useSubjectDataStore((s) => s.streak);
 
   // Any navigation closes the mobile drawer.
   useEffect(() => {
@@ -44,15 +48,6 @@ export default function AppShell({ route, children }: AppShellProps) {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [navOpen]);
-
-  const activeSubject =
-    route.view === 'subject' ? findSubject(route.subjectId) : undefined;
-  const crumb =
-    route.view === 'home'
-      ? 'Hub home'
-      : activeSubject
-        ? `${activeSubject.code} workspace`
-        : 'Subject workspace';
 
   return (
     <div className={navOpen ? 'app nav-open' : 'app'}>
@@ -116,12 +111,21 @@ export default function AppShell({ route, children }: AppShellProps) {
           >
             <Menu size={18} strokeWidth={1.75} aria-hidden="true" />
           </button>
-          <div className="crumb">{crumb}</div>
+          <TopbarSearch />
+          <div className="topbar-actions">
+            <span
+              className="streak-chip ibtn"
+              role="status"
+              title={`${streak.current}-day learning streak`}
+            >
+              <Flame size={18} strokeWidth={1.75} aria-hidden="true" />
+              <span className="cnt">{streak.current}</span>
+            </span>
+            <ThemeToggle />
+          </div>
         </div>
         {children}
       </main>
-
-      <ThemeToggle />
     </div>
   );
 }

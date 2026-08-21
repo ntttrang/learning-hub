@@ -6,6 +6,6 @@ describe('App', () => {
   it('mounts the hub shell with the brand wordmark', () => {
     render(<App />);
     expect(screen.getByRole('img', { name: 'Captain Corgi Hub' })).toBeInTheDocument();
-    expect(screen.getByText('Hub home', { selector: '.crumb' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Hub home' })).toBeInTheDocument();
   });
 });

@@ -23,9 +23,10 @@ function darkModeQuery(): MediaQueryList | null {
 }
 
 /**
- * Fixed bottom-right segmented switcher for Auto / Light / Dark / Night.
- * In auto mode the concrete mode the OS resolves to gets a ring
- * (`data-auto-shadow`) so the UI always reflects what the OS shows.
+ * Theme quartet inline in the header's action cluster: Monitor / Sun / Moon /
+ * Cup icon buttons. The chosen mode fills accent and goes round; in auto mode
+ * the concrete mode the OS resolves to gets a ring (`data-auto-shadow`) so the
+ * UI always reflects what the OS shows.
  */
 export default function ThemeToggle() {
   const theme = useHubStore((s) => s.theme);
@@ -48,6 +49,8 @@ export default function ThemeToggle() {
         <button
           key={value}
           type="button"
+          className="ibtn"
+          aria-label={label}
           aria-pressed={theme === value}
           data-theme-set={value}
           data-auto-shadow={
@@ -56,8 +59,7 @@ export default function ThemeToggle() {
           title={title}
           onClick={() => setTheme(value)}
         >
-          <Icon size={13} strokeWidth={1.75} aria-hidden="true" />
-          <span className="cc-theme-label">{label}</span>
+          <Icon size={18} strokeWidth={1.75} aria-hidden="true" />
         </button>
       ))}
     </div>
