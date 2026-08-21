@@ -222,7 +222,18 @@ export function createSubjectDataStore(adapter: StorageAdapter = createLocalStor
           return {
             ...current,
             streak: p?.streak ?? current.streak,
-            subjects: p?.subjects ?? {},
+            // Default-fill every entry: an older blob missing an array key
+            // would make importLegacyData's spreads throw inside the boot-time
+            // effect, and an unset legacy-migration guard would re-crash on
+            // every start (engines/migrate-*-progress).
+            subjects: Object.fromEntries(
+              Object.entries(p?.subjects ?? {}).map(([id, entry]) => [
+                id,
+                typeof entry === 'object' && entry !== null && !Array.isArray(entry)
+                  ? { ...emptySubjectData(), ...entry }
+                  : emptySubjectData(),
+              ]),
+            ),
             version: SUBJECT_DATA_VERSION,
           };
         },

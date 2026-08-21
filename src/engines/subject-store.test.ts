@@ -309,6 +309,55 @@ describe('subject-data store: persistence round-trip', () => {  it('rehydrates f
     expect(state.subjects).toEqual({});
     expect(state.version).toBe(1);
   });
+
+  it('default-fills rehydrated entries so later legacy imports never hit missing keys', async () => {
+    const adapter = createMemoryAdapter();
+    // An older/partial blob: the entry carries lessons but none of the array
+    // keys, and one entry is not even an object.
+    adapter.setItem(
+      SUBJECT_DATA_STORE_KEY,
+      JSON.stringify({
+        state: {
+          version: 1,
+          streak: { current: 0, longest: 0 },
+          subjects: {
+            partial: { lessons: { 'lesson-1': { status: 'completed' } } },
+            junk: 42,
+          },
+        },
+        version: 1,
+      }),
+    );
+    const store = createSubjectDataStore(adapter);
+    await vi.waitFor(() => {
+      expect(store.persist.hasHydrated()).toBe(true);
+    });
+
+    const partial = store.getState().subjects['partial']!;
+    expect(partial.lessons).toEqual({ 'lesson-1': { status: 'completed' } });
+    expect(partial.completedLabs).toEqual([]);
+    expect(partial.quizAttempts).toEqual([]);
+    expect(partial.examAttempts).toEqual([]);
+    expect(partial.srs).toEqual({});
+    expect(partial.notes).toEqual([]);
+    expect(partial.bookmarks).toEqual([]);
+    expect(store.getState().subjects['junk']).toEqual({
+      lessons: {},
+      completedLabs: [],
+      quizAttempts: [],
+      examAttempts: [],
+      srs: {},
+      notes: [],
+      bookmarks: [],
+    });
+
+    // The hardening's reason: a bulk import over a partial entry must not
+    // throw inside the boot-time effect.
+    expect(() =>
+      store.getState().importLegacyData('partial', { completedLabs: ['lab-1'] }),
+    ).not.toThrow();
+    expect(store.getState().subjects['partial']!.completedLabs).toEqual(['lab-1']);
+  });
 });
 
 describe('app singleton (localStorage-backed)', () => {
