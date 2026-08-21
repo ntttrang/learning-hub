@@ -1644,38 +1644,201 @@
 }
 
 /* ---- Exam index ---- */
-.exam-card {
+.exam-index {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-5);
+}
+.exam-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-30);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tr-tight);
+  font-weight: var(--fw-bold);
+}
+.exam-lead {
+  margin: 4px 0 0;
+  max-width: 768px;
+  font-size: var(--fs-14);
+  color: var(--fg-2);
+}
+.exam-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+@media (max-width: 720px) {
+  .exam-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Card surface — the donor's cc-card: elevated, soft border, clay radius. */
+.exam-card {
+  background: var(--bg-elevated);
+  border: var(--bw) solid var(--border-soft);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-1);
+  padding: 20px;
+}
+.exam-card-hover {
+  transition: transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+.exam-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+.exam-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.exam-card-head svg {
+  color: var(--accent);
+}
+.exam-card-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-18);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tr-tight);
+  font-weight: var(--fw-bold);
+}
+.exam-card-desc {
+  margin: 0;
+  font-size: var(--fs-14);
+  color: var(--fg-2);
+}
+.exam-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+/* The donor's cc-chip: transparent pill, hairline border, muted text. */
+.exam-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+  color: var(--fg-3);
+  padding: 3px 10px;
+  border-radius: var(--r-full);
+  border: var(--bw) solid var(--border);
+}
+.exam-chip svg {
+  flex: none;
+}
+/* Start CTA — the donor's cc-btn cc-btn-primary at text-sm. */
+.exam-start {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  align-self: flex-start;
+  margin-top: 16px;
+  padding: 10px 18px;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-bold);
+  color: var(--accent-fg);
+  background: var(--accent);
+  border: var(--bw) solid transparent;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-1);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 120ms var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+.exam-start:hover {
+  box-shadow: var(--shadow-2);
+}
+.exam-start:active {
+  transform: scale(0.97);
+}
+/* Attempt history — one consolidated panel under the grid. */
+.exam-history-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: var(--fs-20);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tr-tight);
+  font-weight: var(--fw-bold);
+}
+.exam-history-head svg {
+  color: var(--accent);
+}
+.exam-history-empty {
+  margin: 0;
+  font-size: var(--fs-14);
+  color: var(--fg-3);
 }
 .exam-history {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   margin: 0;
-  padding: 10px 14px;
+  padding: 0;
   list-style: none;
-  background: var(--bg-sunken);
-  border: var(--bw) solid var(--border);
-  border-radius: var(--r-md);
 }
 .exam-history-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  color: var(--fg-3);
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 16px;
+  border: var(--bw) solid var(--border);
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: var(--fg);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.exam-history-row:hover {
+  background: var(--bg-sunken);
+}
+.exam-history-title {
+  font-size: var(--fs-14);
+  font-weight: var(--fw-semi);
 }
 .exam-history-meta {
-  flex: 1;
+  margin-left: 8px;
+  font-size: var(--fs-12);
+  font-weight: var(--fw-regular);
+  color: var(--fg-4);
 }
-.exam-history-link {
-  font-weight: 700;
-  color: var(--link);
+.exam-history-side {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.exam-history-link:hover {
-  color: var(--link-hover);
+/* Per-domain strength dots — fill intensity is the correct/total ratio. */
+.exam-domain-dots {
+  display: flex;
+  gap: 4px;
+}
+.exam-domain-dot {
+  display: inline-block;
+  width: 24px;
+  height: 8px;
+  border-radius: var(--r-full);
+}
+.exam-history-score {
+  font-size: var(--fs-14);
+  font-weight: var(--fw-bold);
+}
+.exam-score-pass {
+  color: var(--success);
+}
+.exam-score-fail {
+  color: var(--danger);
 }
 
 /* ---- Exam intro ---- */

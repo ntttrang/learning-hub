@@ -35,26 +35,35 @@ afterEach(() => {
 });
 
 describe('ExamIndex', () => {
-  it('renders one card per exam with its contract', () => {
+  it('renders one start link per exam with its contract', () => {
     draw();
 
-    const caseStudyCard = screen.getByRole('link', { name: /Case-study set/ });
-    expect(caseStudyCard.getAttribute('href')).toBe('#/subject/fixture/exams/exam-case-study');
+    const starts = screen.getAllByRole('link', { name: /Start exam/ });
+    expect(starts.map((link) => link.getAttribute('href'))).toEqual([
+      '#/subject/fixture/exams/exam-practice',
+      '#/subject/fixture/exams/exam-case-study',
+    ]);
+    expect(screen.getByText('Practice set')).toBeInTheDocument();
+    expect(screen.getByText('Case-study set')).toBeInTheDocument();
     expect(screen.getByText('Fixed')).toBeInTheDocument();
     expect(screen.getByText('Sampled')).toBeInTheDocument();
     expect(screen.getByText('2 questions')).toBeInTheDocument(); // fixed [q-single, q-multi]
     expect(screen.getByText('4 questions')).toBeInTheDocument(); // sampled d1:2 + d2:2
     expect(screen.getByText('10 min')).toBeInTheDocument();
     expect(screen.getByText('15 min')).toBeInTheDocument();
-    expect(screen.getAllByText('Pass 700').length).toBe(2);
+    expect(screen.getAllByText('Pass 700/1000').length).toBe(2);
+    expect(screen.getByText('Case study')).toBeInTheDocument(); // case-study exam only
   });
 
-  it('shows no history until an exam is attempted', () => {
+  it('shows an empty history panel until an exam is attempted', () => {
     draw();
-    expect(screen.queryByText('Review')).toBeNull();
+    expect(
+      screen.getByText('No attempts yet — take an exam to build your history.'),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/\/review\//)).toBeNull();
   });
 
-  it('lists per-exam history newest first with absolute review indexes', () => {
+  it('lists consolidated history newest first with absolute review indexes', () => {
     useSubjectDataStore.setState({
       subjects: {
         fixture: {
@@ -74,16 +83,18 @@ describe('ExamIndex', () => {
     });
     draw();
 
-    // Each history link keeps the attempt's absolute index in the stored array.
-    const links = screen.getAllByRole('link', { name: 'Review' });
-    expect(links.map((link) => link.getAttribute('href'))).toEqual([
+    // Each history row keeps the attempt's absolute index in the stored array.
+    const reviewLinks = screen
+      .getAllByRole('link')
+      .filter((link) => /\/review\/\d+$/.test(link.getAttribute('href') ?? ''));
+    expect(reviewLinks.map((link) => link.getAttribute('href'))).toEqual([
       '#/subject/fixture/exams/exam-practice/review/0',
       '#/subject/fixture/exams/exam-case-study/review/1',
     ]);
 
-    // The attempt for an exam not in the pack renders no orphan history block.
-    expect(screen.getByText('1000/1000')).toBeInTheDocument();
-    expect(screen.getByText('550/1000')).toBeInTheDocument();
+    // The attempt for an exam not in the pack renders no orphan history row.
+    expect(screen.getByText('1000')).toBeInTheDocument();
+    expect(screen.getByText('550')).toBeInTheDocument();
     expect(screen.queryByText(/exam-unrelated/)).toBeNull();
   });
 

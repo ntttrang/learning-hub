@@ -5,7 +5,7 @@
  * tab). Assertions stay on roles and labels, never DOM structure, so unrelated
  * UI tweaks do not break the sweep.
  */
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import App from './App';
 import { useSubjectDataStore } from './engines/subject-store';
@@ -80,7 +80,10 @@ describe('app flow: fixture pack end to end', () => {
   it('exams: the index leads into a sitting that serves real questions', async () => {
     window.location.hash = '#/subject/fixture/exams';
     render(<App />);
-    fireEvent.click(screen.getByRole('link', { name: /Practice set/ }));
+    // The exam card's only link is its Start button — scope to the Practice
+    // set card so the click picks that exam's sitting, not the other card's.
+    const card = screen.getByText('Practice set').closest('.exam-card') as HTMLElement;
+    fireEvent.click(within(card).getByRole('link', { name: /Start exam/ }));
 
     // Wait on the intro contract itself — the exam title also appears as an
     // index-card heading, so a heading query would pass before navigation.

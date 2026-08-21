@@ -1,10 +1,9 @@
-import { ClipboardList } from 'lucide-react';
+import { ArrowRight, ClipboardList, Clock, GraduationCap, History } from 'lucide-react';
 import { assemblePaper } from '../engines/exam-paper';
 import { useSubjectDataStore } from '../engines/subject-store';
 import type { SubjectContent, SubjectIndex } from '../content/registry';
 import type { Exam, ExamAttempt } from '../sdk/types';
 import { EmptyState } from './EmptyState';
-import { Pill } from './Pill';
 
 interface ExamIndexProps {
   subjectId: string;
@@ -14,8 +13,8 @@ interface ExamIndexProps {
 
 /**
  * The exams landing: one card per exam in the pack (duration, question count,
- * pass mark, selection kind) with that exam's attempt history underneath —
- * newest first, linking straight to each attempt's review.
+ * pass mark, selection kind) over a consolidated attempt history — newest
+ * first, each row linking straight to that attempt's review.
  */
 export function ExamIndex({ subjectId, content }: ExamIndexProps) {
   // Select the stored array itself — `?? []` here would mint a new reference
@@ -33,26 +32,50 @@ export function ExamIndex({ subjectId, content }: ExamIndexProps) {
   }
 
   // Attempts are stored newest-first; keep each one's absolute index so its
-  // review link stays stable against the array it was read from.
+  // review link stays stable against the array it was read from. Attempts for
+  // exams no longer in the pack render nothing.
+  const examById = new Map(content.exams.map((exam) => [exam.id, exam]));
   const history = (examAttempts ?? []).flatMap((attempt, absIndex) =>
-    attempt.examId ? [{ attempt, absIndex }] : [],
+    attempt.examId && examById.has(attempt.examId)
+      ? [{ attempt, absIndex, exam: examById.get(attempt.examId)! }]
+      : [],
   );
 
   return (
     <div className="exam-index">
-      <p className="practice-lead">
-        Sit a mock, get the certification-scale verdict, then walk the review.
-      </p>
-      <div className="practice-grid">
+      <header className="exam-head">
+        <h2 className="exam-title">Mock exams</h2>
+        <p className="exam-lead">
+          Sit a mock, get the certification-scale verdict, then walk the review.
+        </p>
+      </header>
+
+      <div className="exam-grid">
         {content.exams.map((exam) => (
           <ExamCard
             key={exam.id}
             subjectId={subjectId}
             exam={exam}
             paperSize={assemblePaper(content, exam).length}
-            history={history.filter((row) => row.attempt.examId === exam.id)}
           />
         ))}
+      </div>
+
+      <div className="exam-card">
+        <h3 className="exam-history-head">
+          <History size={18} strokeWidth={2} aria-hidden="true" /> Attempt history
+        </h3>
+        {history.length === 0 ? (
+          <p className="exam-history-empty">
+            No attempts yet — take an exam to build your history.
+          </p>
+        ) : (
+          <ul className="exam-history">
+            {history.map((row) => (
+              <AttemptRow key={row.attempt.id} subjectId={subjectId} {...row} />
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
@@ -62,49 +85,91 @@ function ExamCard({
   subjectId,
   exam,
   paperSize,
-  history,
 }: {
   subjectId: string;
   exam: Exam;
   paperSize: number;
-  history: { attempt: ExamAttempt; absIndex: number }[];
 }) {
   return (
-    <div className="exam-card">
-      <a className="practice-card" href={`#/subject/${subjectId}/exams/${exam.id}`}>
-        <div className="practice-card-head">
-          <h3 className="practice-card-title">{exam.title}</h3>
-          <Pill tone="accent">{exam.selection.kind === 'sampled' ? 'Sampled' : 'Fixed'}</Pill>
-        </div>
-        <p>{exam.description ?? `A ${exam.durationMinutes}-minute mock exam.`}</p>
-        <div className="lesson-chips">
-          <Pill>{paperSize} questions</Pill>
-          <Pill>{exam.durationMinutes} min</Pill>
-          <Pill>Pass {exam.passingScore ?? 700}</Pill>
-        </div>
+    <div className="exam-card exam-card-hover">
+      <div className="exam-card-head">
+        <GraduationCap size={20} strokeWidth={2} aria-hidden="true" />
+        <h3 className="exam-card-title">{exam.title}</h3>
+      </div>
+      <p className="exam-card-desc">
+        {exam.description ?? `A ${exam.durationMinutes}-minute mock exam.`}
+      </p>
+      <div className="exam-chips">
+        <span className="exam-chip">{paperSize} questions</span>
+        <span className="exam-chip">
+          <Clock size={12} strokeWidth={2} aria-hidden="true" /> {exam.durationMinutes} min
+        </span>
+        <span className="exam-chip">Pass {exam.passingScore ?? 700}/1000</span>
+        {exam.caseStudies && exam.caseStudies.length > 0 && (
+          <span className="exam-chip">Case study</span>
+        )}
+        <span className="exam-chip">
+          {exam.selection.kind === 'sampled' ? 'Sampled' : 'Fixed'}
+        </span>
+      </div>
+      <a className="exam-start" href={`#/subject/${subjectId}/exams/${exam.id}`}>
+        Start exam <ArrowRight size={15} strokeWidth={2} aria-hidden="true" />
       </a>
-
-      {history.length > 0 && (
-        <ul className="exam-history">
-          {history.map(({ attempt, absIndex }) => (
-            <li key={attempt.id} className="exam-history-row">
-              <Pill tone={attempt.passed ? 'success' : 'danger'}>
-                {attempt.scaledScore}/1000
-              </Pill>
-              <span className="exam-history-meta">
-                {new Date(attempt.date).toLocaleDateString()} ·{' '}
-                {attempt.timed ? 'Timed' : 'Untimed'}
-              </span>
-              <a
-                className="exam-history-link"
-                href={`#/subject/${subjectId}/exams/${exam.id}/review/${absIndex}`}
-              >
-                Review
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
+  );
+}
+
+function AttemptRow({
+  subjectId,
+  attempt,
+  exam,
+  absIndex,
+}: {
+  subjectId: string;
+  attempt: ExamAttempt;
+  exam: Exam;
+  absIndex: number;
+}) {
+  return (
+    <li>
+      <a
+        className="exam-history-row"
+        href={`#/subject/${subjectId}/exams/${attempt.examId}/review/${absIndex}`}
+      >
+        <span className="exam-history-title">
+          {exam.title}
+          <span className="exam-history-meta">
+            {new Date(attempt.date).toLocaleString()} ·{' '}
+            {attempt.timed ? 'Timed' : 'Untimed'}
+          </span>
+        </span>
+        <span className="exam-history-side">
+          {attempt.perDomain.length > 0 && (
+            <span className="exam-domain-dots">
+              {attempt.perDomain.map((domain) => {
+                const pct = domain.total ? domain.correct / domain.total : 0;
+                return (
+                  <span
+                    key={domain.domainId}
+                    className="exam-domain-dot"
+                    title={`${domain.domainId}: ${Math.round(pct * 100)}%`}
+                    style={{
+                      background: `color-mix(in srgb, var(--accent) ${Math.max(15, pct * 100)}%, var(--border))`,
+                    }}
+                  />
+                );
+              })}
+            </span>
+          )}
+          <span
+            className={`exam-history-score ${
+              attempt.passed ? 'exam-score-pass' : 'exam-score-fail'
+            }`}
+          >
+            {attempt.scaledScore}
+          </span>
+        </span>
+      </a>
+    </li>
   );
 }
