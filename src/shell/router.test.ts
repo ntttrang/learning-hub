@@ -72,6 +72,11 @@ describe('parseHash', () => {
     expect(parseHash('#/nope')).toEqual({ view: 'home' });
     expect(parseHash('#/deep/nested/path')).toEqual({ view: 'home' });
   });
+
+  it('parses the cross-subject review route', () => {
+    expect(parseHash('#/review')).toEqual({ view: 'review' });
+    expect(parseHash('#/review/')).toEqual({ view: 'review' });
+  });
 });
 
 describe('navigate', () => {

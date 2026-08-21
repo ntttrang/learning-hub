@@ -1,12 +1,16 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import AppShell from './AppShell';
-import { useSubjectDataStore } from '../engines/subject-store';
+import { emptySubjectData, useSubjectDataStore } from '../engines/subject-store';
 
 beforeEach(() => {
   window.localStorage.clear();
   window.location.hash = '';
-  useSubjectDataStore.setState({ streak: { current: 0, longest: 0 } });
+  useSubjectDataStore.setState({
+    streak: { current: 0, longest: 0 },
+    achievements: [],
+    subjects: {},
+  });
 });
 
 describe('AppShell', () => {
@@ -149,5 +153,49 @@ describe('AppShell focus rescue', () => {
       </AppShell>,
     );
     expect(document.activeElement).toBe(menuBtn);
+  });
+});
+
+describe('AppShell review rail link', () => {
+  const dueDeck = (count: number) => ({
+    fixture: {
+      ...emptySubjectData(),
+      srs: Object.fromEntries(
+        Array.from({ length: count }, (_, i) => [
+          `q-${i}`,
+          {
+            questionId: `q-${i}`,
+            box: 1,
+            due: new Date(Date.now() - 86_400_000).toISOString(),
+            lastSeen: new Date().toISOString(),
+            timesCorrect: 0,
+            timesWrong: 1,
+          },
+        ]),
+      ),
+    },
+  });
+
+  it('hides the badge when nothing is due', () => {
+    render(
+      <AppShell route={{ view: 'home' }}>
+        <p>view</p>
+      </AppShell>,
+    );
+    const link = screen.getByRole('link', { name: 'Spaced review' });
+    expect(link).toHaveAttribute('href', '#/review');
+    expect(document.querySelector('.navi-badge')).toBeNull();
+  });
+
+  it('shows the due count as a badge and in the accessible name', () => {
+    useSubjectDataStore.setState({ subjects: dueDeck(3) });
+    render(
+      <AppShell route={{ view: 'review' }}>
+        <p>view</p>
+      </AppShell>,
+    );
+    const link = screen.getByRole('link', { name: 'Spaced review — 3 due' });
+    expect(link).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByText('3')).toBeInTheDocument();
   });
 });

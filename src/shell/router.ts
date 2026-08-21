@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 
-/** Top-level hub routes: the home dashboard or one subject's workspace. */
+/** Top-level hub routes: the home dashboard, the cross-subject review queue, or one subject's workspace. */
 export type HubRoute =
   | { view: 'home' }
+  | { view: 'review' }
   | {
       view: 'subject';
       subjectId: string;
@@ -17,15 +18,17 @@ export type HubRoute =
 /**
  * Parse a location hash into a HubRoute.
  *
- * Supported shapes: ``/`#`/`#/` (hub home), `#/subject/:subjectId`, and
- * `#/subject/:subjectId/:mode[/:id[/…rest]]`. Anything unrecognised —
- * including an empty hash on first load — falls back to home, so a bad link
- * can never blank the page. Mode validity is the workspace's call: parsing
- * stays permissive and an unknown or disabled mode renders the overview.
+ * Supported shapes: ``/`#`/`#/` (hub home), `#/review` (spaced review),
+ * `#/subject/:subjectId`, and `#/subject/:subjectId/:mode[/:id[/…rest]]`.
+ * Anything unrecognised — including an empty hash on first load — falls back
+ * to home, so a bad link can never blank the page. Mode validity is the
+ * workspace's call: parsing stays permissive and an unknown or disabled mode
+ * renders the overview.
  */
 export function parseHash(hash: string): HubRoute {
   const segments = hash.replace(/^#/, '').split('/').filter(Boolean);
   const [head, subjectId, mode, id, ...rest] = segments;
+  if (head === 'review') return { view: 'review' };
   if (head !== 'subject' || !subjectId) return { view: 'home' };
   if (!mode) return { view: 'subject', subjectId };
   return {

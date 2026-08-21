@@ -5,6 +5,7 @@ import { importLegacyGhProgress } from './engines/migrate-gh-progress';
 import { useSubjectDataStore } from './engines/subject-store';
 import AppShell from './shell/AppShell';
 import HubHome from './shell/HubHome';
+import ReviewQueue from './shell/ReviewQueue';
 import SubjectWorkspace from './shell/SubjectWorkspace';
 import { useHashRoute } from './shell/router';
 // DP-800 block renderers register on import. This is the authoritative site:
@@ -43,6 +44,8 @@ export default function App() {
           id={route.id}
           rest={route.rest}
         />
+      ) : route.view === 'review' ? (
+        <ReviewQueue />
       ) : (
         <HubHome />
       )}

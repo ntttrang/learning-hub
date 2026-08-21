@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { Flame, Home, Menu } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { Flame, Home, Menu, RotateCcw } from 'lucide-react';
 import BrandWordmark from './BrandWordmark';
 import ThemeToggle from './ThemeToggle';
 import TopbarSearch from './TopbarSearch';
 import { accentVar, listSubjectCards } from './subjects';
+import { countDueCards } from '../engines/review-queue';
 import { useSubjectDataStore } from '../engines/subject-store';
 import type { HubRoute } from './router';
 
@@ -23,6 +24,14 @@ export default function AppShell({ route, children }: AppShellProps) {
   const [navOpen, setNavOpen] = useState(false);
   const mainRef = useRef<HTMLElement>(null);
   const streak = useSubjectDataStore((s) => s.streak);
+  const subjectsData = useSubjectDataStore((s) => s.subjects);
+
+  // Deck-level due count for the rail badge — cheap (no pack loads), exact
+  // enough; orphan ids that a pack can no longer resolve only ever inflate it.
+  const dueCount = useMemo(
+    () => countDueCards(subjectsData, new Date().toISOString()),
+    [subjectsData],
+  );
 
   // Any navigation closes the mobile drawer.
   useEffect(() => {
@@ -64,6 +73,21 @@ export default function AppShell({ route, children }: AppShellProps) {
         >
           <Home size={18} strokeWidth={1.75} aria-hidden="true" />
           Hub home
+        </a>
+
+        <a
+          className={route.view === 'review' ? 'navi on' : 'navi'}
+          href="#/review"
+          aria-current={route.view === 'review' ? 'page' : undefined}
+          aria-label={dueCount > 0 ? `Spaced review — ${dueCount} due` : 'Spaced review'}
+        >
+          <RotateCcw size={18} strokeWidth={1.75} aria-hidden="true" />
+          Review
+          {dueCount > 0 && (
+            <span className="navi-badge" aria-hidden="true">
+              {dueCount > 99 ? '99+' : dueCount}
+            </span>
+          )}
         </a>
 
         <div className="grp">My subjects</div>
