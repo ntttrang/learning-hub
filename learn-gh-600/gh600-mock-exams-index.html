@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en" class="idx-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GH-600 exams — Captain Corgi Hub</title>
+<link rel="icon" href="assets/captain-corgi-hub-design/assets/icons/star.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/captain-corgi-hub-design/colors_and_type.css">
+<style>
+:root {
+  --idx-nav-w: 15.5rem;
+  --idx-gap: var(--space-4);
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+html.idx-root,
+html.idx-root body {
+  height: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+body.cc-body {
+  min-height: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-14);
+  color: var(--fg);
+  background: var(--bg);
+  line-height: var(--lh-normal);
+}
+
+.idx-layout {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  max-height: 100vh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Left navigation — links use target=exam-frame so switching works without JavaScript */
+.idx-nav {
+  flex: 0 0 var(--idx-nav-w);
+  width: var(--idx-nav-w);
+  max-width: 100%;
+  background: var(--bg-elevated);
+  border-right: var(--bw) solid var(--border);
+  padding: var(--space-5) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  align-self: stretch;
+  max-height: 100vh;
+  min-height: 0;
+  overflow-y: auto;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-1);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    flex-basis 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 200ms ease,
+    visibility 260ms linear,
+    padding 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 260ms ease;
+}
+
+.idx-layout.idx-nav-collapsed .idx-nav {
+  flex-basis: 0 !important;
+  flex-grow: 0;
+  width: 0 !important;
+  max-width: 0 !important;
+  padding: 0 !important;
+  border-right-width: 0 !important;
+  opacity: 0;
+  visibility: hidden;
+  overflow: clip;
+  pointer-events: none;
+}
+
+.idx-layout.idx-nav-collapsed .idx-main {
+  padding-inline-start: calc(var(--idx-gap) + 2.875rem + var(--space-2));
+}
+
+.idx-nav-brand-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: nowrap;
+}
+
+.idx-nav-brand-row .idx-brand {
+  flex: 1;
+  min-width: 0;
+}
+
+.idx-nav-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.idx-theme-cycle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--r-md);
+  border: var(--bw) solid var(--border-strong);
+  background: var(--bg-sunken);
+  color: var(--fg-2);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--fs-12);
+  font-weight: var(--fw-semi);
+  line-height: var(--lh-snug);
+  text-align: left;
+  transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.idx-theme-cycle-btn:hover {
+  background: color-mix(in srgb, var(--accent) 14%, var(--bg-sunken));
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  color: var(--fg);
+}
+
+.idx-theme-cycle-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+}
+
+.idx-theme-cycle-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg);
+}
+
+.idx-theme-cycle-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.idx-theme-cycle-btn .idx-theme-cycle-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.idx-nav-hide,
+.idx-nav-expand {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.125rem;
+  height: 2.125rem;
+  padding: 0;
+  border-radius: var(--r-md);
+  border: var(--bw) solid var(--border-strong);
+  background: var(--bg-sunken);
+  color: var(--fg-2);
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1;
+  font-size: 1rem;
+  transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.idx-nav-hide:hover,
+.idx-nav-expand:hover {
+  background: color-mix(in srgb, var(--accent) 14%, var(--bg-sunken));
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  color: var(--fg);
+}
+
+.idx-nav-hide:focus-visible,
+.idx-nav-expand:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+}
+
+.idx-nav-expand {
+  display: none;
+  position: absolute;
+  left: calc(var(--idx-gap) / 2);
+  top: var(--idx-gap);
+  z-index: 60;
+  box-shadow: var(--shadow-sm);
+}
+
+.idx-layout.idx-nav-collapsed .idx-nav-expand {
+  display: inline-flex;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .idx-nav {
+    transition: none;
+  }
+}
+
+.idx-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.idx-brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-lg);
+  object-fit: cover;
+  border: var(--bw) solid var(--border);
+  flex-shrink: 0;
+}
+
+.idx-brand-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-18);
+  font-weight: var(--fw-semi);
+  color: var(--fg);
+  line-height: var(--lh-snug);
+}
+
+.idx-brand-sub {
+  font-size: var(--fs-12);
+  color: var(--fg-3);
+  margin-top: 2px;
+}
+
+.idx-nav-intro {
+  font-size: var(--fs-12);
+  color: var(--fg-3);
+  line-height: var(--lh-relaxed);
+}
+
+.idx-nav-section {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-semi);
+  color: var(--fg-3);
+  letter-spacing: var(--tr-loose);
+  text-transform: uppercase;
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-1);
+  padding-inline: var(--space-1);
+}
+
+.idx-nav-section:first-child {
+  margin-top: 0;
+}
+
+.idx-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.idx-nav-btn {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border: var(--bw) solid transparent;
+  border-radius: var(--r-md);
+  padding: var(--space-3) var(--space-3);
+  background: var(--bg-sunken);
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--fs-14);
+  text-decoration: none;
+  display: block;
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+
+.idx-nav-btn:hover {
+  border-color: var(--border-strong);
+}
+
+.idx-nav-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+}
+
+.idx-nav-btn[aria-current="page"],
+.idx-nav-btn.idx-nav-current {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.idx-nav-btn .nb-label {
+  display: block;
+  font-weight: var(--fw-semi);
+  color: var(--fg);
+}
+
+.idx-nav-btn .nb-meta {
+  display: block;
+  font-size: var(--fs-12);
+  color: var(--fg-3);
+  margin-top: 2px;
+}
+
+.idx-footer {
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: var(--bw) solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.idx-footer .open-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-12);
+  color: var(--link);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: var(--space-2) 0;
+  font-family: inherit;
+}
+
+.idx-footer .open-tab:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.idx-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: var(--idx-gap);
+  gap: var(--space-3);
+}
+
+.idx-toolbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  width: 100%;
+  min-width: 0;
+}
+
+.idx-toolbar-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-24);
+  font-weight: var(--fw-semi);
+  color: var(--fg);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.idx-toolbar-chip {
+  flex-shrink: 0;
+  align-self: center;
+  margin-inline-start: auto;
+  font-size: var(--fs-12);
+  padding: 3px var(--space-3);
+  border-radius: var(--r-full);
+  font-weight: var(--fw-semi);
+  /* Avoid --info-fg: stays ink-colored in prefers-color-scheme:dark partial theme */
+  color: var(--fg);
+  background: color-mix(in srgb, var(--accent) 16%, var(--bg-elevated));
+  border: var(--bw) solid color-mix(in srgb, var(--accent) 38%, var(--border));
+}
+
+.idx-canvas {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  max-width: 100%;
+  background: var(--bg-elevated);
+  border: var(--bw) solid var(--border-strong);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.idx-canvas-h {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg-sunken);
+  border-bottom: var(--bw) solid var(--border);
+  font-size: var(--fs-12);
+  color: var(--fg-3);
+}
+
+.idx-canvas-h strong {
+  color: var(--fg-2);
+  font-weight: var(--fw-semi);
+}
+
+.idx-frame {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+  border: none;
+  background: var(--bg);
+  display: block;
+}
+
+@media (max-width: 840px) {
+  .idx-layout { flex-direction: column; max-height: none; height: auto; min-height: 100vh; }
+
+  .idx-nav {
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .idx-layout.idx-nav-collapsed .idx-nav {
+    display: none !important;
+    flex-basis: auto !important;
+    width: 0 !important;
+    opacity: 0 !important;
+  }
+
+  .idx-layout.idx-nav-collapsed .idx-main {
+    padding-inline-start: calc(var(--idx-gap) + 2.875rem + var(--space-2));
+  }
+
+  .idx-main {
+    overflow: visible;
+    flex: 1;
+    max-width: 100vw;
+    min-height: 50vh;
+  }
+
+  .idx-canvas { min-height: 50vh; }
+
+  .idx-nav-expand {
+    left: calc(var(--idx-gap) / 2);
+    top: var(--idx-gap);
+  }
+}
+</style>
+</head>
+<body class="cc-body">
+<div class="idx-layout" id="hub-mock-layout">
+  <button type="button" class="idx-nav-expand" id="hub-nav-show" aria-controls="hub-mock-nav" aria-expanded="false" title="Show mock list">
+    <span class="visually-hidden">Show mock exam list</span><span aria-hidden="true">›</span>
+  </button>
+  <nav class="idx-nav" id="hub-mock-nav" aria-label="GH-600 exams">
+    <div class="idx-nav-head">
+      <div class="idx-nav-brand-row">
+        <div class="idx-brand">
+          <img src="assets/captain-corgi-hub-design/assets/captain-corgi-hub-avatar.png" alt="" width="44" height="44">
+          <div>
+            <div class="idx-brand-title">GH-600 exams</div>
+            <div class="idx-brand-sub">Captain Corgi Hub</div>
+          </div>
+        </div>
+        <button type="button" class="idx-nav-hide" id="hub-nav-hide" aria-controls="hub-mock-nav" aria-expanded="true" title="Hide mock list">
+          <span class="visually-hidden">Hide mock exam list</span><span aria-hidden="true">‹</span>
+        </button>
+      </div>
+      <p class="idx-nav-intro">Tap a paper on the left. The preview loads in the framed area (works even when inline scripts are disabled). Best experience: serve this folder over <code>http://localhost</code> from the repo root.</p>
+    </div>
+    <div class="idx-nav-section">Baseline</div>
+    <ul class="idx-nav-list">
+      <li>
+        <a class="idx-nav-btn idx-nav-current" href="gh600-mock-exam-captain-corgi.html" target="exam-frame"
+           data-chip="Baseline · 60 Q · 120 min" aria-current="page"><span class="nb-label">Base line</span><span class="nb-meta">Original question bank</span></a>
+      </li>
+    </ul>
+    <div class="idx-nav-section">Mock exams</div>
+    <ul class="idx-nav-list">
+      <li>
+        <a class="idx-nav-btn" href="gh600-mock-exam-captain-corgi-1.html" target="exam-frame"
+           data-chip="Mock 1 · 60 Q · 120 min"><span class="nb-label">Mock exam 1</span><span class="nb-meta">Shuffled full exam</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-mock-exam-captain-corgi-2.html" target="exam-frame"
+           data-chip="Mock 2 · 60 Q · 120 min"><span class="nb-label">Mock exam 2</span><span class="nb-meta">Shuffled full exam</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-mock-exam-captain-corgi-3.html" target="exam-frame"
+           data-chip="Mock 3 · 60 Q · 120 min"><span class="nb-label">Mock exam 3</span><span class="nb-meta">Shuffled full exam</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-mock-exam-captain-corgi-4.html" target="exam-frame"
+           data-chip="Mock 4 · 60 Q · 120 min"><span class="nb-label">Mock exam 4</span><span class="nb-meta">Shuffled full exam</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-mock-exam-captain-corgi-5.html" target="exam-frame"
+           data-chip="Mock 5 · 60 Q · 120 min"><span class="nb-label">Mock exam 5</span><span class="nb-meta">Shuffled full exam</span></a>
+      </li>
+    </ul>
+    <div class="idx-nav-section">Practice exams</div>
+    <ul class="idx-nav-list">
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-1.html" target="exam-frame"
+           data-chip="Practice 1 · 50 Q · 90 min"><span class="nb-label">Practice exam 1</span><span class="nb-meta">From practice-example-1.md</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-2.html" target="exam-frame"
+           data-chip="Practice 2 · 50 Q · 90 min"><span class="nb-label">Practice exam 2</span><span class="nb-meta">From practice-example-2.md</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-3.html" target="exam-frame"
+           data-chip="Practice 3 · 50 Q · 90 min"><span class="nb-label">Practice exam 3</span><span class="nb-meta">From practice-example-3.md</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-4.html" target="exam-frame"
+           data-chip="Practice 4 · 50 Q · 90 min"><span class="nb-label">Practice exam 4</span><span class="nb-meta">From practice-example-4.md</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-5.html" target="exam-frame"
+           data-chip="Practice 5 · 50 Q · 90 min"><span class="nb-label">Practice exam 5</span><span class="nb-meta">From practice-example-5.md</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-6.html" target="exam-frame"
+           data-chip="Practice 6 · 50 Q · 90 min"><span class="nb-label">Practice exam 6</span><span class="nb-meta">From practice-example-6.md</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-7.html" target="exam-frame"
+           data-chip="Practice 7 · 50 Q · 90 min"><span class="nb-label">Practice exam 7</span><span class="nb-meta">From practice-example-7.md</span></a>
+      </li>
+    </ul>
+    <div class="idx-footer">
+      <button type="button" class="open-tab" id="open-tab">Open active exam in a new tab<span aria-hidden="true">↗</span></button>
+      <div class="idx-nav-theme" role="group" aria-label="Color theme">
+        <button type="button" id="hub-theme-cycle" class="idx-theme-cycle-btn">
+          <span class="idx-theme-cycle-icon" id="hub-theme-cycle-icon" aria-hidden="true"></span>
+          <span class="idx-theme-cycle-label" id="hub-theme-cycle-label">Auto</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="idx-main">
+    <div class="idx-toolbar">
+      <h1 class="idx-toolbar-title" id="main-title">Base line</h1>
+      <span class="idx-toolbar-chip" id="main-chip">Baseline · 60 Q · 120 min</span>
+    </div>
+    <section class="idx-canvas" aria-label="Exam preview canvas">
+      <div class="idx-canvas-h">
+        <strong id="canvas-url">gh600-mock-exam-captain-corgi.html</strong>
+        <span>Open from repo root so assets resolve</span>
+      </div>
+      <iframe class="idx-frame" id="exam-frame" name="exam-frame" title="Exam preview"
+        src="gh600-mock-exam-captain-corgi.html"></iframe>
+    </section>
+  </main>
+</div>
+
+<script>
+(function () {
+  var iframe = document.getElementById('exam-frame');
+  var mainTitle = document.getElementById('main-title');
+  var mainChip = document.getElementById('main-chip');
+  var canvasUrl = document.getElementById('canvas-url');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.idx-nav-list a[target="exam-frame"]'));
+
+  function toolbarHeadingFromNav(a) {
+    if (!a) return 'Base line';
+    var lbl = a.querySelector('.nb-label');
+    return (lbl && lbl.textContent) ? lbl.textContent.trim() : 'Base line';
+  }
+
+  function syncToolbar(a, bumpHash) {
+    bumpHash = !!bumpHash;
+    var t = toolbarHeadingFromNav(a);
+    var c = (a && a.dataset && a.dataset.chip) ? a.dataset.chip : '60 Q · 120 min';
+    var rel = (a && a.getAttribute('href')) ? a.getAttribute('href') : 'gh600-mock-exam-captain-corgi.html';
+
+    mainTitle.textContent = t;
+    mainChip.textContent = c;
+    canvasUrl.textContent = rel;
+
+    links.forEach(function (x) {
+      var on = x === a;
+      x.classList.toggle('idx-nav-current', on);
+      if (on) x.setAttribute('aria-current', 'page');
+      else x.removeAttribute('aria-current');
+    });
+
+    if (bumpHash && a) {
+      try {
+        history.replaceState({}, '', '#' + encodeURIComponent(rel));
+      } catch (e2) {}
+    }
+  }
+
+  links.forEach(function (a) {
+    a.addEventListener('click', function () {
+      syncToolbar(a, true);
+    });
+  });
+
+  iframe.addEventListener('load', function () {
+    try {
+      var u = iframe.contentWindow && iframe.contentWindow.location;
+      if (!u || !u.pathname) return;
+      var name = String(u.pathname).split('/').pop() || '';
+      if (name) canvasUrl.textContent = name;
+    } catch (e) {
+      /* cross-origin sandbox — ignore */
+    }
+  });
+
+  document.getElementById('open-tab').addEventListener('click', function () {
+    try {
+      var resolved = iframe.contentWindow.location.href;
+      if (resolved && resolved.indexOf('about:blank') !== 0) window.open(resolved, '_blank', 'noopener,noreferrer');
+      else window.open(new URL(iframe.getAttribute('src') || '', window.location.href).href, '_blank', 'noopener,noreferrer');
+    } catch (err) {
+      window.open(new URL(iframe.getAttribute('src') || '', window.location.href).href, '_blank', 'noopener,noreferrer');
+    }
+  });
+
+  function activateFromHash() {
+    var h = decodeURIComponent((location.hash || '').replace(/^#/, ''));
+    if (!h) return;
+    var m = links.filter(function (a) {
+      return a.getAttribute('href') === h;
+    })[0];
+    if (m) {
+      iframe.setAttribute('src', new URL(h, window.location.href).href);
+      syncToolbar(m, false);
+    }
+  }
+
+  window.addEventListener('hashchange', activateFromHash);
+  activateFromHash();
+
+  var hubLayout = document.getElementById('hub-mock-layout');
+  var hideNavBtn = document.getElementById('hub-nav-hide');
+  var showNavBtn = document.getElementById('hub-nav-show');
+
+  function navSync() {
+    var c = hubLayout.classList.contains('idx-nav-collapsed');
+    hideNavBtn.setAttribute('aria-expanded', c ? 'false' : 'true');
+    showNavBtn.setAttribute('aria-expanded', c ? 'false' : 'true');
+    try {
+      sessionStorage.setItem('gh600HubNavCollapsed', c ? '1' : '0');
+    } catch (e0) {}
+  }
+
+  hideNavBtn.addEventListener('click', function () {
+    hubLayout.classList.add('idx-nav-collapsed');
+    navSync();
+    showNavBtn.focus({ preventScroll: true });
+  });
+
+  showNavBtn.addEventListener('click', function () {
+    hubLayout.classList.remove('idx-nav-collapsed');
+    navSync();
+    hideNavBtn.focus({ preventScroll: true });
+  });
+
+  try {
+    if (sessionStorage.getItem('gh600HubNavCollapsed') === '1') hubLayout.classList.add('idx-nav-collapsed');
+  } catch (e1) {}
+
+  navSync();
+
+  /* Matches captain-corgi-hub-design theme-toggle.html: cc-theme localStorage + data-theme on <html> */
+  (function hubThemeCtl() {
+    var root = document.documentElement;
+    var key = 'cc-theme';
+    var order = ['auto', 'light', 'dark', 'night'];
+    var labels = { auto: 'Auto', light: 'Light', dark: 'Dark', night: 'Night' };
+    var descriptions = {
+      auto: 'Follow system',
+      light: 'Clay cream',
+      dark: 'Clay night',
+      night: 'Deep night (low blue light)'
+    };
+    var icons = {
+      auto: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg>',
+      light: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>',
+      dark: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+      night: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a4 4 0 0 0 0 8 6 6 0 0 0 0-8z"/><path d="M12 14v7M9 18l3-1 3 1"/></svg>'
+    };
+    var btn = document.getElementById('hub-theme-cycle');
+    var iconEl = document.getElementById('hub-theme-cycle-icon');
+    var labelEl = document.getElementById('hub-theme-cycle-label');
+    if (!btn || !iconEl || !labelEl) return;
+
+    function readStored() {
+      try {
+        var stored = localStorage.getItem(key);
+        if (stored && ['light', 'dark', 'night'].includes(stored)) return stored;
+      } catch (eT) {}
+      return 'auto';
+    }
+
+    function render(choice) {
+      var l = labels[choice] || labels.auto;
+      var d = descriptions[choice] || descriptions.auto;
+      iconEl.innerHTML = icons[choice] || icons.auto;
+      labelEl.textContent = l;
+      btn.setAttribute('title', l + ': ' + d + ' — click for next theme');
+      btn.setAttribute('aria-label', 'Color theme ' + l + ', ' + d + '. Activate to cycle to the next theme.');
+    }
+
+    function apply(choice, persist) {
+      persist = persist !== false;
+      if (order.indexOf(choice) < 0) choice = 'auto';
+      if (choice === 'auto') {
+        root.removeAttribute('data-theme');
+        if (persist) { try { localStorage.removeItem(key); } catch (eR) {} }
+      } else {
+        root.setAttribute('data-theme', choice);
+        if (persist) { try { localStorage.setItem(key, choice); } catch (eW) {} }
+      }
+      render(choice);
+      notifyExamFrameTheme();
+    }
+
+    function notifyExamFrameTheme() {
+      var frame = document.getElementById('exam-frame');
+      if (!frame || !frame.contentWindow) return;
+      var forced = root.getAttribute('data-theme') || '';
+      try {
+        frame.contentWindow.postMessage({ type: 'cc-theme-hub', forced: forced }, '*');
+      } catch (eN) {}
+    }
+
+    btn.addEventListener('click', function () {
+      var cur = readStored();
+      var i = order.indexOf(cur);
+      var next = order[(i + 1) % order.length];
+      apply(next, true);
+    });
+
+    var mql = window.matchMedia('(prefers-color-scheme: dark)');
+    function onSystem() {
+      if (!root.hasAttribute('data-theme')) render('auto');
+    }
+    if (mql.addEventListener) mql.addEventListener('change', onSystem);
+    else if (mql.addListener) mql.addListener(onSystem);
+
+    apply(readStored(), false);
+    var examIframe = document.getElementById('exam-frame');
+    if (examIframe) examIframe.addEventListener('load', notifyExamFrameTheme);
+
+    window.ccSetTheme = apply;
+  })();
+})();
+</script>
+</body>
+</html>

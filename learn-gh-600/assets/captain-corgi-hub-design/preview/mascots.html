@@ -1,0 +1,33 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--clay-cream); }
+  .wrap { padding: 20px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: stretch; }
+  .panel { border-radius: var(--r-lg); padding: 18px; display: flex; gap: 16px; align-items: center; border: var(--bw) solid var(--border-soft); }
+  .panel.teal { background: #3D768E; color: #F6F2EA; }
+  .panel.coral { background: #DD5D5D; color: #F6F2EA; }
+  .av { width: 92px; height: 92px; border-radius: 999px; flex-shrink: 0; object-fit: cover; box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+  .label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.78; margin-bottom: 4px; }
+  .name { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; line-height: 1.05; }
+  .desc { font-family: var(--font-body); font-size: 13px; opacity: 0.9; margin-top: 6px; line-height: 1.4; }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="panel teal">
+    <img class="av" src="../assets/captain-corgi-avatar.png" alt="Captain Corgi"/>
+    <div>
+      <div class="label">Personal mascot</div>
+      <div class="name">Captain Corgi</div>
+      <div class="desc">Solo voice. Cyan uniform, deep teal bg.</div>
+    </div>
+  </div>
+  <div class="panel coral">
+    <img class="av" src="../assets/captain-corgi-hub-avatar.png" alt="Hub crew"/>
+    <div>
+      <div class="label">Org mascot</div>
+      <div class="name">The Hub crew</div>
+      <div class="desc">Community surfaces. Green uniform, coral bg.</div>
+    </div>
+  </div>
+</div></body></html>

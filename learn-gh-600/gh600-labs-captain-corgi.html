@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GH-600 hands-on labs - Captain Corgi Hub</title>
+<link rel="icon" href="assets/captain-corgi-hub-design/assets/icons/star.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/captain-corgi-hub-design/colors_and_type.css">
+<style>
+* { box-sizing: border-box; }
+
+body.cc-body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--fg);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 18%, transparent), transparent 30rem),
+    var(--bg);
+  line-height: var(--lh-normal);
+}
+
+a {
+  color: inherit;
+}
+
+.page {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: var(--space-6) 0 var(--space-8);
+}
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  align-items: center;
+  padding: var(--space-6);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--r-xl);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-2);
+}
+
+.hero-main {
+  flex: 1 1 22rem;
+  min-width: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  color: var(--fg-2);
+  font-weight: var(--fw-bold);
+}
+
+.brand img {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-full);
+  box-shadow: var(--shadow-1);
+}
+
+.eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  padding: var(--space-1) var(--space-3);
+  border: var(--bw) solid color-mix(in srgb, var(--accent) 42%, var(--border));
+  border-radius: var(--r-full);
+  background: color-mix(in srgb, var(--accent) 12%, var(--bg-elevated));
+  color: var(--fg);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.cc-body .hero h1 {
+  max-width: 13ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: .95;
+  letter-spacing: -.05em;
+}
+
+.cc-body .hero .lead {
+  max-width: 60ch;
+  margin: var(--space-4) 0 0;
+  color: var(--fg-2);
+  font-size: var(--fs-18);
+  line-height: var(--lh-normal);
+}
+
+.hero-panel {
+  flex: 1 1 18rem;
+  max-width: 22rem;
+  padding: var(--space-5);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--bg-sunken);
+}
+
+.hero-panel strong {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-20);
+}
+
+.hero-panel ul {
+  margin: var(--space-3) 0 0;
+  padding-left: 1.15rem;
+  color: var(--fg-2);
+}
+
+.quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0 var(--space-4);
+  border: var(--bw) solid var(--border-strong);
+  border-radius: var(--r-lg);
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  box-shadow: var(--shadow-1);
+}
+
+.button.secondary {
+  background: var(--bg-sunken);
+  color: var(--fg);
+}
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin: var(--space-7) 0 var(--space-4);
+}
+
+.section-head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  letter-spacing: -.03em;
+}
+
+.section-head p {
+  max-width: 45ch;
+  margin: 0;
+  color: var(--fg-2);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--space-4);
+}
+
+.card {
+  display: flex;
+  min-height: 18rem;
+  flex-direction: column;
+  padding: var(--space-5);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-1);
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+
+.card:focus-visible,
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.lab-no {
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-full);
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-family: var(--font-display);
+  font-size: var(--fs-20);
+  font-weight: var(--fw-bold);
+}
+
+.weight {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--r-full);
+  background: var(--bg-sunken);
+  color: var(--fg-2);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+}
+
+.card h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-24);
+  line-height: var(--lh-tight);
+  letter-spacing: -.03em;
+}
+
+.card p {
+  margin: var(--space-3) 0 0;
+  color: var(--fg-2);
+}
+
+.tools {
+  margin-top: auto;
+  padding-top: var(--space-4);
+  color: var(--fg-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-12);
+}
+
+.matrix {
+  margin-top: var(--space-7);
+  padding: var(--space-5);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--r-xl);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-1);
+}
+
+.matrix h2 {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-display);
+}
+
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-3);
+}
+
+.matrix-item {
+  padding: var(--space-4);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--bg-sunken);
+}
+
+.matrix-item strong {
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.matrix-item span {
+  color: var(--fg-2);
+}
+
+@media (max-width: 980px) {
+  .hero-panel {
+    flex-basis: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    width: min(100% - 1rem, 1180px);
+    padding-top: var(--space-4);
+  }
+
+  .hero,
+  .card,
+  .matrix {
+    padding: var(--space-4);
+  }
+
+  .section-head {
+    display: block;
+  }
+}
+</style>
+</head>
+<body class="cc-body">
+<main class="page">
+  <section class="hero">
+    <div class="hero-main">
+      <div class="brand">
+        <img src="assets/captain-corgi-hub-design/assets/captain-corgi-hub-avatar.png" alt="">
+        <span>Captain Corgi Hub</span>
+      </div>
+      <span class="eyebrow">GH-600 lab track</span>
+      <h1>Agentic AI developer labs</h1>
+      <p class="lead">Practice every GH-600 domain by shipping one tiny Go service through GitHub agent workflows, MCP tools, CI/CD, Docker Hub, and AWS guardrails.</p>
+      <div class="quick-links">
+        <a class="button" href="docs/labs/README.md">Start with the lab index</a>
+        <a class="button secondary" href="docs/labs/scaffold/">Open scaffold folder</a>
+      </div>
+    </div>
+    <aside class="hero-panel" aria-label="Lab outcome">
+      <strong>What we build</strong>
+      <p>A `corgi-greeter` Go API with plan-gated agents, scoped MCP tools, durable memory, eval reports, multi-agent coordination, and guarded production deploys.</p>
+      <ul>
+        <li>8 labs</li>
+        <li>6 exam domains</li>
+        <li>GitHub products plus alternatives</li>
+      </ul>
+    </aside>
+  </section>
+
+  <div class="section-head">
+    <div>
+      <h2>Labs</h2>
+      <p>Work in order. Each lab has a GitHub-native path, alternative tools, validation checklist, and practice-question pointers.</p>
+    </div>
+  </div>
+
+  <section class="cards" aria-label="GH-600 hands-on labs">
+    <a class="card" href="docs/labs/lab-00-bootstrap.md">
+      <div class="card-top"><span class="lab-no">0</span><span class="weight">Prereq</span></div>
+      <h3>Bootstrap corgi-greeter</h3>
+      <p>Create the Go app, Docker build, Docker Hub push, and AWS deploy baseline.</p>
+      <span class="tools">Go | Actions | Docker Hub | AWS</span>
+    </a>
+    <a class="card" href="docs/labs/lab-01-sdlc-architecture.md">
+      <div class="card-top"><span class="lab-no">1</span><span class="weight">15-20%</span></div>
+      <h3>SDLC architecture</h3>
+      <p>Separate planning from execution with issues, PRs, CODEOWNERS, labels, and rulesets.</p>
+      <span class="tools">Copilot | PRs | Rulesets</span>
+    </a>
+    <a class="card" href="docs/labs/lab-02-tools-and-mcp.md">
+      <div class="card-top"><span class="lab-no">2</span><span class="weight">20-25%</span></div>
+      <h3>Tools and MCP</h3>
+      <p>Configure MCP allow lists, custom agents, branch scope, retries, rollback, and escalation.</p>
+      <span class="tools">MCP | custom agents | firewall</span>
+    </a>
+    <a class="card" href="docs/labs/lab-03-memory-and-state.md">
+      <div class="card-top"><span class="lab-no">3</span><span class="weight">10-15%</span></div>
+      <h3>Memory and state</h3>
+      <p>Persist decisions, resume interrupted work, and detect context drift.</p>
+      <span class="tools">Issues | AGENTS.md | decisions</span>
+    </a>
+    <a class="card" href="docs/labs/lab-04-evaluation-and-tuning.md">
+      <div class="card-top"><span class="lab-no">4</span><span class="weight">15-20%</span></div>
+      <h3>Evaluation and tuning</h3>
+      <p>Score repeated agent runs with tests, scans, traces, and root-cause buckets.</p>
+      <span class="tools">Actions | CodeQL | evals</span>
+    </a>
+    <a class="card" href="docs/labs/lab-05-multi-agent.md">
+      <div class="card-top"><span class="lab-no">5</span><span class="weight">15-20%</span></div>
+      <h3>Multi-agent coordination</h3>
+      <p>Run specialist agents in isolated branches and merge their artifacts safely.</p>
+      <span class="tools">matrix | artifacts | coordinator</span>
+    </a>
+    <a class="card" href="docs/labs/lab-06-guardrails.md">
+      <div class="card-top"><span class="lab-no">6</span><span class="weight">10-15%</span></div>
+      <h3>Guardrails</h3>
+      <p>Apply autonomy levels, least privilege, approvals, hard blocks, and audit trails.</p>
+      <span class="tools">environments | OIDC | audit</span>
+    </a>
+    <a class="card" href="docs/labs/lab-07-capstone.md">
+      <div class="card-top"><span class="lab-no">7</span><span class="weight">All</span></div>
+      <h3>Capstone</h3>
+      <p>Ship one end-to-end agentic change from issue to production deployment.</p>
+      <span class="tools">issue | PR | eval | deploy</span>
+    </a>
+  </section>
+
+  <section class="matrix">
+    <h2>Tooling alternatives</h2>
+    <div class="matrix-grid">
+      <div class="matrix-item"><strong>GitHub native</strong><span>Copilot coding agent, custom agents, Actions, Rulesets, Environments, OIDC, CodeQL.</span></div>
+      <div class="matrix-item"><strong>Agent IDEs</strong><span>Cursor Background Agent, Claude Code, Continue.dev, Devin, Aider.</span></div>
+      <div class="matrix-item"><strong>Evaluation</strong><span>promptfoo, DeepEval, OpenAI Evals, Braintrust, Langfuse, Arize Phoenix.</span></div>
+      <div class="matrix-item"><strong>Multi-agent</strong><span>CrewAI, AutoGen, LangGraph supervisors, Temporal, Inngest.</span></div>
+      <div class="matrix-item"><strong>Policy</strong><span>OPA, Conftest, Sentinel, AWS SCPs, IAM Conditions, Atlantis.</span></div>
+      <div class="matrix-item"><strong>Deploy targets</strong><span>Docker Hub, GHCR, ECR, ECS Fargate, App Runner, Fly.io, Render.</span></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

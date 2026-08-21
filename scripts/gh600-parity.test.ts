@@ -6,7 +6,7 @@
  *
  * Reads the donor through gh600-extract-lib only — never the extractor CLI
  * (which would regenerate content/ before assertions run and neutralize
- * parity). A missing donor submodule fails closed with the init command in
+ * parity). A missing donor file fails closed with restore guidance in
  * the error, never a skipped test.
  */
 import { readFileSync, readdirSync } from 'node:fs';
@@ -54,8 +54,8 @@ const MOCK_COPIES = [
 ];
 const practiceFile = (n: number) => `gh600-practice-exam-captain-corgi-${n}.html`;
 
-// Fail-closed donor loads: readDonorFile throws with the
-// `git submodule update --init` guidance when the submodule is absent.
+// Fail-closed donor loads: readDonorFile throws with restore guidance
+// when a vendored donor file is absent.
 const donorDomains = loadDonorConst<DonorDomain[]>(
   readDonorFile('gh600-study-plan-captain-corgi.html'),
   'DOMAINS',
@@ -118,9 +118,9 @@ const uniqueKeys = new Set(donorInstances.map((i) => i.key));
 /* -------------------------------- questions --------------------------------- */
 
 describe('gh-600 parity — donor fail-closed', () => {
-  it('an unreadable donor path throws with the submodule init command — never a silent skip', () => {
+  it('an unreadable donor path throws with vendored-restore guidance — never a silent skip', () => {
     expect(() => readDonorFile('definitely-not-a-donor-file.html')).toThrow(
-      /git submodule update --init/,
+      /restore it from version control/,
     );
   });
 });

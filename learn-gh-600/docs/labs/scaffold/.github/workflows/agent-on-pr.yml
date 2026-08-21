@@ -1,0 +1,59 @@
+name: agent-on-pr
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: read
+
+jobs:
+  release-agent:
+    if: startsWith(github.head_ref, 'agent/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check plan approval
+        run: |
+          echo "Require a plan-approved label before any release action."
+          echo "In production, query labels with gh pr view and fail if missing."
+
+      - name: Invoke release agent
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p agent-artifacts
+          cat > agent-artifacts/plan.md <<'PLAN'
+          # Release agent plan
+          - Read the linked issue and PR.
+          - Confirm branch scope.
+          - Run CI and scans.
+          - Prepare release notes.
+          - Escalate on policy failure.
+          PLAN
+          if gh agent-task --help >/dev/null 2>&1; then
+            gh agent-task create --agent release-agent --prompt "Review this PR for release readiness."
+          else
+            echo "gh agent-task is not available in this environment; using scaffold placeholder."
+          fi
+
+      - name: Upload trace
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-agent-trace
+          path: agent-artifacts/
+
+      - name: Escalate on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "Release agent needs human help" \
+            --label "needs-human" \
+            --body "The release agent failed. Review the workflow logs and uploaded artifacts."

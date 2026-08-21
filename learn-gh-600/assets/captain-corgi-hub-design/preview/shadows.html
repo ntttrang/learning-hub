@@ -1,0 +1,22 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--clay-cream); }
+  .wrap { padding: 28px 28px 32px; display: flex; gap: 28px; align-items: center; justify-content: space-around; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .card { width: 96px; height: 70px; background: white; border-radius: var(--r-md); border: var(--bw) solid var(--border-soft); }
+  .lbl { font-family: var(--font-mono); font-size: 11px; color: var(--ink); font-weight: 600; }
+  .desc { font-family: var(--font-body); font-size: 11px; color: var(--ink-3); }
+  .s1 { box-shadow: 0 1px 2px rgba(31,42,51,.06), 0 1px 1px rgba(31,42,51,.04); }
+  .s2 { box-shadow: 0 6px 14px rgba(225,52,41,.08), 0 2px 4px rgba(31,42,51,.06); }
+  .s3 { box-shadow: 0 16px 32px rgba(225,52,41,.10), 0 4px 8px rgba(31,42,51,.08); }
+  .s4 { box-shadow: 0 28px 56px rgba(225,52,41,.14), 0 8px 16px rgba(31,42,51,.10); }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="item"><div class="card s1"></div><div class="lbl">--shadow-1</div><div class="desc">resting</div></div>
+  <div class="item"><div class="card s2"></div><div class="lbl">--shadow-2</div><div class="desc">hover · warm-tinted</div></div>
+  <div class="item"><div class="card s3"></div><div class="lbl">--shadow-3</div><div class="desc">floating</div></div>
+  <div class="item"><div class="card s4"></div><div class="lbl">--shadow-4</div><div class="desc">modal</div></div>
+</div></body></html>

@@ -1,0 +1,414 @@
+/* =========================================================================
+   Captain Corgi Hub — Design Tokens (adapted for the learning site)
+   Colors + Type + Spacing + Radii + Shadows + Motion.
+   Source of truth: .claude/skills/captain-corgi-hub-design/colors_and_type.css
+   Fonts load from index.html (Google Fonts CDN); no CSS @import here.
+   Scope: light + dark + auto (follows prefers-color-scheme). No night theme.
+   ========================================================================= */
+
+:root {
+  /* ---------- Color — Brand (sampled from mascots) ------------------------ */
+  --corgi-orange:   #FC8903;  /* fur, primary brand */
+  --corgi-orange-deep: #E27506; /* fur shadow / pressed states */
+  --captain-red:    #E13429;  /* hat */
+  --captain-red-deep: #B82A21;
+  --star-yellow:    #FBC00A;  /* the star */
+  --star-yellow-deep: #D9A209;
+  --sky-cyan:       #51BBD7;  /* captain's uniform */
+  --sky-cyan-deep:  #2E9CBA;
+  --hub-green:      #3BB283;  /* org uniform */
+  --hub-green-deep: #289269;
+  --hub-coral:      #DD5D5D;  /* org background */
+  --hub-coral-deep: #C24545;
+  --deep-teal:      #3D768E;  /* personal-avatar background */
+  --deep-teal-deep: #2C5A6E;
+  --petal-pink:     #F2A8BC;  /* soft clay pink */
+  --petal-pink-deep:#D17A93;
+  --petal-pink-soft:#FBD9E2;
+
+  /* ---------- Color — Neutrals (clay-tinted) ----------------------------- */
+  --clay-cream:     #F6F2EA;  /* default light surface — warm paper */
+  --clay-cream-2:   #EFE9DC;  /* sunken / pressed clay */
+  --clay-cream-3:   #E6DECB;  /* divider on cream */
+  --ink:            #1F2A33;  /* body text on light — navy-black */
+  --ink-2:          #38454F;
+  --ink-3:          #6B7780;
+  --ink-4:          #A0A9B0;
+
+  /* ============================================================
+     THEME — LIGHT (default)
+     Warm clay paper. ============================================ */
+  color-scheme: light;
+  --bg:             #F6F2EA;
+  --bg-elevated:    #FFFFFF;
+  --bg-sunken:      #EFE9DC;
+  --bg-inverse:     #1F2A33;
+
+  --fg:             #1F2A33;
+  --fg-2:           #38454F;
+  --fg-3:           #6B7780;
+  --fg-4:           #A0A9B0;
+  --fg-on-brand:    #F6F2EA;
+  --fg-on-yellow:   #1F2A33;
+
+  --border:         rgba(31, 42, 51, 0.10);
+  --border-soft:    rgba(31, 42, 51, 0.06);
+  --border-strong:  rgba(31, 42, 51, 0.18);
+
+  --accent:         #FC8903;
+  --accent-fg:      #FFFFFF;
+  --info:           #51BBD7;
+  --info-fg:        #1F2A33;
+  --success:        #3BB283;
+  --success-fg:     #FFFFFF;
+  --warning:        #FBC00A;
+  --warning-fg:     #1F2A33;
+  --danger:         #E13429;
+  --danger-fg:      #FFFFFF;
+
+  --link:           #2E9CBA;
+  --link-hover:     #E13429;
+
+  /* Code surfaces — terminal vibe in light mode */
+  --code-bg:        #1F2A33;
+  --code-fg:        #F6F2EA;
+  --code-inline-bg: #EFE9DC;
+  --code-inline-fg: #B82A21;
+
+  /* Shadows — warm, red-tinted */
+  --shadow-1: 0 1px 2px rgba(31,42,51,.06), 0 1px 1px rgba(31,42,51,.04);
+  --shadow-2: 0 6px 14px rgba(225,52,41,.08), 0 2px 4px rgba(31,42,51,.06);
+  --shadow-3: 0 16px 32px rgba(225,52,41,.10), 0 4px 8px rgba(31,42,51,.08);
+  --shadow-4: 0 28px 56px rgba(225,52,41,.14), 0 8px 16px rgba(31,42,51,.10);
+  --ring-focus: 0 0 0 3px rgba(251,192,10,.45);
+}
+
+/* ============================================================
+   THEME — DARK
+   A warm, clay-tinted dark — not slate, not pure black. The mascot
+   still feels at home. Brand accents stay vivid; surfaces are
+   slightly desaturated navy-cream.
+   ============================================================ */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:             #0E1318;          /* deeper page bg so elevated cards lift visibly */
+  --bg-elevated:    #1F2A33;          /* card surface — clearly above the page */
+  --bg-sunken:      #060A0E;
+  --bg-inverse:     #F6F2EA;
+
+  --fg:             #F8EFDB;          /* bright warm cream — high contrast on dark */
+  --fg-2:           #D8CCB5;
+  --fg-3:           #A39988;
+  --fg-4:           #6E665A;
+  --fg-on-brand:    #F6F2EA;
+  --fg-on-yellow:   #1F2A33;
+
+  --border:         rgba(236, 226, 208, 0.12);
+  --border-soft:    rgba(236, 226, 208, 0.06);
+  --border-strong:  rgba(236, 226, 208, 0.22);
+
+  --accent:         #FC8903;
+  --accent-fg:      #FFF3DD;          /* warm cream on orange — lifted, not embedded */
+  --info:           #51BBD7;
+  --info-fg:        #1F2A33;
+  --success:        #3BB283;
+  --success-fg:     #1F2A33;
+  --warning:        #FBC00A;
+  --warning-fg:     #1F2A33;
+  --danger:         #FF7A6F;          /* lifted red so it doesn't muddy on dark */
+  --danger-fg:      #1F2A33;
+
+  --link:           #7FD0E6;          /* lifted cyan for readability */
+  --link-hover:     #FBC00A;
+
+  --code-bg:        #0F151A;
+  --code-fg:        #ECE2D0;
+  --code-inline-bg: #2A3640;
+  --code-inline-fg: #FBC00A;
+
+  /* Shadows — pure black, not red-tinted (red would muddy the warm bg) */
+  --shadow-1: 0 1px 2px rgba(0,0,0,.40), 0 1px 1px rgba(0,0,0,.25);
+  --shadow-2: 0 6px 14px rgba(0,0,0,.45), 0 2px 4px rgba(0,0,0,.30);
+  --shadow-3: 0 16px 32px rgba(0,0,0,.50), 0 4px 8px rgba(0,0,0,.35);
+  --shadow-4: 0 28px 56px rgba(0,0,0,.55), 0 8px 16px rgba(0,0,0,.40);
+  --ring-focus: 0 0 0 3px rgba(251,192,10,.55);
+}
+
+/* ============================================================
+   System preference fallback — if no [data-theme] is set on <html>,
+   honor prefers-color-scheme: dark by mirroring the dark theme
+   token-for-token (auto must render exactly like explicit dark).
+   The explicit attribute on <html> always wins. This media query
+   reacts live to OS scheme changes — that is the "auto" setting.
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --bg:             #0E1318;
+    --bg-elevated:    #1F2A33;
+    --bg-sunken:      #060A0E;
+    --bg-inverse:     #F6F2EA;
+    --fg:             #F8EFDB;
+    --fg-2:           #D8CCB5;
+    --fg-3:           #A39988;
+    --fg-4:           #6E665A;
+    --fg-on-brand:    #F6F2EA;
+    --fg-on-yellow:   #1F2A33;
+    --border:         rgba(236, 226, 208, 0.12);
+    --border-soft:    rgba(236, 226, 208, 0.06);
+    --border-strong:  rgba(236, 226, 208, 0.22);
+    --accent:         #FC8903;
+    --accent-fg:      #FFF3DD;
+    --info:           #51BBD7;
+    --info-fg:        #1F2A33;
+    --success:        #3BB283;
+    --success-fg:     #1F2A33;
+    --warning:        #FBC00A;
+    --warning-fg:     #1F2A33;
+    --danger:         #FF7A6F;
+    --danger-fg:      #1F2A33;
+    --link:           #7FD0E6;
+    --link-hover:     #FBC00A;
+    --code-bg:        #0F151A;
+    --code-fg:        #ECE2D0;
+    --code-inline-bg: #2A3640;
+    --code-inline-fg: #FBC00A;
+    --shadow-1: 0 1px 2px rgba(0,0,0,.40), 0 1px 1px rgba(0,0,0,.25);
+    --shadow-2: 0 6px 14px rgba(0,0,0,.45), 0 2px 4px rgba(0,0,0,.30);
+    --shadow-3: 0 16px 32px rgba(0,0,0,.50), 0 4px 8px rgba(0,0,0,.35);
+    --shadow-4: 0 28px 56px rgba(0,0,0,.55), 0 8px 16px rgba(0,0,0,.40);
+    --ring-focus: 0 0 0 3px rgba(251,192,10,.55);
+  }
+}
+
+:root {
+  /* ---------- Typography — Families -------------------------------------- */
+  --font-display:   'Bricolage Grotesque', 'Nunito', ui-sans-serif, system-ui, sans-serif;
+  --font-body:      'Nunito', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:      'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ---------- Typography — Scale (1.250 — major third) ------------------ */
+  --fs-12:  0.75rem;     /* 12 — micro */
+  --fs-14:  0.875rem;    /* 14 — caption */
+  --fs-16:  1rem;        /* 16 — body */
+  --fs-18:  1.125rem;    /* 18 — body-lg */
+  --fs-20:  1.25rem;     /* 20 — h5 / lead */
+  --fs-24:  1.5rem;      /* 24 — h4 */
+  --fs-30:  1.875rem;    /* 30 — h3 */
+  --fs-38:  2.375rem;    /* 38 — h2 */
+  --fs-48:  3rem;        /* 48 — h1 */
+  --fs-60:  3.75rem;     /* 60 — hero */
+  --fs-76:  4.75rem;     /* 76 — display */
+
+  /* line-heights */
+  --lh-tight:   1.05;
+  --lh-snug:    1.2;
+  --lh-normal:  1.45;
+  --lh-relaxed: 1.6;
+
+  /* tracking */
+  --tr-tight:   -0.02em;
+  --tr-normal:  0em;
+  --tr-loose:   0.04em;
+  --tr-caps:    0.08em;
+
+  /* weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semi:    600;
+  --fw-bold:    700;
+  --fw-black:   800;
+
+  /* ---------- Spacing (4px base) ----------------------------------------- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 128px;
+
+  /* ---------- Radii ------------------------------------------------------ */
+  --r-xs:   6px;
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   20px;
+  --r-xl:   28px;
+  --r-2xl:  40px;
+  --r-full: 999px;
+
+  /* ---------- Borders (1.5px is the clay-line weight) -------------------- */
+  --bw: 1.5px;
+
+  /* ---------- Motion ----------------------------------------------------- */
+  --ease-clay:  cubic-bezier(0.34, 1.56, 0.64, 1);   /* slight overshoot — entrances */
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);      /* exits, generic */
+  --ease-in:    cubic-bezier(0.4, 0, 1, 1);
+  --dur-fast:    180ms;
+  --dur-base:    240ms;
+  --dur-slow:    380ms;
+
+  /* ---------- Layout ----------------------------------------------------- */
+  --content-max: 1280px;
+  --gutter:      24px;
+}
+
+/* =========================================================================
+   Semantic element styles — apply automatically inside a `.cc-body` scope.
+   ========================================================================= */
+
+.cc-body, body.cc-body {
+  font-family: var(--font-body);
+  font-size: var(--fs-16);
+  line-height: var(--lh-normal);
+  color: var(--fg);
+  background: var(--bg);
+  font-weight: var(--fw-regular);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.display, .cc-body .display {
+  font-family: var(--font-display);
+  font-size: var(--fs-76);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+  font-weight: var(--fw-bold);
+  font-variation-settings: "opsz" 96;
+}
+
+.h1, .cc-body h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-48);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+  font-weight: var(--fw-bold);
+  font-variation-settings: "opsz" 48;
+  margin: 0 0 var(--space-4);
+}
+
+.h2, .cc-body h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-38);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tr-tight);
+  font-weight: var(--fw-bold);
+  font-variation-settings: "opsz" 36;
+  margin: 0 0 var(--space-4);
+}
+
+.h3, .cc-body h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-30);
+  line-height: var(--lh-snug);
+  font-weight: var(--fw-semi);
+  font-variation-settings: "opsz" 30;
+  margin: 0 0 var(--space-3);
+}
+
+.h4, .cc-body h4 {
+  font-family: var(--font-display);
+  font-size: var(--fs-24);
+  line-height: var(--lh-snug);
+  font-weight: var(--fw-semi);
+  margin: 0 0 var(--space-3);
+}
+
+.h5, .cc-body h5 {
+  font-family: var(--font-body);
+  font-size: var(--fs-20);
+  line-height: var(--lh-snug);
+  font-weight: var(--fw-bold);
+  margin: 0 0 var(--space-2);
+}
+
+.lead, .cc-body .lead {
+  font-family: var(--font-body);
+  font-size: var(--fs-20);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-2);
+  font-weight: var(--fw-regular);
+}
+
+.p, .cc-body p {
+  font-family: var(--font-body);
+  font-size: var(--fs-16);
+  line-height: var(--lh-normal);
+  color: var(--fg);
+  margin: 0 0 var(--space-4);
+  text-wrap: pretty;
+}
+
+.small, .cc-body small {
+  font-size: var(--fs-14);
+  color: var(--fg-3);
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-size: var(--fs-12);
+  letter-spacing: var(--tr-caps);
+  text-transform: uppercase;
+  font-weight: var(--fw-bold);
+  color: var(--fg-3);
+}
+
+.code, .cc-body code, .cc-body kbd, .cc-body samp {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  font-weight: var(--fw-medium);
+  background: var(--code-inline-bg);
+  padding: 0.1em 0.35em;
+  border-radius: var(--r-xs);
+  color: var(--code-inline-fg);
+  font-feature-settings: "calt" 1, "liga" 1;
+}
+
+.cc-body pre {
+  font-family: var(--font-mono);
+  font-size: var(--fs-14);
+  line-height: var(--lh-relaxed);
+  background: var(--code-bg);
+  color: var(--code-fg);
+  padding: var(--space-5);
+  border-radius: var(--r-md);
+  overflow-x: auto;
+  margin: 0;
+}
+
+.cc-body pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.cc-body a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-thickness var(--dur-fast) var(--ease-out);
+}
+.cc-body a:hover {
+  text-decoration-thickness: 2px;
+  color: var(--link-hover);
+}
+
+/* Focus ring used everywhere */
+.cc-body :focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+  border-radius: var(--r-sm);
+}
+
+/* Reduced motion — clay entrances calm down politely */
+@media (prefers-reduced-motion: reduce) {
+  .cc-body *, .cc-body *::before, .cc-body *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

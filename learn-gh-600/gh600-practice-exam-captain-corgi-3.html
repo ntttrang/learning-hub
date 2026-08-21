@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){'use strict';
+  var root=document.documentElement;
+  root.classList.toggle('cc-mock-embed',window.self!==window.top);
+  var KEY='cc-theme';
+  var VALID={'light':1,'dark':1,'night':1};
+  function applyCcTheme(){
+    try {
+      var t=localStorage.getItem(KEY);
+      if(t&&VALID[t]) root.setAttribute('data-theme',t);
+      else root.removeAttribute('data-theme');
+    }catch(err){/* private mode */}
+  }
+  applyCcTheme();
+  window.addEventListener('storage',function(ev){
+    if(ev.key===KEY) applyCcTheme();
+  });
+  /* Hub embed: parent cannot set iframe <html>; sync forced theme via postMessage (plus storage fallback). */
+  window.addEventListener('message',function(ev){
+    try{
+      var d=ev.data;
+      if(!d||d.type!=='cc-theme-hub')return;
+      var forced=String(d.forced||'');
+      if(forced==='light'||forced==='dark'||forced==='night') root.setAttribute('data-theme',forced);
+      else root.removeAttribute('data-theme');
+    }catch(err2){}
+  });
+})();
+</script>
+<title>GH-600 practice exam 3 — Captain Corgi Hub</title>
+<link rel="stylesheet" href="assets/captain-corgi-hub-design/colors_and_type.css">
+<style>
+/* Legacy layout tokens mapped to Captain Corgi Hub design system */
+:root {
+  --font-serif: var(--font-display);
+  --font-sans: var(--font-body);
+  --tracking-snug: var(--tr-tight);
+  --tracking-tight: var(--tr-tight);
+  --tracking-wide: var(--tr-loose);
+  --radius-pill: var(--r-full);
+  --radius-lg: var(--r-lg);
+  --radius-md: var(--r-md);
+  --radius-sm: var(--r-sm);
+  --radius-xs: var(--r-xs);
+  --fs-small: var(--fs-14);
+  --fs-xs: var(--fs-12);
+  --fs-body: var(--fs-16);
+  --fs-body-lg: var(--fs-18);
+  --fs-h2: var(--fs-38);
+  --fs-h3: var(--fs-30);
+  --fs-h4: var(--fs-24);
+  --lh-loose: var(--lh-relaxed);
+  --surface: var(--bg-elevated);
+  --surface-2: var(--bg-sunken);
+  --fg-1: var(--fg);
+  --accent-bg-soft: rgba(252, 137, 3, 0.14);
+  --accent-border: rgba(252, 137, 3, 0.45);
+  --accent-hover: var(--corgi-orange-deep);
+  --accent-press: #C96A05;
+  --shadow-xs: var(--shadow-1);
+  --shadow-sm: var(--shadow-2);
+  --shadow-lg: var(--shadow-3);
+  --ring: var(--ring-focus);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body.cc-body{min-height:100vh;font-size:var(--fs-small)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:var(--radius-pill)}
+
+/* Start */
+.start-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:var(--space-8) var(--space-5);text-align:center;background:var(--bg)}
+.start-brand{font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-3);margin-bottom:var(--space-3);letter-spacing:var(--tracking-wide)}
+.start-logo{width:72px;height:72px;border-radius:var(--radius-lg);background:var(--surface);border:var(--bw) solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5);box-shadow:var(--shadow-2);overflow:hidden}
+.start-logo img{width:100%;height:100%;object-fit:cover;display:block}
+.start-title{font-family:var(--font-serif);font-size:var(--fs-h2);font-weight:var(--fw-semi);line-height:var(--lh-snug);letter-spacing:var(--tracking-snug);color:var(--fg-1);margin-bottom:var(--space-2)}
+.start-sub{font-size:var(--fs-body);color:var(--fg-2);margin-bottom:var(--space-8);line-height:var(--lh-loose);max-width:32rem;font-family:var(--font-body)}
+.meta-cards{display:flex;gap:var(--space-3);margin-bottom:var(--space-8);flex-wrap:wrap;justify-content:center}
+.mc{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);text-align:center;min-width:6.25rem;box-shadow:var(--shadow-xs)}
+.mc-v{font-family:var(--font-serif);font-size:var(--fs-h3);font-weight:var(--fw-semi);color:var(--fg-1);margin-bottom:2px;font-variation-settings:"opsz" 30}
+.mc-l{font-size:var(--fs-xs);color:var(--fg-3);letter-spacing:var(--tracking-snug);font-weight:var(--fw-semi)}
+.start-note{font-size:var(--fs-small);color:var(--fg-3);margin-bottom:var(--space-6);max-width:28rem;line-height:var(--lh-loose);font-family:var(--font-body)}
+.start-note strong{color:var(--fg-2);font-weight:var(--fw-bold)}
+
+/* Exam header */
+.exam-header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg-elevated) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:var(--bw) solid var(--border);padding:var(--space-3) var(--space-5);display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;box-shadow:var(--shadow-xs)}
+.eh-title{font-family:var(--font-serif);font-size:var(--fs-h4);font-weight:var(--fw-semi);color:var(--fg-1);flex:1}
+.exam-header .eh-meta{font-size:var(--fs-small);color:var(--fg-3);font-family:var(--font-body)}
+.timer-pill{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-4);background:var(--surface-2);border:var(--bw) solid var(--border);border-radius:var(--radius-pill);font-family:var(--font-mono);font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-1);min-width:5.5rem;justify-content:center;tabular-nums}
+.timer-pill.warn{background:rgba(251,192,10,0.18);border-color:var(--warning);color:var(--warning)}
+.timer-pill.danger{background:rgba(225,52,41,0.14);border-color:var(--danger);color:var(--danger);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.65}}
+.progress-bar{height:4px;background:var(--border-soft);overflow:hidden;border-radius:var(--radius-pill)}
+.progress-fill{height:100%;background:var(--accent);border-radius:var(--radius-pill);transition:width var(--dur-base) var(--ease-out)}
+
+/* Layout */
+.exam-body{display:flex;min-height:calc(100vh - 60px)}
+.q-sidebar{width:11.25rem;flex-shrink:0;background:var(--surface);border-right:var(--bw) solid var(--border);padding:var(--space-3);overflow-y:auto;max-height:calc(100vh - 60px);position:sticky;top:60px}
+.qs-label{font-size:var(--fs-xs);font-weight:var(--fw-bold);letter-spacing:var(--tracking-snug);color:var(--fg-3);margin-bottom:var(--space-2);font-family:var(--font-body)}
+.q-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-1);margin-bottom:var(--space-4)}
+.q-dot{width:28px;height:28px;border-radius:var(--radius-xs);font-size:10px;font-weight:var(--fw-bold);border:var(--bw) solid transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out);font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.q-dot.unans{background:var(--surface-2);color:var(--fg-3);border-color:var(--border-soft)}
+.q-dot.ans{background:var(--accent-bg-soft);color:var(--accent);border-color:var(--accent-border)}
+.q-dot.flag{background:rgba(251,192,10,0.2);color:var(--warning-fg);border-color:rgba(251,192,10,0.45)}
+.q-dot.cur{box-shadow:var(--ring)}
+.q-dot:focus-visible{outline:none;box-shadow:var(--ring)}
+.qs-stats{font-size:var(--fs-small);color:var(--fg-3);margin-bottom:var(--space-2);font-family:var(--font-body)}
+.qs-stats span{color:var(--fg-2);font-weight:var(--fw-semi)}
+
+/* Question panel */
+.q-panel{flex:1;padding:var(--space-6);max-width:50rem;margin:0 auto}
+.q-meta{display:flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4);flex-wrap:wrap}
+.q-num-badge{font-family:var(--font-mono);font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-3);background:var(--surface-2);border:var(--bw) solid var(--border);padding:3px var(--space-3);border-radius:var(--radius-pill)}
+.q-domain-badge{font-size:var(--fs-small);color:var(--fg-3);background:var(--surface-2);border:var(--bw) solid var(--border);padding:3px var(--space-3);border-radius:var(--radius-pill);font-family:var(--font-body)}
+.q-flag-badge{font-size:var(--fs-small);color:var(--captain-red);background:rgba(225,52,41,0.1);border:var(--bw) solid rgba(225,52,41,0.28);padding:3px var(--space-3);border-radius:var(--radius-pill);font-family:var(--font-body)}
+.q-text{font-size:var(--fs-body-lg);font-weight:var(--fw-semi);color:var(--fg-1);line-height:var(--lh-loose);margin-bottom:var(--space-5);max-width:68ch;font-family:var(--font-body)}
+.opts{display:flex;flex-direction:column;gap:var(--space-2);margin-bottom:var(--space-4)}
+.opt{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:var(--fs-small);color:var(--fg-2);cursor:pointer;text-align:left;display:flex;gap:var(--space-3);transition:background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out),transform 80ms var(--ease-out),box-shadow var(--dur-fast) var(--ease-out);font-family:var(--font-sans);line-height:var(--lh-normal);box-shadow:var(--shadow-xs);appearance:none;-webkit-appearance:none}
+.opt:hover:not(.sel){border-color:var(--border-strong);color:var(--fg-1);background:var(--surface-2);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.opt:focus-visible{outline:none;box-shadow:var(--ring)}
+.opt.sel{border-color:var(--accent)!important;background:var(--accent-bg-soft)!important;color:var(--fg)!important;-webkit-text-fill-color:var(--fg)}
+.opt-l{font-family:var(--font-mono);font-size:var(--fs-xs);font-weight:var(--fw-semi);flex-shrink:0;width:16px;margin-top:1px;color:var(--fg-3)}
+.opt.sel .opt-l{color:var(--accent)!important;-webkit-text-fill-color:var(--accent)}
+.opt.sel > span:not(.opt-l){color:var(--fg)!important;-webkit-text-fill-color:var(--fg)}
+.q-nav-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-2)}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(31,42,51,0.42);display:flex;align-items:center;justify-content:center;z-index:999;padding:var(--space-5)}
+.modal{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-lg);padding:var(--space-6);max-width:24rem;width:100%;box-shadow:var(--shadow-lg)}
+.modal h3{font-family:var(--font-serif);font-size:var(--fs-h4);font-weight:var(--fw-semi);color:var(--fg-1);margin-bottom:var(--space-2)}
+.modal p{font-size:var(--fs-small);color:var(--fg-2);margin-bottom:var(--space-5);line-height:var(--lh-loose);font-family:var(--font-body)}
+.modal-btns{display:flex;gap:var(--space-2);justify-content:flex-end;flex-wrap:wrap}
+
+/* Results */
+.results-page{min-height:100vh;padding:var(--space-8) var(--space-5);max-width:50rem;margin:0 auto}
+.result-hero{text-align:center;padding:var(--space-8);background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-lg);margin-bottom:var(--space-5);box-shadow:var(--shadow-sm)}
+.result-score{font-family:var(--font-serif);font-size:clamp(2.5rem,8vw,4rem);font-weight:var(--fw-bold);line-height:var(--lh-tight);letter-spacing:var(--tracking-tight);font-variation-settings:"opsz" 72}
+.result-score.pass{color:var(--success)}
+.result-score.fail{color:var(--danger)}
+.result-verdict{font-size:var(--fs-h4);font-weight:var(--fw-bold);font-family:var(--font-body);color:var(--fg-1);margin-top:var(--space-2);margin-bottom:var(--space-2)}
+.result-sub{font-size:var(--fs-small);color:var(--fg-2);font-family:var(--font-body)}
+.result-meta{display:flex;gap:var(--space-3);justify-content:center;margin-top:var(--space-4);flex-wrap:wrap}
+.rm-chip{font-size:var(--fs-small);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);background:var(--surface-2);border:var(--bw) solid var(--border);color:var(--fg-2);font-family:var(--font-body)}
+.domain-breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(12.5rem,1fr));gap:var(--space-3);margin-bottom:var(--space-5)}
+.db-card{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-lg);padding:var(--space-4);box-shadow:var(--shadow-xs)}
+.db-name{font-size:var(--fs-small);color:var(--fg-2);margin-bottom:var(--space-2);font-family:var(--font-body)}
+.db-score{font-size:var(--fs-h4);font-weight:var(--fw-bold);font-family:var(--font-body);color:var(--fg-1);margin-bottom:var(--space-2)}
+.db-bar-bg{height:4px;background:var(--border-soft);border-radius:var(--radius-pill);overflow:hidden}
+.db-bar-fill{height:100%;border-radius:var(--radius-pill)}
+.db-bar-fill.g{background:var(--success)}.db-bar-fill.m{background:var(--warning)}.db-bar-fill.b{background:var(--danger)}
+.divider{height:var(--bw);background:var(--border);margin:var(--space-5) 0}
+.domain-breakdown-title{font-size:var(--fs-small);font-weight:var(--fw-bold);font-family:var(--font-body);color:var(--fg-2);margin-bottom:var(--space-3)}
+
+/* Review */
+.rq{margin-bottom:var(--space-3);padding:var(--space-4);border-radius:var(--radius-md);border:var(--bw) solid var(--border);background:var(--surface)}
+.rq.ok{border-color:rgba(59,178,131,0.45)}
+.rq.bad{border-color:rgba(225,52,41,0.45)}
+.rq.skip{border-color:var(--border)}
+.rq-meta{font-size:var(--fs-small);color:var(--fg-3);margin-bottom:var(--space-2);display:flex;gap:var(--space-2);flex-wrap:wrap;font-family:var(--font-body)}
+.rq-q{font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-1);margin-bottom:var(--space-2);line-height:var(--lh-loose);font-family:var(--font-body)}
+.ro{padding:var(--space-2) var(--space-3);border-radius:var(--radius-xs);font-size:var(--fs-small);margin-bottom:3px;display:flex;gap:var(--space-2);line-height:var(--lh-normal);font-family:var(--font-body)}
+.ro.cc{background:rgba(59,178,131,0.14);color:var(--success)}.ro.cw{background:rgba(225,52,41,0.12);color:var(--danger)}
+.ro.rc{background:rgba(59,178,131,0.12);color:var(--success);opacity:.85}.ro.nn{color:var(--fg-3)}
+.rq-exp{font-size:var(--fs-small);color:var(--fg-3);margin-top:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--surface-2);border-radius:var(--radius-sm);border:var(--bw) solid var(--border-soft);line-height:var(--lh-loose);font-family:var(--font-body)}
+
+/* Buttons — Captain Corgi clay */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:10px var(--space-5);border-radius:var(--radius-lg);border:var(--bw) solid var(--border-strong);background:var(--surface);cursor:pointer;font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-1);transition:background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out),transform 80ms var(--ease-out),box-shadow var(--dur-fast) var(--ease-out);font-family:var(--font-body);line-height:1.2;box-shadow:var(--shadow-xs)}
+.btn:hover{background:var(--surface-2);border-color:var(--border-strong);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.btn:focus-visible{outline:none;box-shadow:var(--ring)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:var(--shadow-xs)}
+.btn:active:not(:disabled){transform:scale(0.97);box-shadow:var(--shadow-xs)}
+.btn-primary{background:var(--accent);color:var(--accent-fg);border-color:transparent;box-shadow:var(--shadow-2)}
+.btn-primary:hover{background:var(--accent-hover);color:var(--accent-fg);box-shadow:var(--shadow-3)}
+.btn-primary:active{background:var(--accent-press)}
+.btn-danger{background:var(--danger);color:var(--danger-fg);border-color:var(--danger)}
+.btn-danger:hover{filter:brightness(1.05)}
+.btn-row{display:flex;gap:var(--space-2);flex-wrap:wrap}
+</style>
+<style id="cc-mock-embed-style">
+/* Nested in gh600-mock-exams-index iframe: inherit iframe height instead of outer window 100vh */
+html.cc-mock-embed{height:100%}
+html.cc-mock-embed body.cc-body{display:flex;flex-direction:column;margin:0;overflow:hidden;min-height:0!important;height:100%!important;max-height:100%}
+html.cc-mock-embed #app{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden;width:100%;max-width:100%}
+html.cc-mock-embed #app .start-screen{flex:1;min-height:0!important;overflow-y:auto;display:flex!important;justify-content:center;padding-block:clamp(var(--space-3),3vh,var(--space-8));padding-inline:clamp(var(--space-3),2vw,var(--space-5))}
+html.cc-mock-embed #app>.exam-header{flex-shrink:0}
+html.cc-mock-embed .exam-body{flex:1;min-height:0!important;display:flex!important;overflow:hidden}
+html.cc-mock-embed .q-sidebar{overflow-y:auto;max-height:calc(100% - 60px)!important}
+html.cc-mock-embed .q-panel{flex:1;min-width:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+html.cc-mock-embed #app>.results-page{flex:1;min-height:0!important;margin:0;width:100%!important;max-width:none!important;overflow-y:auto;box-sizing:border-box;padding-inline:clamp(var(--space-3),3vw,var(--space-5))}
+</style>
+</head>
+<body class="cc-body">
+<div id="app"></div>
+<script>
+const LETTERS='ABCD'.split('');
+const PASS=700,MINS=90;
+
+const Q=[
+{d:1,dt:'D1 · Architecture & SDLC',q:'What is the FIRST step when designing an agent that will operate in your SDLC pipeline?',opts:['Pick the LLM model','Identify the specific SDLC steps the agent will perform','Configure the agent\'s memory','Add MCP servers'],ans:1,exp:'Correct answer: B) Identify the specific SDLC steps the agent will perform'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'A team allows an agent to perform planning, validation, and execution all in a single uninterrupted step. This is an example of:',opts:['Least-privilege execution','An anti-pattern that merges planning with execution','Effective orchestration','Memory pruning'],ans:1,exp:'Correct answer: B) An anti-pattern that merges planning with execution'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'Why should an agent\'s plan be validated BEFORE allowing execution?',opts:['To reduce token costs','To catch reasoning errors before they affect the real system','To increase agent autonomy','To reduce CI runtime'],ans:1,exp:'Correct answer: B) To catch reasoning errors before they affect the real system'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'Which is the BEST definition of "success criteria" for an agent task?',opts:['The LLM\'s confidence score','Measurable outcomes that determine whether the agent completed the task correctly','The agent\'s average response time','The number of tools the agent used'],ans:1,exp:'Correct answer: B) Measurable outcomes that determine whether the agent completed the task correctly'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'Configuring an agent to produce inspectable artifacts allows teams to:',opts:['Skip evaluation entirely','Observe, audit, and intervene in agent behavior','Bypass guardrails','Reduce memory footprint'],ans:1,exp:'Correct answer: B) Observe, audit, and intervene in agent behavior'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'Which capability supports human intervention without slowing delivery?',opts:['Eliminating all human review','Targeted approval gates only for high-risk actions','Requiring approval on every step','Disabling logging'],ans:1,exp:'Correct answer: B) Targeted approval gates only for high-risk actions'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'The PRIMARY purpose of distinguishing planning from execution is to:',opts:['Reduce LLM token use','Enable validation and oversight between reasoning and action','Increase autonomy','Speed up CI'],ans:1,exp:'Correct answer: B) Enable validation and oversight between reasoning and action'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'What is an MCP server in the context of GitHub agents?',opts:['A managed credentials provider','A standardized server that exposes tools and resources to agents via the Model Context Protocol','A monitoring control plane','A multi-cloud platform'],ans:1,exp:'Correct answer: B) A standardized server that exposes tools and resources to agents via the Model Context Protocol'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'When configuring MCP allow lists, the goal is to:',opts:['Maximize the number of tools available','Restrict which MCP servers and tools the agent may use','Cache MCP responses','Increase token throughput'],ans:1,exp:'Correct answer: B) Restrict which MCP servers and tools the agent may use'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Which configuration limits an agent\'s actions to a specific repository?',opts:['Memory scoping','Repository-scoped agent configuration','Branch protection rules','MCP registry'],ans:1,exp:'Correct answer: B) Repository-scoped agent configuration'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'What is required to invoke an agent automatically in a CI workflow?',opts:['A manual developer trigger','Configuration that binds the agent to specific workflow events','A cron job','Long-term memory'],ans:1,exp:'Correct answer: B) Configuration that binds the agent to specific workflow events'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'A robust agent error-handling design includes:',opts:['Retries, rollbacks, and escalation paths','Silent failures','Unlimited retries','Skipping failed steps without logging'],ans:0,exp:'Correct answer: A) Retries, rollbacks, and escalation paths'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Branch-based scope is MOST useful when:',opts:['Agents need to read all branches','You need to constrain an agent\'s actions to specific branches to limit blast radius','Agents must access secrets','Memory must be shared'],ans:1,exp:'Correct answer: B) You need to constrain an agent\'s actions to specific branches to limit blast radius'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'What is the purpose of an MCP registry?',opts:['To store agent memory','To catalog available MCP servers that agents can discover and use','To enforce branch protection','To replace GitHub Actions'],ans:1,exp:'Correct answer: B) To catalog available MCP servers that agents can discover and use'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Identifying required tools for an agent should be based on:',opts:['Popular tool lists','The defined inputs, outputs, and tasks the agent must perform','The number of MCP servers available','Cost of each tool'],ans:1,exp:'Correct answer: B) The defined inputs, outputs, and tasks the agent must perform'},
+{d:3,dt:'D3 · Memory & State',q:'When should an agent use external memory?',opts:['For all tasks regardless of length','When state must persist across sessions or beyond the context window','Only for testing','When the agent has no tools'],ans:1,exp:'Correct answer: B) When state must persist across sessions or beyond the context window'},
+{d:3,dt:'D3 · Memory & State',q:'"Context drift" refers to:',opts:['Agents losing network connectivity','Agent execution diverging from prior decisions or task intent over time','Memory expiration','Tool permission changes'],ans:1,exp:'Correct answer: B) Agent execution diverging from prior decisions or task intent over time'},
+{d:3,dt:'D3 · Memory & State',q:'Capturing task progress as durable artifacts enables:',opts:['Faster LLM inference','Resumption from a checkpoint after interruption','Tool selection','MCP registration'],ans:1,exp:'Correct answer: B) Resumption from a checkpoint after interruption'},
+{d:3,dt:'D3 · Memory & State',q:'Scoping agent memory to task-relevant information helps prevent:',opts:['Tool misuse','Stale or irrelevant context affecting decisions','MCP allow list violations','CI workflow failures'],ans:1,exp:'Correct answer: B) Stale or irrelevant context affecting decisions'},
+{d:3,dt:'D3 · Memory & State',q:'When two agents share state, the BIGGEST risk is:',opts:['Reduced LLM accuracy','Conflicting or stale context','Increased token usage','Branch protection violations'],ans:1,exp:'Correct answer: B) Conflicting or stale context'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'A quantitative evaluation signal is:',opts:['A developer\'s gut feeling','A measurable metric like pass rate or precision','A team\'s morale','A subjective rating'],ans:1,exp:'Correct answer: B) A measurable metric like pass rate or precision'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'When tuning an agent that misuses tools, the FIRST action is to:',opts:['Add more tools','Refine the agent\'s instructions about when each tool should be used','Increase memory','Remove all tools'],ans:1,exp:'Correct answer: B) Refine the agent\'s instructions about when each tool should be used'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'Automated scanning tools are valuable for evaluation because they:',opts:['Replace human judgment entirely','Generate consistent, scalable evaluation signals','Eliminate the need for guardrails','Reduce agent autonomy'],ans:1,exp:'Correct answer: B) Generate consistent, scalable evaluation signals'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'Aligning evaluation criteria with development intent prevents:',opts:['MCP allow list violations','Technically correct outputs that miss the team\'s actual goals','Network failures','Memory leaks'],ans:1,exp:'Correct answer: B) Technically correct outputs that miss the team\'s actual goals'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'Root cause classification for agent failures includes:',opts:['Tools, memory, MCP only','Reasoning errors, tool misuse, context/environment issues','Latency, cost, throughput','Branch, repo, organization'],ans:1,exp:'Correct answer: B) Reasoning errors, tool misuse, context/environment issues'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'Refining memory usage during tuning means:',opts:['Always increasing memory size','Adjusting what the agent remembers to focus on task-relevant information','Removing all memory','Replacing memory with tools'],ans:1,exp:'Correct answer: B) Adjusting what the agent remembers to focus on task-relevant information'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'Logs, plans, traces, and artifacts together help engineers:',opts:['Bypass guardrails','Identify failures and their root causes','Skip evaluation','Increase autonomy'],ans:1,exp:'Correct answer: B) Identify failures and their root causes'},
+{d:5,dt:'D5 · Multi-Agent',q:'An orchestration pattern in multi-agent systems defines:',opts:['Agent memory rules','How multiple agents coordinate, sequence, or run in parallel','MCP server hierarchy','Branch protection scope'],ans:1,exp:'Correct answer: B) How multiple agents coordinate, sequence, or run in parallel'},
+{d:5,dt:'D5 · Multi-Agent',q:'Agent isolation in parallel execution prevents:',opts:['Tools from being shared','Agents from interfering with each other\'s working state','MCP allow list use','Memory expiration'],ans:1,exp:'Correct answer: B) Agents from interfering with each other\'s working state'},
+{d:5,dt:'D5 · Multi-Agent',q:'Two agents make overlapping code changes to the same file. This is a:',opts:['Memory conflict','Coordination conflict requiring detection and resolution','MCP error','Tool misuse'],ans:1,exp:'Correct answer: B) Coordination conflict requiring detection and resolution'},
+{d:5,dt:'D5 · Multi-Agent',q:'Post-hoc analysis of multi-agent behavior requires:',opts:['Real-time only telemetry','Retained artifacts, logs, and decision records','Live developer monitoring','Manual agent intervention'],ans:1,exp:'Correct answer: B) Retained artifacts, logs, and decision records'},
+{d:5,dt:'D5 · Multi-Agent',q:'Documenting handoffs across agents enables:',opts:['Faster LLMs','Auditability and review of decisions made across the workflow','Reduced tool use','Smaller memory footprint'],ans:1,exp:'Correct answer: B) Auditability and review of decisions made across the workflow'},
+{d:5,dt:'D5 · Multi-Agent',q:'Recovery patterns for multi-agent failures include:',opts:['Ignoring failures','Rollback and human-in-the-loop interventions','Disabling logging','Removing observability'],ans:1,exp:'Correct answer: B) Rollback and human-in-the-loop interventions'},
+{d:5,dt:'D5 · Multi-Agent',q:'Adding a new agent to an active multi-agent workflow should be done:',opts:['By stopping the workflow entirely','Without disrupting active executions, using non-breaking changes','By deleting older agents first','Only after retiring all existing agents'],ans:1,exp:'Correct answer: B) Without disrupting active executions, using non-breaking changes'},
+{d:5,dt:'D5 · Multi-Agent',q:'When retiring an agent in a workflow, you must preserve:',opts:['Only the agent\'s prompt','Auditability and workflow continuity','Just the tool list','The agent\'s branch scope only'],ans:1,exp:'Correct answer: B) Auditability and workflow continuity'},
+{d:6,dt:'D6 · Guardrails',q:'Classifying agent actions by operational, security, and compliance risk allows you to:',opts:['Increase MCP throughput','Right-size human intervention','Eliminate evaluation','Skip orchestration'],ans:1,exp:'Correct answer: B) Right-size human intervention'},
+{d:6,dt:'D6 · Guardrails',q:'Least-privilege access for agents means:',opts:['Maximum permissions for flexibility','Permissions limited to only what the agent\'s task requires','Permissions inherited from the repository owner','Permissions set by the agent itself'],ans:1,exp:'Correct answer: B) Permissions limited to only what the agent\'s task requires'},
+{d:6,dt:'D6 · Guardrails',q:'Which agent action requires explicit human authorization?',opts:['Reading a file','Running a unit test','Deleting production data','Posting a comment'],ans:2,exp:'Correct answer: C) Deleting production data'},
+{d:6,dt:'D6 · Guardrails',q:'Blocking actions that violate compliance policies should happen:',opts:['After the action is taken','Before the action is executed','Only during audit','Only on Fridays'],ans:1,exp:'Correct answer: B) Before the action is executed'},
+{d:6,dt:'D6 · Guardrails',q:'Minimizing approvals that do not materially reduce risk helps:',opts:['Increase compliance burden','Preserve delivery velocity while maintaining meaningful oversight','Reduce auditability','Eliminate guardrails'],ans:1,exp:'Correct answer: B) Preserve delivery velocity while maintaining meaningful oversight'},
+{d:6,dt:'D6 · Guardrails',q:'Human-in-the-loop should be applied to:',opts:['Every single agent action','Actions requiring human judgment, irreversible changes, or compliance-sensitive operations','Only read operations','Only tool selection'],ans:1,exp:'Correct answer: B) Actions requiring human judgment, irreversible changes, or compliance-sensitive operations'},
+{d:6,dt:'D6 · Guardrails',q:'Which capability links specific actions to specific agents for audit?',opts:['Memory pruning','Traceability artifacts','MCP allow lists','Branch scope'],ans:1,exp:'Correct answer: B) Traceability artifacts'},
+{d:6,dt:'D6 · Guardrails',q:'What is the BEST way to handle an irreversible action proposed by an agent?',opts:['Allow it automatically','Require explicit human authorization','Retry until it succeeds','Ignore the action'],ans:1,exp:'Correct answer: B) Require explicit human authorization'},
+{d:6,dt:'D6 · Guardrails',q:'When an agent fails midway through a long task, what enables it to resume without redoing work?',opts:['Larger context window','Durable task state artifacts','Memory pruning','Tool restrictions'],ans:1,exp:'Correct answer: B) Durable task state artifacts'},
+{d:6,dt:'D6 · Guardrails',q:'Which is NOT a valid root cause category for agent failures?',opts:['Reasoning errors','Tool misuse','Context or environment issues','Developer mood'],ans:3,exp:'Correct answer: D) Developer mood'},
+{d:6,dt:'D6 · Guardrails',q:'A multi-agent workflow needs an audit of who did what. Which design feature directly supports this?',opts:['Memory expiration','Inspectable artifacts and structured logs per agent','MCP registry caching','Larger LLM models'],ans:1,exp:'Correct answer: B) Inspectable artifacts and structured logs per agent'},
+{d:6,dt:'D6 · Guardrails',q:'A guardrail is BEST described as:',opts:['A type of LLM','A control that limits or blocks agent behavior to enforce policy','A tool selection algorithm','An MCP server'],ans:1,exp:'Correct answer: B) A control that limits or blocks agent behavior to enforce policy'},
+{d:6,dt:'D6 · Guardrails',q:'Refining tool access during tuning means:',opts:['Adding tools at random','Restricting or expanding tool access based on observed agent behavior','Disabling all tools','Replacing MCP servers'],ans:1,exp:'Correct answer: B) Restricting or expanding tool access based on observed agent behavior'},
+{d:6,dt:'D6 · Guardrails',q:'The MOST comprehensive evaluation approach combines:',opts:['Only quantitative metrics','Only qualitative feedback','Quantitative metrics AND qualitative signals aligned with development intent','Neither — agents should self-evaluate'],ans:2,exp:'Correct answer: C) Quantitative metrics AND qualitative signals aligned with development intent'},
+{d:6,dt:'D6 · Guardrails',q:'Which statement BEST captures the GH-600 philosophy?',opts:['Agents should operate with maximum autonomy at all times','Agents should be designed with clear boundaries, oversight, and accountability','Human oversight should be eliminated wherever possible','Speed of delivery is more important than safety'],ans:1,exp:'Correct answer: B) Agents should be designed with clear boundaries, oversight, and accountability'},
+];
+
+function shuffle(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}return r;}
+
+let S={
+  phase:'start',
+  questions:shuffle(Q),
+  answers:{},
+  flags:{},
+  cur:0,
+  startMs:null,
+  elapsed:0,
+  tid:null
+};
+
+const app=document.getElementById('app');
+
+function render(){
+  if(S.phase==='start')renderStart();
+  else if(S.phase==='exam')renderExam();
+  else renderResults();
+}
+
+function renderStart(){
+  app.innerHTML=`<div class="start-screen">
+<div class="start-brand">Captain Corgi Hub</div>
+<div class="start-logo" aria-hidden="true"><img src="assets/captain-corgi-hub-design/assets/captain-corgi-hub-avatar.png" alt=""></div>
+<div class="start-title">GH-600 practice exam</div>
+<div class="start-sub">Practice exam 3 — Fifty questions across all six domains, weighted to match the real exam mix. We drew this from the official Microsoft Learn study guide and GitHub Docs.</div>
+<div class="meta-cards">
+  <div class="mc"><div class="mc-v">50</div><div class="mc-l">Questions</div></div>
+  <div class="mc"><div class="mc-v">90</div><div class="mc-l">Minutes</div></div>
+  <div class="mc"><div class="mc-v">700</div><div class="mc-l">Pass mark /1000</div></div>
+  <div class="mc"><div class="mc-v">6</div><div class="mc-l">Domains</div></div>
+</div>
+<div class="start-note">
+  <strong>How this run works:</strong> No answer hints until you submit. Flag questions to revisit if you like. The grid tracks where you are. When the timer hits 90 minutes, we auto-submit.
+</div>
+<button class="btn btn-primary" type="button" id="start-btn" style="font-size:var(--fs-body);padding:11px 32px">Start exam</button>
+</div>`;
+  document.getElementById('start-btn').onclick=()=>{
+    S.phase='exam';S.startMs=Date.now();startTimer();render();
+  };
+}
+
+function startTimer(){
+  S.tid=setInterval(()=>{
+    S.elapsed=Math.floor((Date.now()-S.startMs)/1000);
+    const rem=MINS*60-S.elapsed;
+    if(rem<=0){clearInterval(S.tid);S.phase='results';render();return;}
+    const el=document.getElementById('timer-display');
+    if(el){
+      const m=Math.floor(rem/60),sc=rem%60;
+      el.textContent=m+':'+(sc<10?'0':'')+sc;
+      const pill=document.getElementById('timer-pill');
+      if(pill)pill.className='timer-pill'+(rem<300?' danger':rem<900?' warn':'');
+    }
+    const fill=document.getElementById('prog-fill');
+    if(fill)fill.style.width=(S.cur/S.questions.length*100)+'%';
+  },1000);
+}
+
+function renderExam(){
+  const q=S.questions[S.cur];
+  const total=S.questions.length;
+  const answered=Object.keys(S.answers).length;
+  const flagged=Object.values(S.flags).filter(Boolean).length;
+  const rem=MINS*60-S.elapsed;
+  const m=Math.floor(rem/60),sc=rem%60;
+
+  app.innerHTML=`
+<div class="exam-header">
+  <div class="eh-title">GH-600 practice exam</div>
+  <span class="eh-meta">${answered} answered · ${flagged} flagged</span>
+  <div class="timer-pill" id="timer-pill"><span id="timer-display">${m}:${sc<10?'0':''}${sc}</span></div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:${S.cur/total*100}%"></div></div>
+<div class="exam-body">
+  <div class="q-sidebar">
+    <div class="qs-label">Question list</div>
+    <div class="qs-stats">Answered: <span>${answered}/${total}</span></div>
+    <div class="q-grid" id="q-grid"></div>
+    <button class="btn btn-danger" type="button" id="sb-submit" style="width:100%;justify-content:center">Submit</button>
+  </div>
+  <div class="q-panel">
+    <div class="q-meta">
+      <span class="q-num-badge">Q${S.cur+1} / ${total}</span>
+      <span class="q-domain-badge">${q.dt}</span>
+      ${S.flags[S.cur]?'<span class="q-flag-badge">Flagged</span>':''}
+    </div>
+    <div class="q-text">${q.q}</div>
+    <div class="opts" id="opts">
+      ${q.opts.map((o,i)=>`<button class="opt${S.answers[S.cur]===i?' sel':''}" data-i="${i}"><span class="opt-l">${LETTERS[i]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="q-nav-bar">
+      <div class="btn-row">
+        <button class="btn" type="button" id="prev" ${S.cur===0?'disabled':''}>Previous</button>
+        <button class="btn" type="button" id="flag-btn">${S.flags[S.cur]?'Unflag':'Flag'}</button>
+        <button class="btn" type="button" id="next" ${S.cur===total-1?'disabled':''}>Next</button>
+      </div>
+      <button class="btn btn-danger" type="button" id="submit-btn">Submit exam</button>
+    </div>
+  </div>
+</div>
+<div id="modal-area"></div>`;
+
+  const grid=document.getElementById('q-grid');
+  S.questions.forEach((_,i)=>{
+    const b=document.createElement('button');
+    const isAns=S.answers[i]!==undefined,isFlag=S.flags[i],isCur=i===S.cur;
+    b.className='q-dot '+(isFlag?'flag':isAns?'ans':'unans')+(isCur?' cur':'');
+    b.textContent=i+1;b.title='Q'+(i+1);
+    b.onclick=()=>{S.cur=i;render();};
+    grid.appendChild(b);
+  });
+
+  document.querySelectorAll('.opt').forEach(btn=>{
+    btn.onclick=()=>{S.answers[S.cur]=parseInt(btn.dataset.i);render();};
+  });
+  document.getElementById('prev').onclick=()=>{if(S.cur>0){S.cur--;render();}};
+  document.getElementById('next').onclick=()=>{if(S.cur<total-1){S.cur++;render();}};
+  document.getElementById('flag-btn').onclick=()=>{S.flags[S.cur]=!S.flags[S.cur];render();};
+
+  const showConfirm=()=>{
+    const unanswered=total-Object.keys(S.answers).length;
+    document.getElementById('modal-area').innerHTML=`<div class="modal-overlay" id="modal-overlay">
+<div class="modal">
+  <h3>Submit your exam?</h3>
+  <p>${unanswered>0?`You still have <strong>${unanswered}</strong> unanswered question${unanswered!==1?'s':''}.`:'Every question has an answer.'} We will score what you have now.</p>
+  <div class="modal-btns">
+    <button class="btn" type="button" id="cancel-btn">Cancel</button>
+    <button class="btn btn-primary" type="button" id="confirm-btn">Submit</button>
+  </div>
+</div></div>`;
+    document.getElementById('confirm-btn').onclick=()=>{clearInterval(S.tid);S.phase='results';render();};
+    document.getElementById('cancel-btn').onclick=()=>{document.getElementById('modal-area').innerHTML='';};
+    document.getElementById('modal-overlay').onclick=e=>{if(e.target.id==='modal-overlay')document.getElementById('modal-area').innerHTML='';};
+  };
+  document.getElementById('submit-btn').onclick=showConfirm;
+  document.getElementById('sb-submit').onclick=showConfirm;
+}
+
+function renderResults(){
+  clearInterval(S.tid);
+  const total=S.questions.length;
+  let correct=0;
+  const ds={1:{n:'D1 · Architecture & SDLC',c:0,t:0},2:{n:'D2 · Tool Use & MCP',c:0,t:0},3:{n:'D3 · Memory & State',c:0,t:0},4:{n:'D4 · Evaluation & Tuning',c:0,t:0},5:{n:'D5 · Multi-Agent',c:0,t:0},6:{n:'D6 · Guardrails',c:0,t:0}};
+  S.questions.forEach((q,i)=>{ds[q.d].t++;if(S.answers[i]===q.ans){correct++;ds[q.d].c++;}});
+  const scaled=Math.round(correct/total*1000);
+  const pass=scaled>=PASS;
+  const pct=Math.round(correct/total*100);
+  const elapsed=S.elapsed,em=Math.floor(elapsed/60),es=elapsed%60;
+
+  let domCards='';
+  [1,2,3,4,5,6].forEach(d=>{
+    const {n,c,t}=ds[d];
+    const p=Math.round(c/t*100);
+    const cls=p>=75?'g':p>=60?'m':'b';
+    domCards+=`<div class="db-card"><div class="db-name">${n}</div><div class="db-score">${c}/${t} <span style="font-size:var(--fs-small);color:var(--fg-3)">(${p}%)</span></div><div class="db-bar-bg"><div class="db-bar-fill ${cls}" style="width:${p}%"></div></div></div>`;
+  });
+
+  app.innerHTML=`<div class="results-page">
+<div class="result-hero">
+  <div class="result-score ${pass?'pass':'fail'}">${scaled}</div>
+  <div class="result-verdict">${pass?'Nice work — that\'s a pass':'Not this time — keep going'}</div>
+  <div class="result-sub">${correct}/${total} correct (${pct}%) · Pass mark: 700/1000</div>
+  <div class="result-meta">
+    <span class="rm-chip">Time used: ${em}m ${es}s</span>
+    <span class="rm-chip">${pass?'Above pass mark':'Below pass mark'}</span>
+    <span class="rm-chip">${Object.values(S.flags).filter(Boolean).length} flagged questions</span>
+  </div>
+</div>
+<div class="domain-breakdown-title">Score by domain</div>
+<div class="domain-breakdown">${domCards}</div>
+<div class="divider"></div>
+<div class="btn-row" style="margin-bottom:var(--space-5)">
+  <button class="btn btn-primary" type="button" id="review-btn">Review all answers</button>
+  <button class="btn" type="button" id="retake-btn">Retake exam</button>
+</div>
+<div id="review-out"></div>
+</div>`;
+
+  document.getElementById('retake-btn').onclick=()=>{
+    clearInterval(S.tid);
+    S={phase:'start',questions:shuffle(Q),answers:{},flags:{},cur:0,startMs:null,elapsed:0,tid:null};
+    render();
+  };
+
+  let open=false;
+  document.getElementById('review-btn').onclick=()=>{
+    const out=document.getElementById('review-out');
+    if(open){out.innerHTML='';open=false;document.getElementById('review-btn').textContent='Review all answers';return;}
+    open=true;document.getElementById('review-btn').textContent='Hide review';
+    let html=`<div class="domain-breakdown-title" style="margin-bottom:var(--space-3)">Every question — ${total} total</div>`;
+    S.questions.forEach((q,i)=>{
+      const chosen=S.answers[i],isOk=chosen===q.ans,skip=chosen===undefined;
+      const status=skip?'<span style="color:var(--warning)">Skipped</span>':isOk?'<span style="color:var(--success)">Correct</span>':'<span style="color:var(--danger)">Wrong</span>';
+      html+=`<div class="rq ${skip?'skip':isOk?'ok':'bad'}">
+<div class="rq-meta"><strong>Q${i+1}</strong><span>${q.dt}</span>${status}</div>
+<div class="rq-q">${q.q}</div>`;
+      q.opts.forEach((o,oi)=>{
+        let cls='nn';
+        if(oi===q.ans&&chosen===oi)cls='cc';
+        else if(oi===chosen&&chosen!==q.ans)cls='cw';
+        else if(oi===q.ans)cls='rc';
+        html+=`<div class="ro ${cls}"><span style="font-weight:700;flex-shrink:0;font-family:var(--font-mono)">${LETTERS[oi]}.</span><span>${o}</span></div>`;
+      });
+      html+=`<div class="rq-exp"><strong>Explanation:</strong> ${q.exp}</div></div>`;
+    });
+    out.innerHTML=html;out.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+}
+
+render();
+</script>
+</body>
+</html>

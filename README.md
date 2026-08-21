@@ -18,8 +18,9 @@ single learning platform.
 | [`docs/`](docs/) | Plans and decisions | Markdown | — |
 | [`plans/`](plans/) | Execution plans and reports | Markdown | — |
 
-Each `learn-*` app is its own git repository with its own README; start there
-for details on features, tests, and deploys.
+Each `learn-*` app is vendored directly in this repository (no submodules, no
+external clones) with its own README; start there for details on features,
+tests, and deploys.
 
 ## Unified platform
 
@@ -54,10 +55,10 @@ full plan, schema, and target structure.
 
 GitHub Actions (`.github/workflows/ci.yml`) runs on every push and pull
 request: `npm ci` → `npm run lint` → `npm test` → `npm run content:check` →
-`npm run build` — the identical command set as the local gate. The checkout
-includes git submodules because the extractor scripts compile and the GH-600
-parity suites test against the `learn-*` donor sources at their pinned SHAs;
-the donors are build inputs, not optional extras.
+`npm run build` — the identical command set as the local gate. The extractor
+scripts compile and the GH-600 parity suites test against the `learn-*` donor
+sources, which live in this repository as vendored directories — the donors
+are build inputs, not optional extras.
 
 A push to `main` — and only that — additionally publishes the built `dist/`
 to GitHub Pages once the gate is green. The site is live at

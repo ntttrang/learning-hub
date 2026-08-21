@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GH-600 Agentic AI Developer — study plan</title>
+<link rel="stylesheet" href=".claude/skills/lumen-design/colors_and_type.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;line-height:var(--lh-normal)}
+/* Header */
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:var(--space-5) var(--space-6);display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-xs)}
+.header-left{display:flex;align-items:center;gap:var(--space-3)}
+.logo{width:40px;height:40px;border-radius:var(--radius-md);background:var(--surface-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent);box-shadow:var(--shadow-xs)}
+.logo img{width:24px;height:24px;display:block}
+.header-title{font-family:var(--font-serif);font-size:var(--fs-h4);font-weight:400;color:var(--fg-1);line-height:var(--lh-snug)}
+.header-sub{font-size:var(--fs-xs);color:var(--fg-3);margin-top:2px;letter-spacing:var(--tracking-wide);text-transform:uppercase}
+.header-right{display:flex;align-items:center;gap:var(--space-3)}
+.prog-pill{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-pill);font-size:var(--fs-small);color:var(--fg-2)}
+.prog-bar-wrap{width:5rem;height:4px;background:var(--border);border-radius:var(--radius-pill);overflow:hidden}
+.prog-bar-fill{height:100%;background:var(--accent);border-radius:var(--radius-pill);transition:width var(--dur-base) var(--ease-out)}
+.exam-badge{font-size:var(--fs-xs);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);background:var(--accent-bg-soft);color:var(--accent);border:1px solid var(--accent-border);font-weight:500}
+
+/* Layout */
+.layout{display:flex;height:calc(100vh - 81px)}
+
+/* Sidebar */
+.sidebar{width:14rem;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;padding:var(--space-3) 0}
+.sb-section{padding:0 var(--space-3);margin-bottom:var(--space-1)}
+.sb-label{font-size:var(--fs-xs);font-weight:600;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--fg-3);padding:var(--space-2) var(--space-2) var(--space-1)}
+.domain-btn{width:100%;text-align:left;padding:var(--space-3) var(--space-3);border:none;background:transparent;cursor:pointer;border-radius:var(--radius-md);display:flex;align-items:center;gap:var(--space-3);transition:background var(--dur-fast) var(--ease-out);margin-bottom:2px;color:inherit;font-family:var(--font-sans);font-size:var(--fs-small)}
+.domain-btn:hover:not([disabled]){background:var(--surface-2)}
+.domain-btn:focus-visible{outline:none;box-shadow:var(--ring)}
+.domain-btn.active{background:var(--surface-2);box-shadow:inset 3px 0 0 var(--accent)}
+.domain-btn[disabled]{opacity:.45;cursor:not-allowed}
+.db-icon{font-size:16px;flex-shrink:0;width:22px;text-align:center;line-height:1}
+.db-info{flex:1;min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:2px}
+.db-name{font-size:var(--fs-small);font-weight:500;color:var(--fg-1);line-height:1.35;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
+.db-wt{font-size:var(--fs-xs);color:var(--fg-3)}
+.status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.dot-done{background:var(--success)}
+.dot-open{background:var(--accent)}
+.dot-lock{background:var(--border-strong)}
+
+/* Main */
+.main{flex:1;overflow-y:auto;padding:var(--space-6);background:var(--bg)}
+
+/* Domain hero */
+.domain-hero{margin-bottom:var(--space-5);padding:var(--space-5);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm)}
+.hero-top{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-2)}
+.hero-icon{font-size:28px;line-height:1}
+.hero-title{font-family:var(--font-serif);font-size:var(--fs-h3);font-weight:400;color:var(--fg-1);line-height:var(--lh-snug)}
+.hero-badge{font-size:var(--fs-small);padding:3px var(--space-3);border-radius:var(--radius-pill);background:var(--surface-2);color:var(--fg-2);border:1px solid var(--border)}
+.hero-desc{font-size:var(--fs-small);color:var(--fg-2);line-height:var(--lh-loose)}
+
+/* Tabs */
+.tab-bar{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:var(--space-5)}
+.tab{padding:var(--space-3) var(--space-4);font-size:var(--fs-small);font-weight:500;cursor:pointer;color:var(--fg-3);border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;transition:color var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out);font-family:var(--font-sans)}
+.tab:hover{color:var(--fg-2)}
+.tab:focus-visible{outline:none;box-shadow:var(--ring);border-radius:var(--radius-xs)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* Topic cards */
+.topic-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:var(--space-2);overflow:hidden;transition:border-color var(--dur-fast) var(--ease-out);box-shadow:var(--shadow-xs)}
+.topic-card:hover{border-color:var(--border-strong)}
+.tc-header{padding:var(--space-4) var(--space-4);display:flex;align-items:center;gap:var(--space-3);cursor:pointer}
+.tc-icon{font-size:16px;flex-shrink:0;line-height:1}
+.tc-name{font-size:var(--fs-small);font-weight:500;color:var(--fg-1);flex:1;font-family:var(--font-sans)}
+.tc-arrow{font-size:11px;color:var(--fg-3);transition:transform var(--dur-base) var(--ease-out)}
+.tc-arrow.open{transform:rotate(90deg)}
+.tc-body{padding:0 var(--space-4) var(--space-4);display:none;border-top:1px solid var(--border)}
+.tc-body.show{display:block}
+.tc-body p{font-size:var(--fs-small);color:var(--fg-2);line-height:var(--lh-loose);margin-bottom:var(--space-3);padding-top:var(--space-3)}
+
+/* Callouts */
+.callout{border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);margin-bottom:var(--space-3);font-size:var(--fs-small);line-height:var(--lh-loose);border:1px solid var(--border-subtle)}
+.callout strong{font-weight:600;color:var(--fg-1)}
+.c-key{border-left:3px solid var(--accent);background:var(--accent-bg-soft);color:var(--fg-1)}
+.c-tip{border-left:3px solid var(--success);background:rgba(63,138,92,0.08);color:var(--fg-1)}
+.c-warn{border-left:3px solid var(--warning);background:rgba(192,138,46,0.1);color:var(--fg-1)}
+.c-fact{border-left:3px solid var(--info);background:rgba(61,111,154,0.08);color:var(--fg-1)}
+
+/* Table */
+.cmp-table{width:100%;border-collapse:collapse;font-size:var(--fs-small);margin-bottom:var(--space-3)}
+.cmp-table th{background:var(--surface-2);padding:var(--space-2) var(--space-3);text-align:left;font-weight:600;color:var(--fg-1);border:1px solid var(--border);font-family:var(--font-sans)}
+.cmp-table td{padding:var(--space-2) var(--space-3);border:1px solid var(--border);color:var(--fg-2);vertical-align:top}
+.cmp-table tr:hover td{background:var(--surface-2)}
+.cmp-table .tabular{font-variant-numeric:tabular-nums}
+
+/* Code */
+.code-block{background:var(--code-bg);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:var(--fs-small);font-family:var(--font-mono);color:var(--code-fg);margin-bottom:var(--space-3);overflow-x:auto;line-height:1.65}
+.cm{opacity:.75}.ck{color:#9cc5e8}.cv{color:#8fd4a8}.cs{color:#e8bf9f}
+
+/* Fact list */
+.fact-list{list-style:none;margin-bottom:var(--space-3)}
+.fact-list li{font-size:var(--fs-small);color:var(--fg-2);padding:var(--space-2) 0;border-bottom:1px solid var(--border);display:flex;gap:var(--space-2);line-height:var(--lh-normal)}
+.fact-list li:last-child{border-bottom:none}
+.fi{color:var(--accent);flex-shrink:0;margin-top:2px;font-weight:600}
+
+/* Anti-pattern */
+.ap-row{display:flex;gap:var(--space-2);margin-bottom:var(--space-2);font-size:var(--fs-small);flex-wrap:wrap}
+@media(min-width:640px){.ap-row{flex-wrap:nowrap}}
+.ap-bad{flex:1;min-width:0;background:rgba(184,74,58,0.08);border:1px solid var(--border-subtle);border-left:3px solid var(--danger);border-radius:var(--radius-md);padding:var(--space-2) var(--space-3);color:var(--fg-1)}
+.ap-good{flex:1;min-width:0;background:rgba(63,138,92,0.08);border:1px solid var(--border-subtle);border-left:3px solid var(--success);border-radius:var(--radius-md);padding:var(--space-2) var(--space-3);color:var(--fg-1)}
+.ap-label{font-size:var(--fs-xs);font-weight:600;text-transform:uppercase;letter-spacing:var(--tracking-wide);margin-bottom:var(--space-1);color:var(--fg-3)}
+
+/* Quiz */
+.quiz-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-5);box-shadow:var(--shadow-sm)}
+.quiz-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-4);font-size:var(--fs-small);color:var(--fg-3);flex-wrap:wrap;gap:var(--space-2)}
+.quiz-meta strong{color:var(--fg-1);font-variant-numeric:tabular-nums}
+.q-text{font-size:var(--fs-body);font-weight:500;color:var(--fg-1);margin-bottom:var(--space-4);line-height:var(--lh-loose);max-width:68ch}
+.opts{display:flex;flex-direction:column;gap:var(--space-2);margin-bottom:var(--space-3)}
+.opt{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:var(--fs-small);color:var(--fg-2);cursor:pointer;text-align:left;display:flex;gap:var(--space-3);transition:background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out);font-family:var(--font-sans);line-height:var(--lh-normal);box-shadow:var(--shadow-xs)}
+.opt:hover:not([disabled]){border-color:var(--border-strong);color:var(--fg-1);background:var(--surface)}
+.opt:focus-visible{outline:none;box-shadow:var(--ring)}
+.opt.correct{border-color:var(--success)!important;background:rgba(63,138,92,0.12)!important;color:var(--fg-1)!important}
+.opt.wrong{border-color:var(--danger)!important;background:rgba(184,74,58,0.1)!important;color:var(--fg-1)!important}
+.opt.show{border-color:var(--success)!important;background:rgba(63,138,92,0.12)!important;color:var(--fg-1)!important}
+.opt[disabled]{cursor:not-allowed;opacity:.75}
+.opt-letter{font-family:var(--font-mono);font-size:var(--fs-xs);font-weight:600;flex-shrink:0;width:16px;margin-top:1px;color:var(--fg-3)}
+.opt.correct .opt-letter,.opt.show .opt-letter{color:var(--success)}
+.opt.wrong .opt-letter{color:var(--danger)}
+.fb{font-size:var(--fs-small);padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);margin-bottom:var(--space-3);line-height:var(--lh-loose)}
+.fb-ok{background:rgba(63,138,92,0.1);color:var(--fg-1);border:1px solid rgba(63,138,92,0.25)}
+.fb-err{background:rgba(184,74,58,0.08);color:var(--fg-1);border:1px solid rgba(184,74,58,0.22)}
+.quiz-result{text-align:center;padding:var(--space-6);background:var(--surface-2);border-radius:var(--radius-lg);border:1px solid var(--border);margin-bottom:var(--space-4)}
+.qr-score{font-size:clamp(2rem,6vw,2.75rem);font-weight:400;font-family:var(--font-serif);font-variant-numeric:tabular-nums;line-height:var(--lh-tight)}
+.qr-score.pass{color:var(--success)}
+.qr-score.fail{color:var(--danger)}
+.qr-label{font-size:var(--fs-body);font-weight:600;font-family:var(--font-sans);color:var(--fg-1);margin-top:var(--space-2);margin-bottom:var(--space-2)}
+.qr-sub{font-size:var(--fs-small);color:var(--fg-3)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:10px var(--space-4);border-radius:var(--radius-md);border:1px solid var(--border-strong);background:var(--surface);cursor:pointer;font-size:var(--fs-small);color:var(--fg-1);transition:background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),transform 80ms var(--ease-out);font-family:var(--font-sans);font-weight:500;line-height:1.2}
+.btn:hover{background:var(--surface-2)}
+.btn:focus-visible{outline:none;box-shadow:var(--ring)}
+.btn:active:not(:disabled){transform:scale(0.98)}
+.btn-primary{background:var(--accent);color:var(--accent-fg);border-color:transparent;font-weight:500}
+.btn-primary:hover{background:var(--accent-hover);color:var(--accent-fg)}
+.btn-primary:active{background:var(--accent-press)}
+.btn-row{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-top:var(--space-1)}
+
+/* Resources */
+.res-intro{font-size:var(--fs-small);color:var(--fg-2);margin-bottom:var(--space-4);line-height:var(--lh-loose)}
+.res-link{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:var(--space-2);text-decoration:none;color:var(--fg-1);font-size:var(--fs-small);transition:background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out);background:var(--surface);box-shadow:var(--shadow-xs)}
+.res-link:hover{border-color:var(--border-strong);background:var(--surface-2)}
+.res-tag{font-size:var(--fs-xs);padding:2px var(--space-2);border-radius:var(--radius-pill);font-weight:600;flex-shrink:0;text-transform:uppercase;letter-spacing:0.03em}
+.tag-ms{background:rgba(61,111,154,0.12);color:var(--info);border:1px solid rgba(61,111,154,0.22)}
+.tag-gh{background:var(--accent-bg-soft);color:var(--accent);border:1px solid var(--accent-border)}
+.res-link span:last-child{font-size:var(--fs-xs);color:var(--fg-3);margin-left:auto}
+
+/* Footer */
+.learn-footer{margin-top:var(--space-4);padding:var(--space-4);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-2);box-shadow:var(--shadow-xs)}
+.lf-text{font-size:var(--fs-small);color:var(--fg-2)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:var(--radius-pill)}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <div class="logo" aria-hidden="true"><img src=".claude/skills/lumen-design/assets/mark.svg" alt=""></div>
+    <div>
+      <div class="header-title">GH-600 Agentic AI Developer</div>
+      <div class="header-sub">Interactive study plan · Six domains · Official docs</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="prog-pill">
+      <span id="prog-text">0/6 passed</span>
+      <div class="prog-bar-wrap"><div class="prog-bar-fill" id="prog-fill" style="width:0%"></div></div>
+    </div>
+    <div class="exam-badge">GH-600 beta</div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="sidebar">
+    <div class="sb-label" style="padding:var(--space-3) var(--space-4) var(--space-2)">Domains</div>
+    <div class="sb-section" id="sb-domains"></div>
+  </nav>
+  <main class="main" id="main-panel"></main>
+</div>
+
+<script>
+const DOMAINS=[
+{id:0,icon:'🏗️',name:'Architecture & SDLC',weight:'15–20%',
+ desc:'Structure agent systems, integrate them into the SDLC, define the planning/execution boundary, configure observability, and right-size human oversight.',
+ topics:[
+  {id:'d1t1',name:'Agent Lifecycle: Plan → Act → Evaluate',icon:'🔄',
+   body:`<p>The agent lifecycle is the foundational model for all agentic AI in GitHub. Every agent task follows three distinct, ordered phases — they must not be collapsed.</p>
+<div class="callout c-key"><strong>📋 Plan:</strong> The agent receives inputs and produces a <em>structured plan artifact</em> — a file, PR comment, or structured workflow output that describes what it intends to do. This artifact is inspectable and validatable before any action occurs.</div>
+<div class="callout c-key"><strong>⚡ Act:</strong> Only after the plan is approved (by a human gate or automated status check) does the agent execute. Actions: write code, commit to branch, create PR, call external APIs via MCP.</div>
+<div class="callout c-key"><strong>📊 Evaluate:</strong> Automated scanning tools and human reviewers assess outputs against predefined success criteria. Results feed back into the next iteration.</div>
+<ul class="fact-list">
+  <li><span class="fi">→</span>Agents differ from assistants: they <em>act</em> on the codebase autonomously, not just suggest</li>
+  <li><span class="fi">→</span>Planning and execution must be <strong>distinct, separated steps</strong> — never combined</li>
+  <li><span class="fi">→</span>The plan artifact is the contract between the agent and the reviewer</li>
+  <li><span class="fi">→</span>Evaluation signals: quantitative (test pass rate) AND qualitative (code readability)</li>
+</ul>
+<div class="callout c-tip"><strong>Exam Tip:</strong> Combining plan and act in one step is the #1 documented anti-pattern. If asked which comes first — always Plan, then validate, then Act.</div>`},
+  {id:'d1t2',name:'GitHub as System of Record & Control Plane',icon:'🎛️',
+   body:`<table class="cmp-table"><tr><th>System of Record</th><th>Control Plane</th></tr>
+<tr><td>All agent changes tracked via branches, commits, PRs</td><td>Workflows, permissions, approvals govern what agents can do</td></tr>
+<tr><td>Signed commits with co-author attribution</td><td>Branch protection rules, required status checks</td></tr>
+<tr><td>Session logs linked in commit messages</td><td>CODEOWNERS, environment gates, rulesets</td></tr>
+<tr><td>Audit log events for all agent activity</td><td>MCP allow lists, tool permissions</td></tr></table>
+<div class="callout c-fact"><strong>Key Fact:</strong> Copilot cloud agent commits are <strong>cryptographically signed</strong> — they appear as "Verified" on GitHub. The co-author is the developer who initiated the task, creating an unbreakable accountability chain.</div>
+<div class="callout c-tip"><strong>Exam Tip:</strong> "System of record" = where changes live (branches/PRs/commits). "Control plane" = what governs agent behavior (workflows/permissions/gates). Know both roles and examples of each.</div>`},
+  {id:'d1t3',name:'Common Anti-Patterns',icon:'⚠️',
+   body:`<div class="ap-row"><div class="ap-bad"><div class="ap-label">❌ Anti-Pattern</div>Agent plans AND acts in the same step — no validation window</div><div class="ap-good"><div class="ap-label">✅ Correct</div>Agent outputs a plan artifact → validation gate → then acts</div></div>
+<div class="ap-row"><div class="ap-bad"><div class="ap-label">❌ Anti-Pattern</div>Agent pushes directly to main without a PR</div><div class="ap-good"><div class="ap-label">✅ Correct</div>Agent commits to a copilot/ branch → opens PR → human reviews</div></div>
+<div class="ap-row"><div class="ap-bad"><div class="ap-label">❌ Anti-Pattern</div>No success criteria — team can't evaluate output quality</div><div class="ap-good"><div class="ap-label">✅ Correct</div>Define expected outputs, constraints, and evaluation signals BEFORE deployment</div></div>
+<div class="ap-row"><div class="ap-bad"><div class="ap-label">❌ Anti-Pattern</div>Every action requires human approval (approval theater)</div><div class="ap-good"><div class="ap-label">✅ Correct</div>Gates only where human judgment materially reduces risk</div></div>
+<div class="callout c-warn"><strong>Remember:</strong> Anti-patterns are architectural design failures, not tool errors. The exam asks you to identify the structural mistake.</div>`},
+  {id:'d1t4',name:'Inputs, Outputs & Success Criteria',icon:'📐',
+   body:`<table class="cmp-table"><tr><th>Component</th><th>Definition</th><th>Example</th></tr>
+<tr><td>Expected inputs</td><td>What the agent receives</td><td>Issue text, PR diff, file path</td></tr>
+<tr><td>Expected outputs</td><td>What the agent must produce</td><td>Modified files, new PR, test report</td></tr>
+<tr><td>Operational constraints</td><td>What the agent must NOT do</td><td>Never modify config/, never push to main</td></tr>
+<tr><td>Quantitative signals</td><td>Measurable automated metrics</td><td>Test pass rate, lint errors, vuln count</td></tr>
+<tr><td>Qualitative signals</td><td>Human judgment criteria</td><td>Code readability, convention adherence</td></tr></table>
+<div class="callout c-tip"><strong>Exam Tip:</strong> When a question says "the team can't tell if the agent is working," the root cause is always missing success criteria and evaluation signals — not a tool or model problem.</div>`},
+  {id:'d1t5',name:'Observability & Human Intervention Config',icon:'🔭',
+   body:`<div class="callout c-key"><strong>Inspectable Artifacts:</strong> Plan files committed to a branch, PR descriptions with structured reasoning, GitHub Actions workflow run logs, session logs linked from commit messages, structured JSON outputs in CI artifacts.</div>
+<ul class="fact-list">
+  <li><span class="fi">→</span><strong>Required status checks</strong> = automated validation gates in Actions</li>
+  <li><span class="fi">→</span><strong>Required reviews</strong> = human approval gates via branch protection</li>
+  <li><span class="fi">→</span><strong>CODEOWNERS</strong> = automatic reviewer assignment for specific file paths</li>
+  <li><span class="fi">→</span><strong>Environment gates</strong> = deployment-level approvals for production/staging</li>
+  <li><span class="fi">→</span><strong>Rulesets</strong> = org/repo-level enforcement of governance rules</li>
+</ul>
+<div class="callout c-tip"><strong>"Without slowing delivery"</strong> = gates only on high-risk actions. Routine, reversible, low-risk agent actions should NOT require approval — that's approval theater.</div>`},
+ ],
+ quiz:[
+  {q:'An agent receives a task and immediately starts modifying files without producing a plan. Which anti-pattern is this?',opts:['Context drift','Mixing planning and execution — the agent acted without producing and validating a plan first','Insufficient MCP configuration','Memory expiration'],ans:1,exp:'The #1 anti-pattern: combining plan and act in one step. The agent must produce a structured plan artifact and wait for validation before taking any action.'},
+  {q:'What two roles does GitHub simultaneously play in an agentic AI system?',opts:['Model host and billing platform','System of record (branches/PRs/commits) and control plane (workflows/permissions/governance)','Code editor and deployment target','MCP server and secret store'],ans:1,exp:'GitHub is both the system of record (where all agent changes are tracked) and the control plane (where workflows, permissions, and approval gates govern agent behavior).'},
+  {q:'A team adds an approval gate to every single agent action, including reading README files. What problem does this create?',opts:['Improved security','Approval theater — gates that impose velocity cost without reducing meaningful risk','Correct observability configuration','Better compliance trail'],ans:1,exp:'Gating every action regardless of risk is "approval theater." Every gate imposes a delivery cost that must be justified by the risk it mitigates. Routine, reversible actions should be ungated.'},
+  {q:'Which GitHub control automatically assigns reviewers to agent-generated changes in critical file paths?',opts:['MCP allow list','Required status checks','CODEOWNERS file','GitHub Actions job timeout'],ans:2,exp:'CODEOWNERS automatically assigns required reviewers for specific file paths. When an agent modifies code in a CODEOWNERS-protected path, the defined owners must review before merging.'},
+  {q:'Success criteria must include which combination?',opts:['Model temperature and token count only','Expected outputs, operational constraints, and both qualitative and quantitative evaluation signals','PR merge speed and CI duration only','Number of tool calls'],ans:1,exp:'A complete success definition covers: what the agent should produce (outputs), what it must not do (constraints), measurable metrics (quantitative), and human judgment criteria (qualitative).'},
+ ]},
+
+{id:1,icon:'🔧',name:'Tool Use & MCP',weight:'20–25%',
+ desc:'Select and configure agent tools, set up MCP servers with registries and allow lists, integrate agents into CI, and implement safe execution with robust error handling.',
+ topics:[
+  {id:'d2t1',name:'Model Context Protocol (MCP) — Architecture',icon:'🔌',
+   body:`<div class="callout c-key"><strong>MCP Flow:</strong> Agent → calls MCP server → which calls external API → returns structured result to agent</div>
+<table class="cmp-table"><tr><th>Component</th><th>Purpose</th><th>Exam Relevance</th></tr>
+<tr><td>MCP Server</td><td>Wraps an external API/service as callable tools</td><td>Must be registered in registry before use</td></tr>
+<tr><td>MCP Registry</td><td>Catalogue of available servers Copilot knows about</td><td>Required for server discovery</td></tr>
+<tr><td>MCP Allow List</td><td>Specifies which servers an agent is permitted to call</td><td>Primary access control layer</td></tr>
+<tr><td>Tool Permissions</td><td>What each tool can do (read/write/delete) within its scope</td><td>Second, distinct access control layer</td></tr></table>
+<div class="code-block"><span class="cm"># Example: GitHub remote MCP server config</span>
+<span class="ck">mcp_servers</span>:
+  - <span class="ck">name</span>: <span class="cs">"jira-mcp"</span>
+    <span class="ck">url</span>: <span class="cs">"https://mcp.jira.example.com/sse"</span>
+    <span class="ck">type</span>: <span class="cs">"url"</span>
+<span class="ck">mcp_allow_list</span>:
+  - <span class="cs">"jira-mcp"</span>  <span class="cm"># only this server is permitted</span></div>
+<div class="callout c-tip"><strong>Exam Trap:</strong> Allow list ≠ tool permissions. Allow list = which servers are reachable. Tool permissions = what operations each server can perform. Both layers are required for least-privilege.</div>`},
+  {id:'d2t2',name:'Built-in Copilot Cloud Agent Security Controls',icon:'🔒',
+   body:`<ul class="fact-list">
+  <li><span class="fi">✓</span><strong>Write access gate:</strong> Only users WITH write access can trigger the agent via @copilot</li>
+  <li><span class="fi">✓</span><strong>Branch isolation:</strong> Agent pushes only to copilot/ branch — never to main</li>
+  <li><span class="fi">✓</span><strong>No self-approval:</strong> Agent CANNOT mark its own PRs as "Ready for review"</li>
+  <li><span class="fi">✓</span><strong>No self-merge:</strong> Draft PRs MUST be merged by a human</li>
+  <li><span class="fi">✓</span><strong>Workflow approval gate:</strong> Actions don't auto-run until write-access user approves</li>
+  <li><span class="fi">✓</span><strong>Firewall:</strong> Internet access restricted to prevent data exfiltration</li>
+  <li><span class="fi">✓</span><strong>Signed commits:</strong> All agent commits are cryptographically signed ("Verified" badge)</li>
+  <li><span class="fi">✓</span><strong>Co-author attribution:</strong> Developer who initiated is always co-author</li>
+  <li><span class="fi">✓</span><strong>Prompt injection filter:</strong> Hidden characters filtered from input before reaching agent</li>
+  <li><span class="fi">✓</span><strong>Auto security scans:</strong> CodeQL + Advisory DB + Secret scanning on all generated code</li>
+</ul>
+<div class="callout c-warn"><strong>Exam Trap:</strong> "Auto-merging its own PRs" may appear as a listed mitigation. It is NOT — it's a risk that GitHub explicitly prevents.</div>`},
+  {id:'d2t3',name:'Execution Context & Scope Boundaries',icon:'📦',
+   body:`<table class="cmp-table"><tr><th>Boundary Type</th><th>What It Restricts</th><th>How to Configure</th></tr>
+<tr><td>Repository scope</td><td>Agent can only act within triggering repo</td><td>GitHub token scoped to single repo</td></tr>
+<tr><td>Branch scope</td><td>Agent can only write to specific branch</td><td>Branch protection + copilot/ prefix</td></tr>
+<tr><td>CI workflow scope</td><td>Agent only runs on CI events</td><td>workflow_trigger event configuration</td></tr>
+<tr><td>Environment scope</td><td>Agent can only deploy to specific environments</td><td>GitHub Environments with required reviewers</td></tr></table>
+<div class="callout c-fact"><strong>Key Fact from GitHub Docs:</strong> Copilot cloud agent pushes to a <code style="font-family:var(--font-mono);font-size:11px">copilot/</code> prefixed branch when not working on an existing PR. It can ONLY push to that branch — never directly to main or other protected branches.</div>`},
+  {id:'d2t4',name:'Error Handling, Retries, Rollbacks & Escalation',icon:'🛡️',
+   body:`<ul class="fact-list">
+  <li><span class="fi">→</span><strong>Error handling:</strong> Catch tool call failures; distinguish transient vs permanent errors</li>
+  <li><span class="fi">→</span><strong>Retries:</strong> Use exponential backoff for transient failures; MUST be idempotent</li>
+  <li><span class="fi">→</span><strong>Rollbacks:</strong> Revert branch changes; restore prior state using git revert patterns</li>
+  <li><span class="fi">→</span><strong>Escalation:</strong> When automated recovery fails → notify human reviewer → halt execution</li>
+  <li><span class="fi">→</span><strong>Traceability:</strong> Every action linked to: instruction (why) → tool call (how) → output (what)</li>
+</ul>
+<div class="callout c-key"><strong>Idempotency Rule:</strong> If a tool call might be retried, it MUST be idempotent — calling it twice produces the same result without duplicating side-effects (no duplicate tickets, no double commits).</div>`},
+ ],
+ quiz:[
+  {q:'What is the key difference between an MCP allow list and tool permissions?',opts:['They are identical','Allow list controls which MCP servers the agent can reach; tool permissions control what each permitted server can do — both layers needed','Allow list stores API keys; permissions store model settings','Allow lists are cloud-only; permissions work everywhere'],ans:1,exp:'Two distinct access control layers. Allow list = server reachability. Tool permissions = operation scope within a permitted server. Both required for complete least-privilege.'},
+  {q:'An agent in CI only needs to comment on a PR and push to the PR branch. Correct scope?',opts:['Full organisation-wide admin access','Write access to the PR branch and PR comment permission in the triggering repository only','Read access to all repositories','Global write access to all branches'],ans:1,exp:'Least-privilege in CI: write access scoped to the specific PR branch in the triggering repo, plus PR comment permission only.'},
+  {q:'A tool call fails due to a transient network error. Correct recovery pattern?',opts:['Abort the entire task immediately','Idempotent retry with exponential backoff — calling again produces the same result without duplicating side-effects','Ask the user to restart','Switch to a larger model'],ans:1,exp:'Transient failures → idempotent retries with exponential backoff. Idempotency ensures the retry doesn\'t create duplicate side-effects.'},
+  {q:'Which statement about Copilot cloud agent and pull request merging is accurate?',opts:['It can merge PRs if all checks pass','It can mark PRs Ready and merge if repo allows auto-merge','It cannot mark its own PRs as Ready, approve, or merge them — human review always required','It can merge after a 24-hour wait'],ans:2,exp:'Per GitHub Docs, Copilot cloud agent cannot mark its own PRs as Ready for review, approve, or merge them. Hard-coded, not configurable.'},
+  {q:'Which tool detects hardcoded API keys in code generated by Copilot cloud agent?',opts:['CodeQL','GitHub Advisory Database','Secret scanning','DAST tool'],ans:2,exp:'Secret scanning detects hardcoded credentials and tokens. CodeQL handles code security vulnerabilities. Advisory DB checks dependency vulnerabilities. All three run automatically.'},
+ ]},
+
+{id:2,icon:'🧠',name:'Memory, State & Execution',weight:'10–15%',
+ desc:'Choose memory strategies, persist durable state, prevent context drift, and maintain task continuity — including Copilot Memory specifics tested directly on the exam.',
+ topics:[
+  {id:'d3t1',name:'Memory Types Compared',icon:'💾',
+   body:`<table class="cmp-table"><tr><th>Type</th><th>Scope</th><th>Survives Session?</th><th>Best For</th></tr>
+<tr><td>Short-term (in-context)</td><td>Current context window only</td><td>No</td><td>Single-step, simple tasks</td></tr>
+<tr><td>Long-term</td><td>Persisted beyond the session</td><td>Yes</td><td>Multi-session, project-level knowledge</td></tr>
+<tr><td>External memory</td><td>External systems (vector DB, KV store)</td><td>Yes</td><td>Large knowledge bases, cross-agent sharing</td></tr></table>
+<div class="callout c-key"><strong>Scoping Rule:</strong> Always scope memory to task-relevant information only. Storing everything causes context pollution → context drift → degraded decisions.</div>
+<div class="callout c-tip"><strong>Exam Tip:</strong> Task must survive overnight or across multiple sessions → long-term or external memory + durable artifacts. In-context = lost when session ends.</div>`},
+  {id:'d3t2',name:'Copilot Memory — Official Exam Facts',icon:'🔮',
+   body:`<ul class="fact-list">
+  <li><span class="fi">→</span><strong>Retention:</strong> <strong>28 days</strong> — memories auto-deleted after 28 days</li>
+  <li><span class="fi">→</span><strong>Scope:</strong> <strong>Repository-scoped</strong> — all permitted users in a repo share its memories; no cross-repo</li>
+  <li><span class="fi">→</span><strong>Default (Pro/Pro+):</strong> <strong>ON by default</strong> — users can opt out in personal settings</li>
+  <li><span class="fi">→</span><strong>Default (Enterprise/Org):</strong> <strong>OFF by default</strong> — admin must enable at org/enterprise level</li>
+  <li><span class="fi">→</span><strong>Validation:</strong> Citation-based — each memory has code location references validated against current branch before use</li>
+  <li><span class="fi">→</span><strong>Active in:</strong> Copilot cloud agent, Copilot code review (GitHub.com PRs), Copilot CLI</li>
+</ul>
+<div class="callout c-warn"><strong>Exam Trap:</strong> Memory is repo-scoped, NOT user-scoped. Developer A's memory in Repo X is available to Developer B in Repo X — but NOT to Developer A in Repo Y.</div>`},
+  {id:'d3t3',name:'Durable Artifacts & Context Drift',icon:'📌',
+   body:`<div class="callout c-key"><strong>Durable Artifact Pattern:</strong> After each significant step, the agent commits a structured state file to its working branch. On resumption, it reads this file to understand what's done and what remains.</div>
+<div class="code-block"><span class="cm"># Example: .agent-state.json (committed to copilot/ branch)</span>
+{
+  <span class="ck">"task"</span>: <span class="cs">"refactor-auth-module"</span>,
+  <span class="ck">"completed_steps"</span>: [<span class="cs">"extract-interface"</span>, <span class="cs">"update-tests"</span>],
+  <span class="ck">"pending_steps"</span>: [<span class="cs">"update-docs"</span>, <span class="cs">"open-pr"</span>],
+  <span class="ck">"decisions"</span>: { <span class="ck">"interface_name"</span>: <span class="cs">"IAuthProvider"</span> },
+  <span class="ck">"checkpoint_at"</span>: <span class="cs">"2026-05-23T10:00:00Z"</span>
+}</div>
+<div class="callout c-key"><strong>Context Drift:</strong> When accumulated or outdated context causes the agent's decisions to diverge from its original plan. Prevent with pruning rules, expiration rules, and durable checkpoints.</div>`},
+ ],
+ quiz:[
+  {q:'How long are Copilot Memory entries retained before automatic deletion?',opts:['7 days','14 days','28 days','90 days'],ans:2,exp:'Per GitHub Docs, Copilot memories are automatically deleted after 28 days to prevent stale information from degrading decision quality.'},
+  {q:'Developer A creates a memory in Repository X. Can Developer B access it in Repository X?',opts:['No — strictly user-scoped','Yes — repository-scoped; all permitted users in the repo share its memories','Yes — organisation-scoped across all repos','No — expires at end of creating user\'s session'],ans:1,exp:'Copilot Memory is repository-scoped. All permitted users in a repo share its memories. No cross-repo or cross-org access.'},
+  {q:'For enterprise Copilot subscriptions, what is the default state of Copilot Memory?',opts:['Enabled for all users','Disabled by default — admin must enable at org/enterprise level','Enabled for repo owners only','Enabled only in public repos'],ans:1,exp:'For enterprise/org-managed accounts, Copilot Memory is OFF by default. An admin must explicitly enable it — opposite of individual Pro/Pro+ users.'},
+  {q:'An agent pauses overnight mid-refactor. What allows correct resumption without repeating steps?',opts:['Increasing the context window','Durable artifacts (committed state files) the agent reads on resumption','Restarting with fresh context and redoing all work','Asking the user to re-describe the task'],ans:1,exp:'Durable artifacts — structured state files committed to the branch — allow the agent to resume from the last checkpoint without repeating completed work.'},
+  {q:'How does Copilot prevent stale memories from affecting agent behavior?',opts:['A nightly batch job deletes all memories','Citation-based validation — memory code references are checked against the current branch; mismatched citations cause the memory to be discarded','User manually audits memories weekly','Memories are never used more than once'],ans:1,exp:'Per GitHub Docs, every memory has citations (code location references). Before use, Copilot validates them against the current branch. Invalid citations = memory discarded.'},
+ ]},
+
+{id:3,icon:'📊',name:'Evaluation & Tuning',weight:'15–20%',
+ desc:'Define success signals, analyze agent failures using logs and traces, classify root causes, and tune instructions, memory, and tool access based on evidence.',
+ topics:[
+  {id:'d4t1',name:'Evaluation Framework: The 4 Components',icon:'🎯',
+   body:`<table class="cmp-table"><tr><th>Component</th><th>What It Is</th><th>Example</th></tr>
+<tr><td>Expected outputs</td><td>What the agent must produce</td><td>Modified files, new PR, test report</td></tr>
+<tr><td>Operational constraints</td><td>What the agent must NOT do</td><td>Never modify config/, never push to main</td></tr>
+<tr><td>Quantitative signals</td><td>Measurable, automated metrics</td><td>Test pass rate, lint count, vuln count</td></tr>
+<tr><td>Qualitative signals</td><td>Human judgment criteria</td><td>Code readability, logical correctness</td></tr></table>
+<div class="callout c-key"><strong>Metric Gaming:</strong> An agent could maximize test count by writing trivial tests — satisfying the metric without delivering value. Criteria must reflect genuine team intent, not just what's easy to count.</div>`},
+  {id:'d4t2',name:'Root Cause Classification',icon:'🔍',
+   body:`<table class="cmp-table"><tr><th>Root Cause</th><th>Definition</th><th>Example</th></tr>
+<tr><td>Reasoning error</td><td>Flawed planning or inference — structurally valid but semantically wrong</td><td>Wrong algorithm, incorrect logic, bad design decision</td></tr>
+<tr><td>Tool misuse</td><td>Correct intent, wrong tool usage — wrong params, wrong tool, wrong timing</td><td>Wrong version format string, calling write when read needed</td></tr>
+<tr><td>Context/environment</td><td>External factor caused failure</td><td>Missing env var, network timeout, permission denied</td></tr></table>
+<div class="callout c-warn"><strong>Exam Nuance:</strong> Syntactically correct but logically wrong output = <strong>reasoning error</strong>. Correct intent but wrong tool parameters = <strong>tool misuse</strong>. Never confuse them.</div>
+<div class="callout c-tip"><strong>Silent failure diagnosis:</strong> Start with plan trace + tool call log to find where execution stopped. Work backward from symptom to cause.</div>`},
+  {id:'d4t3',name:'Tuning Levers by Root Cause',icon:'🎛️',
+   body:`<ul class="fact-list">
+  <li><span class="fi">→</span><strong>Reasoning error</strong> → Revise instructions to be more precise; add examples of correct reasoning</li>
+  <li><span class="fi">→</span><strong>Tool misuse</strong> → Update instructions with exact expected format; add tool-level input validation</li>
+  <li><span class="fi">→</span><strong>Dropped constraint</strong> → Re-add explicitly; enforce mechanically via tool permissions</li>
+  <li><span class="fi">→</span><strong>Context drift</strong> → Add pruning rules; reduce memory scope; add checkpoints</li>
+  <li><span class="fi">→</span><strong>Over-fetching</strong> → Narrow tool access scope; revise instructions to fetch only relevant data</li>
+</ul>
+<div class="callout c-warn"><strong>Tuning Side Effects:</strong> Every change must be re-evaluated against ALL success criteria. Fixing one metric can break another. Always run full regression after tuning.</div>`},
+ ],
+ quiz:[
+  {q:'An agent produces syntactically valid but logically incorrect refactored code. Root cause?',opts:['Tool misuse','Context/environment issue','Reasoning error — flawed inference or planning','Memory expiration'],ans:2,exp:'Producing structurally correct but semantically wrong output = reasoning error. The model\'s logic or planning was flawed, not the tool or environment.'},
+  {q:'What evaluation purpose do automated scanning tools (CodeQL, SAST) serve in GitHub Actions?',opts:['Replace human code review','Generate objective quantitative signals about agent output quality at scale','Configure MCP servers','Manage agent memory'],ans:1,exp:'Automated scanners produce objective, reproducible signals — findings, counts, alerts — enabling evaluation at scale without manual review per run.'},
+  {q:'After tuning for code quality, the agent now skips writing unit tests. What was missed?',opts:['Increasing model size','Re-evaluating against ALL success criteria after tuning — optimising one metric can degrade others','Deploying immediately','Reducing memory budget'],ans:1,exp:'Tuning has side effects. Every change must be re-evaluated against the full criteria set, not just the targeted metric. Full regression after every tuning cycle is required.'},
+  {q:'What does "aligning evaluation criteria with development intent" specifically prevent?',opts:['Too many PRs','Metric gaming — agents optimising what\'s measured at the expense of actual quality','CI timeout','Memory expiration'],ans:1,exp:'Without alignment, agents can game metrics (e.g. trivial tests to inflate test count) while delivering poor real-world quality. Criteria must reflect what "good" genuinely means to the team.'},
+  {q:'First step to diagnose a silent agent failure with no output and no error?',opts:['Check GitHub billing','Examine plan trace and tool call log to find where execution stopped','Check model version history','Review only the final PR diff'],ans:1,exp:'Silent failures require tracing backward: plan trace reveals intent, tool call log shows where execution stalled. Start there, then expand to environment logs.'},
+ ]},
+
+{id:4,icon:'🤝',name:'Multi-Agent Coordination',weight:'15–20%',
+ desc:'Apply orchestration patterns, configure parallel isolation, detect and resolve conflicts, manage agent lifecycles, and implement recovery in multi-agent workflows.',
+ topics:[
+  {id:'d5t1',name:'Orchestration Patterns',icon:'🗺️',
+   body:`<table class="cmp-table"><tr><th>Pattern</th><th>Description</th><th>When to Use</th></tr>
+<tr><td>Sequential</td><td>Agent B waits for Agent A's explicit completion signal</td><td>Dependent tasks — B needs A's output</td></tr>
+<tr><td>Parallel with isolation</td><td>Agents run simultaneously on separate branches/workspaces</td><td>Independent tasks with no shared state</td></tr>
+<tr><td>Hierarchical</td><td>Orchestrator assigns to workers, aggregates results</td><td>Complex tasks needing coordination</td></tr>
+<tr><td>Event-driven</td><td>Agents triggered by GitHub events (PR opened, issue created)</td><td>SDLC-integrated reactive workflows</td></tr></table>
+<div class="callout c-key"><strong>Completion Signals:</strong> Sequential agents MUST wait for an explicit signal — not a time delay. Missing a gate = agents working on incomplete inputs.</div>`},
+  {id:'d5t2',name:'3 Conflict Types',icon:'⚡',
+   body:`<table class="cmp-table"><tr><th>Conflict Type</th><th>Definition</th><th>Example</th></tr>
+<tr><td>Overlapping code changes</td><td>Two agents modify same file/region simultaneously</td><td>Agents A and B both edit auth.ts → merge conflict</td></tr>
+<tr><td>Duplicated effort</td><td>Two agents independently solve the same problem</td><td>Both implement the same utility function</td></tr>
+<tr><td>Contradictory outputs</td><td>Agents produce conflicting design decisions</td><td>A uses class-based, B uses functional for same module</td></tr></table>
+<div class="callout c-key"><strong>Detection Point:</strong> Conflicts must be caught at the integration step BEFORE merging — by comparing artifacts. Agents cannot reliably self-detect each other's conflicts.</div>`},
+  {id:'d5t3',name:'Failure Types & Recovery',icon:'🚑',
+   body:`<table class="cmp-table"><tr><th>Failure Type</th><th>Symptom</th><th>Recovery</th></tr>
+<tr><td>Full failure</td><td>Agent errored, no usable output</td><td>Diagnose → retry if transient → escalate if persistent</td></tr>
+<tr><td>Partial completion</td><td>Completed N of M steps then stopped</td><td>Checkpoint completed work → resume only failed portion</td></tr>
+<tr><td>Stalled execution</td><td>Running, no output, no error, no progress</td><td>Investigate logs/trace → targeted recovery</td></tr></table>
+<div class="callout c-key"><strong>Human-in-the-Loop Recovery:</strong> High-risk or ambiguous failures → halt execution → route to human → human authorizes → pipeline resumes. Escalation of last resort for safety-critical decisions.</div>`},
+  {id:'d5t4',name:'Agent Lifecycle Management',icon:'♻️',
+   body:`<ul class="fact-list">
+  <li><span class="fi">→</span><strong>Add:</strong> Introduce with isolation; validate in staging; ensure state compatibility</li>
+  <li><span class="fi">→</span><strong>Update:</strong> Drain in-flight tasks first → update → validate in isolation → reintroduce</li>
+  <li><span class="fi">→</span><strong>Replace:</strong> Treat as add + retire; preserve handoff continuity; migrate state artifacts</li>
+  <li><span class="fi">→</span><strong>Retire:</strong> Remove from execution; PRESERVE all audit artifacts, decision logs, outputs</li>
+</ul>
+<div class="callout c-warn"><strong>Retirement ≠ Deletion:</strong> Retiring an agent must NOT delete its audit trail. Logs and outputs must be retained for compliance — even after full decommission.</div>`},
+ ],
+ quiz:[
+  {q:'Agent B starts processing before Agent A finishes, producing incoherent output. What failed?',opts:['Memory expiration in B','Missing coordination gate — B was not gated on A\'s explicit completion signal','Tool misuse by B','Context drift in A'],ans:1,exp:'Sequential dependencies require explicit completion gates. B must wait for A\'s defined signal — not start independently.'},
+  {q:'Two parallel agents modify the same config.yaml and open separate PRs. Conflict type?',opts:['Contradictory outputs','Duplicated effort','Overlapping code changes — both agents modified the same file simultaneously','Reasoning error'],ans:2,exp:'Overlapping code changes: parallel agents modifying the same file/region. Prevented by isolation — separate branches per agent before parallel execution.'},
+  {q:'An agent completes 3 of 5 pipeline steps then stops. Correct orchestrator response?',opts:['Restart the entire pipeline from scratch','Classify as partial completion; preserve completed steps; resume only the failed portion','Ignore and proceed to next agent','Increase the agent\'s memory budget'],ans:1,exp:'Partial completion is distinct from full failure. Preserve checkpointed work; diagnose why it stopped; resume only from the last successful checkpoint.'},
+  {q:'When retiring an agent from a multi-agent workflow, what is mandatory?',opts:['Delete all artifacts to free storage','Preserve audit artifacts, decision logs, and outputs for compliance and historical reconstruction','Keep only the final output file','Archive model weights'],ans:1,exp:'Retiring an agent must not destroy its audit trail. Logs, handoff records, and all outputs must be retained for compliance even after decommissioning.'},
+  {q:'Post-hoc audit artifacts must contain per-agent:',opts:['Model temperature settings','Inputs received, decisions made, tools called, outputs produced, and handoff context passed downstream','GitHub Actions run IDs only','Source code only'],ans:1,exp:'Post-hoc analysis requires reconstructing what each agent did, why, and how — demanding structured per-agent records covering the full decision trail.'},
+ ]},
+
+{id:5,icon:'🛡️',name:'Guardrails & Accountability',weight:'10–15%',
+ desc:'Define autonomy levels by risk, implement human-in-the-loop workflows, enforce least-privilege access, block policy violations, and design complete accountability systems.',
+ topics:[
+  {id:'d6t1',name:'Risk Classification & Autonomy Levels',icon:'⚖️',
+   body:`<table class="cmp-table"><tr><th>Risk Level</th><th>Examples</th><th>Autonomy</th></tr>
+<tr><td>Low, reversible</td><td>Read files, create draft PR, run lint</td><td>Fully autonomous</td></tr>
+<tr><td>Medium, recoverable</td><td>Push to feature branch, create tests</td><td>Automated validation gate (CI must pass)</td></tr>
+<tr><td>High, compliance-sensitive</td><td>Modify security config, merge to release</td><td>Human approval gate required</td></tr>
+<tr><td>Irreversible or critical</td><td>Delete data, push to production</td><td>Explicit human authorization mandatory</td></tr></table>
+<div class="callout c-tip"><strong>Exam Tip:</strong> Risk classification considers context, not just technical reversibility. Production infrastructure changes are high-compliance-risk even if technically reversible via rollback.</div>`},
+  {id:'d6t2',name:'RAI Policy Guardrails',icon:'🤖',
+   body:`<div class="callout c-key"><strong>RAI guardrails operate at the OUTPUT layer and override user authorization.</strong> Even a fully authorized user cannot cause the agent to produce policy-violating output.</div>
+<ul class="fact-list">
+  <li><span class="fi">→</span>Blocks: harmful content, content propagating bias, privacy-violating outputs, ethical AI violations</li>
+  <li><span class="fi">→</span>Security policies: same principle — override user requests, not the other way around</li>
+  <li><span class="fi">→</span>Compliance policies: GDPR, SOX, PCI constraints enforced even against legitimate-seeming requests</li>
+  <li><span class="fi">→</span>Correct behavior: block → explain policy violation → escalate if needed</li>
+</ul>
+<div class="callout c-warn"><strong>Critical:</strong> User authorization ≠ policy override. Authorization lets a user make a request; RAI/security policies can still block the output.</div>`},
+  {id:'d6t3',name:'Least-Privilege & Tiered Autonomy',icon:'🔐',
+   body:`<div class="callout c-key"><strong>Per-Invocation Scoping:</strong> Each agent invocation receives ONLY the permissions required for that specific task at that moment. No pre-provisioned broad access.</div>
+<div class="callout c-key"><strong>Tiered Autonomy Pattern (Exam Favourite):</strong> Full agent autonomy on feature branches + required human approval gate at merge to main/release. Maximum velocity in low-risk zones; mandatory gate at the critical boundary.</div>
+<div class="callout c-fact"><strong>Official Study Guide Quote:</strong> "Preserve execution velocity by minimising approvals that do not materially reduce risk." Every gate must be justified by the specific risk it mitigates.</div>`},
+  {id:'d6t4',name:'Audit Trail & Accountability System',icon:'📋',
+   body:`<table class="cmp-table"><tr><th>Artifact</th><th>What It Provides</th></tr>
+<tr><td>Signed commits (Verified badge)</td><td>Tamper-evident proof commits were made by the agent</td></tr>
+<tr><td>Co-author attribution</td><td>Links AI-generated code to the human who initiated the task</td></tr>
+<tr><td>Session logs</td><td>Full record of agent reasoning, tool calls, and decisions per session</td></tr>
+<tr><td>Commit message session links</td><td>Every commit links to its session log for code review and audit</td></tr>
+<tr><td>Audit log events</td><td>Admin-viewable log of all agentic activity in org/enterprise</td></tr></table>
+<div class="callout c-tip"><strong>Exam Tip:</strong> All five artifact types together = complete accountability. Expect questions asking which combination satisfies a compliance audit requirement.</div>`},
+ ],
+ quiz:[
+  {q:'An agent proposes to modify production database schema. Change is reversible via migration rollback. Guardrail that applies?',opts:['Allow it — reversibility means low risk','Classify by compliance context: production schema changes require explicit authorisation regardless of technical reversibility','Block all database operations','Allow only during off-peak hours'],ans:1,exp:'Risk classification considers context. Production schema changes carry high compliance risk requiring explicit authorization — even if a rollback migration exists.'},
+  {q:'An authorized user asks the agent to generate output that violates a RAI policy. Correct agent behavior?',opts:['Proceed — user authorization overrides policy','Block the action, explain the violation, escalate if needed — RAI policies are hard constraints that override user requests','Log and proceed','Ask a second agent to approve'],ans:1,exp:'RAI policies are hard constraints at the output layer. They override user authorization. Even a fully authorized user cannot cause policy-violating output.'},
+  {q:'Which configuration correctly implements the tiered autonomy pattern?',opts:['Disable all guardrails on feature branches','Full agent autonomy on feature branches; mandatory human approval gate at merge to release/main','Block agents from all branches','Allow direct agent push to main for maximum speed'],ans:1,exp:'Tiered autonomy: maximum freedom in low-risk zones (feature branches), mandatory gates at high-risk transitions (merge to main). Both parts required.'},
+  {q:'Why is "minimising approvals that do not materially reduce risk" a design objective?',opts:['Approvals are expensive in Actions minutes','Unnecessary gates impose velocity cost without safety benefit — every gate must be justified by the specific risk it mitigates','Users dislike approval gates','MCP servers cannot handle approvals'],ans:1,exp:'From the official study guide: "Preserve execution velocity by minimizing approvals that do not materially reduce risk." Approval theater has real costs and zero safety benefit.'},
+  {q:'Which artifact combination provides complete agent accountability per GitHub Docs?',opts:['Slack notification and weekly CSV','Signed commits + co-author attribution + session logs linked from commit messages + audit log events','PR description only','GitHub Actions run summary only'],ans:1,exp:'Per GitHub Docs: signed commits (tamper-evident) + co-author attribution (human link) + session logs (full decision trail) + audit log events (admin visibility) = complete accountability.'},
+ ]},
+];
+
+let S={cur:0,tab:'learn',passed:[]};
+try{const s=JSON.parse(localStorage.getItem('gh600sp_html')||'null');if(s)S=s;}catch(e){}
+function save(){try{localStorage.setItem('gh600sp_html',JSON.stringify(S));}catch(e){}}
+
+function isUnlocked(id){return id===0||S.passed.includes(id-1);}
+function isPassed(id){return S.passed.includes(id);}
+function getPct(){return Math.round(S.passed.length/DOMAINS.length*100);}
+
+function updateHeader(){
+  document.getElementById('prog-fill').style.width=getPct()+'%';
+  document.getElementById('prog-text').textContent=S.passed.length+'/'+DOMAINS.length+' passed';
+}
+
+function renderSidebar(){
+  const el=document.getElementById('sb-domains');
+  el.innerHTML=DOMAINS.map(d=>{
+    const unlocked=isUnlocked(d.id);
+    const passed=isPassed(d.id);
+    const active=S.cur===d.id;
+    const dot=passed?'dot-done':!unlocked?'dot-lock':'dot-open';
+    return `<button class="domain-btn${active?' active':''}" data-id="${d.id}" ${!unlocked?'disabled':''}>
+<span class="db-icon">${d.icon}</span>
+<span class="db-info"><span class="db-name">${d.name}</span><span class="db-wt">${d.weight}</span></span>
+<span class="status-dot ${dot}"></span>
+</button>`;
+  }).join('');
+  el.querySelectorAll('.domain-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const id=parseInt(btn.dataset.id);
+      if(!isUnlocked(id))return;
+      S.cur=id;S.tab='learn';save();renderAll();
+    });
+  });
+}
+
+let quizState={};
+
+function renderAll(){updateHeader();renderSidebar();renderMain();}
+
+function renderMain(){
+  const d=DOMAINS[S.cur];
+  const mp=document.getElementById('main-panel');
+  mp.innerHTML=`
+<div class="domain-hero">
+  <div class="hero-top"><span class="hero-icon">${d.icon}</span><span class="hero-title">${d.name}</span><span class="hero-badge">${d.weight} of exam</span></div>
+  <div class="hero-desc">${d.desc}</div>
+</div>
+<div class="tab-bar">
+  <button type="button" class="tab${S.tab==='learn'?' active':''}" data-tab="learn">Learn</button>
+  <button type="button" class="tab${S.tab==='quiz'?' active':''}" data-tab="quiz">Quiz gate</button>
+  <button type="button" class="tab${S.tab==='resources'?' active':''}" data-tab="resources">Resources</button>
+</div>
+<div id="tab-content"></div>`;
+  mp.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click',()=>{S.tab=t.dataset.tab;save();renderTab();});
+  });
+  renderTab();
+}
+
+function renderTab(){
+  const d=DOMAINS[S.cur];
+  const el=document.getElementById('tab-content');
+  if(!el)return;
+  if(S.tab==='learn'){
+    el.innerHTML=d.topics.map(t=>`
+<div class="topic-card">
+  <div class="tc-header" data-id="${t.id}">
+    <span class="tc-icon">${t.icon}</span>
+    <span class="tc-name">${t.name}</span>
+    <span class="tc-arrow" id="arr-${t.id}">▶</span>
+  </div>
+  <div class="tc-body" id="body-${t.id}">${t.body}</div>
+</div>`).join('')+
+`<div class="learn-footer">
+  <span class="lf-text">Reviewed all topics in this domain?</span>
+  <button type="button" class="btn btn-primary" id="goto-quiz">Take quiz gate</button>
+</div>`;
+    el.querySelectorAll('.tc-header').forEach(h=>{
+      h.addEventListener('click',()=>{
+        const id=h.dataset.id;
+        const body=document.getElementById('body-'+id);
+        const arr=document.getElementById('arr-'+id);
+        const open=body.classList.contains('show');
+        el.querySelectorAll('.tc-body').forEach(b=>b.classList.remove('show'));
+        el.querySelectorAll('.tc-arrow').forEach(a=>a.classList.remove('open'));
+        if(!open){body.classList.add('show');arr.classList.add('open');}
+      });
+    });
+    document.getElementById('goto-quiz')?.addEventListener('click',()=>{S.tab='quiz';save();renderTab();});
+  } else if(S.tab==='quiz'){
+    renderQuiz(d,el);
+  } else {
+    const resources=[
+      {type:'ms',label:'MS Learn: Foundations of Agentic AI',url:'https://learn.microsoft.com/en-us/training/modules/foundations-agentic-ai/'},
+      {type:'ms',label:'MS Learn: Designing Agent Architecture & SDLC',url:'https://learn.microsoft.com/en-us/training/modules/design-agent-architecture-integration/'},
+      {type:'ms',label:'MS Learn: Tooling, MCP & Execution Environments',url:'https://learn.microsoft.com/en-us/training/modules/agent-tooling-mcp-execution-environments/'},
+      {type:'ms',label:'GH-600 Official Study Guide',url:'https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-600'},
+      {type:'gh',label:'GitHub Docs: Copilot Memory',url:'https://docs.github.com/en/copilot/concepts/agents/copilot-memory'},
+      {type:'gh',label:'GitHub Docs: Cloud Agent Risks & Mitigations',url:'https://docs.github.com/en/copilot/concepts/agents/cloud-agent/risks-and-mitigations'},
+      {type:'gh',label:'GitHub Docs: MCP and Cloud Agent',url:'https://docs.github.com/en/copilot/concepts/agents/cloud-agent/mcp-and-cloud-agent'},
+      {type:'gh',label:'GitHub Docs: Build Guardrails (Cloud Agent)',url:'https://docs.github.com/en/copilot/tutorials/cloud-agent/build-guardrails'},
+    ];
+    el.innerHTML=`<div class="res-intro">Official study resources — grounded in GH-600 exam content.</div>`+
+      resources.map(r=>`<a href="${r.url}" target="_blank" rel="noopener noreferrer" class="res-link"><span class="res-tag ${r.type==='ms'?'tag-ms':'tag-gh'}">${r.type==='ms'?'MS Learn':'GitHub Docs'}</span>${r.label}<span aria-hidden="true">↗</span></a>`).join('');
+  }
+}
+
+function renderQuiz(d,el){
+  if(!quizState[d.id])quizState[d.id]={idx:0,score:0,answered:false,done:false};
+  const qs=quizState[d.id];
+  const total=d.quiz.length;
+  const passed=isPassed(d.id);
+
+  if(passed||qs.done){
+    const ok=passed||qs.score>=Math.ceil(total*0.75);
+    el.innerHTML=`<div class="quiz-wrap">
+<div class="quiz-result">
+  <div class="qr-score ${ok?'pass':'fail'}">${qs.score||total}/${total}</div>
+  <div class="qr-label">${ok?'Domain passed':'Not passed yet'}</div>
+  <div class="qr-sub">${ok?'Next domain is now unlocked.':'Need '+Math.ceil(total*0.75)+'/'+total+' correct to pass. Review topics and retry.'}</div>
+</div>
+<div class="btn-row">
+  ${ok&&d.id<DOMAINS.length-1?'<button type="button" class="btn btn-primary" id="nd">Next domain</button>':''}
+  <button type="button" class="btn" id="rq">Retry quiz</button>
+</div></div>`;
+    if(ok&&!isPassed(d.id)){S.passed.push(d.id);save();renderAll();}
+    el.querySelector('#rq')?.addEventListener('click',()=>{quizState[d.id]={idx:0,score:0,answered:false,done:false};renderTab();});
+    el.querySelector('#nd')?.addEventListener('click',()=>{const next=d.id+1;if(isUnlocked(next)){S.cur=next;S.tab='learn';save();renderAll();}});
+    return;
+  }
+
+  const q=d.quiz[qs.idx];
+  el.innerHTML=`<div class="quiz-wrap">
+<div class="quiz-meta"><span>Question <strong>${qs.idx+1}</strong> of <strong>${total}</strong></span><span>Score: <strong>${qs.score}</strong> · Pass: ≥${Math.ceil(total*0.75)}/${total}</span></div>
+<div class="q-text">${q.q}</div>
+<div class="opts" id="qopts">
+  ${q.opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="opt-letter">${'ABCD'[i]}</span><span>${o}</span></button>`).join('')}
+</div>
+<div id="qfb"></div>
+<div id="qnav"></div>
+</div>`;
+
+  el.querySelectorAll('.opt').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(qs.answered)return;
+      qs.answered=true;
+      const chosen=parseInt(btn.dataset.i);
+      const correct=chosen===q.ans;
+      if(correct)qs.score++;
+      el.querySelectorAll('.opt').forEach((b,i)=>{
+        b.disabled=true;
+        if(i===q.ans)b.classList.add(correct&&chosen===i?'correct':'show');
+        if(!correct&&i===chosen)b.classList.add('wrong');
+      });
+      el.querySelector('#qfb').innerHTML=`<div class="fb ${correct?'fb-ok':'fb-err'}">${correct?'<strong>Correct.</strong>':'<strong>Not quite.</strong>'} ${q.exp}</div>`;
+      const last=qs.idx===total-1;
+      el.querySelector('#qnav').innerHTML=`<button type="button" class="btn btn-primary" id="qn">${last?'See results':'Next'}</button>`;
+      el.querySelector('#qn').addEventListener('click',()=>{
+        if(last){qs.done=true;}else{qs.idx++;qs.answered=false;}
+        renderTab();
+      });
+    });
+  });
+}
+
+renderAll();
+</script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 /**
  * Shared donor-parsing helpers for the GH-600 extractor and parity suite.
  *
- * learn-gh-600 is a third-party submodule pinned by commit: its embedded
+ * learn-gh-600 is vendored in this repository: its embedded
  * script segments are data-to-validate, never trusted code. Captured segments
  * evaluate in a `node:vm` context with a bare sandbox — no require/process/
  * globals reachable — and every capture throws loudly on donor drift instead
@@ -18,15 +18,15 @@ import vm from 'node:vm';
 export const REPO_ROOT = join(import.meta.dirname, '..');
 export const DONOR_ROOT = join(REPO_ROOT, 'learn-gh-600');
 
-/** Read a donor file; a missing submodule produces an actionable error. */
+/** Read a donor file; a missing donor file produces an actionable error. */
 export function readDonorFile(relPath: string): string {
   try {
     return readFileSync(join(DONOR_ROOT, relPath), 'utf8');
   } catch (error) {
     const code = (error as NodeJS.ErrnoException).code;
     throw new Error(
-      `cannot read donor file learn-gh-600/${relPath} — donor submodule not checked out? ` +
-        `run \`git submodule update --init\` (errno ${code})`,
+      `cannot read donor file learn-gh-600/${relPath} — the vendored donor directory is incomplete? ` +
+        `restore it from version control (errno ${code})`,
     );
   }
 }

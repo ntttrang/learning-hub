@@ -1,0 +1,77 @@
+services:
+  # Microsoft SQL Server 2025 — the primary DP-800 platform.
+  mssql:
+    platform: linux/amd64
+    image: mcr.microsoft.com/mssql/server:2025-latest
+    container_name: dp800-mssql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Dp800_Strong!Pass"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+      - ./seed/mssql:/seed:ro
+  dab:
+    platform: linux/amd64
+    image: mcr.microsoft.com/azure-databases/data-api-builder:latest
+    container_name: dab-engine
+    # Point the engine at a config file inside a *directory* mount. Single-file
+    # bind mounts on Docker Desktop can serve a truncated/stale copy after the
+    # file is rewritten by an editor; mounting the directory avoids that.
+    command: ["--ConfigFileName", "/etc/dab/dab-config.json"]
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./:/etc/dab:ro
+    depends_on:
+      - mssql
+
+  # PostgreSQL — for cross-database comparison labs (jsonb, RLS, pgvector).
+  postgres:
+    image: postgres:17
+    container_name: dp800-postgres
+    environment:
+      POSTGRES_PASSWORD: "dp800pass"
+      POSTGRES_USER: "dp800"
+      POSTGRES_DB: "dp800"
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+      - ./seed/postgres:/docker-entrypoint-initdb.d:ro
+
+  # MySQL — for cross-database comparison labs.
+  mysql:
+    image: mysql:9
+    container_name: dp800-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "dp800pass"
+      MYSQL_DATABASE: "dp800"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./seed/mysql:/docker-entrypoint-initdb.d:ro
+
+  # Oracle Database Free — for cross-database comparison labs.
+  # Note: review Oracle's license terms for the Free edition before use.
+  oracle:
+    image: gvenzl/oracle-free:23
+    container_name: dp800-oracle
+    environment:
+      ORACLE_PASSWORD: "dp800pass"
+      APP_USER: "dp800"
+      APP_USER_PASSWORD: "dp800pass"
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+      - ./seed/oracle:/container-entrypoint-initdb.d:ro
+
+volumes:
+  mssql-data:
+  pg-data:
+  mysql-data:
+  oracle-data:

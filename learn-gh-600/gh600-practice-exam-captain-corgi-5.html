@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){'use strict';
+  var root=document.documentElement;
+  root.classList.toggle('cc-mock-embed',window.self!==window.top);
+  var KEY='cc-theme';
+  var VALID={'light':1,'dark':1,'night':1};
+  function applyCcTheme(){
+    try {
+      var t=localStorage.getItem(KEY);
+      if(t&&VALID[t]) root.setAttribute('data-theme',t);
+      else root.removeAttribute('data-theme');
+    }catch(err){/* private mode */}
+  }
+  applyCcTheme();
+  window.addEventListener('storage',function(ev){
+    if(ev.key===KEY) applyCcTheme();
+  });
+  /* Hub embed: parent cannot set iframe <html>; sync forced theme via postMessage (plus storage fallback). */
+  window.addEventListener('message',function(ev){
+    try{
+      var d=ev.data;
+      if(!d||d.type!=='cc-theme-hub')return;
+      var forced=String(d.forced||'');
+      if(forced==='light'||forced==='dark'||forced==='night') root.setAttribute('data-theme',forced);
+      else root.removeAttribute('data-theme');
+    }catch(err2){}
+  });
+})();
+</script>
+<title>GH-600 practice exam 5 — Captain Corgi Hub</title>
+<link rel="stylesheet" href="assets/captain-corgi-hub-design/colors_and_type.css">
+<style>
+/* Legacy layout tokens mapped to Captain Corgi Hub design system */
+:root {
+  --font-serif: var(--font-display);
+  --font-sans: var(--font-body);
+  --tracking-snug: var(--tr-tight);
+  --tracking-tight: var(--tr-tight);
+  --tracking-wide: var(--tr-loose);
+  --radius-pill: var(--r-full);
+  --radius-lg: var(--r-lg);
+  --radius-md: var(--r-md);
+  --radius-sm: var(--r-sm);
+  --radius-xs: var(--r-xs);
+  --fs-small: var(--fs-14);
+  --fs-xs: var(--fs-12);
+  --fs-body: var(--fs-16);
+  --fs-body-lg: var(--fs-18);
+  --fs-h2: var(--fs-38);
+  --fs-h3: var(--fs-30);
+  --fs-h4: var(--fs-24);
+  --lh-loose: var(--lh-relaxed);
+  --surface: var(--bg-elevated);
+  --surface-2: var(--bg-sunken);
+  --fg-1: var(--fg);
+  --accent-bg-soft: rgba(252, 137, 3, 0.14);
+  --accent-border: rgba(252, 137, 3, 0.45);
+  --accent-hover: var(--corgi-orange-deep);
+  --accent-press: #C96A05;
+  --shadow-xs: var(--shadow-1);
+  --shadow-sm: var(--shadow-2);
+  --shadow-lg: var(--shadow-3);
+  --ring: var(--ring-focus);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body.cc-body{min-height:100vh;font-size:var(--fs-small)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:var(--radius-pill)}
+
+/* Start */
+.start-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:var(--space-8) var(--space-5);text-align:center;background:var(--bg)}
+.start-brand{font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-3);margin-bottom:var(--space-3);letter-spacing:var(--tracking-wide)}
+.start-logo{width:72px;height:72px;border-radius:var(--radius-lg);background:var(--surface);border:var(--bw) solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5);box-shadow:var(--shadow-2);overflow:hidden}
+.start-logo img{width:100%;height:100%;object-fit:cover;display:block}
+.start-title{font-family:var(--font-serif);font-size:var(--fs-h2);font-weight:var(--fw-semi);line-height:var(--lh-snug);letter-spacing:var(--tracking-snug);color:var(--fg-1);margin-bottom:var(--space-2)}
+.start-sub{font-size:var(--fs-body);color:var(--fg-2);margin-bottom:var(--space-8);line-height:var(--lh-loose);max-width:32rem;font-family:var(--font-body)}
+.meta-cards{display:flex;gap:var(--space-3);margin-bottom:var(--space-8);flex-wrap:wrap;justify-content:center}
+.mc{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);text-align:center;min-width:6.25rem;box-shadow:var(--shadow-xs)}
+.mc-v{font-family:var(--font-serif);font-size:var(--fs-h3);font-weight:var(--fw-semi);color:var(--fg-1);margin-bottom:2px;font-variation-settings:"opsz" 30}
+.mc-l{font-size:var(--fs-xs);color:var(--fg-3);letter-spacing:var(--tracking-snug);font-weight:var(--fw-semi)}
+.start-note{font-size:var(--fs-small);color:var(--fg-3);margin-bottom:var(--space-6);max-width:28rem;line-height:var(--lh-loose);font-family:var(--font-body)}
+.start-note strong{color:var(--fg-2);font-weight:var(--fw-bold)}
+
+/* Exam header */
+.exam-header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg-elevated) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:var(--bw) solid var(--border);padding:var(--space-3) var(--space-5);display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;box-shadow:var(--shadow-xs)}
+.eh-title{font-family:var(--font-serif);font-size:var(--fs-h4);font-weight:var(--fw-semi);color:var(--fg-1);flex:1}
+.exam-header .eh-meta{font-size:var(--fs-small);color:var(--fg-3);font-family:var(--font-body)}
+.timer-pill{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-4);background:var(--surface-2);border:var(--bw) solid var(--border);border-radius:var(--radius-pill);font-family:var(--font-mono);font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-1);min-width:5.5rem;justify-content:center;tabular-nums}
+.timer-pill.warn{background:rgba(251,192,10,0.18);border-color:var(--warning);color:var(--warning)}
+.timer-pill.danger{background:rgba(225,52,41,0.14);border-color:var(--danger);color:var(--danger);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.65}}
+.progress-bar{height:4px;background:var(--border-soft);overflow:hidden;border-radius:var(--radius-pill)}
+.progress-fill{height:100%;background:var(--accent);border-radius:var(--radius-pill);transition:width var(--dur-base) var(--ease-out)}
+
+/* Layout */
+.exam-body{display:flex;min-height:calc(100vh - 60px)}
+.q-sidebar{width:11.25rem;flex-shrink:0;background:var(--surface);border-right:var(--bw) solid var(--border);padding:var(--space-3);overflow-y:auto;max-height:calc(100vh - 60px);position:sticky;top:60px}
+.qs-label{font-size:var(--fs-xs);font-weight:var(--fw-bold);letter-spacing:var(--tracking-snug);color:var(--fg-3);margin-bottom:var(--space-2);font-family:var(--font-body)}
+.q-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-1);margin-bottom:var(--space-4)}
+.q-dot{width:28px;height:28px;border-radius:var(--radius-xs);font-size:10px;font-weight:var(--fw-bold);border:var(--bw) solid transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out);font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.q-dot.unans{background:var(--surface-2);color:var(--fg-3);border-color:var(--border-soft)}
+.q-dot.ans{background:var(--accent-bg-soft);color:var(--accent);border-color:var(--accent-border)}
+.q-dot.flag{background:rgba(251,192,10,0.2);color:var(--warning-fg);border-color:rgba(251,192,10,0.45)}
+.q-dot.cur{box-shadow:var(--ring)}
+.q-dot:focus-visible{outline:none;box-shadow:var(--ring)}
+.qs-stats{font-size:var(--fs-small);color:var(--fg-3);margin-bottom:var(--space-2);font-family:var(--font-body)}
+.qs-stats span{color:var(--fg-2);font-weight:var(--fw-semi)}
+
+/* Question panel */
+.q-panel{flex:1;padding:var(--space-6);max-width:50rem;margin:0 auto}
+.q-meta{display:flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4);flex-wrap:wrap}
+.q-num-badge{font-family:var(--font-mono);font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-3);background:var(--surface-2);border:var(--bw) solid var(--border);padding:3px var(--space-3);border-radius:var(--radius-pill)}
+.q-domain-badge{font-size:var(--fs-small);color:var(--fg-3);background:var(--surface-2);border:var(--bw) solid var(--border);padding:3px var(--space-3);border-radius:var(--radius-pill);font-family:var(--font-body)}
+.q-flag-badge{font-size:var(--fs-small);color:var(--captain-red);background:rgba(225,52,41,0.1);border:var(--bw) solid rgba(225,52,41,0.28);padding:3px var(--space-3);border-radius:var(--radius-pill);font-family:var(--font-body)}
+.q-text{font-size:var(--fs-body-lg);font-weight:var(--fw-semi);color:var(--fg-1);line-height:var(--lh-loose);margin-bottom:var(--space-5);max-width:68ch;font-family:var(--font-body)}
+.opts{display:flex;flex-direction:column;gap:var(--space-2);margin-bottom:var(--space-4)}
+.opt{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:var(--fs-small);color:var(--fg-2);cursor:pointer;text-align:left;display:flex;gap:var(--space-3);transition:background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out),transform 80ms var(--ease-out),box-shadow var(--dur-fast) var(--ease-out);font-family:var(--font-sans);line-height:var(--lh-normal);box-shadow:var(--shadow-xs);appearance:none;-webkit-appearance:none}
+.opt:hover:not(.sel){border-color:var(--border-strong);color:var(--fg-1);background:var(--surface-2);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.opt:focus-visible{outline:none;box-shadow:var(--ring)}
+.opt.sel{border-color:var(--accent)!important;background:var(--accent-bg-soft)!important;color:var(--fg)!important;-webkit-text-fill-color:var(--fg)}
+.opt-l{font-family:var(--font-mono);font-size:var(--fs-xs);font-weight:var(--fw-semi);flex-shrink:0;width:16px;margin-top:1px;color:var(--fg-3)}
+.opt.sel .opt-l{color:var(--accent)!important;-webkit-text-fill-color:var(--accent)}
+.opt.sel > span:not(.opt-l){color:var(--fg)!important;-webkit-text-fill-color:var(--fg)}
+.q-nav-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-2)}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(31,42,51,0.42);display:flex;align-items:center;justify-content:center;z-index:999;padding:var(--space-5)}
+.modal{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-lg);padding:var(--space-6);max-width:24rem;width:100%;box-shadow:var(--shadow-lg)}
+.modal h3{font-family:var(--font-serif);font-size:var(--fs-h4);font-weight:var(--fw-semi);color:var(--fg-1);margin-bottom:var(--space-2)}
+.modal p{font-size:var(--fs-small);color:var(--fg-2);margin-bottom:var(--space-5);line-height:var(--lh-loose);font-family:var(--font-body)}
+.modal-btns{display:flex;gap:var(--space-2);justify-content:flex-end;flex-wrap:wrap}
+
+/* Results */
+.results-page{min-height:100vh;padding:var(--space-8) var(--space-5);max-width:50rem;margin:0 auto}
+.result-hero{text-align:center;padding:var(--space-8);background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-lg);margin-bottom:var(--space-5);box-shadow:var(--shadow-sm)}
+.result-score{font-family:var(--font-serif);font-size:clamp(2.5rem,8vw,4rem);font-weight:var(--fw-bold);line-height:var(--lh-tight);letter-spacing:var(--tracking-tight);font-variation-settings:"opsz" 72}
+.result-score.pass{color:var(--success)}
+.result-score.fail{color:var(--danger)}
+.result-verdict{font-size:var(--fs-h4);font-weight:var(--fw-bold);font-family:var(--font-body);color:var(--fg-1);margin-top:var(--space-2);margin-bottom:var(--space-2)}
+.result-sub{font-size:var(--fs-small);color:var(--fg-2);font-family:var(--font-body)}
+.result-meta{display:flex;gap:var(--space-3);justify-content:center;margin-top:var(--space-4);flex-wrap:wrap}
+.rm-chip{font-size:var(--fs-small);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);background:var(--surface-2);border:var(--bw) solid var(--border);color:var(--fg-2);font-family:var(--font-body)}
+.domain-breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(12.5rem,1fr));gap:var(--space-3);margin-bottom:var(--space-5)}
+.db-card{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-lg);padding:var(--space-4);box-shadow:var(--shadow-xs)}
+.db-name{font-size:var(--fs-small);color:var(--fg-2);margin-bottom:var(--space-2);font-family:var(--font-body)}
+.db-score{font-size:var(--fs-h4);font-weight:var(--fw-bold);font-family:var(--font-body);color:var(--fg-1);margin-bottom:var(--space-2)}
+.db-bar-bg{height:4px;background:var(--border-soft);border-radius:var(--radius-pill);overflow:hidden}
+.db-bar-fill{height:100%;border-radius:var(--radius-pill)}
+.db-bar-fill.g{background:var(--success)}.db-bar-fill.m{background:var(--warning)}.db-bar-fill.b{background:var(--danger)}
+.divider{height:var(--bw);background:var(--border);margin:var(--space-5) 0}
+.domain-breakdown-title{font-size:var(--fs-small);font-weight:var(--fw-bold);font-family:var(--font-body);color:var(--fg-2);margin-bottom:var(--space-3)}
+
+/* Review */
+.rq{margin-bottom:var(--space-3);padding:var(--space-4);border-radius:var(--radius-md);border:var(--bw) solid var(--border);background:var(--surface)}
+.rq.ok{border-color:rgba(59,178,131,0.45)}
+.rq.bad{border-color:rgba(225,52,41,0.45)}
+.rq.skip{border-color:var(--border)}
+.rq-meta{font-size:var(--fs-small);color:var(--fg-3);margin-bottom:var(--space-2);display:flex;gap:var(--space-2);flex-wrap:wrap;font-family:var(--font-body)}
+.rq-q{font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-1);margin-bottom:var(--space-2);line-height:var(--lh-loose);font-family:var(--font-body)}
+.ro{padding:var(--space-2) var(--space-3);border-radius:var(--radius-xs);font-size:var(--fs-small);margin-bottom:3px;display:flex;gap:var(--space-2);line-height:var(--lh-normal);font-family:var(--font-body)}
+.ro.cc{background:rgba(59,178,131,0.14);color:var(--success)}.ro.cw{background:rgba(225,52,41,0.12);color:var(--danger)}
+.ro.rc{background:rgba(59,178,131,0.12);color:var(--success);opacity:.85}.ro.nn{color:var(--fg-3)}
+.rq-exp{font-size:var(--fs-small);color:var(--fg-3);margin-top:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--surface-2);border-radius:var(--radius-sm);border:var(--bw) solid var(--border-soft);line-height:var(--lh-loose);font-family:var(--font-body)}
+
+/* Buttons — Captain Corgi clay */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:10px var(--space-5);border-radius:var(--radius-lg);border:var(--bw) solid var(--border-strong);background:var(--surface);cursor:pointer;font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-1);transition:background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out),transform 80ms var(--ease-out),box-shadow var(--dur-fast) var(--ease-out);font-family:var(--font-body);line-height:1.2;box-shadow:var(--shadow-xs)}
+.btn:hover{background:var(--surface-2);border-color:var(--border-strong);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.btn:focus-visible{outline:none;box-shadow:var(--ring)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:var(--shadow-xs)}
+.btn:active:not(:disabled){transform:scale(0.97);box-shadow:var(--shadow-xs)}
+.btn-primary{background:var(--accent);color:var(--accent-fg);border-color:transparent;box-shadow:var(--shadow-2)}
+.btn-primary:hover{background:var(--accent-hover);color:var(--accent-fg);box-shadow:var(--shadow-3)}
+.btn-primary:active{background:var(--accent-press)}
+.btn-danger{background:var(--danger);color:var(--danger-fg);border-color:var(--danger)}
+.btn-danger:hover{filter:brightness(1.05)}
+.btn-row{display:flex;gap:var(--space-2);flex-wrap:wrap}
+</style>
+<style id="cc-mock-embed-style">
+/* Nested in gh600-mock-exams-index iframe: inherit iframe height instead of outer window 100vh */
+html.cc-mock-embed{height:100%}
+html.cc-mock-embed body.cc-body{display:flex;flex-direction:column;margin:0;overflow:hidden;min-height:0!important;height:100%!important;max-height:100%}
+html.cc-mock-embed #app{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden;width:100%;max-width:100%}
+html.cc-mock-embed #app .start-screen{flex:1;min-height:0!important;overflow-y:auto;display:flex!important;justify-content:center;padding-block:clamp(var(--space-3),3vh,var(--space-8));padding-inline:clamp(var(--space-3),2vw,var(--space-5))}
+html.cc-mock-embed #app>.exam-header{flex-shrink:0}
+html.cc-mock-embed .exam-body{flex:1;min-height:0!important;display:flex!important;overflow:hidden}
+html.cc-mock-embed .q-sidebar{overflow-y:auto;max-height:calc(100% - 60px)!important}
+html.cc-mock-embed .q-panel{flex:1;min-width:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+html.cc-mock-embed #app>.results-page{flex:1;min-height:0!important;margin:0;width:100%!important;max-width:none!important;overflow-y:auto;box-sizing:border-box;padding-inline:clamp(var(--space-3),3vw,var(--space-5))}
+</style>
+</head>
+<body class="cc-body">
+<div id="app"></div>
+<script>
+const LETTERS='ABCD'.split('');
+const PASS=700,MINS=90;
+
+const Q=[
+{d:1,dt:'D1 · Architecture & SDLC',q:'Identifying steps for agents to perform requires:',opts:['Picking the longest tasks','Breaking SDLC work into discrete, agent-friendly steps','Letting the agent define its own steps','Hard-coding the agent\'s prompt'],ans:1,exp:'Correct answer: B) Breaking SDLC work into discrete, agent-friendly steps'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'Common anti-patterns include:',opts:['Defining success criteria','Letting agents act before plans are validated','Producing inspectable artifacts','Configuring branch scope'],ans:1,exp:'Correct answer: B) Letting agents act before plans are validated'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'Distinct planning vs. execution allows:',opts:['Inspection and approval between phases','Skipping all evaluation','Bypassing guardrails','Removing memory'],ans:0,exp:'Correct answer: A) Inspection and approval between phases'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'A structured plan output benefits:',opts:['Tool selection','Validation and machine-readable inspection','MCP registry use','Memory pruning'],ans:1,exp:'Correct answer: B) Validation and machine-readable inspection'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'Validating agent plans should occur:',opts:['Before action is taken','After action is taken','Only during audit','Never'],ans:0,exp:'Correct answer: A) Before action is taken'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'Standard development tooling artifacts include:',opts:['Pull requests, issues, logs, and traces','Random text files','Only Slack messages','Email summaries'],ans:0,exp:'Correct answer: A) Pull requests, issues, logs, and traces'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'Human intervention without slowing delivery means:',opts:['Selective approval gates for high-risk actions','Approval on every step','No approvals at all','Approvals only after deployment'],ans:0,exp:'Correct answer: A) Selective approval gates for high-risk actions'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Identifying required tools begins with:',opts:['Task analysis and required capabilities','Browsing all available MCP servers','Asking the LLM','Random selection'],ans:0,exp:'Correct answer: A) Task analysis and required capabilities'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Configuring tool permissions should be:',opts:['Open by default','Scoped tightly to the agent\'s task','Inherited from repo admin','Identical across all tools'],ans:1,exp:'Correct answer: B) Scoped tightly to the agent\'s task'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Adding an MCP server as a tool requires:',opts:['Registering it and configuring access','Disabling guardrails','Removing branch scope','Increasing autonomy'],ans:0,exp:'Correct answer: A) Registering it and configuring access'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'A GitHub remote MCP server enables:',opts:['Cross-environment tool exposure to agents over the MCP protocol','Replacing the LLM','Replacing the CI runner','Disabling logging'],ans:0,exp:'Correct answer: A) Cross-environment tool exposure to agents over the MCP protocol'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Configuring the MCP registry helps:',opts:['Discover, govern, and manage MCP servers available to agents','Replace branch protection','Increase memory','Reduce LLM latency'],ans:0,exp:'Correct answer: A) Discover, govern, and manage MCP servers available to agents'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Scoping an agent to a repository limits:',opts:['Where the agent can read/write','The agent\'s LLM','The MCP registry','The CI runner'],ans:0,exp:'Correct answer: A) Where the agent can read/write'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'A CI workflow invocation of an agent requires:',opts:['Defined triggers and execution context','A developer\'s laptop','Disabling MCP','Removing memory'],ans:0,exp:'Correct answer: A) Defined triggers and execution context'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Rollback strategies for agents include:',opts:['Reverting changes when an error occurs','Ignoring errors','Deleting all branches','Forcing merges'],ans:0,exp:'Correct answer: A) Reverting changes when an error occurs'},
+{d:3,dt:'D3 · Memory & State',q:'Long-term memory is appropriate for:',opts:['Cross-session knowledge','Single-task ephemeral context','Tool selection','Branch metadata'],ans:0,exp:'Correct answer: A) Cross-session knowledge'},
+{d:3,dt:'D3 · Memory & State',q:'Memory expiration rules ensure:',opts:['Outdated information stops influencing decisions','Faster LLMs','Larger context windows','Fewer tools'],ans:0,exp:'Correct answer: A) Outdated information stops influencing decisions'},
+{d:3,dt:'D3 · Memory & State',q:'Capturing decisions as artifacts supports:',opts:['Resumption and audit','MCP registry replication','Branch creation','LLM training'],ans:0,exp:'Correct answer: A) Resumption and audit'},
+{d:3,dt:'D3 · Memory & State',q:'Preventing conflicting context means:',opts:['Ensuring agents do not act on contradictory state','Disabling memory','Removing tools','Using one agent only'],ans:0,exp:'Correct answer: A) Ensuring agents do not act on contradictory state'},
+{d:3,dt:'D3 · Memory & State',q:'Drift detection requires:',opts:['Comparing current trajectory to prior decisions and intent','Disabling logs','Random sampling','Eliminating'],ans:0,exp:'Correct answer: A) Comparing current trajectory to prior decisions and intent'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'Operational constraints for an agent task may include:',opts:['Time limits, budget limits, or scope limits','Aesthetic preferences','The agent\'s color theme','The number of CI runners'],ans:0,exp:'Correct answer: A) Time limits, budget limits, or scope limits'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'Identifying quantitative evaluation signals helps:',opts:['Eliminate human review entirely','Provide measurable, repeatable indicators of agent quality','Disable guardrails','Reduce memory'],ans:1,exp:'Correct answer: B) Provide measurable, repeatable indicators of agent quality'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'Identifying qualitative evaluation signals helps:',opts:['Capture nuanced, human-judgment aspects of agent outputs','Replace quantitative metrics','Skip evaluation','Eliminate logs'],ans:0,exp:'Correct answer: A) Capture nuanced, human-judgment aspects of agent outputs'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'Aligning evaluation criteria with development intent ensures:',opts:['Evaluations measure what the team actually wants from the agent','Evaluations are random','Evaluations are skipped','Evaluations are only manual'],ans:0,exp:'Correct answer: A) Evaluations measure what the team actually wants from the agent'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'Generating evaluation signals with automated scanning tools enables:',opts:['Continuous quality measurement in CI','Disabling manual review entirely','Removing observability','Eliminating guardrails'],ans:0,exp:'Correct answer: A) Continuous quality measurement in CI'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'A reasoning error is identified when:',opts:['The agent\'s plan or thought process produced an incorrect conclusion','The agent\'s tools were unavailable','The environment differed from expected','Memory expired'],ans:0,exp:'Correct answer: A) The agent\'s plan or thought process produced an incorrect conclusion'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'A context or environment issue is identified when:',opts:['The agent\'s working environment or inputs differ from expectations','The LLM is too small','The agent has no tools','Branch protection is on'],ans:0,exp:'Correct answer: A) The agent\'s working environment or inputs differ from expectations'},
+{d:5,dt:'D5 · Multi-Agent',q:'A pipeline pattern in multi-agent orchestration is BEST described as:',opts:['Sequential handoffs where each agent processes output from the previous','Random parallelism','Single-agent execution','Tool-only execution'],ans:0,exp:'Correct answer: A) Sequential handoffs where each agent processes output from the previous'},
+{d:5,dt:'D5 · Multi-Agent',q:'Configuring agent isolation typically uses:',opts:['Independent working contexts and scoped state','Shared in-memory state with no boundaries','Common file locks across agents','Disabled logging'],ans:0,exp:'Correct answer: A) Independent working contexts and scoped state'},
+{d:5,dt:'D5 · Multi-Agent',q:'When two agents propose contradictory plans, the orchestration layer should:',opts:['Pick one at random','Detect the conflict and apply a resolution strategy (priority, merge, escalation)','Ignore both','Promote both to production'],ans:1,exp:'Correct answer: B) Detect the conflict and apply a resolution strategy (priority, merge, escalation)'},
+{d:5,dt:'D5 · Multi-Agent',q:'Multi-agent artifacts suitable for review and audit include:',opts:['Plans, decision records, traces, and handoff metadata','Only the orchestrator\'s final summary','Just LLM token counts','Only Slack notifications'],ans:0,exp:'Correct answer: A) Plans, decision records, traces, and handoff metadata'},
+{d:5,dt:'D5 · Multi-Agent',q:'Document key handoffs to enable:',opts:['Auditability and debugging across agent boundaries','Faster execution','Smaller LLMs','Disabled guardrails'],ans:0,exp:'Correct answer: A) Auditability and debugging across agent boundaries'},
+{d:5,dt:'D5 · Multi-Agent',q:'A degraded multi-agent workflow may exhibit:',opts:['Partial completions, repeated failures, or coordination drift','Faster outputs','Better evaluation','Smaller artifacts'],ans:0,exp:'Correct answer: A) Partial completions, repeated failures, or coordination drift'},
+{d:5,dt:'D5 · Multi-Agent',q:'Rollback in multi-agent recovery means:',opts:['Reverting changes across affected agents to a known good state','Disabling all agents','Removing memory','Re-running with new tools'],ans:0,exp:'Correct answer: A) Reverting changes across affected agents to a known good state'},
+{d:5,dt:'D5 · Multi-Agent',q:'Lifecycle management of agents includes:',opts:['Adding, updating, replacing, and retiring agents in a controlled manner','Only adding new agents','Only deleting agents','Locking the agent set forever'],ans:0,exp:'Correct answer: A) Adding, updating, replacing, and retiring agents in a controlled manner'},
+{d:6,dt:'D6 · Guardrails',q:'Assigning autonomy levels supports:',opts:['Risk-based delivery speed and compliance balance','Maximum agent independence','Eliminating oversight','Disabling logs'],ans:0,exp:'Correct answer: A) Risk-based delivery speed and compliance balance'},
+{d:6,dt:'D6 · Guardrails',q:'Identifying actions requiring human judgment helps:',opts:['Focus oversight where it adds value','Slow everything down equally','Replace LLMs','Disable MCP'],ans:0,exp:'Correct answer: A) Focus oversight where it adds value'},
+{d:6,dt:'D6 · Guardrails',q:'Blocking actions that violate compliance ensures:',opts:['Policies are enforced before harm occurs','Policies are enforced only after incidents','Policies are ignored','Policies are optional'],ans:0,exp:'Correct answer: A) Policies are enforced before harm occurs'},
+{d:6,dt:'D6 · Guardrails',q:'Least-privilege execution context means:',opts:['The agent runs with only the permissions strictly needed','The agent runs as the repo owner','The agent runs with admin tokens','The agent runs with no permissions'],ans:0,exp:'Correct answer: A) The agent runs with only the permissions strictly needed'},
+{d:6,dt:'D6 · Guardrails',q:'Explicit authorization for irreversible actions means:',opts:['An authorized human (or controlled path) must approve','The agent self-approves','Another agent approves','The action proceeds silently'],ans:0,exp:'Correct answer: A) An authorized human (or controlled path) must approve'},
+{d:6,dt:'D6 · Guardrails',q:'Preserving execution velocity is achieved by:',opts:['Avoiding approvals that don\'t materially reduce risk','Adding approvals for every step','Removing all human review','Disabling agents'],ans:0,exp:'Correct answer: A) Avoiding approvals that don\'t materially reduce risk'},
+{d:6,dt:'D6 · Guardrails',q:'A core principle of agentic SDLC integration is:',opts:['Agents replace developers entirely','Agents are integrated with clear inputs, outputs, scope, and oversight','Agents act without artifacts','Agents bypass CI'],ans:1,exp:'Correct answer: B) Agents are integrated with clear inputs, outputs, scope, and oversight'},
+{d:6,dt:'D6 · Guardrails',q:'An agent failed because it used the wrong API endpoint. This is:',opts:['A tool misuse failure','A reasoning error','A memory failure','A branch conflict'],ans:0,exp:'Correct answer: A) A tool misuse failure'},
+{d:6,dt:'D6 · Guardrails',q:'Capturing decisions as durable artifacts allows:',opts:['Resumption and traceability','Faster LLM inference','Smaller MCP registries','Removing guardrails'],ans:0,exp:'Correct answer: A) Resumption and traceability'},
+{d:6,dt:'D6 · Guardrails',q:'Detecting and resolving overlapping code changes requires:',opts:['Coordination mechanisms across agents','Disabling parallelism','Removing branches','Larger LLMs'],ans:0,exp:'Correct answer: A) Coordination mechanisms across agents'},
+{d:6,dt:'D6 · Guardrails',q:'A guardrail that blocks irreversible production changes ensures:',opts:['Compliance with high-risk action policy','Faster delivery','Smaller artifacts','Fewer logs'],ans:0,exp:'Correct answer: A) Compliance with high-risk action policy'},
+{d:6,dt:'D6 · Guardrails',q:'Combining quantitative and qualitative signals:',opts:['Provides a balanced, comprehensive evaluation','Replaces guardrails','Eliminates the need for memory','Disables observability'],ans:0,exp:'Correct answer: A) Provides a balanced, comprehensive evaluation'},
+{d:6,dt:'D6 · Guardrails',q:'Configuring MCP allow lists demonstrates:',opts:['Least-privilege at the tool boundary','Maximum tool exposure','Bypassing guardrails','Disabling logs'],ans:0,exp:'Correct answer: A) Least-privilege at the tool boundary'},
+{d:6,dt:'D6 · Guardrails',q:'Continuity of memory and state across environments requires:',opts:['Defined state representation and synchronization mechanisms','Random sharing','No sharing at all','Disabling memory'],ans:0,exp:'Correct answer: A) Defined state representation and synchronization mechanisms'},
+{d:6,dt:'D6 · Guardrails',q:'Which best describes a healthy agentic SDLC?',opts:['Agents act with no oversight','Agents operate within boundaries, produce inspectable artifacts, and are accountable','Agents replace CI pipelines','Agents take all production actions automatically'],ans:1,exp:'Correct answer: B) Agents operate within boundaries, produce inspectable artifacts, and are accountable'},
+];
+
+function shuffle(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}return r;}
+
+let S={
+  phase:'start',
+  questions:shuffle(Q),
+  answers:{},
+  flags:{},
+  cur:0,
+  startMs:null,
+  elapsed:0,
+  tid:null
+};
+
+const app=document.getElementById('app');
+
+function render(){
+  if(S.phase==='start')renderStart();
+  else if(S.phase==='exam')renderExam();
+  else renderResults();
+}
+
+function renderStart(){
+  app.innerHTML=`<div class="start-screen">
+<div class="start-brand">Captain Corgi Hub</div>
+<div class="start-logo" aria-hidden="true"><img src="assets/captain-corgi-hub-design/assets/captain-corgi-hub-avatar.png" alt=""></div>
+<div class="start-title">GH-600 practice exam</div>
+<div class="start-sub">Practice exam 5 — Fifty questions across all six domains, weighted to match the real exam mix. We drew this from the official Microsoft Learn study guide and GitHub Docs.</div>
+<div class="meta-cards">
+  <div class="mc"><div class="mc-v">50</div><div class="mc-l">Questions</div></div>
+  <div class="mc"><div class="mc-v">90</div><div class="mc-l">Minutes</div></div>
+  <div class="mc"><div class="mc-v">700</div><div class="mc-l">Pass mark /1000</div></div>
+  <div class="mc"><div class="mc-v">6</div><div class="mc-l">Domains</div></div>
+</div>
+<div class="start-note">
+  <strong>How this run works:</strong> No answer hints until you submit. Flag questions to revisit if you like. The grid tracks where you are. When the timer hits 90 minutes, we auto-submit.
+</div>
+<button class="btn btn-primary" type="button" id="start-btn" style="font-size:var(--fs-body);padding:11px 32px">Start exam</button>
+</div>`;
+  document.getElementById('start-btn').onclick=()=>{
+    S.phase='exam';S.startMs=Date.now();startTimer();render();
+  };
+}
+
+function startTimer(){
+  S.tid=setInterval(()=>{
+    S.elapsed=Math.floor((Date.now()-S.startMs)/1000);
+    const rem=MINS*60-S.elapsed;
+    if(rem<=0){clearInterval(S.tid);S.phase='results';render();return;}
+    const el=document.getElementById('timer-display');
+    if(el){
+      const m=Math.floor(rem/60),sc=rem%60;
+      el.textContent=m+':'+(sc<10?'0':'')+sc;
+      const pill=document.getElementById('timer-pill');
+      if(pill)pill.className='timer-pill'+(rem<300?' danger':rem<900?' warn':'');
+    }
+    const fill=document.getElementById('prog-fill');
+    if(fill)fill.style.width=(S.cur/S.questions.length*100)+'%';
+  },1000);
+}
+
+function renderExam(){
+  const q=S.questions[S.cur];
+  const total=S.questions.length;
+  const answered=Object.keys(S.answers).length;
+  const flagged=Object.values(S.flags).filter(Boolean).length;
+  const rem=MINS*60-S.elapsed;
+  const m=Math.floor(rem/60),sc=rem%60;
+
+  app.innerHTML=`
+<div class="exam-header">
+  <div class="eh-title">GH-600 practice exam</div>
+  <span class="eh-meta">${answered} answered · ${flagged} flagged</span>
+  <div class="timer-pill" id="timer-pill"><span id="timer-display">${m}:${sc<10?'0':''}${sc}</span></div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:${S.cur/total*100}%"></div></div>
+<div class="exam-body">
+  <div class="q-sidebar">
+    <div class="qs-label">Question list</div>
+    <div class="qs-stats">Answered: <span>${answered}/${total}</span></div>
+    <div class="q-grid" id="q-grid"></div>
+    <button class="btn btn-danger" type="button" id="sb-submit" style="width:100%;justify-content:center">Submit</button>
+  </div>
+  <div class="q-panel">
+    <div class="q-meta">
+      <span class="q-num-badge">Q${S.cur+1} / ${total}</span>
+      <span class="q-domain-badge">${q.dt}</span>
+      ${S.flags[S.cur]?'<span class="q-flag-badge">Flagged</span>':''}
+    </div>
+    <div class="q-text">${q.q}</div>
+    <div class="opts" id="opts">
+      ${q.opts.map((o,i)=>`<button class="opt${S.answers[S.cur]===i?' sel':''}" data-i="${i}"><span class="opt-l">${LETTERS[i]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="q-nav-bar">
+      <div class="btn-row">
+        <button class="btn" type="button" id="prev" ${S.cur===0?'disabled':''}>Previous</button>
+        <button class="btn" type="button" id="flag-btn">${S.flags[S.cur]?'Unflag':'Flag'}</button>
+        <button class="btn" type="button" id="next" ${S.cur===total-1?'disabled':''}>Next</button>
+      </div>
+      <button class="btn btn-danger" type="button" id="submit-btn">Submit exam</button>
+    </div>
+  </div>
+</div>
+<div id="modal-area"></div>`;
+
+  const grid=document.getElementById('q-grid');
+  S.questions.forEach((_,i)=>{
+    const b=document.createElement('button');
+    const isAns=S.answers[i]!==undefined,isFlag=S.flags[i],isCur=i===S.cur;
+    b.className='q-dot '+(isFlag?'flag':isAns?'ans':'unans')+(isCur?' cur':'');
+    b.textContent=i+1;b.title='Q'+(i+1);
+    b.onclick=()=>{S.cur=i;render();};
+    grid.appendChild(b);
+  });
+
+  document.querySelectorAll('.opt').forEach(btn=>{
+    btn.onclick=()=>{S.answers[S.cur]=parseInt(btn.dataset.i);render();};
+  });
+  document.getElementById('prev').onclick=()=>{if(S.cur>0){S.cur--;render();}};
+  document.getElementById('next').onclick=()=>{if(S.cur<total-1){S.cur++;render();}};
+  document.getElementById('flag-btn').onclick=()=>{S.flags[S.cur]=!S.flags[S.cur];render();};
+
+  const showConfirm=()=>{
+    const unanswered=total-Object.keys(S.answers).length;
+    document.getElementById('modal-area').innerHTML=`<div class="modal-overlay" id="modal-overlay">
+<div class="modal">
+  <h3>Submit your exam?</h3>
+  <p>${unanswered>0?`You still have <strong>${unanswered}</strong> unanswered question${unanswered!==1?'s':''}.`:'Every question has an answer.'} We will score what you have now.</p>
+  <div class="modal-btns">
+    <button class="btn" type="button" id="cancel-btn">Cancel</button>
+    <button class="btn btn-primary" type="button" id="confirm-btn">Submit</button>
+  </div>
+</div></div>`;
+    document.getElementById('confirm-btn').onclick=()=>{clearInterval(S.tid);S.phase='results';render();};
+    document.getElementById('cancel-btn').onclick=()=>{document.getElementById('modal-area').innerHTML='';};
+    document.getElementById('modal-overlay').onclick=e=>{if(e.target.id==='modal-overlay')document.getElementById('modal-area').innerHTML='';};
+  };
+  document.getElementById('submit-btn').onclick=showConfirm;
+  document.getElementById('sb-submit').onclick=showConfirm;
+}
+
+function renderResults(){
+  clearInterval(S.tid);
+  const total=S.questions.length;
+  let correct=0;
+  const ds={1:{n:'D1 · Architecture & SDLC',c:0,t:0},2:{n:'D2 · Tool Use & MCP',c:0,t:0},3:{n:'D3 · Memory & State',c:0,t:0},4:{n:'D4 · Evaluation & Tuning',c:0,t:0},5:{n:'D5 · Multi-Agent',c:0,t:0},6:{n:'D6 · Guardrails',c:0,t:0}};
+  S.questions.forEach((q,i)=>{ds[q.d].t++;if(S.answers[i]===q.ans){correct++;ds[q.d].c++;}});
+  const scaled=Math.round(correct/total*1000);
+  const pass=scaled>=PASS;
+  const pct=Math.round(correct/total*100);
+  const elapsed=S.elapsed,em=Math.floor(elapsed/60),es=elapsed%60;
+
+  let domCards='';
+  [1,2,3,4,5,6].forEach(d=>{
+    const {n,c,t}=ds[d];
+    const p=Math.round(c/t*100);
+    const cls=p>=75?'g':p>=60?'m':'b';
+    domCards+=`<div class="db-card"><div class="db-name">${n}</div><div class="db-score">${c}/${t} <span style="font-size:var(--fs-small);color:var(--fg-3)">(${p}%)</span></div><div class="db-bar-bg"><div class="db-bar-fill ${cls}" style="width:${p}%"></div></div></div>`;
+  });
+
+  app.innerHTML=`<div class="results-page">
+<div class="result-hero">
+  <div class="result-score ${pass?'pass':'fail'}">${scaled}</div>
+  <div class="result-verdict">${pass?'Nice work — that\'s a pass':'Not this time — keep going'}</div>
+  <div class="result-sub">${correct}/${total} correct (${pct}%) · Pass mark: 700/1000</div>
+  <div class="result-meta">
+    <span class="rm-chip">Time used: ${em}m ${es}s</span>
+    <span class="rm-chip">${pass?'Above pass mark':'Below pass mark'}</span>
+    <span class="rm-chip">${Object.values(S.flags).filter(Boolean).length} flagged questions</span>
+  </div>
+</div>
+<div class="domain-breakdown-title">Score by domain</div>
+<div class="domain-breakdown">${domCards}</div>
+<div class="divider"></div>
+<div class="btn-row" style="margin-bottom:var(--space-5)">
+  <button class="btn btn-primary" type="button" id="review-btn">Review all answers</button>
+  <button class="btn" type="button" id="retake-btn">Retake exam</button>
+</div>
+<div id="review-out"></div>
+</div>`;
+
+  document.getElementById('retake-btn').onclick=()=>{
+    clearInterval(S.tid);
+    S={phase:'start',questions:shuffle(Q),answers:{},flags:{},cur:0,startMs:null,elapsed:0,tid:null};
+    render();
+  };
+
+  let open=false;
+  document.getElementById('review-btn').onclick=()=>{
+    const out=document.getElementById('review-out');
+    if(open){out.innerHTML='';open=false;document.getElementById('review-btn').textContent='Review all answers';return;}
+    open=true;document.getElementById('review-btn').textContent='Hide review';
+    let html=`<div class="domain-breakdown-title" style="margin-bottom:var(--space-3)">Every question — ${total} total</div>`;
+    S.questions.forEach((q,i)=>{
+      const chosen=S.answers[i],isOk=chosen===q.ans,skip=chosen===undefined;
+      const status=skip?'<span style="color:var(--warning)">Skipped</span>':isOk?'<span style="color:var(--success)">Correct</span>':'<span style="color:var(--danger)">Wrong</span>';
+      html+=`<div class="rq ${skip?'skip':isOk?'ok':'bad'}">
+<div class="rq-meta"><strong>Q${i+1}</strong><span>${q.dt}</span>${status}</div>
+<div class="rq-q">${q.q}</div>`;
+      q.opts.forEach((o,oi)=>{
+        let cls='nn';
+        if(oi===q.ans&&chosen===oi)cls='cc';
+        else if(oi===chosen&&chosen!==q.ans)cls='cw';
+        else if(oi===q.ans)cls='rc';
+        html+=`<div class="ro ${cls}"><span style="font-weight:700;flex-shrink:0;font-family:var(--font-mono)">${LETTERS[oi]}.</span><span>${o}</span></div>`;
+      });
+      html+=`<div class="rq-exp"><strong>Explanation:</strong> ${q.exp}</div></div>`;
+    });
+    out.innerHTML=html;out.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+}
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+
+# Editor / IDE
+.idea/
+*.swp
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Claude Code: rules and the design-authority skill ship with the repo;
+# machine-local AgentKit skills (and their test fixtures) stay out.
+.claude/settings.local.json
+.claude/skills/*
+!.claude/skills/captain-corgi-hub-design/
+.claude
+plans
+
+# AgentKit local state (plans.db is a rebuildable index over plans/)
+.agentkit
+
+# Node / Vite
+node_modules
+dist
+*.local
+
+# Test coverage
+coverage
+
+# Session memory is personal
+.claude/agent-memory/
+.claude/hooks/.logs/

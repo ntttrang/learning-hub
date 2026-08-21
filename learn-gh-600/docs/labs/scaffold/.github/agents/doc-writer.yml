@@ -1,0 +1,17 @@
+name: doc-writer
+description: Update user-facing docs and release notes.
+
+instructions: |
+  Read the issue, PR plan, and current README.
+  Produce a plan before editing.
+  Update docs only unless explicitly instructed otherwise.
+  Do not modify application behavior.
+  Emit plan.json and result.json artifacts.
+
+tools:
+  - github
+  - filesystem
+
+permissions:
+  contents: write
+  pull_requests: write

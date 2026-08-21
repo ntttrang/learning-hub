@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <defs>
+    <filter id="clayShAnchor" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="2" flood-color="#0F1620" flood-opacity="0.28"></feDropShadow>
+    </filter>
+  </defs>
+  
+  <g filter="url(#clayShAnchor)" stroke="#2A3640" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    
+    <circle cx="40" cy="14" r="6"></circle>
+    
+    <path d="M40 21 L40 60"></path>
+    
+    <path d="M28 30 L52 30"></path>
+    
+    <path d="M16 48 Q16 64 40 64 Q64 64 64 48 L60 48 L60 52 M16 48 L20 48 L20 52"></path>
+  </g>
+  
+  <g fill="none" stroke="rgba(255,255,255,0.32)" stroke-width="2" stroke-linecap="round">
+    <path d="M37 24 L37 56"></path>
+    <path d="M34 14 a3 3 0 0 1 3 -3"></path>
+    <path d="M22 51 Q24 58 32 61"></path>
+  </g>
+</svg>

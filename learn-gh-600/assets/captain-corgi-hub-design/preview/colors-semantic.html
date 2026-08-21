@@ -1,0 +1,28 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--clay-cream); }
+  .wrap { padding: 20px 24px; font-family: var(--font-body); }
+  .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .swatch { aspect-ratio: 1.2; border-radius: var(--r-md); padding: 12px; display: flex; flex-direction: column; justify-content: space-between; border: var(--bw) solid var(--border-soft); color: white; }
+  .name { font-family: var(--font-display); font-weight: 700; font-size: 13px; }
+  .role { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.85; }
+  .hex { font-family: var(--font-mono); font-size: 10px; opacity: 0.85; }
+  .light { color: var(--ink); }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="grid">
+    <div class="swatch" style="background:#FC8903"><span class="role">Accent</span><div><div class="name">Accent</div><div class="hex">#FC8903</div></div></div>
+    <div class="swatch" style="background:#51BBD7"><span class="role">Info</span><div><div class="name">Info</div><div class="hex">#51BBD7</div></div></div>
+    <div class="swatch" style="background:#3BB283"><span class="role">Success</span><div><div class="name">Success</div><div class="hex">#3BB283</div></div></div>
+    <div class="swatch light" style="background:#FBC00A"><span class="role">Warning</span><div><div class="name">Warning</div><div class="hex">#FBC00A</div></div></div>
+    <div class="swatch" style="background:#E13429"><span class="role">Danger</span><div><div class="name">Danger</div><div class="hex">#E13429</div></div></div>
+    <div class="swatch light" style="background:#F2A8BC"><span class="role">Soft / feminine</span><div><div class="name">Petal Pink</div><div class="hex">#F2A8BC</div></div></div>
+    <div class="swatch light" style="background:#F6F2EA;border-color:#E6DECB"><span class="role">Surface</span><div><div class="name">Surface</div><div class="hex">#F6F2EA</div></div></div>
+    <div class="swatch" style="background:#1F2A33"><span class="role">Foreground</span><div><div class="name">Foreground</div><div class="hex">#1F2A33</div></div></div>
+    <div class="swatch" style="background:#3D768E"><span class="role">On-brand</span><div><div class="name">Brand BG</div><div class="hex">#3D768E</div></div></div>
+    <div class="swatch" style="background:#DD5D5D"><span class="role">Community</span><div><div class="name">Hub BG</div><div class="hex">#DD5D5D</div></div></div>
+  </div>
+</div></body></html>

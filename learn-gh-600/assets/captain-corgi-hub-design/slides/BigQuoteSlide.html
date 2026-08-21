@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<title>Big quote — Captain Corgi</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--ink); overflow: hidden; }
+  .slide { width: 1280px; height: 720px; background: var(--hub-coral); position: relative; padding: 80px 120px; box-sizing: border-box; font-family: var(--font-body); color: var(--clay-cream); display: flex; flex-direction: column; justify-content: center; gap: 28px; }
+  .gleam { position: absolute; inset: 0; background: radial-gradient(circle at 80% 25%, rgba(251,192,10,0.18), transparent 50%); pointer-events: none; }
+  .quote-mark { position: absolute; top: 60px; left: 110px; font-family: var(--font-display); font-weight: 800; font-size: 220px; line-height: 0.8; color: var(--star-yellow); opacity: 0.35; }
+  h1 { font-family: var(--font-display); font-weight: 800; font-size: 80px; line-height: 1.06; letter-spacing: -0.025em; margin: 0; max-width: 980px; text-wrap: balance; position: relative; z-index: 1; }
+  h1 em { font-style: normal; color: var(--star-yellow); }
+  .byline { display: flex; align-items: center; gap: 16px; position: relative; z-index: 1; margin-top: 12px; }
+  .byline img { width: 56px; height: 56px; border-radius: 999px; object-fit: cover; border: 3px solid rgba(246,242,234,0.4); }
+  .who { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; }
+  .role { font-family: var(--font-mono); font-size: 13px; opacity: 0.78; letter-spacing: 0.06em; text-transform: uppercase; }
+  .footer { position: absolute; bottom: 36px; left: 120px; right: 120px; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 13px; opacity: 0.7; letter-spacing: 0.06em; text-transform: uppercase; z-index: 1; }
+</style></head>
+<body>
+<div class="slide">
+  <div class="gleam"></div>
+  <span class="quote-mark">"</span>
+  <h1>The codebase you can <em>re-read tomorrow</em> is the codebase you can ship for ten years.</h1>
+  <div class="byline">
+    <img src="../assets/captain-corgi-avatar.png" alt=""/>
+    <div>
+      <div class="who">Captain Corgi</div>
+      <div class="role">on naming things, ep. 042</div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>captain-corgi-hub</span>
+    <span>set sail on better software</span>
+  </div>
+</div></body></html>

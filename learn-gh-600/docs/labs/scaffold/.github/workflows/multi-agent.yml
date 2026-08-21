@@ -1,0 +1,70 @@
+name: multi-agent
+
+on:
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: Issue number to work from
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: read
+
+jobs:
+  specialist:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        agent: [test-writer, doc-writer, security-reviewer]
+    concurrency:
+      group: agent-${{ matrix.agent }}-${{ github.run_id }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create isolated branch name
+        id: branch
+        run: echo "name=agent/${{ matrix.agent }}/${{ github.run_id }}" >> "$GITHUB_OUTPUT"
+      - name: Write agent artifacts
+        run: |
+          mkdir -p agent-artifacts/${{ matrix.agent }}
+          cat > agent-artifacts/${{ matrix.agent }}/plan.json <<JSON
+          {"agent":"${{ matrix.agent }}","event":"started","issue":"${{ inputs.issue }}","branch":"${{ steps.branch.outputs.name }}"}
+          JSON
+          cat > agent-artifacts/${{ matrix.agent }}/result.json <<JSON
+          {"agent":"${{ matrix.agent }}","event":"completed","summary":"Replace this placeholder with real agent output."}
+          JSON
+      - name: Upload specialist artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.agent }}-artifacts
+          path: agent-artifacts/${{ matrix.agent }}/
+
+  coordinator:
+    runs-on: ubuntu-latest
+    needs: specialist
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: downloaded-artifacts
+      - name: Build coordination report
+        run: |
+          mkdir -p coordination
+          {
+            echo "# Multi-agent coordination report"
+            echo
+            echo "- selected: test-writer, doc-writer, security-reviewer"
+            echo "- started: see plan artifacts"
+            echo "- completed: see result artifacts"
+            echo "- failed: inspect workflow status"
+            echo "- deselected: none"
+          } > coordination/report.md
+      - name: Upload coordination report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coordination-report
+          path: coordination/report.md

@@ -20,7 +20,7 @@
     /* The dp-800 donor's deep modules import their own types through the
        `@/` alias (type-only, so tsx erases them); this mapping lets tsc
        resolve those imports when the extractor pulls the files into this
-       program. It points into the read-only submodule — never edit donor
+       program. It points into the vendored donor directory — never edit donor
        files to work around it. */
     "paths": { "@/*": ["./learn-dp-800/src/*"] },
 

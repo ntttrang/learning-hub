@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){'use strict';
+  var root=document.documentElement;
+  root.classList.toggle('cc-mock-embed',window.self!==window.top);
+  var KEY='cc-theme';
+  var VALID={'light':1,'dark':1,'night':1};
+  function applyCcTheme(){
+    try {
+      var t=localStorage.getItem(KEY);
+      if(t&&VALID[t]) root.setAttribute('data-theme',t);
+      else root.removeAttribute('data-theme');
+    }catch(err){/* private mode */}
+  }
+  applyCcTheme();
+  window.addEventListener('storage',function(ev){
+    if(ev.key===KEY) applyCcTheme();
+  });
+  /* Hub embed: parent cannot set iframe <html>; sync forced theme via postMessage (plus storage fallback). */
+  window.addEventListener('message',function(ev){
+    try{
+      var d=ev.data;
+      if(!d||d.type!=='cc-theme-hub')return;
+      var forced=String(d.forced||'');
+      if(forced==='light'||forced==='dark'||forced==='night') root.setAttribute('data-theme',forced);
+      else root.removeAttribute('data-theme');
+    }catch(err2){}
+  });
+})();
+</script>
+<title>GH-600 mock exam 4 — Captain Corgi Hub</title>
+<link rel="stylesheet" href="assets/captain-corgi-hub-design/colors_and_type.css">
+<style>
+/* Legacy layout tokens mapped to Captain Corgi Hub design system */
+:root {
+  --font-serif: var(--font-display);
+  --font-sans: var(--font-body);
+  --tracking-snug: var(--tr-tight);
+  --tracking-tight: var(--tr-tight);
+  --tracking-wide: var(--tr-loose);
+  --radius-pill: var(--r-full);
+  --radius-lg: var(--r-lg);
+  --radius-md: var(--r-md);
+  --radius-sm: var(--r-sm);
+  --radius-xs: var(--r-xs);
+  --fs-small: var(--fs-14);
+  --fs-xs: var(--fs-12);
+  --fs-body: var(--fs-16);
+  --fs-body-lg: var(--fs-18);
+  --fs-h2: var(--fs-38);
+  --fs-h3: var(--fs-30);
+  --fs-h4: var(--fs-24);
+  --lh-loose: var(--lh-relaxed);
+  --surface: var(--bg-elevated);
+  --surface-2: var(--bg-sunken);
+  --fg-1: var(--fg);
+  --accent-bg-soft: rgba(252, 137, 3, 0.14);
+  --accent-border: rgba(252, 137, 3, 0.45);
+  --accent-hover: var(--corgi-orange-deep);
+  --accent-press: #C96A05;
+  --shadow-xs: var(--shadow-1);
+  --shadow-sm: var(--shadow-2);
+  --shadow-lg: var(--shadow-3);
+  --ring: var(--ring-focus);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body.cc-body{min-height:100vh;font-size:var(--fs-small)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:var(--radius-pill)}
+
+/* Start */
+.start-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:var(--space-8) var(--space-5);text-align:center;background:var(--bg)}
+.start-brand{font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-3);margin-bottom:var(--space-3);letter-spacing:var(--tracking-wide)}
+.start-logo{width:72px;height:72px;border-radius:var(--radius-lg);background:var(--surface);border:var(--bw) solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5);box-shadow:var(--shadow-2);overflow:hidden}
+.start-logo img{width:100%;height:100%;object-fit:cover;display:block}
+.start-title{font-family:var(--font-serif);font-size:var(--fs-h2);font-weight:var(--fw-semi);line-height:var(--lh-snug);letter-spacing:var(--tracking-snug);color:var(--fg-1);margin-bottom:var(--space-2)}
+.start-sub{font-size:var(--fs-body);color:var(--fg-2);margin-bottom:var(--space-8);line-height:var(--lh-loose);max-width:32rem;font-family:var(--font-body)}
+.meta-cards{display:flex;gap:var(--space-3);margin-bottom:var(--space-8);flex-wrap:wrap;justify-content:center}
+.mc{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);text-align:center;min-width:6.25rem;box-shadow:var(--shadow-xs)}
+.mc-v{font-family:var(--font-serif);font-size:var(--fs-h3);font-weight:var(--fw-semi);color:var(--fg-1);margin-bottom:2px;font-variation-settings:"opsz" 30}
+.mc-l{font-size:var(--fs-xs);color:var(--fg-3);letter-spacing:var(--tracking-snug);font-weight:var(--fw-semi)}
+.start-note{font-size:var(--fs-small);color:var(--fg-3);margin-bottom:var(--space-6);max-width:28rem;line-height:var(--lh-loose);font-family:var(--font-body)}
+.start-note strong{color:var(--fg-2);font-weight:var(--fw-bold)}
+
+/* Exam header */
+.exam-header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg-elevated) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:var(--bw) solid var(--border);padding:var(--space-3) var(--space-5);display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;box-shadow:var(--shadow-xs)}
+.eh-title{font-family:var(--font-serif);font-size:var(--fs-h4);font-weight:var(--fw-semi);color:var(--fg-1);flex:1}
+.exam-header .eh-meta{font-size:var(--fs-small);color:var(--fg-3);font-family:var(--font-body)}
+.timer-pill{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-4);background:var(--surface-2);border:var(--bw) solid var(--border);border-radius:var(--radius-pill);font-family:var(--font-mono);font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-1);min-width:5.5rem;justify-content:center;tabular-nums}
+.timer-pill.warn{background:rgba(251,192,10,0.18);border-color:var(--warning);color:var(--warning)}
+.timer-pill.danger{background:rgba(225,52,41,0.14);border-color:var(--danger);color:var(--danger);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.65}}
+.progress-bar{height:4px;background:var(--border-soft);overflow:hidden;border-radius:var(--radius-pill)}
+.progress-fill{height:100%;background:var(--accent);border-radius:var(--radius-pill);transition:width var(--dur-base) var(--ease-out)}
+
+/* Layout */
+.exam-body{display:flex;min-height:calc(100vh - 60px)}
+.q-sidebar{width:11.25rem;flex-shrink:0;background:var(--surface);border-right:var(--bw) solid var(--border);padding:var(--space-3);overflow-y:auto;max-height:calc(100vh - 60px);position:sticky;top:60px}
+.qs-label{font-size:var(--fs-xs);font-weight:var(--fw-bold);letter-spacing:var(--tracking-snug);color:var(--fg-3);margin-bottom:var(--space-2);font-family:var(--font-body)}
+.q-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-1);margin-bottom:var(--space-4)}
+.q-dot{width:28px;height:28px;border-radius:var(--radius-xs);font-size:10px;font-weight:var(--fw-bold);border:var(--bw) solid transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out);font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.q-dot.unans{background:var(--surface-2);color:var(--fg-3);border-color:var(--border-soft)}
+.q-dot.ans{background:var(--accent-bg-soft);color:var(--accent);border-color:var(--accent-border)}
+.q-dot.flag{background:rgba(251,192,10,0.2);color:var(--warning-fg);border-color:rgba(251,192,10,0.45)}
+.q-dot.cur{box-shadow:var(--ring)}
+.q-dot:focus-visible{outline:none;box-shadow:var(--ring)}
+.qs-stats{font-size:var(--fs-small);color:var(--fg-3);margin-bottom:var(--space-2);font-family:var(--font-body)}
+.qs-stats span{color:var(--fg-2);font-weight:var(--fw-semi)}
+
+/* Question panel */
+.q-panel{flex:1;padding:var(--space-6);max-width:50rem;margin:0 auto}
+.q-meta{display:flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4);flex-wrap:wrap}
+.q-num-badge{font-family:var(--font-mono);font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-3);background:var(--surface-2);border:var(--bw) solid var(--border);padding:3px var(--space-3);border-radius:var(--radius-pill)}
+.q-domain-badge{font-size:var(--fs-small);color:var(--fg-3);background:var(--surface-2);border:var(--bw) solid var(--border);padding:3px var(--space-3);border-radius:var(--radius-pill);font-family:var(--font-body)}
+.q-flag-badge{font-size:var(--fs-small);color:var(--captain-red);background:rgba(225,52,41,0.1);border:var(--bw) solid rgba(225,52,41,0.28);padding:3px var(--space-3);border-radius:var(--radius-pill);font-family:var(--font-body)}
+.q-text{font-size:var(--fs-body-lg);font-weight:var(--fw-semi);color:var(--fg-1);line-height:var(--lh-loose);margin-bottom:var(--space-5);max-width:68ch;font-family:var(--font-body)}
+.opts{display:flex;flex-direction:column;gap:var(--space-2);margin-bottom:var(--space-4)}
+.opt{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:var(--fs-small);color:var(--fg-2);cursor:pointer;text-align:left;display:flex;gap:var(--space-3);transition:background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out),transform 80ms var(--ease-out),box-shadow var(--dur-fast) var(--ease-out);font-family:var(--font-sans);line-height:var(--lh-normal);box-shadow:var(--shadow-xs);appearance:none;-webkit-appearance:none}
+.opt:hover:not(.sel){border-color:var(--border-strong);color:var(--fg-1);background:var(--surface-2);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.opt:focus-visible{outline:none;box-shadow:var(--ring)}
+.opt.sel{border-color:var(--accent)!important;background:var(--accent-bg-soft)!important;color:var(--fg)!important;-webkit-text-fill-color:var(--fg)}
+.opt-l{font-family:var(--font-mono);font-size:var(--fs-xs);font-weight:var(--fw-semi);flex-shrink:0;width:16px;margin-top:1px;color:var(--fg-3)}
+.opt.sel .opt-l{color:var(--accent)!important;-webkit-text-fill-color:var(--accent)}
+.opt.sel > span:not(.opt-l){color:var(--fg)!important;-webkit-text-fill-color:var(--fg)}
+.q-nav-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-2)}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(31,42,51,0.42);display:flex;align-items:center;justify-content:center;z-index:999;padding:var(--space-5)}
+.modal{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-lg);padding:var(--space-6);max-width:24rem;width:100%;box-shadow:var(--shadow-lg)}
+.modal h3{font-family:var(--font-serif);font-size:var(--fs-h4);font-weight:var(--fw-semi);color:var(--fg-1);margin-bottom:var(--space-2)}
+.modal p{font-size:var(--fs-small);color:var(--fg-2);margin-bottom:var(--space-5);line-height:var(--lh-loose);font-family:var(--font-body)}
+.modal-btns{display:flex;gap:var(--space-2);justify-content:flex-end;flex-wrap:wrap}
+
+/* Results */
+.results-page{min-height:100vh;padding:var(--space-8) var(--space-5);max-width:50rem;margin:0 auto}
+.result-hero{text-align:center;padding:var(--space-8);background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-lg);margin-bottom:var(--space-5);box-shadow:var(--shadow-sm)}
+.result-score{font-family:var(--font-serif);font-size:clamp(2.5rem,8vw,4rem);font-weight:var(--fw-bold);line-height:var(--lh-tight);letter-spacing:var(--tracking-tight);font-variation-settings:"opsz" 72}
+.result-score.pass{color:var(--success)}
+.result-score.fail{color:var(--danger)}
+.result-verdict{font-size:var(--fs-h4);font-weight:var(--fw-bold);font-family:var(--font-body);color:var(--fg-1);margin-top:var(--space-2);margin-bottom:var(--space-2)}
+.result-sub{font-size:var(--fs-small);color:var(--fg-2);font-family:var(--font-body)}
+.result-meta{display:flex;gap:var(--space-3);justify-content:center;margin-top:var(--space-4);flex-wrap:wrap}
+.rm-chip{font-size:var(--fs-small);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);background:var(--surface-2);border:var(--bw) solid var(--border);color:var(--fg-2);font-family:var(--font-body)}
+.domain-breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(12.5rem,1fr));gap:var(--space-3);margin-bottom:var(--space-5)}
+.db-card{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-lg);padding:var(--space-4);box-shadow:var(--shadow-xs)}
+.db-name{font-size:var(--fs-small);color:var(--fg-2);margin-bottom:var(--space-2);font-family:var(--font-body)}
+.db-score{font-size:var(--fs-h4);font-weight:var(--fw-bold);font-family:var(--font-body);color:var(--fg-1);margin-bottom:var(--space-2)}
+.db-bar-bg{height:4px;background:var(--border-soft);border-radius:var(--radius-pill);overflow:hidden}
+.db-bar-fill{height:100%;border-radius:var(--radius-pill)}
+.db-bar-fill.g{background:var(--success)}.db-bar-fill.m{background:var(--warning)}.db-bar-fill.b{background:var(--danger)}
+.divider{height:var(--bw);background:var(--border);margin:var(--space-5) 0}
+.domain-breakdown-title{font-size:var(--fs-small);font-weight:var(--fw-bold);font-family:var(--font-body);color:var(--fg-2);margin-bottom:var(--space-3)}
+
+/* Review */
+.rq{margin-bottom:var(--space-3);padding:var(--space-4);border-radius:var(--radius-md);border:var(--bw) solid var(--border);background:var(--surface)}
+.rq.ok{border-color:rgba(59,178,131,0.45)}
+.rq.bad{border-color:rgba(225,52,41,0.45)}
+.rq.skip{border-color:var(--border)}
+.rq-meta{font-size:var(--fs-small);color:var(--fg-3);margin-bottom:var(--space-2);display:flex;gap:var(--space-2);flex-wrap:wrap;font-family:var(--font-body)}
+.rq-q{font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-1);margin-bottom:var(--space-2);line-height:var(--lh-loose);font-family:var(--font-body)}
+.ro{padding:var(--space-2) var(--space-3);border-radius:var(--radius-xs);font-size:var(--fs-small);margin-bottom:3px;display:flex;gap:var(--space-2);line-height:var(--lh-normal);font-family:var(--font-body)}
+.ro.cc{background:rgba(59,178,131,0.14);color:var(--success)}.ro.cw{background:rgba(225,52,41,0.12);color:var(--danger)}
+.ro.rc{background:rgba(59,178,131,0.12);color:var(--success);opacity:.85}.ro.nn{color:var(--fg-3)}
+.rq-exp{font-size:var(--fs-small);color:var(--fg-3);margin-top:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--surface-2);border-radius:var(--radius-sm);border:var(--bw) solid var(--border-soft);line-height:var(--lh-loose);font-family:var(--font-body)}
+
+/* Buttons — Captain Corgi clay */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:10px var(--space-5);border-radius:var(--radius-lg);border:var(--bw) solid var(--border-strong);background:var(--surface);cursor:pointer;font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-1);transition:background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out),transform 80ms var(--ease-out),box-shadow var(--dur-fast) var(--ease-out);font-family:var(--font-body);line-height:1.2;box-shadow:var(--shadow-xs)}
+.btn:hover{background:var(--surface-2);border-color:var(--border-strong);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.btn:focus-visible{outline:none;box-shadow:var(--ring)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:var(--shadow-xs)}
+.btn:active:not(:disabled){transform:scale(0.97);box-shadow:var(--shadow-xs)}
+.btn-primary{background:var(--accent);color:var(--accent-fg);border-color:transparent;box-shadow:var(--shadow-2)}
+.btn-primary:hover{background:var(--accent-hover);color:var(--accent-fg);box-shadow:var(--shadow-3)}
+.btn-primary:active{background:var(--accent-press)}
+.btn-danger{background:var(--danger);color:var(--danger-fg);border-color:var(--danger)}
+.btn-danger:hover{filter:brightness(1.05)}
+.btn-row{display:flex;gap:var(--space-2);flex-wrap:wrap}
+</style>
+<style id="cc-mock-embed-style">
+/* Nested in gh600-mock-exams-index iframe: inherit iframe height instead of outer window 100vh */
+html.cc-mock-embed{height:100%}
+html.cc-mock-embed body.cc-body{display:flex;flex-direction:column;margin:0;overflow:hidden;min-height:0!important;height:100%!important;max-height:100%}
+html.cc-mock-embed #app{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden;width:100%;max-width:100%}
+html.cc-mock-embed #app .start-screen{flex:1;min-height:0!important;overflow-y:auto;display:flex!important;justify-content:center;padding-block:clamp(var(--space-3),3vh,var(--space-8));padding-inline:clamp(var(--space-3),2vw,var(--space-5))}
+html.cc-mock-embed #app>.exam-header{flex-shrink:0}
+html.cc-mock-embed .exam-body{flex:1;min-height:0!important;display:flex!important;overflow:hidden}
+html.cc-mock-embed .q-sidebar{overflow-y:auto;max-height:calc(100% - 60px)!important}
+html.cc-mock-embed .q-panel{flex:1;min-width:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+html.cc-mock-embed #app>.results-page{flex:1;min-height:0!important;margin:0;width:100%!important;max-width:none!important;overflow-y:auto;box-sizing:border-box;padding-inline:clamp(var(--space-3),3vw,var(--space-5))}
+</style>
+</head>
+<body class="cc-body">
+<div id="app"></div>
+<script>
+const LETTERS='ABCD'.split('');
+const PASS=700,MINS=120;
+
+const Q=[
+// D1 — Architecture & SDLC (10)
+{d:1,dt:'D1 · Architecture & SDLC',q:'Which statement best describes GitHub as the "control plane" in an agentic AI system?',opts:['GitHub stores LLM model weights for Copilot','GitHub is the system of record and orchestration point where workflows, permissions, and approvals govern all agent activity','GitHub only provides a UI for viewing code','GitHub manages LLM API billing'],ans:1,exp:'The exam defines GitHub as both the system of record (branches, PRs, commits) and control plane (workflows, permissions, approvals) for all agent activity.'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'An agent takes actions while it is still planning. Which anti-pattern does this represent?',opts:['Context drift','Insufficient tool permissions','Mixing planning and execution in the same step — no validation window','Long-running state loss'],ans:2,exp:'Planning and execution must be separated. The agent produces a validated plan artifact before acting — mixing them is the #1 documented SDLC anti-pattern.'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'What is the purpose of producing a structured plan artifact before agent execution?',opts:['To reduce API costs','To allow validation by a human or automated check before any irreversible action is taken','To speed up the CI pipeline','To store agent memory between sessions'],ans:1,exp:'A plan artifact makes the agent\'s intent inspectable and validatable. No action should proceed until the plan is approved — by a human or an automated gate.'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'What mechanism correctly prevents agent action until its plan is approved?',opts:['Setting model temperature to 0','A required status check or approval gate in GitHub Actions before execution proceeds','Reducing the agent\'s tool count','Using only short-term memory'],ans:1,exp:'Required status checks and branch protection approval gates in GitHub Actions are the correct mechanism to halt execution pending plan validation.'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'An agent autonomously pushes to the main branch without opening a PR. Which principle is violated?',opts:['Memory scoping','Least-privilege and human oversight — agents must use branches and PRs, not direct pushes to protected branches','Context pruning','MCP registry configuration'],ans:1,exp:'Direct pushes to main bypass all review controls. Agents must operate on branches and surface changes via PRs — the core least-privilege and oversight design for SDLC integration.'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'Copilot cloud agent marks the developer as co-author on its commits. What benefit does this provide?',opts:['Reduces CI run time','Creates traceability linking AI-generated code to the human who initiated the task, supporting accountability and audit','Grants the developer merge permissions','Increases commit signing key strength'],ans:1,exp:'Co-authorship links every AI-generated change to the person who initiated it — a core accountability mechanism in GitHub\'s agentic SDLC design.'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'What does "configure human intervention without slowing delivery" mean in practice?',opts:['Require human approval for every single tool call','Place approval gates only where human judgment materially reduces risk; let routine low-risk actions proceed autonomously','Disable all automation','Add a 24-hour delay before any agent action'],ans:1,exp:'Right-sized oversight: gates only where they genuinely reduce risk. Gating everything kills delivery velocity without improving safety.'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'Why must inputs, outputs, and success criteria be defined before deploying an agent?',opts:['To reduce token costs','To establish a contract enabling automated and human evaluation against a clear baseline','To prevent the agent from creating branches','To satisfy GitHub billing requirements'],ans:1,exp:'Without defined inputs, outputs, and success criteria, neither automated scans nor human reviewers have a baseline to judge correctness. This contract is foundational to evaluation.'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'A team adds an approval gate to every single agent action including reading README files. What problem results?',opts:['Improved security posture','Approval theater — gates without risk reduction that kill delivery velocity for no safety benefit','Correct observability configuration','Better compliance audit trail'],ans:1,exp:'Gating every action regardless of risk is approval theater. Every gate imposes a delivery cost justified only by the risk it mitigates. Routine, reversible actions should be ungated.'},
+{d:1,dt:'D1 · Architecture & SDLC',q:'Which GitHub control automatically assigns reviewers to agent changes in specific critical file paths?',opts:['MCP allow list','Required status checks','CODEOWNERS file','GitHub Actions job timeout'],ans:2,exp:'CODEOWNERS automatically assigns required reviewers for specific file paths. When an agent modifies code in a CODEOWNERS-protected path, the defined owners must review before merging.'},
+// D2 — Tool Use & MCP (14)
+{d:2,dt:'D2 · Tool Use & MCP',q:'What is the correct sequence for adding a remote MCP server to a GitHub Copilot agent?',opts:['Write server code → set max_tokens → deploy','Register the MCP server → add to MCP registry → configure allow list → assign to agent tool config','Ask Copilot to auto-detect available servers','Create a GitHub App and link it to Copilot'],ans:1,exp:'Official process: register → registry → allow list → agent config. Each step is distinct and required for the server to be usable by the agent.'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'What does the MCP allow list specifically control?',opts:['Which GitHub repos the agent can read','Which MCP servers the agent is permitted to call — enforcing access control at the tool invocation layer','The agent\'s memory budget','The model temperature'],ans:1,exp:'MCP allow lists restrict which servers an agent can invoke. Tool permissions then control what each permitted server can do. Both layers are required for least-privilege.'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Copilot cloud agent\'s internet access is restricted by a built-in firewall. What risk does this primarily mitigate?',opts:['Prompt injection from user messages','Accidental or malicious leakage of sensitive code and secrets to external endpoints','Context drift during long sessions','Memory expiration'],ans:1,exp:'Per GitHub Docs, restricting internet access mitigates data exfiltration — sensitive code, tokens, or secrets leaking to external services via tool calls or prompt injection.'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'By default, GitHub Actions workflows are NOT triggered after Copilot creates a PR. Why?',opts:['To save Actions minutes','To require a user with write access to review code and explicitly approve workflow runs before execution — preventing untrusted agent code from running privileged CI jobs','Because agents cannot trigger workflows','To prevent branch creation'],ans:1,exp:'Per GitHub Docs, workflows are withheld until a write-access user clicks "Approve and run workflows." This prevents untrusted agent-generated code from automatically running privileged CI.'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'What does "idempotency" mean for agent tool retries?',opts:['The tool runs faster on retry','Calling the tool multiple times with the same inputs produces the same result without duplicating side-effects','The tool always returns a cached response','The tool ignores errors on retry'],ans:1,exp:'Idempotent retries ensure a second call after a transient failure doesn\'t duplicate side-effects (no duplicate records, no double commits). Critical for safe retry implementations.'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Which security checks does Copilot cloud agent run on generated code BEFORE completing a pull request?',opts:['Only Copilot chat review','CodeQL (code security), GitHub Advisory Database (dependency vulnerabilities), and secret scanning (credentials)','A third-party DAST tool','Manual review only'],ans:1,exp:'Per GitHub Docs: CodeQL for code security, Advisory DB for CVSS High/Critical deps and malware, secret scanning for exposed credentials — all without requiring Advanced Security licenses.'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'A user without write access to a repo comments @copilot. What happens?',opts:['Copilot processes the comment normally','The comment is never presented to the agent — only users with write access can trigger Copilot cloud agent','Copilot asks the user to request access','The comment is queued for admin review'],ans:1,exp:'Per GitHub Docs, only users with write access can trigger Copilot cloud agent. This prevents privilege escalation — unauthorized users cannot use the agent to make changes.'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'What is prompt injection and how does Copilot cloud agent mitigate it?',opts:['A syntax error in a prompt; mitigated by spellchecking','Hidden malicious instructions in issues or comments; mitigated by filtering hidden characters (HTML comment content) before the input reaches the agent','A too-long system prompt; mitigated by truncation','A typo in the MCP server URL; mitigated by DNS validation'],ans:1,exp:'Per GitHub Docs, prompt injection embeds hidden instructions in issues or PR comments. GitHub filters hidden characters before passing input to the agent.'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'An agent in CI only needs to comment on a PR and push to the PR\'s branch. What is the minimum correct scope?',opts:['Full organisation-wide admin access','Write access to the PR branch and PR comment permission in the triggering repository only','Read access to all repositories','Global write access to all branches'],ans:1,exp:'Least-privilege for a CI-triggered agent: write access limited to the specific PR branch plus PR comment permission in the triggering repo. Nothing broader is needed.'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Copilot cloud agent commits are cryptographically signed. What operational benefit does this provide?',opts:['Reduces commit size','Commits appear as "Verified" — confirming they were made by the agent and have not been altered, supporting audit and accountability','Speeds up CI','Lets the agent bypass branch protection'],ans:1,exp:'Per GitHub Docs, signed commits appear as Verified, providing confidence that AI-generated changes are authentic and untampered — critical for audit and accountability in multi-agent pipelines.'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Traceability for agent actions requires which of the following at minimum?',opts:['A Slack notification per action','Linking each action to the instruction that caused it, the tool call that executed it, and the output it produced','A weekly CSV report','Disabling async tool calls'],ans:1,exp:'Traceability = every action traceable: why (instruction/plan), how (tool call + params), what resulted (output). Copilot\'s commit messages even link to session logs for this purpose.'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'When Copilot cloud agent is triggered outside an existing PR, which branch does it push to?',opts:['Directly to main','A new branch prefixed with "copilot/" created specifically for that agent session','The default branch','A branch named after the requesting user'],ans:1,exp:'Per GitHub Docs, Copilot cloud agent creates a "copilot/" prefixed branch and can only push to it — never directly to main or other protected branches.'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'Which of the following is NOT a built-in Copilot cloud agent security mitigation?',opts:['Filtering hidden characters to prevent prompt injection','Restricting internet access via built-in firewall','Automatically approving and merging its own pull requests','Requiring human review before merging draft PRs'],ans:2,exp:'Per GitHub Docs, Copilot cloud agent CANNOT approve or merge its own PRs. Human review is a required control — auto-merging is a risk, not a mitigation.'},
+{d:2,dt:'D2 · Tool Use & MCP',q:'An agent needs to interact with Jira to update tickets. What is the correct integration approach?',opts:['Hard-code Jira credentials in the agent\'s instruction file','Configure Jira as an MCP server, register it in the MCP registry, add it to the agent\'s allow list, and scope permissions to required operations','Give the agent a browser tool to manually log into Jira','Use email notifications instead'],ans:1,exp:'External service integrations follow the MCP pattern: register the service as an MCP server, control access via the registry and allow list, configure minimum permissions.'},
+// D3 — Memory, State & Execution (7)
+{d:3,dt:'D3 · Memory & State',q:'What is the exact retention period for Copilot Memory entries before automatic deletion?',opts:['7 days','14 days','28 days','90 days'],ans:2,exp:'Per GitHub Docs, Copilot memories are automatically deleted after 28 days to prevent stale information from degrading decision quality.'},
+{d:3,dt:'D3 · Memory & State',q:'For Copilot Pro and Pro+ individual users, what is the default state of Copilot Memory?',opts:['Disabled; must be manually enabled','Enabled by default; users can opt out in personal settings','Enabled only in public repos','Disabled; only org admins can enable it'],ans:1,exp:'Per GitHub Docs, Copilot Memory is ON by default for Pro/Pro+ individual users — the opposite of enterprise/org-managed accounts where it is off by default.'},
+{d:3,dt:'D3 · Memory & State',q:'A memory created by Developer A in Repository X — can Developer B access it in Repository X?',opts:['No — memories are strictly user-scoped','Yes — memories are repository-scoped; all permitted Copilot users in that repo benefit from memories created there','Yes — memories are org-scoped across all repos','No — memories expire at the end of the creating user\'s session'],ans:1,exp:'Per GitHub Docs, Copilot Memory is repository-scoped. All permitted users in a repo share its memories. Memories cannot cross repository boundaries.'},
+{d:3,dt:'D3 · Memory & State',q:'How does Copilot validate a stored memory before applying it to a new task?',opts:['It re-runs the prior session in full','It validates the memory\'s citations against the current codebase; if citations no longer match, the memory is discarded','It asks the user to confirm the memory','It sends the memory to an external validation API'],ans:1,exp:'Per GitHub Docs, each memory includes citations (code location references). Before use, Copilot checks them against the current branch. Invalid citations = memory is not used.'},
+{d:3,dt:'D3 · Memory & State',q:'An agent working on a 4-hour refactor pauses overnight. What allows correct resumption without repeating steps?',opts:['Increasing context window indefinitely','Capturing task progress as durable artifacts (committed state files) the agent reads on resumption','Restarting with a fresh context and redoing all work','Asking the user to re-describe the task'],ans:1,exp:'Durable artifacts — structured state files committed to the branch — serve as checkpoints. The agent reads them on restart to understand what\'s done and what remains.'},
+{d:3,dt:'D3 · Memory & State',q:'What is "context drift" in a long-running agent execution?',opts:['The agent runs out of RAM','Accumulated stale or irrelevant context causes the agent\'s decisions to diverge from its original plan','The MCP server goes offline','The CI pipeline times out'],ans:1,exp:'Context drift: stale or irrelevant memory pollutes the agent\'s reasoning, causing it to stray from its original intent. Pruning rules and durable checkpoints prevent this.'},
+{d:3,dt:'D3 · Memory & State',q:'In which Copilot surfaces is agentic memory currently active per GitHub Docs?',opts:['All Copilot features everywhere','Copilot cloud agent, Copilot code review on GitHub.com PRs, and Copilot CLI','IDE completions and mobile only','GitHub Mobile only'],ans:1,exp:'Per GitHub Docs, Copilot Memory is currently active in: Copilot cloud agent, Copilot code review (PRs on GitHub.com), and Copilot CLI.'},
+// D4 — Evaluation & Tuning (10)
+{d:4,dt:'D4 · Evaluation & Tuning',q:'A team deployed an agent but cannot tell if it is succeeding. What is the root cause?',opts:['The agent runs too slowly','No explicit success criteria or evaluation signals were defined before deployment','The model is too small','The CI pipeline is misconfigured'],ans:1,exp:'Without pre-defined success criteria and evaluation signals, there is no baseline. This is why the exam mandates defining expected outcomes, constraints, and signals before deployment.'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'An agent introduces a hardcoded API key into generated code. Which tool catches this?',opts:['CodeQL','GitHub Secret scanning','Dependency vulnerability scanning','A lint checker'],ans:1,exp:'Secret scanning specifically detects hardcoded credentials and API keys. CodeQL covers code security vulnerabilities; dependency scanning covers third-party library vulnerabilities.'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'What distinguishes a "reasoning error" from "tool misuse" in agent failure classification?',opts:['They are synonymous','Reasoning error = flawed planning or inference; tool misuse = calling a tool with wrong parameters, timing, or purpose','Reasoning error = network timeout; tool misuse = memory overflow','Reasoning error = user mistake; tool misuse = admin mistake'],ans:1,exp:'Reasoning errors = wrong logic or inference (bad plan, wrong conclusion). Tool misuse = correct logic but tool called incorrectly (wrong params, wrong tool for task, wrong timing).'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'After tuning for code quality, the agent stops writing unit tests. What was missed?',opts:['Increasing model size','Re-evaluating against ALL success criteria after tuning — optimising one metric can degrade others','Deploying to production immediately','Reducing memory budget'],ans:1,exp:'Tuning has side effects. Every modification must be re-evaluated against the full criteria set. The agent improved on the targeted metric but regressed on an untested criterion.'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'Which evaluation signal is qualitative rather than quantitative?',opts:['Number of lint errors introduced','Test pass rate','Percentage of PRs merged without revision','Developer assessment of code readability and adherence to team conventions'],ans:3,exp:'Qualitative signals require human judgment — readability, logical correctness, architectural fit. They complement quantitative signals but cannot be fully automated.'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'An agent consistently calls a dependency tool with wrong version format strings. Root cause and fix?',opts:['Context drift; increase memory budget','Tool misuse; revise instructions to specify the correct format and add input validation at the tool layer','Reasoning error; replace the model','Environment issue; restart the CI runner'],ans:1,exp:'Systematic wrong parameters = tool misuse. Fix = update instructions with exact format + optionally enforce validation at tool layer to prevent recurrence.'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'What does "aligning evaluation criteria with development intent" prevent?',opts:['Too many PRs being created','Metric gaming — agents optimising what\'s measured at the expense of actual quality (e.g. trivial tests to inflate test count)','CI pipeline timeouts','Memory expiration'],ans:1,exp:'Without alignment, agents can game metrics while delivering poor real-world quality. Criteria must reflect what "good" genuinely means to the team, not just what\'s auto-measurable.'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'To diagnose a silent agent failure with no output and no error, first examine:',opts:['The GitHub billing statement','The plan trace and tool call log to find where execution stopped','Model version history','Only the final PR diff'],ans:1,exp:'Silent failures require tracing backward: plan trace reveals intent, tool call log shows where execution stalled. Start there, then expand to environment logs if needed.'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'Automated scanning tools (SAST, CodeQL) in GitHub Actions serve which evaluation purpose?',opts:['Replace human code review entirely','Generate objective quantitative signals about agent output quality without manual review per run','Configure MCP servers','Manage agent memory'],ans:1,exp:'Automated scanners produce objective, reproducible signals — findings, counts, alerts — enabling evaluation at scale beyond what manual review can cover.'},
+{d:4,dt:'D4 · Evaluation & Tuning',q:'A newly deployed agent\'s output quality improves significantly over 3 weeks without changes. What most likely explains this?',opts:['The CI pipeline warmed up','Copilot Memory built up validated repo-specific knowledge over time, improving contextual accuracy','The model was auto-updated','GitHub Actions became faster'],ans:1,exp:'This is the benefit described in GitHub Docs for Copilot Memory — by building persistent validated knowledge of a codebase, Copilot\'s outputs improve over time without manual intervention.'},
+// D5 — Multi-Agent Coordination (10)
+{d:5,dt:'D5 · Multi-Agent',q:'Agent B starts before Agent A finishes, producing incoherent output. What orchestration failure is this?',opts:['Memory expiration in Agent B','Missing coordination gate — Agent B was not gated on Agent A\'s explicit completion signal','Tool misuse by Agent B','Context drift in Agent A'],ans:1,exp:'Sequential agent dependencies require explicit completion gates. Agent B must wait for Agent A\'s defined signal — not start independently on a timer.'},
+{d:5,dt:'D5 · Multi-Agent',q:'Three parallel agents all write to the same feature branch. Merging fails with conflicts. Root cause?',opts:['Memory expiration','Insufficient isolation — agents were not given separate branches or workspaces, causing overlapping file changes','Tool misuse','Context drift'],ans:1,exp:'Parallel agents must be isolated (separate branches or workspaces) to prevent overlapping changes. Without isolation, concurrent writes to shared files produce merge conflicts.'},
+{d:5,dt:'D5 · Multi-Agent',q:'Two agents independently implement the same utility function in different files. What conflict type is this?',opts:['Contradictory output','Duplicated effort — both solved the same problem without awareness of each other','Overlapping code change','Reasoning error'],ans:1,exp:'"Duplicated effort" is a specific conflict category — multiple agents independently performing the same task due to insufficient coordination.'},
+{d:5,dt:'D5 · Multi-Agent',q:'An agent has been running 30 minutes, produced no output, and has not errored. How should it be classified?',opts:['Full failure; restart the entire pipeline','Stalled execution — investigate logs and trace, then apply targeted recovery (retry, redirect, or escalate)','Normal; wait indefinitely','Reasoning error; switch to a larger model'],ans:1,exp:'"Stalled" is distinct from "failed" or "partial." Diagnose via logs/trace; apply targeted recovery — not a blanket restart that discards completed work from other agents.'},
+{d:5,dt:'D5 · Multi-Agent',q:'When retiring an agent from a multi-agent workflow, what must be preserved?',opts:['Nothing — delete all artifacts to free storage','Audit artifacts, decision logs, and outputs — required for compliance and historical reconstruction of pipeline behavior','Only the final output file','The agent\'s model weights'],ans:1,exp:'Retiring an agent must not destroy its audit trail. Logs, handoff records, and all outputs must be retained for compliance — even after the agent is fully decommissioned.'},
+{d:5,dt:'D5 · Multi-Agent',q:'How should contradictory outputs from two parallel agents be detected?',opts:['Compare billing records','Compare output artifacts (code, plan files, decision logs) at the integration step before any merge, using automated conflict detection or human review','Run both agents again with different prompts','Delete the lower-confidence output'],ans:1,exp:'Contradictory outputs must be caught at integration — before merging — by comparing artifacts. Agents cannot reliably self-detect contradictions in each other\'s work.'},
+{d:5,dt:'D5 · Multi-Agent',q:'What must per-agent audit artifacts contain to enable post-hoc analysis?',opts:['Only the final merged diff','Inputs received, decisions made, tools called, outputs produced, and handoff context passed to downstream agents','Model temperature settings per agent','GitHub Actions run IDs only'],ans:1,exp:'Post-hoc analysis requires reconstructing what each agent did, why, and how — demanding structured per-agent records across the full decision trail.'},
+{d:5,dt:'D5 · Multi-Agent',q:'You need to update Agent B in an active pipeline while Agents A and C process tasks. Safest approach?',opts:['Update Agent B immediately without stopping the pipeline','Drain in-flight tasks from Agent B, update it, validate in isolation, then reintroduce to the pipeline','Delete Agent B and recreate it fresh','Update all agents simultaneously for consistency'],ans:1,exp:'Draining before updating prevents corrupted handoffs. Validating in isolation before reintroduction ensures the updated agent won\'t break the broader workflow.'},
+{d:5,dt:'D5 · Multi-Agent',q:'What is the "human-in-the-loop" recovery pattern in a multi-agent context?',opts:['Replacing all agents with human developers','When automated recovery is insufficient or failure is high-risk, halt execution and route to a human who makes the decision before the pipeline resumes','Asking agents to vote on the best path forward','Running a third agent to adjudicate between two conflicting agents'],ans:1,exp:'Human-in-the-loop recovery is the escalation pattern for cases beyond automated recovery — particularly high-risk, ambiguous, or compliance-sensitive failures.'},
+{d:5,dt:'D5 · Multi-Agent',q:'What orchestration pattern ensures a downstream agent only receives validated, complete outputs from upstream?',opts:['Random load balancing across all agents','Explicit handoff gates with completion signals and artifact validation between each agent stage','Shared context window for all agents','Using the same branch for all agents'],ans:1,exp:'Explicit handoff gates with completion signals and artifact validation are the correct pattern — each agent stage proceeds only on verified, complete inputs from the prior stage.'},
+// D6 — Guardrails & Accountability (9)
+{d:6,dt:'D6 · Guardrails & Accountability',q:'Can Copilot cloud agent approve and merge its own pull requests?',opts:['Yes, if all automated checks pass','Yes, if the repo owner enables auto-merge','No — Copilot cloud agent cannot mark its PRs as Ready for review, approve, or merge them; human review is always required','Yes, if confidence score exceeds 90%'],ans:2,exp:'Per GitHub Docs, Copilot cloud agent cannot mark PRs Ready for review, approve, or merge them. Human review before merge is hard-coded — not configurable.'},
+{d:6,dt:'D6 · Guardrails & Accountability',q:'What is the Responsible AI (RAI) dimension of agent guardrails?',opts:['Ensuring energy efficiency','Blocking actions that generate harmful content, propagate bias, or violate ethical AI policies — regardless of user authorization level','Preventing the agent from writing too many comments','Limiting output file size'],ans:1,exp:'RAI guardrails operate at the output layer: even authorized actions must be blocked if the output violates Responsible AI policies (harmful content, bias, privacy violations).'},
+{d:6,dt:'D6 · Guardrails & Accountability',q:'On what two axes are autonomy levels correctly assigned?',opts:['Model size and token budget','Risk of the action (operational/security/compliance) AND organisational policy constraints including RAI standards','Agent version and memory type','Number of tools and MCP servers configured'],ans:1,exp:'Autonomy levels sit at the intersection of action risk profile and organisational policies. Both axes matter — a low-risk action in a high-compliance context may still need oversight.'},
+{d:6,dt:'D6 · Guardrails & Accountability',q:'An agent proposes to delete a production database table. The operation is reversible via backup. What guardrail applies?',opts:['Allow it — reversibility makes it low risk','Classify by compliance context: production data deletion is high-risk regardless of reversibility; require explicit human authorisation','Block all database operations','Allow only during off-peak hours'],ans:1,exp:'Risk classification considers context, not just technical reversibility. Production data deletion carries high compliance risk requiring explicit authorisation regardless of backup availability.'},
+{d:6,dt:'D6 · Guardrails & Accountability',q:'What does "least-privilege execution context" mean per invocation?',opts:['The agent gets the maximum permissions it might ever need, pre-provisioned','Each agent invocation receives only the minimum permissions for that specific task — no broader access even if broader access exists','All agents share a single global permission set','Permissions are set at deployment and never change'],ans:1,exp:'Least-privilege per invocation: the agent gets exactly what the current task needs. This limits blast radius — if the agent misbehaves or is compromised, damage is bounded.'},
+{d:6,dt:'D6 · Guardrails & Accountability',q:'A compliance team needs all agent actions auditable after the fact. Which configuration satisfies this?',opts:['A Slack notification per action','Signed commits + co-author attribution + session logs with links in commit messages + audit log events — all reviewable by administrators','Only the PR description','A weekly CSV export'],ans:1,exp:'Per GitHub Docs: signed commits + co-author attribution + session logs (linked from commits) + audit log events = complete multi-layer accountability trail for administrators.'},
+{d:6,dt:'D6 · Guardrails & Accountability',q:'Agents can operate freely on feature branches but require human approval before merging to release. Which pattern is this?',opts:['Disable guardrails on feature branches and block all changes to release','Tiered autonomy — full agent autonomy in low-risk zones (feature branches); mandatory human approval at the high-risk transition (merge to release)','Block agents from all branches uniformly','Allow direct agent push to release for maximum speed'],ans:1,exp:'Tiered autonomy: maximum freedom in low-risk zones, targeted gates at high-risk boundaries. This balances velocity with control without blocking routine work.'},
+{d:6,dt:'D6 · Guardrails & Accountability',q:'An authorised user asks the agent to take an action that violates a defined security policy. What must happen?',opts:['Proceed — user authorisation overrides policy','Block the action, surface a clear policy violation message, and escalate if needed — security policies are hard constraints that override user requests','Log the violation and proceed anyway','Ask a second agent to approve it'],ans:1,exp:'Security and compliance policies are hard constraints. They override user authorisation — even an authorised user cannot bypass a policy violation. Block, explain, escalate.'},
+{d:6,dt:'D6 · Guardrails & Accountability',q:'Why is "minimising approvals that do not materially reduce risk" listed as a guardrail design objective?',opts:['Approvals are expensive in Actions minutes','Unnecessary gates impose velocity cost without safety benefit — every approval must be justified by the risk it genuinely mitigates','Users dislike approval gates','MCP servers cannot handle approval workflows'],ans:1,exp:'From the official study guide: "Preserve execution velocity by minimizing approvals that do not materially reduce risk." Approval theater imposes real costs with zero safety benefit.'},
+];
+
+function shuffle(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}return r;}
+
+let S={
+  phase:'start',
+  questions:shuffle(Q),
+  answers:{},
+  flags:{},
+  cur:0,
+  startMs:null,
+  elapsed:0,
+  tid:null
+};
+
+const app=document.getElementById('app');
+
+function render(){
+  if(S.phase==='start')renderStart();
+  else if(S.phase==='exam')renderExam();
+  else renderResults();
+}
+
+function renderStart(){
+  app.innerHTML=`<div class="start-screen">
+<div class="start-brand">Captain Corgi Hub</div>
+<div class="start-logo" aria-hidden="true"><img src="assets/captain-corgi-hub-design/assets/captain-corgi-hub-avatar.png" alt=""></div>
+<div class="start-title">GH-600 full mock exam</div>
+<div class="start-sub">Mock exam 4 — Sixty questions across all six domains, weighted to match the real exam mix. We drew this from the official Microsoft Learn study guide and GitHub Docs.</div>
+<div class="meta-cards">
+  <div class="mc"><div class="mc-v">60</div><div class="mc-l">Questions</div></div>
+  <div class="mc"><div class="mc-v">120</div><div class="mc-l">Minutes</div></div>
+  <div class="mc"><div class="mc-v">700</div><div class="mc-l">Pass mark /1000</div></div>
+  <div class="mc"><div class="mc-v">6</div><div class="mc-l">Domains</div></div>
+</div>
+<div class="start-note">
+  <strong>How this run works:</strong> No answer hints until you submit. Flag questions to revisit if you like. The grid tracks where you are. When the timer hits 120 minutes, we auto-submit.
+</div>
+<button class="btn btn-primary" type="button" id="start-btn" style="font-size:var(--fs-body);padding:11px 32px">Start exam</button>
+</div>`;
+  document.getElementById('start-btn').onclick=()=>{
+    S.phase='exam';S.startMs=Date.now();startTimer();render();
+  };
+}
+
+function startTimer(){
+  S.tid=setInterval(()=>{
+    S.elapsed=Math.floor((Date.now()-S.startMs)/1000);
+    const rem=MINS*60-S.elapsed;
+    if(rem<=0){clearInterval(S.tid);S.phase='results';render();return;}
+    const el=document.getElementById('timer-display');
+    if(el){
+      const m=Math.floor(rem/60),sc=rem%60;
+      el.textContent=m+':'+(sc<10?'0':'')+sc;
+      const pill=document.getElementById('timer-pill');
+      if(pill)pill.className='timer-pill'+(rem<300?' danger':rem<900?' warn':'');
+    }
+    const fill=document.getElementById('prog-fill');
+    if(fill)fill.style.width=(S.cur/S.questions.length*100)+'%';
+  },1000);
+}
+
+function renderExam(){
+  const q=S.questions[S.cur];
+  const total=S.questions.length;
+  const answered=Object.keys(S.answers).length;
+  const flagged=Object.values(S.flags).filter(Boolean).length;
+  const rem=MINS*60-S.elapsed;
+  const m=Math.floor(rem/60),sc=rem%60;
+
+  app.innerHTML=`
+<div class="exam-header">
+  <div class="eh-title">GH-600 mock exam</div>
+  <span class="eh-meta">${answered} answered · ${flagged} flagged</span>
+  <div class="timer-pill" id="timer-pill"><span id="timer-display">${m}:${sc<10?'0':''}${sc}</span></div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:${S.cur/total*100}%"></div></div>
+<div class="exam-body">
+  <div class="q-sidebar">
+    <div class="qs-label">Question list</div>
+    <div class="qs-stats">Answered: <span>${answered}/${total}</span></div>
+    <div class="q-grid" id="q-grid"></div>
+    <button class="btn btn-danger" type="button" id="sb-submit" style="width:100%;justify-content:center">Submit</button>
+  </div>
+  <div class="q-panel">
+    <div class="q-meta">
+      <span class="q-num-badge">Q${S.cur+1} / ${total}</span>
+      <span class="q-domain-badge">${q.dt}</span>
+      ${S.flags[S.cur]?'<span class="q-flag-badge">Flagged</span>':''}
+    </div>
+    <div class="q-text">${q.q}</div>
+    <div class="opts" id="opts">
+      ${q.opts.map((o,i)=>`<button class="opt${S.answers[S.cur]===i?' sel':''}" data-i="${i}"><span class="opt-l">${LETTERS[i]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="q-nav-bar">
+      <div class="btn-row">
+        <button class="btn" type="button" id="prev" ${S.cur===0?'disabled':''}>Previous</button>
+        <button class="btn" type="button" id="flag-btn">${S.flags[S.cur]?'Unflag':'Flag'}</button>
+        <button class="btn" type="button" id="next" ${S.cur===total-1?'disabled':''}>Next</button>
+      </div>
+      <button class="btn btn-danger" type="button" id="submit-btn">Submit exam</button>
+    </div>
+  </div>
+</div>
+<div id="modal-area"></div>`;
+
+  const grid=document.getElementById('q-grid');
+  S.questions.forEach((_,i)=>{
+    const b=document.createElement('button');
+    const isAns=S.answers[i]!==undefined,isFlag=S.flags[i],isCur=i===S.cur;
+    b.className='q-dot '+(isFlag?'flag':isAns?'ans':'unans')+(isCur?' cur':'');
+    b.textContent=i+1;b.title='Q'+(i+1);
+    b.onclick=()=>{S.cur=i;render();};
+    grid.appendChild(b);
+  });
+
+  document.querySelectorAll('.opt').forEach(btn=>{
+    btn.onclick=()=>{S.answers[S.cur]=parseInt(btn.dataset.i);render();};
+  });
+  document.getElementById('prev').onclick=()=>{if(S.cur>0){S.cur--;render();}};
+  document.getElementById('next').onclick=()=>{if(S.cur<total-1){S.cur++;render();}};
+  document.getElementById('flag-btn').onclick=()=>{S.flags[S.cur]=!S.flags[S.cur];render();};
+
+  const showConfirm=()=>{
+    const unanswered=total-Object.keys(S.answers).length;
+    document.getElementById('modal-area').innerHTML=`<div class="modal-overlay" id="modal-overlay">
+<div class="modal">
+  <h3>Submit your exam?</h3>
+  <p>${unanswered>0?`You still have <strong>${unanswered}</strong> unanswered question${unanswered!==1?'s':''}.`:'Every question has an answer.'} We will score what you have now.</p>
+  <div class="modal-btns">
+    <button class="btn" type="button" id="cancel-btn">Cancel</button>
+    <button class="btn btn-primary" type="button" id="confirm-btn">Submit</button>
+  </div>
+</div></div>`;
+    document.getElementById('confirm-btn').onclick=()=>{clearInterval(S.tid);S.phase='results';render();};
+    document.getElementById('cancel-btn').onclick=()=>{document.getElementById('modal-area').innerHTML='';};
+    document.getElementById('modal-overlay').onclick=e=>{if(e.target.id==='modal-overlay')document.getElementById('modal-area').innerHTML='';};
+  };
+  document.getElementById('submit-btn').onclick=showConfirm;
+  document.getElementById('sb-submit').onclick=showConfirm;
+}
+
+function renderResults(){
+  clearInterval(S.tid);
+  const total=S.questions.length;
+  let correct=0;
+  const ds={1:{n:'D1 · Architecture & SDLC',c:0,t:0},2:{n:'D2 · Tool Use & MCP',c:0,t:0},3:{n:'D3 · Memory & State',c:0,t:0},4:{n:'D4 · Evaluation & Tuning',c:0,t:0},5:{n:'D5 · Multi-Agent',c:0,t:0},6:{n:'D6 · Guardrails',c:0,t:0}};
+  S.questions.forEach((q,i)=>{ds[q.d].t++;if(S.answers[i]===q.ans){correct++;ds[q.d].c++;}});
+  const scaled=Math.round(correct/total*1000);
+  const pass=scaled>=PASS;
+  const pct=Math.round(correct/total*100);
+  const elapsed=S.elapsed,em=Math.floor(elapsed/60),es=elapsed%60;
+
+  let domCards='';
+  [1,2,3,4,5,6].forEach(d=>{
+    const {n,c,t}=ds[d];
+    const p=Math.round(c/t*100);
+    const cls=p>=75?'g':p>=60?'m':'b';
+    domCards+=`<div class="db-card"><div class="db-name">${n}</div><div class="db-score">${c}/${t} <span style="font-size:var(--fs-small);color:var(--fg-3)">(${p}%)</span></div><div class="db-bar-bg"><div class="db-bar-fill ${cls}" style="width:${p}%"></div></div></div>`;
+  });
+
+  app.innerHTML=`<div class="results-page">
+<div class="result-hero">
+  <div class="result-score ${pass?'pass':'fail'}">${scaled}</div>
+  <div class="result-verdict">${pass?'Nice work — that\'s a pass':'Not this time — keep going'}</div>
+  <div class="result-sub">${correct}/${total} correct (${pct}%) · Pass mark: 700/1000</div>
+  <div class="result-meta">
+    <span class="rm-chip">Time used: ${em}m ${es}s</span>
+    <span class="rm-chip">${pass?'Above pass mark':'Below pass mark'}</span>
+    <span class="rm-chip">${Object.values(S.flags).filter(Boolean).length} flagged questions</span>
+  </div>
+</div>
+<div class="domain-breakdown-title">Score by domain</div>
+<div class="domain-breakdown">${domCards}</div>
+<div class="divider"></div>
+<div class="btn-row" style="margin-bottom:var(--space-5)">
+  <button class="btn btn-primary" type="button" id="review-btn">Review all answers</button>
+  <button class="btn" type="button" id="retake-btn">Retake exam</button>
+</div>
+<div id="review-out"></div>
+</div>`;
+
+  document.getElementById('retake-btn').onclick=()=>{
+    clearInterval(S.tid);
+    S={phase:'start',questions:shuffle(Q),answers:{},flags:{},cur:0,startMs:null,elapsed:0,tid:null};
+    render();
+  };
+
+  let open=false;
+  document.getElementById('review-btn').onclick=()=>{
+    const out=document.getElementById('review-out');
+    if(open){out.innerHTML='';open=false;document.getElementById('review-btn').textContent='Review all answers';return;}
+    open=true;document.getElementById('review-btn').textContent='Hide review';
+    let html=`<div class="domain-breakdown-title" style="margin-bottom:var(--space-3)">Every question — ${total} total</div>`;
+    S.questions.forEach((q,i)=>{
+      const chosen=S.answers[i],isOk=chosen===q.ans,skip=chosen===undefined;
+      const status=skip?'<span style="color:var(--warning)">Skipped</span>':isOk?'<span style="color:var(--success)">Correct</span>':'<span style="color:var(--danger)">Wrong</span>';
+      html+=`<div class="rq ${skip?'skip':isOk?'ok':'bad'}">
+<div class="rq-meta"><strong>Q${i+1}</strong><span>${q.dt}</span>${status}</div>
+<div class="rq-q">${q.q}</div>`;
+      q.opts.forEach((o,oi)=>{
+        let cls='nn';
+        if(oi===q.ans&&chosen===oi)cls='cc';
+        else if(oi===chosen&&chosen!==q.ans)cls='cw';
+        else if(oi===q.ans)cls='rc';
+        html+=`<div class="ro ${cls}"><span style="font-weight:700;flex-shrink:0;font-family:var(--font-mono)">${LETTERS[oi]}.</span><span>${o}</span></div>`;
+      });
+      html+=`<div class="rq-exp"><strong>Explanation:</strong> ${q.exp}</div></div>`;
+    });
+    out.innerHTML=html;out.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+}
+
+render();
+</script>
+</body>
+</html>

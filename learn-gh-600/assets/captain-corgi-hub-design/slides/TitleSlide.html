@@ -1,0 +1,52 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<title>Title slide — Captain Corgi</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--ink); overflow: hidden; }
+  .slide { width: 1280px; height: 720px; position: relative; overflow: hidden;
+    background: radial-gradient(circle at 30% 40%, #4A8AA3 0%, var(--deep-teal) 50%, #2C5A6E 100%);
+    color: var(--clay-cream); font-family: var(--font-body); }
+  .stars { position: absolute; inset: 0; pointer-events: none; opacity: 0.18; }
+  .content { position: absolute; inset: 0; padding: 80px 96px; display: flex; flex-direction: column; justify-content: space-between; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; }
+  .ep { font-family: var(--font-mono); font-size: 18px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--star-yellow); }
+  .wm { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 18px; letter-spacing: -0.01em; white-space: nowrap; }
+  .main { display: flex; align-items: flex-end; gap: 56px; }
+  .mascot { width: 360px; height: 360px; border-radius: 999px; object-fit: cover; border: 6px solid rgba(246,242,234,0.18); box-shadow: 0 24px 48px rgba(0,0,0,0.35); flex-shrink: 0; }
+  .text { flex: 1; }
+  .kicker { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: var(--star-yellow); color: var(--ink); border-radius: 999px; font-family: var(--font-mono); font-weight: 700; font-size: 14px; letter-spacing: 0.06em; white-space: nowrap; }
+  h1 { font-family: var(--font-display); font-weight: 800; font-size: 96px; line-height: 0.95; letter-spacing: -0.03em; margin: 22px 0 18px; text-wrap: balance; }
+  .sub { font-family: var(--font-body); font-size: 24px; color: rgba(246,242,234,0.82); line-height: 1.4; max-width: 640px; }
+  .footer { display: flex; gap: 18px; align-items: center; font-family: var(--font-mono); font-size: 14px; color: rgba(246,242,234,0.65); letter-spacing: 0.06em; text-transform: uppercase; }
+  .footer .dot { width: 4px; height: 4px; border-radius: 999px; background: currentColor; }
+</style></head>
+<body>
+<div class="slide">
+  <svg class="stars" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice">
+    <g fill="#FBC00A">
+      <g transform="translate(140 120) rotate(8)"><path d="M0 -20 L6 -6 L21 -4 L11 6 L13 21 L0 14 L-13 21 L-11 6 L-21 -4 L-6 -6 Z"/></g>
+      <g transform="translate(1100 90) rotate(-12) scale(0.7)"><path d="M0 -20 L6 -6 L21 -4 L11 6 L13 21 L0 14 L-13 21 L-11 6 L-21 -4 L-6 -6 Z"/></g>
+      <g transform="translate(1180 380) rotate(20) scale(0.5)"><path d="M0 -20 L6 -6 L21 -4 L11 6 L13 21 L0 14 L-13 21 L-11 6 L-21 -4 L-6 -6 Z"/></g>
+      <g transform="translate(80 580) rotate(-15) scale(0.6)"><path d="M0 -20 L6 -6 L21 -4 L11 6 L13 21 L0 14 L-13 21 L-11 6 L-21 -4 L-6 -6 Z"/></g>
+      <g transform="translate(560 80) scale(0.4)"><path d="M0 -20 L6 -6 L21 -4 L11 6 L13 21 L0 14 L-13 21 L-11 6 L-21 -4 L-6 -6 Z"/></g>
+    </g>
+  </svg>
+  <div class="content">
+    <div class="topbar">
+      <span class="ep">Episode 042</span>
+      <span class="wm"><img src="../assets/icons/star.svg" width="32" height="32"/>Captain Corgi /<span style="color:var(--star-yellow);font-size:13px;letter-spacing:.18em">HUB</span></span>
+    </div>
+    <div class="main">
+      <img class="mascot" src="../assets/captain-corgi-avatar.png" alt="Captain Corgi"/>
+      <div class="text">
+        <span class="kicker">⚓ Set sail</span>
+        <h1>Building a tiny RAG pipeline.</h1>
+        <p class="sub">Embeddings, retrieval, and a 50-line Go program. We'll start simple and build up — together.</p>
+      </div>
+    </div>
+    <div class="footer">
+      <span>youtube.com/@captain-corgi</span><span class="dot"></span><span>captain-corgi-hub</span><span class="dot"></span><span>12 min read</span>
+    </div>
+  </div>
+</div></body></html>
