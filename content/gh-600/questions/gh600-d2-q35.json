@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q35",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Identifying required tools for an agent should be based on:",
+  "explanation": "Correct answer: B) The defined inputs, outputs, and tasks the agent must perform",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Popular tool lists"
+    },
+    {
+      "id": "o2",
+      "text": "The defined inputs, outputs, and tasks the agent must perform"
+    },
+    {
+      "id": "o3",
+      "text": "The number of MCP servers available"
+    },
+    {
+      "id": "o4",
+      "text": "Cost of each tool"
+    }
+  ],
+  "correct": "o2"
+}

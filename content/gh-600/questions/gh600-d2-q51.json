@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q51",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Rollback strategies for agents include:",
+  "explanation": "Correct answer: A) Reverting changes when an error occurs",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Reverting changes when an error occurs"
+    },
+    {
+      "id": "o2",
+      "text": "Ignoring errors"
+    },
+    {
+      "id": "o3",
+      "text": "Deleting all branches"
+    },
+    {
+      "id": "o4",
+      "text": "Forcing merges"
+    }
+  ],
+  "correct": "o1"
+}

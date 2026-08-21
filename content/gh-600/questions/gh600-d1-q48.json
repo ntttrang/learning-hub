@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q48",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Right-sized human intervention means:",
+  "explanation": "Correct answer: A) Approvals only where they reduce material risk",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Approvals only where they reduce material risk"
+    },
+    {
+      "id": "o2",
+      "text": "Approval on every action"
+    },
+    {
+      "id": "o3",
+      "text": "No approvals at all"
+    },
+    {
+      "id": "o4",
+      "text": "Random approvals"
+    }
+  ],
+  "correct": "o1"
+}

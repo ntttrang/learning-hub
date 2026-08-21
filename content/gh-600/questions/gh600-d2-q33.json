@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q33",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Branch-based scope is MOST useful when:",
+  "explanation": "Correct answer: B) You need to constrain an agent's actions to specific branches to limit blast radius",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agents need to read all branches"
+    },
+    {
+      "id": "o2",
+      "text": "You need to constrain an agent's actions to specific branches to limit blast radius"
+    },
+    {
+      "id": "o3",
+      "text": "Agents must access secrets"
+    },
+    {
+      "id": "o4",
+      "text": "Memory must be shared"
+    }
+  ],
+  "correct": "o2"
+}

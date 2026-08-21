@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q57",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Detecting agent conflicts requires:",
+  "explanation": "Correct answer: A) Cross-agent change tracking, conflict detection, and resolution policy",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Cross-agent change tracking, conflict detection, and resolution policy"
+    },
+    {
+      "id": "o2",
+      "text": "Single-agent execution only"
+    },
+    {
+      "id": "o3",
+      "text": "No coordination"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling logs"
+    }
+  ],
+  "correct": "o1"
+}

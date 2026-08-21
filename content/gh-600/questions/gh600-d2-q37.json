@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q37",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "MCP allow lists are used to:",
+  "explanation": "Correct answer: B) Restrict the MCP servers/tools an agent can use",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Speed up tool selection"
+    },
+    {
+      "id": "o2",
+      "text": "Restrict the MCP servers/tools an agent can use"
+    },
+    {
+      "id": "o3",
+      "text": "Replace GitHub Actions"
+    },
+    {
+      "id": "o4",
+      "text": "Manage memory"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q25",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "An agent attempting a file change fails due to a permissions error. What is the BEST response strategy?",
+  "explanation": "Correct answer: C) Implement error handling with a defined escalation path and rollback capability",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Retry the action indefinitely until it succeeds"
+    },
+    {
+      "id": "o2",
+      "text": "Log the error and silently skip the action"
+    },
+    {
+      "id": "o3",
+      "text": "Implement error handling with a defined escalation path and rollback capability"
+    },
+    {
+      "id": "o4",
+      "text": "Increase the agent's permission scope automatically"
+    }
+  ],
+  "correct": "o3"
+}

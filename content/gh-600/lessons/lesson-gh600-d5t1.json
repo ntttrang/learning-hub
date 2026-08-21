@@ -1,0 +1,45 @@
+{
+  "id": "lesson-gh600-d5t1",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "order": 1,
+  "title": "Orchestration Patterns",
+  "summary": "Apply orchestration patterns, configure parallel isolation, detect and resolve conflicts, manage agent lifecycles, and implement recovery in multi-agent workflows.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "table",
+      "headers": [
+        "Pattern",
+        "Description",
+        "When to Use"
+      ],
+      "rows": [
+        [
+          "Sequential",
+          "Agent B waits for Agent A's explicit completion signal",
+          "Dependent tasks — B needs A's output"
+        ],
+        [
+          "Parallel with isolation",
+          "Agents run simultaneously on separate branches/workspaces",
+          "Independent tasks with no shared state"
+        ],
+        [
+          "Hierarchical",
+          "Orchestrator assigns to workers, aggregates results",
+          "Complex tasks needing coordination"
+        ],
+        [
+          "Event-driven",
+          "Agents triggered by GitHub events (PR opened, issue created)",
+          "SDLC-integrated reactive workflows"
+        ]
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Completion Signals:** Sequential agents MUST wait for an explicit signal — not a time delay. Missing a gate = agents working on incomplete inputs."
+    }
+  ]
+}

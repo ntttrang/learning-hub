@@ -1,0 +1,24 @@
+{
+  "id": "lesson-gh600-d3t3",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "order": 3,
+  "title": "Durable Artifacts & Context Drift",
+  "summary": "Choose memory strategies, persist durable state, prevent context drift, and maintain task continuity — including Copilot Memory specifics tested directly on the exam.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "tip",
+      "text": "**Durable Artifact Pattern:** After each significant step, the agent commits a structured state file to its working branch. On resumption, it reads this file to understand what's done and what remains."
+    },
+    {
+      "kind": "code",
+      "language": "json",
+      "code": "# Example: .agent-state.json (committed to copilot/ branch)\n{\n  \"task\": \"refactor-auth-module\",\n  \"completed_steps\": [\"extract-interface\", \"update-tests\"],\n  \"pending_steps\": [\"update-docs\", \"open-pr\"],\n  \"decisions\": { \"interface_name\": \"IAuthProvider\" },\n  \"checkpoint_at\": \"2026-05-23T10:00:00Z\"\n}"
+    },
+    {
+      "kind": "tip",
+      "text": "**Context Drift:** When accumulated or outdated context causes the agent's decisions to diverge from its original plan. Prevent with pruning rules, expiration rules, and durable checkpoints."
+    }
+  ]
+}

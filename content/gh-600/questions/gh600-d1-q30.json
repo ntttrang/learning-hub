@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q30",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "An agent that overrides developer guidance is exhibiting:",
+  "explanation": "Correct answer: B) An anti-pattern of unbounded agent behavior",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Proper autonomy"
+    },
+    {
+      "id": "o2",
+      "text": "An anti-pattern of unbounded agent behavior"
+    },
+    {
+      "id": "o3",
+      "text": "Healthy planning"
+    },
+    {
+      "id": "o4",
+      "text": "Effective tool use"
+    }
+  ],
+  "correct": "o2"
+}

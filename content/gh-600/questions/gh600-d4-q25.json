@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q25",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Automated scanning tools are valuable for evaluation because they:",
+  "explanation": "Correct answer: B) Generate consistent, scalable evaluation signals",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Replace human judgment entirely"
+    },
+    {
+      "id": "o2",
+      "text": "Generate consistent, scalable evaluation signals"
+    },
+    {
+      "id": "o3",
+      "text": "Eliminate the need for guardrails"
+    },
+    {
+      "id": "o4",
+      "text": "Reduce agent autonomy"
+    }
+  ],
+  "correct": "o2"
+}

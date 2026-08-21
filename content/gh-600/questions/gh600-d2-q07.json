@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q07",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "What does the MCP allow list specifically control?",
+  "explanation": "MCP allow lists restrict which servers an agent can invoke. Tool permissions then control what each permitted server can do. Both layers are required for least-privilege.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Which GitHub repos the agent can read"
+    },
+    {
+      "id": "o2",
+      "text": "Which MCP servers the agent is permitted to call — enforcing access control at the tool invocation layer"
+    },
+    {
+      "id": "o3",
+      "text": "The agent's memory budget"
+    },
+    {
+      "id": "o4",
+      "text": "The model temperature"
+    }
+  ],
+  "correct": "o2"
+}

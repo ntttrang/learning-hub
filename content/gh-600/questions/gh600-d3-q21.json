@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q21",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Capturing task progress as durable artifacts enables:",
+  "explanation": "Correct answer: B) Resumption from a checkpoint after interruption",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Faster LLM inference"
+    },
+    {
+      "id": "o2",
+      "text": "Resumption from a checkpoint after interruption"
+    },
+    {
+      "id": "o3",
+      "text": "Tool selection"
+    },
+    {
+      "id": "o4",
+      "text": "MCP registration"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q88",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Tool-level least-privilege is enforced through:",
+  "explanation": "Correct answer: A) MCP allow lists and scoped permissions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "MCP allow lists and scoped permissions"
+    },
+    {
+      "id": "o2",
+      "text": "Adding more tools"
+    },
+    {
+      "id": "o3",
+      "text": "Eliminating MCP"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling logs"
+    }
+  ],
+  "correct": "o1"
+}

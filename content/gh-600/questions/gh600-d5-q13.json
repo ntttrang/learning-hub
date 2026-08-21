@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q13",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "You need to update Agent B in an active pipeline while Agents A and C process tasks. Safest approach?",
+  "explanation": "Draining before updating prevents corrupted handoffs. Validating in isolation before reintroduction ensures the updated agent won't break the broader workflow.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Update Agent B immediately without stopping the pipeline"
+    },
+    {
+      "id": "o2",
+      "text": "Drain in-flight tasks from Agent B, update it, validate in isolation, then reintroduce to the pipeline"
+    },
+    {
+      "id": "o3",
+      "text": "Delete Agent B and recreate it fresh"
+    },
+    {
+      "id": "o4",
+      "text": "Update all agents simultaneously for consistency"
+    }
+  ],
+  "correct": "o2"
+}

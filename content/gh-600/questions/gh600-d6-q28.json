@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q28",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "In the context of GH-600, what is the primary purpose of configuring an agent to use **branch-based scope**?",
+  "explanation": "Correct answer: B) To ensure the agent only operates within designated branches, reducing risk of unintended changes to protected code",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "To increase the agent's processing speed"
+    },
+    {
+      "id": "o2",
+      "text": "To ensure the agent only operates within designated branches, reducing risk of unintended changes to protected code"
+    },
+    {
+      "id": "o3",
+      "text": "To allow the agent to merge branches automatically"
+    },
+    {
+      "id": "o4",
+      "text": "To give the agent read access to all branches in the organization"
+    }
+  ],
+  "correct": "o2"
+}

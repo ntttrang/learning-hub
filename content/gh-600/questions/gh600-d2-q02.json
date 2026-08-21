@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q02",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "An agent in CI only needs to comment on a PR and push to the PR branch. Correct scope?",
+  "explanation": "Least-privilege in CI: write access scoped to the specific PR branch in the triggering repo, plus PR comment permission only.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Full organisation-wide admin access"
+    },
+    {
+      "id": "o2",
+      "text": "Write access to the PR branch and PR comment permission in the triggering repository only"
+    },
+    {
+      "id": "o3",
+      "text": "Read access to all repositories"
+    },
+    {
+      "id": "o4",
+      "text": "Global write access to all branches"
+    }
+  ],
+  "correct": "o2"
+}

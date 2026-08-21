@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q06",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Which statement best describes GitHub as the \"control plane\" in an agentic AI system?",
+  "explanation": "The exam defines GitHub as both the system of record (branches, PRs, commits) and control plane (workflows, permissions, approvals) for all agent activity.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "GitHub stores LLM model weights for Copilot"
+    },
+    {
+      "id": "o2",
+      "text": "GitHub is the system of record and orchestration point where workflows, permissions, and approvals govern all agent activity"
+    },
+    {
+      "id": "o3",
+      "text": "GitHub only provides a UI for viewing code"
+    },
+    {
+      "id": "o4",
+      "text": "GitHub manages LLM API billing"
+    }
+  ],
+  "correct": "o2"
+}

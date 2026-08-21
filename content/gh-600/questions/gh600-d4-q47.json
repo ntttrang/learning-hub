@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q47",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Automated scanning helps:",
+  "explanation": "Correct answer: A) Produce consistent evaluation signals at scale",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Produce consistent evaluation signals at scale"
+    },
+    {
+      "id": "o2",
+      "text": "Replace human judgment in all cases"
+    },
+    {
+      "id": "o3",
+      "text": "Eliminate guardrails"
+    },
+    {
+      "id": "o4",
+      "text": "Reduce traceability"
+    }
+  ],
+  "correct": "o1"
+}

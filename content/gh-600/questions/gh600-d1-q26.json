@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q26",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Configuring an agent to produce inspectable artifacts allows teams to:",
+  "explanation": "Correct answer: B) Observe, audit, and intervene in agent behavior",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Skip evaluation entirely"
+    },
+    {
+      "id": "o2",
+      "text": "Observe, audit, and intervene in agent behavior"
+    },
+    {
+      "id": "o3",
+      "text": "Bypass guardrails"
+    },
+    {
+      "id": "o4",
+      "text": "Reduce memory footprint"
+    }
+  ],
+  "correct": "o2"
+}

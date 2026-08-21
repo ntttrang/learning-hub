@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q22",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "What is the FIRST step when designing an agent that will operate in your SDLC pipeline?",
+  "explanation": "Correct answer: B) Identify the specific SDLC steps the agent will perform",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Pick the LLM model"
+    },
+    {
+      "id": "o2",
+      "text": "Identify the specific SDLC steps the agent will perform"
+    },
+    {
+      "id": "o3",
+      "text": "Configure the agent's memory"
+    },
+    {
+      "id": "o4",
+      "text": "Add MCP servers"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q52",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "A best practice when selecting tools for an agent is:",
+  "explanation": "Correct answer: A) Choose only tools needed for the agent's defined tasks",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Choose only tools needed for the agent's defined tasks"
+    },
+    {
+      "id": "o2",
+      "text": "Add every available tool"
+    },
+    {
+      "id": "o3",
+      "text": "Use only built-in tools"
+    },
+    {
+      "id": "o4",
+      "text": "Choose tools randomly"
+    }
+  ],
+  "correct": "o1"
+}

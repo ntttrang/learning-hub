@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q18",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "An agent is configured to plan a refactoring task and then immediately execute it without review. What is the PRIMARY risk of this configuration?",
+  "explanation": "Correct answer: B) Planning errors propagate directly into code changes before they can be caught",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agent may produce logs that are too verbose"
+    },
+    {
+      "id": "o2",
+      "text": "Planning errors propagate directly into code changes before they can be caught"
+    },
+    {
+      "id": "o3",
+      "text": "The agent will be unable to create pull requests"
+    },
+    {
+      "id": "o4",
+      "text": "The agent's memory will expire during execution"
+    }
+  ],
+  "correct": "o2"
+}

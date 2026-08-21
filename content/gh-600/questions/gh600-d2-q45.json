@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q45",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Configuring tool permissions should be:",
+  "explanation": "Correct answer: B) Scoped tightly to the agent's task",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Open by default"
+    },
+    {
+      "id": "o2",
+      "text": "Scoped tightly to the agent's task"
+    },
+    {
+      "id": "o3",
+      "text": "Inherited from repo admin"
+    },
+    {
+      "id": "o4",
+      "text": "Identical across all tools"
+    }
+  ],
+  "correct": "o2"
+}

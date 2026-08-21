@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q61",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Lifecycle changes to agents in active workflows:",
+  "explanation": "Correct answer: A) Should avoid disrupting ongoing executions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Should avoid disrupting ongoing executions"
+    },
+    {
+      "id": "o2",
+      "text": "Always require full workflow stoppage"
+    },
+    {
+      "id": "o3",
+      "text": "Are not allowed"
+    },
+    {
+      "id": "o4",
+      "text": "Should bypass observability"
+    }
+  ],
+  "correct": "o1"
+}

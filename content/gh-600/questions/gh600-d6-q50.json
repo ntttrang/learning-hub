@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q50",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "A balanced guardrail strategy:",
+  "explanation": "Correct answer: B) Targets oversight where risk is meaningful, preserving velocity elsewhere",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Adds approvals for every action"
+    },
+    {
+      "id": "o2",
+      "text": "Targets oversight where risk is meaningful, preserving velocity elsewhere"
+    },
+    {
+      "id": "o3",
+      "text": "Removes all guardrails"
+    },
+    {
+      "id": "o4",
+      "text": "Limits the agent to read-only"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q101",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Right-sized human-in-the-loop checks apply to:",
+  "explanation": "Correct answer: A) High-risk, irreversible, or compliance-sensitive actions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "High-risk, irreversible, or compliance-sensitive actions"
+    },
+    {
+      "id": "o2",
+      "text": "Every agent action regardless of risk"
+    },
+    {
+      "id": "o3",
+      "text": "Only read-only actions"
+    },
+    {
+      "id": "o4",
+      "text": "Only tool selection decisions"
+    }
+  ],
+  "correct": "o1"
+}

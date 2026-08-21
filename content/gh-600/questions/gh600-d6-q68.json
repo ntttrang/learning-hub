@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q68",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "An agent failed because it used the wrong API endpoint. This is:",
+  "explanation": "Correct answer: A) A tool misuse failure",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A tool misuse failure"
+    },
+    {
+      "id": "o2",
+      "text": "A reasoning error"
+    },
+    {
+      "id": "o3",
+      "text": "A memory failure"
+    },
+    {
+      "id": "o4",
+      "text": "A branch conflict"
+    }
+  ],
+  "correct": "o1"
+}

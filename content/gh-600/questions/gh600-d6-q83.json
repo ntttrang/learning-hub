@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q83",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "A failed agent run that re-does completed work indicates:",
+  "explanation": "Correct answer: A) Missing durable state checkpoints",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Missing durable state checkpoints"
+    },
+    {
+      "id": "o2",
+      "text": "Too many tools"
+    },
+    {
+      "id": "o3",
+      "text": "MCP misconfiguration"
+    },
+    {
+      "id": "o4",
+      "text": "Excess memory"
+    }
+  ],
+  "correct": "o1"
+}

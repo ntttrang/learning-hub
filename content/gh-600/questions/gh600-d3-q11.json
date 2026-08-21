@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q11",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "What is \"context drift\" in a long-running agent execution?",
+  "explanation": "Context drift: stale or irrelevant memory pollutes the agent's reasoning, causing it to stray from its original intent. Pruning rules and durable checkpoints prevent this.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agent runs out of RAM"
+    },
+    {
+      "id": "o2",
+      "text": "Accumulated stale or irrelevant context causes the agent's decisions to diverge from its original plan"
+    },
+    {
+      "id": "o3",
+      "text": "The MCP server goes offline"
+    },
+    {
+      "id": "o4",
+      "text": "The CI pipeline times out"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q01",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "What is the key difference between an MCP allow list and tool permissions?",
+  "explanation": "Two distinct access control layers. Allow list = server reachability. Tool permissions = operation scope within a permitted server. Both required for complete least-privilege.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "They are identical"
+    },
+    {
+      "id": "o2",
+      "text": "Allow list controls which MCP servers the agent can reach; tool permissions control what each permitted server can do — both layers needed"
+    },
+    {
+      "id": "o3",
+      "text": "Allow list stores API keys; permissions store model settings"
+    },
+    {
+      "id": "o4",
+      "text": "Allow lists are cloud-only; permissions work everywhere"
+    }
+  ],
+  "correct": "o2"
+}

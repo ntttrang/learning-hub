@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q60",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Configuring agent tools requires:",
+  "explanation": "Correct answer: A) Mapping required capabilities to specific tools and scoping permissions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Mapping required capabilities to specific tools and scoping permissions"
+    },
+    {
+      "id": "o2",
+      "text": "Adding all available tools"
+    },
+    {
+      "id": "o3",
+      "text": "Random tool selection"
+    },
+    {
+      "id": "o4",
+      "text": "No configuration"
+    }
+  ],
+  "correct": "o1"
+}

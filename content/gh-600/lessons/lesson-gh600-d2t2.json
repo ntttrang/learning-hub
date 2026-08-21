@@ -1,0 +1,30 @@
+{
+  "id": "lesson-gh600-d2t2",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "order": 2,
+  "title": "Built-in Copilot Cloud Agent Security Controls",
+  "summary": "Select and configure agent tools, set up MCP servers with registries and allow lists, integrate agents into CI, and implement safe execution with robust error handling.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "list",
+      "items": [
+        "**Write access gate:** Only users WITH write access can trigger the agent via @copilot",
+        "**Branch isolation:** Agent pushes only to copilot/ branch — never to main",
+        "**No self-approval:** Agent CANNOT mark its own PRs as \"Ready for review\"",
+        "**No self-merge:** Draft PRs MUST be merged by a human",
+        "**Workflow approval gate:** Actions don't auto-run until write-access user approves",
+        "**Firewall:** Internet access restricted to prevent data exfiltration",
+        "**Signed commits:** All agent commits are cryptographically signed (\"Verified\" badge)",
+        "**Co-author attribution:** Developer who initiated is always co-author",
+        "**Prompt injection filter:** Hidden characters filtered from input before reaching agent",
+        "**Auto security scans:** CodeQL + Advisory DB + Secret scanning on all generated code"
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Exam Trap:** \"Auto-merging its own PRs\" may appear as a listed mitigation. It is NOT — it's a risk that GitHub explicitly prevents."
+    }
+  ]
+}

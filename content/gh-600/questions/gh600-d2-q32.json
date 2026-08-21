@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q32",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "A robust agent error-handling design includes:",
+  "explanation": "Correct answer: A) Retries, rollbacks, and escalation paths",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Retries, rollbacks, and escalation paths"
+    },
+    {
+      "id": "o2",
+      "text": "Silent failures"
+    },
+    {
+      "id": "o3",
+      "text": "Unlimited retries"
+    },
+    {
+      "id": "o4",
+      "text": "Skipping failed steps without logging"
+    }
+  ],
+  "correct": "o1"
+}

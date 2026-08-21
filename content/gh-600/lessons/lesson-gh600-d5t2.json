@@ -1,0 +1,40 @@
+{
+  "id": "lesson-gh600-d5t2",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "order": 2,
+  "title": "3 Conflict Types",
+  "summary": "Apply orchestration patterns, configure parallel isolation, detect and resolve conflicts, manage agent lifecycles, and implement recovery in multi-agent workflows.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "table",
+      "headers": [
+        "Conflict Type",
+        "Definition",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Overlapping code changes",
+          "Two agents modify same file/region simultaneously",
+          "Agents A and B both edit auth.ts → merge conflict"
+        ],
+        [
+          "Duplicated effort",
+          "Two agents independently solve the same problem",
+          "Both implement the same utility function"
+        ],
+        [
+          "Contradictory outputs",
+          "Agents produce conflicting design decisions",
+          "A uses class-based, B uses functional for same module"
+        ]
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Detection Point:** Conflicts must be caught at the integration step BEFORE merging — by comparing artifacts. Agents cannot reliably self-detect each other's conflicts."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q66",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Implementing escalation paths means:",
+  "explanation": "Correct answer: A) Defining how unresolved errors reach humans for resolution",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Defining how unresolved errors reach humans for resolution"
+    },
+    {
+      "id": "o2",
+      "text": "Disabling errors"
+    },
+    {
+      "id": "o3",
+      "text": "Suppressing logs"
+    },
+    {
+      "id": "o4",
+      "text": "Adding more retries"
+    }
+  ],
+  "correct": "o1"
+}

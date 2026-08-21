@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q85",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Detecting overlapping code changes requires:",
+  "explanation": "Correct answer: A) Cross-agent change tracking and resolution policy",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Cross-agent change tracking and resolution policy"
+    },
+    {
+      "id": "o2",
+      "text": "Disabling parallel execution"
+    },
+    {
+      "id": "o3",
+      "text": "Removing branch protection"
+    },
+    {
+      "id": "o4",
+      "text": "Larger LLMs"
+    }
+  ],
+  "correct": "o1"
+}

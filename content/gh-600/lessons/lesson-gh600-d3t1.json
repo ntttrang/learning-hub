@@ -1,0 +1,48 @@
+{
+  "id": "lesson-gh600-d3t1",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "order": 1,
+  "title": "Memory Types Compared",
+  "summary": "Choose memory strategies, persist durable state, prevent context drift, and maintain task continuity — including Copilot Memory specifics tested directly on the exam.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "table",
+      "headers": [
+        "Type",
+        "Scope",
+        "Survives Session?",
+        "Best For"
+      ],
+      "rows": [
+        [
+          "Short-term (in-context)",
+          "Current context window only",
+          "No",
+          "Single-step, simple tasks"
+        ],
+        [
+          "Long-term",
+          "Persisted beyond the session",
+          "Yes",
+          "Multi-session, project-level knowledge"
+        ],
+        [
+          "External memory",
+          "External systems (vector DB, KV store)",
+          "Yes",
+          "Large knowledge bases, cross-agent sharing"
+        ]
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Scoping Rule:** Always scope memory to task-relevant information only. Storing everything causes context pollution → context drift → degraded decisions."
+    },
+    {
+      "kind": "tip",
+      "text": "**Exam Tip:** Task must survive overnight or across multiple sessions → long-term or external memory + durable artifacts. In-context = lost when session ends."
+    }
+  ]
+}

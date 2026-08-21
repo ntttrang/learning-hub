@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q60",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "What is the END goal of the GH-600 curriculum?",
+  "explanation": "Correct answer: B) Safe, observable, accountable, and effective use of agents in the SDLC",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Maximum agent autonomy at all costs"
+    },
+    {
+      "id": "o2",
+      "text": "Safe, observable, accountable, and effective use of agents in the SDLC"
+    },
+    {
+      "id": "o3",
+      "text": "Eliminating human reviewers"
+    },
+    {
+      "id": "o4",
+      "text": "Replacing all developers"
+    }
+  ],
+  "correct": "o2"
+}

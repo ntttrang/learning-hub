@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q03",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Which configuration correctly implements the tiered autonomy pattern?",
+  "explanation": "Tiered autonomy: maximum freedom in low-risk zones (feature branches), mandatory gates at high-risk transitions (merge to main). Both parts required.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Disable all guardrails on feature branches"
+    },
+    {
+      "id": "o2",
+      "text": "Full agent autonomy on feature branches; mandatory human approval gate at merge to release/main"
+    },
+    {
+      "id": "o3",
+      "text": "Block agents from all branches"
+    },
+    {
+      "id": "o4",
+      "text": "Allow direct agent push to main for maximum speed"
+    }
+  ],
+  "correct": "o2"
+}

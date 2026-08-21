@@ -1,0 +1,40 @@
+{
+  "id": "lesson-gh600-d5t3",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "order": 3,
+  "title": "Failure Types & Recovery",
+  "summary": "Apply orchestration patterns, configure parallel isolation, detect and resolve conflicts, manage agent lifecycles, and implement recovery in multi-agent workflows.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "table",
+      "headers": [
+        "Failure Type",
+        "Symptom",
+        "Recovery"
+      ],
+      "rows": [
+        [
+          "Full failure",
+          "Agent errored, no usable output",
+          "Diagnose → retry if transient → escalate if persistent"
+        ],
+        [
+          "Partial completion",
+          "Completed N of M steps then stopped",
+          "Checkpoint completed work → resume only failed portion"
+        ],
+        [
+          "Stalled execution",
+          "Running, no output, no error, no progress",
+          "Investigate logs/trace → targeted recovery"
+        ]
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Human-in-the-Loop Recovery:** High-risk or ambiguous failures → halt execution → route to human → human authorizes → pipeline resumes. Escalation of last resort for safety-critical decisions."
+    }
+  ]
+}

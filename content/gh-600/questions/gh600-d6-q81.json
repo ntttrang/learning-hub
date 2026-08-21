@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q81",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Blocking policy violations should happen:",
+  "explanation": "Correct answer: A) Before the action executes",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Before the action executes"
+    },
+    {
+      "id": "o2",
+      "text": "After the action completes"
+    },
+    {
+      "id": "o3",
+      "text": "During audit only"
+    },
+    {
+      "id": "o4",
+      "text": "Only on appeal"
+    }
+  ],
+  "correct": "o1"
+}

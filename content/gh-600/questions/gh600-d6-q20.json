@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q20",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "An agent attempts to push directly to a protected branch, violating your organization's security policy. What should happen?",
+  "explanation": "Correct answer: B) The action should be blocked immediately with an appropriate error returned to the agent",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agent should succeed and log the policy violation for later review"
+    },
+    {
+      "id": "o2",
+      "text": "The action should be blocked immediately with an appropriate error returned to the agent"
+    },
+    {
+      "id": "o3",
+      "text": "A developer should be paged to manually approve the push"
+    },
+    {
+      "id": "o4",
+      "text": "The branch protection rule should be temporarily suspended for the agent"
+    }
+  ],
+  "correct": "o2"
+}

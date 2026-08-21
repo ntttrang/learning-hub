@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q01",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Agent B starts processing before Agent A finishes, producing incoherent output. What failed?",
+  "explanation": "Sequential dependencies require explicit completion gates. B must wait for A's defined signal — not start independently.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Memory expiration in B"
+    },
+    {
+      "id": "o2",
+      "text": "Missing coordination gate — B was not gated on A's explicit completion signal"
+    },
+    {
+      "id": "o3",
+      "text": "Tool misuse by B"
+    },
+    {
+      "id": "o4",
+      "text": "Context drift in A"
+    }
+  ],
+  "correct": "o2"
+}

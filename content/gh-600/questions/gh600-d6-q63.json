@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q63",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Blocking actions that violate compliance ensures:",
+  "explanation": "Correct answer: A) Policies are enforced before harm occurs",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Policies are enforced before harm occurs"
+    },
+    {
+      "id": "o2",
+      "text": "Policies are enforced only after incidents"
+    },
+    {
+      "id": "o3",
+      "text": "Policies are ignored"
+    },
+    {
+      "id": "o4",
+      "text": "Policies are optional"
+    }
+  ],
+  "correct": "o1"
+}

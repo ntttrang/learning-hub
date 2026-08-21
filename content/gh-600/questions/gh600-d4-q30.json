@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q30",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "\"Operational constraints\" for an agent task are:",
+  "explanation": "Correct answer: A) Limits on time, resources, or scope the agent must respect",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Limits on time, resources, or scope the agent must respect"
+    },
+    {
+      "id": "o2",
+      "text": "Optional preferences"
+    },
+    {
+      "id": "o3",
+      "text": "The agent's tool list"
+    },
+    {
+      "id": "o4",
+      "text": "The CI pipeline runtime"
+    }
+  ],
+  "correct": "o1"
+}

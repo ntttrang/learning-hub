@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q15",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "A newly deployed agent's output quality improves significantly over 3 weeks without changes. What most likely explains this?",
+  "explanation": "This is the benefit described in GitHub Docs for Copilot Memory — by building persistent validated knowledge of a codebase, Copilot's outputs improve over time without manual intervention.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The CI pipeline warmed up"
+    },
+    {
+      "id": "o2",
+      "text": "Copilot Memory built up validated repo-specific knowledge over time, improving contextual accuracy"
+    },
+    {
+      "id": "o3",
+      "text": "The model was auto-updated"
+    },
+    {
+      "id": "o4",
+      "text": "GitHub Actions became faster"
+    }
+  ],
+  "correct": "o2"
+}

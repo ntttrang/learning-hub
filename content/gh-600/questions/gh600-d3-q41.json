@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q41",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Memory pruning supports:",
+  "explanation": "Correct answer: A) Keeping memory focused on relevant, current context",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Keeping memory focused on relevant, current context"
+    },
+    {
+      "id": "o2",
+      "text": "Removing all memory"
+    },
+    {
+      "id": "o3",
+      "text": "Maximizing context size"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling tools"
+    }
+  ],
+  "correct": "o1"
+}

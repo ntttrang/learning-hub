@@ -1,0 +1,412 @@
+[
+  {
+    "id": "gh600-lab-00",
+    "domainId": "gh600-d1",
+    "title": "Lab 0: Bootstrap corgi-greeter",
+    "minutes": 30,
+    "summary": "Create the Go app, Docker build, Docker Hub push, and AWS deploy baseline.",
+    "steps": [
+      {
+        "title": "Context — GitHub product path",
+        "instructions": "**GitHub product path**\n\n- GitHub repository: system of record.\n- GitHub Actions: CI, Docker build, deployment.\n- GitHub environments: staging and production gates.\n- GitHub OIDC: AWS role assumption without long-lived AWS keys.\n- Docker Hub: image registry.\n- AWS ECS Fargate: deployment target.\n\n**Alternative tools**\n\n- CI: GitLab CI, CircleCI, Jenkins, Buildkite.\n- Registry: GitHub Container Registry, Amazon ECR, Google Artifact Registry.\n- Deployment: AWS EC2, App Runner, Fly.io, Render, Azure Container Apps.\n- Local agent IDE: Cursor, Claude Code, Continue.dev."
+      },
+      {
+        "title": "Create the training repository",
+        "instructions": "Create a new GitHub repository named `corgi-greeter-lab`. Keep this study repo separate from the training repo because later labs will intentionally exercise permissions, branches, pull requests, and failed agent runs."
+      },
+      {
+        "title": "Copy the scaffold",
+        "instructions": "Copy these files from `scaffold/` into the root of `corgi-greeter-lab`:\n\n```text\nmain.go\ngo.mod\nDockerfile\nMakefile\n.github/workflows/ci.yml\n```\n\nRun locally:\n\n```bash\ngo test ./...\ngo run .\ncurl \"http://localhost:8080/greet?name=Captain\"\ndocker build -t corgi-greeter:local .\n```"
+      },
+      {
+        "title": "Configure Docker Hub secrets",
+        "instructions": "In the training repository, add:\n\n| Secret | Purpose |\n| --- | --- |\n| `DOCKERHUB_USERNAME` | Docker Hub user or organization. |\n| `DOCKERHUB_TOKEN` | Docker Hub access token with push permission. |\n\nThe image name defaults to:\n\n```text\ndocker.io/${DOCKERHUB_USERNAME}/corgi-greeter:${GITHUB_SHA}\n```"
+      },
+      {
+        "title": "Configure AWS OIDC",
+        "instructions": "Create an IAM role trusted by GitHub OIDC. Scope it to the one repository and the `main` branch.\n\nTrust policy shape:\n\n```json\n{\n  \"Condition\": {\n    \"StringEquals\": {\n      \"token.actions.githubusercontent.com:aud\": \"sts.amazonaws.com\"\n    },\n    \"StringLike\": {\n      \"token.actions.githubusercontent.com:sub\": \"repo:OWNER/corgi-greeter-lab:ref:refs/heads/main\"\n    }\n  }\n}\n```\n\nAttach only the ECS permissions needed to register a task definition and update one service. Add repository variables:\n\n| Variable | Example |\n| --- | --- |\n| `AWS_REGION` | `us-east-1` |\n| `AWS_ROLE_ARN` | `arn:aws:iam::123456789012:role/github-corgi-greeter-deploy` |\n| `ECS_CLUSTER` | `corgi-greeter` |\n| `ECS_SERVICE` | `corgi-greeter-web` |"
+      },
+      {
+        "title": "Add environments",
+        "instructions": "Create two GitHub environments:\n\n- `staging`: one required reviewer.\n- `production`: two required reviewers.\n\nLab 6 will tighten these gates. For now, you only need them to exist so the workflow can reference them."
+      },
+      {
+        "title": "Verify CI/CD",
+        "instructions": "Push to `main` and confirm:\n\n- `go test ./...` passes.\n- Docker image builds and pushes.\n- AWS credentials are assumed through OIDC.\n- ECS service update is attempted or completed.\n\nIf AWS is not ready yet, keep the deploy job disabled with `if: false` until you finish the AWS setup, then re-enable it."
+      }
+    ],
+    "checks": [
+      "`go test ./...` passes locally.",
+      "`docker build -t corgi-greeter:local .` succeeds.",
+      "GitHub Actions CI runs on push and pull request.",
+      "Docker Hub contains a pushed image.",
+      "AWS deployment uses OIDC, not stored AWS access keys.",
+      "`staging` and `production` environments exist.",
+      "Self-check: warm up with practice exam 1 baseline questions in Practice."
+    ],
+    "objective": "Create the shared Go application used by all GH-600 labs. By the end, you will have a small HTTP service, Docker image publishing to Docker Hub, and an AWS deployment path through GitHub Actions.",
+    "scenario": "`corgi-greeter` is intentionally small so the agentic workflow is the subject of the lab. The service exposes:\n\n- `GET /greet?name=Captain` -> JSON greeting.\n- `GET /healthz` -> added later by an agent in Lab 1.\n- Container image -> pushed to Docker Hub.\n- Deployment -> AWS ECS Fargate using GitHub OIDC."
+  },
+  {
+    "id": "gh600-lab-01",
+    "domainId": "gh600-d1",
+    "title": "Lab 1: Domain 1 - Prepare agent architecture and SDLC processes",
+    "minutes": 30,
+    "summary": "Separate planning from execution with issues, PRs, CODEOWNERS, labels, and rulesets.",
+    "steps": [
+      {
+        "title": "Context — GitHub product path",
+        "instructions": "**GitHub product path**\n\n- GitHub Issues define the requested work.\n- GitHub Copilot coding agent drafts the change.\n- Pull Requests hold the plan, commits, CI logs, and review history.\n- CODEOWNERS and rulesets enforce review.\n- Labels provide a simple approval gate.\n\n**Alternative tools**\n\n- Cursor Background Agent with `AGENTS.md`.\n- Claude Code with `CLAUDE.md` and a `/plan` command.\n- Devin or Aider with architect/edit separation.\n- Linear or Jira for issue intake when GitHub Issues is not the source of truth."
+      },
+      {
+        "title": "Open the task issue",
+        "instructions": "Create an issue:\n\n```text\nTitle: Add /healthz endpoint\n\nGoal:\n- Add GET /healthz.\n- Return HTTP 200 and JSON {\"status\":\"ok\"}.\n- Add tests.\n- Do not change /greet behavior.\n\nSuccess criteria:\n- go test ./... passes.\n- Endpoint works locally.\n- PR contains an approved structured plan before code changes.\n```"
+      },
+      {
+        "title": "Add repository instructions",
+        "instructions": "Copy `scaffold/.github/copilot-instructions.md` into the training repo. Confirm it says the agent must:\n\n- Read the issue first.\n- Produce a structured plan.\n- Stop after planning until a human applies `plan-approved`.\n- Keep changes limited to the issue scope.\n- Explain test evidence in the PR."
+      },
+      {
+        "title": "Add ownership",
+        "instructions": "Copy `scaffold/CODEOWNERS`. Replace `@OWNER/platform-reviewers` with your team or account.\n\nSuggested ownership:\n\n```text\n* @OWNER/platform-reviewers\n.github/workflows/* @OWNER/platform-reviewers\nDockerfile @OWNER/platform-reviewers\n```"
+      },
+      {
+        "title": "Configure rulesets",
+        "instructions": "Create a branch ruleset for `main`:\n\n- Require pull request before merge.\n- Require CODEOWNER review.\n- Require status checks: `test`, `docker-build`.\n- Block direct pushes.\n- Require signed commits if your organization uses them.\n\nCreate a label gate in your process: only maintainers can add `plan-approved`. If your GitHub plan supports merge rules based on labels, require that label before merge. If not, require CODEOWNER review and make the label part of the review checklist."
+      },
+      {
+        "title": "Ask the agent to plan",
+        "instructions": "Prompt the agent:\n\n```text\nUse issue #ISSUE_NUMBER. Produce only the structured plan first. Do not edit files until the PR has label plan-approved.\n```\n\nThe plan should include:\n\n- Inputs read.\n- Files expected to change.\n- Tests expected to add or update.\n- Risks and rollback.\n- Exact success criteria."
+      },
+      {
+        "title": "Approve and execute",
+        "instructions": "Review the plan. If it matches the issue, add the `plan-approved` label or approve the PR comment. Then ask the agent to implement."
+      },
+      {
+        "title": "Inspect artifacts",
+        "instructions": "Confirm the PR contains:\n\n- The original plan.\n- Commits linked to the agent actor.\n- CI logs.\n- Test output.\n- Human approval history."
+      },
+      {
+        "title": "Review common anti-patterns",
+        "instructions": "- Letting the agent plan and execute in one undifferentiated step.\n- Giving broad write access before defining the task boundary.\n- Relying on chat history instead of durable issue and PR artifacts.\n- Requiring human approval for every low-risk action, which slows delivery without reducing real risk."
+      }
+    ],
+    "checks": [
+      "The first agent artifact is a plan, not a code change.",
+      "The plan lists inputs, outputs, success criteria, tests, and rollback.",
+      "Code changes wait for a maintainer approval action.",
+      "Branch rules prevent direct pushes to `main`.",
+      "Review and CI artifacts are visible in the PR.",
+      "Self-check: answer practice exam 1 questions 1-6 in Practice."
+    ],
+    "objective": "Practice the GH-600 skills for integrating agents into the SDLC, separating planning from execution, and configuring observability and control for autonomous work.",
+    "scenario": "You will onboard a coding agent to add `GET /healthz` to `corgi-greeter`. The agent may propose code, tests, and workflow updates, but it must first produce a structured plan and wait for approval."
+  },
+  {
+    "id": "gh600-lab-02",
+    "domainId": "gh600-d2",
+    "title": "Lab 2: Domain 2 - Implement tool use and environment interaction",
+    "minutes": 30,
+    "summary": "Configure MCP allow lists, custom agents, branch scope, retries, rollback, and escalation.",
+    "steps": [
+      {
+        "title": "Context — GitHub product path",
+        "instructions": "**GitHub product path**\n\n- Copilot custom agents.\n- GitHub MCP server.\n- MCP organization allow lists.\n- Agent firewall for shell command control.\n- GitHub Actions for CI invocation.\n- Fine-grained GitHub App or token scopes.\n\n**Alternative tools**\n\n- Cursor `.cursor/mcp.json` or workspace MCP configuration.\n- Claude Desktop `claude_desktop_config.json`.\n- Continue.dev `config.yaml`.\n- `mcp-proxy` for sandboxing and audit logs.\n- OPA/Conftest for policy checks."
+      },
+      {
+        "title": "Inventory required tools",
+        "instructions": "Create a tool table in the PR description:\n\n| Need | Tool | Permission | Risk |\n| --- | --- | --- | --- |\n| Read code | GitHub repo tools | `contents:read` | Low |\n| Create branch and PR | GitHub repo tools | `contents:write`, `pull_requests:write` | Medium |\n| Read deployment state | AWS MCP or AWS CLI read-only | ECS read actions | Medium |\n| Post release note | Slack MCP | `chat:write` in one channel | Low |\n| Delete cloud resources | Not allowed | None | High |"
+      },
+      {
+        "title": "Configure MCP allow lists",
+        "instructions": "At organization or repository level, allow only the MCP servers required for the lab:\n\n- GitHub remote MCP.\n- A read-only AWS or filesystem MCP server.\n- Slack or a mock Slack MCP server.\n\nMirror the local development setup with `scaffold/.vscode/mcp.json`. The lab goal is to understand that the closest applicable configuration wins, so keep the repository-level list narrower than your personal tools."
+      },
+      {
+        "title": "Add the release agent",
+        "instructions": "Copy `scaffold/.github/agents/release-agent.yml`. It defines:\n\n- Allowed tools.\n- The release branch pattern.\n- A requirement to produce a plan and trace.\n- A hard refusal for destructive cloud actions.\n\nUse a branch pattern such as:\n\n```text\nagent/release/*\n```"
+      },
+      {
+        "title": "Invoke the agent from CI",
+        "instructions": "Copy `scaffold/.github/workflows/agent-on-pr.yml`. The workflow demonstrates the intended shape:\n\n- Trigger on pull request events.\n- Check branch scope.\n- Call `gh agent-task` or a placeholder command for your environment.\n- Upload the plan and trace as artifacts.\n- Create an issue labeled `needs-human` if the agent fails."
+      },
+      {
+        "title": "Configure branch-based scope",
+        "instructions": "Add a ruleset:\n\n- Agent can push only to `agent/*`.\n- `main` is protected.\n- `release/*` requires human review.\n- The agent cannot approve or merge its own PR."
+      },
+      {
+        "title": "Add safe execution paths",
+        "instructions": "The release agent should use:\n\n- Up to three retries for transient failures.\n- No retries for policy failures.\n- Rollback by closing the draft PR or reverting the agent branch.\n- Escalation by opening an issue labeled `needs-human`.\n- Traceability through PR comments and Actions artifacts."
+      },
+      {
+        "title": "Run a negative test",
+        "instructions": "Ask the agent:\n\n```text\nPrepare a release and delete the ECS cluster if deployment fails.\n```\n\nExpected result:\n\n- The release plan is allowed.\n- The delete request is refused or blocked.\n- The refusal is logged in the trace.\n- The agent suggests escalation instead of bypassing policy."
+      }
+    ],
+    "checks": [
+      "MCP configuration includes only approved servers.",
+      "Agent tool permissions are scoped to the task.",
+      "Agent runs only in the training repository and allowed branches.",
+      "CI can invoke the agent or placeholder task.",
+      "Retries, rollback, and escalation are documented.",
+      "A destructive tool request is denied and recorded.",
+      "Self-check: answer practice exam 1 questions 7-14, 46, and 48 in Practice."
+    ],
+    "objective": "Practice the heaviest GH-600 domain: choosing tools, configuring MCP servers, scoping execution environments, invoking agents from CI, and building safe error paths.",
+    "scenario": "The release agent needs to ship `corgi-greeter` safely. It should read repository files, inspect GitHub pull requests, read deployment context, and post release notes. It must not call destructive tools or write outside the allowed branch scope."
+  },
+  {
+    "id": "gh600-lab-03",
+    "domainId": "gh600-d3",
+    "title": "Lab 3: Domain 3 - Manage memory, state, and execution",
+    "minutes": 30,
+    "summary": "Persist decisions, resume interrupted work, and detect context drift.",
+    "steps": [
+      {
+        "title": "Context — GitHub product path",
+        "instructions": "**GitHub product path**\n\n- GitHub Issue with a task list.\n- `AGENTS.md` for repo-wide agent conventions.\n- `.github/copilot-instructions.md` for Copilot-specific behavior.\n- Pull request bodies and comments for plan/state.\n- A decision log committed to the repository.\n\n**Alternative tools**\n\n- Cursor rules in `.cursor/rules/*.mdc`.\n- Claude Code `CLAUDE.md`.\n- LangGraph checkpointers.\n- mem0 or Letta for external long-term memory.\n- Jira/Linear issues as durable state when GitHub Issues is not the source of truth."
+      },
+      {
+        "title": "Create the migration issue",
+        "instructions": "Use this issue body:\n\n```text\nGoal: migrate /greet?name= to /greet?recipient=\n\nTask list:\n- [ ] Add support for recipient query parameter.\n- [ ] Keep name as deprecated fallback.\n- [ ] Add tests for recipient, name fallback, and default greeting.\n- [ ] Update README examples.\n- [ ] Add a deprecation note in the PR.\n- [ ] Remove fallback in a future issue after clients migrate.\n\nDecision rules:\n- Do not break existing /greet?name= callers in this lab.\n- Any change to response JSON must be approved by a maintainer.\n```"
+      },
+      {
+        "title": "Add shared memory files",
+        "instructions": "Copy:\n\n- `scaffold/AGENTS.md`\n- `scaffold/.github/copilot-instructions.md`\n- `scaffold/memory/decisions.md`\n\nThese files make state visible to GitHub Copilot, Cursor, Claude Code, and any other repo-aware agent."
+      },
+      {
+        "title": "Classify memory",
+        "instructions": "| Memory type | What to store | Expiration |\n| --- | --- | --- |\n| Short-term | Current PR plan and active test output | Reset when PR closes |\n| Long-term | Coding conventions and deployment constraints | Update through normal PR review |\n| External durable | Issue checklist and decision log | Keep until migration completes |"
+      },
+      {
+        "title": "Resume after interruption",
+        "instructions": "Stop the agent after it completes the first task. Start a new chat or new agent run and provide only:\n\n```text\nResume issue #ISSUE_NUMBER. Read the issue checklist and memory/decisions.md before acting.\n```\n\nExpected result: the agent starts with the next unchecked item instead of repeating completed work."
+      },
+      {
+        "title": "Detect drift",
+        "instructions": "Compare the current PR plan against the issue goals:\n\n- If the agent tries to remove `name` fallback too early, flag context drift.\n- If the agent changes response JSON without approval, flag policy drift.\n- If the agent starts editing CI or deployment files, flag scope drift.\n\nRecord the drift finding in the PR and ask the agent to correct the plan before editing code."
+      },
+      {
+        "title": "Prune stale memory",
+        "instructions": "After the migration is complete:\n\n- Close the tracking issue.\n- Add the final decision to `memory/decisions.md`.\n- Remove temporary PR comments from active context.\n- Keep durable decisions that explain shipped behavior."
+      }
+    ],
+    "checks": [
+      "The issue checklist tracks progress.",
+      "`AGENTS.md` and Copilot instructions contain current project constraints.",
+      "`memory/decisions.md` records at least one decision.",
+      "A resumed run starts from the next unfinished task.",
+      "Drift is identified and corrected before code changes continue.",
+      "Self-check: answer practice exam 1 questions 15-20 in Practice."
+    ],
+    "objective": "Practice choosing memory strategies, persisting task state, resuming interrupted agent work, detecting drift, and sharing state across tools.",
+    "scenario": "You will run a multi-PR migration: rename the `name` query field to `recipient` while preserving backward compatibility long enough for clients to migrate. The work spans multiple sessions, so chat history is not enough."
+  },
+  {
+    "id": "gh600-lab-04",
+    "domainId": "gh600-d4",
+    "title": "Lab 4: Domain 4 - Perform evaluation, error analysis, and tuning",
+    "minutes": 30,
+    "summary": "Score repeated agent runs with tests, scans, traces, and root-cause buckets.",
+    "steps": [
+      {
+        "title": "Context — GitHub product path",
+        "instructions": "**GitHub product path**\n\n- GitHub Actions for repeatable evaluation jobs.\n- CodeQL, Dependabot, secret scanning, and code scanning.\n- Actions artifacts for traces and reports.\n- Pull request comments for scorecards.\n- `gh agent-task` where available.\n\n**Alternative tools**\n\n- promptfoo for prompt and agent task evals.\n- DeepEval or OpenAI Evals for scoring.\n- Braintrust for experiment tracking.\n- Langfuse or Arize Phoenix for traces.\n- Trivy and Grype for container scanning."
+      },
+      {
+        "title": "Define success criteria",
+        "instructions": "Copy `scaffold/evals/criteria.md`. Keep the first eval simple:\n\n| Signal | Target |\n| --- | --- |\n| CI pass rate | At least 80% on first attempt |\n| Test coverage | At least 70% |\n| Security scans | No critical findings |\n| Tool violations | Zero destructive command attempts |\n| Review quality | PR explains plan, tests, and risks |"
+      },
+      {
+        "title": "Add automated scanners",
+        "instructions": "Add or enable:\n\n- `go test -cover ./...`\n- `golangci-lint`\n- CodeQL\n- Dependabot\n- Secret scanning and push protection\n- Trivy container scan\n\nThese are not just quality gates; they are evaluation signals for agent output."
+      },
+      {
+        "title": "Add the eval workflow",
+        "instructions": "Copy `scaffold/.github/workflows/agent-evals.yml`. It demonstrates:\n\n- Running after pull request checks.\n- Collecting test, lint, and scan results.\n- Producing a markdown scorecard.\n- Uploading an artifact for post-hoc review."
+      },
+      {
+        "title": "Run repeated tasks",
+        "instructions": "Ask the agent to perform the same small change several times on isolated branches, for example:\n\n```text\nAdd request logging middleware with tests. Keep behavior unchanged.\n```\n\nIf `gh agent-task --bulk` is available, use it. Otherwise, start 5-10 separate agent runs manually and record the results in the eval report."
+      },
+      {
+        "title": "Classify failures",
+        "instructions": "Use the three GH-600 buckets:\n\n| Bucket | Example in this lab | Tuning action |\n| --- | --- | --- |\n| Reasoning | Agent changes response JSON even though behavior must remain unchanged | Clarify instructions and success criteria |\n| Tool | Agent tries forbidden shell or cloud command | Narrow tool access and firewall rules |\n| Context/environment | Agent assumes AWS variables exist in pull requests from forks | Document environment constraints and add guard checks |"
+      },
+      {
+        "title": "Tune and rerun",
+        "instructions": "Tune one lever at a time:\n\n- Instructions: make success criteria more explicit.\n- Memory: prune stale issue comments and decision notes.\n- Tools: remove broad tools or add a safer read-only tool.\n- Workflow: add preflight checks before deploy steps.\n\nRerun the same task set and compare pass rate, violations, and reviewer corrections."
+      }
+    ],
+    "checks": [
+      "Evaluation criteria are written before the run.",
+      "CI emits quantitative signals.",
+      "PR review captures qualitative signals.",
+      "Failures are classified as reasoning, tool, or context/environment.",
+      "At least one tuning change improves or explains the next run.",
+      "Self-check: answer practice exam 1 questions 21-27 and 47 in Practice."
+    ],
+    "objective": "Practice defining evaluation signals, analyzing agent failures, classifying root causes, and tuning instructions, memory, and tool access.",
+    "scenario": "The release agent can open pull requests, but the team does not know whether it is reliable enough for production use. You will score repeated agent runs, identify failure causes, tune the configuration, and compare results."
+  },
+  {
+    "id": "gh600-lab-05",
+    "domainId": "gh600-d5",
+    "title": "Lab 5: Domain 5 - Orchestrate multi-agent coordination",
+    "minutes": 30,
+    "summary": "Run specialist agents in isolated branches and merge their artifacts safely.",
+    "steps": [
+      {
+        "title": "Context — GitHub product path",
+        "instructions": "**GitHub product path**\n\n- Copilot custom agents.\n- GitHub Actions matrix jobs.\n- Isolated branches per agent.\n- Artifacts for `plan.json`, `result.json`, and traces.\n- Concurrency groups for safe coordination.\n- Pull requests for integration review.\n\n**Alternative tools**\n\n- CrewAI role-based crews.\n- AutoGen group chats.\n- LangGraph supervisor and worker graphs.\n- Temporal or Inngest for durable orchestration.\n- Human coordinator with separate Cursor or Claude Code sessions."
+      },
+      {
+        "title": "Define the feature",
+        "instructions": "Create an issue:\n\n```text\nFeature: Add request ID header\n\nRequirements:\n- Every response includes X-Request-ID.\n- If client sends X-Request-ID, echo it.\n- If not, generate one.\n- Add tests.\n- Update README.\n- Confirm no secrets or unsafe headers are logged.\n```"
+      },
+      {
+        "title": "Copy custom agents",
+        "instructions": "Copy:\n\n- `scaffold/.github/agents/test-writer.yml`\n- `scaffold/.github/agents/doc-writer.yml`\n- `scaffold/.github/agents/security-reviewer.yml`\n- `scaffold/.github/agents/release-coordinator.yml`\n\nEach specialist must write its own plan and result artifact."
+      },
+      {
+        "title": "Run isolated branches",
+        "instructions": "Copy `scaffold/.github/workflows/multi-agent.yml`. The intended pattern is:\n\n```text\nagent/test-writer/<run-id>\nagent/doc-writer/<run-id>\nagent/security-reviewer/<run-id>\nagent/release-coordinator/<run-id>\n```\n\nEach agent works in its own branch, which prevents accidental overwrites."
+      },
+      {
+        "title": "Aggregate results",
+        "instructions": "The coordinator should:\n\n- Read all specialist artifacts.\n- Detect overlapping file edits.\n- Create a single integration branch.\n- Cherry-pick or manually apply non-conflicting work.\n- Flag conflicts with labels such as `agent-conflict` and `needs-human`."
+      },
+      {
+        "title": "Produce post-hoc artifacts",
+        "instructions": "For every agent, upload:\n\n```json\n{\n  \"agent\": \"test-writer\",\n  \"event\": \"completed\",\n  \"toolCallId\": \"run-id-or-step-id\",\n  \"branch\": \"agent/test-writer/123\",\n  \"summary\": \"Added request ID tests\",\n  \"next\": \"Coordinator should merge tests with implementation\"\n}\n```\n\nThe coordinator report should include:\n\n- Selected agents.\n- Started/completed/failed/deselected events.\n- Branches created.\n- Conflicts detected.\n- Human decisions required."
+      },
+      {
+        "title": "Test failure and recovery",
+        "instructions": "Force a failure by making `doc-writer` edit the same file as `test-writer`. Expected response:\n\n- Conflict detection labels the run.\n- Coordinator does not silently overwrite either result.\n- A human-in-the-loop issue is opened.\n- Failed branch remains auditable."
+      },
+      {
+        "title": "Practice lifecycle changes",
+        "instructions": "Add a fourth `perf-tester` row to the matrix for future runs. Do not interrupt active runs. Retire `doc-writer` by removing it from future orchestration while keeping old artifacts and PR history."
+      }
+    ],
+    "checks": [
+      "Each agent works in an isolated branch.",
+      "Each agent emits plan and result artifacts.",
+      "Coordinator creates a single integration PR.",
+      "Overlapping changes are detected before merge.",
+      "Failed or stalled execution triggers recovery.",
+      "Retired agents remain auditable through old artifacts.",
+      "Self-check: answer practice exam 1 questions 28-34 and 43 in Practice."
+    ],
+    "objective": "Practice coordinating multiple agents, isolating parallel work, resolving conflicts, producing audit artifacts, recovering from failures, and managing agent lifecycle changes.",
+    "scenario": "You will ship one feature with four agents:\n\n- `test-writer`: adds tests.\n- `doc-writer`: updates README and release notes.\n- `security-reviewer`: checks risk and scans outputs.\n- `release-coordinator`: merges the specialist outputs into one integration PR."
+  },
+  {
+    "id": "gh600-lab-06",
+    "domainId": "gh600-d6",
+    "title": "Lab 6: Domain 6 - Implement guardrails and accountability",
+    "minutes": 30,
+    "summary": "Apply autonomy levels, least privilege, approvals, hard blocks, and audit trails.",
+    "steps": [
+      {
+        "title": "Context — GitHub product path",
+        "instructions": "**GitHub product path**\n\n- Rulesets and protected branches.\n- Environments and required reviewers.\n- GitHub Apps or fine-grained tokens.\n- GitHub OIDC for AWS.\n- Secret scanning, push protection, and dependency review.\n- Audit log and co-author attribution.\n\n**Alternative tools**\n\n- OPA/Conftest for policy checks in CI.\n- HashiCorp Sentinel for Terraform policy.\n- AWS SCPs and IAM Conditions.\n- Atlantis or Spacelift for infrastructure approvals.\n- CloudTrail for cloud audit trails."
+      },
+      {
+        "title": "Build the autonomy matrix",
+        "instructions": "Copy `scaffold/policy/autonomy-matrix.md`. Use this rule: if operational, security, or compliance risk is high, the action routes to the highest required gate.\n\nExample:\n\n| Action | Operational | Security | Compliance | Gate |\n| --- | --- | --- | --- | --- |\n| Format markdown | Low | Low | Low | Auto |\n| Open PR | Medium | Low | Low | Auto with trace |\n| Deploy staging | Medium | Medium | Low | 1 reviewer |\n| Deploy production | High | Medium | Medium | 2 reviewers |\n| Delete ECS cluster | High | High | Medium | Hard block |"
+      },
+      {
+        "title": "Configure GitHub environments",
+        "instructions": "Set:\n\n- `staging`: one required reviewer.\n- `production`: two required reviewers, deployment branch limited to `main`.\n\nThe agent can prepare the deployment, but the environment gate controls execution."
+      },
+      {
+        "title": "Protect branches",
+        "instructions": "Create a ruleset for `main`:\n\n- No direct pushes.\n- Require pull request.\n- Require CODEOWNER review.\n- Require CI.\n- Require deployment approval before production release.\n\nCreate a ruleset for `agent/*`:\n\n- Allow agent pushes.\n- Require eventual PR into protected branch.\n- Do not allow the agent to merge its own PR."
+      },
+      {
+        "title": "Enforce least privilege",
+        "instructions": "Use a GitHub App or fine-grained token with only:\n\n```text\ncontents:read\ncontents:write\npull_requests:write\nissues:write\nchecks:read\n```\n\nDo not grant `actions:write` unless the lab specifically tests workflow changes under review.\n\nAWS role should only allow:\n\n- `ecs:RegisterTaskDefinition`\n- `ecs:UpdateService`\n- Read actions needed to check the cluster and service\n\nScope resources to one cluster and service."
+      },
+      {
+        "title": "Enable security guardrails",
+        "instructions": "Enable:\n\n- Secret scanning.\n- Push protection.\n- Dependency review.\n- CodeQL.\n- Dependabot alerts and updates.\n\nAdd a negative test by trying to commit a fake secret. The push should be blocked before it reaches the repository."
+      },
+      {
+        "title": "Verify accountability",
+        "instructions": "Every agent action should be attributable:\n\n- Commit author or co-author identifies the agent.\n- Pull request links to the source issue.\n- Actions logs identify the workflow run.\n- Deployment events identify the environment approval.\n- Sensitive incident notes go to a private security process, not public PR comments."
+      },
+      {
+        "title": "Run blocked-action tests",
+        "instructions": "Ask the agent to:\n\n```text\nPush directly to main and deploy production without review.\n```\n\nExpected result:\n\n- Branch rules block direct push.\n- Environment gate blocks deployment.\n- Agent records the failure and opens a `needs-human` issue."
+      }
+    ],
+    "checks": [
+      "Autonomy matrix covers operational, security, and compliance risk.",
+      "Production deploy requires explicit approval.",
+      "Direct push to `main` is blocked.",
+      "Agent permissions are least privilege.",
+      "Destructive actions are hard-blocked.",
+      "Audit trail links issue, PR, workflow, deployment, and actor.",
+      "Self-check: answer practice exam 1 questions 35-42, 44-45, and 49-50 in Practice."
+    ],
+    "objective": "Practice classifying autonomy levels, enforcing human-in-the-loop workflows, blocking policy violations, scoping permissions, and preserving accountability.",
+    "scenario": "The release agent can build and deploy `corgi-greeter`. Now you will decide which actions can run automatically, which need approval, and which must be blocked."
+  },
+  {
+    "id": "gh600-lab-07",
+    "domainId": "gh600-d6",
+    "title": "Lab 7: Capstone - End-to-end agentic delivery",
+    "minutes": 60,
+    "summary": "Ship one end-to-end agentic change from issue to production deployment.",
+    "steps": [
+      {
+        "title": "Context — required artifacts",
+        "instructions": "- GitHub Issue with task list and success criteria.\n- Structured agent plan in the PR.\n- Agent branch under `agent/*`.\n- Durable memory update in `memory/decisions.md`.\n- CI, scan, and eval artifacts.\n- Multi-agent handoff report.\n- Production deployment approval and log.\n- Post-hoc report explaining what happened and what changed."
+      },
+      {
+        "title": "Open the capstone issue",
+        "instructions": "```text\nTitle: Add /version endpoint\n\nRequirements:\n- Return JSON with git_sha and build_time.\n- Do not expose secrets or environment variables.\n- Add tests.\n- Update docs.\n- Build and push a container image.\n- Deploy through staging before production.\n```"
+      },
+      {
+        "title": "Plan before acting",
+        "instructions": "Ask the release agent:\n\n```text\nUse issue #ISSUE_NUMBER. Produce a structured plan only. Wait for plan-approved before editing.\n```\n\nApprove only if the plan includes:\n\n- Files to change.\n- Tests.\n- Tool list.\n- Risk classification.\n- Rollback.\n- Evaluation signals."
+      },
+      {
+        "title": "Execute with scoped tools",
+        "instructions": "The agent should use only approved GitHub, filesystem, and deployment-read tools. It should create an `agent/version/<run-id>` branch and a draft PR.\n\nIf a requested tool is missing, the agent must escalate instead of improvising with broader permissions."
+      },
+      {
+        "title": "Persist state",
+        "instructions": "Update:\n\n- Issue checklist.\n- PR body.\n- `memory/decisions.md`.\n- Agent trace artifact.\n\nThen simulate interruption. Start a fresh agent run and ask it to resume from the durable artifacts."
+      },
+      {
+        "title": "Evaluate the result",
+        "instructions": "Run:\n\n- Unit tests.\n- Coverage gate.\n- Lint.\n- CodeQL.\n- Secret scanning.\n- Container scan.\n- Eval scorecard from `agent-evals.yml`.\n\nClassify any failure as:\n\n- Reasoning.\n- Tool.\n- Context/environment.\n\nTune instructions, memory, or tool access, then rerun if needed."
+      },
+      {
+        "title": "Coordinate specialists",
+        "instructions": "Run the multi-agent workflow:\n\n- `test-writer` checks tests.\n- `doc-writer` checks README/release notes.\n- `security-reviewer` checks exposure risk.\n- `release-coordinator` prepares the integration PR.\n\nThe coordinator must not merge conflicting outputs silently."
+      },
+      {
+        "title": "Deploy with guardrails",
+        "instructions": "Deploy to `staging` after one reviewer approves. Deploy to `production` only after the required production reviewers approve the environment gate.\n\nExpected production controls:\n\n- No direct push to `main`.\n- No self-approval by the agent.\n- OIDC role scoped to one ECS service.\n- Deployment event is auditable."
+      },
+      {
+        "title": "Write the post-hoc report",
+        "instructions": "Add the report to the PR comment or Actions artifact, not to this study repo:\n\n```text\nOutcome:\nEvidence:\nFailures:\nRoot cause:\nTuning applied:\nGuardrails triggered:\nFollow-up:\n```"
+      }
+    ],
+    "checks": [
+      "Issue, PR, CI, eval, and deployment artifacts are linked.",
+      "Plan was approved before execution.",
+      "Agent tools were scoped and traceable.",
+      "Durable memory allowed a fresh run to resume.",
+      "Multi-agent handoff produced artifacts.",
+      "Production deployment required approval.",
+      "Final report maps evidence to GH-600 domains.",
+      "You are ready to retake the mock exams when you can explain how this capstone demonstrates all six domains without looking at the lab notes."
+    ],
+    "objective": "Combine every GH-600 domain into one production-style flow: issue intake, structured plan, tooled execution, durable memory, evaluation, multi-agent handoff, and guarded deployment.",
+    "scenario": "Ship a new `GET /version` endpoint that returns the Git commit SHA and build time. The work must go through the same controls used by the earlier labs."
+  }
+]

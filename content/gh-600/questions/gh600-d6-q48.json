@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q48",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Scoping permissions to enforce least-privilege:",
+  "explanation": "Correct answer: A) Limits the blast radius if the agent misbehaves",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Limits the blast radius if the agent misbehaves"
+    },
+    {
+      "id": "o2",
+      "text": "Increases agent capability"
+    },
+    {
+      "id": "o3",
+      "text": "Eliminates audit needs"
+    },
+    {
+      "id": "o4",
+      "text": "Removes the need for guardrails"
+    }
+  ],
+  "correct": "o1"
+}

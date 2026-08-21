@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q46",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Lifecycle management of agents includes:",
+  "explanation": "Correct answer: A) Adding, updating, replacing, and retiring agents in a controlled manner",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Adding, updating, replacing, and retiring agents in a controlled manner"
+    },
+    {
+      "id": "o2",
+      "text": "Only adding new agents"
+    },
+    {
+      "id": "o3",
+      "text": "Only deleting agents"
+    },
+    {
+      "id": "o4",
+      "text": "Locking the agent set forever"
+    }
+  ],
+  "correct": "o1"
+}

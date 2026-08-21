@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q33",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Observability for autonomous agents primarily means:",
+  "explanation": "Correct answer: B) Producing logs, artifacts, and traces in standard tooling",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Watching token spend"
+    },
+    {
+      "id": "o2",
+      "text": "Producing logs, artifacts, and traces in standard tooling"
+    },
+    {
+      "id": "o3",
+      "text": "Reducing latency"
+    },
+    {
+      "id": "o4",
+      "text": "Encrypting communications"
+    }
+  ],
+  "correct": "o2"
+}

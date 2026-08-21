@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q18",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "You need to audit what decisions were made across a multi-agent workflow that ran last week. What should have been configured in advance to support this?",
+  "explanation": "Correct answer: B) The workflow should have been configured to produce artifacts documenting key decisions, handoffs, and outcomes",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Each agent should have had verbose console logging only"
+    },
+    {
+      "id": "o2",
+      "text": "The workflow should have been configured to produce artifacts documenting key decisions, handoffs, and outcomes"
+    },
+    {
+      "id": "o3",
+      "text": "A developer should have watched the workflow run in real time"
+    },
+    {
+      "id": "o4",
+      "text": "The agents should have emailed status updates"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q16",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "You are designing a workflow where three specialized agents must work in parallel on independent subtasks and then merge their results. Which orchestration pattern should you apply?",
+  "explanation": "Correct answer: B) Parallel execution with agent isolation and a merge/aggregation step",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Sequential chaining — agents run one after another"
+    },
+    {
+      "id": "o2",
+      "text": "Parallel execution with agent isolation and a merge/aggregation step"
+    },
+    {
+      "id": "o3",
+      "text": "Single-agent execution with multiple tool calls"
+    },
+    {
+      "id": "o4",
+      "text": "Human-in-the-loop for all three agents simultaneously"
+    }
+  ],
+  "correct": "o2"
+}

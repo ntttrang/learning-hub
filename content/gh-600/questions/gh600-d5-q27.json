@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q27",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Documenting handoffs across agents enables:",
+  "explanation": "Correct answer: B) Auditability and review of decisions made across the workflow",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Faster LLMs"
+    },
+    {
+      "id": "o2",
+      "text": "Auditability and review of decisions made across the workflow"
+    },
+    {
+      "id": "o3",
+      "text": "Reduced tool use"
+    },
+    {
+      "id": "o4",
+      "text": "Smaller memory footprint"
+    }
+  ],
+  "correct": "o2"
+}

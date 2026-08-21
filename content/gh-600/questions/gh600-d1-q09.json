@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q09",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "What mechanism correctly prevents agent action until its plan is approved?",
+  "explanation": "Required status checks and branch protection approval gates in GitHub Actions are the correct mechanism to halt execution pending plan validation.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Setting model temperature to 0"
+    },
+    {
+      "id": "o2",
+      "text": "A required status check or approval gate in GitHub Actions before execution proceeds"
+    },
+    {
+      "id": "o3",
+      "text": "Reducing the agent's tool count"
+    },
+    {
+      "id": "o4",
+      "text": "Using only short-term memory"
+    }
+  ],
+  "correct": "o2"
+}

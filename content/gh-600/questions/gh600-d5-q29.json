@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q29",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Adding a new agent to an active multi-agent workflow should be done:",
+  "explanation": "Correct answer: B) Without disrupting active executions, using non-breaking changes",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "By stopping the workflow entirely"
+    },
+    {
+      "id": "o2",
+      "text": "Without disrupting active executions, using non-breaking changes"
+    },
+    {
+      "id": "o3",
+      "text": "By deleting older agents first"
+    },
+    {
+      "id": "o4",
+      "text": "Only after retiring all existing agents"
+    }
+  ],
+  "correct": "o2"
+}

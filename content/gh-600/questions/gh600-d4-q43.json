@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q43",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "A context or environment issue is identified when:",
+  "explanation": "Correct answer: A) The agent's working environment or inputs differ from expectations",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agent's working environment or inputs differ from expectations"
+    },
+    {
+      "id": "o2",
+      "text": "The LLM is too small"
+    },
+    {
+      "id": "o3",
+      "text": "The agent has no tools"
+    },
+    {
+      "id": "o4",
+      "text": "Branch protection is on"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q63",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "A GitHub remote MCP server should be:",
+  "explanation": "Correct answer: A) Registered and accessed through governed channels",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Registered and accessed through governed channels"
+    },
+    {
+      "id": "o2",
+      "text": "Open to all agents"
+    },
+    {
+      "id": "o3",
+      "text": "Disabled in production"
+    },
+    {
+      "id": "o4",
+      "text": "Only used in dev"
+    }
+  ],
+  "correct": "o1"
+}

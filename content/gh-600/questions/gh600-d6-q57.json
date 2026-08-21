@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q57",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "The PRIMARY goal of agent guardrails is to:",
+  "explanation": "Correct answer: B) Enforce safe, compliant behavior aligned with policy",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Slow the agent"
+    },
+    {
+      "id": "o2",
+      "text": "Enforce safe, compliant behavior aligned with policy"
+    },
+    {
+      "id": "o3",
+      "text": "Maximize autonomy"
+    },
+    {
+      "id": "o4",
+      "text": "Disable tools"
+    }
+  ],
+  "correct": "o2"
+}

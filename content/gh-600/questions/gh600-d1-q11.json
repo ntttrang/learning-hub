@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q11",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Copilot cloud agent marks the developer as co-author on its commits. What benefit does this provide?",
+  "explanation": "Co-authorship links every AI-generated change to the person who initiated it — a core accountability mechanism in GitHub's agentic SDLC design.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Reduces CI run time"
+    },
+    {
+      "id": "o2",
+      "text": "Creates traceability linking AI-generated code to the human who initiated the task, supporting accountability and audit"
+    },
+    {
+      "id": "o3",
+      "text": "Grants the developer merge permissions"
+    },
+    {
+      "id": "o4",
+      "text": "Increases commit signing key strength"
+    }
+  ],
+  "correct": "o2"
+}

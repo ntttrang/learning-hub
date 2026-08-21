@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q23",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "A team allows an agent to perform planning, validation, and execution all in a single uninterrupted step. This is an example of:",
+  "explanation": "Correct answer: B) An anti-pattern that merges planning with execution",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Least-privilege execution"
+    },
+    {
+      "id": "o2",
+      "text": "An anti-pattern that merges planning with execution"
+    },
+    {
+      "id": "o3",
+      "text": "Effective orchestration"
+    },
+    {
+      "id": "o4",
+      "text": "Memory pruning"
+    }
+  ],
+  "correct": "o2"
+}

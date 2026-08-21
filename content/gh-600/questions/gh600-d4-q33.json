@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q33",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Classifying a failure as a \"tool misuse\" implies:",
+  "explanation": "Correct answer: B) The agent used a tool incorrectly or chose the wrong tool",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agent had the wrong reasoning"
+    },
+    {
+      "id": "o2",
+      "text": "The agent used a tool incorrectly or chose the wrong tool"
+    },
+    {
+      "id": "o3",
+      "text": "The environment was misconfigured"
+    },
+    {
+      "id": "o4",
+      "text": "Memory was stale"
+    }
+  ],
+  "correct": "o2"
+}

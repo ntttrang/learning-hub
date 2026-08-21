@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q38",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "When integrating an agent into CI, you must:",
+  "explanation": "Correct answer: A) Configure the agent invocation as part of the workflow",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Configure the agent invocation as part of the workflow"
+    },
+    {
+      "id": "o2",
+      "text": "Run the agent on a developer's laptop"
+    },
+    {
+      "id": "o3",
+      "text": "Use only synchronous tools"
+    },
+    {
+      "id": "o4",
+      "text": "Disable logging"
+    }
+  ],
+  "correct": "o1"
+}

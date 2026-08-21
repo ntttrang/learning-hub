@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q54",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Retiring an agent must preserve:",
+  "explanation": "Correct answer: A) Auditability and continuity of dependent workflows",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Auditability and continuity of dependent workflows"
+    },
+    {
+      "id": "o2",
+      "text": "Only the agent's prompt"
+    },
+    {
+      "id": "o3",
+      "text": "Only the LLM weights"
+    },
+    {
+      "id": "o4",
+      "text": "Nothing — fully delete"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q27",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Which capability supports human intervention without slowing delivery?",
+  "explanation": "Correct answer: B) Targeted approval gates only for high-risk actions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Eliminating all human review"
+    },
+    {
+      "id": "o2",
+      "text": "Targeted approval gates only for high-risk actions"
+    },
+    {
+      "id": "o3",
+      "text": "Requiring approval on every step"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling logging"
+    }
+  ],
+  "correct": "o2"
+}

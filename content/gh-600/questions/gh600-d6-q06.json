@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q06",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Can Copilot cloud agent approve and merge its own pull requests?",
+  "explanation": "Per GitHub Docs, Copilot cloud agent cannot mark PRs Ready for review, approve, or merge them. Human review before merge is hard-coded — not configurable.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Yes, if all automated checks pass"
+    },
+    {
+      "id": "o2",
+      "text": "Yes, if the repo owner enables auto-merge"
+    },
+    {
+      "id": "o3",
+      "text": "No — Copilot cloud agent cannot mark its PRs as Ready for review, approve, or merge them; human review is always required"
+    },
+    {
+      "id": "o4",
+      "text": "Yes, if confidence score exceeds 90%"
+    }
+  ],
+  "correct": "o3"
+}

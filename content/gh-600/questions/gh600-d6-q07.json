@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q07",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "What is the Responsible AI (RAI) dimension of agent guardrails?",
+  "explanation": "RAI guardrails operate at the output layer: even authorized actions must be blocked if the output violates Responsible AI policies (harmful content, bias, privacy violations).",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Ensuring energy efficiency"
+    },
+    {
+      "id": "o2",
+      "text": "Blocking actions that generate harmful content, propagate bias, or violate ethical AI policies — regardless of user authorization level"
+    },
+    {
+      "id": "o3",
+      "text": "Preventing the agent from writing too many comments"
+    },
+    {
+      "id": "o4",
+      "text": "Limiting output file size"
+    }
+  ],
+  "correct": "o2"
+}

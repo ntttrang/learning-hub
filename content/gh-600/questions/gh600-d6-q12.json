@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q12",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Agents can operate freely on feature branches but require human approval before merging to release. Which pattern is this?",
+  "explanation": "Tiered autonomy: maximum freedom in low-risk zones, targeted gates at high-risk boundaries. This balances velocity with control without blocking routine work.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Disable guardrails on feature branches and block all changes to release"
+    },
+    {
+      "id": "o2",
+      "text": "Tiered autonomy — full agent autonomy in low-risk zones (feature branches); mandatory human approval at the high-risk transition (merge to release)"
+    },
+    {
+      "id": "o3",
+      "text": "Block agents from all branches uniformly"
+    },
+    {
+      "id": "o4",
+      "text": "Allow direct agent push to release for maximum speed"
+    }
+  ],
+  "correct": "o2"
+}

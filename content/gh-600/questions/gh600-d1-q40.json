@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q40",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Validating agent plans should occur:",
+  "explanation": "Correct answer: A) Before action is taken",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Before action is taken"
+    },
+    {
+      "id": "o2",
+      "text": "After action is taken"
+    },
+    {
+      "id": "o3",
+      "text": "Only during audit"
+    },
+    {
+      "id": "o4",
+      "text": "Never"
+    }
+  ],
+  "correct": "o1"
+}

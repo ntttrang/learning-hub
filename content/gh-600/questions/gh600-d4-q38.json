@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q38",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Identifying quantitative evaluation signals helps:",
+  "explanation": "Correct answer: B) Provide measurable, repeatable indicators of agent quality",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Eliminate human review entirely"
+    },
+    {
+      "id": "o2",
+      "text": "Provide measurable, repeatable indicators of agent quality"
+    },
+    {
+      "id": "o3",
+      "text": "Disable guardrails"
+    },
+    {
+      "id": "o4",
+      "text": "Reduce memory"
+    }
+  ],
+  "correct": "o2"
+}

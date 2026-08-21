@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q23",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "When two agents share state, the BIGGEST risk is:",
+  "explanation": "Correct answer: B) Conflicting or stale context",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Reduced LLM accuracy"
+    },
+    {
+      "id": "o2",
+      "text": "Conflicting or stale context"
+    },
+    {
+      "id": "o3",
+      "text": "Increased token usage"
+    },
+    {
+      "id": "o4",
+      "text": "Branch protection violations"
+    }
+  ],
+  "correct": "o2"
+}

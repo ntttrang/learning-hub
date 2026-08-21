@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q09",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "After tuning for code quality, the agent stops writing unit tests. What was missed?",
+  "explanation": "Tuning has side effects. Every modification must be re-evaluated against the full criteria set. The agent improved on the targeted metric but regressed on an untested criterion.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Increasing model size"
+    },
+    {
+      "id": "o2",
+      "text": "Re-evaluating against ALL success criteria after tuning — optimising one metric can degrade others"
+    },
+    {
+      "id": "o3",
+      "text": "Deploying to production immediately"
+    },
+    {
+      "id": "o4",
+      "text": "Reducing memory budget"
+    }
+  ],
+  "correct": "o2"
+}

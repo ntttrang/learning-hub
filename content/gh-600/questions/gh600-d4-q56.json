@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q56",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Aligning evaluation with development intent:",
+  "explanation": "Correct answer: A) Ensures the agent is evaluated on what actually matters",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Ensures the agent is evaluated on what actually matters"
+    },
+    {
+      "id": "o2",
+      "text": "Reduces token spend only"
+    },
+    {
+      "id": "o3",
+      "text": "Replaces guardrails"
+    },
+    {
+      "id": "o4",
+      "text": "Disables memory"
+    }
+  ],
+  "correct": "o1"
+}

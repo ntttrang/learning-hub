@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q30",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "When retiring an agent in a workflow, you must preserve:",
+  "explanation": "Correct answer: B) Auditability and workflow continuity",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Only the agent's prompt"
+    },
+    {
+      "id": "o2",
+      "text": "Auditability and workflow continuity"
+    },
+    {
+      "id": "o3",
+      "text": "Just the tool list"
+    },
+    {
+      "id": "o4",
+      "text": "The agent's branch scope only"
+    }
+  ],
+  "correct": "o2"
+}

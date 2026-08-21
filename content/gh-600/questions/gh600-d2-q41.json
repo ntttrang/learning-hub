@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q41",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Agent traceability means:",
+  "explanation": "Correct answer: A) Visibility into which agent did what, when, and why",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Visibility into which agent did what, when, and why"
+    },
+    {
+      "id": "o2",
+      "text": "Real-time UI updates only"
+    },
+    {
+      "id": "o3",
+      "text": "Encrypting outputs"
+    },
+    {
+      "id": "o4",
+      "text": "Reducing logs"
+    }
+  ],
+  "correct": "o1"
+}

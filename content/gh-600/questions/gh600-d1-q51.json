@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q51",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "The boundary between planning and action exists to:",
+  "explanation": "Correct answer: A) Allow oversight, validation, and approval before changes occur",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Allow oversight, validation, and approval before changes occur"
+    },
+    {
+      "id": "o2",
+      "text": "Increase token spend"
+    },
+    {
+      "id": "o3",
+      "text": "Reduce autonomy artificially"
+    },
+    {
+      "id": "o4",
+      "text": "Confuse developers"
+    }
+  ],
+  "correct": "o1"
+}

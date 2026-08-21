@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q20",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "An agent produces correct outputs in testing but consistently fails in production. After analysis, you determine the agent is receiving different inputs in each environment. How should you tune the agent?",
+  "explanation": "Correct answer: C) Revise the agent's instructions and constraints to handle environment-specific input variability",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Deploy the same test inputs to production"
+    },
+    {
+      "id": "o2",
+      "text": "Disable the agent in production until inputs are identical to test"
+    },
+    {
+      "id": "o3",
+      "text": "Revise the agent's instructions and constraints to handle environment-specific input variability"
+    },
+    {
+      "id": "o4",
+      "text": "Increase the agent's memory allocation"
+    }
+  ],
+  "correct": "o3"
+}

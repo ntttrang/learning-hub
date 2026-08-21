@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q17",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "When should memory pruning rules be applied in an agent's memory strategy?",
+  "explanation": "Correct answer: C) According to defined expiration policies to prevent stale information from influencing decisions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Only when the agent encounters an error"
+    },
+    {
+      "id": "o2",
+      "text": "Never — all memory should be preserved indefinitely"
+    },
+    {
+      "id": "o3",
+      "text": "According to defined expiration policies to prevent stale information from influencing decisions"
+    },
+    {
+      "id": "o4",
+      "text": "Only when an agent is retired"
+    }
+  ],
+  "correct": "o3"
+}

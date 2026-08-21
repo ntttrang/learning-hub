@@ -1,0 +1,45 @@
+{
+  "id": "lesson-gh600-d4t1",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "order": 1,
+  "title": "Evaluation Framework: The 4 Components",
+  "summary": "Define success signals, analyze agent failures using logs and traces, classify root causes, and tune instructions, memory, and tool access based on evidence.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "table",
+      "headers": [
+        "Component",
+        "What It Is",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Expected outputs",
+          "What the agent must produce",
+          "Modified files, new PR, test report"
+        ],
+        [
+          "Operational constraints",
+          "What the agent must NOT do",
+          "Never modify config/, never push to main"
+        ],
+        [
+          "Quantitative signals",
+          "Measurable, automated metrics",
+          "Test pass rate, lint count, vuln count"
+        ],
+        [
+          "Qualitative signals",
+          "Human judgment criteria",
+          "Code readability, logical correctness"
+        ]
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Metric Gaming:** An agent could maximize test count by writing trivial tests — satisfying the metric without delivering value. Criteria must reflect genuine team intent, not just what's easy to count."
+    }
+  ]
+}

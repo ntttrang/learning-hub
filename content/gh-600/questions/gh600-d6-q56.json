@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q56",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "An agent attempts to modify a critical file outside its scope. Best response:",
+  "explanation": "Correct answer: B) Block the action and escalate",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Allow it with a warning"
+    },
+    {
+      "id": "o2",
+      "text": "Block the action and escalate"
+    },
+    {
+      "id": "o3",
+      "text": "Log it after the fact"
+    },
+    {
+      "id": "o4",
+      "text": "Increase the agent's permissions"
+    }
+  ],
+  "correct": "o2"
+}

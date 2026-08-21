@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q01",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "An agent proposes to modify production database schema. Change is reversible via migration rollback. Guardrail that applies?",
+  "explanation": "Risk classification considers context. Production schema changes carry high compliance risk requiring explicit authorization — even if a rollback migration exists.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Allow it — reversibility means low risk"
+    },
+    {
+      "id": "o2",
+      "text": "Classify by compliance context: production schema changes require explicit authorisation regardless of technical reversibility"
+    },
+    {
+      "id": "o3",
+      "text": "Block all database operations"
+    },
+    {
+      "id": "o4",
+      "text": "Allow only during off-peak hours"
+    }
+  ],
+  "correct": "o2"
+}

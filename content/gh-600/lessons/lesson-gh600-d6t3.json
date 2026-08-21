@@ -1,0 +1,23 @@
+{
+  "id": "lesson-gh600-d6t3",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "order": 3,
+  "title": "Least-Privilege & Tiered Autonomy",
+  "summary": "Define autonomy levels by risk, implement human-in-the-loop workflows, enforce least-privilege access, block policy violations, and design complete accountability systems.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "tip",
+      "text": "**Per-Invocation Scoping:** Each agent invocation receives ONLY the permissions required for that specific task at that moment. No pre-provisioned broad access."
+    },
+    {
+      "kind": "tip",
+      "text": "**Tiered Autonomy Pattern (Exam Favourite):** Full agent autonomy on feature branches + required human approval gate at merge to main/release. Maximum velocity in low-risk zones; mandatory gate at the critical boundary."
+    },
+    {
+      "kind": "tip",
+      "text": "**Official Study Guide Quote:** \"Preserve execution velocity by minimising approvals that do not materially reduce risk.\" Every gate must be justified by the specific risk it mitigates."
+    }
+  ]
+}

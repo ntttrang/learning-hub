@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q47",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "A GitHub remote MCP server enables:",
+  "explanation": "Correct answer: A) Cross-environment tool exposure to agents over the MCP protocol",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Cross-environment tool exposure to agents over the MCP protocol"
+    },
+    {
+      "id": "o2",
+      "text": "Replacing the LLM"
+    },
+    {
+      "id": "o3",
+      "text": "Replacing the CI runner"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling logging"
+    }
+  ],
+  "correct": "o1"
+}

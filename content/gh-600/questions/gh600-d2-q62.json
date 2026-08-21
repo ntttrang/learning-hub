@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q62",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "MCP integration with an agent provides:",
+  "explanation": "Correct answer: A) A standard interface for external tools and resources",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A standard interface for external tools and resources"
+    },
+    {
+      "id": "o2",
+      "text": "Replacement of the LLM"
+    },
+    {
+      "id": "o3",
+      "text": "Replacement of branch protection"
+    },
+    {
+      "id": "o4",
+      "text": "Replacement of memory"
+    }
+  ],
+  "correct": "o1"
+}

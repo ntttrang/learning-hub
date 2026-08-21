@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q36",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Human-in-the-loop should be applied to:",
+  "explanation": "Correct answer: B) Actions requiring human judgment, irreversible changes, or compliance-sensitive operations",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Every single agent action"
+    },
+    {
+      "id": "o2",
+      "text": "Actions requiring human judgment, irreversible changes, or compliance-sensitive operations"
+    },
+    {
+      "id": "o3",
+      "text": "Only read operations"
+    },
+    {
+      "id": "o4",
+      "text": "Only tool selection"
+    }
+  ],
+  "correct": "o2"
+}

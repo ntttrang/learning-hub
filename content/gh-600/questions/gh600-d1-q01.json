@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q01",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "An agent receives a task and immediately starts modifying files without producing a plan. Which anti-pattern is this?",
+  "explanation": "The #1 anti-pattern: combining plan and act in one step. The agent must produce a structured plan artifact and wait for validation before taking any action.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Context drift"
+    },
+    {
+      "id": "o2",
+      "text": "Mixing planning and execution — the agent acted without producing and validating a plan first"
+    },
+    {
+      "id": "o3",
+      "text": "Insufficient MCP configuration"
+    },
+    {
+      "id": "o4",
+      "text": "Memory expiration"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q17",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Which of the following is a common **anti-pattern** when integrating agents into the SDLC?",
+  "explanation": "Correct answer: C) Allowing an agent to perform planning and execution in a single undifferentiated step",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Scoping agent actions to a specific branch"
+    },
+    {
+      "id": "o2",
+      "text": "Defining explicit inputs and outputs for each agent task"
+    },
+    {
+      "id": "o3",
+      "text": "Allowing an agent to perform planning and execution in a single undifferentiated step"
+    },
+    {
+      "id": "o4",
+      "text": "Requiring agent plans to be validated before execution"
+    }
+  ],
+  "correct": "o3"
+}

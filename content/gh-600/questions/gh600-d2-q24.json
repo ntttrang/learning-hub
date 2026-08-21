@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q24",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "You want an agent to automatically trigger on pull requests in a CI workflow. What should you configure?",
+  "explanation": "Correct answer: B) Configure the agent to be invoked in a CI workflow triggered by pull request events",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A scheduled cron job that checks for open PRs every hour"
+    },
+    {
+      "id": "o2",
+      "text": "Configure the agent to be invoked in a CI workflow triggered by pull request events"
+    },
+    {
+      "id": "o3",
+      "text": "Manually run the agent each time a PR is opened"
+    },
+    {
+      "id": "o4",
+      "text": "Use a webhook that emails the agent"
+    }
+  ],
+  "correct": "o2"
+}

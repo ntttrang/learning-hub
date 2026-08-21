@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q14",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Which of the following BEST describes \"context drift\" in agentic AI systems?",
+  "explanation": "Correct answer: B) When an agent's execution diverges from its prior decisions or task intent over time",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "When an agent uses too many tools simultaneously"
+    },
+    {
+      "id": "o2",
+      "text": "When an agent's execution diverges from its prior decisions or task intent over time"
+    },
+    {
+      "id": "o3",
+      "text": "When an agent's memory is stored in an external database"
+    },
+    {
+      "id": "o4",
+      "text": "When two agents share the same context window"
+    }
+  ],
+  "correct": "o2"
+}

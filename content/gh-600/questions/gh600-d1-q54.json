@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q54",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "An agent that validates its plan before execution achieves:",
+  "explanation": "Correct answer: A) Higher reliability and fewer execution-time surprises",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Higher reliability and fewer execution-time surprises"
+    },
+    {
+      "id": "o2",
+      "text": "Lower observability"
+    },
+    {
+      "id": "o3",
+      "text": "Faster CI only"
+    },
+    {
+      "id": "o4",
+      "text": "Larger memory"
+    }
+  ],
+  "correct": "o1"
+}

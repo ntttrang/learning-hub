@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q34",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Why distinguish planning from action?",
+  "explanation": "Correct answer: B) To allow inspection, validation, and approval before changes occur",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "To reduce LLM calls"
+    },
+    {
+      "id": "o2",
+      "text": "To allow inspection, validation, and approval before changes occur"
+    },
+    {
+      "id": "o3",
+      "text": "To improve agent UI"
+    },
+    {
+      "id": "o4",
+      "text": "To reduce memory use"
+    }
+  ],
+  "correct": "o2"
+}

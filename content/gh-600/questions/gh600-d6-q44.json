@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q44",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "The MOST comprehensive evaluation approach combines:",
+  "explanation": "Correct answer: C) Quantitative metrics AND qualitative signals aligned with development intent",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Only quantitative metrics"
+    },
+    {
+      "id": "o2",
+      "text": "Only qualitative feedback"
+    },
+    {
+      "id": "o3",
+      "text": "Quantitative metrics AND qualitative signals aligned with development intent"
+    },
+    {
+      "id": "o4",
+      "text": "Neither — agents should self-evaluate"
+    }
+  ],
+  "correct": "o3"
+}

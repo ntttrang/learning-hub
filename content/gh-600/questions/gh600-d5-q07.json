@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q07",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Three parallel agents all write to the same feature branch. Merging fails with conflicts. Root cause?",
+  "explanation": "Parallel agents must be isolated (separate branches or workspaces) to prevent overlapping changes. Without isolation, concurrent writes to shared files produce merge conflicts.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Memory expiration"
+    },
+    {
+      "id": "o2",
+      "text": "Insufficient isolation — agents were not given separate branches or workspaces, causing overlapping file changes"
+    },
+    {
+      "id": "o3",
+      "text": "Tool misuse"
+    },
+    {
+      "id": "o4",
+      "text": "Context drift"
+    }
+  ],
+  "correct": "o2"
+}

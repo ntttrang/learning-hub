@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q34",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Blocking actions that violate compliance policies should happen:",
+  "explanation": "Correct answer: B) Before the action is executed",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "After the action is taken"
+    },
+    {
+      "id": "o2",
+      "text": "Before the action is executed"
+    },
+    {
+      "id": "o3",
+      "text": "Only during audit"
+    },
+    {
+      "id": "o4",
+      "text": "Only on Fridays"
+    }
+  ],
+  "correct": "o2"
+}

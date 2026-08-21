@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q96",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Preserving velocity while enforcing guardrails means:",
+  "explanation": "Correct answer: A) Avoiding approvals that don't materially reduce risk",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Avoiding approvals that don't materially reduce risk"
+    },
+    {
+      "id": "o2",
+      "text": "Approving every action"
+    },
+    {
+      "id": "o3",
+      "text": "Removing guardrails"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling agents"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q15",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Your organization has a compliance policy requiring that production database schema changes never be made without a DBA review. How should this be enforced for agents?",
+  "explanation": "Correct answer: B) Block schema change actions that violate the compliance policy and require explicit authorization before proceeding",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Train developers to remind the agent not to make schema changes"
+    },
+    {
+      "id": "o2",
+      "text": "Block schema change actions that violate the compliance policy and require explicit authorization before proceeding"
+    },
+    {
+      "id": "o3",
+      "text": "Allow agents to make schema changes and review them afterward"
+    },
+    {
+      "id": "o4",
+      "text": "Limit agents to read-only database access for all operations"
+    }
+  ],
+  "correct": "o2"
+}

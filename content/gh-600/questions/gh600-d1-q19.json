@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q19",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Your organization wants agents to operate autonomously but with human oversight for high-risk actions. Which configuration approach best achieves this?",
+  "explanation": "Correct answer: C) Plan and implement graduated autonomy levels with guardrails based on risk",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Disable all human intervention to maximize delivery speed"
+    },
+    {
+      "id": "o2",
+      "text": "Require human approval for every single agent action"
+    },
+    {
+      "id": "o3",
+      "text": "Plan and implement graduated autonomy levels with guardrails based on risk"
+    },
+    {
+      "id": "o4",
+      "text": "Allow agents to self-determine when human approval is needed"
+    }
+  ],
+  "correct": "o3"
+}

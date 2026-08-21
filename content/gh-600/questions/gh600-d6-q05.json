@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q05",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Which artifact combination provides complete agent accountability per GitHub Docs?",
+  "explanation": "Per GitHub Docs: signed commits (tamper-evident) + co-author attribution (human link) + session logs (full decision trail) + audit log events (admin visibility) = complete accountability.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Slack notification and weekly CSV"
+    },
+    {
+      "id": "o2",
+      "text": "Signed commits + co-author attribution + session logs linked from commit messages + audit log events"
+    },
+    {
+      "id": "o3",
+      "text": "PR description only"
+    },
+    {
+      "id": "o4",
+      "text": "GitHub Actions run summary only"
+    }
+  ],
+  "correct": "o2"
+}

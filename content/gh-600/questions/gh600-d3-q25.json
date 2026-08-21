@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q25",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Memory pruning prevents:",
+  "explanation": "Correct answer: A) Token cost explosions and stale context",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Token cost explosions and stale context"
+    },
+    {
+      "id": "o2",
+      "text": "Tool misuse"
+    },
+    {
+      "id": "o3",
+      "text": "MCP violations"
+    },
+    {
+      "id": "o4",
+      "text": "Branch conflicts"
+    }
+  ],
+  "correct": "o1"
+}

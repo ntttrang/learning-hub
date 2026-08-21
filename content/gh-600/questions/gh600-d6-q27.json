@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q27",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Which of the following statements about agent evaluation signals is TRUE?",
+  "explanation": "Correct answer: B) Evaluation signals should be aligned with development intent, not just general quality metrics",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Only qualitative signals (like human ratings) are useful for evaluating agents"
+    },
+    {
+      "id": "o2",
+      "text": "Evaluation signals should be aligned with development intent, not just general quality metrics"
+    },
+    {
+      "id": "o3",
+      "text": "Evaluation signals are only relevant after an agent fails"
+    },
+    {
+      "id": "o4",
+      "text": "Automated scanning tools cannot generate evaluation signals"
+    }
+  ],
+  "correct": "o2"
+}

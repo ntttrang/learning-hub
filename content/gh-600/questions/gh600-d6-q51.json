@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q51",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Blocking violations of Responsible AI policies:",
+  "explanation": "Correct answer: B) Must occur before the action is executed",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Is optional"
+    },
+    {
+      "id": "o2",
+      "text": "Must occur before the action is executed"
+    },
+    {
+      "id": "o3",
+      "text": "Is only for production"
+    },
+    {
+      "id": "o4",
+      "text": "Is handled by the LLM provider"
+    }
+  ],
+  "correct": "o2"
+}

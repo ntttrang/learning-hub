@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q31",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "A common multi-agent orchestration pattern is:",
+  "explanation": "Correct answer: A) Orchestrator-worker",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Orchestrator-worker"
+    },
+    {
+      "id": "o2",
+      "text": "Single-prompt"
+    },
+    {
+      "id": "o3",
+      "text": "Read-only"
+    },
+    {
+      "id": "o4",
+      "text": "Branch-only"
+    }
+  ],
+  "correct": "o1"
+}

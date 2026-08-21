@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q16",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "An agent is sharing state with another agent in a multi-agent workflow. What is the PRIMARY risk to manage?",
+  "explanation": "Correct answer: B) Conflicting or stale context leading to inconsistent decisions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agents may generate too many log entries"
+    },
+    {
+      "id": "o2",
+      "text": "Conflicting or stale context leading to inconsistent decisions"
+    },
+    {
+      "id": "o3",
+      "text": "The agents may use the same tool twice"
+    },
+    {
+      "id": "o4",
+      "text": "The shared state may consume too much CPU"
+    }
+  ],
+  "correct": "o2"
+}

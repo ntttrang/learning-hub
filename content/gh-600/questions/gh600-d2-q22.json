@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q22",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "When configuring an MCP server for a GitHub agent, which security configuration is MOST important to implement?",
+  "explanation": "Correct answer: B) Configure MCP allow lists to restrict which tools and servers the agent can access",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Enable all available MCP tools by default to improve agent flexibility"
+    },
+    {
+      "id": "o2",
+      "text": "Configure MCP allow lists to restrict which tools and servers the agent can access"
+    },
+    {
+      "id": "o3",
+      "text": "Set the MCP server to public access to allow cross-organization use"
+    },
+    {
+      "id": "o4",
+      "text": "Disable MCP logging to improve performance"
+    }
+  ],
+  "correct": "o2"
+}

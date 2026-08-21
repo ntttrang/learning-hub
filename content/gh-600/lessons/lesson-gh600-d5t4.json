@@ -1,0 +1,24 @@
+{
+  "id": "lesson-gh600-d5t4",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "order": 4,
+  "title": "Agent Lifecycle Management",
+  "summary": "Apply orchestration patterns, configure parallel isolation, detect and resolve conflicts, manage agent lifecycles, and implement recovery in multi-agent workflows.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "list",
+      "items": [
+        "**Add:** Introduce with isolation; validate in staging; ensure state compatibility",
+        "**Update:** Drain in-flight tasks first → update → validate in isolation → reintroduce",
+        "**Replace:** Treat as add + retire; preserve handoff continuity; migrate state artifacts",
+        "**Retire:** Remove from execution; PRESERVE all audit artifacts, decision logs, outputs"
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Retirement ≠ Deletion:** Retiring an agent must NOT delete its audit trail. Logs and outputs must be retained for compliance — even after full decommission."
+    }
+  ]
+}

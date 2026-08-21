@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q06",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "What is the correct sequence for adding a remote MCP server to a GitHub Copilot agent?",
+  "explanation": "Official process: register → registry → allow list → agent config. Each step is distinct and required for the server to be usable by the agent.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Write server code → set max_tokens → deploy"
+    },
+    {
+      "id": "o2",
+      "text": "Register the MCP server → add to MCP registry → configure allow list → assign to agent tool config"
+    },
+    {
+      "id": "o3",
+      "text": "Ask Copilot to auto-detect available servers"
+    },
+    {
+      "id": "o4",
+      "text": "Create a GitHub App and link it to Copilot"
+    }
+  ],
+  "correct": "o2"
+}

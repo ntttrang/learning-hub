@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q02",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "What evaluation purpose do automated scanning tools (CodeQL, SAST) serve in GitHub Actions?",
+  "explanation": "Automated scanners produce objective, reproducible signals — findings, counts, alerts — enabling evaluation at scale without manual review per run.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Replace human code review"
+    },
+    {
+      "id": "o2",
+      "text": "Generate objective quantitative signals about agent output quality at scale"
+    },
+    {
+      "id": "o3",
+      "text": "Configure MCP servers"
+    },
+    {
+      "id": "o4",
+      "text": "Manage agent memory"
+    }
+  ],
+  "correct": "o2"
+}

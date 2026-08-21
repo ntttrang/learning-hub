@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q40",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Configuring agent isolation typically uses:",
+  "explanation": "Correct answer: A) Independent working contexts and scoped state",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Independent working contexts and scoped state"
+    },
+    {
+      "id": "o2",
+      "text": "Shared in-memory state with no boundaries"
+    },
+    {
+      "id": "o3",
+      "text": "Common file locks across agents"
+    },
+    {
+      "id": "o4",
+      "text": "Disabled logging"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q52",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Configuring observability for autonomous agents requires:",
+  "explanation": "Correct answer: A) Inspectable artifacts within standard tooling",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Inspectable artifacts within standard tooling"
+    },
+    {
+      "id": "o2",
+      "text": "Hidden internal logs"
+    },
+    {
+      "id": "o3",
+      "text": "Disabled tracing"
+    },
+    {
+      "id": "o4",
+      "text": "Memory-only state"
+    }
+  ],
+  "correct": "o1"
+}

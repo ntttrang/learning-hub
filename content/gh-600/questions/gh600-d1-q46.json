@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q46",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "\"Distinct planning from execution\" is BEST implemented by:",
+  "explanation": "Correct answer: A) Having the agent emit a plan, then gating execution behind approval",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Having the agent emit a plan, then gating execution behind approval"
+    },
+    {
+      "id": "o2",
+      "text": "Running both in the same step"
+    },
+    {
+      "id": "o3",
+      "text": "Disabling planning"
+    },
+    {
+      "id": "o4",
+      "text": "Skipping execution"
+    }
+  ],
+  "correct": "o1"
+}

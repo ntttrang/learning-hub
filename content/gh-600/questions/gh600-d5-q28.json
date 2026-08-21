@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q28",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Recovery patterns for multi-agent failures include:",
+  "explanation": "Correct answer: B) Rollback and human-in-the-loop interventions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Ignoring failures"
+    },
+    {
+      "id": "o2",
+      "text": "Rollback and human-in-the-loop interventions"
+    },
+    {
+      "id": "o3",
+      "text": "Disabling logging"
+    },
+    {
+      "id": "o4",
+      "text": "Removing observability"
+    }
+  ],
+  "correct": "o2"
+}

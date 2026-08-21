@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q22",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "An agent is performing well on most tasks but fails on edge cases involving complex reasoning chains. What is the BEST first tuning action?",
+  "explanation": "Correct answer: C) Analyze traces and plans from failed runs to identify where reasoning breaks down, then revise instructions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Add more tools to the agent"
+    },
+    {
+      "id": "o2",
+      "text": "Extend the agent's token limit"
+    },
+    {
+      "id": "o3",
+      "text": "Analyze traces and plans from failed runs to identify where reasoning breaks down, then revise instructions"
+    },
+    {
+      "id": "o4",
+      "text": "Switch to a different agent orchestration pattern"
+    }
+  ],
+  "correct": "o3"
+}

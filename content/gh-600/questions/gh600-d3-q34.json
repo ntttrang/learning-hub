@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q34",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Choosing between memory types depends on:",
+  "explanation": "Correct answer: A) Whether state must persist across sessions or only within one task",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Whether state must persist across sessions or only within one task"
+    },
+    {
+      "id": "o2",
+      "text": "Tool count"
+    },
+    {
+      "id": "o3",
+      "text": "Branch count"
+    },
+    {
+      "id": "o4",
+      "text": "MCP server availability"
+    }
+  ],
+  "correct": "o1"
+}

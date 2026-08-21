@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q60",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Stalled multi-agent executions should be:",
+  "explanation": "Correct answer: A) Detected and handled with recovery patterns",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Detected and handled with recovery patterns"
+    },
+    {
+      "id": "o2",
+      "text": "Ignored indefinitely"
+    },
+    {
+      "id": "o3",
+      "text": "Hidden from operators"
+    },
+    {
+      "id": "o4",
+      "text": "Logged silently"
+    }
+  ],
+  "correct": "o1"
+}

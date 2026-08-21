@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q36",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Defining reset rules for memory prevents:",
+  "explanation": "Correct answer: A) Stale data persisting across unrelated tasks",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Stale data persisting across unrelated tasks"
+    },
+    {
+      "id": "o2",
+      "text": "Tool growth"
+    },
+    {
+      "id": "o3",
+      "text": "MCP failures"
+    },
+    {
+      "id": "o4",
+      "text": "Branch conflicts"
+    }
+  ],
+  "correct": "o1"
+}

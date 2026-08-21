@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q29",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Long-term memory is appropriate for:",
+  "explanation": "Correct answer: A) Cross-session knowledge",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Cross-session knowledge"
+    },
+    {
+      "id": "o2",
+      "text": "Single-task ephemeral context"
+    },
+    {
+      "id": "o3",
+      "text": "Tool selection"
+    },
+    {
+      "id": "o4",
+      "text": "Branch metadata"
+    }
+  ],
+  "correct": "o1"
+}

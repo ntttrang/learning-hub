@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q56",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Configuring agent isolation:",
+  "explanation": "Correct answer: A) Prevents one agent's state from corrupting another's",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Prevents one agent's state from corrupting another's"
+    },
+    {
+      "id": "o2",
+      "text": "Shares state freely"
+    },
+    {
+      "id": "o3",
+      "text": "Removes observability"
+    },
+    {
+      "id": "o4",
+      "text": "Disables tools"
+    }
+  ],
+  "correct": "o1"
+}

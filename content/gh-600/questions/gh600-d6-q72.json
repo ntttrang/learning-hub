@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q72",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Combining quantitative and qualitative signals:",
+  "explanation": "Correct answer: A) Provides a balanced, comprehensive evaluation",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Provides a balanced, comprehensive evaluation"
+    },
+    {
+      "id": "o2",
+      "text": "Replaces guardrails"
+    },
+    {
+      "id": "o3",
+      "text": "Eliminates the need for memory"
+    },
+    {
+      "id": "o4",
+      "text": "Disables observability"
+    }
+  ],
+  "correct": "o1"
+}

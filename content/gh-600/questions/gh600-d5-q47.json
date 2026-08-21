@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q47",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Orchestration patterns help:",
+  "explanation": "Correct answer: A) Coordinate work across multiple agents reliably",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Coordinate work across multiple agents reliably"
+    },
+    {
+      "id": "o2",
+      "text": "Increase autonomy without limits"
+    },
+    {
+      "id": "o3",
+      "text": "Disable observability"
+    },
+    {
+      "id": "o4",
+      "text": "Eliminate evaluation"
+    }
+  ],
+  "correct": "o1"
+}

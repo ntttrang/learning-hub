@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q104",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Memory and state continuity across tools and environments requires:",
+  "explanation": "Correct answer: A) A consistent state contract, synchronization, and conflict resolution",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A consistent state contract, synchronization, and conflict resolution"
+    },
+    {
+      "id": "o2",
+      "text": "Random sharing"
+    },
+    {
+      "id": "o3",
+      "text": "Disabling memory entirely"
+    },
+    {
+      "id": "o4",
+      "text": "Single-environment execution only"
+    }
+  ],
+  "correct": "o1"
+}

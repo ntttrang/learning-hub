@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q100",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Sharing state across agents requires:",
+  "explanation": "Correct answer: A) A defined, consistent representation and synchronization mechanism",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A defined, consistent representation and synchronization mechanism"
+    },
+    {
+      "id": "o2",
+      "text": "Random formats"
+    },
+    {
+      "id": "o3",
+      "text": "Disabling memory"
+    },
+    {
+      "id": "o4",
+      "text": "Removing tools"
+    }
+  ],
+  "correct": "o1"
+}

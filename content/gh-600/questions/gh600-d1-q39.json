@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q39",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "A structured plan output benefits:",
+  "explanation": "Correct answer: B) Validation and machine-readable inspection",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Tool selection"
+    },
+    {
+      "id": "o2",
+      "text": "Validation and machine-readable inspection"
+    },
+    {
+      "id": "o3",
+      "text": "MCP registry use"
+    },
+    {
+      "id": "o4",
+      "text": "Memory pruning"
+    }
+  ],
+  "correct": "o2"
+}

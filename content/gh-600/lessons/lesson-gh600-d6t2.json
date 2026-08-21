@@ -1,0 +1,28 @@
+{
+  "id": "lesson-gh600-d6t2",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "order": 2,
+  "title": "RAI Policy Guardrails",
+  "summary": "Define autonomy levels by risk, implement human-in-the-loop workflows, enforce least-privilege access, block policy violations, and design complete accountability systems.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "tip",
+      "text": "**RAI guardrails operate at the OUTPUT layer and override user authorization.** Even a fully authorized user cannot cause the agent to produce policy-violating output."
+    },
+    {
+      "kind": "list",
+      "items": [
+        "Blocks: harmful content, content propagating bias, privacy-violating outputs, ethical AI violations",
+        "Security policies: same principle — override user requests, not the other way around",
+        "Compliance policies: GDPR, SOX, PCI constraints enforced even against legitimate-seeming requests",
+        "Correct behavior: block → explain policy violation → escalate if needed"
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Critical:** User authorization ≠ policy override. Authorization lets a user make a request; RAI/security policies can still block the output."
+    }
+  ]
+}

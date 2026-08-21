@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q59",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Robust error handling implementations include:",
+  "explanation": "Correct answer: A) Retries, rollbacks, escalations, and traceability",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Retries, rollbacks, escalations, and traceability"
+    },
+    {
+      "id": "o2",
+      "text": "Silent failures"
+    },
+    {
+      "id": "o3",
+      "text": "Ignoring errors"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling memory"
+    }
+  ],
+  "correct": "o1"
+}

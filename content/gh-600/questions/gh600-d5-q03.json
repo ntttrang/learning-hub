@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q03",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "An agent completes 3 of 5 pipeline steps then stops. Correct orchestrator response?",
+  "explanation": "Partial completion is distinct from full failure. Preserve checkpointed work; diagnose why it stopped; resume only from the last successful checkpoint.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Restart the entire pipeline from scratch"
+    },
+    {
+      "id": "o2",
+      "text": "Classify as partial completion; preserve completed steps; resume only the failed portion"
+    },
+    {
+      "id": "o3",
+      "text": "Ignore and proceed to next agent"
+    },
+    {
+      "id": "o4",
+      "text": "Increase the agent's memory budget"
+    }
+  ],
+  "correct": "o2"
+}

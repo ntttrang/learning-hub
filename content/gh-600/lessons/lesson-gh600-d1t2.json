@@ -1,0 +1,44 @@
+{
+  "id": "lesson-gh600-d1t2",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "order": 2,
+  "title": "GitHub as System of Record & Control Plane",
+  "summary": "Structure agent systems, integrate them into the SDLC, define the planning/execution boundary, configure observability, and right-size human oversight.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "table",
+      "headers": [
+        "System of Record",
+        "Control Plane"
+      ],
+      "rows": [
+        [
+          "All agent changes tracked via branches, commits, PRs",
+          "Workflows, permissions, approvals govern what agents can do"
+        ],
+        [
+          "Signed commits with co-author attribution",
+          "Branch protection rules, required status checks"
+        ],
+        [
+          "Session logs linked in commit messages",
+          "CODEOWNERS, environment gates, rulesets"
+        ],
+        [
+          "Audit log events for all agent activity",
+          "MCP allow lists, tool permissions"
+        ]
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Key Fact:** Copilot cloud agent commits are **cryptographically signed** — they appear as \"Verified\" on GitHub. The co-author is the developer who initiated the task, creating an unbreakable accountability chain."
+    },
+    {
+      "kind": "tip",
+      "text": "**Exam Tip:** \"System of record\" = where changes live (branches/PRs/commits). \"Control plane\" = what governs agent behavior (workflows/permissions/gates). Know both roles and examples of each."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q03",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "For enterprise Copilot subscriptions, what is the default state of Copilot Memory?",
+  "explanation": "For enterprise/org-managed accounts, Copilot Memory is OFF by default. An admin must explicitly enable it — opposite of individual Pro/Pro+ users.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Enabled for all users"
+    },
+    {
+      "id": "o2",
+      "text": "Disabled by default — admin must enable at org/enterprise level"
+    },
+    {
+      "id": "o3",
+      "text": "Enabled for repo owners only"
+    },
+    {
+      "id": "o4",
+      "text": "Enabled only in public repos"
+    }
+  ],
+  "correct": "o2"
+}

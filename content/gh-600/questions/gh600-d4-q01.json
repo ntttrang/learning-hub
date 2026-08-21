@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q01",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "An agent produces syntactically valid but logically incorrect refactored code. Root cause?",
+  "explanation": "Producing structurally correct but semantically wrong output = reasoning error. The model's logic or planning was flawed, not the tool or environment.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Tool misuse"
+    },
+    {
+      "id": "o2",
+      "text": "Context/environment issue"
+    },
+    {
+      "id": "o3",
+      "text": "Reasoning error — flawed inference or planning"
+    },
+    {
+      "id": "o4",
+      "text": "Memory expiration"
+    }
+  ],
+  "correct": "o3"
+}

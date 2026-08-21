@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q20",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "An agent is producing outputs that are difficult to audit after the fact. What should you configure to address this?",
+  "explanation": "Correct answer: B) Configure the agent to produce inspectable artifacts within standard development tooling",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Increase the agent's memory allocation"
+    },
+    {
+      "id": "o2",
+      "text": "Configure the agent to produce inspectable artifacts within standard development tooling"
+    },
+    {
+      "id": "o3",
+      "text": "Switch the agent to a different LLM model"
+    },
+    {
+      "id": "o4",
+      "text": "Reduce the number of tools available to the agent"
+    }
+  ],
+  "correct": "o2"
+}

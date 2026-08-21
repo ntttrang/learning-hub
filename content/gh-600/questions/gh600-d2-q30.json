@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q30",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Which configuration limits an agent's actions to a specific repository?",
+  "explanation": "Correct answer: B) Repository-scoped agent configuration",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Memory scoping"
+    },
+    {
+      "id": "o2",
+      "text": "Repository-scoped agent configuration"
+    },
+    {
+      "id": "o3",
+      "text": "Branch protection rules"
+    },
+    {
+      "id": "o4",
+      "text": "MCP registry"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q05",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "First step to diagnose a silent agent failure with no output and no error?",
+  "explanation": "Silent failures require tracing backward: plan trace reveals intent, tool call log shows where execution stalled. Start there, then expand to environment logs.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Check GitHub billing"
+    },
+    {
+      "id": "o2",
+      "text": "Examine plan trace and tool call log to find where execution stopped"
+    },
+    {
+      "id": "o3",
+      "text": "Check model version history"
+    },
+    {
+      "id": "o4",
+      "text": "Review only the final PR diff"
+    }
+  ],
+  "correct": "o2"
+}

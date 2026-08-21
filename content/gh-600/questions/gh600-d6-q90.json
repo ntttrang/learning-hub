@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q90",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "The ideal agentic SDLC posture is:",
+  "explanation": "Correct answer: A) Agents with clear scope, observability, accountability, and risk-aware oversight",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agents with clear scope, observability, accountability, and risk-aware oversight"
+    },
+    {
+      "id": "o2",
+      "text": "Maximum autonomy with no oversight"
+    },
+    {
+      "id": "o3",
+      "text": "Zero autonomy"
+    },
+    {
+      "id": "o4",
+      "text": "Agents that bypass humans entirely"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q43",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "An MCP server provides:",
+  "explanation": "Correct answer: A) A standardized interface for tools and resources",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A standardized interface for tools and resources"
+    },
+    {
+      "id": "o2",
+      "text": "A replacement for the LLM"
+    },
+    {
+      "id": "o3",
+      "text": "A storage layer"
+    },
+    {
+      "id": "o4",
+      "text": "A CI runner"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q09",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "An agent has been running 30 minutes, produced no output, and has not errored. How should it be classified?",
+  "explanation": "\"Stalled\" is distinct from \"failed\" or \"partial.\" Diagnose via logs/trace; apply targeted recovery — not a blanket restart that discards completed work from other agents.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Full failure; restart the entire pipeline"
+    },
+    {
+      "id": "o2",
+      "text": "Stalled execution — investigate logs and trace, then apply targeted recovery (retry, redirect, or escalate)"
+    },
+    {
+      "id": "o3",
+      "text": "Normal; wait indefinitely"
+    },
+    {
+      "id": "o4",
+      "text": "Reasoning error; switch to a larger model"
+    }
+  ],
+  "correct": "o2"
+}

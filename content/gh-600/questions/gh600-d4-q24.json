@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q24",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "When tuning an agent that misuses tools, the FIRST action is to:",
+  "explanation": "Correct answer: B) Refine the agent's instructions about when each tool should be used",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Add more tools"
+    },
+    {
+      "id": "o2",
+      "text": "Refine the agent's instructions about when each tool should be used"
+    },
+    {
+      "id": "o3",
+      "text": "Increase memory"
+    },
+    {
+      "id": "o4",
+      "text": "Remove all tools"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q65",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Branch-based scope helps:",
+  "explanation": "Correct answer: A) Limit the blast radius of agent changes",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Limit the blast radius of agent changes"
+    },
+    {
+      "id": "o2",
+      "text": "Increase memory"
+    },
+    {
+      "id": "o3",
+      "text": "Increase tool count"
+    },
+    {
+      "id": "o4",
+      "text": "Disable MCP"
+    }
+  ],
+  "correct": "o1"
+}

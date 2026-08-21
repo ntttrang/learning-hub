@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q52",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Recovery patterns include:",
+  "explanation": "Correct answer: A) Rollback, retry, and human-in-the-loop intervention",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Rollback, retry, and human-in-the-loop intervention"
+    },
+    {
+      "id": "o2",
+      "text": "Silent failure"
+    },
+    {
+      "id": "o3",
+      "text": "Ignoring stalled agents"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling logs"
+    }
+  ],
+  "correct": "o1"
+}

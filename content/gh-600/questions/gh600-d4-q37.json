@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q37",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Operational constraints for an agent task may include:",
+  "explanation": "Correct answer: A) Time limits, budget limits, or scope limits",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Time limits, budget limits, or scope limits"
+    },
+    {
+      "id": "o2",
+      "text": "Aesthetic preferences"
+    },
+    {
+      "id": "o3",
+      "text": "The agent's color theme"
+    },
+    {
+      "id": "o4",
+      "text": "The number of CI runners"
+    }
+  ],
+  "correct": "o1"
+}

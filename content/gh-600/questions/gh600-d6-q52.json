@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q52",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "An agent that creates a PR but then makes destructive force-pushes is exhibiting:",
+  "explanation": "Correct answer: B) Missing guardrails on high-risk actions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Effective autonomy"
+    },
+    {
+      "id": "o2",
+      "text": "Missing guardrails on high-risk actions"
+    },
+    {
+      "id": "o3",
+      "text": "Healthy planning"
+    },
+    {
+      "id": "o4",
+      "text": "Effective evaluation"
+    }
+  ],
+  "correct": "o2"
+}

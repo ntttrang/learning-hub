@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q29",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "When configuring MCP allow lists, the goal is to:",
+  "explanation": "Correct answer: B) Restrict which MCP servers and tools the agent may use",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Maximize the number of tools available"
+    },
+    {
+      "id": "o2",
+      "text": "Restrict which MCP servers and tools the agent may use"
+    },
+    {
+      "id": "o3",
+      "text": "Cache MCP responses"
+    },
+    {
+      "id": "o4",
+      "text": "Increase token throughput"
+    }
+  ],
+  "correct": "o2"
+}

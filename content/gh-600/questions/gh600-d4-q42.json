@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q42",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "A reasoning error is identified when:",
+  "explanation": "Correct answer: A) The agent's plan or thought process produced an incorrect conclusion",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agent's plan or thought process produced an incorrect conclusion"
+    },
+    {
+      "id": "o2",
+      "text": "The agent's tools were unavailable"
+    },
+    {
+      "id": "o3",
+      "text": "The environment differed from expected"
+    },
+    {
+      "id": "o4",
+      "text": "Memory expired"
+    }
+  ],
+  "correct": "o1"
+}

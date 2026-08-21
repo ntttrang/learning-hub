@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q17",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "An agent is consistently selecting the wrong tool for a given task. What is the MOST likely root cause?",
+  "explanation": "Correct answer: B) The agent's instructions do not clearly define when each tool should be used",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Memory expiration policy is too aggressive"
+    },
+    {
+      "id": "o2",
+      "text": "The agent's instructions do not clearly define when each tool should be used"
+    },
+    {
+      "id": "o3",
+      "text": "The agent is missing long-term memory"
+    },
+    {
+      "id": "o4",
+      "text": "The CI workflow trigger is misconfigured"
+    }
+  ],
+  "correct": "o2"
+}

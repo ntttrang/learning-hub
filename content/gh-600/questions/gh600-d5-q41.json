@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q41",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "When two agents propose contradictory plans, the orchestration layer should:",
+  "explanation": "Correct answer: B) Detect the conflict and apply a resolution strategy (priority, merge, escalation)",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Pick one at random"
+    },
+    {
+      "id": "o2",
+      "text": "Detect the conflict and apply a resolution strategy (priority, merge, escalation)"
+    },
+    {
+      "id": "o3",
+      "text": "Ignore both"
+    },
+    {
+      "id": "o4",
+      "text": "Promote both to production"
+    }
+  ],
+  "correct": "o2"
+}

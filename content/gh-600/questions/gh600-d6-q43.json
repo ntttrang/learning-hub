@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q43",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Refining tool access during tuning means:",
+  "explanation": "Correct answer: B) Restricting or expanding tool access based on observed agent behavior",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Adding tools at random"
+    },
+    {
+      "id": "o2",
+      "text": "Restricting or expanding tool access based on observed agent behavior"
+    },
+    {
+      "id": "o3",
+      "text": "Disabling all tools"
+    },
+    {
+      "id": "o4",
+      "text": "Replacing MCP servers"
+    }
+  ],
+  "correct": "o2"
+}

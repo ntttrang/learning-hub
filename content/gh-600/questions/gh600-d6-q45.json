@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q45",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Which statement BEST captures the GH-600 philosophy?",
+  "explanation": "Correct answer: B) Agents should be designed with clear boundaries, oversight, and accountability",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agents should operate with maximum autonomy at all times"
+    },
+    {
+      "id": "o2",
+      "text": "Agents should be designed with clear boundaries, oversight, and accountability"
+    },
+    {
+      "id": "o3",
+      "text": "Human oversight should be eliminated wherever possible"
+    },
+    {
+      "id": "o4",
+      "text": "Speed of delivery is more important than safety"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q50",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Defining inputs and outputs for an agent's task:",
+  "explanation": "Correct answer: A) Creates a clear contract and success boundary",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Creates a clear contract and success boundary"
+    },
+    {
+      "id": "o2",
+      "text": "Slows down the agent"
+    },
+    {
+      "id": "o3",
+      "text": "Is optional"
+    },
+    {
+      "id": "o4",
+      "text": "Replaces evaluation"
+    }
+  ],
+  "correct": "o1"
+}

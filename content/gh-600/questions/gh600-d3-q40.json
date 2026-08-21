@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q40",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "External memory is appropriate when:",
+  "explanation": "Correct answer: A) State must persist outside the context window or across systems",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "State must persist outside the context window or across systems"
+    },
+    {
+      "id": "o2",
+      "text": "Tasks are short"
+    },
+    {
+      "id": "o3",
+      "text": "Tools are limited"
+    },
+    {
+      "id": "o4",
+      "text": "Logs are off"
+    }
+  ],
+  "correct": "o1"
+}

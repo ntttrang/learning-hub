@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q50",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Multi-agent observability artifacts include:",
+  "explanation": "Correct answer: A) Logs, decision records, handoffs, and operational signals",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Logs, decision records, handoffs, and operational signals"
+    },
+    {
+      "id": "o2",
+      "text": "Only final outputs"
+    },
+    {
+      "id": "o3",
+      "text": "Only LLM model names"
+    },
+    {
+      "id": "o4",
+      "text": "None — agents are autonomous"
+    }
+  ],
+  "correct": "o1"
+}

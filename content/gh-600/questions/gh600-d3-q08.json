@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q08",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "A memory created by Developer A in Repository X — can Developer B access it in Repository X?",
+  "explanation": "Per GitHub Docs, Copilot Memory is repository-scoped. All permitted users in a repo share its memories. Memories cannot cross repository boundaries.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "No — memories are strictly user-scoped"
+    },
+    {
+      "id": "o2",
+      "text": "Yes — memories are repository-scoped; all permitted Copilot users in that repo benefit from memories created there"
+    },
+    {
+      "id": "o3",
+      "text": "Yes — memories are org-scoped across all repos"
+    },
+    {
+      "id": "o4",
+      "text": "No — memories expire at the end of the creating user's session"
+    }
+  ],
+  "correct": "o2"
+}

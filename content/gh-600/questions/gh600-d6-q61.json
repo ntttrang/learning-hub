@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q61",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Assigning autonomy levels supports:",
+  "explanation": "Correct answer: A) Risk-based delivery speed and compliance balance",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Risk-based delivery speed and compliance balance"
+    },
+    {
+      "id": "o2",
+      "text": "Maximum agent independence"
+    },
+    {
+      "id": "o3",
+      "text": "Eliminating oversight"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling logs"
+    }
+  ],
+  "correct": "o1"
+}

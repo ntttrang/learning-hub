@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q36",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Tool permissions for an agent should follow:",
+  "explanation": "Correct answer: B) Least-privilege scoping",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Maximum privilege"
+    },
+    {
+      "id": "o2",
+      "text": "Least-privilege scoping"
+    },
+    {
+      "id": "o3",
+      "text": "The repository owner's privileges"
+    },
+    {
+      "id": "o4",
+      "text": "The CI runner's privileges"
+    }
+  ],
+  "correct": "o2"
+}

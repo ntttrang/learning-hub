@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q10",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Which evaluation signal is qualitative rather than quantitative?",
+  "explanation": "Qualitative signals require human judgment — readability, logical correctness, architectural fit. They complement quantitative signals but cannot be fully automated.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Number of lint errors introduced"
+    },
+    {
+      "id": "o2",
+      "text": "Test pass rate"
+    },
+    {
+      "id": "o3",
+      "text": "Percentage of PRs merged without revision"
+    },
+    {
+      "id": "o4",
+      "text": "Developer assessment of code readability and adherence to team conventions"
+    }
+  ],
+  "correct": "o4"
+}

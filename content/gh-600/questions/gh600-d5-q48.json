@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q48",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Parallel execution requires:",
+  "explanation": "Correct answer: A) Agent isolation to avoid interference",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agent isolation to avoid interference"
+    },
+    {
+      "id": "o2",
+      "text": "Shared global state with no boundaries"
+    },
+    {
+      "id": "o3",
+      "text": "A single LLM call"
+    },
+    {
+      "id": "o4",
+      "text": "No artifacts"
+    }
+  ],
+  "correct": "o1"
+}

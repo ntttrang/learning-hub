@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q32",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Agent isolation supports:",
+  "explanation": "Correct answer: B) Safe parallel execution without cross-interference",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Memory growth"
+    },
+    {
+      "id": "o2",
+      "text": "Safe parallel execution without cross-interference"
+    },
+    {
+      "id": "o3",
+      "text": "Tool sharing"
+    },
+    {
+      "id": "o4",
+      "text": "MCP caching"
+    }
+  ],
+  "correct": "o2"
+}

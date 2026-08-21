@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q43",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Document key handoffs to enable:",
+  "explanation": "Correct answer: A) Auditability and debugging across agent boundaries",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Auditability and debugging across agent boundaries"
+    },
+    {
+      "id": "o2",
+      "text": "Faster execution"
+    },
+    {
+      "id": "o3",
+      "text": "Smaller LLMs"
+    },
+    {
+      "id": "o4",
+      "text": "Disabled guardrails"
+    }
+  ],
+  "correct": "o1"
+}

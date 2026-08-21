@@ -1,0 +1,40 @@
+{
+  "id": "lesson-gh600-d1t1",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "order": 1,
+  "title": "Agent Lifecycle: Plan → Act → Evaluate",
+  "summary": "Structure agent systems, integrate them into the SDLC, define the planning/execution boundary, configure observability, and right-size human oversight.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "The agent lifecycle is the foundational model for all agentic AI in GitHub. Every agent task follows three distinct, ordered phases — they must not be collapsed."
+    },
+    {
+      "kind": "tip",
+      "text": "**📋 Plan:** The agent receives inputs and produces a _structured plan artifact_ — a file, PR comment, or structured workflow output that describes what it intends to do. This artifact is inspectable and validatable before any action occurs."
+    },
+    {
+      "kind": "tip",
+      "text": "**⚡ Act:** Only after the plan is approved (by a human gate or automated status check) does the agent execute. Actions: write code, commit to branch, create PR, call external APIs via MCP."
+    },
+    {
+      "kind": "tip",
+      "text": "**📊 Evaluate:** Automated scanning tools and human reviewers assess outputs against predefined success criteria. Results feed back into the next iteration."
+    },
+    {
+      "kind": "list",
+      "items": [
+        "Agents differ from assistants: they _act_ on the codebase autonomously, not just suggest",
+        "Planning and execution must be **distinct, separated steps** — never combined",
+        "The plan artifact is the contract between the agent and the reviewer",
+        "Evaluation signals: quantitative (test pass rate) AND qualitative (code readability)"
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Exam Tip:** Combining plan and act in one step is the #1 documented anti-pattern. If asked which comes first — always Plan, then validate, then Act."
+    }
+  ]
+}

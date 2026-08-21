@@ -1,0 +1,68 @@
+[
+  {
+    "id": "gh600-d1",
+    "order": 1,
+    "code": "D1",
+    "title": "Prepare Agent Architecture and SDLC Processes",
+    "weight": {
+      "min": 15,
+      "max": 20
+    },
+    "summary": "Structure agent systems, integrate them into the SDLC, define the planning/execution boundary, configure observability, and right-size human oversight."
+  },
+  {
+    "id": "gh600-d2",
+    "order": 2,
+    "code": "D2",
+    "title": "Implement Tool Use and Environment Interaction",
+    "weight": {
+      "min": 20,
+      "max": 25
+    },
+    "summary": "Select and configure agent tools, set up MCP servers with registries and allow lists, integrate agents into CI, and implement safe execution with robust error handling."
+  },
+  {
+    "id": "gh600-d3",
+    "order": 3,
+    "code": "D3",
+    "title": "Manage Memory, State, and Execution",
+    "weight": {
+      "min": 10,
+      "max": 15
+    },
+    "summary": "Choose memory strategies, persist durable state, prevent context drift, and maintain task continuity — including Copilot Memory specifics tested directly on the exam."
+  },
+  {
+    "id": "gh600-d4",
+    "order": 4,
+    "code": "D4",
+    "title": "Perform Evaluation, Error Analysis, and Tuning",
+    "weight": {
+      "min": 15,
+      "max": 20
+    },
+    "summary": "Define success signals, analyze agent failures using logs and traces, classify root causes, and tune instructions, memory, and tool access based on evidence."
+  },
+  {
+    "id": "gh600-d5",
+    "order": 5,
+    "code": "D5",
+    "title": "Orchestrate Multi-Agent Coordination",
+    "weight": {
+      "min": 15,
+      "max": 20
+    },
+    "summary": "Apply orchestration patterns, configure parallel isolation, detect and resolve conflicts, manage agent lifecycles, and implement recovery in multi-agent workflows."
+  },
+  {
+    "id": "gh600-d6",
+    "order": 6,
+    "code": "D6",
+    "title": "Implement Guardrails and Accountability",
+    "weight": {
+      "min": 10,
+      "max": 15
+    },
+    "summary": "Define autonomy levels by risk, implement human-in-the-loop workflows, enforce least-privilege access, block policy violations, and design complete accountability systems."
+  }
+]

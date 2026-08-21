@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q46",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Adding an MCP server as a tool requires:",
+  "explanation": "Correct answer: A) Registering it and configuring access",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Registering it and configuring access"
+    },
+    {
+      "id": "o2",
+      "text": "Disabling guardrails"
+    },
+    {
+      "id": "o3",
+      "text": "Removing branch scope"
+    },
+    {
+      "id": "o4",
+      "text": "Increasing autonomy"
+    }
+  ],
+  "correct": "o1"
+}

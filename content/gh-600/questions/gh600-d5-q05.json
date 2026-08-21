@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q05",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Post-hoc audit artifacts must contain per-agent:",
+  "explanation": "Post-hoc analysis requires reconstructing what each agent did, why, and how — demanding structured per-agent records covering the full decision trail.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Model temperature settings"
+    },
+    {
+      "id": "o2",
+      "text": "Inputs received, decisions made, tools called, outputs produced, and handoff context passed downstream"
+    },
+    {
+      "id": "o3",
+      "text": "GitHub Actions run IDs only"
+    },
+    {
+      "id": "o4",
+      "text": "Source code only"
+    }
+  ],
+  "correct": "o2"
+}

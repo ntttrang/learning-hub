@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q86",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Blocking irreversible compliance-sensitive actions:",
+  "explanation": "Correct answer: A) Is essential for accountability",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Is essential for accountability"
+    },
+    {
+      "id": "o2",
+      "text": "Slows everything unnecessarily"
+    },
+    {
+      "id": "o3",
+      "text": "Is optional"
+    },
+    {
+      "id": "o4",
+      "text": "Is handled by the LLM"
+    }
+  ],
+  "correct": "o1"
+}

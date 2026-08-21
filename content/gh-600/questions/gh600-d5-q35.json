@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q35",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Documenting outcomes across agents helps with:",
+  "explanation": "Correct answer: A) Audit, review, and learning",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Audit, review, and learning"
+    },
+    {
+      "id": "o2",
+      "text": "Speeding up execution"
+    },
+    {
+      "id": "o3",
+      "text": "Disabling guardrails"
+    },
+    {
+      "id": "o4",
+      "text": "Reducing memory"
+    }
+  ],
+  "correct": "o1"
+}

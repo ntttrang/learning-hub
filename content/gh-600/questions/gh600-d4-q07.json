@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q07",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "An agent introduces a hardcoded API key into generated code. Which tool catches this?",
+  "explanation": "Secret scanning specifically detects hardcoded credentials and API keys. CodeQL covers code security vulnerabilities; dependency scanning covers third-party library vulnerabilities.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "CodeQL"
+    },
+    {
+      "id": "o2",
+      "text": "GitHub Secret scanning"
+    },
+    {
+      "id": "o3",
+      "text": "Dependency vulnerability scanning"
+    },
+    {
+      "id": "o4",
+      "text": "A lint checker"
+    }
+  ],
+  "correct": "o2"
+}

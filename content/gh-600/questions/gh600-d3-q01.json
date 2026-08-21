@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q01",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "How long are Copilot Memory entries retained before automatic deletion?",
+  "explanation": "Per GitHub Docs, Copilot memories are automatically deleted after 28 days to prevent stale information from degrading decision quality.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "7 days"
+    },
+    {
+      "id": "o2",
+      "text": "14 days"
+    },
+    {
+      "id": "o3",
+      "text": "28 days"
+    },
+    {
+      "id": "o4",
+      "text": "90 days"
+    }
+  ],
+  "correct": "o3"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "lesson-gh600-d1t5",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "order": 5,
+  "title": "Observability & Human Intervention Config",
+  "summary": "Structure agent systems, integrate them into the SDLC, define the planning/execution boundary, configure observability, and right-size human oversight.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "tip",
+      "text": "**Inspectable Artifacts:** Plan files committed to a branch, PR descriptions with structured reasoning, GitHub Actions workflow run logs, session logs linked from commit messages, structured JSON outputs in CI artifacts."
+    },
+    {
+      "kind": "list",
+      "items": [
+        "**Required status checks** = automated validation gates in Actions",
+        "**Required reviews** = human approval gates via branch protection",
+        "**CODEOWNERS** = automatic reviewer assignment for specific file paths",
+        "**Environment gates** = deployment-level approvals for production/staging",
+        "**Rulesets** = org/repo-level enforcement of governance rules"
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**\"Without slowing delivery\"** = gates only on high-risk actions. Routine, reversible, low-risk agent actions should NOT require approval — that's approval theater."
+    }
+  ]
+}

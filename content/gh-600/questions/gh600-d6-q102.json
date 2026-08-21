@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q102",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "A complete evaluation strategy combines:",
+  "explanation": "Correct answer: A) Quantitative metrics, qualitative signals, and alignment with development intent",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Quantitative metrics, qualitative signals, and alignment with development intent"
+    },
+    {
+      "id": "o2",
+      "text": "Only automated metrics"
+    },
+    {
+      "id": "o3",
+      "text": "Only developer opinions"
+    },
+    {
+      "id": "o4",
+      "text": "Only token counts"
+    }
+  ],
+  "correct": "o1"
+}

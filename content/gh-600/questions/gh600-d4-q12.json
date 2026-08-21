@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q12",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "What does \"aligning evaluation criteria with development intent\" prevent?",
+  "explanation": "Without alignment, agents can game metrics while delivering poor real-world quality. Criteria must reflect what \"good\" genuinely means to the team, not just what's auto-measurable.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Too many PRs being created"
+    },
+    {
+      "id": "o2",
+      "text": "Metric gaming — agents optimising what's measured at the expense of actual quality (e.g. trivial tests to inflate test count)"
+    },
+    {
+      "id": "o3",
+      "text": "CI pipeline timeouts"
+    },
+    {
+      "id": "o4",
+      "text": "Memory expiration"
+    }
+  ],
+  "correct": "o2"
+}

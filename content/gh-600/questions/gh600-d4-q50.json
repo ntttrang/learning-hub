@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q50",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Refining tool access is a tuning lever for:",
+  "explanation": "Correct answer: A) Tool misuse or over-/under-equipped agents",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Tool misuse or over-/under-equipped agents"
+    },
+    {
+      "id": "o2",
+      "text": "Memory growth"
+    },
+    {
+      "id": "o3",
+      "text": "Branch protection"
+    },
+    {
+      "id": "o4",
+      "text": "MCP registry size"
+    }
+  ],
+  "correct": "o1"
+}

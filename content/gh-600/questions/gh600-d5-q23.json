@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q23",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "An orchestration pattern in multi-agent systems defines:",
+  "explanation": "Correct answer: B) How multiple agents coordinate, sequence, or run in parallel",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agent memory rules"
+    },
+    {
+      "id": "o2",
+      "text": "How multiple agents coordinate, sequence, or run in parallel"
+    },
+    {
+      "id": "o3",
+      "text": "MCP server hierarchy"
+    },
+    {
+      "id": "o4",
+      "text": "Branch protection scope"
+    }
+  ],
+  "correct": "o2"
+}

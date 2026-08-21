@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q02",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "An authorized user asks the agent to generate output that violates a RAI policy. Correct agent behavior?",
+  "explanation": "RAI policies are hard constraints at the output layer. They override user authorization. Even a fully authorized user cannot cause policy-violating output.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Proceed — user authorization overrides policy"
+    },
+    {
+      "id": "o2",
+      "text": "Block the action, explain the violation, escalate if needed — RAI policies are hard constraints that override user requests"
+    },
+    {
+      "id": "o3",
+      "text": "Log and proceed"
+    },
+    {
+      "id": "o4",
+      "text": "Ask a second agent to approve"
+    }
+  ],
+  "correct": "o2"
+}

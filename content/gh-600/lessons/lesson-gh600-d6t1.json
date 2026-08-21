@@ -1,0 +1,45 @@
+{
+  "id": "lesson-gh600-d6t1",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "order": 1,
+  "title": "Risk Classification & Autonomy Levels",
+  "summary": "Define autonomy levels by risk, implement human-in-the-loop workflows, enforce least-privilege access, block policy violations, and design complete accountability systems.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "table",
+      "headers": [
+        "Risk Level",
+        "Examples",
+        "Autonomy"
+      ],
+      "rows": [
+        [
+          "Low, reversible",
+          "Read files, create draft PR, run lint",
+          "Fully autonomous"
+        ],
+        [
+          "Medium, recoverable",
+          "Push to feature branch, create tests",
+          "Automated validation gate (CI must pass)"
+        ],
+        [
+          "High, compliance-sensitive",
+          "Modify security config, merge to release",
+          "Human approval gate required"
+        ],
+        [
+          "Irreversible or critical",
+          "Delete data, push to production",
+          "Explicit human authorization mandatory"
+        ]
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Exam Tip:** Risk classification considers context, not just technical reversibility. Production infrastructure changes are high-compliance-risk even if technically reversible via rollback."
+    }
+  ]
+}

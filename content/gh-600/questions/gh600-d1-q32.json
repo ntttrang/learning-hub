@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q32",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Which describes \"configure agent autonomy\"?",
+  "explanation": "Correct answer: B) Defining how much the agent can do without human approval",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Choosing the LLM"
+    },
+    {
+      "id": "o2",
+      "text": "Defining how much the agent can do without human approval"
+    },
+    {
+      "id": "o3",
+      "text": "Setting memory size"
+    },
+    {
+      "id": "o4",
+      "text": "Setting log verbosity"
+    }
+  ],
+  "correct": "o2"
+}

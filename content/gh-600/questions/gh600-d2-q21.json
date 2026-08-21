@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q21",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "You need to add an external data source capability to a GitHub Copilot agent. What is the recommended approach using the Model Context Protocol (MCP)?",
+  "explanation": "Correct answer: B) Add an MCP server as a tool to the agent",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Hard-code the data source credentials directly into the agent's prompt"
+    },
+    {
+      "id": "o2",
+      "text": "Add an MCP server as a tool to the agent"
+    },
+    {
+      "id": "o3",
+      "text": "Create a separate agent for each data source"
+    },
+    {
+      "id": "o4",
+      "text": "Use environment variables to pass data directly to the LLM"
+    }
+  ],
+  "correct": "o2"
+}

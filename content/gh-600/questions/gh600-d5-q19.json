@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q19",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "An agent in a multi-agent workflow produces no output and stops responding. How should the system respond?",
+  "explanation": "Correct answer: B) Detect the stalled execution, trigger a recovery pattern (such as rollback or human-in-the-loop), and alert operators",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Continue the workflow and skip the failed agent's contribution"
+    },
+    {
+      "id": "o2",
+      "text": "Detect the stalled execution, trigger a recovery pattern (such as rollback or human-in-the-loop), and alert operators"
+    },
+    {
+      "id": "o3",
+      "text": "Restart all agents in the workflow from the beginning"
+    },
+    {
+      "id": "o4",
+      "text": "Increase the timeout for the stalled agent indefinitely"
+    }
+  ],
+  "correct": "o2"
+}

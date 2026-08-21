@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q45",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Rollback in multi-agent recovery means:",
+  "explanation": "Correct answer: A) Reverting changes across affected agents to a known good state",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Reverting changes across affected agents to a known good state"
+    },
+    {
+      "id": "o2",
+      "text": "Disabling all agents"
+    },
+    {
+      "id": "o3",
+      "text": "Removing memory"
+    },
+    {
+      "id": "o4",
+      "text": "Re-running with new tools"
+    }
+  ],
+  "correct": "o1"
+}

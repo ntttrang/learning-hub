@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q16",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "An agent is tasked with deleting test data as part of a cleanup workflow. This action is irreversible. What guardrail should be applied?",
+  "explanation": "Correct answer: B) Require explicit human authorization before executing any irreversible action",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Allow the deletion automatically since it is only test data"
+    },
+    {
+      "id": "o2",
+      "text": "Require explicit human authorization before executing any irreversible action"
+    },
+    {
+      "id": "o3",
+      "text": "Log the deletion after it occurs"
+    },
+    {
+      "id": "o4",
+      "text": "Retry the deletion if it fails the first time"
+    }
+  ],
+  "correct": "o2"
+}

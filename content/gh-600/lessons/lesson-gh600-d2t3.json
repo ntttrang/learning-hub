@@ -1,0 +1,45 @@
+{
+  "id": "lesson-gh600-d2t3",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "order": 3,
+  "title": "Execution Context & Scope Boundaries",
+  "summary": "Select and configure agent tools, set up MCP servers with registries and allow lists, integrate agents into CI, and implement safe execution with robust error handling.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "table",
+      "headers": [
+        "Boundary Type",
+        "What It Restricts",
+        "How to Configure"
+      ],
+      "rows": [
+        [
+          "Repository scope",
+          "Agent can only act within triggering repo",
+          "GitHub token scoped to single repo"
+        ],
+        [
+          "Branch scope",
+          "Agent can only write to specific branch",
+          "Branch protection + copilot/ prefix"
+        ],
+        [
+          "CI workflow scope",
+          "Agent only runs on CI events",
+          "workflow_trigger event configuration"
+        ],
+        [
+          "Environment scope",
+          "Agent can only deploy to specific environments",
+          "GitHub Environments with required reviewers"
+        ]
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Key Fact from GitHub Docs:** Copilot cloud agent pushes to a `copilot/` prefixed branch when not working on an existing PR. It can ONLY push to that branch — never directly to main or other protected branches."
+    }
+  ]
+}

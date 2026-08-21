@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q38",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Retiring an agent while preserving auditability requires:",
+  "explanation": "Correct answer: B) Retaining historical artifacts and transferring responsibilities",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Deleting logs"
+    },
+    {
+      "id": "o2",
+      "text": "Retaining historical artifacts and transferring responsibilities"
+    },
+    {
+      "id": "o3",
+      "text": "Disabling all related workflows"
+    },
+    {
+      "id": "o4",
+      "text": "Removing the MCP allow list"
+    }
+  ],
+  "correct": "o2"
+}

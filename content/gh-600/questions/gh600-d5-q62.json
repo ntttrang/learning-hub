@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q62",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Retiring an agent:",
+  "explanation": "Correct answer: A) Preserves auditability and ensures workflows continue functioning",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Preserves auditability and ensures workflows continue functioning"
+    },
+    {
+      "id": "o2",
+      "text": "Deletes all related artifacts"
+    },
+    {
+      "id": "o3",
+      "text": "Stops all dependent agents permanently"
+    },
+    {
+      "id": "o4",
+      "text": "Disables logging"
+    }
+  ],
+  "correct": "o1"
+}

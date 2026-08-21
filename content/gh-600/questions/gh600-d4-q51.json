@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q51",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Specifying expected outcomes for tasks helps:",
+  "explanation": "Correct answer: A) Make evaluation objective and aligned with intent",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Make evaluation objective and aligned with intent"
+    },
+    {
+      "id": "o2",
+      "text": "Eliminate evaluation"
+    },
+    {
+      "id": "o3",
+      "text": "Increase autonomy"
+    },
+    {
+      "id": "o4",
+      "text": "Disable observability"
+    }
+  ],
+  "correct": "o1"
+}

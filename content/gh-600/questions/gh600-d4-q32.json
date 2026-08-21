@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q32",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Identifying failures uses:",
+  "explanation": "Correct answer: A) Logs, plans, traces, outputs, and workflow artifacts",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Logs, plans, traces, outputs, and workflow artifacts"
+    },
+    {
+      "id": "o2",
+      "text": "Only LLM logs"
+    },
+    {
+      "id": "o3",
+      "text": "Only developer feedback"
+    },
+    {
+      "id": "o4",
+      "text": "Token counts"
+    }
+  ],
+  "correct": "o1"
+}

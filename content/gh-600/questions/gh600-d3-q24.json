@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q24",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Short-term memory in agents is BEST suited for:",
+  "explanation": "Correct answer: B) The current task's working context",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Cross-session preferences"
+    },
+    {
+      "id": "o2",
+      "text": "The current task's working context"
+    },
+    {
+      "id": "o3",
+      "text": "Long historical records"
+    },
+    {
+      "id": "o4",
+      "text": "Audit trails"
+    }
+  ],
+  "correct": "o2"
+}

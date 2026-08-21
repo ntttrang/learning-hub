@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q53",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Replacing an agent without disruption requires:",
+  "explanation": "Correct answer: A) Backwards-compatible interfaces and gradual rollout",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Backwards-compatible interfaces and gradual rollout"
+    },
+    {
+      "id": "o2",
+      "text": "Stopping all workflows"
+    },
+    {
+      "id": "o3",
+      "text": "Removing observability"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling MCP"
+    }
+  ],
+  "correct": "o1"
+}

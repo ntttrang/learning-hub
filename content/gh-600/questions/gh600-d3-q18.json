@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q18",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "An agent resumes a long-running task but begins making decisions that contradict its earlier work. What mechanism should be in place to prevent this?",
+  "explanation": "Correct answer: B) Drift detection logic and correction mechanisms that compare current state to prior decisions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Longer context windows"
+    },
+    {
+      "id": "o2",
+      "text": "Drift detection logic and correction mechanisms that compare current state to prior decisions"
+    },
+    {
+      "id": "o3",
+      "text": "Switching to a more powerful LLM"
+    },
+    {
+      "id": "o4",
+      "text": "Resetting all memory before each step"
+    }
+  ],
+  "correct": "o2"
+}

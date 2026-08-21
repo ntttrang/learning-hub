@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q78",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Least-privilege permissions reduce:",
+  "explanation": "Correct answer: A) Blast radius of misbehavior or compromise",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Blast radius of misbehavior or compromise"
+    },
+    {
+      "id": "o2",
+      "text": "Agent capability completely"
+    },
+    {
+      "id": "o3",
+      "text": "Memory size"
+    },
+    {
+      "id": "o4",
+      "text": "MCP throughput"
+    }
+  ],
+  "correct": "o1"
+}

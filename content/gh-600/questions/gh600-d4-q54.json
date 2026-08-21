@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q54",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Tool misuse implies:",
+  "explanation": "Correct answer: A) The agent invoked the wrong tool, with wrong arguments, or at the wrong time",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agent invoked the wrong tool, with wrong arguments, or at the wrong time"
+    },
+    {
+      "id": "o2",
+      "text": "The agent had no tools"
+    },
+    {
+      "id": "o3",
+      "text": "The environment failed"
+    },
+    {
+      "id": "o4",
+      "text": "Memory expired"
+    }
+  ],
+  "correct": "o1"
+}

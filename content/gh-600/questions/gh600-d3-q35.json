@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q35",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Memory scoped to task-relevant information avoids:",
+  "explanation": "Correct answer: A) Distraction and noise from irrelevant context",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Distraction and noise from irrelevant context"
+    },
+    {
+      "id": "o2",
+      "text": "The need for tools"
+    },
+    {
+      "id": "o3",
+      "text": "Logging"
+    },
+    {
+      "id": "o4",
+      "text": "Branch protection"
+    }
+  ],
+  "correct": "o1"
+}

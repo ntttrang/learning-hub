@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q87",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Evaluation completeness improves when:",
+  "explanation": "Correct answer: A) Quantitative and qualitative signals are combined and aligned with intent",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Quantitative and qualitative signals are combined and aligned with intent"
+    },
+    {
+      "id": "o2",
+      "text": "Only one metric is used"
+    },
+    {
+      "id": "o3",
+      "text": "Only humans evaluate"
+    },
+    {
+      "id": "o4",
+      "text": "No evaluation occurs"
+    }
+  ],
+  "correct": "o1"
+}

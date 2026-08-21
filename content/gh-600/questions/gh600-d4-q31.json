@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q31",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Qualitative signals include:",
+  "explanation": "Correct answer: B) Developer reviews and feedback on output usefulness",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Pass rates"
+    },
+    {
+      "id": "o2",
+      "text": "Developer reviews and feedback on output usefulness"
+    },
+    {
+      "id": "o3",
+      "text": "Tool call counts"
+    },
+    {
+      "id": "o4",
+      "text": "Branch counts"
+    }
+  ],
+  "correct": "o2"
+}

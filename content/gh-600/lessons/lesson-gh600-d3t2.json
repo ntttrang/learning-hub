@@ -1,0 +1,26 @@
+{
+  "id": "lesson-gh600-d3t2",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "order": 2,
+  "title": "Copilot Memory — Official Exam Facts",
+  "summary": "Choose memory strategies, persist durable state, prevent context drift, and maintain task continuity — including Copilot Memory specifics tested directly on the exam.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "list",
+      "items": [
+        "**Retention:** **28 days** — memories auto-deleted after 28 days",
+        "**Scope:** **Repository-scoped** — all permitted users in a repo share its memories; no cross-repo",
+        "**Default (Pro/Pro+):** **ON by default** — users can opt out in personal settings",
+        "**Default (Enterprise/Org):** **OFF by default** — admin must enable at org/enterprise level",
+        "**Validation:** Citation-based — each memory has code location references validated against current branch before use",
+        "**Active in:** Copilot cloud agent, Copilot code review (GitHub.com PRs), Copilot CLI"
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Exam Trap:** Memory is repo-scoped, NOT user-scoped. Developer A's memory in Repo X is available to Developer B in Repo X — but NOT to Developer A in Repo Y."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q55",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "A context/environment issue implies:",
+  "explanation": "Correct answer: A) Inputs, configuration, or runtime conditions diverged from expectations",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Inputs, configuration, or runtime conditions diverged from expectations"
+    },
+    {
+      "id": "o2",
+      "text": "The agent's logic was wrong"
+    },
+    {
+      "id": "o3",
+      "text": "Memory expired"
+    },
+    {
+      "id": "o4",
+      "text": "Tools were missing"
+    }
+  ],
+  "correct": "o1"
+}

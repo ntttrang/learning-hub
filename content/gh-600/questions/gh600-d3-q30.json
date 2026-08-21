@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q30",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Memory expiration rules ensure:",
+  "explanation": "Correct answer: A) Outdated information stops influencing decisions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Outdated information stops influencing decisions"
+    },
+    {
+      "id": "o2",
+      "text": "Faster LLMs"
+    },
+    {
+      "id": "o3",
+      "text": "Larger context windows"
+    },
+    {
+      "id": "o4",
+      "text": "Fewer tools"
+    }
+  ],
+  "correct": "o1"
+}

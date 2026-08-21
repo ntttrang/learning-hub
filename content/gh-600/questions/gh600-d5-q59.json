@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q59",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Documenting handoffs supports:",
+  "explanation": "Correct answer: A) Traceability and accountability across agent boundaries",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Traceability and accountability across agent boundaries"
+    },
+    {
+      "id": "o2",
+      "text": "Faster execution only"
+    },
+    {
+      "id": "o3",
+      "text": "Smaller LLMs"
+    },
+    {
+      "id": "o4",
+      "text": "Disabled guardrails"
+    }
+  ],
+  "correct": "o1"
+}

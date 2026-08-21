@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q23",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "An agent is generating code changes across 10 repositories simultaneously in a multi-agent workflow. After deployment, a critical bug is traced to one of the agent-generated changes. What capability must have been implemented in advance to support rapid diagnosis?",
+  "explanation": "Correct answer: B) Traceability and accountability — inspectable artifacts and logs linking each action to a specific agent and task",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agent memory pruning"
+    },
+    {
+      "id": "o2",
+      "text": "Traceability and accountability — inspectable artifacts and logs linking each action to a specific agent and task"
+    },
+    {
+      "id": "o3",
+      "text": "MCP allow lists"
+    },
+    {
+      "id": "o4",
+      "text": "Branch-based scope"
+    }
+  ],
+  "correct": "o2"
+}

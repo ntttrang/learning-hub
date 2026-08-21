@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q09",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "An agent proposes to delete a production database table. The operation is reversible via backup. What guardrail applies?",
+  "explanation": "Risk classification considers context, not just technical reversibility. Production data deletion carries high compliance risk requiring explicit authorisation regardless of backup availability.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Allow it — reversibility makes it low risk"
+    },
+    {
+      "id": "o2",
+      "text": "Classify by compliance context: production data deletion is high-risk regardless of reversibility; require explicit human authorisation"
+    },
+    {
+      "id": "o3",
+      "text": "Block all database operations"
+    },
+    {
+      "id": "o4",
+      "text": "Allow only during off-peak hours"
+    }
+  ],
+  "correct": "o2"
+}

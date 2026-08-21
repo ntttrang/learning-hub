@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q08",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "What is the purpose of producing a structured plan artifact before agent execution?",
+  "explanation": "A plan artifact makes the agent's intent inspectable and validatable. No action should proceed until the plan is approved — by a human or an automated gate.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "To reduce API costs"
+    },
+    {
+      "id": "o2",
+      "text": "To allow validation by a human or automated check before any irreversible action is taken"
+    },
+    {
+      "id": "o3",
+      "text": "To speed up the CI pipeline"
+    },
+    {
+      "id": "o4",
+      "text": "To store agent memory between sessions"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q74",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Continuity of memory and state across environments requires:",
+  "explanation": "Correct answer: A) Defined state representation and synchronization mechanisms",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Defined state representation and synchronization mechanisms"
+    },
+    {
+      "id": "o2",
+      "text": "Random sharing"
+    },
+    {
+      "id": "o3",
+      "text": "No sharing at all"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling memory"
+    }
+  ],
+  "correct": "o1"
+}

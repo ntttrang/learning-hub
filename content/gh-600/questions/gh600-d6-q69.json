@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q69",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Capturing decisions as durable artifacts allows:",
+  "explanation": "Correct answer: A) Resumption and traceability",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Resumption and traceability"
+    },
+    {
+      "id": "o2",
+      "text": "Faster LLM inference"
+    },
+    {
+      "id": "o3",
+      "text": "Smaller MCP registries"
+    },
+    {
+      "id": "o4",
+      "text": "Removing guardrails"
+    }
+  ],
+  "correct": "o1"
+}

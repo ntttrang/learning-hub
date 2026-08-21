@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q44",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Success criteria for an agent task should be:",
+  "explanation": "Correct answer: A) Specific, measurable, and aligned with development intent",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Specific, measurable, and aligned with development intent"
+    },
+    {
+      "id": "o2",
+      "text": "Vague and subjective"
+    },
+    {
+      "id": "o3",
+      "text": "Defined after the task ends"
+    },
+    {
+      "id": "o4",
+      "text": "Optional"
+    }
+  ],
+  "correct": "o1"
+}

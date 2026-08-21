@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q76",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Risk classification of agent actions enables:",
+  "explanation": "Correct answer: A) Right-sized autonomy decisions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Right-sized autonomy decisions"
+    },
+    {
+      "id": "o2",
+      "text": "Bypassing all guardrails"
+    },
+    {
+      "id": "o3",
+      "text": "Random approvals"
+    },
+    {
+      "id": "o4",
+      "text": "Disabled logging"
+    }
+  ],
+  "correct": "o1"
+}

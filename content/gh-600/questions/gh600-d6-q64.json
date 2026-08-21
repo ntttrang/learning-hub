@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q64",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Least-privilege execution context means:",
+  "explanation": "Correct answer: A) The agent runs with only the permissions strictly needed",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agent runs with only the permissions strictly needed"
+    },
+    {
+      "id": "o2",
+      "text": "The agent runs as the repo owner"
+    },
+    {
+      "id": "o3",
+      "text": "The agent runs with admin tokens"
+    },
+    {
+      "id": "o4",
+      "text": "The agent runs with no permissions"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q79",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Controlled paths for high-risk actions provide:",
+  "explanation": "Correct answer: A) Defined, auditable authorization workflows",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Defined, auditable authorization workflows"
+    },
+    {
+      "id": "o2",
+      "text": "Random approvals"
+    },
+    {
+      "id": "o3",
+      "text": "No oversight"
+    },
+    {
+      "id": "o4",
+      "text": "Self-approval"
+    }
+  ],
+  "correct": "o1"
+}

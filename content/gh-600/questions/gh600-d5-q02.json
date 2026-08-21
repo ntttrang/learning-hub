@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q02",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Two parallel agents modify the same config.yaml and open separate PRs. Conflict type?",
+  "explanation": "Overlapping code changes: parallel agents modifying the same file/region. Prevented by isolation — separate branches per agent before parallel execution.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Contradictory outputs"
+    },
+    {
+      "id": "o2",
+      "text": "Duplicated effort"
+    },
+    {
+      "id": "o3",
+      "text": "Overlapping code changes — both agents modified the same file simultaneously"
+    },
+    {
+      "id": "o4",
+      "text": "Reasoning error"
+    }
+  ],
+  "correct": "o3"
+}

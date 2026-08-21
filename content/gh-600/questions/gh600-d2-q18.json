@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q18",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Which of the following is NOT a built-in Copilot cloud agent security mitigation?",
+  "explanation": "Per GitHub Docs, Copilot cloud agent CANNOT approve or merge its own PRs. Human review is a required control — auto-merging is a risk, not a mitigation.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Filtering hidden characters to prevent prompt injection"
+    },
+    {
+      "id": "o2",
+      "text": "Restricting internet access via built-in firewall"
+    },
+    {
+      "id": "o3",
+      "text": "Automatically approving and merging its own pull requests"
+    },
+    {
+      "id": "o4",
+      "text": "Requiring human review before merging draft PRs"
+    }
+  ],
+  "correct": "o3"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q41",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "A multi-agent workflow needs an audit of who did what. Which design feature directly supports this?",
+  "explanation": "Correct answer: B) Inspectable artifacts and structured logs per agent",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Memory expiration"
+    },
+    {
+      "id": "o2",
+      "text": "Inspectable artifacts and structured logs per agent"
+    },
+    {
+      "id": "o3",
+      "text": "MCP registry caching"
+    },
+    {
+      "id": "o4",
+      "text": "Larger LLM models"
+    }
+  ],
+  "correct": "o2"
+}

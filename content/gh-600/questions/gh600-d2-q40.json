@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q40",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Robust error handling for agents requires:",
+  "explanation": "Correct answer: B) Retries, rollbacks, escalation, and traceability",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Only retries"
+    },
+    {
+      "id": "o2",
+      "text": "Retries, rollbacks, escalation, and traceability"
+    },
+    {
+      "id": "o3",
+      "text": "Silent suppression"
+    },
+    {
+      "id": "o4",
+      "text": "Manual intervention only"
+    }
+  ],
+  "correct": "o2"
+}

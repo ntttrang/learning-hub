@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q73",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Configuring MCP allow lists demonstrates:",
+  "explanation": "Correct answer: A) Least-privilege at the tool boundary",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Least-privilege at the tool boundary"
+    },
+    {
+      "id": "o2",
+      "text": "Maximum tool exposure"
+    },
+    {
+      "id": "o3",
+      "text": "Bypassing guardrails"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling logs"
+    }
+  ],
+  "correct": "o1"
+}

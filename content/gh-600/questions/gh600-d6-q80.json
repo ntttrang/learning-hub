@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q80",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Preserving velocity while enforcing guardrails means:",
+  "explanation": "Correct answer: A) Automating low-risk paths and gating high-risk paths",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Automating low-risk paths and gating high-risk paths"
+    },
+    {
+      "id": "o2",
+      "text": "Approving everything"
+    },
+    {
+      "id": "o3",
+      "text": "Approving nothing"
+    },
+    {
+      "id": "o4",
+      "text": "Removing all guardrails"
+    }
+  ],
+  "correct": "o1"
+}

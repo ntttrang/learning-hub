@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q39",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Short-term memory in agents holds:",
+  "explanation": "Correct answer: A) The current task's working context",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The current task's working context"
+    },
+    {
+      "id": "o2",
+      "text": "Cross-session preferences"
+    },
+    {
+      "id": "o3",
+      "text": "Long histories"
+    },
+    {
+      "id": "o4",
+      "text": "Tool registries"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q28",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Refining memory usage during tuning means:",
+  "explanation": "Correct answer: B) Adjusting what the agent remembers to focus on task-relevant information",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Always increasing memory size"
+    },
+    {
+      "id": "o2",
+      "text": "Adjusting what the agent remembers to focus on task-relevant information"
+    },
+    {
+      "id": "o3",
+      "text": "Removing all memory"
+    },
+    {
+      "id": "o4",
+      "text": "Replacing memory with tools"
+    }
+  ],
+  "correct": "o2"
+}

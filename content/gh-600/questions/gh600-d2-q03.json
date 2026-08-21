@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q03",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "A tool call fails due to a transient network error. Correct recovery pattern?",
+  "explanation": "Transient failures → idempotent retries with exponential backoff. Idempotency ensures the retry doesn't create duplicate side-effects.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Abort the entire task immediately"
+    },
+    {
+      "id": "o2",
+      "text": "Idempotent retry with exponential backoff — calling again produces the same result without duplicating side-effects"
+    },
+    {
+      "id": "o3",
+      "text": "Ask the user to restart"
+    },
+    {
+      "id": "o4",
+      "text": "Switch to a larger model"
+    }
+  ],
+  "correct": "o2"
+}

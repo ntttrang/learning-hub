@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q42",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "A guardrail is BEST described as:",
+  "explanation": "Correct answer: B) A control that limits or blocks agent behavior to enforce policy",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A type of LLM"
+    },
+    {
+      "id": "o2",
+      "text": "A control that limits or blocks agent behavior to enforce policy"
+    },
+    {
+      "id": "o3",
+      "text": "A tool selection algorithm"
+    },
+    {
+      "id": "o4",
+      "text": "An MCP server"
+    }
+  ],
+  "correct": "o2"
+}

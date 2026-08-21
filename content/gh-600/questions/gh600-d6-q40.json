@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q40",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Which is NOT a valid root cause category for agent failures?",
+  "explanation": "Correct answer: D) Developer mood",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Reasoning errors"
+    },
+    {
+      "id": "o2",
+      "text": "Tool misuse"
+    },
+    {
+      "id": "o3",
+      "text": "Context or environment issues"
+    },
+    {
+      "id": "o4",
+      "text": "Developer mood"
+    }
+  ],
+  "correct": "o4"
+}

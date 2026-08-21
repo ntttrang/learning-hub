@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q50",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "A CI workflow invocation of an agent requires:",
+  "explanation": "Correct answer: A) Defined triggers and execution context",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Defined triggers and execution context"
+    },
+    {
+      "id": "o2",
+      "text": "A developer's laptop"
+    },
+    {
+      "id": "o3",
+      "text": "Disabling MCP"
+    },
+    {
+      "id": "o4",
+      "text": "Removing memory"
+    }
+  ],
+  "correct": "o1"
+}

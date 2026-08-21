@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q05",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Success criteria must include which combination?",
+  "explanation": "A complete success definition covers: what the agent should produce (outputs), what it must not do (constraints), measurable metrics (quantitative), and human judgment criteria (qualitative).",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Model temperature and token count only"
+    },
+    {
+      "id": "o2",
+      "text": "Expected outputs, operational constraints, and both qualitative and quantitative evaluation signals"
+    },
+    {
+      "id": "o3",
+      "text": "PR merge speed and CI duration only"
+    },
+    {
+      "id": "o4",
+      "text": "Number of tool calls"
+    }
+  ],
+  "correct": "o2"
+}

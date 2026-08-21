@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q44",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Identifying required tools begins with:",
+  "explanation": "Correct answer: A) Task analysis and required capabilities",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Task analysis and required capabilities"
+    },
+    {
+      "id": "o2",
+      "text": "Browsing all available MCP servers"
+    },
+    {
+      "id": "o3",
+      "text": "Asking the LLM"
+    },
+    {
+      "id": "o4",
+      "text": "Random selection"
+    }
+  ],
+  "correct": "o1"
+}

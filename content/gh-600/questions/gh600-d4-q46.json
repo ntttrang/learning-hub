@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q46",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "A qualitative evaluation signal could be:",
+  "explanation": "Correct answer: A) Reviewer ratings on clarity, helpfulness, or correctness",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Reviewer ratings on clarity, helpfulness, or correctness"
+    },
+    {
+      "id": "o2",
+      "text": "Total tool calls"
+    },
+    {
+      "id": "o3",
+      "text": "Token counts"
+    },
+    {
+      "id": "o4",
+      "text": "Memory size"
+    }
+  ],
+  "correct": "o1"
+}

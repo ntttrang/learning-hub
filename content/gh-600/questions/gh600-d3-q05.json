@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q05",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "How does Copilot prevent stale memories from affecting agent behavior?",
+  "explanation": "Per GitHub Docs, every memory has citations (code location references). Before use, Copilot validates them against the current branch. Invalid citations = memory discarded.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A nightly batch job deletes all memories"
+    },
+    {
+      "id": "o2",
+      "text": "Citation-based validation — memory code references are checked against the current branch; mismatched citations cause the memory to be discarded"
+    },
+    {
+      "id": "o3",
+      "text": "User manually audits memories weekly"
+    },
+    {
+      "id": "o4",
+      "text": "Memories are never used more than once"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q41",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Generating evaluation signals with automated scanning tools enables:",
+  "explanation": "Correct answer: A) Continuous quality measurement in CI",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Continuous quality measurement in CI"
+    },
+    {
+      "id": "o2",
+      "text": "Disabling manual review entirely"
+    },
+    {
+      "id": "o3",
+      "text": "Removing observability"
+    },
+    {
+      "id": "o4",
+      "text": "Eliminating guardrails"
+    }
+  ],
+  "correct": "o1"
+}

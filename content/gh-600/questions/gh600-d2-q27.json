@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q27",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "An agent successfully creates a branch and makes code changes but then fails while opening a pull request. What should your implementation include to handle this?",
+  "explanation": "Correct answer: B) Retry logic and rollback procedures, with an escalation path if recovery fails",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "No special handling — the user should manually create the PR"
+    },
+    {
+      "id": "o2",
+      "text": "Retry logic and rollback procedures, with an escalation path if recovery fails"
+    },
+    {
+      "id": "o3",
+      "text": "Delete the branch and restart the entire task"
+    },
+    {
+      "id": "o4",
+      "text": "Increase the timeout value for the PR creation step"
+    }
+  ],
+  "correct": "o2"
+}

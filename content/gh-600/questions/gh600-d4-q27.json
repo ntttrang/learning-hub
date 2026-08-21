@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q27",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Root cause classification for agent failures includes:",
+  "explanation": "Correct answer: B) Reasoning errors, tool misuse, context/environment issues",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Tools, memory, MCP only"
+    },
+    {
+      "id": "o2",
+      "text": "Reasoning errors, tool misuse, context/environment issues"
+    },
+    {
+      "id": "o3",
+      "text": "Latency, cost, throughput"
+    },
+    {
+      "id": "o4",
+      "text": "Branch, repo, organization"
+    }
+  ],
+  "correct": "o2"
+}

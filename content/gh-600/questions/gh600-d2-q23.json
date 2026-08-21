@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q23",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "An agent needs to be restricted so it can only read and write to a single repository. Which configuration achieves this?",
+  "explanation": "Correct answer: A) Configure the agent's scope to a specific repository and apply least-privilege permissions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Configure the agent's scope to a specific repository and apply least-privilege permissions"
+    },
+    {
+      "id": "o2",
+      "text": "Deploy the agent on a separate virtual machine"
+    },
+    {
+      "id": "o3",
+      "text": "Limit the agent's context window to 2,000 tokens"
+    },
+    {
+      "id": "o4",
+      "text": "Use a separate GitHub account for the agent"
+    }
+  ],
+  "correct": "o1"
+}

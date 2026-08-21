@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q09",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "By default, GitHub Actions workflows are NOT triggered after Copilot creates a PR. Why?",
+  "explanation": "Per GitHub Docs, workflows are withheld until a write-access user clicks \"Approve and run workflows.\" This prevents untrusted agent-generated code from automatically running privileged CI.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "To save Actions minutes"
+    },
+    {
+      "id": "o2",
+      "text": "To require a user with write access to review code and explicitly approve workflow runs before execution — preventing untrusted agent code from running privileged CI jobs"
+    },
+    {
+      "id": "o3",
+      "text": "Because agents cannot trigger workflows"
+    },
+    {
+      "id": "o4",
+      "text": "To prevent branch creation"
+    }
+  ],
+  "correct": "o2"
+}

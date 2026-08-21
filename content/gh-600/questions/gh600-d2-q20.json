@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q20",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "When selecting tools for an AI agent, what is the primary consideration?",
+  "explanation": "Correct answer: C) Identify which tools are specifically required for the agent's defined tasks",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Use as many tools as possible to maximize agent capability"
+    },
+    {
+      "id": "o2",
+      "text": "Only use tools that were released in the last 12 months"
+    },
+    {
+      "id": "o3",
+      "text": "Identify which tools are specifically required for the agent's defined tasks"
+    },
+    {
+      "id": "o4",
+      "text": "Avoid any tools that require network access"
+    }
+  ],
+  "correct": "o3"
+}

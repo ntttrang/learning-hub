@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q02",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "What two roles does GitHub simultaneously play in an agentic AI system?",
+  "explanation": "GitHub is both the system of record (where all agent changes are tracked) and the control plane (where workflows, permissions, and approval gates govern agent behavior).",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Model host and billing platform"
+    },
+    {
+      "id": "o2",
+      "text": "System of record (branches/PRs/commits) and control plane (workflows/permissions/governance)"
+    },
+    {
+      "id": "o3",
+      "text": "Code editor and deployment target"
+    },
+    {
+      "id": "o4",
+      "text": "MCP server and secret store"
+    }
+  ],
+  "correct": "o2"
+}

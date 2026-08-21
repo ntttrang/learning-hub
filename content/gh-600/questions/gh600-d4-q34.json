@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q34",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Tuning instructions, workflows, and constraints addresses:",
+  "explanation": "Correct answer: B) Behavioral problems revealed in evaluation",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Network speed"
+    },
+    {
+      "id": "o2",
+      "text": "Behavioral problems revealed in evaluation"
+    },
+    {
+      "id": "o3",
+      "text": "MCP registry size"
+    },
+    {
+      "id": "o4",
+      "text": "Branch protection"
+    }
+  ],
+  "correct": "o2"
+}

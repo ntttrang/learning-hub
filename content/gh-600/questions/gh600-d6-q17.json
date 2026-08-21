@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q17",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Which principle should guide how permissions are assigned to agents?",
+  "explanation": "Correct answer: B) Least-privilege — scope permissions to only what is required for the agent's defined tasks",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Maximum privilege — agents should be able to do anything a senior engineer can do"
+    },
+    {
+      "id": "o2",
+      "text": "Least-privilege — scope permissions to only what is required for the agent's defined tasks"
+    },
+    {
+      "id": "o3",
+      "text": "Role inheritance — agents automatically inherit the permissions of the user who created them"
+    },
+    {
+      "id": "o4",
+      "text": "Dynamic escalation — agents request elevated permissions when needed"
+    }
+  ],
+  "correct": "o2"
+}

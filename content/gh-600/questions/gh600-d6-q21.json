@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q21",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "A developer reports that an agent \"went off-track\" and began performing actions unrelated to its assigned task. Which combination of controls would BEST prevent this?",
+  "explanation": "Correct answer: B) Define clear inputs, outputs, and success criteria; validate agent plans before execution; and implement scope constraints",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Increase the agent's token limit and add more tools"
+    },
+    {
+      "id": "o2",
+      "text": "Define clear inputs, outputs, and success criteria; validate agent plans before execution; and implement scope constraints"
+    },
+    {
+      "id": "o3",
+      "text": "Use a more powerful LLM"
+    },
+    {
+      "id": "o4",
+      "text": "Add long-term memory to the agent"
+    }
+  ],
+  "correct": "o2"
+}

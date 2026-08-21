@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q49",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Agent guardrails should be aligned with:",
+  "explanation": "Correct answer: A) Organizational risk and compliance posture",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Organizational risk and compliance posture"
+    },
+    {
+      "id": "o2",
+      "text": "Agent token budget only"
+    },
+    {
+      "id": "o3",
+      "text": "LLM size only"
+    },
+    {
+      "id": "o4",
+      "text": "Tool count only"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q77",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Actions that should require human approval:",
+  "explanation": "Correct answer: A) Irreversible or compliance-sensitive changes",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Irreversible or compliance-sensitive changes"
+    },
+    {
+      "id": "o2",
+      "text": "Reading documentation"
+    },
+    {
+      "id": "o3",
+      "text": "Listing files"
+    },
+    {
+      "id": "o4",
+      "text": "Posting comments"
+    }
+  ],
+  "correct": "o1"
+}

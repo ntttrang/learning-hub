@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q26",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Aligning evaluation criteria with development intent prevents:",
+  "explanation": "Correct answer: B) Technically correct outputs that miss the team's actual goals",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "MCP allow list violations"
+    },
+    {
+      "id": "o2",
+      "text": "Technically correct outputs that miss the team's actual goals"
+    },
+    {
+      "id": "o3",
+      "text": "Network failures"
+    },
+    {
+      "id": "o4",
+      "text": "Memory leaks"
+    }
+  ],
+  "correct": "o2"
+}

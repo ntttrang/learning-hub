@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q10",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "An agent autonomously pushes to the main branch without opening a PR. Which principle is violated?",
+  "explanation": "Direct pushes to main bypass all review controls. Agents must operate on branches and surface changes via PRs — the core least-privilege and oversight design for SDLC integration.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Memory scoping"
+    },
+    {
+      "id": "o2",
+      "text": "Least-privilege and human oversight — agents must use branches and PRs, not direct pushes to protected branches"
+    },
+    {
+      "id": "o3",
+      "text": "Context pruning"
+    },
+    {
+      "id": "o4",
+      "text": "MCP registry configuration"
+    }
+  ],
+  "correct": "o2"
+}

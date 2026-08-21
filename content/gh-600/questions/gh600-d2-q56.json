@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q56",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Scoping an agent to a repository ensures:",
+  "explanation": "Correct answer: A) The agent only operates within that repo's boundary",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agent only operates within that repo's boundary"
+    },
+    {
+      "id": "o2",
+      "text": "The agent has more memory"
+    },
+    {
+      "id": "o3",
+      "text": "MCP registry is unbounded"
+    },
+    {
+      "id": "o4",
+      "text": "The agent can edit any branch"
+    }
+  ],
+  "correct": "o1"
+}

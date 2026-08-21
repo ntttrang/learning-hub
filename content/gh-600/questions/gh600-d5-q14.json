@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q14",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "What is the \"human-in-the-loop\" recovery pattern in a multi-agent context?",
+  "explanation": "Human-in-the-loop recovery is the escalation pattern for cases beyond automated recovery — particularly high-risk, ambiguous, or compliance-sensitive failures.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Replacing all agents with human developers"
+    },
+    {
+      "id": "o2",
+      "text": "When automated recovery is insufficient or failure is high-risk, halt execution and route to a human who makes the decision before the pipeline resumes"
+    },
+    {
+      "id": "o3",
+      "text": "Asking agents to vote on the best path forward"
+    },
+    {
+      "id": "o4",
+      "text": "Running a third agent to adjudicate between two conflicting agents"
+    }
+  ],
+  "correct": "o2"
+}

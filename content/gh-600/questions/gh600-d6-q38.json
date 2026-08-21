@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q38",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "What is the BEST way to handle an irreversible action proposed by an agent?",
+  "explanation": "Correct answer: B) Require explicit human authorization",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Allow it automatically"
+    },
+    {
+      "id": "o2",
+      "text": "Require explicit human authorization"
+    },
+    {
+      "id": "o3",
+      "text": "Retry until it succeeds"
+    },
+    {
+      "id": "o4",
+      "text": "Ignore the action"
+    }
+  ],
+  "correct": "o2"
+}

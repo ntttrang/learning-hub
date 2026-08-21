@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q57",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Configuring a CI workflow agent invocation includes:",
+  "explanation": "Correct answer: A) Event triggers, secrets, and execution context",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Event triggers, secrets, and execution context"
+    },
+    {
+      "id": "o2",
+      "text": "Disabled logging"
+    },
+    {
+      "id": "o3",
+      "text": "Removed permissions"
+    },
+    {
+      "id": "o4",
+      "text": "Random scheduling"
+    }
+  ],
+  "correct": "o1"
+}

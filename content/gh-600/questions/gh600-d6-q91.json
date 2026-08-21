@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q91",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Classifying actions by risk lets you:",
+  "explanation": "Correct answer: A) Apply appropriate autonomy and oversight levels",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Apply appropriate autonomy and oversight levels"
+    },
+    {
+      "id": "o2",
+      "text": "Bypass all guardrails"
+    },
+    {
+      "id": "o3",
+      "text": "Disable evaluation"
+    },
+    {
+      "id": "o4",
+      "text": "Remove logs"
+    }
+  ],
+  "correct": "o1"
+}

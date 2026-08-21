@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q12",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "What does \"configure human intervention without slowing delivery\" mean in practice?",
+  "explanation": "Right-sized oversight: gates only where they genuinely reduce risk. Gating everything kills delivery velocity without improving safety.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Require human approval for every single tool call"
+    },
+    {
+      "id": "o2",
+      "text": "Place approval gates only where human judgment materially reduces risk; let routine low-risk actions proceed autonomously"
+    },
+    {
+      "id": "o3",
+      "text": "Disable all automation"
+    },
+    {
+      "id": "o4",
+      "text": "Add a 24-hour delay before any agent action"
+    }
+  ],
+  "correct": "o2"
+}

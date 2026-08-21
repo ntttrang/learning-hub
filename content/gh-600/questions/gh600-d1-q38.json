@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q38",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Distinct planning vs. execution allows:",
+  "explanation": "Correct answer: A) Inspection and approval between phases",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Inspection and approval between phases"
+    },
+    {
+      "id": "o2",
+      "text": "Skipping all evaluation"
+    },
+    {
+      "id": "o3",
+      "text": "Bypassing guardrails"
+    },
+    {
+      "id": "o4",
+      "text": "Removing memory"
+    }
+  ],
+  "correct": "o1"
+}

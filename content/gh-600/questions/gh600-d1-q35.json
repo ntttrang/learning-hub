@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q35",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "When defining boundaries for reasoning vs. action, the goal is:",
+  "explanation": "Correct answer: B) Ensure reasoning is reviewable and actions are gated appropriately",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Maximize autonomy"
+    },
+    {
+      "id": "o2",
+      "text": "Ensure reasoning is reviewable and actions are gated appropriately"
+    },
+    {
+      "id": "o3",
+      "text": "Eliminate reasoning altogether"
+    },
+    {
+      "id": "o4",
+      "text": "Use the same step for both"
+    }
+  ],
+  "correct": "o2"
+}

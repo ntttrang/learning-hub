@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q67",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Implementing traceability requires:",
+  "explanation": "Correct answer: A) Persistent, attributable records of agent actions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Persistent, attributable records of agent actions"
+    },
+    {
+      "id": "o2",
+      "text": "Disabling logging"
+    },
+    {
+      "id": "o3",
+      "text": "Larger LLMs"
+    },
+    {
+      "id": "o4",
+      "text": "Removing tools"
+    }
+  ],
+  "correct": "o1"
+}

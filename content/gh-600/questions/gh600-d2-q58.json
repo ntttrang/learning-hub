@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q58",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Branch-based scope is helpful for:",
+  "explanation": "Correct answer: A) Restricting agent actions to specific branches",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Restricting agent actions to specific branches"
+    },
+    {
+      "id": "o2",
+      "text": "Disabling MCP"
+    },
+    {
+      "id": "o3",
+      "text": "Removing memory"
+    },
+    {
+      "id": "o4",
+      "text": "Skipping evaluation"
+    }
+  ],
+  "correct": "o1"
+}

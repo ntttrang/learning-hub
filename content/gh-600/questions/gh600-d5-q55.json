@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q55",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Applying an orchestration pattern:",
+  "explanation": "Correct answer: A) Provides structure for how agents interact, sequence, and combine outputs",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Provides structure for how agents interact, sequence, and combine outputs"
+    },
+    {
+      "id": "o2",
+      "text": "Disables observability"
+    },
+    {
+      "id": "o3",
+      "text": "Increases autonomy without limits"
+    },
+    {
+      "id": "o4",
+      "text": "Eliminates evaluation"
+    }
+  ],
+  "correct": "o1"
+}

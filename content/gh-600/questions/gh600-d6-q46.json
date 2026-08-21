@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q46",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Autonomy levels should map to:",
+  "explanation": "Correct answer: A) Risk level of agent actions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Risk level of agent actions"
+    },
+    {
+      "id": "o2",
+      "text": "Number of tools available"
+    },
+    {
+      "id": "o3",
+      "text": "Branch count"
+    },
+    {
+      "id": "o4",
+      "text": "LLM size"
+    }
+  ],
+  "correct": "o1"
+}

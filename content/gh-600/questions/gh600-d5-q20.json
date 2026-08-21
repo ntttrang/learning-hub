@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q20",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "You want to add a new specialized agent to an existing multi-agent workflow without disrupting currently running executions. What is the BEST approach?",
+  "explanation": "Correct answer: B) Add the new agent to the workflow definition using a non-breaking update pattern, ensuring it does not interfere with active executions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Shut down the entire workflow, add the agent, and restart"
+    },
+    {
+      "id": "o2",
+      "text": "Add the new agent to the workflow definition using a non-breaking update pattern, ensuring it does not interfere with active executions"
+    },
+    {
+      "id": "o3",
+      "text": "Deploy the new agent to a completely separate workflow"
+    },
+    {
+      "id": "o4",
+      "text": "Require all active executions to complete before making any changes"
+    }
+  ],
+  "correct": "o2"
+}

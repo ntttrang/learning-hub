@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q19",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "You want to generate evaluation signals for your agent automatically during CI runs. Which approach is MOST aligned with the GH-600 exam objectives?",
+  "explanation": "Correct answer: B) Use automated scanning tools to generate evaluation signals during pipeline execution",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Have developers manually review every agent output"
+    },
+    {
+      "id": "o2",
+      "text": "Use automated scanning tools to generate evaluation signals during pipeline execution"
+    },
+    {
+      "id": "o3",
+      "text": "Compare agent outputs to competitors' agents"
+    },
+    {
+      "id": "o4",
+      "text": "Run the agent on production traffic and gather feedback after the fact"
+    }
+  ],
+  "correct": "o2"
+}

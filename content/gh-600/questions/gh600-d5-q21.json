@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q21",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "An agent that was part of a multi-agent workflow is being retired. What must be preserved to maintain workflow integrity?",
+  "explanation": "Correct answer: C) Auditability records and workflow continuity for downstream agents",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agent's in-context memory only"
+    },
+    {
+      "id": "o2",
+      "text": "Nothing — retiring an agent removes all associated data"
+    },
+    {
+      "id": "o3",
+      "text": "Auditability records and workflow continuity for downstream agents"
+    },
+    {
+      "id": "o4",
+      "text": "The agent's tool configuration only"
+    }
+  ],
+  "correct": "o3"
+}

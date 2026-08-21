@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q43",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Before deploying an agent, you should:",
+  "explanation": "Correct answer: A) Define its inputs, outputs, success criteria, and SDLC integration points",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Define its inputs, outputs, success criteria, and SDLC integration points"
+    },
+    {
+      "id": "o2",
+      "text": "Pick the largest LLM available"
+    },
+    {
+      "id": "o3",
+      "text": "Disable observability"
+    },
+    {
+      "id": "o4",
+      "text": "Grant maximum permissions"
+    }
+  ],
+  "correct": "o1"
+}

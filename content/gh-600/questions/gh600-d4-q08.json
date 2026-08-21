@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q08",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "What distinguishes a \"reasoning error\" from \"tool misuse\" in agent failure classification?",
+  "explanation": "Reasoning errors = wrong logic or inference (bad plan, wrong conclusion). Tool misuse = correct logic but tool called incorrectly (wrong params, wrong tool for task, wrong timing).",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "They are synonymous"
+    },
+    {
+      "id": "o2",
+      "text": "Reasoning error = flawed planning or inference; tool misuse = calling a tool with wrong parameters, timing, or purpose"
+    },
+    {
+      "id": "o3",
+      "text": "Reasoning error = network timeout; tool misuse = memory overflow"
+    },
+    {
+      "id": "o4",
+      "text": "Reasoning error = user mistake; tool misuse = admin mistake"
+    }
+  ],
+  "correct": "o2"
+}

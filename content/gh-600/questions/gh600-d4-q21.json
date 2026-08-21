@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q21",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "When tuning an agent based on evaluation results, which combination of levers is MOST comprehensive?",
+  "explanation": "Correct answer: B) Revise instructions, refine memory usage, and adjust tool access as needed",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Only modify the LLM model used"
+    },
+    {
+      "id": "o2",
+      "text": "Revise instructions, refine memory usage, and adjust tool access as needed"
+    },
+    {
+      "id": "o3",
+      "text": "Delete and rebuild the agent from scratch"
+    },
+    {
+      "id": "o4",
+      "text": "Only modify the CI pipeline triggers"
+    }
+  ],
+  "correct": "o2"
+}

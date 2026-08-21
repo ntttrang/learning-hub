@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q14",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Why is \"minimising approvals that do not materially reduce risk\" listed as a guardrail design objective?",
+  "explanation": "From the official study guide: \"Preserve execution velocity by minimizing approvals that do not materially reduce risk.\" Approval theater imposes real costs with zero safety benefit.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Approvals are expensive in Actions minutes"
+    },
+    {
+      "id": "o2",
+      "text": "Unnecessary gates impose velocity cost without safety benefit — every approval must be justified by the risk it genuinely mitigates"
+    },
+    {
+      "id": "o3",
+      "text": "Users dislike approval gates"
+    },
+    {
+      "id": "o4",
+      "text": "MCP servers cannot handle approval workflows"
+    }
+  ],
+  "correct": "o2"
+}

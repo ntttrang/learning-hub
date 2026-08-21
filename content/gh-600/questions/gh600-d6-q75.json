@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q75",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Which best describes a healthy agentic SDLC?",
+  "explanation": "Correct answer: B) Agents operate within boundaries, produce inspectable artifacts, and are accountable",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agents act with no oversight"
+    },
+    {
+      "id": "o2",
+      "text": "Agents operate within boundaries, produce inspectable artifacts, and are accountable"
+    },
+    {
+      "id": "o3",
+      "text": "Agents replace CI pipelines"
+    },
+    {
+      "id": "o4",
+      "text": "Agents take all production actions automatically"
+    }
+  ],
+  "correct": "o2"
+}

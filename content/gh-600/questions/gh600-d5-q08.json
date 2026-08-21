@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q08",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Two agents independently implement the same utility function in different files. What conflict type is this?",
+  "explanation": "\"Duplicated effort\" is a specific conflict category — multiple agents independently performing the same task due to insufficient coordination.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Contradictory output"
+    },
+    {
+      "id": "o2",
+      "text": "Duplicated effort — both solved the same problem without awareness of each other"
+    },
+    {
+      "id": "o3",
+      "text": "Overlapping code change"
+    },
+    {
+      "id": "o4",
+      "text": "Reasoning error"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q04",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "An agent pauses overnight mid-refactor. What allows correct resumption without repeating steps?",
+  "explanation": "Durable artifacts — structured state files committed to the branch — allow the agent to resume from the last checkpoint without repeating completed work.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Increasing the context window"
+    },
+    {
+      "id": "o2",
+      "text": "Durable artifacts (committed state files) the agent reads on resumption"
+    },
+    {
+      "id": "o3",
+      "text": "Restarting with fresh context and redoing all work"
+    },
+    {
+      "id": "o4",
+      "text": "Asking the user to re-describe the task"
+    }
+  ],
+  "correct": "o2"
+}

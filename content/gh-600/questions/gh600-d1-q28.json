@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q28",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "The PRIMARY purpose of distinguishing planning from execution is to:",
+  "explanation": "Correct answer: B) Enable validation and oversight between reasoning and action",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Reduce LLM token use"
+    },
+    {
+      "id": "o2",
+      "text": "Enable validation and oversight between reasoning and action"
+    },
+    {
+      "id": "o3",
+      "text": "Increase autonomy"
+    },
+    {
+      "id": "o4",
+      "text": "Speed up CI"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q42",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Human intervention without slowing delivery means:",
+  "explanation": "Correct answer: A) Selective approval gates for high-risk actions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Selective approval gates for high-risk actions"
+    },
+    {
+      "id": "o2",
+      "text": "Approval on every step"
+    },
+    {
+      "id": "o3",
+      "text": "No approvals at all"
+    },
+    {
+      "id": "o4",
+      "text": "Approvals only after deployment"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q45",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "A quantitative evaluation signal could be:",
+  "explanation": "Correct answer: A) Percentage of agent PRs that pass CI without manual edits",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Percentage of agent PRs that pass CI without manual edits"
+    },
+    {
+      "id": "o2",
+      "text": "Developer happiness rating"
+    },
+    {
+      "id": "o3",
+      "text": "\"Looks good to me\""
+    },
+    {
+      "id": "o4",
+      "text": "Aesthetic appeal"
+    }
+  ],
+  "correct": "o1"
+}

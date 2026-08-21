@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q42",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Configuring an agent for environment-specific constraints means:",
+  "explanation": "Correct answer: B) Adjusting the agent's behavior or limits based on the target environment",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Using one config for all environments"
+    },
+    {
+      "id": "o2",
+      "text": "Adjusting the agent's behavior or limits based on the target environment"
+    },
+    {
+      "id": "o3",
+      "text": "Removing environment dependencies"
+    },
+    {
+      "id": "o4",
+      "text": "Hardcoding production values"
+    }
+  ],
+  "correct": "o2"
+}

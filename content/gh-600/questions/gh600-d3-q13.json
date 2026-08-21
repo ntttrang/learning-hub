@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q13",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "An agent is tasked with a multi-step code migration that may take several hours. Midway through, the execution is interrupted. What memory strategy should be implemented?",
+  "explanation": "Correct answer: C) Capture task progress and decisions as durable artifacts to enable resumption",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Restart the agent from the beginning each time it is interrupted"
+    },
+    {
+      "id": "o2",
+      "text": "Use only in-context (short-term) memory"
+    },
+    {
+      "id": "o3",
+      "text": "Capture task progress and decisions as durable artifacts to enable resumption"
+    },
+    {
+      "id": "o4",
+      "text": "Require a human to manually record the agent's progress"
+    }
+  ],
+  "correct": "o3"
+}

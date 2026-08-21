@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q47",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Actions requiring human judgment include:",
+  "explanation": "Correct answer: B) Compliance-sensitive or irreversible changes",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "All file reads"
+    },
+    {
+      "id": "o2",
+      "text": "Compliance-sensitive or irreversible changes"
+    },
+    {
+      "id": "o3",
+      "text": "Posting comments"
+    },
+    {
+      "id": "o4",
+      "text": "Running tests"
+    }
+  ],
+  "correct": "o2"
+}

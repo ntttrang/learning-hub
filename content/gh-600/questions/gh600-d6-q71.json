@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q71",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "A guardrail that blocks irreversible production changes ensures:",
+  "explanation": "Correct answer: A) Compliance with high-risk action policy",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Compliance with high-risk action policy"
+    },
+    {
+      "id": "o2",
+      "text": "Faster delivery"
+    },
+    {
+      "id": "o3",
+      "text": "Smaller artifacts"
+    },
+    {
+      "id": "o4",
+      "text": "Fewer logs"
+    }
+  ],
+  "correct": "o1"
+}

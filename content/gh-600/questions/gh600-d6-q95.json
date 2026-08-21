@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q95",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Explicit authorization for irreversible changes ensures:",
+  "explanation": "Correct answer: A) Accountable, deliberate decisions for high-impact actions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Accountable, deliberate decisions for high-impact actions"
+    },
+    {
+      "id": "o2",
+      "text": "Faster delivery"
+    },
+    {
+      "id": "o3",
+      "text": "Less oversight"
+    },
+    {
+      "id": "o4",
+      "text": "Reduced logging"
+    }
+  ],
+  "correct": "o1"
+}

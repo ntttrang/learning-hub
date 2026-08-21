@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q36",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Automated scanning enables:",
+  "explanation": "Correct answer: A) Continuous, repeatable evaluation signals in CI",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Continuous, repeatable evaluation signals in CI"
+    },
+    {
+      "id": "o2",
+      "text": "Manual review only"
+    },
+    {
+      "id": "o3",
+      "text": "Disabling guardrails"
+    },
+    {
+      "id": "o4",
+      "text": "Eliminating tests"
+    }
+  ],
+  "correct": "o1"
+}

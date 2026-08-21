@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q11",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "An agent consistently calls a dependency tool with wrong version format strings. Root cause and fix?",
+  "explanation": "Systematic wrong parameters = tool misuse. Fix = update instructions with exact format + optionally enforce validation at tool layer to prevent recurrence.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Context drift; increase memory budget"
+    },
+    {
+      "id": "o2",
+      "text": "Tool misuse; revise instructions to specify the correct format and add input validation at the tool layer"
+    },
+    {
+      "id": "o3",
+      "text": "Reasoning error; replace the model"
+    },
+    {
+      "id": "o4",
+      "text": "Environment issue; restart the CI runner"
+    }
+  ],
+  "correct": "o2"
+}

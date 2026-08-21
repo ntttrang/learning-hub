@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q34",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Multi-agent observability needs:",
+  "explanation": "Correct answer: A) Logs, artifacts, and operational signals",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Logs, artifacts, and operational signals"
+    },
+    {
+      "id": "o2",
+      "text": "Only the orchestrator's logs"
+    },
+    {
+      "id": "o3",
+      "text": "UI dashboards only"
+    },
+    {
+      "id": "o4",
+      "text": "None — agents are autonomous"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q21",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "You want to prevent an agent from taking any action until a structured plan has been reviewed and approved. Which approach is MOST appropriate?",
+  "explanation": "Correct answer: B) Configure the agent to output a structured plan and implement a validation gate before execution",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Set the agent's output format to plain text"
+    },
+    {
+      "id": "o2",
+      "text": "Configure the agent to output a structured plan and implement a validation gate before execution"
+    },
+    {
+      "id": "o3",
+      "text": "Reduce the agent's context window size"
+    },
+    {
+      "id": "o4",
+      "text": "Allow the agent to proceed if no feedback is received within 5 minutes"
+    }
+  ],
+  "correct": "o2"
+}

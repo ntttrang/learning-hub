@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q49",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Controlled paths for irreversible changes mean:",
+  "explanation": "Correct answer: B) Require defined authorization workflows for high-impact actions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Allow the agent to act freely"
+    },
+    {
+      "id": "o2",
+      "text": "Require defined authorization workflows for high-impact actions"
+    },
+    {
+      "id": "o3",
+      "text": "Skip review"
+    },
+    {
+      "id": "o4",
+      "text": "Use random approvers"
+    }
+  ],
+  "correct": "o2"
+}

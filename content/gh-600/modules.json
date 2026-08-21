@@ -1,0 +1,38 @@
+[
+  {
+    "id": "gh600-d1-mod",
+    "domainId": "gh600-d1",
+    "order": 1,
+    "title": "Architecture & SDLC"
+  },
+  {
+    "id": "gh600-d2-mod",
+    "domainId": "gh600-d2",
+    "order": 1,
+    "title": "Tool Use & MCP"
+  },
+  {
+    "id": "gh600-d3-mod",
+    "domainId": "gh600-d3",
+    "order": 1,
+    "title": "Memory, State & Execution"
+  },
+  {
+    "id": "gh600-d4-mod",
+    "domainId": "gh600-d4",
+    "order": 1,
+    "title": "Evaluation & Tuning"
+  },
+  {
+    "id": "gh600-d5-mod",
+    "domainId": "gh600-d5",
+    "order": 1,
+    "title": "Multi-Agent Coordination"
+  },
+  {
+    "id": "gh600-d6-mod",
+    "domainId": "gh600-d6",
+    "order": 1,
+    "title": "Guardrails & Accountability"
+  }
+]

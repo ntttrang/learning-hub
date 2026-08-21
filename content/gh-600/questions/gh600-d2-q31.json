@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q31",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "What is required to invoke an agent automatically in a CI workflow?",
+  "explanation": "Correct answer: B) Configuration that binds the agent to specific workflow events",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A manual developer trigger"
+    },
+    {
+      "id": "o2",
+      "text": "Configuration that binds the agent to specific workflow events"
+    },
+    {
+      "id": "o3",
+      "text": "A cron job"
+    },
+    {
+      "id": "o4",
+      "text": "Long-term memory"
+    }
+  ],
+  "correct": "o2"
+}

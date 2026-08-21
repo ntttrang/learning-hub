@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q10",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "When retiring an agent from a multi-agent workflow, what must be preserved?",
+  "explanation": "Retiring an agent must not destroy its audit trail. Logs, handoff records, and all outputs must be retained for compliance — even after the agent is fully decommissioned.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Nothing — delete all artifacts to free storage"
+    },
+    {
+      "id": "o2",
+      "text": "Audit artifacts, decision logs, and outputs — required for compliance and historical reconstruction of pipeline behavior"
+    },
+    {
+      "id": "o3",
+      "text": "Only the final output file"
+    },
+    {
+      "id": "o4",
+      "text": "The agent's model weights"
+    }
+  ],
+  "correct": "o2"
+}

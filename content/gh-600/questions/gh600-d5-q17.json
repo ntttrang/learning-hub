@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q17",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Two agents are both attempting to modify the same file in a repository. What is this type of conflict called, and how should it be resolved?",
+  "explanation": "Correct answer: B) An overlapping code change conflict — resolved by configuring agent isolation and conflict detection",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A memory collision — resolved by clearing agent memory"
+    },
+    {
+      "id": "o2",
+      "text": "An overlapping code change conflict — resolved by configuring agent isolation and conflict detection"
+    },
+    {
+      "id": "o3",
+      "text": "A tool misuse error — resolved by disabling file write tools"
+    },
+    {
+      "id": "o4",
+      "text": "A context drift — resolved by resetting both agents"
+    }
+  ],
+  "correct": "o2"
+}

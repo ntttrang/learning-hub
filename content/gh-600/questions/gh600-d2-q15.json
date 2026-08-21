@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q15",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Copilot cloud agent commits are cryptographically signed. What operational benefit does this provide?",
+  "explanation": "Per GitHub Docs, signed commits appear as Verified, providing confidence that AI-generated changes are authentic and untampered — critical for audit and accountability in multi-agent pipelines.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Reduces commit size"
+    },
+    {
+      "id": "o2",
+      "text": "Commits appear as \"Verified\" — confirming they were made by the agent and have not been altered, supporting audit and accountability"
+    },
+    {
+      "id": "o3",
+      "text": "Speeds up CI"
+    },
+    {
+      "id": "o4",
+      "text": "Lets the agent bypass branch protection"
+    }
+  ],
+  "correct": "o2"
+}

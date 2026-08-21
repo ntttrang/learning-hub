@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q18",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "After reviewing agent logs, you discover that an agent failed because it acted on outdated context. How should this failure be classified?",
+  "explanation": "Correct answer: C) Context or environment issue",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Reasoning error"
+    },
+    {
+      "id": "o2",
+      "text": "Tool misconfiguration"
+    },
+    {
+      "id": "o3",
+      "text": "Context or environment issue"
+    },
+    {
+      "id": "o4",
+      "text": "Network failure"
+    }
+  ],
+  "correct": "o3"
+}

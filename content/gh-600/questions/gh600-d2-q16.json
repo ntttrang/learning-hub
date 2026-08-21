@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q16",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Traceability for agent actions requires which of the following at minimum?",
+  "explanation": "Traceability = every action traceable: why (instruction/plan), how (tool call + params), what resulted (output). Copilot's commit messages even link to session logs for this purpose.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A Slack notification per action"
+    },
+    {
+      "id": "o2",
+      "text": "Linking each action to the instruction that caused it, the tool call that executed it, and the output it produced"
+    },
+    {
+      "id": "o3",
+      "text": "A weekly CSV report"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling async tool calls"
+    }
+  ],
+  "correct": "o2"
+}

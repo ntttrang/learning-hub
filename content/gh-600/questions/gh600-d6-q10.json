@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q10",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "What does \"least-privilege execution context\" mean per invocation?",
+  "explanation": "Least-privilege per invocation: the agent gets exactly what the current task needs. This limits blast radius — if the agent misbehaves or is compromised, damage is bounded.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agent gets the maximum permissions it might ever need, pre-provisioned"
+    },
+    {
+      "id": "o2",
+      "text": "Each agent invocation receives only the minimum permissions for that specific task — no broader access even if broader access exists"
+    },
+    {
+      "id": "o3",
+      "text": "All agents share a single global permission set"
+    },
+    {
+      "id": "o4",
+      "text": "Permissions are set at deployment and never change"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q37",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Resuming work without repeating steps requires:",
+  "explanation": "Correct answer: A) Durable artifacts capturing prior progress",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Durable artifacts capturing prior progress"
+    },
+    {
+      "id": "o2",
+      "text": "Disabling memory"
+    },
+    {
+      "id": "o3",
+      "text": "Removing tools"
+    },
+    {
+      "id": "o4",
+      "text": "Increased autonomy"
+    }
+  ],
+  "correct": "o1"
+}

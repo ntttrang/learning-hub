@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q37",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Which capability links specific actions to specific agents for audit?",
+  "explanation": "Correct answer: B) Traceability artifacts",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Memory pruning"
+    },
+    {
+      "id": "o2",
+      "text": "Traceability artifacts"
+    },
+    {
+      "id": "o3",
+      "text": "MCP allow lists"
+    },
+    {
+      "id": "o4",
+      "text": "Branch scope"
+    }
+  ],
+  "correct": "o2"
+}

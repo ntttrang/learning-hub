@@ -32,8 +32,8 @@ describe('hub views', () => {
 
   it('reports installed packs and placeholders honestly', () => {
     render(<App />);
-    expect(screen.getAllByText('Pack not installed')).toHaveLength(2); // dp-800 + gh-600
-    expect(screen.getAllByText('Installed')).toHaveLength(3); // fixture + both GitHub packs
+    expect(screen.getAllByText('Pack not installed')).toHaveLength(1); // dp-800 only — gh-600 now installs
+    expect(screen.getAllByText('Installed')).toHaveLength(4); // fixture + gh-200 + gh-900 + gh-600
   });
 
   it('cards and rail links point at subject workspaces', () => {

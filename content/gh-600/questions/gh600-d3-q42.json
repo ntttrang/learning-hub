@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q42",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Durable artifacts let an agent:",
+  "explanation": "Correct answer: A) Resume work without repeating completed steps",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Resume work without repeating completed steps"
+    },
+    {
+      "id": "o2",
+      "text": "Increase autonomy"
+    },
+    {
+      "id": "o3",
+      "text": "Replace tools"
+    },
+    {
+      "id": "o4",
+      "text": "Skip evaluation"
+    }
+  ],
+  "correct": "o1"
+}

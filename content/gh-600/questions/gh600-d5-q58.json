@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q58",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Multi-agent workflow artifacts should be:",
+  "explanation": "Correct answer: A) Suitable for review and audit",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Suitable for review and audit"
+    },
+    {
+      "id": "o2",
+      "text": "Hidden from developers"
+    },
+    {
+      "id": "o3",
+      "text": "Only viewable by the orchestrator"
+    },
+    {
+      "id": "o4",
+      "text": "Discarded after execution"
+    }
+  ],
+  "correct": "o1"
+}

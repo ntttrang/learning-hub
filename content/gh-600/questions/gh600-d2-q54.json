@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q54",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "A remote MCP server is useful when:",
+  "explanation": "Correct answer: A) Tools/resources need to be accessed across distributed environments",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Tools/resources need to be accessed across distributed environments"
+    },
+    {
+      "id": "o2",
+      "text": "Tools are local only"
+    },
+    {
+      "id": "o3",
+      "text": "MCP is disabled"
+    },
+    {
+      "id": "o4",
+      "text": "Agents are stateless"
+    }
+  ],
+  "correct": "o1"
+}

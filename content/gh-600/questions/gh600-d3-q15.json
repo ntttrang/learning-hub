@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q15",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "You need an agent to remember user preferences across multiple sessions. Which memory type is MOST appropriate?",
+  "explanation": "Correct answer: B) Long-term or external memory that persists across sessions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Short-term in-context memory"
+    },
+    {
+      "id": "o2",
+      "text": "Long-term or external memory that persists across sessions"
+    },
+    {
+      "id": "o3",
+      "text": "No memory — agents should start fresh each session"
+    },
+    {
+      "id": "o4",
+      "text": "Branch-scoped memory that resets on merge"
+    }
+  ],
+  "correct": "o2"
+}

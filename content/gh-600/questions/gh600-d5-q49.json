@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q49",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Conflicts between agents can include:",
+  "explanation": "Correct answer: A) Overlapping code changes, contradictory decisions, or duplicated effort",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Overlapping code changes, contradictory decisions, or duplicated effort"
+    },
+    {
+      "id": "o2",
+      "text": "Token budgets"
+    },
+    {
+      "id": "o3",
+      "text": "MCP registry sizes"
+    },
+    {
+      "id": "o4",
+      "text": "Branch counts"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q37",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Common anti-patterns include:",
+  "explanation": "Correct answer: B) Letting agents act before plans are validated",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Defining success criteria"
+    },
+    {
+      "id": "o2",
+      "text": "Letting agents act before plans are validated"
+    },
+    {
+      "id": "o3",
+      "text": "Producing inspectable artifacts"
+    },
+    {
+      "id": "o4",
+      "text": "Configuring branch scope"
+    }
+  ],
+  "correct": "o2"
+}

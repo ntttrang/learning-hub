@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q36",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Identifying steps for agents to perform requires:",
+  "explanation": "Correct answer: B) Breaking SDLC work into discrete, agent-friendly steps",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Picking the longest tasks"
+    },
+    {
+      "id": "o2",
+      "text": "Breaking SDLC work into discrete, agent-friendly steps"
+    },
+    {
+      "id": "o3",
+      "text": "Letting the agent define its own steps"
+    },
+    {
+      "id": "o4",
+      "text": "Hard-coding the agent's prompt"
+    }
+  ],
+  "correct": "o2"
+}

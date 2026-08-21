@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q08",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "On what two axes are autonomy levels correctly assigned?",
+  "explanation": "Autonomy levels sit at the intersection of action risk profile and organisational policies. Both axes matter — a low-risk action in a high-compliance context may still need oversight.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Model size and token budget"
+    },
+    {
+      "id": "o2",
+      "text": "Risk of the action (operational/security/compliance) AND organisational policy constraints including RAI standards"
+    },
+    {
+      "id": "o3",
+      "text": "Agent version and memory type"
+    },
+    {
+      "id": "o4",
+      "text": "Number of tools and MCP servers configured"
+    }
+  ],
+  "correct": "o2"
+}

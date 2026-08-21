@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q52",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Tuning workflows means:",
+  "explanation": "Correct answer: A) Adjusting the orchestrated steps or process the agent follows",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Adjusting the orchestrated steps or process the agent follows"
+    },
+    {
+      "id": "o2",
+      "text": "Replacing the LLM"
+    },
+    {
+      "id": "o3",
+      "text": "Disabling MCP"
+    },
+    {
+      "id": "o4",
+      "text": "Removing memory"
+    }
+  ],
+  "correct": "o1"
+}

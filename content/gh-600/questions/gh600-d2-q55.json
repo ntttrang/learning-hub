@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q55",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Configuring MCP allow lists supports:",
+  "explanation": "Correct answer: A) Tool-level least-privilege",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Tool-level least-privilege"
+    },
+    {
+      "id": "o2",
+      "text": "Bypassing guardrails"
+    },
+    {
+      "id": "o3",
+      "text": "Increased autonomy"
+    },
+    {
+      "id": "o4",
+      "text": "Eliminating logs"
+    }
+  ],
+  "correct": "o1"
+}

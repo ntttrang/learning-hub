@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q94",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Scoping execution contexts to least-privilege ensures:",
+  "explanation": "Correct answer: A) The agent only has access required for its task",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agent only has access required for its task"
+    },
+    {
+      "id": "o2",
+      "text": "Maximum capability for the agent"
+    },
+    {
+      "id": "o3",
+      "text": "No limits"
+    },
+    {
+      "id": "o4",
+      "text": "Repo-owner-level permissions"
+    }
+  ],
+  "correct": "o1"
+}

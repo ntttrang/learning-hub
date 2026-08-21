@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q19",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "When should an agent use external memory?",
+  "explanation": "Correct answer: B) When state must persist across sessions or beyond the context window",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "For all tasks regardless of length"
+    },
+    {
+      "id": "o2",
+      "text": "When state must persist across sessions or beyond the context window"
+    },
+    {
+      "id": "o3",
+      "text": "Only for testing"
+    },
+    {
+      "id": "o4",
+      "text": "When the agent has no tools"
+    }
+  ],
+  "correct": "o2"
+}

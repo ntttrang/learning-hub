@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q39",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "When an agent fails midway through a long task, what enables it to resume without redoing work?",
+  "explanation": "Correct answer: B) Durable task state artifacts",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Larger context window"
+    },
+    {
+      "id": "o2",
+      "text": "Durable task state artifacts"
+    },
+    {
+      "id": "o3",
+      "text": "Memory pruning"
+    },
+    {
+      "id": "o4",
+      "text": "Tool restrictions"
+    }
+  ],
+  "correct": "o2"
+}

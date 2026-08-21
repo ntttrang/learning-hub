@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q44",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "An anti-pattern in agent design is:",
+  "explanation": "Correct answer: A) Allowing the agent to escalate its own permissions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Allowing the agent to escalate its own permissions"
+    },
+    {
+      "id": "o2",
+      "text": "Producing structured plans"
+    },
+    {
+      "id": "o3",
+      "text": "Validating outputs before action"
+    },
+    {
+      "id": "o4",
+      "text": "Logging decisions"
+    }
+  ],
+  "correct": "o1"
+}

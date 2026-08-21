@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q105",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Which BEST summarizes responsible agentic AI development per GH-600?",
+  "explanation": "Correct answer: A) Agents operate with clear scope, observability, accountability, evaluation, and risk-aware guardrails",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agents operate with clear scope, observability, accountability, evaluation, and risk-aware guardrails"
+    },
+    {
+      "id": "o2",
+      "text": "Agents take all actions autonomously without oversight"
+    },
+    {
+      "id": "o3",
+      "text": "Agents replace developers entirely"
+    },
+    {
+      "id": "o4",
+      "text": "Agents bypass CI and tooling"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q31",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Classifying agent actions by operational, security, and compliance risk allows you to:",
+  "explanation": "Correct answer: B) Right-size human intervention",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Increase MCP throughput"
+    },
+    {
+      "id": "o2",
+      "text": "Right-size human intervention"
+    },
+    {
+      "id": "o3",
+      "text": "Eliminate evaluation"
+    },
+    {
+      "id": "o4",
+      "text": "Skip orchestration"
+    }
+  ],
+  "correct": "o2"
+}

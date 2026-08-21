@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q64",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "MCP registries help with:",
+  "explanation": "Correct answer: A) Discovery and governance of available MCP servers",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Discovery and governance of available MCP servers"
+    },
+    {
+      "id": "o2",
+      "text": "Memory expansion"
+    },
+    {
+      "id": "o3",
+      "text": "Removing logs"
+    },
+    {
+      "id": "o4",
+      "text": "Branch creation"
+    }
+  ],
+  "correct": "o1"
+}

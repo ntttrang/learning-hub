@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q62",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Identifying actions requiring human judgment helps:",
+  "explanation": "Correct answer: A) Focus oversight where it adds value",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Focus oversight where it adds value"
+    },
+    {
+      "id": "o2",
+      "text": "Slow everything down equally"
+    },
+    {
+      "id": "o3",
+      "text": "Replace LLMs"
+    },
+    {
+      "id": "o4",
+      "text": "Disable MCP"
+    }
+  ],
+  "correct": "o1"
+}

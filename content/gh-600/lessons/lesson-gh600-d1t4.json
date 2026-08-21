@@ -1,0 +1,50 @@
+{
+  "id": "lesson-gh600-d1t4",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "order": 4,
+  "title": "Inputs, Outputs & Success Criteria",
+  "summary": "Structure agent systems, integrate them into the SDLC, define the planning/execution boundary, configure observability, and right-size human oversight.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "table",
+      "headers": [
+        "Component",
+        "Definition",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Expected inputs",
+          "What the agent receives",
+          "Issue text, PR diff, file path"
+        ],
+        [
+          "Expected outputs",
+          "What the agent must produce",
+          "Modified files, new PR, test report"
+        ],
+        [
+          "Operational constraints",
+          "What the agent must NOT do",
+          "Never modify config/, never push to main"
+        ],
+        [
+          "Quantitative signals",
+          "Measurable automated metrics",
+          "Test pass rate, lint errors, vuln count"
+        ],
+        [
+          "Qualitative signals",
+          "Human judgment criteria",
+          "Code readability, convention adherence"
+        ]
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Exam Tip:** When a question says \"the team can't tell if the agent is working,\" the root cause is always missing success criteria and evaluation signals — not a tool or model problem."
+    }
+  ]
+}

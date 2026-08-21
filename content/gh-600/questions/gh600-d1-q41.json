@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q41",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Standard development tooling artifacts include:",
+  "explanation": "Correct answer: A) Pull requests, issues, logs, and traces",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Pull requests, issues, logs, and traces"
+    },
+    {
+      "id": "o2",
+      "text": "Random text files"
+    },
+    {
+      "id": "o3",
+      "text": "Only Slack messages"
+    },
+    {
+      "id": "o4",
+      "text": "Email summaries"
+    }
+  ],
+  "correct": "o1"
+}

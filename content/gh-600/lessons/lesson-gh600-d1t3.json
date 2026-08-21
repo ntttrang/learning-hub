@@ -1,0 +1,40 @@
+{
+  "id": "lesson-gh600-d1t3",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "order": 3,
+  "title": "Common Anti-Patterns",
+  "summary": "Structure agent systems, integrate them into the SDLC, define the planning/execution boundary, configure observability, and right-size human oversight.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "table",
+      "headers": [
+        "Anti-pattern",
+        "Correct"
+      ],
+      "rows": [
+        [
+          "Agent plans AND acts in the same step — no validation window",
+          "Agent outputs a plan artifact → validation gate → then acts"
+        ],
+        [
+          "Agent pushes directly to main without a PR",
+          "Agent commits to a copilot/ branch → opens PR → human reviews"
+        ],
+        [
+          "No success criteria — team can't evaluate output quality",
+          "Define expected outputs, constraints, and evaluation signals BEFORE deployment"
+        ],
+        [
+          "Every action requires human approval (approval theater)",
+          "Gates only where human judgment materially reduces risk"
+        ]
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Remember:** Anti-patterns are architectural design failures, not tool errors. The exam asks you to identify the structural mistake."
+    }
+  ]
+}

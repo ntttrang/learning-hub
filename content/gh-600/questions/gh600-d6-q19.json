@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q19",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Your team wants agents to operate as autonomously as possible without compromising security. What is the BEST approach to balancing speed and safety?",
+  "explanation": "Correct answer: B) Assign autonomy levels based on risk classification, minimizing approvals that do not materially reduce risk",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Remove all guardrails to maximize delivery speed"
+    },
+    {
+      "id": "o2",
+      "text": "Assign autonomy levels based on risk classification, minimizing approvals that do not materially reduce risk"
+    },
+    {
+      "id": "o3",
+      "text": "Require human approval for every agent action regardless of risk"
+    },
+    {
+      "id": "o4",
+      "text": "Allow agents to self-elevate their autonomy level based on task complexity"
+    }
+  ],
+  "correct": "o2"
+}

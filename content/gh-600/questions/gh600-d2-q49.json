@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q49",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Scoping an agent to a repository limits:",
+  "explanation": "Correct answer: A) Where the agent can read/write",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Where the agent can read/write"
+    },
+    {
+      "id": "o2",
+      "text": "The agent's LLM"
+    },
+    {
+      "id": "o3",
+      "text": "The MCP registry"
+    },
+    {
+      "id": "o4",
+      "text": "The CI runner"
+    }
+  ],
+  "correct": "o1"
+}

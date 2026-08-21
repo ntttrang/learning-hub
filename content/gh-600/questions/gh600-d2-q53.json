@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q53",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "MCP allows agents to:",
+  "explanation": "Correct answer: A) Consume tools and resources via a standardized protocol",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Consume tools and resources via a standardized protocol"
+    },
+    {
+      "id": "o2",
+      "text": "Replace the LLM"
+    },
+    {
+      "id": "o3",
+      "text": "Manage branches"
+    },
+    {
+      "id": "o4",
+      "text": "Replace CI"
+    }
+  ],
+  "correct": "o1"
+}

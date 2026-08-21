@@ -1,0 +1,44 @@
+{
+  "id": "lesson-gh600-d6t4",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "order": 4,
+  "title": "Audit Trail & Accountability System",
+  "summary": "Define autonomy levels by risk, implement human-in-the-loop workflows, enforce least-privilege access, block policy violations, and design complete accountability systems.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "table",
+      "headers": [
+        "Artifact",
+        "What It Provides"
+      ],
+      "rows": [
+        [
+          "Signed commits (Verified badge)",
+          "Tamper-evident proof commits were made by the agent"
+        ],
+        [
+          "Co-author attribution",
+          "Links AI-generated code to the human who initiated the task"
+        ],
+        [
+          "Session logs",
+          "Full record of agent reasoning, tool calls, and decisions per session"
+        ],
+        [
+          "Commit message session links",
+          "Every commit links to its session log for code review and audit"
+        ],
+        [
+          "Audit log events",
+          "Admin-viewable log of all agentic activity in org/enterprise"
+        ]
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Exam Tip:** All five artifact types together = complete accountability. Expect questions asking which combination satisfies a compliance audit requirement."
+    }
+  ]
+}

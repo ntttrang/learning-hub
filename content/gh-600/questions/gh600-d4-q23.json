@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q23",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "A quantitative evaluation signal is:",
+  "explanation": "Correct answer: B) A measurable metric like pass rate or precision",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A developer's gut feeling"
+    },
+    {
+      "id": "o2",
+      "text": "A measurable metric like pass rate or precision"
+    },
+    {
+      "id": "o3",
+      "text": "A team's morale"
+    },
+    {
+      "id": "o4",
+      "text": "A subjective rating"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q27",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Sharing agent state across tools/environments requires:",
+  "explanation": "Correct answer: A) A common, well-defined state representation",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A common, well-defined state representation"
+    },
+    {
+      "id": "o2",
+      "text": "Disabling tools"
+    },
+    {
+      "id": "o3",
+      "text": "Single-agent execution"
+    },
+    {
+      "id": "o4",
+      "text": "Branch scoping only"
+    }
+  ],
+  "correct": "o1"
+}

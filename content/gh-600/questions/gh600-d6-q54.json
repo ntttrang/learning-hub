@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q54",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Drift correction in extended execution often involves:",
+  "explanation": "Correct answer: A) Re-anchoring to original goals/decisions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Re-anchoring to original goals/decisions"
+    },
+    {
+      "id": "o2",
+      "text": "Removing memory"
+    },
+    {
+      "id": "o3",
+      "text": "Increasing autonomy"
+    },
+    {
+      "id": "o4",
+      "text": "Adding more tools"
+    }
+  ],
+  "correct": "o1"
+}

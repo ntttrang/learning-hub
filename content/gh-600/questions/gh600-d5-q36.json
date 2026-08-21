@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q36",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "A stalled agent should trigger:",
+  "explanation": "Correct answer: B) Detection and recovery (rollback, escalation, or human intervention)",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Indefinite waiting"
+    },
+    {
+      "id": "o2",
+      "text": "Detection and recovery (rollback, escalation, or human intervention)"
+    },
+    {
+      "id": "o3",
+      "text": "Silent removal"
+    },
+    {
+      "id": "o4",
+      "text": "Memory expansion"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q09",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "How does Copilot validate a stored memory before applying it to a new task?",
+  "explanation": "Per GitHub Docs, each memory includes citations (code location references). Before use, Copilot checks them against the current branch. Invalid citations = memory is not used.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "It re-runs the prior session in full"
+    },
+    {
+      "id": "o2",
+      "text": "It validates the memory's citations against the current codebase; if citations no longer match, the memory is discarded"
+    },
+    {
+      "id": "o3",
+      "text": "It asks the user to confirm the memory"
+    },
+    {
+      "id": "o4",
+      "text": "It sends the memory to an external validation API"
+    }
+  ],
+  "correct": "o2"
+}

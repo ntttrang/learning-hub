@@ -1,0 +1,44 @@
+{
+  "id": "lesson-gh600-d4t2",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "order": 2,
+  "title": "Root Cause Classification",
+  "summary": "Define success signals, analyze agent failures using logs and traces, classify root causes, and tune instructions, memory, and tool access based on evidence.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "table",
+      "headers": [
+        "Root Cause",
+        "Definition",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Reasoning error",
+          "Flawed planning or inference — structurally valid but semantically wrong",
+          "Wrong algorithm, incorrect logic, bad design decision"
+        ],
+        [
+          "Tool misuse",
+          "Correct intent, wrong tool usage — wrong params, wrong tool, wrong timing",
+          "Wrong version format string, calling write when read needed"
+        ],
+        [
+          "Context/environment",
+          "External factor caused failure",
+          "Missing env var, network timeout, permission denied"
+        ]
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Exam Nuance:** Syntactically correct but logically wrong output = **reasoning error**. Correct intent but wrong tool parameters = **tool misuse**. Never confuse them."
+    },
+    {
+      "kind": "tip",
+      "text": "**Silent failure diagnosis:** Start with plan trace + tool call log to find where execution stopped. Work backward from symptom to cause."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q99",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "A degraded multi-agent workflow shows:",
+  "explanation": "Correct answer: A) Partial completions, repeated failures, or coordination drift",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Partial completions, repeated failures, or coordination drift"
+    },
+    {
+      "id": "o2",
+      "text": "Faster results"
+    },
+    {
+      "id": "o3",
+      "text": "Better evaluation"
+    },
+    {
+      "id": "o4",
+      "text": "Smaller artifacts"
+    }
+  ],
+  "correct": "o1"
+}

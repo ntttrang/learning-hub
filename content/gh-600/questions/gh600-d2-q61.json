@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q61",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Configuring agent tool permissions enforces:",
+  "explanation": "Correct answer: A) Least-privilege at the tool boundary",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Least-privilege at the tool boundary"
+    },
+    {
+      "id": "o2",
+      "text": "Maximum privilege"
+    },
+    {
+      "id": "o3",
+      "text": "Random privileges"
+    },
+    {
+      "id": "o4",
+      "text": "Permissions from outside the org"
+    }
+  ],
+  "correct": "o1"
+}

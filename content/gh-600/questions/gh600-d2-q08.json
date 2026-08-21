@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q08",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Copilot cloud agent's internet access is restricted by a built-in firewall. What risk does this primarily mitigate?",
+  "explanation": "Per GitHub Docs, restricting internet access mitigates data exfiltration — sensitive code, tokens, or secrets leaking to external services via tool calls or prompt injection.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Prompt injection from user messages"
+    },
+    {
+      "id": "o2",
+      "text": "Accidental or malicious leakage of sensitive code and secrets to external endpoints"
+    },
+    {
+      "id": "o3",
+      "text": "Context drift during long sessions"
+    },
+    {
+      "id": "o4",
+      "text": "Memory expiration"
+    }
+  ],
+  "correct": "o2"
+}

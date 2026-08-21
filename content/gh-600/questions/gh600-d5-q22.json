@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q22",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Which of the following BEST describes the purpose of post-hoc analysis in multi-agent workflows?",
+  "explanation": "Correct answer: B) Reviewing logs, artifacts, and operational signals after execution to understand and improve multi-agent behavior",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Previewing agent behavior before deployment"
+    },
+    {
+      "id": "o2",
+      "text": "Reviewing logs, artifacts, and operational signals after execution to understand and improve multi-agent behavior"
+    },
+    {
+      "id": "o3",
+      "text": "Testing agents in a sandbox environment"
+    },
+    {
+      "id": "o4",
+      "text": "Monitoring agents in real time during execution"
+    }
+  ],
+  "correct": "o2"
+}

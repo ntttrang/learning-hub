@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q56",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Validating agent plans uses:",
+  "explanation": "Correct answer: A) Automated checks and/or human review against scope and constraints",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Automated checks and/or human review against scope and constraints"
+    },
+    {
+      "id": "o2",
+      "text": "Random sampling"
+    },
+    {
+      "id": "o3",
+      "text": "Token counts only"
+    },
+    {
+      "id": "o4",
+      "text": "Memory size only"
+    }
+  ],
+  "correct": "o1"
+}

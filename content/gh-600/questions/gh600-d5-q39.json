@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q39",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "A pipeline pattern in multi-agent orchestration is BEST described as:",
+  "explanation": "Correct answer: A) Sequential handoffs where each agent processes output from the previous",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Sequential handoffs where each agent processes output from the previous"
+    },
+    {
+      "id": "o2",
+      "text": "Random parallelism"
+    },
+    {
+      "id": "o3",
+      "text": "Single-agent execution"
+    },
+    {
+      "id": "o4",
+      "text": "Tool-only execution"
+    }
+  ],
+  "correct": "o1"
+}

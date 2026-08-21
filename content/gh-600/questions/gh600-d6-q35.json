@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q35",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Minimizing approvals that do not materially reduce risk helps:",
+  "explanation": "Correct answer: B) Preserve delivery velocity while maintaining meaningful oversight",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Increase compliance burden"
+    },
+    {
+      "id": "o2",
+      "text": "Preserve delivery velocity while maintaining meaningful oversight"
+    },
+    {
+      "id": "o3",
+      "text": "Reduce auditability"
+    },
+    {
+      "id": "o4",
+      "text": "Eliminate guardrails"
+    }
+  ],
+  "correct": "o2"
+}

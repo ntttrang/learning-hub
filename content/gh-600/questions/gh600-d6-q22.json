@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q22",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Which of the following scenarios represents a valid use of **human-in-the-loop** in an agentic workflow?",
+  "explanation": "Correct answer: B) Requiring human approval before an agent deploys to a production environment",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Requiring human approval before an agent formats a comment"
+    },
+    {
+      "id": "o2",
+      "text": "Requiring human approval before an agent deploys to a production environment"
+    },
+    {
+      "id": "o3",
+      "text": "Requiring human approval before an agent reads a file"
+    },
+    {
+      "id": "o4",
+      "text": "Requiring human approval before the agent queries a search tool"
+    }
+  ],
+  "correct": "o2"
+}

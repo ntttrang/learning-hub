@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q84",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Drift correction relies on:",
+  "explanation": "Correct answer: A) Comparing current state to intent and prior decisions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Comparing current state to intent and prior decisions"
+    },
+    {
+      "id": "o2",
+      "text": "Random restarts"
+    },
+    {
+      "id": "o3",
+      "text": "Disabling memory"
+    },
+    {
+      "id": "o4",
+      "text": "Removing tools"
+    }
+  ],
+  "correct": "o1"
+}

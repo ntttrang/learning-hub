@@ -9,8 +9,9 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: './src/test-setup.ts',
-    // Only the app's own tests — .claude/skills ships helper scripts whose
-    // *.test.cjs files are not Vitest suites.
-    include: ['src/**/*.test.{ts,tsx}'],
+    // Only the app's own tests plus script-side converter suites —
+    // .claude/skills ships helper scripts whose *.test.cjs files are not
+    // Vitest suites.
+    include: ['src/**/*.test.{ts,tsx}', 'scripts/**/*.test.{ts,tsx}'],
   },
 });

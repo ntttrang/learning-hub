@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q31",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Capturing decisions as artifacts supports:",
+  "explanation": "Correct answer: A) Resumption and audit",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Resumption and audit"
+    },
+    {
+      "id": "o2",
+      "text": "MCP registry replication"
+    },
+    {
+      "id": "o3",
+      "text": "Branch creation"
+    },
+    {
+      "id": "o4",
+      "text": "LLM training"
+    }
+  ],
+  "correct": "o1"
+}

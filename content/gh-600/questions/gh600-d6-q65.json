@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q65",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Explicit authorization for irreversible actions means:",
+  "explanation": "Correct answer: A) An authorized human (or controlled path) must approve",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "An authorized human (or controlled path) must approve"
+    },
+    {
+      "id": "o2",
+      "text": "The agent self-approves"
+    },
+    {
+      "id": "o3",
+      "text": "Another agent approves"
+    },
+    {
+      "id": "o4",
+      "text": "The action proceeds silently"
+    }
+  ],
+  "correct": "o1"
+}

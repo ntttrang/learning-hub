@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q59",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Refining tool access during tuning means:",
+  "explanation": "Correct answer: A) Adding/removing tools based on observed agent needs and risks",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Adding/removing tools based on observed agent needs and risks"
+    },
+    {
+      "id": "o2",
+      "text": "Always adding more tools"
+    },
+    {
+      "id": "o3",
+      "text": "Disabling MCP"
+    },
+    {
+      "id": "o4",
+      "text": "Random changes"
+    }
+  ],
+  "correct": "o1"
+}

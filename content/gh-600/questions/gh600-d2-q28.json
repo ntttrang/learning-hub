@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q28",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "What is an MCP server in the context of GitHub agents?",
+  "explanation": "Correct answer: B) A standardized server that exposes tools and resources to agents via the Model Context Protocol",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A managed credentials provider"
+    },
+    {
+      "id": "o2",
+      "text": "A standardized server that exposes tools and resources to agents via the Model Context Protocol"
+    },
+    {
+      "id": "o3",
+      "text": "A monitoring control plane"
+    },
+    {
+      "id": "o4",
+      "text": "A multi-cloud platform"
+    }
+  ],
+  "correct": "o2"
+}

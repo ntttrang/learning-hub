@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q20",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "\"Context drift\" refers to:",
+  "explanation": "Correct answer: B) Agent execution diverging from prior decisions or task intent over time",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agents losing network connectivity"
+    },
+    {
+      "id": "o2",
+      "text": "Agent execution diverging from prior decisions or task intent over time"
+    },
+    {
+      "id": "o3",
+      "text": "Memory expiration"
+    },
+    {
+      "id": "o4",
+      "text": "Tool permission changes"
+    }
+  ],
+  "correct": "o2"
+}

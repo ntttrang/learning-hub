@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q55",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "A multi-agent workflow that lacks shared state representation is likely to:",
+  "explanation": "Correct answer: B) Produce conflicting or stale decisions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Work flawlessly"
+    },
+    {
+      "id": "o2",
+      "text": "Produce conflicting or stale decisions"
+    },
+    {
+      "id": "o3",
+      "text": "Reduce token use"
+    },
+    {
+      "id": "o4",
+      "text": "Improve evaluation"
+    }
+  ],
+  "correct": "o2"
+}

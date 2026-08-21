@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q04",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Which GitHub control automatically assigns reviewers to agent-generated changes in critical file paths?",
+  "explanation": "CODEOWNERS automatically assigns required reviewers for specific file paths. When an agent modifies code in a CODEOWNERS-protected path, the defined owners must review before merging.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "MCP allow list"
+    },
+    {
+      "id": "o2",
+      "text": "Required status checks"
+    },
+    {
+      "id": "o3",
+      "text": "CODEOWNERS file"
+    },
+    {
+      "id": "o4",
+      "text": "GitHub Actions job timeout"
+    }
+  ],
+  "correct": "o3"
+}

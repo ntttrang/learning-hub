@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q57",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Generating evaluation signals automatically:",
+  "explanation": "Correct answer: A) Scales evaluation across runs and tasks",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Scales evaluation across runs and tasks"
+    },
+    {
+      "id": "o2",
+      "text": "Eliminates the need for any review"
+    },
+    {
+      "id": "o3",
+      "text": "Reduces auditability"
+    },
+    {
+      "id": "o4",
+      "text": "Disables observability"
+    }
+  ],
+  "correct": "o1"
+}

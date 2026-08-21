@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q51",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Post-hoc analysis of agents requires:",
+  "explanation": "Correct answer: A) Retained artifacts and logs to review behavior after execution",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Retained artifacts and logs to review behavior after execution"
+    },
+    {
+      "id": "o2",
+      "text": "Real-time only data"
+    },
+    {
+      "id": "o3",
+      "text": "No artifacts"
+    },
+    {
+      "id": "o4",
+      "text": "Removed observability"
+    }
+  ],
+  "correct": "o1"
+}

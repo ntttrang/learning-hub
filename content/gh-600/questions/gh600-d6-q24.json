@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q24",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "You are evaluating a new agent before promoting it to production. The agent performs well on average but occasionally takes destructive actions. What is the MOST appropriate next step?",
+  "explanation": "Correct answer: B) Classify the destructive actions by risk, implement guardrails to block them, and retest before promotion",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Promote to production immediately since average performance is good"
+    },
+    {
+      "id": "o2",
+      "text": "Classify the destructive actions by risk, implement guardrails to block them, and retest before promotion"
+    },
+    {
+      "id": "o3",
+      "text": "Remove all tools from the agent and re-add them one by one"
+    },
+    {
+      "id": "o4",
+      "text": "Reduce the agent's memory to prevent unexpected behavior"
+    }
+  ],
+  "correct": "o2"
+}

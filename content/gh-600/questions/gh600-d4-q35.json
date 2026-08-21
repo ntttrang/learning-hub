@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q35",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Aligning evaluation criteria with development intent means:",
+  "explanation": "Correct answer: B) Measuring whether the agent delivers what the team actually needs",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Using only generic AI benchmarks"
+    },
+    {
+      "id": "o2",
+      "text": "Measuring whether the agent delivers what the team actually needs"
+    },
+    {
+      "id": "o3",
+      "text": "Skipping evaluation"
+    },
+    {
+      "id": "o4",
+      "text": "Using random metrics"
+    }
+  ],
+  "correct": "o2"
+}

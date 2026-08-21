@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q25",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "An agent is configured to run autonomously in a CI pipeline. A deployment step begins to behave unexpectedly mid-execution. Which capability allows the system to recover without full manual intervention?",
+  "explanation": "Correct answer: B) Rollback procedures and escalation paths configured as part of the agent's error handling strategy",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Increasing the CI runner's compute resources"
+    },
+    {
+      "id": "o2",
+      "text": "Rollback procedures and escalation paths configured as part of the agent's error handling strategy"
+    },
+    {
+      "id": "o3",
+      "text": "Switching to a different CI platform"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling the agent permanently"
+    }
+  ],
+  "correct": "o2"
+}

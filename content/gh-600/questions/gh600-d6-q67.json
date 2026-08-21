@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q67",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "A core principle of agentic SDLC integration is:",
+  "explanation": "Correct answer: B) Agents are integrated with clear inputs, outputs, scope, and oversight",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agents replace developers entirely"
+    },
+    {
+      "id": "o2",
+      "text": "Agents are integrated with clear inputs, outputs, scope, and oversight"
+    },
+    {
+      "id": "o3",
+      "text": "Agents act without artifacts"
+    },
+    {
+      "id": "o4",
+      "text": "Agents bypass CI"
+    }
+  ],
+  "correct": "o2"
+}

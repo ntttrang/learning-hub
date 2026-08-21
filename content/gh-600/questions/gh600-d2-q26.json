@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q26",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "You are configuring an agent to work across multiple branches in a repository. Which configuration is MOST appropriate?",
+  "explanation": "Correct answer: B) Configure branch-based scope to limit the agent's actions to relevant branches",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Give the agent global write access to all branches"
+    },
+    {
+      "id": "o2",
+      "text": "Configure branch-based scope to limit the agent's actions to relevant branches"
+    },
+    {
+      "id": "o3",
+      "text": "Disable branch protection rules while the agent is running"
+    },
+    {
+      "id": "o4",
+      "text": "Force all agent changes directly to the main branch"
+    }
+  ],
+  "correct": "o2"
+}

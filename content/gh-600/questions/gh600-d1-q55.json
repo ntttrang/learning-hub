@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q55",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Configuring agent autonomy includes:",
+  "explanation": "Correct answer: A) Defining what the agent can do without human approval",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Defining what the agent can do without human approval"
+    },
+    {
+      "id": "o2",
+      "text": "Setting LLM temperature only"
+    },
+    {
+      "id": "o3",
+      "text": "Picking the deployment region only"
+    },
+    {
+      "id": "o4",
+      "text": "Removing guardrails"
+    }
+  ],
+  "correct": "o1"
+}

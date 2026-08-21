@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q93",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Blocking compliance-violating actions:",
+  "explanation": "Correct answer: A) Prevents harmful or non-compliant outcomes before they occur",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Prevents harmful or non-compliant outcomes before they occur"
+    },
+    {
+      "id": "o2",
+      "text": "Allows them with logging"
+    },
+    {
+      "id": "o3",
+      "text": "Defers them indefinitely"
+    },
+    {
+      "id": "o4",
+      "text": "Notifies only after"
+    }
+  ],
+  "correct": "o1"
+}

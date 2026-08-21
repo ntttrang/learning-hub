@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q17",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "When Copilot cloud agent is triggered outside an existing PR, which branch does it push to?",
+  "explanation": "Per GitHub Docs, Copilot cloud agent creates a \"copilot/\" prefixed branch and can only push to it — never directly to main or other protected branches.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Directly to main"
+    },
+    {
+      "id": "o2",
+      "text": "A new branch prefixed with \"copilot/\" created specifically for that agent session"
+    },
+    {
+      "id": "o3",
+      "text": "The default branch"
+    },
+    {
+      "id": "o4",
+      "text": "A branch named after the requesting user"
+    }
+  ],
+  "correct": "o2"
+}

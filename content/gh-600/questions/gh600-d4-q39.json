@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q39",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Identifying qualitative evaluation signals helps:",
+  "explanation": "Correct answer: A) Capture nuanced, human-judgment aspects of agent outputs",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Capture nuanced, human-judgment aspects of agent outputs"
+    },
+    {
+      "id": "o2",
+      "text": "Replace quantitative metrics"
+    },
+    {
+      "id": "o3",
+      "text": "Skip evaluation"
+    },
+    {
+      "id": "o4",
+      "text": "Eliminate logs"
+    }
+  ],
+  "correct": "o1"
+}

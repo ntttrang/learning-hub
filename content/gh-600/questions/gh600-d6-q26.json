@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q26",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "A GitHub Copilot agent needs access to a third-party issue tracking system. Using MCP, what is the correct configuration approach?",
+  "explanation": "Correct answer: B) Configure a remote MCP server for the issue tracking system and add it to the agent's tool registry with appropriate allow list entries",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Embed the API credentials in the agent's system prompt"
+    },
+    {
+      "id": "o2",
+      "text": "Configure a remote MCP server for the issue tracking system and add it to the agent's tool registry with appropriate allow list entries"
+    },
+    {
+      "id": "o3",
+      "text": "Give the agent browser access to navigate to the tracking system manually"
+    },
+    {
+      "id": "o4",
+      "text": "Use a GitHub Action to sync data to a local file the agent can read"
+    }
+  ],
+  "correct": "o2"
+}

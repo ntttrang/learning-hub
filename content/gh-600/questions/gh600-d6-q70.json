@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q70",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Detecting and resolving overlapping code changes requires:",
+  "explanation": "Correct answer: A) Coordination mechanisms across agents",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Coordination mechanisms across agents"
+    },
+    {
+      "id": "o2",
+      "text": "Disabling parallelism"
+    },
+    {
+      "id": "o3",
+      "text": "Removing branches"
+    },
+    {
+      "id": "o4",
+      "text": "Larger LLMs"
+    }
+  ],
+  "correct": "o1"
+}

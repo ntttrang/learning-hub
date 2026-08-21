@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q29",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Logs, plans, traces, and artifacts together help engineers:",
+  "explanation": "Correct answer: B) Identify failures and their root causes",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Bypass guardrails"
+    },
+    {
+      "id": "o2",
+      "text": "Identify failures and their root causes"
+    },
+    {
+      "id": "o3",
+      "text": "Skip evaluation"
+    },
+    {
+      "id": "o4",
+      "text": "Increase autonomy"
+    }
+  ],
+  "correct": "o2"
+}

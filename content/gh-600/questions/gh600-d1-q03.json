@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q03",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "A team adds an approval gate to every single agent action, including reading README files. What problem does this create?",
+  "explanation": "Gating every action regardless of risk is \"approval theater.\" Every gate imposes a delivery cost that must be justified by the risk it mitigates. Routine, reversible actions should be ungated.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Improved security"
+    },
+    {
+      "id": "o2",
+      "text": "Approval theater — gates that impose velocity cost without reducing meaningful risk"
+    },
+    {
+      "id": "o3",
+      "text": "Correct observability configuration"
+    },
+    {
+      "id": "o4",
+      "text": "Better compliance trail"
+    }
+  ],
+  "correct": "o2"
+}

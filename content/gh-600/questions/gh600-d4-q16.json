@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q16",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Which of the following is an example of a **quantitative** evaluation signal for an agent?",
+  "explanation": "Correct answer: B) The percentage of agent-generated PRs that pass CI checks without modification",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A developer's subjective rating of code quality"
+    },
+    {
+      "id": "o2",
+      "text": "The percentage of agent-generated PRs that pass CI checks without modification"
+    },
+    {
+      "id": "o3",
+      "text": "Whether the agent's output \"feels right\" to the reviewer"
+    },
+    {
+      "id": "o4",
+      "text": "Team satisfaction surveys"
+    }
+  ],
+  "correct": "o2"
+}

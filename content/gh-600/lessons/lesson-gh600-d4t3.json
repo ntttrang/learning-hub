@@ -1,0 +1,25 @@
+{
+  "id": "lesson-gh600-d4t3",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "order": 3,
+  "title": "Tuning Levers by Root Cause",
+  "summary": "Define success signals, analyze agent failures using logs and traces, classify root causes, and tune instructions, memory, and tool access based on evidence.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "list",
+      "items": [
+        "**Reasoning error** → Revise instructions to be more precise; add examples of correct reasoning",
+        "**Tool misuse** → Update instructions with exact expected format; add tool-level input validation",
+        "**Dropped constraint** → Re-add explicitly; enforce mechanically via tool permissions",
+        "**Context drift** → Add pruning rules; reduce memory scope; add checkpoints",
+        "**Over-fetching** → Narrow tool access scope; revise instructions to fetch only relevant data"
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Tuning Side Effects:** Every change must be re-evaluated against ALL success criteria. Fixing one metric can break another. Always run full regression after tuning."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q29",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "What document defines what an agent should accomplish?",
+  "explanation": "Correct answer: B) The agent's success criteria, inputs, and outputs",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The MCP allow list"
+    },
+    {
+      "id": "o2",
+      "text": "The agent's success criteria, inputs, and outputs"
+    },
+    {
+      "id": "o3",
+      "text": "The branch protection rules"
+    },
+    {
+      "id": "o4",
+      "text": "The CI workflow file"
+    }
+  ],
+  "correct": "o2"
+}

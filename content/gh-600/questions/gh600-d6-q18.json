@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q18",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "You are classifying agent actions to determine which require human intervention. An agent wants to merge a PR to the main branch of a production repository. How should this action be classified?",
+  "explanation": "Correct answer: C) High risk — require explicit human authorization due to production impact",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Low risk — no human intervention required"
+    },
+    {
+      "id": "o2",
+      "text": "Medium risk — log it but allow automatic execution"
+    },
+    {
+      "id": "o3",
+      "text": "High risk — require explicit human authorization due to production impact"
+    },
+    {
+      "id": "o4",
+      "text": "No risk — merging is always safe in agentic workflows"
+    }
+  ],
+  "correct": "o3"
+}

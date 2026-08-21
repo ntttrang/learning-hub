@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q38",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Sharing agent state across tools requires:",
+  "explanation": "Correct answer: A) A defined, consistent representation of state",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A defined, consistent representation of state"
+    },
+    {
+      "id": "o2",
+      "text": "Random formats"
+    },
+    {
+      "id": "o3",
+      "text": "Disabled memory"
+    },
+    {
+      "id": "o4",
+      "text": "Increased context size only"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q12",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "In which Copilot surfaces is agentic memory currently active per GitHub Docs?",
+  "explanation": "Per GitHub Docs, Copilot Memory is currently active in: Copilot cloud agent, Copilot code review (PRs on GitHub.com), and Copilot CLI.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "All Copilot features everywhere"
+    },
+    {
+      "id": "o2",
+      "text": "Copilot cloud agent, Copilot code review on GitHub.com PRs, and Copilot CLI"
+    },
+    {
+      "id": "o3",
+      "text": "IDE completions and mobile only"
+    },
+    {
+      "id": "o4",
+      "text": "GitHub Mobile only"
+    }
+  ],
+  "correct": "o2"
+}

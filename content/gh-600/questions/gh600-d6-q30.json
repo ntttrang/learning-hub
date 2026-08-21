@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q30",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Which of the following BEST summarizes the key principle behind responsible agentic AI development as reflected throughout the GH-600 exam objectives?",
+  "explanation": "Correct answer: B) Agents should be designed with clear boundaries, observability, human oversight where appropriate, and accountability for all actions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agents should operate with maximum autonomy to deliver the fastest results possible"
+    },
+    {
+      "id": "o2",
+      "text": "Agents should be designed with clear boundaries, observability, human oversight where appropriate, and accountability for all actions"
+    },
+    {
+      "id": "o3",
+      "text": "Human oversight should be minimized to reduce workflow friction"
+    },
+    {
+      "id": "o4",
+      "text": "Agent behavior should be opaque to developers to protect IP"
+    }
+  ],
+  "correct": "o2"
+}

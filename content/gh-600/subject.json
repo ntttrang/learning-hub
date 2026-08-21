@@ -1,0 +1,19 @@
+{
+  "id": "gh-600",
+  "code": "GH-600",
+  "title": "Agentic AI Developer",
+  "subtitle": "Agentic AI Developer · 6 domains",
+  "description": "Agent architecture, MCP tool use, memory & state, evaluation, multi-agent orchestration, and guardrails — ported from the donor GH-600 study companion.",
+  "accent": "deep-teal",
+  "disclaimers": [
+    "GH-600 beta — content ported verbatim from the donor study companion."
+  ],
+  "enabledModes": [
+    "learn",
+    "labs",
+    "practice",
+    "exams",
+    "notes",
+    "revision"
+  ]
+}

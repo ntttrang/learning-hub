@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q16",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "You are onboarding an AI agent into your team's CI/CD pipeline. Which of the following is the BEST first step?",
+  "explanation": "Correct answer: B) Identify the specific SDLC steps the agent will perform and define clear success criteria",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Configure the agent with full repository write access immediately"
+    },
+    {
+      "id": "o2",
+      "text": "Identify the specific SDLC steps the agent will perform and define clear success criteria"
+    },
+    {
+      "id": "o3",
+      "text": "Allow the agent to reason freely across all pipeline stages without constraints"
+    },
+    {
+      "id": "o4",
+      "text": "Deploy the agent to production before testing in staging"
+    }
+  ],
+  "correct": "o2"
+}

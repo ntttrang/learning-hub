@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q58",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Branch-based scope limits:",
+  "explanation": "Correct answer: A) The scope of changes an agent can make",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The scope of changes an agent can make"
+    },
+    {
+      "id": "o2",
+      "text": "LLM inference speed"
+    },
+    {
+      "id": "o3",
+      "text": "MCP servers"
+    },
+    {
+      "id": "o4",
+      "text": "Memory growth"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q13",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "What is prompt injection and how does Copilot cloud agent mitigate it?",
+  "explanation": "Per GitHub Docs, prompt injection embeds hidden instructions in issues or PR comments. GitHub filters hidden characters before passing input to the agent.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A syntax error in a prompt; mitigated by spellchecking"
+    },
+    {
+      "id": "o2",
+      "text": "Hidden malicious instructions in issues or comments; mitigated by filtering hidden characters (HTML comment content) before the input reaches the agent"
+    },
+    {
+      "id": "o3",
+      "text": "A too-long system prompt; mitigated by truncation"
+    },
+    {
+      "id": "o4",
+      "text": "A typo in the MCP server URL; mitigated by DNS validation"
+    }
+  ],
+  "correct": "o2"
+}

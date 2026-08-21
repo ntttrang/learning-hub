@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q82",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "A multi-agent workflow audit needs:",
+  "explanation": "Correct answer: A) Per-agent attributable artifacts and decision records",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Per-agent attributable artifacts and decision records"
+    },
+    {
+      "id": "o2",
+      "text": "Only the final report"
+    },
+    {
+      "id": "o3",
+      "text": "Only LLM versions"
+    },
+    {
+      "id": "o4",
+      "text": "Nothing — agents are trusted"
+    }
+  ],
+  "correct": "o1"
+}

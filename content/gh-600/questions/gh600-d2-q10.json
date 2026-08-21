@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q10",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "What does \"idempotency\" mean for agent tool retries?",
+  "explanation": "Idempotent retries ensure a second call after a transient failure doesn't duplicate side-effects (no duplicate records, no double commits). Critical for safe retry implementations.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The tool runs faster on retry"
+    },
+    {
+      "id": "o2",
+      "text": "Calling the tool multiple times with the same inputs produces the same result without duplicating side-effects"
+    },
+    {
+      "id": "o3",
+      "text": "The tool always returns a cached response"
+    },
+    {
+      "id": "o4",
+      "text": "The tool ignores errors on retry"
+    }
+  ],
+  "correct": "o2"
+}

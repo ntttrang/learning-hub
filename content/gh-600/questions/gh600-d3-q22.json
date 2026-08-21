@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q22",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Scoping agent memory to task-relevant information helps prevent:",
+  "explanation": "Correct answer: B) Stale or irrelevant context affecting decisions",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Tool misuse"
+    },
+    {
+      "id": "o2",
+      "text": "Stale or irrelevant context affecting decisions"
+    },
+    {
+      "id": "o3",
+      "text": "MCP allow list violations"
+    },
+    {
+      "id": "o4",
+      "text": "CI workflow failures"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q42",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Multi-agent artifacts suitable for review and audit include:",
+  "explanation": "Correct answer: A) Plans, decision records, traces, and handoff metadata",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Plans, decision records, traces, and handoff metadata"
+    },
+    {
+      "id": "o2",
+      "text": "Only the orchestrator's final summary"
+    },
+    {
+      "id": "o3",
+      "text": "Just LLM token counts"
+    },
+    {
+      "id": "o4",
+      "text": "Only Slack notifications"
+    }
+  ],
+  "correct": "o1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q47",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Configuring observability for an agent involves:",
+  "explanation": "Correct answer: A) Producing logs, traces, and inspectable artifacts via standard tools",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Producing logs, traces, and inspectable artifacts via standard tools"
+    },
+    {
+      "id": "o2",
+      "text": "Encrypting all outputs"
+    },
+    {
+      "id": "o3",
+      "text": "Hiding logs from developers"
+    },
+    {
+      "id": "o4",
+      "text": "Disabling memory"
+    }
+  ],
+  "correct": "o1"
+}

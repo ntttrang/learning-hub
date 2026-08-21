@@ -1,0 +1,54 @@
+{
+  "id": "lesson-gh600-d2t1",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "order": 1,
+  "title": "Model Context Protocol (MCP) — Architecture",
+  "summary": "Select and configure agent tools, set up MCP servers with registries and allow lists, integrate agents into CI, and implement safe execution with robust error handling.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "tip",
+      "text": "**MCP Flow:** Agent → calls MCP server → which calls external API → returns structured result to agent"
+    },
+    {
+      "kind": "table",
+      "headers": [
+        "Component",
+        "Purpose",
+        "Exam Relevance"
+      ],
+      "rows": [
+        [
+          "MCP Server",
+          "Wraps an external API/service as callable tools",
+          "Must be registered in registry before use"
+        ],
+        [
+          "MCP Registry",
+          "Catalogue of available servers Copilot knows about",
+          "Required for server discovery"
+        ],
+        [
+          "MCP Allow List",
+          "Specifies which servers an agent is permitted to call",
+          "Primary access control layer"
+        ],
+        [
+          "Tool Permissions",
+          "What each tool can do (read/write/delete) within its scope",
+          "Second, distinct access control layer"
+        ]
+      ]
+    },
+    {
+      "kind": "code",
+      "language": "yaml",
+      "code": "# Example: GitHub remote MCP server config\nmcp_servers:\n  - name: \"jira-mcp\"\n    url: \"https://mcp.jira.example.com/sse\"\n    type: \"url\"\nmcp_allow_list:\n  - \"jira-mcp\"  # only this server is permitted"
+    },
+    {
+      "kind": "tip",
+      "text": "**Exam Trap:** Allow list ≠ tool permissions. Allow list = which servers are reachable. Tool permissions = what operations each server can perform. Both layers are required for least-privilege."
+    }
+  ]
+}

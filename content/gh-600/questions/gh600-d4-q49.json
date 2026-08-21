@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q49",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Revising agent instructions is a tuning lever for:",
+  "explanation": "Correct answer: A) Reasoning errors and unclear behavior",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Reasoning errors and unclear behavior"
+    },
+    {
+      "id": "o2",
+      "text": "Network failures"
+    },
+    {
+      "id": "o3",
+      "text": "MCP outages"
+    },
+    {
+      "id": "o4",
+      "text": "Branch protection rules"
+    }
+  ],
+  "correct": "o1"
+}

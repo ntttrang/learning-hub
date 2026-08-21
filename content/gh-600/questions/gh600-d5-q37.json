@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q37",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Replacing an agent without disrupting active workflows requires:",
+  "explanation": "Correct answer: B) Compatible interfaces and non-breaking updates",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Stopping all workflows"
+    },
+    {
+      "id": "o2",
+      "text": "Compatible interfaces and non-breaking updates"
+    },
+    {
+      "id": "o3",
+      "text": "Removing all observability"
+    },
+    {
+      "id": "o4",
+      "text": "Deleting the previous agent's artifacts"
+    }
+  ],
+  "correct": "o2"
+}

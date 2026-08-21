@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q11",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Which security checks does Copilot cloud agent run on generated code BEFORE completing a pull request?",
+  "explanation": "Per GitHub Docs: CodeQL for code security, Advisory DB for CVSS High/Critical deps and malware, secret scanning for exposed credentials — all without requiring Advanced Security licenses.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Only Copilot chat review"
+    },
+    {
+      "id": "o2",
+      "text": "CodeQL (code security), GitHub Advisory Database (dependency vulnerabilities), and secret scanning (credentials)"
+    },
+    {
+      "id": "o3",
+      "text": "A third-party DAST tool"
+    },
+    {
+      "id": "o4",
+      "text": "Manual review only"
+    }
+  ],
+  "correct": "o2"
+}

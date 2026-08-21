@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q04",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Which statement about Copilot cloud agent and pull request merging is accurate?",
+  "explanation": "Per GitHub Docs, Copilot cloud agent cannot mark its own PRs as Ready for review, approve, or merge them. Hard-coded, not configurable.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "It can merge PRs if all checks pass"
+    },
+    {
+      "id": "o2",
+      "text": "It can mark PRs Ready and merge if repo allows auto-merge"
+    },
+    {
+      "id": "o3",
+      "text": "It cannot mark its own PRs as Ready, approve, or merge them — human review always required"
+    },
+    {
+      "id": "o4",
+      "text": "It can merge after a 24-hour wait"
+    }
+  ],
+  "correct": "o3"
+}

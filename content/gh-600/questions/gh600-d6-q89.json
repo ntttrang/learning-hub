@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q89",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Continuity of memory across environments requires:",
+  "explanation": "Correct answer: A) Defined state representation, synchronization, and conflict policy",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Defined state representation, synchronization, and conflict policy"
+    },
+    {
+      "id": "o2",
+      "text": "Random sharing"
+    },
+    {
+      "id": "o3",
+      "text": "No sharing"
+    },
+    {
+      "id": "o4",
+      "text": "Memory removal"
+    }
+  ],
+  "correct": "o1"
+}

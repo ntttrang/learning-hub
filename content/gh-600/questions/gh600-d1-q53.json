@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q53",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Identifying anti-patterns means:",
+  "explanation": "Correct answer: A) Recognizing risky agent behaviors and design choices to avoid them",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Recognizing risky agent behaviors and design choices to avoid them"
+    },
+    {
+      "id": "o2",
+      "text": "Listing all tools"
+    },
+    {
+      "id": "o3",
+      "text": "Increasing LLM size"
+    },
+    {
+      "id": "o4",
+      "text": "Removing memory"
+    }
+  ],
+  "correct": "o1"
+}

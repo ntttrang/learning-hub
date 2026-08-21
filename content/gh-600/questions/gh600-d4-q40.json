@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q40",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Aligning evaluation criteria with development intent ensures:",
+  "explanation": "Correct answer: A) Evaluations measure what the team actually wants from the agent",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Evaluations measure what the team actually wants from the agent"
+    },
+    {
+      "id": "o2",
+      "text": "Evaluations are random"
+    },
+    {
+      "id": "o3",
+      "text": "Evaluations are skipped"
+    },
+    {
+      "id": "o4",
+      "text": "Evaluations are only manual"
+    }
+  ],
+  "correct": "o1"
+}

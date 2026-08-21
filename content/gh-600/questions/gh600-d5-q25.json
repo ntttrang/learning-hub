@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q25",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Two agents make overlapping code changes to the same file. This is a:",
+  "explanation": "Correct answer: B) Coordination conflict requiring detection and resolution",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Memory conflict"
+    },
+    {
+      "id": "o2",
+      "text": "Coordination conflict requiring detection and resolution"
+    },
+    {
+      "id": "o3",
+      "text": "MCP error"
+    },
+    {
+      "id": "o4",
+      "text": "Tool misuse"
+    }
+  ],
+  "correct": "o2"
+}

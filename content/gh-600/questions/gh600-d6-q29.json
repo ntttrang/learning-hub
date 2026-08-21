@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q29",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "An organization is deploying multiple agents that each handle different parts of the SDLC. A new compliance requirement mandates that all agent actions be attributable to a specific workflow and timestamp. Which capability directly addresses this requirement?",
+  "explanation": "Correct answer: B) Traceability and auditability through inspectable artifacts and structured logging",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Agent memory pruning policies"
+    },
+    {
+      "id": "o2",
+      "text": "Traceability and auditability through inspectable artifacts and structured logging"
+    },
+    {
+      "id": "o3",
+      "text": "MCP registry configuration"
+    },
+    {
+      "id": "o4",
+      "text": "Autonomy level classification"
+    }
+  ],
+  "correct": "o2"
+}

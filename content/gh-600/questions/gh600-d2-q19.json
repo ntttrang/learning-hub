@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q19",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "An agent needs to interact with Jira to update tickets. What is the correct integration approach?",
+  "explanation": "External service integrations follow the MCP pattern: register the service as an MCP server, control access via the registry and allow list, configure minimum permissions.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Hard-code Jira credentials in the agent's instruction file"
+    },
+    {
+      "id": "o2",
+      "text": "Configure Jira as an MCP server, register it in the MCP registry, add it to the agent's allow list, and scope permissions to required operations"
+    },
+    {
+      "id": "o3",
+      "text": "Give the agent a browser tool to manually log into Jira"
+    },
+    {
+      "id": "o4",
+      "text": "Use email notifications instead"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q26",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Post-hoc analysis of multi-agent behavior requires:",
+  "explanation": "Correct answer: B) Retained artifacts, logs, and decision records",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Real-time only telemetry"
+    },
+    {
+      "id": "o2",
+      "text": "Retained artifacts, logs, and decision records"
+    },
+    {
+      "id": "o3",
+      "text": "Live developer monitoring"
+    },
+    {
+      "id": "o4",
+      "text": "Manual agent intervention"
+    }
+  ],
+  "correct": "o2"
+}

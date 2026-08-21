@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q15",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "What orchestration pattern ensures a downstream agent only receives validated, complete outputs from upstream?",
+  "explanation": "Explicit handoff gates with completion signals and artifact validation are the correct pattern — each agent stage proceeds only on verified, complete inputs from the prior stage.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Random load balancing across all agents"
+    },
+    {
+      "id": "o2",
+      "text": "Explicit handoff gates with completion signals and artifact validation between each agent stage"
+    },
+    {
+      "id": "o3",
+      "text": "Shared context window for all agents"
+    },
+    {
+      "id": "o4",
+      "text": "Using the same branch for all agents"
+    }
+  ],
+  "correct": "o2"
+}

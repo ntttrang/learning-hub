@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q11",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "How should contradictory outputs from two parallel agents be detected?",
+  "explanation": "Contradictory outputs must be caught at integration — before merging — by comparing artifacts. Agents cannot reliably self-detect contradictions in each other's work.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Compare billing records"
+    },
+    {
+      "id": "o2",
+      "text": "Compare output artifacts (code, plan files, decision logs) at the integration step before any merge, using automated conflict detection or human review"
+    },
+    {
+      "id": "o3",
+      "text": "Run both agents again with different prompts"
+    },
+    {
+      "id": "o4",
+      "text": "Delete the lower-confidence output"
+    }
+  ],
+  "correct": "o2"
+}

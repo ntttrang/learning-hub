@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q48",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Configuring the MCP registry helps:",
+  "explanation": "Correct answer: A) Discover, govern, and manage MCP servers available to agents",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Discover, govern, and manage MCP servers available to agents"
+    },
+    {
+      "id": "o2",
+      "text": "Replace branch protection"
+    },
+    {
+      "id": "o3",
+      "text": "Increase memory"
+    },
+    {
+      "id": "o4",
+      "text": "Reduce LLM latency"
+    }
+  ],
+  "correct": "o1"
+}

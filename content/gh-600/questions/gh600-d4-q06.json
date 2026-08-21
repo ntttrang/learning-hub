@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q06",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "A team deployed an agent but cannot tell if it is succeeding. What is the root cause?",
+  "explanation": "Without pre-defined success criteria and evaluation signals, there is no baseline. This is why the exam mandates defining expected outcomes, constraints, and signals before deployment.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The agent runs too slowly"
+    },
+    {
+      "id": "o2",
+      "text": "No explicit success criteria or evaluation signals were defined before deployment"
+    },
+    {
+      "id": "o3",
+      "text": "The model is too small"
+    },
+    {
+      "id": "o4",
+      "text": "The CI pipeline is misconfigured"
+    }
+  ],
+  "correct": "o2"
+}

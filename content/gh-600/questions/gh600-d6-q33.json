@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q33",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Which agent action requires explicit human authorization?",
+  "explanation": "Correct answer: C) Deleting production data",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Reading a file"
+    },
+    {
+      "id": "o2",
+      "text": "Running a unit test"
+    },
+    {
+      "id": "o3",
+      "text": "Deleting production data"
+    },
+    {
+      "id": "o4",
+      "text": "Posting a comment"
+    }
+  ],
+  "correct": "o3"
+}

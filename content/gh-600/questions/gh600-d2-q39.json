@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q39",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "Branch-based scope helps:",
+  "explanation": "Correct answer: A) Limit agent action to designated branches",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Limit agent action to designated branches"
+    },
+    {
+      "id": "o2",
+      "text": "Improve LLM performance"
+    },
+    {
+      "id": "o3",
+      "text": "Configure MCP registries"
+    },
+    {
+      "id": "o4",
+      "text": "Increase memory"
+    }
+  ],
+  "correct": "o1"
+}

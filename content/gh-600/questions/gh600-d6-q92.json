@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q92",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Identifying actions that need human judgment:",
+  "explanation": "Correct answer: A) Focuses oversight where it adds the most value",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Focuses oversight where it adds the most value"
+    },
+    {
+      "id": "o2",
+      "text": "Slows all actions equally"
+    },
+    {
+      "id": "o3",
+      "text": "Removes the need for guardrails"
+    },
+    {
+      "id": "o4",
+      "text": "Increases autonomy"
+    }
+  ],
+  "correct": "o1"
+}

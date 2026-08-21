@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d1-q25",
+  "domainId": "gh600-d1",
+  "moduleId": "gh600-d1-mod",
+  "prompt": "Which is the BEST definition of \"success criteria\" for an agent task?",
+  "explanation": "Correct answer: B) Measurable outcomes that determine whether the agent completed the task correctly",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The LLM's confidence score"
+    },
+    {
+      "id": "o2",
+      "text": "Measurable outcomes that determine whether the agent completed the task correctly"
+    },
+    {
+      "id": "o3",
+      "text": "The agent's average response time"
+    },
+    {
+      "id": "o4",
+      "text": "The number of tools the agent used"
+    }
+  ],
+  "correct": "o2"
+}

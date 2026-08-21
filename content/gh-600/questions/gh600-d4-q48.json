@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d4-q48",
+  "domainId": "gh600-d4",
+  "moduleId": "gh600-d4-mod",
+  "prompt": "Classifying root causes helps:",
+  "explanation": "Correct answer: A) Direct tuning to the right intervention",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Direct tuning to the right intervention"
+    },
+    {
+      "id": "o2",
+      "text": "Increase agent autonomy"
+    },
+    {
+      "id": "o3",
+      "text": "Disable evaluation"
+    },
+    {
+      "id": "o4",
+      "text": "Remove memory"
+    }
+  ],
+  "correct": "o1"
+}

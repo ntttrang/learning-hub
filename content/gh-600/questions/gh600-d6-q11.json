@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q11",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "A compliance team needs all agent actions auditable after the fact. Which configuration satisfies this?",
+  "explanation": "Per GitHub Docs: signed commits + co-author attribution + session logs (linked from commits) + audit log events = complete multi-layer accountability trail for administrators.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "A Slack notification per action"
+    },
+    {
+      "id": "o2",
+      "text": "Signed commits + co-author attribution + session logs with links in commit messages + audit log events — all reviewable by administrators"
+    },
+    {
+      "id": "o3",
+      "text": "Only the PR description"
+    },
+    {
+      "id": "o4",
+      "text": "A weekly CSV export"
+    }
+  ],
+  "correct": "o2"
+}

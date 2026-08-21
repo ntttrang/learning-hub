@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q13",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "An authorised user asks the agent to take an action that violates a defined security policy. What must happen?",
+  "explanation": "Security and compliance policies are hard constraints. They override user authorisation — even an authorised user cannot bypass a policy violation. Block, explain, escalate.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Proceed — user authorisation overrides policy"
+    },
+    {
+      "id": "o2",
+      "text": "Block the action, surface a clear policy violation message, and escalate if needed — security policies are hard constraints that override user requests"
+    },
+    {
+      "id": "o3",
+      "text": "Log the violation and proceed anyway"
+    },
+    {
+      "id": "o4",
+      "text": "Ask a second agent to approve it"
+    }
+  ],
+  "correct": "o2"
+}

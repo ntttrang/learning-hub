@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q33",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Drift detection requires:",
+  "explanation": "Correct answer: A) Comparing current trajectory to prior decisions and intent",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Comparing current trajectory to prior decisions and intent"
+    },
+    {
+      "id": "o2",
+      "text": "Disabling logs"
+    },
+    {
+      "id": "o3",
+      "text": "Random sampling"
+    },
+    {
+      "id": "o4",
+      "text": "Eliminating"
+    }
+  ],
+  "correct": "o1"
+}

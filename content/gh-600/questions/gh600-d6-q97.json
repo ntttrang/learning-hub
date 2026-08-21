@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q97",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Inspectable artifacts in standard tooling provide:",
+  "explanation": "Correct answer: A) The foundation for observability, audit, and intervention",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "The foundation for observability, audit, and intervention"
+    },
+    {
+      "id": "o2",
+      "text": "A replacement for guardrails"
+    },
+    {
+      "id": "o3",
+      "text": "Faster LLM inference"
+    },
+    {
+      "id": "o4",
+      "text": "Smaller MCP registries"
+    }
+  ],
+  "correct": "o1"
+}

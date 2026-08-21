@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d5-q33",
+  "domainId": "gh600-d5",
+  "moduleId": "gh600-d5-mod",
+  "prompt": "Duplicated effort across agents should be:",
+  "explanation": "Correct answer: B) Detected and resolved through coordination",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Encouraged"
+    },
+    {
+      "id": "o2",
+      "text": "Detected and resolved through coordination"
+    },
+    {
+      "id": "o3",
+      "text": "Logged but ignored"
+    },
+    {
+      "id": "o4",
+      "text": "Used to validate outputs"
+    }
+  ],
+  "correct": "o2"
+}

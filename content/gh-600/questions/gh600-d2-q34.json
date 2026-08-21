@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q34",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "What is the purpose of an MCP registry?",
+  "explanation": "Correct answer: B) To catalog available MCP servers that agents can discover and use",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "To store agent memory"
+    },
+    {
+      "id": "o2",
+      "text": "To catalog available MCP servers that agents can discover and use"
+    },
+    {
+      "id": "o3",
+      "text": "To enforce branch protection"
+    },
+    {
+      "id": "o4",
+      "text": "To replace GitHub Actions"
+    }
+  ],
+  "correct": "o2"
+}

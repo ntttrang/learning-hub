@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q53",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Audit logs are MOST useful for:",
+  "explanation": "Correct answer: B) Demonstrating accountability and traceability after the fact",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Increasing autonomy"
+    },
+    {
+      "id": "o2",
+      "text": "Demonstrating accountability and traceability after the fact"
+    },
+    {
+      "id": "o3",
+      "text": "Reducing tool use"
+    },
+    {
+      "id": "o4",
+      "text": "Skipping evaluation"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d3-q28",
+  "domainId": "gh600-d3",
+  "moduleId": "gh600-d3-mod",
+  "prompt": "Preventing stale context means:",
+  "explanation": "Correct answer: B) Refreshing or invalidating context when underlying data changes",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Letting memory grow indefinitely"
+    },
+    {
+      "id": "o2",
+      "text": "Refreshing or invalidating context when underlying data changes"
+    },
+    {
+      "id": "o3",
+      "text": "Removing all memory"
+    },
+    {
+      "id": "o4",
+      "text": "Using only short-term memory"
+    }
+  ],
+  "correct": "o2"
+}

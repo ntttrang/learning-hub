@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d2-q12",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "prompt": "A user without write access to a repo comments @copilot. What happens?",
+  "explanation": "Per GitHub Docs, only users with write access can trigger Copilot cloud agent. This prevents privilege escalation — unauthorized users cannot use the agent to make changes.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Copilot processes the comment normally"
+    },
+    {
+      "id": "o2",
+      "text": "The comment is never presented to the agent — only users with write access can trigger Copilot cloud agent"
+    },
+    {
+      "id": "o3",
+      "text": "Copilot asks the user to request access"
+    },
+    {
+      "id": "o4",
+      "text": "The comment is queued for admin review"
+    }
+  ],
+  "correct": "o2"
+}

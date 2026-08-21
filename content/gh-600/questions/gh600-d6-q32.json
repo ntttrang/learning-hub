@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q32",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "Least-privilege access for agents means:",
+  "explanation": "Correct answer: B) Permissions limited to only what the agent's task requires",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Maximum permissions for flexibility"
+    },
+    {
+      "id": "o2",
+      "text": "Permissions limited to only what the agent's task requires"
+    },
+    {
+      "id": "o3",
+      "text": "Permissions inherited from the repository owner"
+    },
+    {
+      "id": "o4",
+      "text": "Permissions set by the agent itself"
+    }
+  ],
+  "correct": "o2"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "gh600-d6-q98",
+  "domainId": "gh600-d6",
+  "moduleId": "gh600-d6-mod",
+  "prompt": "An agent that consistently uses the wrong tool needs:",
+  "explanation": "Correct answer: A) Instruction refinement and/or tool access changes",
+  "kind": "single",
+  "options": [
+    {
+      "id": "o1",
+      "text": "Instruction refinement and/or tool access changes"
+    },
+    {
+      "id": "o2",
+      "text": "Larger memory"
+    },
+    {
+      "id": "o3",
+      "text": "Fewer logs"
+    },
+    {
+      "id": "o4",
+      "text": "Bigger LLM only"
+    }
+  ],
+  "correct": "o1"
+}

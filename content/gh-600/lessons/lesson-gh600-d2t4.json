@@ -1,0 +1,25 @@
+{
+  "id": "lesson-gh600-d2t4",
+  "domainId": "gh600-d2",
+  "moduleId": "gh600-d2-mod",
+  "order": 4,
+  "title": "Error Handling, Retries, Rollbacks & Escalation",
+  "summary": "Select and configure agent tools, set up MCP servers with registries and allow lists, integrate agents into CI, and implement safe execution with robust error handling.",
+  "minutes": 8,
+  "blocks": [
+    {
+      "kind": "list",
+      "items": [
+        "**Error handling:** Catch tool call failures; distinguish transient vs permanent errors",
+        "**Retries:** Use exponential backoff for transient failures; MUST be idempotent",
+        "**Rollbacks:** Revert branch changes; restore prior state using git revert patterns",
+        "**Escalation:** When automated recovery fails → notify human reviewer → halt execution",
+        "**Traceability:** Every action linked to: instruction (why) → tool call (how) → output (what)"
+      ]
+    },
+    {
+      "kind": "tip",
+      "text": "**Idempotency Rule:** If a tool call might be retried, it MUST be idempotent — calling it twice produces the same result without duplicating side-effects (no duplicate tickets, no double commits)."
+    }
+  ]
+}
