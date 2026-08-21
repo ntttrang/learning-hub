@@ -1,7 +1,7 @@
 ---
 title: "Phase 2 Shared UI"
 description: "Implement roadmap Phase 2 of docs/unified-learning-hub-plan.md: reconcile the donor apps' viewers into src/ui/, wire the shell to the Content SDK, and prove the fixture pack end-to-end through every enabled mode."
-status: done
+status: completed
 priority: P1
 effort: "4d"
 tags: [ui, shell, routing, markdown, exams]

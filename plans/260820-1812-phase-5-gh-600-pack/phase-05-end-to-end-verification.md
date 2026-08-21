@@ -62,7 +62,7 @@ build → manual render):
 - [x] All four gates green (`content:check`, `test`, `lint`, `build`).
 - [x] Exam sat end-to-end through the real engines (paper 60q, perfect 1000/pass, blank 100/fail, per-domain 10/14/7/10/10/9); render surfaces covered by the suite (home-card install state, pack validation through the glob source) and a live dev-server HTTP pass.
 - [x] gh-200/gh-900 unaffected (their parity suites are part of `npm test`).
-- [ ] Committed with a conventional message; working tree clean apart from pre-existing changes.
+- [x] Committed with a conventional message; working tree clean apart from pre-existing changes.
 
 ## Risk Assessment
 
