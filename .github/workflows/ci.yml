@@ -22,10 +22,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          # Extractor scripts compile (tsc -b) and test (parity suites) against
-          # donor sources — the gate needs the submodules present.
-          submodules: recursive
+      - name: Fetch donor submodules
+        # Extractor scripts compile (tsc -b) and parity suites test against
+        # donor sources — the gate needs the submodules present. learn-dp-800
+        # and learn-gh-200 are private, so the job token cannot read them, and
+        # actions/checkout clobbers a global insteadOf entry while setting up
+        # its own submodule auth — hence this separate step, with the
+        # authenticated rewrite scoped to those two URLs only. learn-gh-600 is
+        # public and keeps cloning without a token.
+        env:
+          DONOR_READ_TOKEN: ${{ secrets.DONOR_READ_TOKEN }}
+        run: |
+          git config --global url."https://x-access-token:${DONOR_READ_TOKEN}@github.com/ntttrang/learn-dp-800.git".insteadOf "https://github.com/ntttrang/learn-dp-800.git"
+          git config --global url."https://x-access-token:${DONOR_READ_TOKEN}@github.com/ntttrang/learn-gh-200.git".insteadOf "https://github.com/ntttrang/learn-gh-200.git"
+          git submodule sync --recursive
+          git submodule update --init --recursive
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
