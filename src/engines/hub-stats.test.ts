@@ -90,12 +90,12 @@ describe('buildHubOverview', () => {
     const data = {
       fixture: {
         ...emptyData(),
-        lessons: { 'lesson-storage-models': { status: 'completed' } },
+        lessons: { 'lesson-storage-models': { status: 'completed' as const } },
         lastLessonId: 'lesson-query-shapes',
       },
       second: {
         ...emptyData(),
-        lessons: { 'lesson-storage-models': { status: 'completed' } },
+        lessons: { 'lesson-storage-models': { status: 'completed' as const } },
       },
     };
     const overview = buildHubOverview(

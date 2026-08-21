@@ -111,7 +111,7 @@ button {
   padding: 0 6px;
   border-radius: var(--r-full);
   background: var(--danger);
-  color: var(--danger-fg, #fff);
+  color: var(--danger-fg);
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 800;
@@ -570,7 +570,7 @@ a.stat:hover {
 }
 .due-chip:hover {
   background: var(--danger);
-  color: var(--danger-fg, #fff);
+  color: var(--danger-fg);
 }
 .card-progress {
   display: flex;

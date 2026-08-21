@@ -388,6 +388,12 @@ describe('app singleton (localStorage-backed)', () => {
       status: 'completed',
     });
     expect(useSubjectDataStore.getState().subjects).toEqual({});
+    // The blob above predates hub achievements entirely (no key in state) —
+    // the merge must default-fill the strip's source, and awarding over the
+    // upgraded profile works without a version bump.
+    expect(reimported.getState().achievements).toEqual([]);
+    reimported.getState().markLesson('fixture', 'lesson-welcome', 'completed');
+    expect(reimported.getState().achievements.map((a) => a.id)).toEqual(['first-lesson']);
   });
 });
 

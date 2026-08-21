@@ -8,7 +8,10 @@ import { describe, expect, it } from 'vitest';
 import { assembleSubject, type RawContentFile } from '../src/sdk/content-source';
 import { assertValidOptions, buildStarterPack } from './scaffold-subject';
 import type { ScaffoldOptions } from './scaffold-subject';
-import type { Question, Subject } from '../src/sdk/types';
+import type { AccentToken, Question, Subject } from '../src/sdk/types';
+
+/** The stamped question is always kind: single — narrow the union for reads. */
+type SingleQuestion = Extract<Question, { kind: 'single' }>;
 
 const base: ScaffoldOptions = {
   id: 'az-900-style',
@@ -62,7 +65,7 @@ describe('buildStarterPack', () => {
     const subject = parseJson<Subject>(files['subject.json']!);
     expect(subject.enabledModes).toEqual(['learn', 'practice']);
     // practice needs questions, learn needs lessons — both are stamped.
-    const question = parseJson<Question>(files['questions/welcome.json']!);
+    const question = parseJson<SingleQuestion>(files['questions/welcome.json']!);
     expect(question.kind).toBe('single');
     expect(question.options.length).toBeGreaterThan(1);
     expect(question.options.some((option) => option.id === question.correct)).toBe(true);
@@ -85,13 +88,24 @@ describe('buildStarterPack', () => {
     expect(() => assertValidOptions({ ...base, id: 'a--b' })).toThrow(/kebab-case/);
     expect(() => assertValidOptions({ ...base, code: '  ' })).toThrow(/--code/);
     expect(() => assertValidOptions({ ...base, title: '' })).toThrow(/--title/);
-    expect(() => assertValidOptions({ ...base, accent: 'hot-pink' })).toThrow(/brand token/);
+    // Invalid accents only exist at the CLI boundary — cast past the token type.
+    expect(() => assertValidOptions({ ...base, accent: 'hot-pink' as AccentToken })).toThrow(
+      /brand token/,
+    );
   });
 
   it('uses every brand accent token the schema allows', () => {
     // The flag surface must accept the full locked token list — a new token
     // landing in ACCENT_TOKENS is not a scaffolder change.
-    const accents = ['sky-cyan', 'hub-green', 'corgi-orange', 'hub-coral', 'petal-pink', 'deep-teal', 'captain-red'];
+    const accents: AccentToken[] = [
+      'sky-cyan',
+      'hub-green',
+      'corgi-orange',
+      'hub-coral',
+      'petal-pink',
+      'deep-teal',
+      'captain-red',
+    ];
     for (const accent of accents) {
       expect(() => buildStarterPack({ ...base, accent })).not.toThrow();
     }
