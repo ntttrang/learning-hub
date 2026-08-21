@@ -332,7 +332,7 @@ export interface LessonProgress {
 
 export interface QuizAttempt {
   id: string;
-  scope: string; // practice scope: domainId, moduleId, "all", or "review"
+  scope: string; // practice scope: domainId, moduleId, "all", "review", or "hub-review"
   date: string;
   total: number;
   correct: number;

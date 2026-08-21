@@ -81,4 +81,43 @@ describe('ReviewQueue', () => {
     const deck = useSubjectDataStore.getState().subjects.fixture.srs;
     expect(deck['q-single'].box).toBe(3);
   });
+
+  it('records one attempt per subject on a mixed two-subject session', () => {
+    useSubjectDataStore.setState({
+      subjects: {
+        ...fixtureDeck([dueCard('q-single', 3)]),
+        // A second subject's deck — due 1 day later so fixture's card leads.
+        'gh-200': {
+          ...emptySubjectData(),
+          srs: { 'gh200-d1-q01': dueCard('gh200-d1-q01', 1) },
+        },
+      },
+    });
+    render(<ReviewQueue />);
+
+    // Subject-sorted interleave puts fixture first; answer its card correctly.
+    expect(screen.getByText('In a lakehouse, what physically stores the data?')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Files in object storage/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'Check answer' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Next question' }));
+
+    // GH-200's card: pick the wrong option, then finish (unanswered would
+    // also count wrong — this proves cross-subject grading is per-card).
+    expect(screen.getByText(/release team wants a workflow/)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /timer: 03:30 weekdays/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'Check answer' }));
+    fireEvent.click(screen.getByRole('button', { name: 'See results' }));
+
+    expect(screen.getByText('Review session complete')).toBeInTheDocument();
+    expect(screen.getByText('1 of 2 correct (50%)')).toBeInTheDocument();
+
+    const state = useSubjectDataStore.getState().subjects;
+    expect(state.fixture!.quizAttempts).toHaveLength(1);
+    expect(state['gh-200']!.quizAttempts).toHaveLength(1);
+    expect(state.fixture!.quizAttempts[0]).toMatchObject({ scope: 'hub-review', total: 1, correct: 1 });
+    expect(state['gh-200']!.quizAttempts[0]).toMatchObject({ scope: 'hub-review', total: 1, correct: 0 });
+    // Each deck graded its own card: fixture's moved up, gh-200's reset to box 1.
+    expect(state.fixture!.srs['q-single']!.box).toBe(3);
+    expect(state['gh-200']!.srs['gh200-d1-q01']!.box).toBe(1);
+  });
 });

@@ -28,8 +28,12 @@ interface PackContext {
   lessonHref: (question: Question) => string | undefined;
 }
 
-/** Static per session: packs are bundled at build time (see search-entries). */
+/** Static per session: packs are bundled at build time (see search-entries),
+ *  so a module-scope memo keeps repeat visits to #/review cheap. */
+let packContextsMemo: Map<string, PackContext> | undefined;
+
 function loadPackContexts(): Map<string, PackContext> {
+  if (packContextsMemo) return packContextsMemo;
   const contexts = new Map<string, PackContext>();
   for (const card of listSubjectCards()) {
     if (!card.installed) continue;
@@ -45,12 +49,18 @@ function loadPackContexts(): Map<string, PackContext> {
       },
     });
   }
+  packContextsMemo = contexts;
   return contexts;
 }
 
 interface QueueEntry extends ReviewQueueItem {
   question: Question;
 }
+
+/** Session-local state key: question ids are only unique inside a pack, and
+ *  the queue interleaves packs — a bare question.id would let two subjects'
+ *  same-id cards (e.g. two scaffolded `q-welcome`s) answer each other. */
+const stateKey = (entry: QueueEntry): string => `${entry.subjectId}:${entry.question.id}`;
 
 export default function ReviewQueue() {
   const subjectsData = useSubjectDataStore((s) => s.subjects);
@@ -94,13 +104,14 @@ export default function ReviewQueue() {
   }
 
   const current = entries[position];
-  const answerFor = (question: Question) => answers[question.id] ?? initialAnswer(question);
-  const answer = answerFor(current.question);
-  const isChecked = !!checked[current.question.id];
+  const currentKey = stateKey(current);
+  const answerFor = (entry: QueueEntry) => answers[stateKey(entry)] ?? initialAnswer(entry.question);
+  const answer = answerFor(current);
+  const isChecked = !!checked[currentKey];
   const correct = isChecked && gradeQuestion(current.question, answer);
   const pack = packs.get(current.subjectId);
 
-  const check = () => setChecked((prev) => ({ ...prev, [current.question.id]: true }));
+  const check = () => setChecked((prev) => ({ ...prev, [currentKey]: true }));
 
   const next = () => {
     if (position + 1 < entries.length) {
@@ -114,7 +125,7 @@ export default function ReviewQueue() {
       const list = resultsBySubject.get(entry.subjectId) ?? [];
       list.push({
         questionId: entry.question.id,
-        correct: gradeQuestion(entry.question, answerFor(entry.question)),
+        correct: gradeQuestion(entry.question, answerFor(entry)),
       });
       resultsBySubject.set(entry.subjectId, list);
     }
@@ -144,10 +155,10 @@ export default function ReviewQueue() {
   if (finished) {
     const total = entries.length;
     const correctCount = entries.filter(
-      (entry) => checked[entry.question.id] && gradeQuestion(entry.question, answerFor(entry.question)),
+      (entry) => checked[stateKey(entry)] && gradeQuestion(entry.question, answerFor(entry)),
     ).length;
     const misses = entries.filter(
-      (entry) => !(checked[entry.question.id] && gradeQuestion(entry.question, answerFor(entry.question))),
+      (entry) => !(checked[stateKey(entry)] && gradeQuestion(entry.question, answerFor(entry))),
     );
     const pct = Math.round((correctCount / total) * 100);
 
@@ -221,7 +232,7 @@ export default function ReviewQueue() {
         {renderQuestion(
           current.question,
           answer,
-          (nextAnswer) => setAnswers((prev) => ({ ...prev, [current.question.id]: nextAnswer })),
+          (nextAnswer) => setAnswers((prev) => ({ ...prev, [currentKey]: nextAnswer })),
           isChecked, // locked = revealed
           isChecked,
         )}
