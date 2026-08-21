@@ -50,12 +50,25 @@ export function Compare({ subjectId, content, id }: CompareProps) {
         {active.description && <p className="lesson-summary">{active.description}</p>}
       </header>
 
+      <ComparisonBody comparison={active} />
+    </article>
+  );
+}
+
+/**
+ * The body of one comparison — aspect table, tabbed code samples, migration
+ * cards. Extracted from the page so other surfaces (the DP-800 sideBySide
+ * block) can embed the same body; `Compare` keeps the page chrome.
+ */
+export function ComparisonBody({ comparison }: { comparison: Comparison }) {
+  return (
+    <>
       <div className="cmp-table-wrap">
         <table className="cmp-table">
           <thead>
             <tr>
               <th scope="col">Aspect</th>
-              {active.columns.map((column) => (
+              {comparison.columns.map((column) => (
                 <th key={column.id} scope="col">
                   {column.label}
                 </th>
@@ -63,10 +76,10 @@ export function Compare({ subjectId, content, id }: CompareProps) {
             </tr>
           </thead>
           <tbody>
-            {active.rows.map((row) => (
+            {comparison.rows.map((row) => (
               <tr key={row.aspect}>
                 <th scope="row">{row.aspect}</th>
-                {active.columns.map((column) => (
+                {comparison.columns.map((column) => (
                   <td key={column.id}>
                     <InlineText text={row.cells[column.id] ?? '—'} />
                   </td>
@@ -77,16 +90,16 @@ export function Compare({ subjectId, content, id }: CompareProps) {
         </table>
       </div>
 
-      {active.samples && active.samples.length > 0 && (
+      {comparison.samples && comparison.samples.length > 0 && (
         <section className="cmp-samples" aria-label="Code samples">
-          {active.samples.map((sample) => (
-            <SampleTabs key={sample.label} sample={sample} columns={active.columns} />
+          {comparison.samples.map((sample) => (
+            <SampleTabs key={sample.label} sample={sample} columns={comparison.columns} />
           ))}
         </section>
       )}
 
-      {active.migration && <MigrationCards migration={active.migration} />}
-    </article>
+      {comparison.migration && <MigrationCards migration={comparison.migration} />}
+    </>
   );
 }
 

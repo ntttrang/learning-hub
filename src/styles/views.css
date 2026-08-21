@@ -423,6 +423,174 @@
   scroll-margin-top: 80px;
 }
 
+/* ---- DP-800 extension blocks (registered in content/dp-800/renderers.tsx) ---- */
+
+/* Learning objectives: target-icon list */
+.blk-objective-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.blk-objective-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--fg);
+}
+.blk-objective-list svg {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Key terminology: sunken definition cards */
+.blk-term-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+.blk-term-card {
+  background: var(--bg-sunken);
+  border-radius: var(--r-md);
+  padding: 12px;
+}
+.blk-term {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--code-inline-fg);
+}
+.blk-term-def {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--fg-2);
+}
+
+/* Sourced prose card: badge + optional heading + markdown body. The source
+ * hue rides the left border and the badge; the card itself stays neutral. */
+.blk-sourced {
+  background: var(--bg-sunken);
+  border-left: 3px solid var(--hub-green);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  padding: 12px 16px;
+}
+.blk-sourced-official { border-left-color: var(--sky-cyan); }
+.blk-sourced-explanation { border-left-color: var(--petal-pink); }
+.blk-sourced-recommendation { border-left-color: var(--hub-green); }
+.blk-sourced-exam-tip { border-left-color: var(--star-yellow); }
+.blk-source-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: var(--r-xs);
+  padding: 2px 8px;
+  margin-bottom: 8px;
+  background: var(--hub-green);
+  color: var(--bg-inverse);
+}
+.blk-sourced-official .blk-source-badge { background: var(--sky-cyan); }
+.blk-sourced-explanation .blk-source-badge { background: var(--petal-pink); }
+.blk-sourced-recommendation .blk-source-badge { background: var(--hub-green); }
+.blk-sourced-exam-tip .blk-source-badge { background: var(--star-yellow); }
+.blk-sourced-heading {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+/* Figure: lazy mermaid diagram + caption */
+.blk-figure-caption {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--fg-3);
+}
+
+/* Common mistakes: danger-tinted cards with a success "Fix:" label */
+.blk-mistake-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.blk-mistake {
+  background: color-mix(in srgb, var(--danger) 8%, var(--bg-elevated));
+  border: var(--bw) solid color-mix(in srgb, var(--danger) 30%, transparent);
+  border-radius: var(--r-md);
+  padding: 12px;
+}
+.blk-mistake-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--danger);
+}
+.blk-mistake-fix {
+  margin: 4px 0 0 40px;
+  font-size: 14px;
+  color: var(--fg-2);
+}
+.blk-fix-label {
+  font-weight: 600;
+  color: var(--success);
+}
+
+/* Exam tips: star-yellow callout list */
+.blk-exam-tip-list {
+  list-style: none;
+  margin: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: color-mix(in srgb, var(--star-yellow) 14%, var(--bg-elevated));
+  border: var(--bw) solid color-mix(in srgb, var(--star-yellow) 40%, transparent);
+  border-radius: var(--r-md);
+}
+.blk-exam-tip-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--fg);
+}
+.blk-exam-tip-list svg {
+  color: var(--star-yellow-deep);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ---- Mermaid figure (src/ui/Mermaid.tsx) ---- */
+.mermaid-figure {
+  margin: 8px 0;
+  overflow-x: auto;
+  text-align: center;
+}
+.mermaid-figure svg {
+  max-width: 100%;
+  height: auto;
+}
+.mermaid-src {
+  margin: 8px 0;
+  padding: 12px;
+  overflow-x: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--fg-2);
+  background: var(--code-inline-bg);
+  border-radius: var(--r-md);
+}
+
 /* ---- Question answering surfaces (registry renderers) ---- */
 .q-opts {
   display: flex;
