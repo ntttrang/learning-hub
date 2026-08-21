@@ -1,0 +1,33 @@
+{
+  "id": "q-l0802-1",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "lessonId": "l0802",
+  "difficulty": "intermediate",
+  "prompt": "Which capabilities can DAB entities be configured with to improve efficiency?",
+  "explanation": "DAB supports caching, pagination, searching, and filtering. Index maintenance is a database concern, not a DAB entity setting.",
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Caching"
+    },
+    {
+      "id": "b",
+      "text": "Pagination"
+    },
+    {
+      "id": "c",
+      "text": "Filtering"
+    },
+    {
+      "id": "d",
+      "text": "Automatic index rebuilds"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

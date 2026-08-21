@@ -1,0 +1,167 @@
+{
+  "id": "l0105",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "order": 5,
+  "slug": "sequences-and-identity",
+  "title": "Sequences and identity",
+  "summary": "Generate surrogate keys with IDENTITY and SEQUENCE, and compare with PostgreSQL, MySQL, and Oracle.",
+  "minutes": 25,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Create and use SEQUENCE objects and IDENTITY columns.",
+        "Choose between IDENTITY and SEQUENCE.",
+        "Map identity generation across the four engines."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Surrogate keys need a generator. SQL Server offers column-bound IDENTITY and standalone SEQUENCE objects."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "IDENTITY",
+          "definition": "A table-column property that auto-increments on insert."
+        },
+        {
+          "term": "SEQUENCE",
+          "definition": "A schema-level object that generates numbers independent of any table."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "`CREATE SEQUENCE dbo.OrderSeq AS BIGINT START WITH 1 INCREMENT BY 1;` then `NEXT VALUE FOR dbo.OrderSeq`. Use SEQUENCE when multiple tables share a number space or you need the value before insert. Use IDENTITY for simple per-table auto-increment."
+    },
+    {
+      "kind": "sideBySide",
+      "comparison": {
+        "id": "cmp-identity",
+        "title": "Identity and sequence generation",
+        "description": "Every engine auto-generates keys but the syntax and defaults differ.",
+        "columns": [
+          {
+            "id": "sqlserver",
+            "label": "Microsoft SQL"
+          },
+          {
+            "id": "postgresql",
+            "label": "PostgreSQL"
+          },
+          {
+            "id": "mysql",
+            "label": "MySQL"
+          },
+          {
+            "id": "oracle",
+            "label": "Oracle Database"
+          }
+        ],
+        "rows": [
+          {
+            "aspect": "Auto-increment column",
+            "cells": {
+              "sqlserver": "IDENTITY(1,1)",
+              "postgresql": "GENERATED ... AS IDENTITY / serial",
+              "mysql": "AUTO_INCREMENT",
+              "oracle": "GENERATED ... AS IDENTITY"
+            }
+          },
+          {
+            "aspect": "Standalone sequence",
+            "cells": {
+              "sqlserver": "CREATE SEQUENCE",
+              "postgresql": "CREATE SEQUENCE",
+              "mysql": "Not supported (8.0)",
+              "oracle": "CREATE SEQUENCE"
+            }
+          },
+          {
+            "aspect": "Get next value",
+            "cells": {
+              "sqlserver": "NEXT VALUE FOR seq",
+              "postgresql": "nextval('seq')",
+              "mysql": "n/a",
+              "oracle": "seq.NEXTVAL"
+            }
+          }
+        ],
+        "migration": {
+          "equivalent": "IDENTITY-style auto-increment exists everywhere.",
+          "different": "MySQL has no standalone SEQUENCE object; PostgreSQL/Oracle/SQL Server do.",
+          "directMigration": "Mostly yes for auto-increment; sequence-based designs need rework on MySQL.",
+          "syntaxChanges": "Replace NEXT VALUE FOR with nextval()/NEXTVAL; replace IDENTITY with AUTO_INCREMENT or GENERATED AS IDENTITY.",
+          "limitations": "MySQL emulates sequences via AUTO_INCREMENT or a helper table.",
+          "whenToUse": "Use SEQUENCE for cross-table keys or pre-fetching IDs; IDENTITY for simple cases."
+        }
+      }
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "SCOPE_IDENTITY() returns the last identity in the current scope — safer than @@IDENTITY which crosses triggers."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "SEQUENCE decouples number generation from tables; IDENTITY binds it to a column. Know the equivalents per engine."
+    }
+  ],
+  "questionIds": [
+    "q-l0105-1",
+    "q-l0105-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Sequence numbers",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sequence-numbers/sequence-numbers",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "PostgreSQL documentation",
+      "url": "https://www.postgresql.org/docs/current/",
+      "publisher": "PostgreSQL",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "MySQL reference manual",
+      "url": "https://dev.mysql.com/doc/refman/9.0/en/",
+      "publisher": "MySQL",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Oracle Database SQL Language Reference",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/",
+      "publisher": "Oracle",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

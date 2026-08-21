@@ -1,0 +1,96 @@
+{
+  "id": "l1003",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "order": 3,
+  "slug": "hybrid-search-and-rrf",
+  "title": "Hybrid search and reciprocal rank fusion",
+  "summary": "Combine keyword and vector results and merge rankings with RRF for the best of both.",
+  "minutes": 30,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Implement hybrid search (full-text + vector).",
+        "Merge rankings with reciprocal rank fusion (RRF).",
+        "Choose full-text vs vector vs hybrid."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Neither keyword nor vector search alone is best; hybrid + RRF fuses their strengths."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Hybrid search",
+          "definition": "Combining keyword (full-text) and semantic (vector) retrieval."
+        },
+        {
+          "term": "Reciprocal rank fusion (RRF)",
+          "definition": "A method that merges multiple ranked lists using 1/(k + rank)."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Run **full-text** and **vector** searches, then fuse with **RRF**: each document's score is the sum over lists of `1/(k + rank)`. RRF needs no score calibration between systems, making it robust. Choose full-text for exact terms, vector for meaning, and **hybrid** when you need both."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Averaging raw scores from different systems.",
+          "fix": "Scores aren't comparable; use rank-based RRF instead."
+        }
+      ]
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "RRF fuses ranked lists without needing comparable scores.",
+        "Hybrid = full-text + vector combined."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Fuse full-text and vector results with RRF (1/(k+rank)) to get precise and semantic matches together."
+    }
+  ],
+  "questionIds": [
+    "q-l1003-1",
+    "q-l1003-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Hybrid search",
+      "url": "https://learn.microsoft.com/en-us/sql/sql-server/ai/vectors",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

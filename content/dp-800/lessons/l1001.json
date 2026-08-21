@@ -1,0 +1,87 @@
+{
+  "id": "l1001",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "order": 1,
+  "slug": "full-text-search",
+  "title": "Full-text search",
+  "summary": "Implement keyword search with full-text indexes, CONTAINS, and FREETEXT.",
+  "minutes": 25,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Create a full-text catalog and index.",
+        "Query with CONTAINS and FREETEXT.",
+        "Know when keyword search beats vector search."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Full-text search handles exact keywords, phrases, and linguistic variants — complementary to semantic vector search."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Full-text index",
+          "definition": "An index enabling linguistic keyword search over text columns."
+        },
+        {
+          "term": "CONTAINS",
+          "definition": "Predicate for precise full-text searches (phrases, proximity, inflectional forms)."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Create a **full-text catalog** and **full-text index** on text columns, then query with **`CONTAINS`** (precise: phrases, proximity, inflectional) or **`FREETEXT`** (meaning of words). Full-text excels at exact terms/keywords where vector search may miss precise matches."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "CONTAINS = precise/phrase/proximity; FREETEXT = looser meaning.",
+        "Combine full-text (keywords) with vector (semantics) in hybrid search."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Use full-text indexes with CONTAINS/FREETEXT for keyword precision; it pairs with vector search in hybrid retrieval."
+    }
+  ],
+  "questionIds": [
+    "q-l1001-1",
+    "q-l1001-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Full-text search",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-search",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "q-l0203-1",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "lessonId": "l0203",
+  "difficulty": "intermediate",
+  "prompt": "A DML trigger inserts into an audit table but only records one row even when 10 rows are updated. What is the likely cause?",
+  "explanation": "Triggers fire once per statement; you must process all rows via the inserted/deleted pseudo-tables set-based, not assume a single row.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "The trigger uses row-by-row logic instead of the inserted/deleted tables"
+    },
+    {
+      "id": "b",
+      "text": "Triggers can only see one row ever"
+    },
+    {
+      "id": "c",
+      "text": "The audit table lacks an index"
+    },
+    {
+      "id": "d",
+      "text": "AFTER triggers don't fire on UPDATE"
+    }
+  ],
+  "correct": "a"
+}

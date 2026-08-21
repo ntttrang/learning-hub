@@ -1,0 +1,34 @@
+{
+  "id": "q-lab02-3",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "lessonId": "l0202",
+  "difficulty": "advanced",
+  "prompt": "You have inline TVF `dbo.GetCrewVoyages(@CrewId)`. The roster report must list **every crew member**, including those with zero voyages (VoyageId NULL). A second report must list **only crews that have at least one voyage**.\n\nWhich operators implement those two reports?",
+  "explanation": "`APPLY` is how you invoke a TVF per outer row. `OUTER APPLY` is the LEFT JOIN analog (keep empty TVF results). `CROSS APPLY` is the INNER JOIN analog (drop empties). You cannot `INNER JOIN dbo.GetCrewVoyages(c.CrewId)` with a correlated parameter the way APPLY does. CROSS JOIN is a cartesian product, not a per-row invoke.",
+  "tags": [
+    "lab-coding",
+    "lab-02"
+  ],
+  "kind": "codeReading",
+  "code": "-- Report A: keep crews with no voyages\nSELECT c.Handle, o.VoyageId\nFROM dbo.Crew AS c\n??? dbo.GetCrewVoyages(c.CrewId) AS o;\n\n-- Report B: drop crews with no voyages\nSELECT c.Handle, o.VoyageId\nFROM dbo.Crew AS c\n??? dbo.GetCrewVoyages(c.CrewId) AS o;",
+  "options": [
+    {
+      "id": "a",
+      "text": "Report A: `OUTER APPLY`. Report B: `CROSS APPLY`"
+    },
+    {
+      "id": "b",
+      "text": "Report A: `CROSS JOIN`. Report B: `INNER JOIN` on CrewId (JOIN cannot bind a TVF parameter)"
+    },
+    {
+      "id": "c",
+      "text": "Report A: `CROSS APPLY`. Report B: `OUTER APPLY`"
+    },
+    {
+      "id": "d",
+      "text": "Both reports: `UNION ALL` the TVF to Crew"
+    }
+  ],
+  "correct": "a"
+}

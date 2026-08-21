@@ -1,0 +1,29 @@
+{
+  "id": "q-l0103-2",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0103",
+  "difficulty": "intermediate",
+  "prompt": "You must filter thousands of rows by a JSON attribute quickly on SQL Server. What is the recommended approach?",
+  "explanation": "SQL Server can't index inside a JSON blob directly; promote the hot path to a computed column and index that. GIN is PostgreSQL's approach.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Create a GIN index on the JSON column"
+    },
+    {
+      "id": "b",
+      "text": "Promote the path to a computed column and index it"
+    },
+    {
+      "id": "c",
+      "text": "Add a full-text index on the JSON"
+    },
+    {
+      "id": "d",
+      "text": "Nothing; JSON paths are auto-indexed"
+    }
+  ],
+  "correct": "b"
+}

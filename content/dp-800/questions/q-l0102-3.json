@@ -1,0 +1,29 @@
+{
+  "id": "q-l0102-3",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0102",
+  "difficulty": "intermediate",
+  "prompt": "You need to model and query many-to-many relationships (who follows whom). Which combination fits best?",
+  "explanation": "Graph NODE/EDGE tables queried with MATCH are designed for relationship/network traversal.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "External tables + OPENROWSET"
+    },
+    {
+      "id": "b",
+      "text": "NODE and EDGE tables + MATCH"
+    },
+    {
+      "id": "c",
+      "text": "Temporal tables + FOR SYSTEM_TIME"
+    },
+    {
+      "id": "d",
+      "text": "Ledger tables + verification"
+    }
+  ],
+  "correct": "b"
+}

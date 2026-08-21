@@ -1,0 +1,29 @@
+{
+  "id": "q-l0402-1",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "lessonId": "l0402",
+  "difficulty": "intermediate",
+  "prompt": "What is the purpose of a GitHub Copilot instruction file?",
+  "explanation": "Instruction files (e.g., .github/copilot-instructions.md) encode durable conventions/guardrails so you don't repeat them each prompt.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "To store database passwords"
+    },
+    {
+      "id": "b",
+      "text": "To give Copilot persistent project context and conventions"
+    },
+    {
+      "id": "c",
+      "text": "To compile T-SQL"
+    },
+    {
+      "id": "d",
+      "text": "To replace source control"
+    }
+  ],
+  "correct": "b"
+}

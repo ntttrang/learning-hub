@@ -1,0 +1,29 @@
+{
+  "id": "q-l1101-1",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "lessonId": "l1101",
+  "difficulty": "advanced",
+  "prompt": "Which stored procedure calls an external model REST endpoint from T-SQL?",
+  "explanation": "sp_invoke_external_rest_endpoint calls external REST APIs (including models) from T-SQL with a JSON payload.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "sp_invoke_external_rest_endpoint"
+    },
+    {
+      "id": "b",
+      "text": "sp_executesql"
+    },
+    {
+      "id": "c",
+      "text": "xp_cmdshell"
+    },
+    {
+      "id": "d",
+      "text": "sp_send_dbmail"
+    }
+  ],
+  "correct": "a"
+}

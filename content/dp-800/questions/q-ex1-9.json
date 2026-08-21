@@ -1,0 +1,29 @@
+{
+  "id": "q-ex1-9",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0501",
+  "difficulty": "advanced",
+  "prompt": "Regulators require that cloud operators and DBAs cannot view SSNs even in memory during query processing, yet equality lookups must still work. Which technology set fits?",
+  "explanation": "Always Encrypted keeps keys client-side (operators can't see plaintext); secure enclaves enable server-side operations like equality/range on encrypted data.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "TDE only"
+    },
+    {
+      "id": "b",
+      "text": "Always Encrypted with secure enclaves"
+    },
+    {
+      "id": "c",
+      "text": "Dynamic Data Masking"
+    },
+    {
+      "id": "d",
+      "text": "Row-Level Security"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,103 @@
+{
+  "id": "l0505",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "order": 5,
+  "slug": "auditing-and-secure-endpoints",
+  "title": "Auditing and securing model, GraphQL, REST, and MCP endpoints",
+  "summary": "Turn on auditing and lock down the endpoints that expose your data and AI models.",
+  "minutes": 30,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Configure SQL Server/Azure SQL auditing.",
+        "Secure model endpoints with Managed Identity.",
+        "Secure GraphQL, REST, and MCP endpoints."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "As data is exposed via APIs and AI models, DP-800 expects you to audit access and secure every endpoint."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "SQL Audit",
+          "definition": "Tracks server- and database-level events to a log target."
+        },
+        {
+          "term": "Endpoint hardening",
+          "definition": "Authentication, authorization, and network controls on data/AI endpoints."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Create a **SQL Audit** (server/database) writing to a secure target and audit sensitive actions. **Secure model endpoints** with **Managed Identity** (no keys). For **GraphQL/REST/MCP** endpoints (e.g., Data API builder), require authentication, apply authorization per entity/role, and restrict network exposure."
+    },
+    {
+      "kind": "heading",
+      "text": "Performance & security considerations",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "body": "Prefer Managed Identity over API keys for model endpoints; scope endpoint permissions per role; log tool/endpoint calls for the AI attack surface."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Managed Identity is the recommended way to secure model endpoints.",
+        "DAB endpoints support per-entity role-based authorization."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Audit sensitive access and harden model/GraphQL/REST/MCP endpoints with Managed Identity, per-role authorization, and network limits."
+    }
+  ],
+  "questionIds": [
+    "q-l0505-1",
+    "q-l0505-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "SQL Server Audit",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Data API builder security",
+      "url": "https://learn.microsoft.com/en-us/azure/data-api-builder/authentication",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

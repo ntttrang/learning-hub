@@ -1,0 +1,34 @@
+{
+  "id": "q-lab03-4",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0303",
+  "difficulty": "advanced",
+  "prompt": "A price-update payload is a JSON array. The following batch returns `key`, `value`, and `type` columns instead of `ProductId` / `NewPrice` rows, and the subsequent UPDATE affects zero rows.\n\nWhat is wrong?",
+  "explanation": "OPENJSON without WITH is the generic key/value/type projector (array indexes in `key`). The WITH clause supplies typed columns and `$.path` mapping — the exam skill. FOR JSON goes the other direction (relational → JSON).",
+  "tags": [
+    "lab-coding",
+    "lab-03"
+  ],
+  "kind": "codeReading",
+  "code": "DECLARE @Updates nvarchar(max) =\n  N'[{\"ProductId\":10,\"NewPrice\":49.00},{\"ProductId\":11,\"NewPrice\":18.50}]';\n\nSELECT * FROM OPENJSON(@Updates);\n-- expected columns: ProductId INT, NewPrice DECIMAL(10,2)",
+  "options": [
+    {
+      "id": "a",
+      "text": "Default OPENJSON (no WITH) shreds to key/value/type; add `WITH (ProductId INT '$.ProductId', NewPrice DECIMAL(10,2) '$.NewPrice')`"
+    },
+    {
+      "id": "b",
+      "text": "OPENJSON cannot shred arrays; you must use FOR JSON PATH in reverse"
+    },
+    {
+      "id": "c",
+      "text": "You must CAST @Updates to XML first"
+    },
+    {
+      "id": "d",
+      "text": "JSON arrays require `JSON_OBJECT` instead of OPENJSON"
+    }
+  ],
+  "correct": "a"
+}

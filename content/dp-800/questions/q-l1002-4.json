@@ -1,0 +1,29 @@
+{
+  "id": "q-l1002-4",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1002",
+  "difficulty": "advanced",
+  "prompt": "Which is the usual default metric for text embeddings?",
+  "explanation": "Cosine distance is the common default for text embeddings.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "cosine"
+    },
+    {
+      "id": "b",
+      "text": "hamming"
+    },
+    {
+      "id": "c",
+      "text": "jaccard"
+    },
+    {
+      "id": "d",
+      "text": "levenshtein"
+    }
+  ],
+  "correct": "a"
+}

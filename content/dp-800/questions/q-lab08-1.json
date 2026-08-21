@@ -1,0 +1,34 @@
+{
+  "id": "q-lab08-1",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "lessonId": "l0801",
+  "difficulty": "advanced",
+  "prompt": "You have an empty Data API builder config. You must expose `dbo.Gear` as a REST/GraphQL entity. Anonymous clients may **read** only — no create/update/delete. The connection string must not be committed.\n\nWhich CLI sequence matches that design?",
+  "explanation": "`dab init` writes dab-config.json; `dab add` registers an entity; permissions are role:action (`anonymous:read` is read-only). `@env('…')` keeps secrets out of git. `anonymous:*` would be more privilege, not less.",
+  "tags": [
+    "lab-coding",
+    "lab-08"
+  ],
+  "kind": "codeReading",
+  "code": "dab init --database-type mssql --connection-string \"@env('DATABASE_CONNECTION_STRING')\"\ndab add Gear --source dbo.Gear --permissions \"anonymous:read\"\ndab start",
+  "options": [
+    {
+      "id": "a",
+      "text": "`init` creates the config with `@env` for the secret; `add` registers the entity and permission; `start` hosts it"
+    },
+    {
+      "id": "b",
+      "text": "`dab add` creates the config file; `init` is only for PostgreSQL"
+    },
+    {
+      "id": "c",
+      "text": "`anonymous:read` also grants write; use `anonymous:*` for read-only"
+    },
+    {
+      "id": "d",
+      "text": "You must hard-code the sa password in dab-config.json or DAB will not start"
+    }
+  ],
+  "correct": "a"
+}

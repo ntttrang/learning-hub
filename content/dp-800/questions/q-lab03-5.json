@@ -1,0 +1,36 @@
+{
+  "id": "q-lab03-5",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0304",
+  "difficulty": "advanced",
+  "prompt": "SKU values in `dbo.Gear.Sku` must look like `HO-` plus 4 digits (e.g. `HO-1042`). Merchandising also wants near-duplicate names flagged when `EDIT_DISTANCE(Name, @Typed)` is at most 2.\n\nWhich **two** predicates belong in T-SQL 2025? Each correct answer presents part of the solution.",
+  "explanation": "DP-800 advanced T-SQL includes `REGEXP_LIKE` / `REGEXP_REPLACE` and fuzzy helpers (`EDIT_DISTANCE`, `JARO_WINKLER_DISTANCE`). The LIKE pattern in C is reversed and does not anchor `HO-`. Full-text inflection is linguistic stemming, not Levenshtein distance.",
+  "tags": [
+    "lab-coding",
+    "lab-03"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "`REGEXP_LIKE(Sku, '^HO-[0-9]{4}$')`"
+    },
+    {
+      "id": "b",
+      "text": "`EDIT_DISTANCE(Name, @Typed) <= 2`"
+    },
+    {
+      "id": "c",
+      "text": "`Sku LIKE '[0-9][0-9][0-9][0-9]-HO'` (same pattern as the regex)"
+    },
+    {
+      "id": "d",
+      "text": "`CONTAINS(Name, 'FORMSOF(INFLECTIONAL, @Typed)')` for edit distance 2"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

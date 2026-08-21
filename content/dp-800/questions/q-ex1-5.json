@@ -1,0 +1,29 @@
+{
+  "id": "q-ex1-5",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "lessonId": "l0701",
+  "difficulty": "intermediate",
+  "prompt": "Your team wants declarative, source-controlled schema deployments that make a target match a model. Which approach fits?",
+  "explanation": "SQL Database Projects are declarative: build a dacpac and deploy by comparing the model to the target.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Hand-written ordered migration scripts"
+    },
+    {
+      "id": "b",
+      "text": "SQL Database Project building a dacpac, deployed by diffing the target"
+    },
+    {
+      "id": "c",
+      "text": "Restoring a .bak nightly"
+    },
+    {
+      "id": "d",
+      "text": "BULK INSERT of schema"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "q-lab04-4",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "lessonId": "l0401",
+  "difficulty": "challenge",
+  "prompt": "Copilot emitted the following query for a 'gear sold after 2026-01-01' report. It returns the right rows in a tiny database. You must fix it before it ships.\n\nWhich change is required by the instruction file and by production hygiene?",
+  "explanation": "The AI-tools lab's whole point is reviewing Copilot output: SELECT * and comma joins are the instruction-file violations. NOLOCK trades correctness for fewer locks. Concatenating chat text into dynamic SQL is injection. JOIN does not replace a date predicate.",
+  "tags": [
+    "lab-coding",
+    "lab-04"
+  ],
+  "kind": "codeReading",
+  "code": "SELECT *\nFROM dbo.Voyage v, dbo.VoyageLine l, dbo.Gear g\nWHERE v.VoyageId = l.VoyageId\n  AND l.GearId = g.GearId\n  AND v.VoyageDate > '2026-01-01';",
+  "options": [
+    {
+      "id": "a",
+      "text": "Replace `SELECT *` with the columns the report needs and rewrite comma joins as ANSI `INNER JOIN … ON`"
+    },
+    {
+      "id": "b",
+      "text": "Add `WITH (NOLOCK)` on every table so Copilot queries never block"
+    },
+    {
+      "id": "c",
+      "text": "Wrap the batch in `sp_executesql` with concatenated `@Name` from the chat"
+    },
+    {
+      "id": "d",
+      "text": "Drop the WHERE clause; JOIN already implies the date filter"
+    }
+  ],
+  "correct": "a"
+}

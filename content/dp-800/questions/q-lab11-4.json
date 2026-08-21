@@ -1,0 +1,33 @@
+{
+  "id": "q-lab11-4",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "lessonId": "l1101",
+  "difficulty": "challenge",
+  "prompt": "You wrap retrieve → JSON augment → REST generate in `dbo.usp_GearRag`. Apps EXEC it with a question. Why is a procedure the right boundary, and what must still be true of retrieve?",
+  "explanation": "Lab/exam pattern: a callable RAG API in the database. VECTOR is selectable from any module. Ad-hoc batches *can* call the REST proc — you still want the template and permissions in one place. RLS should remain on; do not 'fix' RAG by reading other tenants.",
+  "tags": [
+    "lab-coding",
+    "lab-11"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "One GRANT EXECUTE surface, a stable prompt template, and retrieve that still obeys RLS/permissions of the caller (or an explicit, audited EXECUTE AS)"
+    },
+    {
+      "id": "b",
+      "text": "Procedures are the only objects that can SELECT VECTOR columns"
+    },
+    {
+      "id": "c",
+      "text": "REST calls from ad-hoc batches are impossible, so a proc is required by the engine"
+    },
+    {
+      "id": "d",
+      "text": "Stored procedures disable RLS, which RAG needs in order to see all tenants"
+    }
+  ],
+  "correct": "a"
+}

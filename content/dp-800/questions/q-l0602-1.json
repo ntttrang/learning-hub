@@ -1,0 +1,29 @@
+{
+  "id": "q-l0602-1",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0602",
+  "difficulty": "advanced",
+  "prompt": "Which isolation level prevents phantom reads?",
+  "explanation": "SERIALIZABLE prevents phantoms; REPEATABLE READ prevents non-repeatable reads but not phantoms.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "READ UNCOMMITTED"
+    },
+    {
+      "id": "b",
+      "text": "READ COMMITTED"
+    },
+    {
+      "id": "c",
+      "text": "REPEATABLE READ"
+    },
+    {
+      "id": "d",
+      "text": "SERIALIZABLE"
+    }
+  ],
+  "correct": "d"
+}

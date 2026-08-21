@@ -1,0 +1,29 @@
+{
+  "id": "q-l0102-2",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0102",
+  "difficulty": "intermediate",
+  "prompt": "Which clause enables automatic full history tracking for point-in-time queries?",
+  "explanation": "System-versioned temporal tables use WITH (SYSTEM_VERSIONING = ON) and support FOR SYSTEM_TIME queries.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "WITH (MEMORY_OPTIMIZED = ON)"
+    },
+    {
+      "id": "b",
+      "text": "WITH (SYSTEM_VERSIONING = ON)"
+    },
+    {
+      "id": "c",
+      "text": "WITH (LEDGER = ON)"
+    },
+    {
+      "id": "d",
+      "text": "AS NODE"
+    }
+  ],
+  "correct": "b"
+}

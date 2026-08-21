@@ -1,0 +1,34 @@
+{
+  "id": "q-lab09-1",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "lessonId": "l0901",
+  "difficulty": "advanced",
+  "prompt": "Harbor Outfitters will generate embeddings **inside SQL Server** from Azure OpenAI `text-embedding-3-small`. You must register the deployment once and authenticate without a key in T-SQL.\n\nWhich object do you create, and what must accompany it?",
+  "explanation": "`CREATE EXTERNAL MODEL` is the DP-800 registration skill. Pair it with a scoped credential (Managed Identity) so `AI_GENERATE_EMBEDDINGS` can call the endpoint. External tables/file formats are PolyBase/export, not the chat/embedding model object.",
+  "tags": [
+    "lab-coding",
+    "lab-09"
+  ],
+  "kind": "codeReading",
+  "code": "CREATE EXTERNAL MODEL HarborEmbed\nWITH (\n  LOCATION = 'https://<endpoint>/',\n  API_FORMAT = 'OpenAI',\n  MODEL = 'text-embedding-3-small'\n);",
+  "options": [
+    {
+      "id": "a",
+      "text": "`CREATE EXTERNAL MODEL` plus a DATABASE SCOPED CREDENTIAL (Managed Identity preferred)"
+    },
+    {
+      "id": "b",
+      "text": "`CREATE EXTERNAL TABLE` pointing at a CSV of vectors in Blob Storage"
+    },
+    {
+      "id": "c",
+      "text": "`CREATE EXTERNAL DATA SOURCE` only — models are inferred from the database name"
+    },
+    {
+      "id": "d",
+      "text": "`CREATE EXTERNAL FILE FORMAT` — embeddings must be Parquet"
+    }
+  ],
+  "correct": "a"
+}

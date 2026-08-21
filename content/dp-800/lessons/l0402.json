@@ -1,0 +1,92 @@
+{
+  "id": "l0402",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "order": 2,
+  "slug": "copilot-models-and-instructions",
+  "title": "Configuring models, MCP tools, and instruction files",
+  "summary": "Choose models, configure MCP tool options in chat, and author Copilot instruction files.",
+  "minutes": 25,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Configure model and MCP tool options in a Copilot chat session.",
+        "Create and configure GitHub Copilot instruction files."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Beyond turning Copilot on, DP-800 expects you to steer it: pick models, wire up MCP tools, and give it durable instructions."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Instruction file",
+          "definition": "A repo file (e.g., .github/copilot-instructions.md) that gives Copilot persistent project context."
+        },
+        {
+          "term": "MCP tool",
+          "definition": "A tool exposed to the model via the Model Context Protocol."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "In a Copilot chat session you can select the **model** and enable **MCP tool** options so the assistant can call external tools. **Instruction files** (like `.github/copilot-instructions.md`) encode conventions, schemas, and guardrails Copilot should always follow."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Instruction files persist context so you don't repeat it every prompt.",
+        "Model choice affects capability and cost."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Configure the model and MCP tools per session, and commit instruction files so Copilot respects project conventions."
+    }
+  ],
+  "questionIds": [
+    "q-l0402-1",
+    "q-l0402-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Model Context Protocol",
+      "url": "https://modelcontextprotocol.io/",
+      "publisher": "Anthropic/MCP",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Copilot instruction files",
+      "url": "https://docs.github.com/en/copilot/customizing-copilot",
+      "publisher": "GitHub",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

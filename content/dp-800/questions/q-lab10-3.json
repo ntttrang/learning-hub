@@ -1,0 +1,34 @@
+{
+  "id": "q-lab10-3",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1004",
+  "difficulty": "challenge",
+  "prompt": "A teammate calls this “hybrid search”. It compiles. Product says recall is worse than vector-only **or** FT-only on some queries.\n\nWhy is this not hybrid ranking?",
+  "explanation": "The exam trap: AND of a keyword filter and a hard distance cutoff **drops** documents that fail either predicate, and `ORDER BY ReviewId` is not relevance. RRF fuses independent ranked lists without calibrating raw scores. CONTAINS + VECTOR_DISTANCE can coexist; that is not the bug.",
+  "tags": [
+    "lab-coding",
+    "lab-10"
+  ],
+  "kind": "codeReading",
+  "code": "SELECT ReviewId, ReviewText\nFROM dbo.GearReview\nWHERE CONTAINS(ReviewText, 'canvas')\n  AND VECTOR_DISTANCE(Embedding, @Q, 'cosine') < 0.2\nORDER BY ReviewId;",
+  "options": [
+    {
+      "id": "a",
+      "text": "It is a Boolean **intersection** plus an arbitrary ORDER BY, not rank fusion. Hybrid search keeps both ranked lists and combines ranks (RRF / weighted fusion)"
+    },
+    {
+      "id": "b",
+      "text": "CONTAINS cannot appear in the same statement as VECTOR_DISTANCE (parser error — but it compiled, so this cannot be)"
+    },
+    {
+      "id": "c",
+      "text": "`cosine` is not a legal VECTOR_DISTANCE metric"
+    },
+    {
+      "id": "d",
+      "text": "You must `SELECT … FOR JSON` or hybrid search is undefined"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "q-cs1-1",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1002",
+  "difficulty": "advanced",
+  "prompt": "Contoso Support wants semantic search over 2 million KB articles already in Azure SQL. Which column type stores the embeddings?",
+  "explanation": "Embeddings are stored in the VECTOR type with the model's dimensionality (e.g., 1536).",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "VECTOR(1536)"
+    },
+    {
+      "id": "b",
+      "text": "nvarchar(max)"
+    },
+    {
+      "id": "c",
+      "text": "varbinary(max)"
+    },
+    {
+      "id": "d",
+      "text": "float"
+    }
+  ],
+  "correct": "a"
+}

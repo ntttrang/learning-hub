@@ -1,0 +1,29 @@
+{
+  "id": "q-l0203-2",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "lessonId": "l0203",
+  "difficulty": "intermediate",
+  "prompt": "Which trigger type makes an otherwise non-updatable view updatable?",
+  "explanation": "INSTEAD OF triggers replace the DML operation and are commonly used to make complex views updatable.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "AFTER INSERT"
+    },
+    {
+      "id": "b",
+      "text": "INSTEAD OF"
+    },
+    {
+      "id": "c",
+      "text": "DDL trigger"
+    },
+    {
+      "id": "d",
+      "text": "Logon trigger"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "q-l0501-1",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0501",
+  "difficulty": "advanced",
+  "prompt": "A requirement states that even DBAs must never see credit-card numbers in plaintext. Which feature meets this?",
+  "explanation": "Always Encrypted encrypts on the client; keys never reach the server, so DBAs cannot see plaintext. TDE only protects data at rest and is transparent to admins.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Transparent Data Encryption"
+    },
+    {
+      "id": "b",
+      "text": "Always Encrypted"
+    },
+    {
+      "id": "c",
+      "text": "Dynamic Data Masking"
+    },
+    {
+      "id": "d",
+      "text": "Row-Level Security"
+    }
+  ],
+  "correct": "b"
+}

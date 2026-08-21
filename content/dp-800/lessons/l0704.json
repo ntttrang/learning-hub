@@ -1,0 +1,86 @@
+{
+  "id": "l0704",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "order": 4,
+  "slug": "schema-drift-and-pipelines",
+  "title": "Schema drift detection and deployment pipelines",
+  "summary": "Detect drift between model and target, and control deployments with branch policies and approvals.",
+  "minutes": 25,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Detect schema drift with SQL Database Projects.",
+        "Implement pipeline controls: branch policies, triggers, approvals, code owners."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Production databases drift; DP-800 expects you to detect drift and gate deployments."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Schema drift",
+          "definition": "When a deployed database diverges from the source-controlled model."
+        },
+        {
+          "term": "Branch policy",
+          "definition": "Rules (reviews, checks) that gate merges to protected branches."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Compare the target to the project to **detect schema drift**, then reconcile. Control deployment pipelines with **branch policies**, **triggers**, **approvals**, authentication, and **code owners** so only reviewed, authorized changes reach production."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Schema drift = target no longer matches the model.",
+        "Approvals + branch policies + code owners gate production deploys."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Detect drift by comparing target vs model, and enforce approvals, branch policies, and code owners on the pipeline."
+    }
+  ],
+  "questionIds": [
+    "q-l0704-1",
+    "q-l0704-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Detect schema drift",
+      "url": "https://learn.microsoft.com/en-us/sql/tools/sql-database-projects/sql-database-projects",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "q-l0201-2",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "lessonId": "l0201",
+  "difficulty": "intermediate",
+  "prompt": "Which is a valid reason to use a view?",
+  "explanation": "Views can act as a security/abstraction layer by exposing only certain columns/rows. A standard view stores no data.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "To store data physically by default"
+    },
+    {
+      "id": "b",
+      "text": "To restrict which columns/rows users can access"
+    },
+    {
+      "id": "c",
+      "text": "To replace the need for indexes"
+    },
+    {
+      "id": "d",
+      "text": "To bypass permissions"
+    }
+  ],
+  "correct": "b"
+}

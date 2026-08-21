@@ -1,0 +1,29 @@
+{
+  "id": "q-l0604-2",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0604",
+  "difficulty": "advanced",
+  "prompt": "How do you capture deadlock details for analysis?",
+  "explanation": "Extended Events capture the deadlock graph, showing the processes, resources, and victim.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Extended Events deadlock graph"
+    },
+    {
+      "id": "b",
+      "text": "sp_help"
+    },
+    {
+      "id": "c",
+      "text": "SELECT @@VERSION"
+    },
+    {
+      "id": "d",
+      "text": "DBCC SHRINKDATABASE"
+    }
+  ],
+  "correct": "a"
+}

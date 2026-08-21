@@ -1,0 +1,29 @@
+{
+  "id": "q-l1003-1",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1003",
+  "difficulty": "advanced",
+  "prompt": "Reciprocal rank fusion combines results by:",
+  "explanation": "RRF sums 1/(k + rank) per document across lists, so it needs no score calibration between systems.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Averaging raw scores from each system"
+    },
+    {
+      "id": "b",
+      "text": "Summing 1/(k + rank) across ranked lists"
+    },
+    {
+      "id": "c",
+      "text": "Taking only the vector results"
+    },
+    {
+      "id": "d",
+      "text": "Random selection"
+    }
+  ],
+  "correct": "b"
+}

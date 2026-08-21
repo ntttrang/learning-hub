@@ -1,0 +1,29 @@
+{
+  "id": "q-l0305-2",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0305",
+  "difficulty": "advanced",
+  "prompt": "Which operator performs graph pattern matching over NODE and EDGE tables?",
+  "explanation": "MATCH expresses graph patterns like p-(likes)->p2 over NODE/EDGE tables.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "JOIN"
+    },
+    {
+      "id": "b",
+      "text": "MATCH"
+    },
+    {
+      "id": "c",
+      "text": "APPLY"
+    },
+    {
+      "id": "d",
+      "text": "MERGE"
+    }
+  ],
+  "correct": "b"
+}

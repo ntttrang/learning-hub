@@ -1,0 +1,26 @@
+[
+  {
+    "id": "d1",
+    "order": 1,
+    "code": "D1",
+    "title": "Design and develop database solutions",
+    "weight": "35-40%",
+    "summary": "Design database objects, build programmability objects, write advanced T-SQL, and use AI-assisted developer tools."
+  },
+  {
+    "id": "d2",
+    "order": 2,
+    "code": "D2",
+    "title": "Secure, optimize, and deploy database solutions",
+    "weight": "35-40%",
+    "summary": "Secure data, tune performance, ship changes with SQL Database Projects, and integrate with Azure services."
+  },
+  {
+    "id": "d3",
+    "order": 3,
+    "code": "D3",
+    "title": "Implement AI capabilities in database solutions",
+    "weight": "25-30%",
+    "summary": "Work with external models and embeddings, build intelligent search, and implement retrieval-augmented generation."
+  }
+]

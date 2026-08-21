@@ -1,0 +1,34 @@
+{
+  "id": "q-lab11-2",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "lessonId": "l1101",
+  "difficulty": "advanced",
+  "prompt": "The generate step must call Azure OpenAI **from T-SQL** using a scoped credential (no `xp_cmdshell`, no CLR). The prompt JSON is already in `@PromptJson`.\n\nWhich procedure should you call?",
+  "explanation": "`sp_invoke_external_rest_endpoint` is the DP-800 RAG skill for sending a prompt and receiving JSON. External script / xp_cmdshell / OPENROWSET are the wrong surfaces (and xp_cmdshell is a security non-starter).",
+  "tags": [
+    "lab-coding",
+    "lab-11"
+  ],
+  "kind": "codeReading",
+  "code": "EXEC ???\n  @url = N'https://<endpoint>/openai/deployments/chat/chat/completions?api-version=2024-10-21',\n  @method = 'POST',\n  @credential = [HarborRest],\n  @payload = @PromptJson,\n  @response = @ResponseJson OUTPUT;",
+  "options": [
+    {
+      "id": "a",
+      "text": "`sp_invoke_external_rest_endpoint`"
+    },
+    {
+      "id": "b",
+      "text": "`sp_execute_external_script` (Python) with urllib"
+    },
+    {
+      "id": "c",
+      "text": "`xp_cmdshell` curling the endpoint"
+    },
+    {
+      "id": "d",
+      "text": "`OPENROWSET(BULK)` against the URL"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "q-lab10-5",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1001",
+  "difficulty": "advanced",
+  "prompt": "Agents type `waterproof` and must also match `waterproofs` / `waterproofing` (inflection), but must **not** silently expand to thesaurus synonyms from a custom thesaurus file you have not reviewed.\n\nWhich CONTAINS term is correct?",
+  "explanation": "`FORMSOF(INFLECTIONAL, term)` is stemming. `THESAURUS` uses the thesaurus (the thing you have not reviewed). WILDCARD/NEAR are other CONTAINS constructs, not FORMSOF variants.",
+  "tags": [
+    "lab-coding",
+    "lab-10"
+  ],
+  "kind": "codeReading",
+  "code": "SELECT ReviewId, ReviewText\nFROM dbo.GearReview\nWHERE CONTAINS(ReviewText, 'FORMSOF(???, waterproof)');",
+  "options": [
+    {
+      "id": "a",
+      "text": "`INFLECTIONAL`"
+    },
+    {
+      "id": "b",
+      "text": "`THESAURUS`"
+    },
+    {
+      "id": "c",
+      "text": "`WILDCARD` as a FORMSOF first argument"
+    },
+    {
+      "id": "d",
+      "text": "`NEAR` as a FORMSOF first argument"
+    }
+  ],
+  "correct": "a"
+}

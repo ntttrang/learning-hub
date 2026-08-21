@@ -1,0 +1,33 @@
+{
+  "id": "q-lab06-1",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0602",
+  "difficulty": "challenge",
+  "prompt": "Harbor finance reports **intermittently disagree** with the warehouse on voyage subtotals because readers overlap in-flight UPDATEs. Writers must **not** wait on reporting SELECTs. Dirty reads (uncommitted prices) are forbidden.\n\nWhat should you enable?",
+  "explanation": "RCSI (database option `READ_COMMITTED_SNAPSHOT ON`) gives committed, versioned reads without blocking writers. NOLOCK/READ UNCOMMITTED allow dirty reads, which the stem forbids. Escalating to table X locks increases blocking. Query Store records plans; it is not a concurrency control.",
+  "tags": [
+    "lab-coding",
+    "lab-06"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Read Committed Snapshot Isolation (RCSI) so readers use row versions and do not take shared locks"
+    },
+    {
+      "id": "b",
+      "text": "`SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED` or `NOLOCK` on every report"
+    },
+    {
+      "id": "c",
+      "text": "Table-level exclusive locks on dbo.Voyage during reports"
+    },
+    {
+      "id": "d",
+      "text": "Query Store only — it prevents writers from modifying rows that reports need"
+    }
+  ],
+  "correct": "a"
+}

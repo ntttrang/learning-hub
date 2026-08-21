@@ -1,0 +1,33 @@
+{
+  "id": "q-lab07-1",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "lessonId": "l0701",
+  "difficulty": "advanced",
+  "prompt": "Harbor Outfitters wants **declarative**, source-controlled schema deployments: the target database should be made to match a model, not by running ordered hand-written migration scripts as the source of truth. Production restores of last night's `.bak` are not an acceptable deploy path.\n\nWhich approach fits?",
+  "explanation": "SQL Database Projects are the DP-800 CI/CD skill: compile a dacpac, publish a diff. Ad-hoc SSMS is drift. Restoring a backup copies data, not a repeatable schema pipeline. BULK INSERT loads data, not a project model.",
+  "tags": [
+    "lab-coding",
+    "lab-07"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "An SDK-style SQL Database Project that builds a dacpac; SqlPackage / the pipeline publishes by diffing the model against the target"
+    },
+    {
+      "id": "b",
+      "text": "A folder of one-off ALTER scripts run from SSMS in whatever order a DBA remembers"
+    },
+    {
+      "id": "c",
+      "text": "Nightly RESTORE from production.bak onto every environment"
+    },
+    {
+      "id": "d",
+      "text": "`BULK INSERT` of CREATE TABLE statements into model"
+    }
+  ],
+  "correct": "a"
+}

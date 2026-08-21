@@ -1,0 +1,29 @@
+{
+  "id": "q-l0503-4",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0503",
+  "difficulty": "advanced",
+  "prompt": "A tenant can't read other tenants' rows but can INSERT rows with another tenant's id. What's missing?",
+  "explanation": "A FILTER predicate handles reads; you also need a BLOCK predicate (AFTER INSERT/UPDATE) to prevent writing rows outside the tenant's scope.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A FILTER predicate"
+    },
+    {
+      "id": "b",
+      "text": "A BLOCK predicate"
+    },
+    {
+      "id": "c",
+      "text": "A clustered index"
+    },
+    {
+      "id": "d",
+      "text": "TDE"
+    }
+  ],
+  "correct": "b"
+}

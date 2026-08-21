@@ -1,0 +1,29 @@
+{
+  "id": "q-l0503-5",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0503",
+  "difficulty": "advanced",
+  "prompt": "You must implement per-tenant row filtering on MySQL, which has no native RLS. What's the correct approach?",
+  "explanation": "MySQL has no engine-level RLS; the standard pattern is filtered views plus revoking base-table privileges. DBMS_RLS is Oracle; SECURITY POLICY is SQL Server; ENABLE ROW LEVEL SECURITY is PostgreSQL.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Use CREATE SECURITY POLICY"
+    },
+    {
+      "id": "b",
+      "text": "Expose filtered views and revoke base-table access"
+    },
+    {
+      "id": "c",
+      "text": "Use DBMS_RLS"
+    },
+    {
+      "id": "d",
+      "text": "Enable ROW LEVEL SECURITY on the table"
+    }
+  ],
+  "correct": "b"
+}

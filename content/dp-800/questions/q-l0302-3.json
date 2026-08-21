@@ -1,0 +1,29 @@
+{
+  "id": "q-l0302-3",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0302",
+  "difficulty": "intermediate",
+  "prompt": "LAST_VALUE returns the current row's value rather than the partition's last. Why?",
+  "explanation": "The default frame is UNBOUNDED PRECEDING to CURRENT ROW; set ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING to get the true last value.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "LAST_VALUE is broken"
+    },
+    {
+      "id": "b",
+      "text": "The default frame ends at CURRENT ROW"
+    },
+    {
+      "id": "c",
+      "text": "You must add PARTITION BY"
+    },
+    {
+      "id": "d",
+      "text": "It needs DISTINCT"
+    }
+  ],
+  "correct": "b"
+}

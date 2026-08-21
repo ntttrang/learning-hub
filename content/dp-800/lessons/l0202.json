@@ -1,0 +1,94 @@
+{
+  "id": "l0202",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "order": 2,
+  "slug": "functions",
+  "title": "Scalar and table-valued functions",
+  "summary": "Write UDFs, understand inline vs multi-statement TVFs, and avoid scalar-UDF performance traps.",
+  "minutes": 30,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Create scalar, inline TVF, and multi-statement TVF.",
+        "Explain why inline TVFs and scalar UDF inlining matter for performance."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "User-defined functions encapsulate reusable logic, but scalar UDFs historically hurt performance."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Inline TVF",
+          "definition": "A table-valued function whose body is a single SELECT; expands like a view for the optimizer."
+        },
+        {
+          "term": "Scalar UDF inlining",
+          "definition": "SQL Server 2019+ feature that inlines eligible scalar UDFs for big speedups."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Prefer **inline table-valued functions** over multi-statement TVFs — the optimizer can expand and optimize them. **Scalar UDF inlining** (Intelligent Query Processing) automatically inlines eligible scalar functions."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Row-by-row scalar UDFs in SELECT lists on large sets.",
+          "fix": "Rewrite as an inline TVF via APPLY, or rely on scalar UDF inlining."
+        }
+      ]
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Inline TVF good, multi-statement TVF often bad for cardinality estimation."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Favor inline TVFs; know that scalar UDF inlining can rescue legacy scalar functions."
+    }
+  ],
+  "questionIds": [
+    "q-l0202-1",
+    "q-l0202-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "User-defined functions",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/user-defined-functions",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

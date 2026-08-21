@@ -1,0 +1,29 @@
+{
+  "id": "q-l0105-2",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0105",
+  "difficulty": "intermediate",
+  "prompt": "Which engine (as of 8.0) has no standalone SEQUENCE object and emulates it with AUTO_INCREMENT?",
+  "explanation": "MySQL lacks a standalone SEQUENCE object; PostgreSQL, Oracle, and SQL Server all provide CREATE SEQUENCE.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "PostgreSQL"
+    },
+    {
+      "id": "b",
+      "text": "Oracle"
+    },
+    {
+      "id": "c",
+      "text": "MySQL"
+    },
+    {
+      "id": "d",
+      "text": "SQL Server"
+    }
+  ],
+  "correct": "c"
+}

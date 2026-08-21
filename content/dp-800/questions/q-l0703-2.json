@@ -1,0 +1,29 @@
+{
+  "id": "q-l0703-2",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "lessonId": "l0703",
+  "difficulty": "intermediate",
+  "prompt": "An integration test for a database change typically runs against:",
+  "explanation": "Integration tests exercise a deployed schema to validate real behavior end to end.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A deployed copy of the schema"
+    },
+    {
+      "id": "b",
+      "text": "The source .sql files only"
+    },
+    {
+      "id": "c",
+      "text": "Production during business hours"
+    },
+    {
+      "id": "d",
+      "text": "A spreadsheet mock"
+    }
+  ],
+  "correct": "a"
+}

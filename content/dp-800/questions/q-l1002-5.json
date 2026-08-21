@@ -1,0 +1,29 @@
+{
+  "id": "q-l1002-5",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1002",
+  "difficulty": "advanced",
+  "prompt": "Which PostgreSQL capability is the closest equivalent to SQL Server's VECTOR type and ANN indexing?",
+  "explanation": "pgvector adds a vector type, distance operators, and HNSW/IVFFlat ANN indexes.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "pgvector with HNSW/IVFFlat indexes"
+    },
+    {
+      "id": "b",
+      "text": "hstore"
+    },
+    {
+      "id": "c",
+      "text": "PostGIS"
+    },
+    {
+      "id": "d",
+      "text": "ltree"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "q-l0106-2",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0106",
+  "difficulty": "advanced",
+  "prompt": "For partition elimination to speed up queries, the partition key should be:",
+  "explanation": "The optimizer eliminates partitions based on predicates on the partition key, so partition on the column your queries filter by (often a date).",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A random GUID"
+    },
+    {
+      "id": "b",
+      "text": "The column queries frequently filter on"
+    },
+    {
+      "id": "c",
+      "text": "Any nullable column"
+    },
+    {
+      "id": "d",
+      "text": "The primary key only"
+    }
+  ],
+  "correct": "b"
+}

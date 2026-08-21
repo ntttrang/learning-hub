@@ -1,0 +1,118 @@
+{
+  "id": "l0903",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "order": 3,
+  "slug": "chunking-and-generating-embeddings",
+  "title": "Chunking and generating embeddings",
+  "summary": "Choose which columns to embed, chunk text well, and generate embeddings with AI_GENERATE_EMBEDDINGS.",
+  "minutes": 35,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Identify which columns to include in embeddings.",
+        "Design chunking that preserves meaning and fits model limits.",
+        "Generate embeddings in T-SQL."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Good retrieval depends on embedding the right content, chunked sensibly. This is where data prep for AI happens."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Chunking",
+          "definition": "Splitting long text into smaller passages before embedding."
+        },
+        {
+          "term": "Embedding",
+          "definition": "A numeric vector representing the meaning of text for similarity search."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Include the columns that carry **semantic meaning** (title + body), not IDs or codes. **Chunk** long text into overlapping passages sized to the model's context, then embed each chunk. Generate with **`AI_GENERATE_EMBEDDINGS`** (or by calling the model), storing results in a `VECTOR` column keyed back to the source row/chunk."
+    },
+    {
+      "kind": "figure",
+      "caption": "Preparing relational data for AI: select semantic columns, chunk, embed, and store vectors linked to source rows.",
+      "mermaid": "flowchart LR\n    src[\"Rows: title + body\"] --> pick[\"Pick semantic columns\"]\n    pick --> chunk[\"Chunk with overlap\"]\n    chunk --> embed[\"AI_GENERATE_EMBEDDINGS\"]\n    embed --> store[\"Store VECTOR + source key\"]"
+    },
+    {
+      "kind": "heading",
+      "text": "Real-world scenario",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "heading": "Preparing product reviews for semantic search",
+      "body": "Embed the review title and text (semantic), not the star rating or SKU. Chunk long reviews at ~500 tokens with 50-token overlap so context isn't cut mid-sentence, and store each chunk's vector with a foreign key to the review."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Embedding entire long documents as one vector.",
+          "fix": "Chunk first; a single vector over a long doc dilutes meaning and hurts retrieval."
+        }
+      ]
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Embed semantic columns; skip IDs/codes.",
+        "AI_GENERATE_EMBEDDINGS generates embeddings inline in T-SQL."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Embed meaning-bearing columns, chunk long text with overlap, and store vectors with AI_GENERATE_EMBEDDINGS linked to source rows."
+    }
+  ],
+  "questionIds": [
+    "q-l0903-1",
+    "q-l0903-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "AI_GENERATE_EMBEDDINGS",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/ai-generate-embeddings-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Vectors in SQL Server",
+      "url": "https://learn.microsoft.com/en-us/sql/sql-server/ai/vectors",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

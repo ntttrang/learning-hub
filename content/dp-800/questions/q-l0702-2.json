@@ -1,0 +1,29 @@
+{
+  "id": "q-l0702-2",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "lessonId": "l0702",
+  "difficulty": "intermediate",
+  "prompt": "Which practice enforces review before schema changes merge?",
+  "explanation": "Pull requests plus branch policies require review/checks before merging changes.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Pull requests with branch policies"
+    },
+    {
+      "id": "b",
+      "text": "Committing directly to main"
+    },
+    {
+      "id": "c",
+      "text": "Emailing scripts"
+    },
+    {
+      "id": "d",
+      "text": "Disabling CI"
+    }
+  ],
+  "correct": "a"
+}

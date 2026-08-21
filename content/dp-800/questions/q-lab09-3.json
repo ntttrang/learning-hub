@@ -1,0 +1,34 @@
+{
+  "id": "q-lab09-3",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "lessonId": "l0903",
+  "difficulty": "advanced",
+  "prompt": "Reviews already live in Azure SQL. Leadership forbids copying the corpus to a separate vector database 'for AI'. You add `Embedding VECTOR(1536)`.\n\nWhich function writes the embedding, and why keep it on the row?",
+  "explanation": "The DP-800 value proposition is AI where the data lives. `AI_GENERATE_EMBEDDINGS(model, text)` returns VECTOR. `VECTOR_DISTANCE` compares two vectors; it does not call the model. Native VECTOR is not nvarchar JSON.",
+  "tags": [
+    "lab-coding",
+    "lab-09"
+  ],
+  "kind": "codeReading",
+  "code": "UPDATE dbo.GearReview\nSET Embedding = AI_GENERATE_EMBEDDINGS(N'HarborEmbed', ReviewText)\nWHERE Embedding IS NULL;",
+  "options": [
+    {
+      "id": "a",
+      "text": "`AI_GENERATE_EMBEDDINGS` — transactions, RLS, and backups then apply to embeddings with the source row"
+    },
+    {
+      "id": "b",
+      "text": "`VECTOR_DISTANCE` — it both generates and stores embeddings"
+    },
+    {
+      "id": "c",
+      "text": "`PREDICT` with an ONNX model named HarborEmbed — required instead of EXTERNAL MODEL"
+    },
+    {
+      "id": "d",
+      "text": "`OPENJSON` — VECTOR is stored as JSON text, not a native type"
+    }
+  ],
+  "correct": "a"
+}

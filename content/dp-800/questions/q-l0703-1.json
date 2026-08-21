@@ -1,0 +1,29 @@
+{
+  "id": "q-l0703-1",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "lessonId": "l0703",
+  "difficulty": "intermediate",
+  "prompt": "Where should database connection secrets be stored for a deployment pipeline?",
+  "explanation": "Secrets belong in a managed secret store referenced at deploy time, never committed to the project.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "In the SQL project files"
+    },
+    {
+      "id": "b",
+      "text": "In a secret store (e.g., Key Vault / pipeline secrets)"
+    },
+    {
+      "id": "c",
+      "text": "In a README"
+    },
+    {
+      "id": "d",
+      "text": "In the dacpac"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "q-l0704-2",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "lessonId": "l0704",
+  "difficulty": "advanced",
+  "prompt": "Which controls gate production database deployments? (Select all that apply.)",
+  "explanation": "Branch policies, approvals, and code owners all gate deployments; disabling reviews would remove the control.",
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Branch policies"
+    },
+    {
+      "id": "b",
+      "text": "Approvals"
+    },
+    {
+      "id": "c",
+      "text": "Code owners"
+    },
+    {
+      "id": "d",
+      "text": "Disabling all reviews"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

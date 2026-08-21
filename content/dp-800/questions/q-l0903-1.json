@@ -1,0 +1,29 @@
+{
+  "id": "q-l0903-1",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "lessonId": "l0903",
+  "difficulty": "advanced",
+  "prompt": "Which columns should you embed for semantic search over support articles?",
+  "explanation": "Embed the columns carrying meaning (title, body). IDs, timestamps, and codes don't add semantic value.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "The article title and body"
+    },
+    {
+      "id": "b",
+      "text": "The numeric article ID"
+    },
+    {
+      "id": "c",
+      "text": "The created timestamp"
+    },
+    {
+      "id": "d",
+      "text": "The internal status code"
+    }
+  ],
+  "correct": "a"
+}

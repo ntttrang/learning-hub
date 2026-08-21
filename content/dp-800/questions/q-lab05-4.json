@@ -1,0 +1,34 @@
+{
+  "id": "q-lab05-4",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0503",
+  "difficulty": "advanced",
+  "prompt": "You create this RLS predicate. Pacific clerks still see every region's voyages.\n\nWhy is the policy inert, and what else should you fix before production?",
+  "explanation": "`WITH (STATE = OFF)` creates the object but does not filter. `ALTER SECURITY POLICY … WITH (STATE = ON)` (or create with ON). Predicate functions are inline TVFs (`SELECT 1 WHERE …`); a row present means visible. SCHEMABINDING is required/best practice for RLS predicates. SESSION_CONTEXT is the usual tenant key.",
+  "tags": [
+    "lab-coding",
+    "lab-05"
+  ],
+  "kind": "codeReading",
+  "code": "CREATE FUNCTION dbo.fn_RegionFilter(@Region nvarchar(20))\nRETURNS TABLE\nAS\nRETURN SELECT 1 AS AccessGranted\n       WHERE @Region = CONVERT(nvarchar(20), SESSION_CONTEXT(N'region'));\n\nCREATE SECURITY POLICY dbo.VoyageRegionPolicy\nADD FILTER PREDICATE dbo.fn_RegionFilter(Region)\n    ON dbo.Voyage\nWITH (STATE = OFF);",
+  "options": [
+    {
+      "id": "a",
+      "text": "`STATE = OFF` disables enforcement; turn `STATE = ON`. Prefer `WITH SCHEMABINDING` on the inline predicate function"
+    },
+    {
+      "id": "b",
+      "text": "Filter predicates cannot read SESSION_CONTEXT, so RLS can never be tenant-aware"
+    },
+    {
+      "id": "c",
+      "text": "The function must live in tempdb or policies are ignored"
+    },
+    {
+      "id": "d",
+      "text": "You must use a scalar `bit` function; table-valued predicates are illegal"
+    }
+  ],
+  "correct": "a"
+}

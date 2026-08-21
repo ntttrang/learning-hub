@@ -1,0 +1,36 @@
+{
+  "id": "q-lab11-1",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "lessonId": "l1101",
+  "difficulty": "advanced",
+  "prompt": "Harbor wants a database-grounded assistant. Which **two** are appropriate RAG use cases? Each correct answer presents part of the solution. (RAG is not a substitute for SQL aggregation.)",
+  "explanation": "RAG grounds generation in retrieved, up-to-date private data. Exact numeric aggregation is a SQL job — the model must not be treated as a calculator of record. RAG does not bypass RLS; retrieve should run under the caller's security context.",
+  "tags": [
+    "lab-coding",
+    "lab-11"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Q&A over private review text and policy docs that must cite retrieved rows"
+    },
+    {
+      "id": "b",
+      "text": "A support assistant whose answers must reflect **current** GearReview rows, not the model's training cutoff"
+    },
+    {
+      "id": "c",
+      "text": "Guaranteeing an exact SUM of VoyageLine.Qty × UnitPrice without running SQL"
+    },
+    {
+      "id": "d",
+      "text": "Replacing RLS so the model can read every tenant's rows"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

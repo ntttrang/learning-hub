@@ -1,0 +1,96 @@
+{
+  "id": "l0804",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "order": 4,
+  "slug": "change-handling",
+  "title": "Change handling: CDC, Change Tracking, CES, and event-driven patterns",
+  "summary": "React to data changes with CDC, Change Tracking, Change Event Streaming, Azure Functions, and Logic Apps.",
+  "minutes": 35,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Compare CDC, Change Tracking, and CES.",
+        "Wire event-driven reactions with Azure Functions SQL trigger and Logic Apps."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Change handling underpins both integration and AI embedding maintenance (Domain 3) — know the options and trade-offs."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Change Data Capture (CDC)",
+          "definition": "Captures full row change history to change tables."
+        },
+        {
+          "term": "Change Tracking (CT)",
+          "definition": "Lightweight tracking of which rows changed (not full history)."
+        },
+        {
+          "term": "Change Event Streaming (CES)",
+          "definition": "Streams change events (Fabric) to downstream consumers."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "**CDC** records full before/after history; **Change Tracking** is lighter and only says what changed; **CES** streams change events in Fabric. React with **Azure Functions (SQL trigger binding)** or **Logic Apps** for event-driven workflows. These same mechanisms keep embeddings current in Domain 3."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "CDC = full history (heavier); CT = which rows changed (lighter).",
+        "Azure Functions SQL trigger reacts to table changes."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Pick CDC for full history, CT for lightweight change detection, CES for Fabric streaming; automate reactions with Functions/Logic Apps."
+    }
+  ],
+  "questionIds": [
+    "q-l0804-1",
+    "q-l0804-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Change Data Capture",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Change Tracking",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

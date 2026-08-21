@@ -1,0 +1,29 @@
+{
+  "id": "q-l1001-1",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1001",
+  "difficulty": "intermediate",
+  "prompt": "Which predicate supports precise phrase and proximity keyword search?",
+  "explanation": "CONTAINS supports precise full-text searches (phrases, proximity, inflectional forms); FREETEXT is looser meaning-based.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "CONTAINS"
+    },
+    {
+      "id": "b",
+      "text": "LIKE only"
+    },
+    {
+      "id": "c",
+      "text": "VECTOR_DISTANCE"
+    },
+    {
+      "id": "d",
+      "text": "JSON_VALUE"
+    }
+  ],
+  "correct": "a"
+}

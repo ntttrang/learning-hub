@@ -1,0 +1,36 @@
+{
+  "id": "q-lab07-2",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "lessonId": "l0704",
+  "difficulty": "challenge",
+  "prompt": "A DBA applied `ALTER TABLE dbo.Gear ADD Notes nvarchar(max)` directly on production. The SDK project in `main` has no `Notes` column. The next pipeline publish must not surprise-drop the column, and you must detect this class of problem earlier.\n\nWhich **two** actions should you take? Each correct answer presents part of the solution.",
+  "explanation": "Schema drift is target ≠ project. Bring the column into source control (or deliberately drop it). Pipeline controls (PRs, environments, `DropObjectsNotInSource` / publish flags) prevent a silent drop. Removing secrets is not a drift strategy. TargetPlatform XML is nonsense.",
+  "tags": [
+    "lab-coding",
+    "lab-07"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Detect schema drift (compare dacpac / project to the target) and import or script `Notes` into the project before publish"
+    },
+    {
+      "id": "b",
+      "text": "Gate production publishes with branch policies, reviews/approvals, and a publish option that blocks destructive changes until reviewed"
+    },
+    {
+      "id": "c",
+      "text": "Delete the GitHub Actions secret so publish cannot run; leave production as the source of truth"
+    },
+    {
+      "id": "d",
+      "text": "Set the project TargetPlatform to XML so dacpac publish ignores tables"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

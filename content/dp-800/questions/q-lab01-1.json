@@ -1,0 +1,34 @@
+{
+  "id": "q-lab01-1",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0103",
+  "difficulty": "advanced",
+  "prompt": "Harbor Outfitters stores flexible gear attributes in `dbo.Gear.Attr` (JSON). Support must filter **millions** of rows by `$.color` in interactive time. The JSON shape will keep changing, so you must not add a sparse column per attribute. PostgreSQL-style GIN indexes are not available.\n\nWhich design meets the requirement?",
+  "explanation": "SQL Server cannot index inside a JSON document the way PostgreSQL GIN can. The exam pattern is: extract the scalar with `JSON_VALUE`, optionally `PERSISTED`, then index the computed column. LIKE scans are not selective at millions of rows; sparse columns fight the 'shape keeps changing' constraint.",
+  "tags": [
+    "lab-coding",
+    "lab-01"
+  ],
+  "kind": "codeReading",
+  "code": "-- Attr example: {\"color\":\"navy\",\"fit\":\"unisex\"}\nALTER TABLE dbo.Gear\n  ADD Color AS JSON_VALUE(Attr, '$.color');\nCREATE INDEX IX_Gear_Color ON dbo.Gear(Color);",
+  "options": [
+    {
+      "id": "a",
+      "text": "Promote `$.color` to a persisted computed column with `JSON_VALUE` and index that column"
+    },
+    {
+      "id": "b",
+      "text": "Create a GIN index directly on the JSON document"
+    },
+    {
+      "id": "c",
+      "text": "Filter with `Attr LIKE '%\"color\":\"navy\"%'` and add a full-text catalog on Attr"
+    },
+    {
+      "id": "d",
+      "text": "Store each attribute as its own sparse column and rebuild the table when the schema changes"
+    }
+  ],
+  "correct": "a"
+}

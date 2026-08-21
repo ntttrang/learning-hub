@@ -1,0 +1,29 @@
+{
+  "id": "q-ex1-8",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "lessonId": "l0902",
+  "difficulty": "advanced",
+  "prompt": "A knowledge base updates continuously and embeddings must stay fresh without reprocessing everything. Which pattern is best?",
+  "explanation": "Change Tracking finds changed rows; an event-driven function re-embeds only those, keeping the index fresh efficiently.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Re-embed the whole corpus each night"
+    },
+    {
+      "id": "b",
+      "text": "Change Tracking to detect changed rows, then an Azure Function re-embeds only those"
+    },
+    {
+      "id": "c",
+      "text": "Never update embeddings"
+    },
+    {
+      "id": "d",
+      "text": "Drop the vector column daily"
+    }
+  ],
+  "correct": "b"
+}

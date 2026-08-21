@@ -1,0 +1,29 @@
+{
+  "id": "q-l0501-3",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0501",
+  "difficulty": "beginner",
+  "prompt": "Which feature encrypts the entire database at rest, transparently to queries?",
+  "explanation": "Transparent Data Encryption encrypts data files at rest and is transparent to applications and queries.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "TDE"
+    },
+    {
+      "id": "b",
+      "text": "Always Encrypted"
+    },
+    {
+      "id": "c",
+      "text": "DDM"
+    },
+    {
+      "id": "d",
+      "text": "RLS"
+    }
+  ],
+  "correct": "a"
+}

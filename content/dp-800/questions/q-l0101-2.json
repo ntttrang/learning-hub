@@ -1,0 +1,29 @@
+{
+  "id": "q-l0101-2",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0101",
+  "difficulty": "beginner",
+  "prompt": "How many clustered indexes can a single table have?",
+  "explanation": "A table has at most one clustered index (it defines physical row order). A table without one is a heap, so the answer is zero or one.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Zero or one"
+    },
+    {
+      "id": "b",
+      "text": "Exactly one, always"
+    },
+    {
+      "id": "c",
+      "text": "One per column"
+    },
+    {
+      "id": "d",
+      "text": "Unlimited"
+    }
+  ],
+  "correct": "a"
+}

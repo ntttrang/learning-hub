@@ -1,0 +1,29 @@
+{
+  "id": "q-l0104-1",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0104",
+  "difficulty": "beginner",
+  "prompt": "In SQL Server, how many NULLs does a UNIQUE constraint permit in a single-column key?",
+  "explanation": "SQL Server treats NULLs as equal for UNIQUE, allowing only one NULL. This differs from some other engines.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "None"
+    },
+    {
+      "id": "b",
+      "text": "Exactly one"
+    },
+    {
+      "id": "c",
+      "text": "Unlimited"
+    },
+    {
+      "id": "d",
+      "text": "One per session"
+    }
+  ],
+  "correct": "b"
+}

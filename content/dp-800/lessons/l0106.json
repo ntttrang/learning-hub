@@ -1,0 +1,98 @@
+{
+  "id": "l0106",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "order": 6,
+  "slug": "partitioning",
+  "title": "Partitioning tables and indexes",
+  "summary": "Split large tables by a partition function and scheme for manageability and query elimination.",
+  "minutes": 30,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Create a partition function and scheme and align an index.",
+        "Explain partition elimination and the sliding-window pattern."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Partitioning divides one logical table into physical partitions, enabling fast metadata operations and partition elimination."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Partition function",
+          "definition": "Maps rows to partitions based on boundary values of a column."
+        },
+        {
+          "term": "Partition scheme",
+          "definition": "Maps partitions to filegroups."
+        },
+        {
+          "term": "Aligned index",
+          "definition": "An index partitioned on the same key as its table."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Define a `PARTITION FUNCTION` (RANGE LEFT/RIGHT boundaries), a `PARTITION SCHEME` mapping to filegroups, then create the table/index ON the scheme. `SWITCH` moves a whole partition in/out instantly — the basis of the sliding-window archival pattern."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Assuming partitioning always speeds up queries.",
+          "fix": "It helps mainly via partition elimination and manageability; poorly chosen keys can hurt."
+        }
+      ]
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "ALTER TABLE ... SWITCH is a metadata-only operation — near-instant, used for archiving."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Partition on the column your queries filter by so the optimizer can eliminate partitions; use SWITCH for fast archival."
+    }
+  ],
+  "questionIds": [
+    "q-l0106-1",
+    "q-l0106-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Partitioned tables and indexes",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/partitions/partitioned-tables-and-indexes",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

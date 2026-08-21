@@ -1,0 +1,29 @@
+{
+  "id": "q-l0903-2",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "lessonId": "l0903",
+  "difficulty": "advanced",
+  "prompt": "Why chunk long documents before embedding?",
+  "explanation": "Chunking (often with overlap) keeps each vector focused and within model limits, improving retrieval over a single diluted whole-doc vector.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "To fit model context limits and preserve focused meaning per vector"
+    },
+    {
+      "id": "b",
+      "text": "To make files smaller on disk"
+    },
+    {
+      "id": "c",
+      "text": "Because vectors can't store decimals"
+    },
+    {
+      "id": "d",
+      "text": "It is never recommended"
+    }
+  ],
+  "correct": "a"
+}

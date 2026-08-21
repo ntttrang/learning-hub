@@ -1,0 +1,29 @@
+{
+  "id": "q-l0701-1",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "lessonId": "l0701",
+  "difficulty": "intermediate",
+  "prompt": "What artifact does building a SQL Database Project produce, and how is it deployed?",
+  "explanation": "SQL Database Projects build a dacpac; deployment compares the model to the target and applies the difference declaratively.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A dacpac deployed by diffing against the target"
+    },
+    {
+      "id": "b",
+      "text": "A .bak restored to the server"
+    },
+    {
+      "id": "c",
+      "text": "A CSV imported by BULK INSERT"
+    },
+    {
+      "id": "d",
+      "text": "A .exe that runs migrations in order"
+    }
+  ],
+  "correct": "a"
+}

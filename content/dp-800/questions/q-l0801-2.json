@@ -1,0 +1,29 @@
+{
+  "id": "q-l0801-2",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "lessonId": "l0801",
+  "difficulty": "intermediate",
+  "prompt": "How is Data API builder primarily configured?",
+  "explanation": "DAB is configuration-driven via a config file defining the data source and entities.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "By hand-writing a REST service in C#"
+    },
+    {
+      "id": "b",
+      "text": "Through a configuration file (dab-config.json)"
+    },
+    {
+      "id": "c",
+      "text": "Via SSMS wizards only"
+    },
+    {
+      "id": "d",
+      "text": "By editing system tables"
+    }
+  ],
+  "correct": "b"
+}

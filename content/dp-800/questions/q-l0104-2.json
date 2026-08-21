@@ -1,0 +1,29 @@
+{
+  "id": "q-l0104-2",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0104",
+  "difficulty": "beginner",
+  "prompt": "Which referential action deletes child rows automatically when the parent is deleted?",
+  "explanation": "ON DELETE CASCADE removes dependent child rows automatically.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "NO ACTION"
+    },
+    {
+      "id": "b",
+      "text": "SET NULL"
+    },
+    {
+      "id": "c",
+      "text": "CASCADE"
+    },
+    {
+      "id": "d",
+      "text": "SET DEFAULT"
+    }
+  ],
+  "correct": "c"
+}

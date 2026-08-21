@@ -1,0 +1,29 @@
+{
+  "id": "q-ex1-6",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1002",
+  "difficulty": "advanced",
+  "prompt": "You must add semantic search to data already in SQL Server without moving it to a separate vector database. Which is the recommended native approach?",
+  "explanation": "The DP-800 value proposition is AI where your data lives: store embeddings in VECTOR, rank with VECTOR_DISTANCE, and add a DiskANN index at scale.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Export to a third-party vector store"
+    },
+    {
+      "id": "b",
+      "text": "Add a VECTOR column, generate embeddings, and rank with VECTOR_DISTANCE (add DiskANN at scale)"
+    },
+    {
+      "id": "c",
+      "text": "Use only full-text search"
+    },
+    {
+      "id": "d",
+      "text": "Store embeddings as CSV in nvarchar"
+    }
+  ],
+  "correct": "b"
+}

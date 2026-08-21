@@ -1,0 +1,87 @@
+{
+  "id": "l0702",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "order": 2,
+  "slug": "source-control-and-branching",
+  "title": "Source control, branching, and reference data",
+  "summary": "Manage schema in Git with branching, pull requests, conflict resolution, and versioned reference data.",
+  "minutes": 25,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Configure source control for a SQL project.",
+        "Manage branches, PRs, and conflicts.",
+        "Version reference/static data."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Databases benefit from the same Git workflow as app code — branches, PRs, and reviewed merges."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Reference data",
+          "definition": "Static/lookup data managed in source control and deployed with the schema (post-deployment scripts)."
+        },
+        {
+          "term": "Pull request",
+          "definition": "A reviewed proposal to merge a branch."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Keep the project in Git; use feature branches and **pull requests** with review. Resolve merge conflicts in the declarative files. Store **reference/static data** in source control (typically post-deployment scripts) so environments stay consistent."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Reference data lives in post-deployment scripts within the project.",
+        "PRs + branch policies enforce review before deployment."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Treat schema like code: branch, PR, review, and version reference data alongside the model."
+    }
+  ],
+  "questionIds": [
+    "q-l0702-1",
+    "q-l0702-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Source control for databases",
+      "url": "https://learn.microsoft.com/en-us/sql/tools/sql-database-projects/sql-database-projects",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

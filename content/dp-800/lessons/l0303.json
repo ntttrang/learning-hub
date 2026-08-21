@@ -1,0 +1,87 @@
+{
+  "id": "l0303",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "order": 3,
+  "slug": "json-functions",
+  "title": "JSON functions in queries",
+  "summary": "Build and consume JSON in T-SQL with JSON_OBJECT, JSON_ARRAY, JSON_ARRAYAGG, and FOR JSON.",
+  "minutes": 25,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Construct JSON with JSON_OBJECT/JSON_ARRAY/JSON_ARRAYAGG.",
+        "Serialize result sets with FOR JSON.",
+        "Test membership with JSON_CONTAINS."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Beyond reading JSON, T-SQL can construct it — essential for API and RAG payloads (Domain 3)."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "FOR JSON",
+          "definition": "Clause that serializes a query result set into JSON (PATH or AUTO)."
+        },
+        {
+          "term": "JSON_ARRAYAGG",
+          "definition": "Aggregates values from multiple rows into a JSON array."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "`JSON_OBJECT('k':v,...)` and `JSON_ARRAY(...)` build documents; `JSON_ARRAYAGG`/`JSON_OBJECTAGG` aggregate rows; `FOR JSON PATH` shapes nested output. These directly feed language-model prompts when you convert structured rows to JSON."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "FOR JSON PATH with ROOT() wraps output in a named root object.",
+        "This lesson links to RAG: converting rows to JSON for a model."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Construct JSON with the constructors and FOR JSON; you'll reuse this to feed models in RAG workflows."
+    }
+  ],
+  "questionIds": [
+    "q-l0303-1",
+    "q-l0303-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "FOR JSON",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/json/format-query-results-as-json-with-for-json",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

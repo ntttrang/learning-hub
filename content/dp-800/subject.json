@@ -1,0 +1,22 @@
+{
+  "id": "dp-800",
+  "code": "DP-800",
+  "title": "Developing AI-Enabled Database Solutions",
+  "subtitle": "SQL AI Developer · 3 domains",
+  "description": "Databases, T-SQL, vector search — with cross-engine compare & Docker labs.",
+  "accent": "sky-cyan",
+  "disclaimers": [
+    "Microsoft Certified: SQL AI Developer Associate",
+    "Skills outline as of March 12, 2026",
+    "Platforms: SQL Server 2025 · Azure SQL · SQL databases in Microsoft Fabric"
+  ],
+  "enabledModes": [
+    "learn",
+    "labs",
+    "practice",
+    "exams",
+    "compare",
+    "notes",
+    "revision"
+  ]
+}

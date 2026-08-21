@@ -1,0 +1,34 @@
+{
+  "id": "q-lab03-6",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0305",
+  "difficulty": "challenge",
+  "prompt": "Crew and voyages are modeled as a SQL graph: `Crew` (node), `Voyage` (node), `Crewed` (edge). You must return voyages that sailor `@Handle` crewed — using graph syntax, not a recursive CTE.\n\nWhich predicate is valid?",
+  "explanation": "SQL Server graph queries use `MATCH(node-(edge)->node)` (ASCII-art traversal). Joining through a CrewId column would ignore the edge table you modeled. SHORTEST_PATH is a different graph feature and still needs a defined path pattern. MATCH is not ANSI JOIN syntax.",
+  "tags": [
+    "lab-coding",
+    "lab-03"
+  ],
+  "kind": "codeReading",
+  "code": "SELECT v.VoyageId\nFROM dbo.Crew AS c, dbo.Crewed AS e, dbo.Voyage AS v\nWHERE MATCH(???);",
+  "options": [
+    {
+      "id": "a",
+      "text": "`MATCH(c-(e)->v) AND c.Handle = @Handle`"
+    },
+    {
+      "id": "b",
+      "text": "`MATCH(c INNER JOIN v ON e)`"
+    },
+    {
+      "id": "c",
+      "text": "`MATCH SHORTEST_PATH(c TO v)` without an edge table"
+    },
+    {
+      "id": "d",
+      "text": "`c.CrewId = v.CrewId` — graph tables ignore MATCH"
+    }
+  ],
+  "correct": "a"
+}

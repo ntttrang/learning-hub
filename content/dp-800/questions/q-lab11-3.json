@@ -1,0 +1,34 @@
+{
+  "id": "q-lab11-3",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "lessonId": "l1101",
+  "difficulty": "advanced",
+  "prompt": "After VECTOR_DISTANCE retrieve, you must attach the hits to the chat payload as a named JSON document `{\"context\":[...]}`.\n\nWhich clause packs the rows?",
+  "explanation": "Convert structured data to JSON for the model — `FOR JSON PATH` with optional ROOT. That string is concatenated/inserted into the chat messages array before `sp_invoke_external_rest_endpoint`.",
+  "tags": [
+    "lab-coding",
+    "lab-11"
+  ],
+  "kind": "codeReading",
+  "code": "SELECT ReviewId, ReviewText\nFROM @Hits\nFOR ??? PATH, ROOT('context');",
+  "options": [
+    {
+      "id": "a",
+      "text": "`JSON` — `FOR JSON PATH, ROOT('context')` is the relational-to-JSON step of RAG"
+    },
+    {
+      "id": "b",
+      "text": "`XML` — language models require XML context"
+    },
+    {
+      "id": "c",
+      "text": "`BROWSE`"
+    },
+    {
+      "id": "d",
+      "text": "`SYSTEM_TIME`"
+    }
+  ],
+  "correct": "a"
+}

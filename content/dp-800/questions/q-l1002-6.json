@@ -1,0 +1,29 @@
+{
+  "id": "q-l1002-6",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1002",
+  "difficulty": "advanced",
+  "prompt": "Two embeddings can be compared with VECTOR_DISTANCE only if they:",
+  "explanation": "Vectors must share dimension and originate from the same embedding model to be comparable.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Have the same dimension and come from the same model"
+    },
+    {
+      "id": "b",
+      "text": "Are in different tables"
+    },
+    {
+      "id": "c",
+      "text": "Use different metrics"
+    },
+    {
+      "id": "d",
+      "text": "Are stored as JSON"
+    }
+  ],
+  "correct": "a"
+}

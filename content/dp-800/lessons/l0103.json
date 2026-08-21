@@ -1,0 +1,320 @@
+{
+  "id": "l0103",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "order": 3,
+  "slug": "json-columns-and-functions",
+  "title": "JSON columns, indexes, and functions",
+  "summary": "Store, index, query, and shape semi-structured JSON in SQL Server — and see exactly how PostgreSQL, MySQL, and Oracle differ.",
+  "minutes": 55,
+  "difficulty": "intermediate",
+  "flagship": true,
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Store JSON in SQL Server using the native json data type and the nvarchar pattern.",
+        "Query and shape JSON with OPENJSON, JSON_VALUE, JSON_QUERY, JSON_OBJECT, and JSON_ARRAY.",
+        "Index JSON for predicate performance.",
+        "Translate JSON designs across SQL Server, PostgreSQL, MySQL, and Oracle."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Modern applications mix relational and semi-structured data. DP-800 expects you to store JSON, validate it, extract and project values, and index it for performance. SQL Server 2025 adds a native `json` data type alongside the long-standing `nvarchar(max)` approach."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "json data type",
+          "definition": "SQL Server 2025's native binary JSON type with validation and efficient access."
+        },
+        {
+          "term": "OPENJSON",
+          "definition": "Table-valued function that shreds a JSON document into rows and columns."
+        },
+        {
+          "term": "JSON_VALUE",
+          "definition": "Extracts a scalar value from JSON using a path expression."
+        },
+        {
+          "term": "JSON path",
+          "definition": "A `$.a.b[0]` expression that navigates into a JSON document."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "Storing JSON",
+      "body": "SQL Server 2025 introduces the native **`json`** data type, which stores an optimized binary form, validates on insert, and speeds up read/modify operations. Before it, JSON was stored in `nvarchar(max)` with an optional `ISJSON()` check constraint. Both are still valid; the exam expects you to know the native type is preferred on SQL Server 2025."
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "Reading JSON",
+      "body": "- **`JSON_VALUE(expr, path)`** returns a scalar (string/number).\n- **`JSON_QUERY(expr, path)`** returns an object or array fragment.\n- **`OPENJSON(expr [, path]) WITH (...)`** shreds JSON into a rowset with a typed schema.\n- **`ISJSON(expr)`** validates."
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "Constructing JSON",
+      "body": "SQL Server supports **`JSON_OBJECT`**, **`JSON_ARRAY`**, and **`JSON_ARRAYAGG`** constructors, plus **`FOR JSON PATH`/`AUTO`** to serialize query results. **`JSON_MODIFY`** updates values in place, and **`JSON_CONTAINS`** tests membership."
+    },
+    {
+      "kind": "figure",
+      "caption": "How OPENJSON shreds a document into a typed rowset that you can join like any table.",
+      "mermaid": "flowchart LR\n    doc[\"JSON document {orders:[...] }\"] --> openjson[\"OPENJSON(@json, '$.orders')\"]\n    openjson --> withclause[\"WITH (id INT, total DECIMAL)\"]\n    withclause --> rows[\"Relational rowset\"]\n    rows --> joins[\"JOIN / WHERE / aggregate\"]"
+    },
+    {
+      "kind": "heading",
+      "text": "Microsoft SQL implementation",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "Native json column + query",
+      "body": "```sql\n-- SQL Server 2025 native json type\nCREATE TABLE dbo.Product (\n    ProductId INT PRIMARY KEY,\n    Attributes json NOT NULL\n);\n\nINSERT dbo.Product VALUES\n(1, '{\"color\":\"red\",\"tags\":[\"sale\",\"new\"],\"dims\":{\"w\":10,\"h\":4}}');\n\n-- Scalar extract\nSELECT ProductId,\n       JSON_VALUE(Attributes, '$.color')   AS color,\n       JSON_QUERY(Attributes, '$.tags')    AS tags\nFROM dbo.Product;\n\n-- Shred an array into rows\nSELECT p.ProductId, t.[value] AS tag\nFROM dbo.Product p\nCROSS APPLY OPENJSON(p.Attributes, '$.tags') t;\n```"
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "heading": "Indexing JSON predicates",
+      "body": "SQL Server does not index inside a JSON blob directly. Promote hot paths to a **computed column** and index that:\n\n```sql\nALTER TABLE dbo.Product\n  ADD Color AS JSON_VALUE(Attributes, '$.color');\nCREATE INDEX IX_Product_Color ON dbo.Product(Color);\n```"
+    },
+    {
+      "kind": "heading",
+      "text": "Cross-database comparison",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "explanation",
+      "heading": "PostgreSQL: jsonb + GIN",
+      "body": "PostgreSQL has first-class **`json`** (text-preserving) and **`jsonb`** (binary, indexable) types. Use operators `->`, `->>`, `#>`, and the containment operator `@>`. Crucially, `jsonb` supports **GIN indexes** that index the whole document — no computed-column trick needed.\n\n```sql\nCREATE TABLE product (product_id int PRIMARY KEY, attributes jsonb);\nSELECT attributes ->> 'color' AS color FROM product;\nSELECT * FROM product, jsonb_array_elements_text(attributes->'tags') AS tag;\nCREATE INDEX idx_product_attrs ON product USING GIN (attributes);\nSELECT * FROM product WHERE attributes @> '{\"color\":\"red\"}';\n```"
+    },
+    {
+      "kind": "sourced",
+      "source": "explanation",
+      "heading": "MySQL: JSON type + generated columns",
+      "body": "MySQL has a native **`JSON`** type. Extract with `JSON_EXTRACT()` or the `->` / `->>` shortcuts. Like SQL Server, MySQL cannot index inside JSON directly — you index a **generated (virtual) column**.\n\n```sql\nCREATE TABLE product (\n  product_id INT PRIMARY KEY,\n  attributes JSON,\n  color VARCHAR(20) AS (attributes->>'$.color') STORED,\n  INDEX idx_color (color)\n);\nSELECT attributes->>'$.color' AS color FROM product;\nSELECT jt.tag FROM product,\n  JSON_TABLE(attributes, '$.tags[*]' COLUMNS (tag VARCHAR(50) PATH '$')) AS jt;\n```"
+    },
+    {
+      "kind": "sourced",
+      "source": "explanation",
+      "heading": "Oracle: JSON type + JSON_TABLE",
+      "body": "Oracle (21c+) has a native **`JSON`** type; earlier versions used `VARCHAR2`/`CLOB` with an `IS JSON` check. Query with dot-notation, `JSON_VALUE`, `JSON_QUERY`, and shred with **`JSON_TABLE`**. Oracle can index JSON via function-based indexes or a **JSON search index**.\n\n```sql\nCREATE TABLE product (product_id NUMBER PRIMARY KEY, attributes JSON);\nSELECT p.attributes.color FROM product p;\nSELECT jt.tag FROM product p,\n  JSON_TABLE(p.attributes, '$.tags[*]' COLUMNS (tag VARCHAR2(50) PATH '$')) jt;\nCREATE SEARCH INDEX prod_json_ix ON product (attributes) FOR JSON;\n```"
+    },
+    {
+      "kind": "sideBySide",
+      "comparison": {
+        "id": "cmp-json",
+        "title": "JSON support",
+        "description": "All four engines store and query JSON, but indexing strategy and function names differ significantly.",
+        "columns": [
+          {
+            "id": "sqlserver",
+            "label": "Microsoft SQL"
+          },
+          {
+            "id": "postgresql",
+            "label": "PostgreSQL"
+          },
+          {
+            "id": "mysql",
+            "label": "MySQL"
+          },
+          {
+            "id": "oracle",
+            "label": "Oracle Database"
+          }
+        ],
+        "rows": [
+          {
+            "aspect": "Native type",
+            "cells": {
+              "sqlserver": "json (2025); else nvarchar(max)",
+              "postgresql": "json, jsonb",
+              "mysql": "JSON",
+              "oracle": "JSON (21c+)"
+            }
+          },
+          {
+            "aspect": "Scalar extract",
+            "cells": {
+              "sqlserver": "JSON_VALUE()",
+              "postgresql": "->> operator",
+              "mysql": "->> / JSON_EXTRACT",
+              "oracle": "JSON_VALUE / dot notation"
+            }
+          },
+          {
+            "aspect": "Shred array",
+            "cells": {
+              "sqlserver": "OPENJSON",
+              "postgresql": "jsonb_array_elements",
+              "mysql": "JSON_TABLE",
+              "oracle": "JSON_TABLE"
+            }
+          },
+          {
+            "aspect": "Index inside doc",
+            "cells": {
+              "sqlserver": "Computed column + index",
+              "postgresql": "GIN index (direct)",
+              "mysql": "Generated column + index",
+              "oracle": "JSON search index"
+            }
+          },
+          {
+            "aspect": "Containment test",
+            "cells": {
+              "sqlserver": "JSON_CONTAINS",
+              "postgresql": "@> operator",
+              "mysql": "JSON_CONTAINS",
+              "oracle": "JSON_EXISTS"
+            }
+          }
+        ],
+        "samples": [
+          {
+            "label": "Extract a scalar field 'color'",
+            "code": {
+              "sqlserver": "SELECT JSON_VALUE(Attributes,'$.color') FROM dbo.Product;",
+              "postgresql": "SELECT attributes->>'color' FROM product;",
+              "mysql": "SELECT attributes->>'$.color' FROM product;",
+              "oracle": "SELECT p.attributes.color FROM product p;"
+            }
+          }
+        ],
+        "migration": {
+          "equivalent": "Storing documents and extracting scalar values is conceptually identical across all four engines.",
+          "different": "Index strategy differs the most: PostgreSQL jsonb indexes the whole document with GIN, while SQL Server and MySQL require promoting paths to (computed/generated) columns.",
+          "directMigration": "Partial. Data migrates cleanly; queries and index DDL must be rewritten per engine.",
+          "syntaxChanges": "Replace JSON_VALUE/OPENJSON with the target engine's operators (->>, JSON_TABLE, jsonb_array_elements).",
+          "limitations": "SQL Server's native json type is 2025-only; older targets need nvarchar(max) + ISJSON.",
+          "whenToUse": "Use jsonb (PostgreSQL) when you need flexible ad-hoc indexing of documents; use the native json types elsewhere when documents are read via known paths."
+        }
+      }
+    },
+    {
+      "kind": "heading",
+      "text": "Real-world scenario",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "heading": "Product catalog with variable attributes",
+      "body": "A catalog has thousands of product types with different attributes. Store the stable columns relationally (id, price, name) and put variable attributes in a `json` column. Promote the two or three attributes you filter on (color, brand) to computed/generated columns and index those. This keeps writes flexible while queries stay fast — the pattern the exam rewards."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Expecting a JSON path predicate to use an index automatically.",
+          "fix": "On SQL Server and MySQL, promote the path to a computed/generated column and index it; only PostgreSQL jsonb indexes the document directly."
+        },
+        {
+          "mistake": "Using JSON_VALUE to return an object or array.",
+          "fix": "JSON_VALUE returns scalars only; use JSON_QUERY for object/array fragments."
+        },
+        {
+          "mistake": "Storing everything as JSON.",
+          "fix": "Keep columns you join/filter/aggregate on relational; use JSON for genuinely variable data."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Performance & security considerations",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "body": "Validate input with `ISJSON()` (or an `IS JSON` check) to avoid storing malformed documents. Large JSON blobs bloat memory grants — project only the paths you need. Treat JSON extracted into dynamic SQL as untrusted input to avoid injection."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "OPENJSON with an explicit WITH clause returns strongly-typed columns — the go-to for shredding.",
+        "JSON_VALUE = scalar; JSON_QUERY = object/array. This distinction shows up often.",
+        "Remember the native json data type is a SQL Server 2025 addition."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "SQL Server stores JSON in the native json type (2025) or nvarchar(max), reads it with JSON_VALUE/JSON_QUERY/OPENJSON, and indexes it via computed columns. PostgreSQL's jsonb + GIN is the most flexible for ad-hoc indexing; MySQL and Oracle sit in between. Keep hot, structured data relational and reserve JSON for truly variable attributes."
+    }
+  ],
+  "labId": "lab-json",
+  "questionIds": [
+    "q-l0103-1",
+    "q-l0103-2",
+    "q-l0103-3",
+    "q-l0103-4",
+    "q-l0103-5"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "JSON data in SQL Server",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "json data type",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/json-data-type",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "OPENJSON (Transact-SQL)",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/openjson-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "PostgreSQL documentation",
+      "url": "https://www.postgresql.org/docs/current/",
+      "publisher": "PostgreSQL",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "MySQL reference manual",
+      "url": "https://dev.mysql.com/doc/refman/9.0/en/",
+      "publisher": "MySQL",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Oracle Database SQL Language Reference",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/",
+      "publisher": "Oracle",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "l0201",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "order": 1,
+  "slug": "views",
+  "title": "Views and indexed views",
+  "summary": "Encapsulate queries with views, and materialize aggregates with indexed views.",
+  "minutes": 25,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Create views and understand updatability rules.",
+        "Explain when an indexed (materialized) view helps.",
+        "Use SCHEMABINDING."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Views simplify access, enforce security, and can be materialized for performance."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "View",
+          "definition": "A named, stored SELECT that behaves like a virtual table."
+        },
+        {
+          "term": "Indexed view",
+          "definition": "A view with a unique clustered index that physically stores its results."
+        },
+        {
+          "term": "SCHEMABINDING",
+          "definition": "Binds a view to the schema of its base tables, required for indexing."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "A standard view stores no data. An **indexed view** requires `WITH SCHEMABINDING` and a `UNIQUE CLUSTERED INDEX`; its results are stored and auto-maintained, accelerating expensive aggregations at write cost."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Indexed views need SCHEMABINDING and deterministic expressions.",
+        "Views can restrict columns/rows as a security layer."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Use views for abstraction and security; reach for indexed views to materialize costly, frequently-read aggregates."
+    }
+  ],
+  "questionIds": [
+    "q-l0201-1",
+    "q-l0201-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Views",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/views/views",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

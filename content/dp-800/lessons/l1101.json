@@ -1,0 +1,114 @@
+{
+  "id": "l1101",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "order": 1,
+  "slug": "rag-use-cases-and-rest-endpoint",
+  "title": "RAG use cases and calling models with sp_invoke_external_rest_endpoint",
+  "summary": "Ground LLM answers in your SQL data and call external models securely from T-SQL.",
+  "minutes": 35,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Identify good use cases for RAG.",
+        "Call an external model with sp_invoke_external_rest_endpoint.",
+        "Assemble a grounded prompt from retrieved rows."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "RAG combines Domain 3's retrieval with generation: fetch relevant rows via vector/hybrid search, then ask a model to answer using only that context."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "RAG",
+          "definition": "Retrieval-augmented generation — grounding an LLM with retrieved context to reduce hallucination."
+        },
+        {
+          "term": "sp_invoke_external_rest_endpoint",
+          "definition": "System stored procedure that calls an external REST API (e.g., a model) from T-SQL."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Good RAG use cases: Q&A over private docs, support assistants, and summarization grounded in current data. Call the model from SQL with **`sp_invoke_external_rest_endpoint`**, passing a JSON payload (URL, headers, body) and reading the JSON response. Authenticate with **Managed Identity** where possible."
+    },
+    {
+      "kind": "figure",
+      "caption": "RAG pipeline entirely inside SQL Server: retrieve with vector search, build a grounded prompt, call the model, extract the answer.",
+      "mermaid": "flowchart LR\n    q[\"User question\"] --> retr[\"Vector/hybrid retrieve top-k rows\"]\n    retr --> json[\"Convert rows to JSON (FOR JSON)\"]\n    json --> prompt[\"Build grounded prompt\"]\n    prompt --> call[\"sp_invoke_external_rest_endpoint\"]\n    call --> extract[\"Extract model answer (JSON_VALUE)\"]"
+    },
+    {
+      "kind": "heading",
+      "text": "Real-world scenario",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "heading": "Grounded support assistant",
+      "body": "A user asks a question; you vector-search the KB for the top 5 chunks, serialize them with FOR JSON, embed them in a prompt that says 'answer only from this context', call the chat model via sp_invoke_external_rest_endpoint, and return the extracted answer with citations to the source rows."
+    },
+    {
+      "kind": "heading",
+      "text": "Performance & security considerations",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "body": "Use Managed Identity for the endpoint; never inject untrusted text into system instructions; cap retrieved context size; log calls for monitoring."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "sp_invoke_external_rest_endpoint is THE way to call a model from T-SQL.",
+        "RAG reduces hallucination by grounding the model in retrieved data."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "RAG grounds LLMs in your data: retrieve, convert to JSON, prompt, call via sp_invoke_external_rest_endpoint, extract — all in SQL, secured with Managed Identity."
+    }
+  ],
+  "questionIds": [
+    "q-l1101-1",
+    "q-l1101-2",
+    "q-l1101-3"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "sp_invoke_external_rest_endpoint",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-invoke-external-rest-endpoint-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

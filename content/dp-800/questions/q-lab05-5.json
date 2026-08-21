@@ -1,0 +1,33 @@
+{
+  "id": "q-lab05-5",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0505",
+  "difficulty": "advanced",
+  "prompt": "A RAG stored procedure will call Azure OpenAI via `sp_invoke_external_rest_endpoint`. You must not store API keys in T-SQL or in a table. The same identity should be used from Azure SQL.\n\nWhich authentication should you configure?",
+  "explanation": "DP-800 explicitly calls out securing model endpoints with Managed Identity. Secrets in T-SQL, sa in URLs, and anonymous model access fail the skill. Pair the credential with the external REST / external model object.",
+  "tags": [
+    "lab-coding",
+    "lab-05"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A DATABASE SCOPED CREDENTIAL backed by Managed Identity (passwordless)"
+    },
+    {
+      "id": "b",
+      "text": "Hard-code the OpenAI key in the procedure body and GRANT EXECUTE to public"
+    },
+    {
+      "id": "c",
+      "text": "Anonymous access to the model deployment because the database is in Azure"
+    },
+    {
+      "id": "d",
+      "text": "SQL authentication with the `sa` password in the REST URL query string"
+    }
+  ],
+  "correct": "a"
+}

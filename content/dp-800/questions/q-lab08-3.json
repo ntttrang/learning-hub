@@ -1,0 +1,33 @@
+{
+  "id": "q-lab08-3",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "lessonId": "l0802",
+  "difficulty": "advanced",
+  "prompt": "A DAB mappings block contains `\"GearId\": \"id\"`. A REST client GET returns JSON.\n\nWhat does the client see, and what happens in SQL Server?",
+  "explanation": "Mappings are an API façade. GraphQL/REST expose `id`; T-SQL still uses GearId. That is how you keep REST naming conventions without a table rewrite.",
+  "tags": [
+    "lab-coding",
+    "lab-08"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "JSON property `id` mapped from column `GearId`; the physical column name is unchanged"
+    },
+    {
+      "id": "b",
+      "text": "Both `GearId` and `id` are required in every payload or DAB returns 500"
+    },
+    {
+      "id": "c",
+      "text": "SQL Server renames the column; existing procedures that reference GearId break"
+    },
+    {
+      "id": "d",
+      "text": "The column is dropped from the API and from the table"
+    }
+  ],
+  "correct": "a"
+}

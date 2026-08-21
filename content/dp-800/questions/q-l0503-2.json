@@ -1,0 +1,29 @@
+{
+  "id": "q-l0503-2",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0503",
+  "difficulty": "advanced",
+  "prompt": "An RLS predicate function must be:",
+  "explanation": "RLS predicate functions must be inline table-valued functions WITH SCHEMABINDING for correctness and performance.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A multi-statement TVF"
+    },
+    {
+      "id": "b",
+      "text": "An inline TVF with SCHEMABINDING"
+    },
+    {
+      "id": "c",
+      "text": "A scalar UDF"
+    },
+    {
+      "id": "d",
+      "text": "A stored procedure"
+    }
+  ],
+  "correct": "b"
+}

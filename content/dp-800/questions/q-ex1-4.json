@@ -1,0 +1,29 @@
+{
+  "id": "q-ex1-4",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0602",
+  "difficulty": "advanced",
+  "prompt": "Reports intermittently return inconsistent totals because they read rows mid-update. You must avoid blocking writers. What do you enable?",
+  "explanation": "RCSI gives consistent committed reads via row versioning without blocking writers; NOLOCK/READ UNCOMMITTED would permit dirty reads.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "NOLOCK hints"
+    },
+    {
+      "id": "b",
+      "text": "RCSI (Read Committed Snapshot Isolation)"
+    },
+    {
+      "id": "c",
+      "text": "READ UNCOMMITTED"
+    },
+    {
+      "id": "d",
+      "text": "Table locks"
+    }
+  ],
+  "correct": "b"
+}

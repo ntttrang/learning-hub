@@ -1,0 +1,33 @@
+{
+  "id": "q-ex1-7",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "lessonId": "l1101",
+  "difficulty": "advanced",
+  "prompt": "Which are appropriate use cases for RAG? (Select all that apply.)",
+  "explanation": "RAG grounds generative answers in retrieved data. Exact numeric aggregation is a job for SQL itself, not the generative step.",
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Grounded Q&A over private documentation"
+    },
+    {
+      "id": "b",
+      "text": "A support assistant citing current data"
+    },
+    {
+      "id": "c",
+      "text": "Guaranteeing exact numeric aggregation"
+    },
+    {
+      "id": "d",
+      "text": "Summarizing retrieved, up-to-date records"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

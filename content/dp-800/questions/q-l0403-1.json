@@ -1,0 +1,29 @@
+{
+  "id": "q-l0403-1",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "lessonId": "l0403",
+  "difficulty": "advanced",
+  "prompt": "Which MCP server endpoints are explicitly called out in the DP-800 blueprint?",
+  "explanation": "The blueprint names Microsoft SQL Server and Fabric lakehouse MCP server endpoints.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Microsoft SQL Server and Fabric lakehouse"
+    },
+    {
+      "id": "b",
+      "text": "Redis and MongoDB"
+    },
+    {
+      "id": "c",
+      "text": "Kafka and RabbitMQ"
+    },
+    {
+      "id": "d",
+      "text": "S3 and DynamoDB"
+    }
+  ],
+  "correct": "a"
+}

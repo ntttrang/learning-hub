@@ -1,0 +1,102 @@
+{
+  "id": "l0504",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "order": 4,
+  "slug": "permissions-and-passwordless",
+  "title": "Object-level permissions and passwordless access",
+  "summary": "Grant least-privilege permissions and adopt passwordless (Entra/Managed Identity) authentication.",
+  "minutes": 30,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Apply GRANT/DENY/REVOKE at object scope.",
+        "Implement passwordless access with Microsoft Entra and Managed Identity."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Permissions and passwordless auth are foundational to secure DP-800 solutions, especially for AI service connections."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Least privilege",
+          "definition": "Granting only the permissions a principal needs to do its job."
+        },
+        {
+          "term": "Managed Identity",
+          "definition": "An Entra identity for Azure resources that removes the need for stored credentials."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Use `GRANT`/`DENY`/`REVOKE` on specific objects and prefer roles over per-user grants. **Passwordless** access uses Microsoft Entra authentication and **Managed Identity** so no secrets are stored — the recommended approach for app and AI-service connections."
+    },
+    {
+      "kind": "heading",
+      "text": "Performance & security considerations",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "body": "DENY overrides GRANT. Assign permissions to roles, add users to roles, and use Managed Identity for service-to-database connections."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Passwordless + Managed Identity is the preferred answer for connecting apps/AI services securely.",
+        "DENY always wins over GRANT."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Grant least privilege via roles and go passwordless with Entra/Managed Identity for service connections."
+    }
+  ],
+  "questionIds": [
+    "q-l0504-1",
+    "q-l0504-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Permissions (Database Engine)",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/permissions-database-engine",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Passwordless connections",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/authentication-aad-overview",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

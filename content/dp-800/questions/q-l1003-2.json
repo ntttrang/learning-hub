@@ -1,0 +1,29 @@
+{
+  "id": "q-l1003-2",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1003",
+  "difficulty": "advanced",
+  "prompt": "Hybrid search combines which two approaches?",
+  "explanation": "Hybrid search fuses keyword (full-text) and semantic (vector) retrieval, often via RRF.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Full-text (keyword) and vector (semantic)"
+    },
+    {
+      "id": "b",
+      "text": "Two full-text indexes"
+    },
+    {
+      "id": "c",
+      "text": "Two columnstore scans"
+    },
+    {
+      "id": "d",
+      "text": "Backup and restore"
+    }
+  ],
+  "correct": "a"
+}

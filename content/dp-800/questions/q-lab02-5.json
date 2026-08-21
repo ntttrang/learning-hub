@@ -1,0 +1,36 @@
+{
+  "id": "q-lab02-5",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "lessonId": "l0203",
+  "difficulty": "advanced",
+  "prompt": "An `AFTER UPDATE` trigger on `dbo.Gear` must write an audit row with **both** the old list price and the new list price.\n\nWhich **two** virtual tables do you read? Each correct answer presents part of the solution.",
+  "explanation": "There is no `updated` table. For UPDATE, `deleted` holds before-images and `inserted` holds after-images. Join them on the key to pair old and new prices. DMVs do not carry row images.",
+  "tags": [
+    "lab-coding",
+    "lab-02"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "`deleted` — previous image of the updated rows"
+    },
+    {
+      "id": "b",
+      "text": "`inserted` — new image of the updated rows"
+    },
+    {
+      "id": "c",
+      "text": "`updated` — SQL Server's dedicated UPDATE virtual table"
+    },
+    {
+      "id": "d",
+      "text": "`sys.dm_tran_locks` — lock list is the old/new column values"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

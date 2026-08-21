@@ -1,0 +1,29 @@
+{
+  "id": "q-l0106-1",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0106",
+  "difficulty": "advanced",
+  "prompt": "Which operation moves an entire partition in or out of a table almost instantly (metadata-only)?",
+  "explanation": "ALTER TABLE ... SWITCH is a metadata-only operation, the basis of the sliding-window archival pattern.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "BULK INSERT"
+    },
+    {
+      "id": "b",
+      "text": "ALTER TABLE ... SWITCH"
+    },
+    {
+      "id": "c",
+      "text": "MERGE"
+    },
+    {
+      "id": "d",
+      "text": "DBCC SHRINKFILE"
+    }
+  ],
+  "correct": "b"
+}

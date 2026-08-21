@@ -1,0 +1,29 @@
+{
+  "id": "q-l0504-1",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0504",
+  "difficulty": "intermediate",
+  "prompt": "A user is a member of two roles: one GRANTs SELECT, one DENYs SELECT on the same table. What happens?",
+  "explanation": "DENY overrides GRANT, so the user cannot SELECT.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "SELECT is allowed"
+    },
+    {
+      "id": "b",
+      "text": "SELECT is denied"
+    },
+    {
+      "id": "c",
+      "text": "Depends on order"
+    },
+    {
+      "id": "d",
+      "text": "Error"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "q-lab10-6",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1003",
+  "difficulty": "advanced",
+  "prompt": "After adding a DiskANN index, p95 latency is good but a known-relevant review sometimes misses the top 10. Leadership asks whether to revert to exact search.\n\nHow should you evaluate?",
+  "explanation": "Evaluating vector/hybrid performance (recall, latency, metric) is an explicit skill. Missing a neighbor is expected ANN behavior, not corruption. Query Store does not rank vectors.",
+  "tags": [
+    "lab-coding",
+    "lab-10"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Measure recall@k vs latency (and metric choice). ANN trades a little recall for speed; tighten k / tune the index or hybridize rather than assuming ENN is free"
+    },
+    {
+      "id": "b",
+      "text": "ANN always returns a random 10 rows; DiskANN cannot use cosine"
+    },
+    {
+      "id": "c",
+      "text": "If any document is missing, the VECTOR type is corrupt and you must drop the database"
+    },
+    {
+      "id": "d",
+      "text": "Disable Query Store; it reduces vector recall"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "q-lab04-2",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "lessonId": "l0402",
+  "difficulty": "advanced",
+  "prompt": "Harbor Outfitters wants every Copilot chat in this repo to follow the same T-SQL standards without pasting the rules into each prompt.\n\nWhere should the durable instructions live, and what is the security implication of Copilot suggesting SQL?",
+  "explanation": "GitHub Copilot reads `.github/copilot-instructions.md` (and path variants) from the workspace. DP-800 still expects you to interpret the **security impact**: the model is not an authorization boundary. Never auto-run generated SQL as a privileged principal.",
+  "tags": [
+    "lab-coding",
+    "lab-04"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "`.github/copilot-instructions.md` in the repo; treat generated SQL as untrusted — it can still emit injection, over-privileged objects, or secrets"
+    },
+    {
+      "id": "b",
+      "text": "A table `dbo.CopilotRules`; Copilot always executes suggested SQL as `sa`"
+    },
+    {
+      "id": "c",
+      "text": "SQL Server Agent job comments; generated SQL is guaranteed safe if the model is GPT-4"
+    },
+    {
+      "id": "d",
+      "text": "The `sa` login's default database; MCP then disables authentication for speed"
+    }
+  ],
+  "correct": "a"
+}

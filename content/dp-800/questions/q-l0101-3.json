@@ -1,0 +1,29 @@
+{
+  "id": "q-l0101-3",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0101",
+  "difficulty": "beginner",
+  "prompt": "Which data type is the recommended modern choice for storing date and time with high precision?",
+  "explanation": "DATETIME2 offers a larger range and configurable fractional-second precision, and is preferred over legacy DATETIME. In SQL Server, TIMESTAMP is a rowversion, not a datetime.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "DATETIME"
+    },
+    {
+      "id": "b",
+      "text": "SMALLDATETIME"
+    },
+    {
+      "id": "c",
+      "text": "DATETIME2"
+    },
+    {
+      "id": "d",
+      "text": "TIMESTAMP"
+    }
+  ],
+  "correct": "c"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "q-cs1-2",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1002",
+  "difficulty": "advanced",
+  "prompt": "With 2 million articles, exact scans are too slow. What should Contoso add?",
+  "explanation": "At this scale, an approximate (DiskANN) vector index trades slight recall for major speedups.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A DiskANN vector index for ANN search"
+    },
+    {
+      "id": "b",
+      "text": "A nonclustered rowstore index on the VECTOR column"
+    },
+    {
+      "id": "c",
+      "text": "A full-text catalog only"
+    },
+    {
+      "id": "d",
+      "text": "Nothing"
+    }
+  ],
+  "correct": "a"
+}

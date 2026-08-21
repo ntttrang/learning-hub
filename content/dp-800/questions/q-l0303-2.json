@@ -1,0 +1,29 @@
+{
+  "id": "q-l0303-2",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0303",
+  "difficulty": "intermediate",
+  "prompt": "Which function aggregates values from multiple rows into a single JSON array?",
+  "explanation": "JSON_ARRAYAGG aggregates row values into a JSON array; JSON_OBJECTAGG builds an object.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "JSON_VALUE"
+    },
+    {
+      "id": "b",
+      "text": "JSON_ARRAYAGG"
+    },
+    {
+      "id": "c",
+      "text": "JSON_QUERY"
+    },
+    {
+      "id": "d",
+      "text": "ISJSON"
+    }
+  ],
+  "correct": "b"
+}

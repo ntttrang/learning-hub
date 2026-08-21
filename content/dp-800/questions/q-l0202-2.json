@@ -1,0 +1,29 @@
+{
+  "id": "q-l0202-2",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "lessonId": "l0202",
+  "difficulty": "intermediate",
+  "prompt": "Which SQL Server feature can automatically improve performance of eligible legacy scalar UDFs?",
+  "explanation": "Scalar UDF inlining (Intelligent Query Processing, 2019+) inlines eligible scalar functions for large speedups.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Scalar UDF inlining"
+    },
+    {
+      "id": "b",
+      "text": "Auto-shrink"
+    },
+    {
+      "id": "c",
+      "text": "Instant file initialization"
+    },
+    {
+      "id": "d",
+      "text": "Lock escalation"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "q-lab01-5",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0105",
+  "difficulty": "advanced",
+  "prompt": "Harbor Outfitters needs a **shared** integer namespace for `dbo.VoyageLine` and a staging table `dbo.VoyageLineIngest`. Both tables must draw the next id without colliding. Identity columns cannot be shared across tables.\n\nWhich pattern should you use?",
+  "explanation": "`IDENTITY` is table-scoped. A SEQUENCE is an independent object, so both tables can call `NEXT VALUE FOR dbo.VoyageLineSeq`. NEWID() is uniqueidentifier, not INT. A formula on VoyageId/GearId is not a monotonic surrogate and will collide.",
+  "tags": [
+    "lab-coding",
+    "lab-01"
+  ],
+  "kind": "codeReading",
+  "code": "INSERT INTO dbo.VoyageLine (LineId, VoyageId, GearId, Qty)\nVALUES (NEXT VALUE FOR dbo.VoyageLineSeq, @VoyageId, @GearId, @Qty);",
+  "options": [
+    {
+      "id": "a",
+      "text": "A SEQUENCE object; call `NEXT VALUE FOR` (or a DEFAULT bound to it) from both tables"
+    },
+    {
+      "id": "b",
+      "text": "IDENTITY(1,1) on both tables starting at 1; collisions cannot occur"
+    },
+    {
+      "id": "c",
+      "text": "`NEWID()` as a DEFAULT on an INT column"
+    },
+    {
+      "id": "d",
+      "text": "A computed column `LineId AS VoyageId * 1000 + GearId`"
+    }
+  ],
+  "correct": "a"
+}

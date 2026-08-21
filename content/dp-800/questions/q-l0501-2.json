@@ -1,0 +1,29 @@
+{
+  "id": "q-l0501-2",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0501",
+  "difficulty": "intermediate",
+  "prompt": "What do secure enclaves add to Always Encrypted?",
+  "explanation": "Secure enclaves allow certain comparisons/computations (pattern matching, range) on Always Encrypted data inside a protected memory region.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Automatic backups"
+    },
+    {
+      "id": "b",
+      "text": "Richer server-side operations (e.g., range, pattern) on encrypted columns"
+    },
+    {
+      "id": "c",
+      "text": "Compression"
+    },
+    {
+      "id": "d",
+      "text": "Replication"
+    }
+  ],
+  "correct": "b"
+}

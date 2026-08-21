@@ -1,0 +1,29 @@
+{
+  "id": "q-ex1-3",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0503",
+  "difficulty": "advanced",
+  "prompt": "A multi-tenant app must guarantee tenants can neither read nor insert other tenants' rows, enforced in the database. Which combination is required?",
+  "explanation": "FILTER handles reads, BLOCK handles writes; the tenant id is supplied via read-only session context so it can't be spoofed.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A FILTER predicate only"
+    },
+    {
+      "id": "b",
+      "text": "FILTER and BLOCK predicates in a security policy, with tenant id in read-only session context"
+    },
+    {
+      "id": "c",
+      "text": "Dynamic Data Masking on the tenant column"
+    },
+    {
+      "id": "d",
+      "text": "A CHECK constraint on tenant id"
+    }
+  ],
+  "correct": "b"
+}

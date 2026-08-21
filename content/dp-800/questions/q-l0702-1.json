@@ -1,0 +1,29 @@
+{
+  "id": "q-l0702-1",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "lessonId": "l0702",
+  "difficulty": "intermediate",
+  "prompt": "Where should static/reference (lookup) data live in a SQL Database Project?",
+  "explanation": "Reference data is versioned in the project, usually via post-deployment scripts, so environments stay consistent.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "In production only"
+    },
+    {
+      "id": "b",
+      "text": "In source control, typically as post-deployment scripts"
+    },
+    {
+      "id": "c",
+      "text": "In a spreadsheet"
+    },
+    {
+      "id": "d",
+      "text": "It cannot be versioned"
+    }
+  ],
+  "correct": "b"
+}

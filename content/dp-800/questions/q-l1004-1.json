@@ -1,0 +1,29 @@
+{
+  "id": "q-l1004-1",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1004",
+  "difficulty": "advanced",
+  "prompt": "Tuning an ANN index is fundamentally a trade-off between:",
+  "explanation": "ANN parameters trade recall (accuracy) against latency (speed); measure both on representative queries.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Recall and latency"
+    },
+    {
+      "id": "b",
+      "text": "Backup size and CPU"
+    },
+    {
+      "id": "c",
+      "text": "Color and font"
+    },
+    {
+      "id": "d",
+      "text": "Rows and columns"
+    }
+  ],
+  "correct": "a"
+}

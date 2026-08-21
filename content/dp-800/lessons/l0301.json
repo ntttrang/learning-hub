@@ -1,0 +1,86 @@
+{
+  "id": "l0301",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "order": 1,
+  "slug": "ctes",
+  "title": "Common table expressions and recursion",
+  "summary": "Structure queries with CTEs and traverse hierarchies with recursive CTEs.",
+  "minutes": 25,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Write non-recursive and recursive CTEs.",
+        "Traverse a hierarchy with an anchor + recursive member."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "CTEs improve readability and enable recursion over hierarchical data."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "CTE",
+          "definition": "A named temporary result set defined with WITH, referenced once in the following statement."
+        },
+        {
+          "term": "Recursive CTE",
+          "definition": "A CTE that references itself, with an anchor and a recursive member."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "A recursive CTE has an **anchor member**, `UNION ALL`, and a **recursive member** that references the CTE. Guard with `OPTION (MAXRECURSION n)` to avoid runaway recursion."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "MAXRECURSION 0 removes the limit (default is 100).",
+        "A CTE is scoped to the single statement that follows it."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Use CTEs for clarity and hierarchy traversal; control depth with MAXRECURSION."
+    }
+  ],
+  "questionIds": [
+    "q-l0301-1",
+    "q-l0301-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "WITH common_table_expression",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/with-common-table-expression-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

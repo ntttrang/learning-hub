@@ -1,0 +1,29 @@
+{
+  "id": "q-l0804-1",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "lessonId": "l0804",
+  "difficulty": "advanced",
+  "prompt": "You need lightweight detection of which rows changed (not full history) to drive re-processing. Which feature fits?",
+  "explanation": "Change Tracking is lightweight and reports which rows changed; CDC captures full before/after history at higher cost.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Change Data Capture"
+    },
+    {
+      "id": "b",
+      "text": "Change Tracking"
+    },
+    {
+      "id": "c",
+      "text": "TDE"
+    },
+    {
+      "id": "d",
+      "text": "Query Store"
+    }
+  ],
+  "correct": "b"
+}

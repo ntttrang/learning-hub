@@ -1,0 +1,29 @@
+{
+  "id": "q-l0802-2",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "lessonId": "l0802",
+  "difficulty": "intermediate",
+  "prompt": "Besides tables, DAB can expose which objects?",
+  "explanation": "DAB can expose tables, views, and stored procedures, and configure GraphQL relationships.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Only tables"
+    },
+    {
+      "id": "b",
+      "text": "Views and stored procedures, plus GraphQL relationships"
+    },
+    {
+      "id": "c",
+      "text": "Only stored procedures"
+    },
+    {
+      "id": "d",
+      "text": "Only GraphQL, never REST"
+    }
+  ],
+  "correct": "b"
+}

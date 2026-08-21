@@ -1,0 +1,85 @@
+{
+  "id": "l0601",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "order": 1,
+  "slug": "database-configuration",
+  "title": "Recommending database configurations",
+  "summary": "Tune database-scoped and instance settings for the workload.",
+  "minutes": 25,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Recommend database-scoped configurations.",
+        "Reason about compatibility level and MAXDOP."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Correct configuration is a prerequisite for good performance; DP-800 expects sensible recommendations."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Database-scoped configuration",
+          "definition": "Per-database settings like MAXDOP and legacy cardinality estimation."
+        },
+        {
+          "term": "Compatibility level",
+          "definition": "Controls which query optimizer behaviors and features are enabled."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Use `ALTER DATABASE SCOPED CONFIGURATION` for settings such as `MAXDOP`, `LEGACY_CARDINALITY_ESTIMATION`, and query optimizer hotfixes. Set an appropriate **compatibility level** to opt into (or out of) optimizer changes safely."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "MAXDOP controls parallelism per query; too high can cause contention."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Match compatibility level and database-scoped settings (MAXDOP, CE) to your workload rather than accepting defaults blindly."
+    }
+  ],
+  "questionIds": [
+    "q-l0601-1",
+    "q-l0601-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "ALTER DATABASE SCOPED CONFIGURATION",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-database-scoped-configuration-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

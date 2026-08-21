@@ -1,0 +1,29 @@
+{
+  "id": "q-l0304-1",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0304",
+  "difficulty": "intermediate",
+  "prompt": "You must deduplicate customer names with minor typos. Which function is most appropriate?",
+  "explanation": "JARO_WINKLER favors common prefixes and is well-suited to person names; EDIT_DISTANCE also helps for general typos.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "REGEXP_LIKE"
+    },
+    {
+      "id": "b",
+      "text": "JARO_WINKLER_DISTANCE"
+    },
+    {
+      "id": "c",
+      "text": "SOUNDEX only"
+    },
+    {
+      "id": "d",
+      "text": "JSON_VALUE"
+    }
+  ],
+  "correct": "b"
+}

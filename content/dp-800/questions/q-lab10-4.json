@@ -1,0 +1,36 @@
+{
+  "id": "q-lab10-4",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1002",
+  "difficulty": "advanced",
+  "prompt": "`dbo.GearReview` will hold ~2 million embeddings of 1536 dimensions. Exact scans miss the latency SLO. You still want cosine. Preview vector indexes are acceptable if labeled.\n\nWhich **two** statements are correct? Each correct answer presents part of the solution.",
+  "explanation": "At this scale the outline expects ANN (DiskANN-style) vs ENN. A rowstore index is not a vector ANN index. Full-text does not index VECTOR. Label preview APIs in production plans.",
+  "tags": [
+    "lab-coding",
+    "lab-10"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Add an approximate nearest-neighbor (ANN) vector index (e.g. DiskANN) and search with ANN; expect a recall/latency trade-off vs exact NN"
+    },
+    {
+      "id": "b",
+      "text": "ENN (exact) scans every vector; fine for small sets, not the default at 2M × 1536 under a tight SLO"
+    },
+    {
+      "id": "c",
+      "text": "A nonclustered **rowstore** B-tree on the VECTOR column gives the same ANN behavior as DiskANN"
+    },
+    {
+      "id": "d",
+      "text": "Full-text catalogs index VECTOR columns automatically if you add a stoplist"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

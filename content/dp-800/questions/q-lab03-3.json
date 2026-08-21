@@ -1,0 +1,34 @@
+{
+  "id": "q-lab03-3",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0302",
+  "difficulty": "challenge",
+  "prompt": "For each `Color`, return the **three most expensive** gear rows. Ties at the cutoff must not share a rank number (you need a deterministic 1..n so `<= 3` returns at most three rows per color). You already know window functions cannot be referenced in the same SELECT's WHERE.\n\nWhich function belongs in the CTE, and where do you filter?",
+  "explanation": "`ROW_NUMBER` assigns unique 1..n (use a tie-breaker like GearId). `RANK` shares numbers on ties, so `<= 3` can return more than three rows. Window functions are evaluated after WHERE, so the filter must be outer (CTE/derived table). NTILE buckets rows; it is not top-n.",
+  "tags": [
+    "lab-coding",
+    "lab-03"
+  ],
+  "kind": "codeReading",
+  "code": "WITH Ranked AS (\n  SELECT Name, Color, ListPrice,\n         ???() OVER (PARTITION BY Color ORDER BY ListPrice DESC, GearId) AS rnk\n  FROM dbo.Gear\n)\nSELECT Name, Color, ListPrice FROM Ranked WHERE rnk <= 3;",
+  "options": [
+    {
+      "id": "a",
+      "text": "`ROW_NUMBER` in the CTE; filter `rnk <= 3` in the outer query"
+    },
+    {
+      "id": "b",
+      "text": "`RANK` in the CTE; filter in the same SELECT's WHERE as the window"
+    },
+    {
+      "id": "c",
+      "text": "`NTILE(3)` in the outer WHERE without a CTE"
+    },
+    {
+      "id": "d",
+      "text": "`COUNT(*) OVER ()` and `HAVING COUNT(*) <= 3`"
+    }
+  ],
+  "correct": "a"
+}

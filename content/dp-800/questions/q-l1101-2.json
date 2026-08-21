@@ -1,0 +1,29 @@
+{
+  "id": "q-l1101-2",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "lessonId": "l1101",
+  "difficulty": "advanced",
+  "prompt": "What problem does RAG primarily address?",
+  "explanation": "RAG retrieves relevant data and supplies it as context so the model answers from facts, reducing hallucination.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Grounding LLM answers in your data to reduce hallucination"
+    },
+    {
+      "id": "b",
+      "text": "Compressing backups"
+    },
+    {
+      "id": "c",
+      "text": "Indexing images"
+    },
+    {
+      "id": "d",
+      "text": "Encrypting connections"
+    }
+  ],
+  "correct": "a"
+}

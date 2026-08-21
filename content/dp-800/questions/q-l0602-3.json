@@ -1,0 +1,29 @@
+{
+  "id": "q-l0602-3",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0602",
+  "difficulty": "advanced",
+  "prompt": "Which anomaly can occur under READ UNCOMMITTED?",
+  "explanation": "READ UNCOMMITTED permits dirty reads (seeing uncommitted changes).",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Dirty reads"
+    },
+    {
+      "id": "b",
+      "text": "No anomalies"
+    },
+    {
+      "id": "c",
+      "text": "Only phantoms"
+    },
+    {
+      "id": "d",
+      "text": "Deadlocks are eliminated"
+    }
+  ],
+  "correct": "a"
+}

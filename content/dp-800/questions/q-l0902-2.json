@@ -1,0 +1,33 @@
+{
+  "id": "q-l0902-2",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "lessonId": "l0902",
+  "difficulty": "advanced",
+  "prompt": "Which is a valid embedding-maintenance method named in the 2026 blueprint?",
+  "explanation": "Triggers, Change Tracking, CDC, CES, Azure Functions, Logic Apps, and Microsoft Foundry are listed methods; disk defrag is unrelated.",
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Table triggers"
+    },
+    {
+      "id": "b",
+      "text": "CDC"
+    },
+    {
+      "id": "c",
+      "text": "Microsoft Foundry"
+    },
+    {
+      "id": "d",
+      "text": "Defragmenting the disk"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

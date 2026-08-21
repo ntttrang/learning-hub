@@ -1,0 +1,30 @@
+{
+  "id": "q-l0302-1",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0302",
+  "difficulty": "intermediate",
+  "prompt": "You need a running total of sales ordered by date. Which clause produces it?",
+  "explanation": "A frame of UNBOUNDED PRECEDING to CURRENT ROW yields a cumulative running total.",
+  "kind": "codeReading",
+  "code": "SUM(Amount) OVER (ORDER BY SaleDate ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)",
+  "options": [
+    {
+      "id": "a",
+      "text": "It produces a running total"
+    },
+    {
+      "id": "b",
+      "text": "It produces the grand total on every row"
+    },
+    {
+      "id": "c",
+      "text": "It errors without PARTITION BY"
+    },
+    {
+      "id": "d",
+      "text": "It returns NULLs"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "q-lab06-6",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0601",
+  "difficulty": "advanced",
+  "prompt": "You turn on Query Store for Harbor's Azure SQL database so you can compare plans after a compatibility-level change.\n\nWhich statement starts capture, and what does it **not** do by itself?",
+  "explanation": "`SET QUERY_STORE = ON` is the capture switch. Automatic plan correction / forcing is a separate Automatic Tuning (or manual force) step. Isolation and encryption are unrelated database options.",
+  "tags": [
+    "lab-coding",
+    "lab-06"
+  ],
+  "kind": "codeReading",
+  "code": "ALTER DATABASE CURRENT SET QUERY_STORE = ON;",
+  "options": [
+    {
+      "id": "a",
+      "text": "It captures query text, plans, and runtime stats. It does **not** automatically force good plans or enable RCSI"
+    },
+    {
+      "id": "b",
+      "text": "It enables RCSI and Always Encrypted"
+    },
+    {
+      "id": "c",
+      "text": "It rebuilds every index and clears missing-index DMVs"
+    },
+    {
+      "id": "d",
+      "text": "It is a deprecated synonym for `SET AUTOMATIC_TUNING = OFF`"
+    }
+  ],
+  "correct": "a"
+}

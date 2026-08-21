@@ -1,0 +1,86 @@
+{
+  "id": "l0803",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "order": 3,
+  "slug": "azure-monitor",
+  "title": "Monitoring with Azure Monitor",
+  "summary": "Observe SQL and API workloads with Application Insights and Log Analytics.",
+  "minutes": 25,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Recommend Azure Monitor configurations.",
+        "Use Application Insights and Log Analytics for observability."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Observability is explicitly in the blueprint: recommend the right Azure Monitor setup for SQL and AI workloads."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Application Insights",
+          "definition": "APM service for request tracing, dependencies, and failures."
+        },
+        {
+          "term": "Log Analytics",
+          "definition": "A workspace that stores and queries telemetry with KQL."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Send metrics and logs to **Azure Monitor**. Use **Application Insights** for end-to-end request/dependency tracing (including calls to AI services) and **Log Analytics** to store and query telemetry with KQL, powering alerts and dashboards."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "App Insights = distributed tracing; Log Analytics = query/store logs.",
+        "Monitor AI service dependencies via App Insights."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Route telemetry to Azure Monitor; use App Insights for tracing and Log Analytics for querying and alerting."
+    }
+  ],
+  "questionIds": [
+    "q-l0803-1",
+    "q-l0803-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Azure Monitor",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "q-l0301-1",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0301",
+  "difficulty": "intermediate",
+  "prompt": "A recursive CTE keeps running far past the expected depth. Which option limits recursion depth?",
+  "explanation": "OPTION (MAXRECURSION n) caps recursion (default 100; 0 = unlimited).",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "OPTION (MAXRECURSION n)"
+    },
+    {
+      "id": "b",
+      "text": "SET ROWCOUNT n"
+    },
+    {
+      "id": "c",
+      "text": "TOP (n)"
+    },
+    {
+      "id": "d",
+      "text": "OPTION (RECOMPILE)"
+    }
+  ],
+  "correct": "a"
+}

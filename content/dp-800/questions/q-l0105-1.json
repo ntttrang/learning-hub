@@ -1,0 +1,29 @@
+{
+  "id": "q-l0105-1",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0105",
+  "difficulty": "beginner",
+  "prompt": "You need a single number space shared across several tables. Which object fits best?",
+  "explanation": "A SEQUENCE is schema-scoped and can feed multiple tables with NEXT VALUE FOR, unlike a table-bound IDENTITY.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "IDENTITY column"
+    },
+    {
+      "id": "b",
+      "text": "SEQUENCE"
+    },
+    {
+      "id": "c",
+      "text": "UNIQUEIDENTIFIER default"
+    },
+    {
+      "id": "d",
+      "text": "CHECK constraint"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "q-lab07-4",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "lessonId": "l0704",
+  "difficulty": "advanced",
+  "prompt": "GitHub Actions fails at publish: `Login failed for user`. The workflow maps `secrets.SQL_PUBLISH_CONNECTION` into `SQLPACKAGE_CONNECTION`. Yesterday the same pipeline succeeded.\n\nWhat should you check first?",
+  "explanation": "The CI lab's secrets section exists because connection strings rotate and secret names typo. Login failed is authentication/authorization, not Query Store. A dacpac is a zip internally but you do not rename it for SqlPackage. TargetPlatform XML is not a login fix.",
+  "tags": [
+    "lab-coding",
+    "lab-07"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "The secret **name** matches the workflow mapping, the credential is still valid on the target, and the login has publish rights — not Query Store or renaming the dacpac to .zip"
+    },
+    {
+      "id": "b",
+      "text": "Whether Query Store is enabled on `master`"
+    },
+    {
+      "id": "c",
+      "text": "Whether you hand-renamed the dacpac to `.zip` so SqlPackage will accept it"
+    },
+    {
+      "id": "d",
+      "text": "Whether the .sqlproj TargetPlatform is set to XML"
+    }
+  ],
+  "correct": "a"
+}

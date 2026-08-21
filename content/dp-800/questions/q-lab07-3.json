@@ -1,0 +1,33 @@
+{
+  "id": "q-lab07-3",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "lessonId": "l0703",
+  "difficulty": "advanced",
+  "prompt": "You add `ListPrice` precision in a project `.sql` table file, open a PR, and the build produces a dacpac. Why is that safer than running the ALTER in SSMS on production during lunch?",
+  "explanation": "CI/CD is repeatability and review. SSMS ALTERs cause drift the next publish may overwrite or fight. Publish does **not** skip permissions/CHECKs as a feature. Query Store is unrelated to whether a column change is in git.",
+  "tags": [
+    "lab-coding",
+    "lab-07"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "The change is reviewed in git, built in CI, and publish computes a consistent deployment against the declared model"
+    },
+    {
+      "id": "b",
+      "text": "SSMS cannot execute ALTER TABLE on Azure SQL"
+    },
+    {
+      "id": "c",
+      "text": "Dacpac publish ignores permissions and CHECK constraints, so it is always faster"
+    },
+    {
+      "id": "d",
+      "text": "Projects disable Query Store, which is required after every column change"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "q-l0603-2",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0603",
+  "difficulty": "advanced",
+  "prompt": "Which DMV helps find currently executing requests and their blockers?",
+  "explanation": "sys.dm_exec_requests shows active requests including blocking_session_id.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "sys.dm_exec_requests"
+    },
+    {
+      "id": "b",
+      "text": "sys.tables"
+    },
+    {
+      "id": "c",
+      "text": "sys.databases"
+    },
+    {
+      "id": "d",
+      "text": "sys.columns"
+    }
+  ],
+  "correct": "a"
+}

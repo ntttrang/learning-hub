@@ -1,0 +1,29 @@
+{
+  "id": "q-l0302-2",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0302",
+  "difficulty": "intermediate",
+  "prompt": "Which ranking function always returns unique, gapless numbers within a partition?",
+  "explanation": "ROW_NUMBER is always unique. RANK leaves gaps after ties; DENSE_RANK has no gaps but repeats values for ties.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "RANK"
+    },
+    {
+      "id": "b",
+      "text": "DENSE_RANK"
+    },
+    {
+      "id": "c",
+      "text": "ROW_NUMBER"
+    },
+    {
+      "id": "d",
+      "text": "NTILE"
+    }
+  ],
+  "correct": "c"
+}

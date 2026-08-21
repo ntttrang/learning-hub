@@ -1,0 +1,29 @@
+{
+  "id": "q-l0103-4",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0103",
+  "difficulty": "intermediate",
+  "prompt": "Which statement about PostgreSQL jsonb vs SQL Server json is TRUE?",
+  "explanation": "PostgreSQL jsonb supports GIN indexes over the whole document, whereas SQL Server (like MySQL) needs a promoted computed/generated column to index a path.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Both require computed/generated columns to index document contents"
+    },
+    {
+      "id": "b",
+      "text": "PostgreSQL jsonb can be indexed directly with a GIN index"
+    },
+    {
+      "id": "c",
+      "text": "SQL Server json supports the @> containment operator"
+    },
+    {
+      "id": "d",
+      "text": "Neither can store nested objects"
+    }
+  ],
+  "correct": "b"
+}

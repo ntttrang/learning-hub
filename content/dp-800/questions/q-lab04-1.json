@@ -1,0 +1,36 @@
+{
+  "id": "q-lab04-1",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "lessonId": "l0402",
+  "difficulty": "advanced",
+  "prompt": "Your team's Copilot instruction file requires: schema-qualify every object, no `SELECT *`, no comma joins, parameterized predicates, `SET NOCOUNT ON` in procedures.\n\nWhich **two** snippets violate those rules? Each correct answer presents part of the solution.",
+  "explanation": "A drops the schema prefix, uses SELECT *, and skips SET NOCOUNT ON. B is a comma join. C and D follow the instruction file. Copilot instruction files exist so the model does not emit A/B.",
+  "tags": [
+    "lab-coding",
+    "lab-04"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "`CREATE PROC usp_GetGear @Name nvarchar(100) AS SELECT * FROM Gear WHERE Name = @Name`"
+    },
+    {
+      "id": "b",
+      "text": "`SELECT v.VoyageId, l.GearId FROM dbo.Voyage v, dbo.VoyageLine l WHERE v.VoyageId = l.VoyageId`"
+    },
+    {
+      "id": "c",
+      "text": "`CREATE PROC dbo.usp_GetGear @GearId INT AS BEGIN SET NOCOUNT ON; SELECT Name FROM dbo.Gear WHERE GearId = @GearId; END`"
+    },
+    {
+      "id": "d",
+      "text": "`CREATE VIEW dbo.vw_ActiveCrew AS SELECT CrewId, Handle FROM dbo.Crew WHERE Region IS NOT NULL`"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

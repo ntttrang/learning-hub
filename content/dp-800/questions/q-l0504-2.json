@@ -1,0 +1,29 @@
+{
+  "id": "q-l0504-2",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0504",
+  "difficulty": "intermediate",
+  "prompt": "What is the recommended way for an app to connect to Azure SQL without storing secrets?",
+  "explanation": "Passwordless access via Microsoft Entra + Managed Identity avoids stored secrets and is the recommended pattern.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "SQL login with a shared password"
+    },
+    {
+      "id": "b",
+      "text": "Managed Identity with Microsoft Entra authentication"
+    },
+    {
+      "id": "c",
+      "text": "A connection string in the repo"
+    },
+    {
+      "id": "d",
+      "text": "Anonymous access"
+    }
+  ],
+  "correct": "b"
+}

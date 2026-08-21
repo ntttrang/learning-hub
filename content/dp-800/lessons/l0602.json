@@ -1,0 +1,101 @@
+{
+  "id": "l0602",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "order": 2,
+  "slug": "isolation-and-concurrency",
+  "title": "Transaction isolation levels and concurrency",
+  "summary": "Trade consistency for concurrency with isolation levels, and understand row-versioning (RCSI/snapshot).",
+  "minutes": 35,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Order the isolation levels and the anomalies they prevent.",
+        "Explain RCSI and SNAPSHOT isolation.",
+        "Choose an isolation level for a scenario."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Isolation levels balance correctness against concurrency; this is a heavily tested area."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Isolation level",
+          "definition": "Controls visibility of concurrent transactions' changes."
+        },
+        {
+          "term": "RCSI",
+          "definition": "Read Committed Snapshot Isolation — read committed using row versions, avoiding reader/writer blocking."
+        },
+        {
+          "term": "Snapshot isolation",
+          "definition": "Transaction sees a consistent snapshot as of its start."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "From least to most isolating: READ UNCOMMITTED, READ COMMITTED (default), REPEATABLE READ, SERIALIZABLE. Anomalies: dirty read, non-repeatable read, phantom. **RCSI** and **SNAPSHOT** use row versioning so readers don't block writers."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Using NOLOCK (READ UNCOMMITTED) for 'speed'.",
+          "fix": "It permits dirty/inconsistent reads; prefer RCSI for non-blocking consistent reads."
+        }
+      ]
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "SERIALIZABLE prevents phantoms; REPEATABLE READ does not.",
+        "RCSI changes read-committed to use versions — great default for read-heavy OLTP."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Pick the lowest isolation that prevents the anomalies you care about; use RCSI/snapshot to avoid reader/writer blocking."
+    }
+  ],
+  "questionIds": [
+    "q-l0602-1",
+    "q-l0602-2",
+    "q-l0602-3"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "SET TRANSACTION ISOLATION LEVEL",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

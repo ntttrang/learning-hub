@@ -1,0 +1,29 @@
+{
+  "id": "q-l1002-2",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1002",
+  "difficulty": "advanced",
+  "prompt": "To get the most similar rows with cosine distance, how should you order results?",
+  "explanation": "Smaller distance means more similar, so order ascending and take the top-k.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "ORDER BY distance ASC"
+    },
+    {
+      "id": "b",
+      "text": "ORDER BY distance DESC"
+    },
+    {
+      "id": "c",
+      "text": "ORDER BY NEWID()"
+    },
+    {
+      "id": "d",
+      "text": "No ordering needed"
+    }
+  ],
+  "correct": "a"
+}

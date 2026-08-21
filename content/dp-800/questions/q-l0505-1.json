@@ -1,0 +1,29 @@
+{
+  "id": "q-l0505-1",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0505",
+  "difficulty": "advanced",
+  "prompt": "How should you secure an AI model endpoint that SQL calls?",
+  "explanation": "Secure model endpoints with Managed Identity to avoid stored keys; scope access tightly.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Embed an API key in the T-SQL"
+    },
+    {
+      "id": "b",
+      "text": "Use Managed Identity"
+    },
+    {
+      "id": "c",
+      "text": "Disable TLS"
+    },
+    {
+      "id": "d",
+      "text": "Allow anonymous access"
+    }
+  ],
+  "correct": "b"
+}

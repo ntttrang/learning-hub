@@ -1,0 +1,29 @@
+{
+  "id": "q-l0603-1",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0603",
+  "difficulty": "advanced",
+  "prompt": "A query regressed after a plan change. Which feature lets you pin the previously good plan?",
+  "explanation": "Query Store captures plan history and lets you force a specific (good) plan to fix regressions.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Query Store (force plan)"
+    },
+    {
+      "id": "b",
+      "text": "DBCC CHECKDB"
+    },
+    {
+      "id": "c",
+      "text": "sp_who2"
+    },
+    {
+      "id": "d",
+      "text": "Full-text index"
+    }
+  ],
+  "correct": "a"
+}

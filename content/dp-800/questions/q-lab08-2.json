@@ -1,0 +1,36 @@
+{
+  "id": "q-lab08-2",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "lessonId": "l0802",
+  "difficulty": "challenge",
+  "prompt": "You expose view `dbo.vCrewVoyages` through DAB. The view has no primary-key metadata. GraphQL clients must query it, not mutate it. REST field `id` should map from `CrewId` without renaming the column.\n\nWhich **two** configuration choices are required? Each correct answer presents part of the solution.",
+  "explanation": "Tables expose PK metadata; views do not — you declare `key-fields`. Views are typically query-only. Mappings (`CrewId` → `id`) change the API shape without renaming SQL. Making the view writable is not implied by key-fields.",
+  "tags": [
+    "lab-coding",
+    "lab-08"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Set `key-fields` (e.g. CrewId) because DAB cannot infer a PK from a view"
+    },
+    {
+      "id": "b",
+      "text": "Restrict the entity to query (GraphQL `operation: query`) / omit write permissions"
+    },
+    {
+      "id": "c",
+      "text": "Enable writes automatically; views with key-fields are always updatable through DAB"
+    },
+    {
+      "id": "d",
+      "text": "Issue `ALTER VIEW … RENAME COLUMN CrewId TO id` so DAB mappings are unnecessary"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

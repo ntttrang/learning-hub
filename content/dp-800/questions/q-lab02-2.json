@@ -1,0 +1,34 @@
+{
+  "id": "q-lab02-2",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "lessonId": "l0203",
+  "difficulty": "challenge",
+  "prompt": "Procedure `dbo.usp_AddVoyageLine` starts a transaction, looks up `ListPrice`, and inserts a line. If the gear row is missing, you must **undo the transaction and fail the client batch** with a custom error number. `PRINT` is not acceptable because callers ignore it.\n\nWhich statement belongs after `ROLLBACK`?",
+  "explanation": "`THROW` is the modern way to fail the caller after ROLLBACK. `RETURN 0` looks like success. `PRINT` does not raise. Waiting does not enforce integrity. (`RAISERROR` can also raise, but `THROW` is the preferred pattern in current T-SQL labs and does not require severity gymnastics.)",
+  "tags": [
+    "lab-coding",
+    "lab-02"
+  ],
+  "kind": "codeReading",
+  "code": "IF @UnitPrice IS NULL\nBEGIN\n    ROLLBACK TRANSACTION;\n    ??? 50010, 'Unknown GearId.', 1;\nEND",
+  "options": [
+    {
+      "id": "a",
+      "text": "`THROW` — raises a catchable error and, uncaught, aborts the batch"
+    },
+    {
+      "id": "b",
+      "text": "`RETURN 0` — signals success so the app retries the insert"
+    },
+    {
+      "id": "c",
+      "text": "`PRINT` — writes to the messages tab; the INSERT still commits"
+    },
+    {
+      "id": "d",
+      "text": "`WAITFOR DELAY '00:00:30'` — wait for the gear row to appear"
+    }
+  ],
+  "correct": "a"
+}

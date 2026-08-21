@@ -1,0 +1,29 @@
+{
+  "id": "q-l0801-1",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "lessonId": "l0801",
+  "difficulty": "intermediate",
+  "prompt": "In Data API builder, what does an 'entity' represent?",
+  "explanation": "A DAB entity maps a database object and its permissions to REST/GraphQL endpoints.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A physical server"
+    },
+    {
+      "id": "b",
+      "text": "A mapped database object (table/view/proc) exposed via the API"
+    },
+    {
+      "id": "c",
+      "text": "A user account"
+    },
+    {
+      "id": "d",
+      "text": "A backup file"
+    }
+  ],
+  "correct": "b"
+}

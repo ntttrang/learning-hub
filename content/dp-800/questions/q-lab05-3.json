@@ -1,0 +1,34 @@
+{
+  "id": "q-lab05-3",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0502",
+  "difficulty": "advanced",
+  "prompt": "Support logins should SELECT from `dbo.Crew` but see TaxId as `XXX-XX-1234` (last four visible) and Email in the built-in email mask. They have SELECT, not UNMASK. Privileged auditors must still see plaintext.\n\nWhich statements are true of the following masks?",
+  "explanation": "DDM is display-time obfuscation. SELECT is allowed; UNMASK (or high privilege) bypasses the mask. It does not encrypt data at rest or in memory for the engine/DBA — that is why question 1 needed Always Encrypted.",
+  "tags": [
+    "lab-coding",
+    "lab-05"
+  ],
+  "kind": "codeReading",
+  "code": "ALTER TABLE dbo.Crew\n  ALTER COLUMN TaxId ADD MASKED WITH (FUNCTION = 'partial(0, \"XXX-XX-\", 4)');\nALTER TABLE dbo.Crew\n  ALTER COLUMN Email ADD MASKED WITH (FUNCTION = 'email()');",
+  "options": [
+    {
+      "id": "a",
+      "text": "Support SELECT succeeds with masked values; principals with UNMASK (or dbo) see plaintext — DDM is not encryption"
+    },
+    {
+      "id": "b",
+      "text": "Support SELECT fails with permission denied until UNMASK is granted"
+    },
+    {
+      "id": "c",
+      "text": "`partial` and `email` encrypt the column with a service-managed key (Always Encrypted)"
+    },
+    {
+      "id": "d",
+      "text": "Masking applies only to backups, never to SELECT"
+    }
+  ],
+  "correct": "a"
+}

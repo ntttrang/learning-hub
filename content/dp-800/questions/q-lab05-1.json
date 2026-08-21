@@ -1,0 +1,33 @@
+{
+  "id": "q-lab05-1",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0501",
+  "difficulty": "challenge",
+  "prompt": "Regulators require that **cloud operators and DBAs cannot read TaxId plaintext**, including while a query executes on the server. Support still needs equality lookups on TaxId. Display-only masking for a reporting login is **not** sufficient.\n\nWhich technology set should you implement?",
+  "explanation": "TDE protects files/backups, not in-memory query results for a DBA. DDM is cosmetic — privileged users and the engine still see plaintext. RLS filters rows, it does not encrypt a column. Always Encrypted keeps keys on the client; secure enclaves are what make server-side equality possible without exposing plaintext to the service.",
+  "tags": [
+    "lab-coding",
+    "lab-05"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Always Encrypted with secure enclaves (keys stay client-side; enclaves enable equality/range in a trusted environment)"
+    },
+    {
+      "id": "b",
+      "text": "Transparent Data Encryption (TDE) only"
+    },
+    {
+      "id": "c",
+      "text": "Dynamic Data Masking on TaxId plus GRANT SELECT to the DBA group"
+    },
+    {
+      "id": "d",
+      "text": "A FILTER predicate on TaxId"
+    }
+  ],
+  "correct": "a"
+}

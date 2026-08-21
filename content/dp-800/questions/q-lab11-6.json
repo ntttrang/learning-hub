@@ -1,0 +1,34 @@
+{
+  "id": "q-lab11-6",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "lessonId": "l1101",
+  "difficulty": "challenge",
+  "prompt": "A developer implemented retrieve as dynamic SQL so users can 'search anything'. The rest of the RAG pipeline (JSON + REST) is parameterized.\n\nWhy is this still unsafe, and what should retrieve be?",
+  "explanation": "DP-800 production concern: AI-generated or user-tainted SQL. Retrieval must be parameterized (FT/vector). Parameterizing the REST payload does not retroactively fix a concatenated SELECT. LIKE on nvarchar is legal. EXEC(@sql) still exists — that is the problem.",
+  "tags": [
+    "lab-coding",
+    "lab-11"
+  ],
+  "kind": "codeReading",
+  "code": "DECLARE @sql nvarchar(max) =\n  N'SELECT ReviewText FROM dbo.GearReview\n    WHERE ReviewText LIKE ''%' + @UserQuestion + N'%'';';\nEXEC (@sql);\n-- then FOR JSON and sp_invoke_external_rest_endpoint",
+  "options": [
+    {
+      "id": "a",
+      "text": "Concatenating user text into SQL is injection. Use parameterized `CONTAINS` / `VECTOR_DISTANCE` (and keep RLS). Prompt injection into the **model** is a separate later control"
+    },
+    {
+      "id": "b",
+      "text": "`LIKE` cannot be used on nvarchar, so the batch cannot have run"
+    },
+    {
+      "id": "c",
+      "text": "RAG forbids reading the source table; you must only call the model"
+    },
+    {
+      "id": "d",
+      "text": "`EXEC` of a string is deprecated and fails on SQL Server 2025"
+    }
+  ],
+  "correct": "a"
+}

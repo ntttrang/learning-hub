@@ -1,0 +1,29 @@
+{
+  "id": "q-l0804-2",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "lessonId": "l0804",
+  "difficulty": "advanced",
+  "prompt": "Which option reacts to table changes with serverless code?",
+  "explanation": "Azure Functions with the SQL trigger binding run code in response to table changes, enabling event-driven workflows.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Azure Functions with SQL trigger binding"
+    },
+    {
+      "id": "b",
+      "text": "DBCC CHECKDB"
+    },
+    {
+      "id": "c",
+      "text": "sp_configure"
+    },
+    {
+      "id": "d",
+      "text": "A clustered index"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "q-l0303-1",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0303",
+  "difficulty": "intermediate",
+  "prompt": "Which clause serializes a query result set into a JSON array of objects?",
+  "explanation": "FOR JSON PATH (or AUTO) serializes result rows to JSON — often used to build model payloads in RAG.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "FOR JSON PATH"
+    },
+    {
+      "id": "b",
+      "text": "FOR XML AUTO"
+    },
+    {
+      "id": "c",
+      "text": "OPENJSON"
+    },
+    {
+      "id": "d",
+      "text": "STRING_AGG"
+    }
+  ],
+  "correct": "a"
+}

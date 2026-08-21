@@ -1,0 +1,36 @@
+{
+  "id": "q-lab01-2",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0104",
+  "difficulty": "advanced",
+  "prompt": "Finance requires that list price cannot be negative **or zero**, and that `RegionCode` is always one of `PAC`, `ATL`, or `ARC`. Both rules must be enforced in the table definition (not only in the app).\n\nWhich **two** table constraints should you add? Each correct answer presents part of the solution.",
+  "explanation": "`CHECK (ListPrice > 0)` rejects negatives and zero. A CHECK with `IN` enforces the allowed region codes. A DEFAULT of 0 would *insert* a forbidden price. UNIQUE does not restrict which region codes are legal.",
+  "tags": [
+    "lab-coding",
+    "lab-01"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "`CHECK (ListPrice > 0)`"
+    },
+    {
+      "id": "b",
+      "text": "`CHECK (RegionCode IN ('PAC', 'ATL', 'ARC'))`"
+    },
+    {
+      "id": "c",
+      "text": "`DEFAULT (0) FOR ListPrice`"
+    },
+    {
+      "id": "d",
+      "text": "`UNIQUE (Name, RegionCode)`"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

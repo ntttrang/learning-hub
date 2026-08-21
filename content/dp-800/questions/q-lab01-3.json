@@ -1,0 +1,34 @@
+{
+  "id": "q-lab01-3",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0102",
+  "difficulty": "challenge",
+  "prompt": "You need system-versioned history of `dbo.GearPrice` so `FOR SYSTEM_TIME` queries work without application changes. The following statement fails.\n\nWhat is the cause?",
+  "explanation": "A pair of ordinary DATETIME2 columns is not a system-time period. SQL Server requires generated ROW START / ROW END columns (often HIDDEN) and `PERIOD FOR SYSTEM_TIME`. A PRIMARY KEY is required, not forbidden. Ledger is a different specialized table type.",
+  "tags": [
+    "lab-coding",
+    "lab-01"
+  ],
+  "kind": "codeReading",
+  "code": "CREATE TABLE dbo.GearPrice (\n  GearId INT PRIMARY KEY,\n  CurrentPrice DECIMAL(10,2) NOT NULL,\n  SysStartTime DATETIME2,\n  SysEndTime DATETIME2\n) WITH (SYSTEM_VERSIONING = ON);",
+  "options": [
+    {
+      "id": "a",
+      "text": "Period columns must be `GENERATED ALWAYS AS ROW START/END` and you must declare `PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime)`"
+    },
+    {
+      "id": "b",
+      "text": "Temporal tables cannot have a PRIMARY KEY; use a heap"
+    },
+    {
+      "id": "c",
+      "text": "`SYSTEM_VERSIONING` is valid only with `LEDGER = ON` on the same statement"
+    },
+    {
+      "id": "d",
+      "text": "You must create the history table first with `IDENTITY` on GearId"
+    }
+  ],
+  "correct": "a"
+}

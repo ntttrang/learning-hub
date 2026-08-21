@@ -1,0 +1,33 @@
+{
+  "id": "q-lab06-5",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0603",
+  "difficulty": "advanced",
+  "prompt": "An on-call engineer needs **who is blocked right now**, by whom, and the blocked statement text.\n\nWhich starting point is appropriate?",
+  "explanation": "Live blocking is waiting_tasks + requests/sessions + sql_text (and often `sys.dm_exec_query_plan`). Index usage and In-Memory checkpoint files do not show lock waiters. Query Store is historical plans/runtime, not the live blocking graph.",
+  "tags": [
+    "lab-coding",
+    "lab-06"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "`sys.dm_os_waiting_tasks` joined to `sys.dm_exec_requests` / sessions / `sys.dm_exec_sql_text` (and `blocking_session_id`)"
+    },
+    {
+      "id": "b",
+      "text": "`sys.dm_db_index_usage_stats` only"
+    },
+    {
+      "id": "c",
+      "text": "`sys.dm_db_xtp_checkpoint_files` only"
+    },
+    {
+      "id": "d",
+      "text": "Disable Query Store and rerun the workload; wait stats are stored only there"
+    }
+  ],
+  "correct": "a"
+}

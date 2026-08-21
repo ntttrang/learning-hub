@@ -1,0 +1,33 @@
+{
+  "id": "q-lab04-3",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "lessonId": "l0403",
+  "difficulty": "challenge",
+  "prompt": "You connect Copilot to a Microsoft SQL Server MCP server so the chat can list schemas and run read queries against Harbor's Azure SQL database. The endpoint is reachable from the public internet today. You must follow least privilege and avoid stored passwords.\n\nWhat should you do?",
+  "explanation": "MCP endpoints are a new attack surface on the DP-800 outline. Passwordless (Managed Identity), least privilege, private networking, and audit/logging are the controls. GitHub auth does not authenticate SQL. CONTROL SERVER is the opposite of least privilege.",
+  "tags": [
+    "lab-coding",
+    "lab-04"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Restrict network access, authenticate with Managed Identity, grant the identity only the tools/data it needs, and log tool calls"
+    },
+    {
+      "id": "b",
+      "text": "Expose the MCP port publicly and use the `sa` password in the Copilot settings JSON committed to git"
+    },
+    {
+      "id": "c",
+      "text": "Disable authentication on the MCP server because Copilot already logged into GitHub"
+    },
+    {
+      "id": "d",
+      "text": "Grant the MCP identity CONTROL SERVER so Copilot can create logins when the prompt asks"
+    }
+  ],
+  "correct": "a"
+}

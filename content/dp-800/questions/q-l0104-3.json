@@ -1,0 +1,29 @@
+{
+  "id": "q-l0104-3",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0104",
+  "difficulty": "intermediate",
+  "prompt": "You re-enable a foreign key WITH NOCHECK. What is the consequence for the optimizer?",
+  "explanation": "WITH NOCHECK leaves the constraint untrusted; the optimizer can't rely on it and existing rows aren't validated. WITH CHECK re-validates and marks it trusted.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "The constraint becomes 'not trusted' and existing data isn't validated"
+    },
+    {
+      "id": "b",
+      "text": "All existing data is re-validated"
+    },
+    {
+      "id": "c",
+      "text": "The FK is dropped"
+    },
+    {
+      "id": "d",
+      "text": "Nothing changes"
+    }
+  ],
+  "correct": "a"
+}

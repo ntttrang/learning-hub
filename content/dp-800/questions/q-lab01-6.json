@@ -1,0 +1,36 @@
+{
+  "id": "q-lab01-6",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0102",
+  "difficulty": "advanced",
+  "prompt": "You enable system-versioning on `dbo.GearPrice`. Apps must keep using `SELECT … FROM dbo.GearPrice` without listing period columns, and you must query prices as of `'2025-12-01'`.\n\nWhich **two** are required? Each correct answer presents part of the solution.",
+  "explanation": "HIDDEN period columns keep the current-table contract stable. Historical lookup is `FOR SYSTEM_TIME`. Columnstore is optional, not required for temporal. CONTROL SERVER is unrelated and violates least privilege.",
+  "tags": [
+    "lab-coding",
+    "lab-01"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Mark the period columns `HIDDEN` so ordinary SELECT * / SELECT lists omit them"
+    },
+    {
+      "id": "b",
+      "text": "Query with `FOR SYSTEM_TIME AS OF '2025-12-01'` (or BETWEEN / CONTAINED IN / ALL)"
+    },
+    {
+      "id": "c",
+      "text": "Replace the PRIMARY KEY with a columnstore index; temporal tables require it"
+    },
+    {
+      "id": "d",
+      "text": "Grant CONTROL SERVER to every reporting login so history is visible"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

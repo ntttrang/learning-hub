@@ -1,0 +1,29 @@
+{
+  "id": "q-l0502-1",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0502",
+  "difficulty": "beginner",
+  "prompt": "Which statement about Dynamic Data Masking is correct?",
+  "explanation": "DDM is presentation-layer masking; underlying data is unchanged, and privileged users (UNMASK) see real values. It is not encryption and can be inferred without proper controls.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It encrypts the stored data"
+    },
+    {
+      "id": "b",
+      "text": "It masks values in results for users lacking UNMASK, but data is stored in clear"
+    },
+    {
+      "id": "c",
+      "text": "It replaces Row-Level Security"
+    },
+    {
+      "id": "d",
+      "text": "It prevents all inference of the real values"
+    }
+  ],
+  "correct": "b"
+}

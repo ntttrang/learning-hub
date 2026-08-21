@@ -1,0 +1,29 @@
+{
+  "id": "q-l1001-2",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1001",
+  "difficulty": "intermediate",
+  "prompt": "When is full-text search preferable to vector search?",
+  "explanation": "Full-text excels at exact terms/phrases; vector search excels at semantic similarity. Hybrid combines both.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "When exact keywords/phrases must match"
+    },
+    {
+      "id": "b",
+      "text": "When you need semantic similarity"
+    },
+    {
+      "id": "c",
+      "text": "For image embeddings"
+    },
+    {
+      "id": "d",
+      "text": "Never"
+    }
+  ],
+  "correct": "a"
+}

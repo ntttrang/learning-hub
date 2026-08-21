@@ -1,0 +1,34 @@
+{
+  "id": "q-lab03-1",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0303",
+  "difficulty": "advanced",
+  "prompt": "The Harbor API contract is a JSON **array of objects** with properties `GearId`, `Name`, and `ListPrice`. Null colors must be omitted. The client rejects an XML payload and rejects a single wrapper object unless you add ROOT later.\n\nWhich clause produces the array?",
+  "explanation": "`FOR JSON PATH` (or AUTO) is how T-SQL returns a JSON array. PATH lets you control nested property names with aliases like `tag.value`. FOR XML is a different media type. BROWSE and SYSTEM_TIME are not JSON emitters.",
+  "tags": [
+    "lab-coding",
+    "lab-03"
+  ],
+  "kind": "codeReading",
+  "code": "SELECT GearId, Name, ListPrice\nFROM dbo.Gear\nWHERE Color IS NOT NULL\nORDER BY ListPrice DESC\nFOR ??? PATH;",
+  "options": [
+    {
+      "id": "a",
+      "text": "`JSON` — `FOR JSON PATH` emits `[{...},{...}]`"
+    },
+    {
+      "id": "b",
+      "text": "`XML` — `FOR XML PATH` is interchangeable with JSON for REST clients"
+    },
+    {
+      "id": "c",
+      "text": "`BROWSE` — required whenever ORDER BY is present"
+    },
+    {
+      "id": "d",
+      "text": "`SYSTEM_TIME` — exports temporal history as JSON"
+    }
+  ],
+  "correct": "a"
+}

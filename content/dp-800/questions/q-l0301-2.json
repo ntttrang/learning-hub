@@ -1,0 +1,29 @@
+{
+  "id": "q-l0301-2",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0301",
+  "difficulty": "intermediate",
+  "prompt": "A recursive CTE must contain which two parts?",
+  "explanation": "Recursive CTEs use an anchor member, UNION ALL, and a recursive member that references the CTE.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "An anchor member and a recursive member joined by UNION ALL"
+    },
+    {
+      "id": "b",
+      "text": "Two anchor members"
+    },
+    {
+      "id": "c",
+      "text": "A PIVOT and an UNPIVOT"
+    },
+    {
+      "id": "d",
+      "text": "A CROSS APPLY and OUTER APPLY"
+    }
+  ],
+  "correct": "a"
+}

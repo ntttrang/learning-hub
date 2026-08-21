@@ -1,0 +1,96 @@
+{
+  "id": "l0703",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "order": 3,
+  "slug": "testing-and-secrets",
+  "title": "Testing strategy and secrets management",
+  "summary": "Add unit and integration tests to your database pipeline and manage secrets safely.",
+  "minutes": 25,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Design unit and integration tests for database code.",
+        "Manage secrets outside source control."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Reliable deployments need tests and secrets that never live in the repo."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Unit test",
+          "definition": "Validates a single object's behavior (e.g., a stored procedure) in isolation."
+        },
+        {
+          "term": "Secrets management",
+          "definition": "Storing credentials/keys outside code (e.g., Key Vault, GitHub secrets)."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Write **unit tests** for procedures/functions and **integration tests** that exercise the deployed schema. Keep credentials in a secrets store (Azure Key Vault, GitHub Actions secrets) referenced by the pipeline — never commit secrets."
+    },
+    {
+      "kind": "heading",
+      "text": "Performance & security considerations",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "body": "Reference secrets from Key Vault via Managed Identity in pipelines; rotate regularly."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Never store connection strings/keys in the project — use a secret store.",
+        "Integration tests run against a deployed copy."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Test database code (unit + integration) and keep every secret in a managed store, referenced at deploy time."
+    }
+  ],
+  "questionIds": [
+    "q-l0703-1",
+    "q-l0703-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Azure Key Vault",
+      "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

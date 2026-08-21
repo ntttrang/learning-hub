@@ -1,0 +1,33 @@
+{
+  "id": "q-lab10-1",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1001",
+  "difficulty": "advanced",
+  "prompt": "Support agents search Harbor reviews. Query A is the exact token `SKU-HO-1042`. Query B is “something like a waxed canvas tote for rain” with **no** shared keywords. Query C is both an error code **and** a paraphrase.\n\nWhich search mode should you choose for A, B, and C?",
+  "explanation": "DP-800 expects you to **choose** among full-text (tokens, Boolean, inflection), semantic vector (paraphrase), and hybrid. Hybrid is how you keep SKU precision and still recall paraphrases.",
+  "tags": [
+    "lab-coding",
+    "lab-10"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A: full-text. B: vector. C: hybrid (FT + vector fused, typically RRF)"
+    },
+    {
+      "id": "b",
+      "text": "A: vector only. B: full-text only. C: LIKE '%error%'"
+    },
+    {
+      "id": "c",
+      "text": "All three: clustered columnstore scan"
+    },
+    {
+      "id": "d",
+      "text": "All three: graph `MATCH` shortest path"
+    }
+  ],
+  "correct": "a"
+}

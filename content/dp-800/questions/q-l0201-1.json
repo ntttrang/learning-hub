@@ -1,0 +1,29 @@
+{
+  "id": "q-l0201-1",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "lessonId": "l0201",
+  "difficulty": "beginner",
+  "prompt": "What is required to create an indexed (materialized) view in SQL Server?",
+  "explanation": "Indexed views require WITH SCHEMABINDING plus a UNIQUE CLUSTERED INDEX; results are then stored and auto-maintained.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "WITH SCHEMABINDING and a unique clustered index"
+    },
+    {
+      "id": "b",
+      "text": "A nonclustered index only"
+    },
+    {
+      "id": "c",
+      "text": "READ_ONLY option"
+    },
+    {
+      "id": "d",
+      "text": "A temporal clause"
+    }
+  ],
+  "correct": "a"
+}

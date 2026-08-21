@@ -1,0 +1,110 @@
+{
+  "id": "l0101",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "order": 1,
+  "slug": "tables-data-types-indexes",
+  "title": "Tables, data types, and indexes",
+  "summary": "Choose right-sized data types, design clustered and nonclustered indexes, and know when columnstore beats rowstore.",
+  "minutes": 30,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Select appropriate data types and understand their storage and precision trade-offs.",
+        "Distinguish clustered, nonclustered, and columnstore indexes and when to use each.",
+        "Explain how index design affects read and write performance."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Every DP-800 solution starts with well-designed tables. The exam expects you to pick correct data types, size columns deliberately, and choose the right index type for the workload."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Clustered index",
+          "definition": "Defines the physical sort order of the table's rows; one per table."
+        },
+        {
+          "term": "Nonclustered index",
+          "definition": "A separate structure with a copy of key columns plus a row locator."
+        },
+        {
+          "term": "Columnstore index",
+          "definition": "Column-oriented storage with compression, ideal for analytics over large tables."
+        },
+        {
+          "term": "Heap",
+          "definition": "A table with no clustered index; rows are unordered."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "Rowstore vs columnstore",
+      "body": "SQL Server stores tables as **rowstore** (clustered/nonclustered B-tree indexes) or **columnstore**. Columnstore indexes store data column-by-column with heavy compression and batch-mode execution, giving large gains for analytic queries scanning many rows. Rowstore remains best for OLTP seeks and small range scans."
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "Data types",
+      "body": "Use the smallest type that safely holds your data: `INT` vs `BIGINT`, `DECIMAL(p,s)` for exact numerics, `DATE`/`DATETIME2` over legacy `DATETIME`, and `NVARCHAR` for Unicode. Oversized types waste storage, memory grants, and index space."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "If a question describes analytics over millions of rows, the answer is usually a **columnstore** index.",
+        "A table can have only one clustered index but many nonclustered indexes.",
+        "`DATETIME2` has better range and precision than `DATETIME`; prefer it for new designs."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Right-size data types, give most OLTP tables a clustered index, add nonclustered indexes for frequent predicates, and reach for columnstore when the workload is analytic."
+    }
+  ],
+  "questionIds": [
+    "q-l0101-1",
+    "q-l0101-2",
+    "q-l0101-3"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Columnstore indexes overview",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-overview",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Data types (Transact-SQL)",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

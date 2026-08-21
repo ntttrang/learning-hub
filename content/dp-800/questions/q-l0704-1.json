@@ -1,0 +1,29 @@
+{
+  "id": "q-l0704-1",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "lessonId": "l0704",
+  "difficulty": "advanced",
+  "prompt": "Schema drift is best described as:",
+  "explanation": "Schema drift is when the target database no longer matches the project's declared model.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "The deployed database diverging from the source-controlled model"
+    },
+    {
+      "id": "b",
+      "text": "Index fragmentation"
+    },
+    {
+      "id": "c",
+      "text": "Slow queries"
+    },
+    {
+      "id": "d",
+      "text": "A backup failure"
+    }
+  ],
+  "correct": "a"
+}

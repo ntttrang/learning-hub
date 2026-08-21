@@ -1,0 +1,29 @@
+{
+  "id": "q-l1004-2",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1004",
+  "difficulty": "advanced",
+  "prompt": "How should you evaluate search quality?",
+  "explanation": "Evaluate on representative queries and measure recall and latency; confirm hybrid actually beats single-method retrieval.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "On representative real queries, measuring recall and latency"
+    },
+    {
+      "id": "b",
+      "text": "Only with a single toy query"
+    },
+    {
+      "id": "c",
+      "text": "By counting rows in the table"
+    },
+    {
+      "id": "d",
+      "text": "By checking disk temperature"
+    }
+  ],
+  "correct": "a"
+}

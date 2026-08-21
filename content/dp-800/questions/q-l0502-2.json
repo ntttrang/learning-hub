@@ -1,0 +1,29 @@
+{
+  "id": "q-l0502-2",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0502",
+  "difficulty": "beginner",
+  "prompt": "Which permission lets a user see unmasked values?",
+  "explanation": "The UNMASK permission reveals real values behind Dynamic Data Masking.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "SELECT"
+    },
+    {
+      "id": "b",
+      "text": "UNMASK"
+    },
+    {
+      "id": "c",
+      "text": "CONTROL SERVER"
+    },
+    {
+      "id": "d",
+      "text": "VIEW DEFINITION"
+    }
+  ],
+  "correct": "b"
+}

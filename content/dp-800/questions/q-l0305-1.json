@@ -1,0 +1,29 @@
+{
+  "id": "q-l0305-1",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0305",
+  "difficulty": "advanced",
+  "prompt": "Inside a CATCH block, which check should you perform before rolling back?",
+  "explanation": "XACT_STATE() tells you whether the transaction is committable (1), none (0), or doomed (-1). A doomed transaction can only be rolled back.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "@@ROWCOUNT"
+    },
+    {
+      "id": "b",
+      "text": "XACT_STATE()"
+    },
+    {
+      "id": "c",
+      "text": "@@IDENTITY"
+    },
+    {
+      "id": "d",
+      "text": "SCOPE_IDENTITY()"
+    }
+  ],
+  "correct": "b"
+}

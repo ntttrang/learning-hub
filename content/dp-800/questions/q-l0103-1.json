@@ -1,0 +1,29 @@
+{
+  "id": "q-l0103-1",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0103",
+  "difficulty": "intermediate",
+  "prompt": "Which function extracts a scalar value from a JSON document in SQL Server?",
+  "explanation": "JSON_VALUE returns a scalar. JSON_QUERY returns an object/array fragment; OPENJSON shreds into rows.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "JSON_QUERY"
+    },
+    {
+      "id": "b",
+      "text": "JSON_VALUE"
+    },
+    {
+      "id": "c",
+      "text": "OPENJSON"
+    },
+    {
+      "id": "d",
+      "text": "FOR JSON"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "q-lab03-2",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0303",
+  "difficulty": "challenge",
+  "prompt": "A downstream service **requires** `{\"TopGear\":[...]}` (named envelope). Another internal tool requires a **bare object** for a single row, not `[ {...} ]`.\n\nWhich options implement those two contracts?",
+  "explanation": "`ROOT('name')` adds the envelope. `WITHOUT_ARRAY_WRAPPER` drops the `[ ]` so one row becomes `{...}`. INCLUDE_NULL_VALUES only changes null property emission. JSON_OBJECT builds one object per row; it does not replace FOR JSON for a result-set array.",
+  "tags": [
+    "lab-coding",
+    "lab-03"
+  ],
+  "kind": "codeReading",
+  "code": "-- Envelope\nSELECT GearId, Name FROM dbo.Gear FOR JSON PATH, ROOT('TopGear');\n\n-- Single-row object\nSELECT GearId, Name FROM dbo.Gear WHERE GearId = @Id\nFOR JSON PATH, WITHOUT_ARRAY_WRAPPER;",
+  "options": [
+    {
+      "id": "a",
+      "text": "`ROOT('TopGear')` wraps the array; `WITHOUT_ARRAY_WRAPPER` unwraps a single object"
+    },
+    {
+      "id": "b",
+      "text": "`INCLUDE_NULL_VALUES` creates a named root; `FOR XML PATH` unwraps JSON"
+    },
+    {
+      "id": "c",
+      "text": "`ROOT` and `WITHOUT_ARRAY_WRAPPER` cannot be used with FOR JSON PATH"
+    },
+    {
+      "id": "d",
+      "text": "You must emit JSON from `JSON_OBJECT` only; FOR JSON cannot wrap a root"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "q-lab06-3",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0602",
+  "difficulty": "advanced",
+  "prompt": "The missing-index DMV reports `equality_columns = '[VoyageDate]'` and `included_columns = '[SubTotal]'` for a report that filters `VoyageDate = @d` and returns `SubTotal`. You decide to accept the shape (knowing DMVs are hints, not orders).\n\nWhich index matches the advice?",
+  "explanation": "Equality/inequality columns become **key** columns; included_columns are non-key INCLUDE (covering). Reversing them cannot seek on VoyageDate. Columnstore is a different design (analytics scans). A unique index on VoyageId does not help a date filter.",
+  "tags": [
+    "lab-coding",
+    "lab-06"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "`CREATE INDEX IX ON dbo.Voyage(VoyageDate) INCLUDE (SubTotal)`"
+    },
+    {
+      "id": "b",
+      "text": "`CREATE INDEX IX ON dbo.Voyage(SubTotal) INCLUDE (VoyageDate)`"
+    },
+    {
+      "id": "c",
+      "text": "`CREATE CLUSTERED COLUMNSTORE INDEX IX ON dbo.Voyage` — missing-index DMVs always mean columnstore"
+    },
+    {
+      "id": "d",
+      "text": "`CREATE UNIQUE INDEX IX ON dbo.Voyage(VoyageId)` — uniqueness satisfies every equality filter"
+    }
+  ],
+  "correct": "a"
+}

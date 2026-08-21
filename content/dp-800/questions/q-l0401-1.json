@@ -1,0 +1,29 @@
+{
+  "id": "q-l0401-1",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "lessonId": "l0401",
+  "difficulty": "beginner",
+  "prompt": "Which practice reduces the security risk of using AI-assisted coding tools with SQL?",
+  "explanation": "Treat AI suggestions as drafts: review for parameterization, injection risk, and least-privilege, and keep sensitive data out of prompts.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Paste production data into prompts for better answers"
+    },
+    {
+      "id": "b",
+      "text": "Review generated SQL for injection and least privilege before running"
+    },
+    {
+      "id": "c",
+      "text": "Always run generated SQL as sysadmin"
+    },
+    {
+      "id": "d",
+      "text": "Disable code review"
+    }
+  ],
+  "correct": "b"
+}

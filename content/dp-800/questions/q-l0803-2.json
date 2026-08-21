@@ -1,0 +1,29 @@
+{
+  "id": "q-l0803-2",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "lessonId": "l0803",
+  "difficulty": "intermediate",
+  "prompt": "Which service stores telemetry you query with KQL?",
+  "explanation": "Log Analytics workspaces store telemetry queried with Kusto Query Language (KQL).",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Log Analytics"
+    },
+    {
+      "id": "b",
+      "text": "Blob Storage"
+    },
+    {
+      "id": "c",
+      "text": "Service Bus"
+    },
+    {
+      "id": "d",
+      "text": "Key Vault"
+    }
+  ],
+  "correct": "a"
+}

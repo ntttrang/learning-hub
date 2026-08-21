@@ -1,0 +1,86 @@
+{
+  "id": "l0801",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "order": 1,
+  "slug": "data-api-builder-config",
+  "title": "Data API builder configuration",
+  "summary": "Generate secure REST and GraphQL APIs over your database with Data API builder config files.",
+  "minutes": 30,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Create a DAB configuration file.",
+        "Understand how entities become endpoints."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "DAB turns tables, views, and procedures into APIs without hand-written services — a core Domain 2 integration skill."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Data API builder (DAB)",
+          "definition": "A tool that exposes database objects as REST and GraphQL endpoints from a config file."
+        },
+        {
+          "term": "Entity",
+          "definition": "A DAB-mapped database object (table/view/stored procedure) exposed via the API."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Author a **dab-config.json** defining the data source and **entities**. Each entity maps a table/view/stored procedure and its permissions to REST and/or GraphQL endpoints. DAB handles routing, serialization, and security policy."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "DAB is configuration-driven; entities map objects to endpoints.",
+        "Permissions are defined per entity per role."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Define a DAB config with entities to expose database objects as REST/GraphQL, with per-entity role permissions."
+    }
+  ],
+  "questionIds": [
+    "q-l0801-1",
+    "q-l0801-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Data API builder",
+      "url": "https://learn.microsoft.com/en-us/azure/data-api-builder/",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

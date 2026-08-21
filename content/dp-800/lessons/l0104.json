@@ -1,0 +1,92 @@
+{
+  "id": "l0104",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "order": 4,
+  "slug": "constraints",
+  "title": "Constraints: PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK, DEFAULT",
+  "summary": "Enforce data integrity declaratively and understand how constraints interact with indexes and performance.",
+  "minutes": 25,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Apply the five core constraint types correctly.",
+        "Explain how PRIMARY KEY and UNIQUE create backing indexes.",
+        "Reason about referential actions (CASCADE, SET NULL, NO ACTION)."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Constraints push integrity rules into the engine so they can't be bypassed by application bugs."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "PRIMARY KEY",
+          "definition": "Uniquely identifies each row; not nullable; creates a unique index (clustered by default)."
+        },
+        {
+          "term": "FOREIGN KEY",
+          "definition": "Enforces referential integrity between tables."
+        },
+        {
+          "term": "CHECK",
+          "definition": "Restricts values with a boolean expression."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "A **PRIMARY KEY** creates a unique index (clustered unless told otherwise). **UNIQUE** allows one NULL (SQL Server) and also creates an index. **FOREIGN KEY** supports referential actions: `ON DELETE`/`ON UPDATE` with `CASCADE`, `SET NULL`, `SET DEFAULT`, or `NO ACTION`. **CHECK** validates an expression; **DEFAULT** supplies a value when none is given."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "SQL Server UNIQUE constraints permit a single NULL; other engines differ.",
+        "Disabling and re-enabling a FK with WITH CHECK re-validates existing data; WITH NOCHECK leaves it 'not trusted'."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Prefer declarative constraints over trigger-based validation; they're clearer, faster, and trusted by the optimizer."
+    }
+  ],
+  "questionIds": [
+    "q-l0104-1",
+    "q-l0104-2",
+    "q-l0104-3"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Constraints",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/create-check-constraints",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

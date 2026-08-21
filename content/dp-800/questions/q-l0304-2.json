@@ -1,0 +1,29 @@
+{
+  "id": "q-l0304-2",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0304",
+  "difficulty": "intermediate",
+  "prompt": "Which is a real SQL Server 2025 regular-expression function?",
+  "explanation": "REGEXP_REPLACE (and REGEXP_LIKE, REGEXP_SUBSTR, REGEXP_SPLIT_TO_TABLE, etc.) are part of the new regex family.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "REGEX_MATCH"
+    },
+    {
+      "id": "b",
+      "text": "REGEXP_REPLACE"
+    },
+    {
+      "id": "c",
+      "text": "PATINDEX_REGEX"
+    },
+    {
+      "id": "d",
+      "text": "MATCH_RECOGNIZE"
+    }
+  ],
+  "correct": "b"
+}

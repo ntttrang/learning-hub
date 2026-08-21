@@ -1,0 +1,123 @@
+{
+  "id": "l1102",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "order": 2,
+  "slug": "rag-json-and-responses",
+  "title": "Converting data to JSON and handling model responses",
+  "summary": "Shape retrieved rows into JSON for the model, send them, and extract the response safely.",
+  "minutes": 30,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Convert structured data to JSON for language-model processing.",
+        "Send results to a model and extract its response.",
+        "Evaluate correctness and prevent unsafe generated SQL."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "The last mile of RAG is data shaping and response handling — plus the safety concerns of AI-generated SQL, an explicit production concern in DP-800."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Grounding context",
+          "definition": "The retrieved data supplied to the model to answer from."
+        },
+        {
+          "term": "NL-to-SQL",
+          "definition": "Translating natural language into SQL, which must be validated before execution."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Use **`FOR JSON`** / JSON constructors to convert rows to the JSON the model expects, **send** via the REST endpoint, and **extract** the answer with `JSON_VALUE`/`OPENJSON`. For natural-language-to-SQL, treat generated SQL as untrusted: validate against an allow-list, run read-only with least privilege, and block destructive statements."
+    },
+    {
+      "kind": "heading",
+      "text": "Real-world scenario",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "heading": "Safe natural-language-to-SQL",
+      "body": "An agent turns a question into SQL. Before executing, parse and reject anything that isn't a single SELECT, run it as a low-privilege read-only principal (reinforced by RLS), enforce a row/time limit, and log the query. This prevents unsafe or destructive generated SQL."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Executing model-generated SQL directly.",
+          "fix": "Validate, constrain to read-only least-privilege, and block DDL/DML before running."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Performance & security considerations",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "body": "Run AI-generated queries under a least-privilege, read-only identity with RLS; validate for correctness and safety; never allow destructive statements."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "FOR JSON shapes the payload; JSON_VALUE extracts the answer.",
+        "Generated SQL must be validated and sandboxed (read-only, least privilege)."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Convert rows with FOR JSON, call the model, extract with JSON_VALUE, and rigorously sandbox any AI-generated SQL to read-only least privilege."
+    }
+  ],
+  "questionIds": [
+    "q-l1102-1",
+    "q-l1102-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "FOR JSON",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/json/format-query-results-as-json-with-for-json",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "OPENJSON",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/openjson-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

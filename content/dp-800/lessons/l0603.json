@@ -1,0 +1,98 @@
+{
+  "id": "l0603",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "order": 3,
+  "slug": "execution-plans-dmvs-query-store",
+  "title": "Execution plans, DMVs, and Query Store",
+  "summary": "Diagnose query performance with execution plans, dynamic management views, and Query Store.",
+  "minutes": 40,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Read estimated vs actual plans and spot warnings.",
+        "Query key DMVs for waits and expensive queries.",
+        "Use Query Store to find and force plans."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Performance troubleshooting hinges on plans, DMVs, and Query Store — all explicitly in the blueprint."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Execution plan",
+          "definition": "The engine's chosen strategy to run a query."
+        },
+        {
+          "term": "DMV",
+          "definition": "Dynamic management view exposing server/database runtime state."
+        },
+        {
+          "term": "Query Store",
+          "definition": "Captures query text, plans, and runtime stats over time for regression analysis."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Compare **estimated vs actual** plans; watch for key lookups, spills, and bad estimates. DMVs like `sys.dm_exec_query_stats`, `sys.dm_exec_requests`, and `sys.dm_os_wait_stats` reveal hotspots. **Query Store** tracks plan history and lets you **force a plan** to fix regressions. Azure SQL adds **Query Performance Insight**."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Query Store 'force plan' fixes plan-regression scenarios.",
+        "A fat arrow in a plan means many rows — often where the cost is."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Use execution plans to see the strategy, DMVs to find hotspots, and Query Store to catch and pin regressions."
+    }
+  ],
+  "questionIds": [
+    "q-l0603-1",
+    "q-l0603-2",
+    "q-l0603-3"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Query Store",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Execution plans",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

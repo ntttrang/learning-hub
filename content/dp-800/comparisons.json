@@ -1,0 +1,320 @@
+[
+  {
+    "id": "cmp-json",
+    "title": "JSON support",
+    "description": "All four engines store and query JSON, but indexing strategy and function names differ significantly.",
+    "columns": [
+      {
+        "id": "sqlserver",
+        "label": "Microsoft SQL"
+      },
+      {
+        "id": "postgresql",
+        "label": "PostgreSQL"
+      },
+      {
+        "id": "mysql",
+        "label": "MySQL"
+      },
+      {
+        "id": "oracle",
+        "label": "Oracle Database"
+      }
+    ],
+    "rows": [
+      {
+        "aspect": "Native type",
+        "cells": {
+          "sqlserver": "json (2025); else nvarchar(max)",
+          "postgresql": "json, jsonb",
+          "mysql": "JSON",
+          "oracle": "JSON (21c+)"
+        }
+      },
+      {
+        "aspect": "Scalar extract",
+        "cells": {
+          "sqlserver": "JSON_VALUE()",
+          "postgresql": "->> operator",
+          "mysql": "->> / JSON_EXTRACT",
+          "oracle": "JSON_VALUE / dot notation"
+        }
+      },
+      {
+        "aspect": "Shred array",
+        "cells": {
+          "sqlserver": "OPENJSON",
+          "postgresql": "jsonb_array_elements",
+          "mysql": "JSON_TABLE",
+          "oracle": "JSON_TABLE"
+        }
+      },
+      {
+        "aspect": "Index inside doc",
+        "cells": {
+          "sqlserver": "Computed column + index",
+          "postgresql": "GIN index (direct)",
+          "mysql": "Generated column + index",
+          "oracle": "JSON search index"
+        }
+      },
+      {
+        "aspect": "Containment test",
+        "cells": {
+          "sqlserver": "JSON_CONTAINS",
+          "postgresql": "@> operator",
+          "mysql": "JSON_CONTAINS",
+          "oracle": "JSON_EXISTS"
+        }
+      }
+    ],
+    "samples": [
+      {
+        "label": "Extract a scalar field 'color'",
+        "code": {
+          "sqlserver": "SELECT JSON_VALUE(Attributes,'$.color') FROM dbo.Product;",
+          "postgresql": "SELECT attributes->>'color' FROM product;",
+          "mysql": "SELECT attributes->>'$.color' FROM product;",
+          "oracle": "SELECT p.attributes.color FROM product p;"
+        }
+      }
+    ],
+    "migration": {
+      "equivalent": "Storing documents and extracting scalar values is conceptually identical across all four engines.",
+      "different": "Index strategy differs the most: PostgreSQL jsonb indexes the whole document with GIN, while SQL Server and MySQL require promoting paths to (computed/generated) columns.",
+      "directMigration": "Partial. Data migrates cleanly; queries and index DDL must be rewritten per engine.",
+      "syntaxChanges": "Replace JSON_VALUE/OPENJSON with the target engine's operators (->>, JSON_TABLE, jsonb_array_elements).",
+      "limitations": "SQL Server's native json type is 2025-only; older targets need nvarchar(max) + ISJSON.",
+      "whenToUse": "Use jsonb (PostgreSQL) when you need flexible ad-hoc indexing of documents; use the native json types elsewhere when documents are read via known paths."
+    }
+  },
+  {
+    "id": "cmp-identity",
+    "title": "Identity and sequence generation",
+    "description": "Every engine auto-generates keys but the syntax and defaults differ.",
+    "columns": [
+      {
+        "id": "sqlserver",
+        "label": "Microsoft SQL"
+      },
+      {
+        "id": "postgresql",
+        "label": "PostgreSQL"
+      },
+      {
+        "id": "mysql",
+        "label": "MySQL"
+      },
+      {
+        "id": "oracle",
+        "label": "Oracle Database"
+      }
+    ],
+    "rows": [
+      {
+        "aspect": "Auto-increment column",
+        "cells": {
+          "sqlserver": "IDENTITY(1,1)",
+          "postgresql": "GENERATED ... AS IDENTITY / serial",
+          "mysql": "AUTO_INCREMENT",
+          "oracle": "GENERATED ... AS IDENTITY"
+        }
+      },
+      {
+        "aspect": "Standalone sequence",
+        "cells": {
+          "sqlserver": "CREATE SEQUENCE",
+          "postgresql": "CREATE SEQUENCE",
+          "mysql": "Not supported (8.0)",
+          "oracle": "CREATE SEQUENCE"
+        }
+      },
+      {
+        "aspect": "Get next value",
+        "cells": {
+          "sqlserver": "NEXT VALUE FOR seq",
+          "postgresql": "nextval('seq')",
+          "mysql": "n/a",
+          "oracle": "seq.NEXTVAL"
+        }
+      }
+    ],
+    "migration": {
+      "equivalent": "IDENTITY-style auto-increment exists everywhere.",
+      "different": "MySQL has no standalone SEQUENCE object; PostgreSQL/Oracle/SQL Server do.",
+      "directMigration": "Mostly yes for auto-increment; sequence-based designs need rework on MySQL.",
+      "syntaxChanges": "Replace NEXT VALUE FOR with nextval()/NEXTVAL; replace IDENTITY with AUTO_INCREMENT or GENERATED AS IDENTITY.",
+      "limitations": "MySQL emulates sequences via AUTO_INCREMENT or a helper table.",
+      "whenToUse": "Use SEQUENCE for cross-table keys or pre-fetching IDs; IDENTITY for simple cases."
+    }
+  },
+  {
+    "id": "cmp-rls",
+    "title": "Row-level security",
+    "description": "SQL Server, PostgreSQL, and Oracle enforce RLS in-engine; MySQL relies on views.",
+    "columns": [
+      {
+        "id": "sqlserver",
+        "label": "Microsoft SQL"
+      },
+      {
+        "id": "postgresql",
+        "label": "PostgreSQL"
+      },
+      {
+        "id": "mysql",
+        "label": "MySQL"
+      },
+      {
+        "id": "oracle",
+        "label": "Oracle Database"
+      }
+    ],
+    "rows": [
+      {
+        "aspect": "Native RLS",
+        "cells": {
+          "sqlserver": "Yes (SECURITY POLICY)",
+          "postgresql": "Yes (CREATE POLICY)",
+          "mysql": "No (use views)",
+          "oracle": "Yes (VPD / DBMS_RLS)"
+        }
+      },
+      {
+        "aspect": "Read filter",
+        "cells": {
+          "sqlserver": "FILTER predicate",
+          "postgresql": "USING clause",
+          "mysql": "View WHERE clause",
+          "oracle": "Policy predicate"
+        }
+      },
+      {
+        "aspect": "Write restriction",
+        "cells": {
+          "sqlserver": "BLOCK predicate",
+          "postgresql": "WITH CHECK",
+          "mysql": "WITH CHECK OPTION on view",
+          "oracle": "Policy on DML statements"
+        }
+      },
+      {
+        "aspect": "Identity source",
+        "cells": {
+          "sqlserver": "SESSION_CONTEXT / USER_NAME()",
+          "postgresql": "current_setting / current_user",
+          "mysql": "Session variable",
+          "oracle": "SYS_CONTEXT"
+        }
+      }
+    ],
+    "samples": [
+      {
+        "label": "Enable per-tenant read filtering",
+        "code": {
+          "sqlserver": "ADD FILTER PREDICATE sec.fn_tenant(TenantId) ON dbo.Orders;",
+          "postgresql": "CREATE POLICY p ON orders USING (tenant_id = current_setting('app.tenant_id')::int);",
+          "mysql": "CREATE VIEW my_orders AS SELECT * FROM orders WHERE tenant_id = @app_tenant_id;",
+          "oracle": "DBMS_RLS.ADD_POLICY(object_name=>'ORDERS', policy_function=>'tenant_predicate');"
+        }
+      }
+    ],
+    "migration": {
+      "equivalent": "SQL Server FILTER/BLOCK maps almost 1:1 to PostgreSQL USING/WITH CHECK and to Oracle VPD.",
+      "different": "MySQL has no engine-level RLS; you must emulate with views and revoke base-table access.",
+      "directMigration": "Yes to PostgreSQL/Oracle with predicate rewrites; MySQL requires a view-based redesign.",
+      "syntaxChanges": "Rewrite the predicate function and swap SESSION_CONTEXT for current_setting/SYS_CONTEXT.",
+      "limitations": "MySQL's view approach is bypassable if users retain base-table privileges.",
+      "whenToUse": "Use native RLS wherever available; on MySQL, layer views plus strict grants."
+    }
+  },
+  {
+    "id": "cmp-vector",
+    "title": "Vector and AI capabilities",
+    "description": "All four now offer vector types and ANN indexing; SQL Server and Oracle are closest in syntax, PostgreSQL uses pgvector operators, MySQL is the least mature for open-source ANN.",
+    "columns": [
+      {
+        "id": "sqlserver",
+        "label": "Microsoft SQL"
+      },
+      {
+        "id": "postgresql",
+        "label": "PostgreSQL"
+      },
+      {
+        "id": "mysql",
+        "label": "MySQL"
+      },
+      {
+        "id": "oracle",
+        "label": "Oracle Database"
+      }
+    ],
+    "rows": [
+      {
+        "aspect": "Vector type",
+        "cells": {
+          "sqlserver": "VECTOR(n) (2025)",
+          "postgresql": "vector (pgvector)",
+          "mysql": "VECTOR (9.0)",
+          "oracle": "VECTOR (23ai)"
+        }
+      },
+      {
+        "aspect": "Distance function",
+        "cells": {
+          "sqlserver": "VECTOR_DISTANCE()",
+          "postgresql": "<=> / <-> operators",
+          "mysql": "DISTANCE()",
+          "oracle": "VECTOR_DISTANCE()"
+        }
+      },
+      {
+        "aspect": "ANN index",
+        "cells": {
+          "sqlserver": "DiskANN (preview)",
+          "postgresql": "HNSW / IVFFlat",
+          "mysql": "Limited (HeatWave)",
+          "oracle": "HNSW / IVF"
+        }
+      },
+      {
+        "aspect": "In-DB embedding gen",
+        "cells": {
+          "sqlserver": "AI_GENERATE_EMBEDDINGS",
+          "postgresql": "via extension/UDF",
+          "mysql": "External",
+          "oracle": "DBMS_VECTOR / ONNX in-db"
+        }
+      },
+      {
+        "aspect": "Metrics",
+        "cells": {
+          "sqlserver": "cosine, euclidean, dot",
+          "postgresql": "cosine, L2, inner",
+          "mysql": "cosine, euclidean, dot",
+          "oracle": "cosine, euclidean, dot"
+        }
+      }
+    ],
+    "samples": [
+      {
+        "label": "Top-5 cosine nearest neighbors",
+        "code": {
+          "sqlserver": "SELECT TOP 5 DocId FROM dbo.Doc ORDER BY VECTOR_DISTANCE('cosine', Embedding, @q);",
+          "postgresql": "SELECT doc_id FROM doc ORDER BY embedding <=> $1 LIMIT 5;",
+          "mysql": "SELECT doc_id FROM doc ORDER BY DISTANCE(embedding, VEC_FROM_TEXT(?), 'COSINE') LIMIT 5;",
+          "oracle": "SELECT doc_id FROM doc ORDER BY VECTOR_DISTANCE(embedding, :q, COSINE) FETCH FIRST 5 ROWS ONLY;"
+        }
+      }
+    ],
+    "migration": {
+      "equivalent": "The store-embedding / order-by-distance pattern is identical everywhere.",
+      "different": "Index types (DiskANN vs HNSW/IVFFlat) and function vs operator syntax differ; MySQL open-source ANN is the weakest.",
+      "directMigration": "Yes for the query pattern; index DDL and distance syntax must be rewritten.",
+      "syntaxChanges": "Swap VECTOR_DISTANCE for pgvector operators or MySQL DISTANCE(); change index creation syntax.",
+      "limitations": "SQL Server DiskANN and several vector functions are in preview; MySQL open-source lacks mature ANN indexing.",
+      "whenToUse": "Choose the engine already holding your relational data so you avoid moving it — the core DP-800 value proposition."
+    }
+  }
+]

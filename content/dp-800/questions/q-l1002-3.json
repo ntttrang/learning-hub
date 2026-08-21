@@ -1,0 +1,29 @@
+{
+  "id": "q-l1002-3",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1002",
+  "difficulty": "advanced",
+  "prompt": "For a very large corpus needing fast search with slight accuracy trade-off, choose:",
+  "explanation": "ANN with DiskANN trades a little recall for large speedups at scale; ENN is exact but scans everything.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "ENN (exact) full scan"
+    },
+    {
+      "id": "b",
+      "text": "ANN with a DiskANN index"
+    },
+    {
+      "id": "c",
+      "text": "A full-text index"
+    },
+    {
+      "id": "d",
+      "text": "A columnstore index"
+    }
+  ],
+  "correct": "b"
+}

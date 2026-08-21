@@ -1,0 +1,33 @@
+{
+  "id": "q-lab09-6",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "lessonId": "l0901",
+  "difficulty": "advanced",
+  "prompt": "You must choose an embedding model for Harbor's multilingual support articles and for a future image-caption search. Token cost matters.\n\nWhich evaluation factors match the outline?",
+  "explanation": "The skills outline: evaluate external models including multimodal, multilanguage, sizes, and structured output. Region matters for latency/compliance but does not collapse model differences. Query Store and columnstore are unrelated to model choice.",
+  "tags": [
+    "lab-coding",
+    "lab-09"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Modality (text vs multimodal), languages, vector size/cost, and whether you need structured output from a chat model vs an embedding model"
+    },
+    {
+      "id": "b",
+      "text": "Only the Azure region; all embedding models have identical dimensions and languages"
+    },
+    {
+      "id": "c",
+      "text": "Whether Query Store is on; embeddings cannot be generated unless it is"
+    },
+    {
+      "id": "d",
+      "text": "Whether the table uses a columnstore index; VECTOR requires columnstore"
+    }
+  ],
+  "correct": "a"
+}

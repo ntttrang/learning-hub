@@ -1,0 +1,29 @@
+{
+  "id": "q-l0202-1",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "lessonId": "l0202",
+  "difficulty": "intermediate",
+  "prompt": "Which function form generally gives the optimizer the best cardinality estimates?",
+  "explanation": "Inline TVFs expand like a view so the optimizer reasons about them directly; multi-statement TVFs historically produce poor estimates.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Multi-statement table-valued function"
+    },
+    {
+      "id": "b",
+      "text": "Inline table-valued function"
+    },
+    {
+      "id": "c",
+      "text": "Scalar UDF without inlining"
+    },
+    {
+      "id": "d",
+      "text": "Extended stored procedure"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,91 @@
+{
+  "id": "l0502",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "order": 2,
+  "slug": "dynamic-data-masking",
+  "title": "Dynamic Data Masking",
+  "summary": "Obscure sensitive values for unprivileged users without changing stored data.",
+  "minutes": 20,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Apply DDM mask types.",
+        "Explain that DDM is presentation-layer, not encryption.",
+        "Grant UNMASK appropriately."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "DDM hides data at query time for non-privileged users while the underlying data is unchanged."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Dynamic Data Masking",
+          "definition": "A feature that masks column values in query results for users without UNMASK permission."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Add masks with `MASKED WITH (FUNCTION = 'default()' | 'partial()' | 'email()' | 'random()')`. Users with **UNMASK** see real values. DDM is **not** a security boundary against determined users — combine with RLS and least privilege."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Treating DDM as encryption.",
+          "fix": "DDM only masks display; data is stored in clear and can be inferred via crafted queries without proper permissions."
+        }
+      ]
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "DDM is presentation-only; pair it with real access controls."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Use DDM to reduce accidental exposure, but never as your only control — it's cosmetic, not cryptographic."
+    }
+  ],
+  "questionIds": [
+    "q-l0502-1",
+    "q-l0502-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Dynamic Data Masking",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

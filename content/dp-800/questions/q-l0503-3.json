@@ -1,0 +1,29 @@
+{
+  "id": "q-l0503-3",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0503",
+  "difficulty": "advanced",
+  "prompt": "Which stored procedure sets a read-only tenant id for the connection to drive an RLS predicate?",
+  "explanation": "sp_set_session_context with @read_only = 1 sets a value (e.g., TenantId) the predicate reads via SESSION_CONTEXT and that can't be overwritten.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "sp_executesql"
+    },
+    {
+      "id": "b",
+      "text": "sp_set_session_context"
+    },
+    {
+      "id": "c",
+      "text": "sp_addrolemember"
+    },
+    {
+      "id": "d",
+      "text": "sp_configure"
+    }
+  ],
+  "correct": "b"
+}

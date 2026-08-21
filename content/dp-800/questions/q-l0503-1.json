@@ -1,0 +1,29 @@
+{
+  "id": "q-l0503-1",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0503",
+  "difficulty": "advanced",
+  "prompt": "In SQL Server RLS, which predicate type silently removes rows from SELECT results?",
+  "explanation": "FILTER predicates apply to reads and silently exclude rows; BLOCK predicates restrict writes.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "BLOCK predicate"
+    },
+    {
+      "id": "b",
+      "text": "FILTER predicate"
+    },
+    {
+      "id": "c",
+      "text": "CHECK constraint"
+    },
+    {
+      "id": "d",
+      "text": "DENY"
+    }
+  ],
+  "correct": "b"
+}

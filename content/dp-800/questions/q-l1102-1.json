@@ -1,0 +1,29 @@
+{
+  "id": "q-l1102-1",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "lessonId": "l1102",
+  "difficulty": "advanced",
+  "prompt": "How should AI-generated (natural-language-to-SQL) queries be executed safely?",
+  "explanation": "Treat generated SQL as untrusted: validate (e.g., allow only SELECT), run as least-privilege read-only (reinforced by RLS), and block DDL/DML.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Directly as sysadmin for convenience"
+    },
+    {
+      "id": "b",
+      "text": "Validated, read-only, least-privilege, with destructive statements blocked"
+    },
+    {
+      "id": "c",
+      "text": "Without any review"
+    },
+    {
+      "id": "d",
+      "text": "Only at night"
+    }
+  ],
+  "correct": "b"
+}

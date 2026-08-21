@@ -1,0 +1,109 @@
+{
+  "id": "l0501",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "order": 1,
+  "slug": "encryption",
+  "title": "Encryption: Always Encrypted and column-level encryption",
+  "summary": "Protect data at rest and in use with TDE, column-level encryption, and Always Encrypted (incl. secure enclaves).",
+  "minutes": 35,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Distinguish TDE, column-level encryption, and Always Encrypted.",
+        "Explain what Always Encrypted protects against and its client-driver requirement.",
+        "Describe secure enclaves for richer computations on encrypted data."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "DP-800 emphasizes protecting sensitive columns. Always Encrypted is the headline: the server never sees plaintext or keys."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "TDE",
+          "definition": "Transparent Data Encryption — encrypts data files at rest; transparent to queries."
+        },
+        {
+          "term": "Always Encrypted",
+          "definition": "Client-side encryption where keys never reach the server; protects data in use."
+        },
+        {
+          "term": "Secure enclave",
+          "definition": "A protected memory region enabling comparisons/computations on Always Encrypted data."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "The three layers",
+      "body": "- **TDE** encrypts the whole database at rest, transparently.\n- **Column-level encryption** uses keys/certificates via `ENCRYPTBYKEY`.\n- **Always Encrypted** encrypts on the **client**; the engine stores and returns ciphertext and never has the Column Encryption Key. **Secure enclaves** extend it to support pattern-matching and range comparisons."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Expecting the server to query Always Encrypted columns in plaintext.",
+          "fix": "Only enclave-enabled operations work server-side; otherwise decryption happens in the driver."
+        }
+      ]
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "'Server admin/DBA must not see plaintext' => Always Encrypted.",
+        "'Encrypt everything at rest transparently' => TDE.",
+        "Secure enclaves enable richer WHERE operations on encrypted columns."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Layer TDE (at rest), column encryption, and Always Encrypted (in use). Always Encrypted keeps keys client-side; enclaves add richer queries."
+    }
+  ],
+  "questionIds": [
+    "q-l0501-1",
+    "q-l0501-2",
+    "q-l0501-3"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Always Encrypted",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Transparent Data Encryption",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

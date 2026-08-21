@@ -1,0 +1,29 @@
+{
+  "id": "q-l0603-3",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0603",
+  "difficulty": "advanced",
+  "prompt": "A big discrepancy between estimated and actual row counts in a plan usually indicates:",
+  "explanation": "Large estimated-vs-actual gaps point to cardinality estimation issues such as stale/missing statistics or non-sargable predicates.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Perfect statistics"
+    },
+    {
+      "id": "b",
+      "text": "A cardinality estimation problem (e.g., stale stats)"
+    },
+    {
+      "id": "c",
+      "text": "A network error"
+    },
+    {
+      "id": "d",
+      "text": "Nothing important"
+    }
+  ],
+  "correct": "b"
+}

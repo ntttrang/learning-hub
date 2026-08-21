@@ -1,0 +1,29 @@
+{
+  "id": "q-l0803-1",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "lessonId": "l0803",
+  "difficulty": "intermediate",
+  "prompt": "Which Azure Monitor component provides end-to-end request and dependency tracing?",
+  "explanation": "Application Insights provides distributed tracing of requests and dependencies, including AI service calls.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Application Insights"
+    },
+    {
+      "id": "b",
+      "text": "Log Analytics"
+    },
+    {
+      "id": "c",
+      "text": "Azure Backup"
+    },
+    {
+      "id": "d",
+      "text": "Azure Policy"
+    }
+  ],
+  "correct": "a"
+}

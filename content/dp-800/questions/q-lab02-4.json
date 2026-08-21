@@ -1,0 +1,34 @@
+{
+  "id": "q-lab02-4",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "lessonId": "l0202",
+  "difficulty": "advanced",
+  "prompt": "A developer wrote two functions that return the same columns. Query Store shows the first as a table scan plus a filter; the second is expanded into the outer query like a view.\n\nWhich statement is true?",
+  "explanation": "`RETURNS @t TABLE … BEGIN INSERT … END` is a multi-statement TVF. `RETURNS TABLE AS RETURN (SELECT …)` with no BEGIN/END is inline. Inline TVFs are the set-based default on DP-800; MSTVFs hide cardinality and historically block optimizations. Both TVFs work with APPLY; B is usually the one you want.",
+  "tags": [
+    "lab-coding",
+    "lab-02"
+  ],
+  "kind": "codeReading",
+  "code": "-- A\nCREATE FUNCTION dbo.GetCrewVoyages_A (@CrewId INT)\nRETURNS @t TABLE (VoyageId INT, VoyageDate DATE)\nAS BEGIN\n  INSERT @t SELECT VoyageId, VoyageDate FROM dbo.Voyage WHERE CrewId = @CrewId;\n  RETURN;\nEND;\n\n-- B\nCREATE FUNCTION dbo.GetCrewVoyages_B (@CrewId INT)\nRETURNS TABLE\nAS RETURN\n(\n  SELECT VoyageId, VoyageDate FROM dbo.Voyage WHERE CrewId = @CrewId\n);",
+  "options": [
+    {
+      "id": "a",
+      "text": "A is a multi-statement TVF (often a black box). B is an inline TVF the optimizer can expand"
+    },
+    {
+      "id": "b",
+      "text": "A is inline; B is scalar"
+    },
+    {
+      "id": "c",
+      "text": "Both are scalar UDFs because they take `@CrewId`"
+    },
+    {
+      "id": "d",
+      "text": "B cannot be used with APPLY; only A can"
+    }
+  ],
+  "correct": "a"
+}

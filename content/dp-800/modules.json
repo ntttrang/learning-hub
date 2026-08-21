@@ -1,0 +1,166 @@
+[
+  {
+    "id": "m01",
+    "domainId": "d1",
+    "order": 1,
+    "title": "Design and implement database objects",
+    "summary": "Tables, specialized tables, JSON columns, constraints, sequences, and partitioning.",
+    "officialSkills": [
+      "Design and implement tables, including data types, size, columns, indexes, and column store indexes",
+      "Design and implement specialized tables, including in-memory, temporal, external, ledger, and graph",
+      "Design and implement JSON columns and indexes",
+      "Design and implement database constraints, including PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK, and DEFAULT",
+      "Design and implement SEQUENCES",
+      "Design and implement partitioning for tables and indexes"
+    ]
+  },
+  {
+    "id": "m02",
+    "domainId": "d1",
+    "order": 2,
+    "title": "Implement programmability objects",
+    "summary": "Views, scalar and table-valued functions, stored procedures, and triggers.",
+    "officialSkills": [
+      "Create views",
+      "Create scalar functions",
+      "Create table-valued functions",
+      "Create stored procedures",
+      "Create triggers"
+    ]
+  },
+  {
+    "id": "m03",
+    "domainId": "d1",
+    "order": 3,
+    "title": "Write advanced T-SQL code",
+    "summary": "CTEs, window functions, JSON functions, regex, fuzzy matching, graph queries, and error handling.",
+    "officialSkills": [
+      "Write common table expressions (CTEs)",
+      "Write queries that include window functions",
+      "Write queries that include JSON functions (JSON_OBJECT, JSON_ARRAY, OPENJSON, JSON_VALUE, ...)",
+      "Write queries that include regular expressions (REGEXP_LIKE, REGEXP_REPLACE, ...)",
+      "Write queries that include fuzzy string matching (EDIT_DISTANCE, JARO_WINKLER_DISTANCE, ...)",
+      "Write graph queries that use the MATCH operator",
+      "Write correlated queries",
+      "Implement error handling"
+    ]
+  },
+  {
+    "id": "m04",
+    "domainId": "d1",
+    "order": 4,
+    "title": "Design SQL solutions by using AI-assisted tools",
+    "summary": "GitHub Copilot, Copilot in Fabric, model and MCP tool configuration, and MCP server endpoints.",
+    "officialSkills": [
+      "Interpret security impact of using AI-assisted tools",
+      "Enable GitHub Copilot and Microsoft Copilot in Fabric",
+      "Configure model and Model Context Protocol (MCP) tool options in a Copilot chat session",
+      "Create and configure GitHub Copilot instruction files",
+      "Connect to MCP server endpoints, including Microsoft SQL Server and Fabric lakehouse"
+    ]
+  },
+  {
+    "id": "m05",
+    "domainId": "d2",
+    "order": 1,
+    "title": "Implement data security and compliance",
+    "summary": "Encryption, Dynamic Data Masking, Row-Level Security, permissions, auditing, and secure endpoints.",
+    "officialSkills": [
+      "Design and implement data encryption, including Always Encrypted and column-level encryption",
+      "Design and implement Dynamic Data Masking",
+      "Design and implement Row-Level Security (RLS)",
+      "Design and implement object-level permissions",
+      "Implement secure database access, including passwordless",
+      "Implement auditing",
+      "Secure model endpoints, including Managed Identity",
+      "Secure GraphQL, REST, and MCP endpoints"
+    ]
+  },
+  {
+    "id": "m06",
+    "domainId": "d2",
+    "order": 2,
+    "title": "Optimize database performance",
+    "summary": "Configuration, isolation levels and concurrency, execution plans and DMVs, blocking and deadlocks.",
+    "officialSkills": [
+      "Recommend database configurations",
+      "Preserve data integrity and consistency by using transaction isolation levels and concurrency controls",
+      "Evaluate query performance by using execution plans, DMVs, Query Store, and Query Performance Insight",
+      "Identify and resolve query performance issues, including blocking and deadlocks"
+    ]
+  },
+  {
+    "id": "m07",
+    "domainId": "d2",
+    "order": 3,
+    "title": "Implement CI/CD by using SQL Database Projects",
+    "summary": "SQL Database Projects, source control, testing, secrets, schema drift, and deployment pipelines.",
+    "officialSkills": [
+      "Design and implement a testing strategy, including unit tests and integration tests",
+      "Create and manage reference/static data in source control",
+      "Create, build, and validate database models by using SQL Database Projects (SDK-style)",
+      "Configure source control; manage branching, pull requests, and conflict resolution",
+      "Implement secrets management",
+      "Detect schema drift by using SQL Database Projects",
+      "Update a project and deploy changes; implement deployment pipeline controls"
+    ]
+  },
+  {
+    "id": "m08",
+    "domainId": "d2",
+    "order": 4,
+    "title": "Integrate SQL solutions with Azure services",
+    "summary": "Data API builder, REST/GraphQL endpoints, Azure Monitor, and change handling (CDC, CT, CES).",
+    "officialSkills": [
+      "Create configuration files for Data API builder (DAB)",
+      "Configure entities for REST and GraphQL, including caching, pagination, searching, and filtering",
+      "Configure and implement DAB deployment",
+      "Recommend Azure Monitor configurations, including Application Insights and Log Analytics",
+      "Handle changes by using CES, CDC, Change Tracking, Azure Functions with SQL trigger binding, or Logic Apps"
+    ]
+  },
+  {
+    "id": "m09",
+    "domainId": "d3",
+    "order": 1,
+    "title": "Design and implement models and embeddings",
+    "summary": "External models, embedding maintenance methods, chunking, and generating embeddings.",
+    "officialSkills": [
+      "Evaluate external models, including multimodal, multilanguage, sizes, and structured output",
+      "Create and manage external models",
+      "Choose an embedding maintenance method (triggers, Change Tracking, Azure Functions, Logic Apps, CDC, CES, Microsoft Foundry)",
+      "Identify which columns to include in embeddings",
+      "Design and implement chunks for embeddings",
+      "Generate embeddings"
+    ]
+  },
+  {
+    "id": "m10",
+    "domainId": "d3",
+    "order": 2,
+    "title": "Design and implement intelligent search",
+    "summary": "Full-text, vector data type and indexes, ANN vs ENN, hybrid search, and RRF.",
+    "officialSkills": [
+      "Choose from full-text, semantic vector, and hybrid search",
+      "Implement full-text search",
+      "Design for vector data, including vector data type, vector indexes, and size",
+      "Use vector-related types and functions (VECTOR_NORMALIZE, VECTOR_DISTANCE, VECTORPROPERTY, VECTOR_SEARCH)",
+      "Choose between ANN and ENN; evaluate vector index types and metrics",
+      "Implement vector search, hybrid search, and reciprocal rank fusion (RRF)",
+      "Evaluate performance of vector and hybrid search"
+    ]
+  },
+  {
+    "id": "m11",
+    "domainId": "d3",
+    "order": 3,
+    "title": "Design and implement retrieval-augmented generation (RAG)",
+    "summary": "RAG use cases, sp_invoke_external_rest_endpoint, JSON conversion, and handling model responses.",
+    "officialSkills": [
+      "Identify use cases for RAG",
+      "Create a prompt by using the sp_invoke_external_rest_endpoint stored procedure",
+      "Convert structured data to JSON for language model processing",
+      "Send results to a language model and extract language model responses"
+    ]
+  }
+]

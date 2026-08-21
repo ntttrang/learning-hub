@@ -1,0 +1,103 @@
+{
+  "id": "l0902",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "order": 2,
+  "slug": "embedding-maintenance",
+  "title": "Choosing an embedding maintenance method",
+  "summary": "Keep embeddings fresh as source data changes using triggers, Change Tracking, CDC, CES, Functions, Logic Apps, or Foundry.",
+  "minutes": 30,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Compare embedding maintenance methods and their trade-offs.",
+        "Design a pipeline that re-embeds only changed rows."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Stale embeddings return wrong results. This lesson connects Domain 2's change-handling tools to AI freshness — a production-grade concern."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Embedding maintenance",
+          "definition": "Keeping stored embeddings in sync with changing source text."
+        },
+        {
+          "term": "Re-embedding",
+          "definition": "Regenerating an embedding when its source content changes."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Maintenance options: **table triggers**, **Change Tracking**, **CDC**, **CES**, **Azure Functions (SQL trigger binding)**, **Logic Apps**, and **Microsoft Foundry**. Trade off latency, cost, and complexity: triggers are immediate but add write overhead; CT/CDC enable efficient batch re-embedding of only changed rows; Functions/Logic Apps decouple the work asynchronously."
+    },
+    {
+      "kind": "heading",
+      "text": "Real-world scenario",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "heading": "Keeping a knowledge base current",
+      "body": "Support articles change daily. Enable Change Tracking on the articles table; a scheduled Azure Function reads the change set, re-chunks and re-embeds only modified articles, and updates the vector column. This avoids re-embedding the whole corpus every night."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Change Tracking is the lightweight way to find rows needing re-embedding.",
+        "Microsoft Foundry is a valid maintenance method in the 2026 blueprint."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Match the maintenance method to freshness needs and cost: triggers for immediacy, CT/CDC for efficient change-driven re-embedding, Functions/Logic Apps/Foundry for async pipelines."
+    }
+  ],
+  "questionIds": [
+    "q-l0902-1",
+    "q-l0902-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Change Tracking",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Azure Functions SQL trigger",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-azure-sql-trigger",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

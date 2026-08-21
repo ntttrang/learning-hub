@@ -1,0 +1,113 @@
+{
+  "id": "l0102",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "order": 2,
+  "slug": "specialized-tables",
+  "title": "Specialized tables: in-memory, temporal, external, ledger, graph",
+  "summary": "Know the purpose, constraints, and syntax of SQL Server's specialized table types and when each is the right tool.",
+  "minutes": 35,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Match each specialized table type to the scenario it solves.",
+        "Recall the defining syntax for temporal, ledger, and graph tables.",
+        "Explain the guarantees ledger tables provide for tamper-evidence."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "SQL Server ships several specialized table types. The exam tests recognizing which one fits a described requirement."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Temporal table",
+          "definition": "System-versioned table that automatically keeps full history of row changes."
+        },
+        {
+          "term": "Ledger table",
+          "definition": "Provides cryptographically verifiable, tamper-evident history using a blockchain-like structure."
+        },
+        {
+          "term": "Memory-optimized table",
+          "definition": "In-memory OLTP table using lock-free structures for extreme throughput."
+        },
+        {
+          "term": "Graph table",
+          "definition": "NODE and EDGE tables queried with the MATCH operator."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "The five types",
+      "body": "- **In-memory (memory-optimized)**: `WITH (MEMORY_OPTIMIZED = ON)` for high-throughput OLTP.\n- **Temporal**: `WITH (SYSTEM_VERSIONING = ON)` keeps a history table for point-in-time queries with `FOR SYSTEM_TIME`.\n- **External**: `CREATE EXTERNAL TABLE` reads data that lives outside the database (e.g., data lake).\n- **Ledger**: `WITH (LEDGER = ON)` for tamper-evident, auditable data.\n- **Graph**: `AS NODE` / `AS EDGE` tables queried with `MATCH`."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Using a temporal table when tamper-evidence is required.",
+          "fix": "Temporal tables track history but are not tamper-proof; use ledger tables for verifiable auditing."
+        }
+      ]
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "'Tamper-evident' / 'cryptographically verifiable' => ledger table.",
+        "'Point-in-time' / 'as of' history => temporal table with FOR SYSTEM_TIME.",
+        "'Query relationships / many-to-many networks' => graph NODE/EDGE + MATCH."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Learn the one-line trigger phrase for each specialized table type — the exam usually gives you a scenario and asks which one to pick."
+    }
+  ],
+  "questionIds": [
+    "q-l0102-1",
+    "q-l0102-2",
+    "q-l0102-3"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Temporal tables",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Ledger",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/ledger/ledger-overview",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

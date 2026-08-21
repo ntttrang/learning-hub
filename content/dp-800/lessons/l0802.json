@@ -1,0 +1,92 @@
+{
+  "id": "l0802",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "order": 2,
+  "slug": "rest-graphql-entities",
+  "title": "REST and GraphQL entities: caching, pagination, filtering",
+  "summary": "Expose objects and relationships and tune endpoints with caching, pagination, searching, and filtering.",
+  "minutes": 30,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Configure REST/GraphQL endpoints and relationships.",
+        "Enable caching, pagination, searching, and filtering."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Well-designed endpoints need caching, paging, and filtering — all configurable in DAB."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "GraphQL relationship",
+          "definition": "A configured link between entities enabling nested queries."
+        },
+        {
+          "term": "Pagination",
+          "definition": "Returning results in pages (e.g., first/after) to bound response size."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Expose tables, views, **stored procedures**, and **GraphQL relationships**. Configure **data caching**, **pagination**, **searching**, and **filtering** so clients fetch exactly what they need efficiently."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "DAB can expose stored procedures and relationships, not just tables.",
+        "Enable pagination to bound payloads."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Configure entity relationships plus caching, pagination, search, and filtering to build efficient REST/GraphQL APIs."
+    }
+  ],
+  "questionIds": [
+    "q-l0802-1",
+    "q-l0802-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "DAB REST",
+      "url": "https://learn.microsoft.com/en-us/azure/data-api-builder/rest",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "DAB GraphQL",
+      "url": "https://learn.microsoft.com/en-us/azure/data-api-builder/graphql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

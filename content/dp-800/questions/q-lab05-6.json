@@ -1,0 +1,34 @@
+{
+  "id": "q-lab05-6",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0503",
+  "difficulty": "challenge",
+  "prompt": "Tenants share `dbo.Voyage`. A developer used `USER_NAME()` as the RLS predicate against `Region`. Pacific clerk `ada@harbor` has SESSION_CONTEXT region `PAC` but sees **zero** rows, even though Pacific voyages exist.\n\nWhat is the bug?",
+  "explanation": "This is the exam-style 'almost right RLS' trap. USER_NAME() / SUSER_SNAME() are login/user names. Tenant *region* belongs in session context (set at connect by the app) or a mapping table. SCHEMABINDING is required, not the bug. BLOCK is for writes, not empty reads.",
+  "tags": [
+    "lab-coding",
+    "lab-05"
+  ],
+  "kind": "codeReading",
+  "code": "CREATE FUNCTION Security.fn_RegionFilter(@Region nvarchar(20))\nRETURNS TABLE WITH SCHEMABINDING\nAS\nRETURN SELECT 1 AS AccessGranted WHERE @Region = USER_NAME();",
+  "options": [
+    {
+      "id": "a",
+      "text": "`USER_NAME()` is the database principal (`ada@harbor`), not `PAC`. Compare `@Region` to read-only `SESSION_CONTEXT(N'region')` (or a security table keyed by user)"
+    },
+    {
+      "id": "b",
+      "text": "SCHEMABINDING disables RLS on user tables"
+    },
+    {
+      "id": "c",
+      "text": "FILTER predicates cannot live in a `Security` schema"
+    },
+    {
+      "id": "d",
+      "text": "You must add `BLOCK PREDICATE` or SELECT always returns empty"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "q-lab09-4",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "lessonId": "l0902",
+  "difficulty": "advanced",
+  "prompt": "Reviews update throughout the day. Re-embedding the **entire** table each night misses the SLA and burns tokens. You need near-real-time refresh of **changed** rows only.\n\nWhich **two** maintenance approaches match the skills outline? Each correct answer presents part of the solution.",
+  "explanation": "Embedding maintenance is its own skill: triggers, Change Tracking, CDC, CES, Azure Functions (SQL trigger binding), Logic Apps, Foundry. Index rebuilds and recovery models do not refresh model output.",
+  "tags": [
+    "lab-coding",
+    "lab-09"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Change Tracking / CDC (or CES) to detect changed keys, then a job, Azure Function, or Logic App re-embeds those rows"
+    },
+    {
+      "id": "b",
+      "text": "An AFTER UPDATE trigger that calls `AI_GENERATE_EMBEDDINGS` for the inserted review text (with care for synchronous cost)"
+    },
+    {
+      "id": "c",
+      "text": "Rebuild the clustered index nightly with FILLFACTOR 50"
+    },
+    {
+      "id": "d",
+      "text": "Switch the database to SIMPLE recovery so embeddings auto-refresh"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

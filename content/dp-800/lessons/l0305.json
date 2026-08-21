@@ -1,0 +1,106 @@
+{
+  "id": "l0305",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "order": 5,
+  "slug": "graph-correlated-error-handling",
+  "title": "Graph queries, correlated subqueries, and error handling",
+  "summary": "Traverse graph data with MATCH, write correlated subqueries, and handle errors with TRY/CATCH and THROW.",
+  "minutes": 35,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Query NODE/EDGE tables with MATCH.",
+        "Write correlated subqueries and EXISTS.",
+        "Implement TRY...CATCH with THROW and transaction rollback."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "This lesson bundles three exam skills: graph MATCH, correlated queries, and error handling."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "MATCH",
+          "definition": "Graph pattern-matching operator over NODE and EDGE tables."
+        },
+        {
+          "term": "Correlated subquery",
+          "definition": "A subquery that references columns from the outer query, evaluated per outer row."
+        },
+        {
+          "term": "TRY...CATCH",
+          "definition": "Structured error handling block in T-SQL."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Graph: `SELECT ... FROM Person p, likes l, Person p2 WHERE MATCH(p-(l)->p2)`. Error handling: wrap DML in `BEGIN TRY ... END TRY BEGIN CATCH ... END CATCH`; use `THROW` (re-raises) or `RAISERROR`, and check `@@TRANCOUNT`/`XACT_STATE()` before rollback."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Committing inside CATCH without checking XACT_STATE().",
+          "fix": "A doomed transaction (XACT_STATE = -1) can only be rolled back."
+        }
+      ]
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "THROW with no arguments re-raises the current error inside CATCH.",
+        "MATCH only works on NODE/EDGE tables."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Use MATCH for graph traversal, correlated subqueries for per-row logic, and TRY/CATCH + THROW for robust error handling."
+    }
+  ],
+  "questionIds": [
+    "q-l0305-1",
+    "q-l0305-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Graph processing with MATCH",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/graphs/sql-graph-overview",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "TRY...CATCH",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/try-catch-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

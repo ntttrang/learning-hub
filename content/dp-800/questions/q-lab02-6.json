@@ -1,0 +1,34 @@
+{
+  "id": "q-lab02-6",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "lessonId": "l0202",
+  "difficulty": "challenge",
+  "prompt": "The catalog report runs `SELECT dbo.fnVoyageTotal(VoyageId) FROM dbo.Voyage` over 8 million voyages and is CPU-bound. The function compiles and returns the right totals.\n\nWhat should you change first?",
+  "explanation": "This is a classic exam trap: the code is *correct* but the *pattern* is wrong at scale. Scalar UDFs in the SELECT list execute per row (SQL Server 2019+ inlining helps some functions, but an inline TVF or grouped join is the reliable design). SCHEMABINDING does not by itself buy parallelism. ISNULL is legal. master is irrelevant.",
+  "tags": [
+    "lab-coding",
+    "lab-02"
+  ],
+  "kind": "codeReading",
+  "code": "CREATE FUNCTION dbo.fnVoyageTotal (@VoyageId INT)\nRETURNS DECIMAL(18,2)\nAS\nBEGIN\n  DECLARE @Total DECIMAL(18,2);\n  SELECT @Total = SUM(Qty * UnitPrice)\n  FROM dbo.VoyageLine WHERE VoyageId = @VoyageId;\n  RETURN ISNULL(@Total, 0);\nEND;",
+  "options": [
+    {
+      "id": "a",
+      "text": "Replace the scalar UDF in the SELECT list with a set-based join/aggregate or an inline TVF — scalar UDFs are often RBAR and inhibit parallelism"
+    },
+    {
+      "id": "b",
+      "text": "Add `WITH SCHEMABINDING` only; that guarantees a parallel plan"
+    },
+    {
+      "id": "c",
+      "text": "Change `ISNULL` to `COALESCE`; scalar UDFs cannot use ISNULL"
+    },
+    {
+      "id": "d",
+      "text": "Move the function to `master` so it is cached once for the instance"
+    }
+  ],
+  "correct": "a"
+}

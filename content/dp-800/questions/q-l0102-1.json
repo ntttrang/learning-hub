@@ -1,0 +1,29 @@
+{
+  "id": "q-l0102-1",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0102",
+  "difficulty": "intermediate",
+  "prompt": "A compliance requirement states that financial records must be tamper-evident and cryptographically verifiable. Which table type satisfies this?",
+  "explanation": "Ledger tables provide cryptographically verifiable, tamper-evident history. Temporal tables keep history but are not tamper-proof.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Temporal table"
+    },
+    {
+      "id": "b",
+      "text": "Ledger table"
+    },
+    {
+      "id": "c",
+      "text": "Memory-optimized table"
+    },
+    {
+      "id": "d",
+      "text": "Graph table"
+    }
+  ],
+  "correct": "b"
+}

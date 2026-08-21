@@ -1,0 +1,29 @@
+{
+  "id": "q-l0103-5",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0103",
+  "difficulty": "intermediate",
+  "prompt": "Which SQL Server 2025 feature improves JSON storage and validation compared to nvarchar(max)?",
+  "explanation": "SQL Server 2025 adds a native json data type storing an optimized binary form with validation, preferred over the nvarchar(max) + ISJSON pattern.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "The native json data type"
+    },
+    {
+      "id": "b",
+      "text": "The XML data type"
+    },
+    {
+      "id": "c",
+      "text": "sql_variant"
+    },
+    {
+      "id": "d",
+      "text": "VARBINARY(MAX)"
+    }
+  ],
+  "correct": "a"
+}

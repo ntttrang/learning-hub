@@ -1,0 +1,34 @@
+{
+  "id": "q-lab01-4",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0106",
+  "difficulty": "challenge",
+  "prompt": "Voyages are partitioned by `VoyageDate`. Finance insists that **the entire calendar day** `2026-01-01` belongs in Q1 2026 (the partition immediately after the first boundary), not in the leftover 2025 partition.\n\nGiven this function, where does `'2026-01-01'` land, and is the function the right choice?",
+  "explanation": "RANGE RIGHT: each boundary value belongs to the partition on its right. `'2026-01-01'` is therefore in partition 2 (Q1), and all later times that day stay with it because the type is DATE. RANGE LEFT would put the boundary in the left partition — the usual reason date/time keys use RANGE RIGHT.",
+  "tags": [
+    "lab-coding",
+    "lab-01"
+  ],
+  "kind": "codeReading",
+  "code": "CREATE PARTITION FUNCTION PF_VoyageDate (DATE)\n  AS RANGE RIGHT FOR VALUES ('2026-01-01', '2026-04-01', '2026-07-01', '2026-10-01');",
+  "options": [
+    {
+      "id": "a",
+      "text": "RANGE RIGHT puts `'2026-01-01'` in the partition to the right of that boundary (Q1 2026). That matches the 'whole day stays together on the right' requirement"
+    },
+    {
+      "id": "b",
+      "text": "RANGE RIGHT puts `'2026-01-01'` in the leftmost (2025) partition, so you must switch to RANGE LEFT"
+    },
+    {
+      "id": "c",
+      "text": "Boundary values are rejected, so you cannot store voyages on quarter-start dates"
+    },
+    {
+      "id": "d",
+      "text": "RANGE RIGHT and RANGE LEFT place the boundary in every partition; pick either"
+    }
+  ],
+  "correct": "a"
+}

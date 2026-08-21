@@ -1,0 +1,29 @@
+{
+  "id": "q-cs1-3",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1003",
+  "difficulty": "advanced",
+  "prompt": "Users also search by exact error codes. How should Contoso combine keyword precision with semantic recall?",
+  "explanation": "Hybrid search (full-text + vector) fused with RRF captures both exact codes and semantic matches.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Hybrid search fusing full-text and vector results with RRF"
+    },
+    {
+      "id": "b",
+      "text": "Vector search only"
+    },
+    {
+      "id": "c",
+      "text": "LIKE queries only"
+    },
+    {
+      "id": "d",
+      "text": "Random sampling"
+    }
+  ],
+  "correct": "a"
+}

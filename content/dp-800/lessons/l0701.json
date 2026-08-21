@@ -1,0 +1,91 @@
+{
+  "id": "l0701",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "order": 1,
+  "slug": "sql-database-projects",
+  "title": "SQL Database Projects and SDK-style models",
+  "summary": "Define your schema as code, build a dacpac, and validate the model.",
+  "minutes": 30,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Create and build a SQL Database Project (SDK-style).",
+        "Explain declarative, model-based deployment via dacpac.",
+        "Validate a database model."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "CI/CD for databases starts with treating schema as code in a SQL Database Project."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "SQL Database Project",
+          "definition": "A source-controlled, declarative definition of a database schema."
+        },
+        {
+          "term": "dacpac",
+          "definition": "A build artifact containing the database model, deployed by comparing to the target."
+        },
+        {
+          "term": "SDK-style project",
+          "definition": "A modern, concise project format for SQL projects."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "A **SQL Database Project** declares the desired schema. Building it produces a **dacpac**; deployment computes the diff against the target and applies changes (declarative, not migration scripts). **SDK-style** projects are the current recommended format and build cross-platform."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "dacpac deployment is declarative: it makes the target match the model.",
+        "SDK-style projects are the modern default."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Model schema declaratively in an SDK-style SQL project; build a dacpac and deploy by diffing against the target."
+    }
+  ],
+  "questionIds": [
+    "q-l0701-1",
+    "q-l0701-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "SQL Database Projects",
+      "url": "https://learn.microsoft.com/en-us/sql/tools/sql-database-projects/sql-database-projects",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

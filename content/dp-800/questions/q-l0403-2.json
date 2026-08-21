@@ -1,0 +1,29 @@
+{
+  "id": "q-l0403-2",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "lessonId": "l0403",
+  "difficulty": "advanced",
+  "prompt": "What is the recommended way to secure an MCP endpoint connection?",
+  "explanation": "Authenticate MCP endpoints with Managed Identity, scope permissions tightly, and log tool invocations.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Hardcode an admin password"
+    },
+    {
+      "id": "b",
+      "text": "Managed Identity with least-privilege scope"
+    },
+    {
+      "id": "c",
+      "text": "Open it to the public internet"
+    },
+    {
+      "id": "d",
+      "text": "Disable logging"
+    }
+  ],
+  "correct": "b"
+}

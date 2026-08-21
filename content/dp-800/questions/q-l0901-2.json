@@ -1,0 +1,33 @@
+{
+  "id": "q-l0901-2",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "lessonId": "l0901",
+  "difficulty": "intermediate",
+  "prompt": "When choosing an external model, which factors matter for DP-800?",
+  "explanation": "Evaluate models by modality, language, size, and structured-output support; CPU brand is irrelevant to model selection.",
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Modality (text/multimodal)"
+    },
+    {
+      "id": "b",
+      "text": "Language coverage"
+    },
+    {
+      "id": "c",
+      "text": "Size (latency/cost)"
+    },
+    {
+      "id": "d",
+      "text": "The server's CPU brand"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

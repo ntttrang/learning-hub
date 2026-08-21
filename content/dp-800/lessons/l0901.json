@@ -1,0 +1,102 @@
+{
+  "id": "l0901",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "order": 1,
+  "slug": "external-models",
+  "title": "Evaluating, creating, and managing external models",
+  "summary": "Register external AI models in SQL and choose the right one by modality, language, size, and output shape.",
+  "minutes": 30,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Evaluate external models by modality, language, size, and structured output.",
+        "Create and manage external models with CREATE EXTERNAL MODEL."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "SQL-native AI starts by registering the model. DP-800 expects you to pick an appropriate model and manage it with T-SQL."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "External model",
+          "definition": "A reference to a hosted AI model (e.g., Azure OpenAI) registered in SQL for use in T-SQL."
+        },
+        {
+          "term": "Structured output",
+          "definition": "A model's ability to return schema-constrained JSON."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Use **`CREATE EXTERNAL MODEL`** to register a model (embedding or chat) with its endpoint and credentials (prefer Managed Identity). Evaluate candidates by **modality** (text/multimodal), **language** coverage, **size** (latency/cost), and whether they support **structured output**. Manage lifecycle with ALTER/DROP."
+    },
+    {
+      "kind": "heading",
+      "text": "Performance & security considerations",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "body": "Authenticate external models with Managed Identity (see l0505); avoid embedding API keys in DDL."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "CREATE EXTERNAL MODEL registers the model for in-database use.",
+        "Choose embedding models for search; chat models for RAG generation."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Register models with CREATE EXTERNAL MODEL and select by modality, language, size, and structured-output support; secure with Managed Identity."
+    }
+  ],
+  "questionIds": [
+    "q-l0901-1",
+    "q-l0901-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "CREATE EXTERNAL MODEL",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-external-model-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Microsoft Foundry",
+      "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

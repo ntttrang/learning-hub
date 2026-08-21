@@ -1,0 +1,29 @@
+{
+  "id": "q-l0601-2",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0601",
+  "difficulty": "intermediate",
+  "prompt": "What does the database compatibility level primarily control?",
+  "explanation": "Compatibility level governs optimizer behaviors and feature availability, letting you adopt changes safely.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Backup compression"
+    },
+    {
+      "id": "b",
+      "text": "Which optimizer behaviors/features are enabled"
+    },
+    {
+      "id": "c",
+      "text": "Disk sector size"
+    },
+    {
+      "id": "d",
+      "text": "Network protocol"
+    }
+  ],
+  "correct": "b"
+}

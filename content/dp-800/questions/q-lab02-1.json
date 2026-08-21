@@ -1,0 +1,34 @@
+{
+  "id": "q-lab02-1",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "lessonId": "l0201",
+  "difficulty": "advanced",
+  "prompt": "The Harbor mobile app must query crew voyages as **one object** without seeing the join. Ad-hoc SQL from the app should remain a single SELECT (not EXEC). Reporting will filter and join the result to other tables.\n\nWhich object should you create?",
+  "explanation": "Views encapsulate joins and remain composable in FROM/JOIN. Procedures are invoked with EXEC, not composed like tables. A trigger is the wrong side-effect for a read model. Returning XML from a scalar UDF is neither set-based nor what the app asked for.",
+  "tags": [
+    "lab-coding",
+    "lab-02"
+  ],
+  "kind": "codeReading",
+  "code": "CREATE OR ALTER VIEW dbo.vCrewVoyages\nAS\nSELECT c.CrewId, c.Handle, v.VoyageId, v.VoyageDate\nFROM dbo.Crew AS c\nINNER JOIN dbo.Voyage AS v ON v.CrewId = c.CrewId;",
+  "options": [
+    {
+      "id": "a",
+      "text": "A view — callers SELECT from it like a table; the join stays in the database"
+    },
+    {
+      "id": "b",
+      "text": "A stored procedure — the only object an app is allowed to SELECT from"
+    },
+    {
+      "id": "c",
+      "text": "An AFTER INSERT trigger on Crew that materializes a reporting table"
+    },
+    {
+      "id": "d",
+      "text": "A scalar function that returns the join as nvarchar(max) XML"
+    }
+  ],
+  "correct": "a"
+}

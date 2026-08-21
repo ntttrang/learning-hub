@@ -32,8 +32,8 @@ describe('hub views', () => {
 
   it('reports installed packs and placeholders honestly', () => {
     render(<App />);
-    expect(screen.getAllByText('Pack not installed')).toHaveLength(1); // dp-800 only — gh-600 now installs
-    expect(screen.getAllByText('Installed')).toHaveLength(4); // fixture + gh-200 + gh-900 + gh-600
+    expect(screen.queryAllByText('Pack not installed')).toHaveLength(0); // every roadmap placeholder now installs
+    expect(screen.getAllByText('Installed')).toHaveLength(5); // fixture + gh-200 + gh-900 + gh-600 + dp-800
   });
 
   it('cards and rail links point at subject workspaces', () => {
@@ -52,7 +52,7 @@ describe('hub views', () => {
     window.location.hash = '#/subject/dp-800';
     render(<App />);
     expect(screen.getByRole('heading', { name: 'DP-800 study hub' })).toBeInTheDocument();
-    expect(screen.getByText('This pack is not in the hub yet')).toBeInTheDocument();
+    expect(screen.queryByText('This pack is not in the hub yet')).not.toBeInTheDocument();
   });
 
   it('renders the installed GH-900 workspace with its six content modes', () => {
@@ -292,12 +292,21 @@ describe('fixture workspace', () => {
     }
   });
 
-  it('gives an uninstalled subject only the Overview tab', () => {
+  it('gives the installed DP-800 workspace all seven content modes', () => {
     window.location.hash = '#/subject/dp-800';
     render(<App />);
     const tabs = screen.getAllByRole('tab');
-    expect(tabs.map((tab) => tab.textContent)).toEqual(['Overview']);
-    expect(screen.getByText('This pack is not in the hub yet')).toBeInTheDocument();
+    expect(tabs.map((tab) => tab.textContent)).toEqual([
+      'Overview',
+      'Learn',
+      'Labs',
+      'Practice',
+      'Exams',
+      'Compare',
+      'Notes',
+      'Revision',
+    ]);
+    expect(screen.queryByText('This pack is not in the hub yet')).not.toBeInTheDocument();
   });
 
   it('every internal link the learn/labs/compare views render resolves to a real route', () => {

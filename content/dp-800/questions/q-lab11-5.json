@@ -1,0 +1,33 @@
+{
+  "id": "q-lab11-5",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "lessonId": "l1101",
+  "difficulty": "advanced",
+  "prompt": "The chat completion JSON lands in `@ResponseJson`. The procedure must return the assistant text to the app.\n\nWhat should you do next?",
+  "explanation": "Skills outline: send results to a language model **and extract** the response. OPENJSON/JSON_VALUE on the OpenAI (or Azure) chat shape is the usual extract. The model output is not a vector; it is also not a reason to disable RLS.",
+  "tags": [
+    "lab-coding",
+    "lab-11"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Parse `choices[0].message.content` (or the current API shape) with `JSON_VALUE` / `OPENJSON` and RETURN/SELECT it"
+    },
+    {
+      "id": "b",
+      "text": "INSERT the raw TCP payload into the VECTOR column"
+    },
+    {
+      "id": "c",
+      "text": "Disable RLS because the model response is already tenant-safe"
+    },
+    {
+      "id": "d",
+      "text": "`DROP DATABASE` if `error` is present in the JSON"
+    }
+  ],
+  "correct": "a"
+}

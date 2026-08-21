@@ -1,0 +1,101 @@
+{
+  "id": "l0401",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "order": 1,
+  "slug": "copilot-enablement",
+  "title": "Enabling GitHub Copilot and Copilot in Fabric",
+  "summary": "Turn on AI-assisted development for SQL work and understand the security implications.",
+  "minutes": 25,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Enable GitHub Copilot and Copilot in Fabric.",
+        "Interpret the security impact of AI-assisted tools on SQL development."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "AI-assisted tools speed up SQL development but can leak context or suggest insecure code — the exam tests both enablement and judgment."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "GitHub Copilot",
+          "definition": "AI pair-programmer that suggests code, including T-SQL, in editors like VS Code."
+        },
+        {
+          "term": "Copilot in Fabric",
+          "definition": "Microsoft Fabric's built-in AI assistance for data workloads."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Enable Copilot at the org/subscription level and in the editor. Understand that prompts and code context may be sent to the model; sensitive schema or data must be handled per policy. Always review AI-suggested SQL for injection risks and over-broad permissions."
+    },
+    {
+      "kind": "heading",
+      "text": "Performance & security considerations",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "body": "Never paste secrets or production data into prompts. Treat generated SQL as a draft: verify object names, parameterization, and least-privilege before running."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "'Security impact of AI-assisted tools' is an explicit skill — expect a judgment question."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Enable Copilot thoughtfully; review generated SQL for security, and keep sensitive data out of prompts."
+    }
+  ],
+  "questionIds": [
+    "q-l0401-1",
+    "q-l0401-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "GitHub Copilot documentation",
+      "url": "https://docs.github.com/en/copilot",
+      "publisher": "GitHub",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Copilot in Fabric",
+      "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/copilot-fabric-overview",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

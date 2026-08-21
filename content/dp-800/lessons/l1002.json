@@ -1,0 +1,320 @@
+{
+  "id": "l1002",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "order": 2,
+  "slug": "vector-search",
+  "title": "Vector data, indexes, and semantic search",
+  "summary": "Store embeddings in the VECTOR type, measure similarity with VECTOR_DISTANCE, choose ANN vs ENN and DiskANN indexes — and compare vector support across databases.",
+  "minutes": 60,
+  "difficulty": "advanced",
+  "flagship": true,
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Store embeddings in the VECTOR data type and query similarity with VECTOR_DISTANCE.",
+        "Choose the right distance metric (cosine, euclidean, dot).",
+        "Decide between ENN (exact) and ANN (approximate/DiskANN) search.",
+        "Compare vector capabilities with PostgreSQL (pgvector), MySQL, and Oracle."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Semantic search finds results by meaning, not keywords. SQL Server 2025 stores embeddings in the native `VECTOR` type and ranks by `VECTOR_DISTANCE`. At scale you add an approximate index (DiskANN). This lesson is the heart of Domain 3."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "VECTOR",
+          "definition": "SQL Server 2025 data type storing a fixed-dimension embedding."
+        },
+        {
+          "term": "VECTOR_DISTANCE",
+          "definition": "Function returning the distance between two vectors for a chosen metric."
+        },
+        {
+          "term": "ENN",
+          "definition": "Exact nearest neighbor — scans all vectors; perfectly accurate, slower."
+        },
+        {
+          "term": "ANN",
+          "definition": "Approximate nearest neighbor — uses an index (e.g., DiskANN) for speed at slight accuracy cost."
+        },
+        {
+          "term": "DiskANN",
+          "definition": "A disk-based ANN index used for large-scale vector search."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "The VECTOR type and distance",
+      "body": "`VECTOR(n)` stores an n-dimensional embedding (documented cap 1,998 dims; float16 in preview halves storage). **`VECTOR_DISTANCE(metric, a, b)`** computes similarity for `'cosine'`, `'euclidean'`, or `'dot'`. Cosine is the usual choice for text embeddings. Order ascending by distance to get nearest matches."
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "ENN vs ANN, and DiskANN",
+      "body": "**ENN** (exact) scans every vector — perfect recall, fine for small sets. **ANN** (approximate) uses a **DiskANN** vector index for large corpora, trading a little recall for large speedups. On SQL Server 2025, DiskANN indexing is in **preview** and requires `PREVIEW_FEATURES = ON`. **`VECTOR_SEARCH`**, **`VECTOR_NORMALIZE`**, and **`VECTORPROPERTY`** are the related functions (several are in preview)."
+    },
+    {
+      "kind": "figure",
+      "caption": "Semantic search: embed the query, compare against stored vectors by distance, return top-k nearest neighbors.",
+      "mermaid": "flowchart LR\n    query[\"User query text\"] --> qembed[\"Embed query\"]\n    qembed --> dist[\"VECTOR_DISTANCE vs stored VECTORs\"]\n    dist --> topk[\"ORDER BY distance, TOP k\"]\n    topk --> results[\"Most semantically similar rows\"]"
+    },
+    {
+      "kind": "heading",
+      "text": "Microsoft SQL implementation",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "Store and search vectors",
+      "body": "```sql\nCREATE TABLE dbo.Doc (\n    DocId int PRIMARY KEY,\n    Body nvarchar(max),\n    Embedding vector(1536)\n);\n\n-- Generate + store an embedding\nUPDATE dbo.Doc\nSET Embedding = AI_GENERATE_EMBEDDINGS(Body USE MODEL MyEmbedder);\n\n-- Exact (ENN) top-5 semantic matches\nDECLARE @q vector(1536) =\n    AI_GENERATE_EMBEDDINGS(N'How do I reset my password?' USE MODEL MyEmbedder);\n\nSELECT TOP (5) DocId, Body,\n       VECTOR_DISTANCE('cosine', Embedding, @q) AS dist\nFROM dbo.Doc\nORDER BY dist;\n```"
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "Approximate search with a DiskANN index (preview)",
+      "body": "```sql\n-- Requires PREVIEW_FEATURES = ON on SQL Server 2025\nCREATE VECTOR INDEX vec_doc ON dbo.Doc(Embedding)\n  WITH (METRIC = 'cosine', TYPE = 'diskann');\n\nSELECT d.DocId, s.distance\nFROM VECTOR_SEARCH(\n       TABLE = dbo.Doc AS d,\n       COLUMN = Embedding,\n       SIMILAR_TO = @q,\n       METRIC = 'cosine',\n       TOP_N = 5) AS s\nORDER BY s.distance;\n```"
+    },
+    {
+      "kind": "heading",
+      "text": "Cross-database comparison",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "explanation",
+      "heading": "PostgreSQL: pgvector",
+      "body": "PostgreSQL uses the **pgvector** extension: a `vector` type, distance operators (`<->` L2, `<=>` cosine, `<#>` inner product), and **HNSW** or **IVFFlat** indexes for ANN.\n```sql\nCREATE EXTENSION vector;\nALTER TABLE doc ADD COLUMN embedding vector(1536);\nCREATE INDEX ON doc USING hnsw (embedding vector_cosine_ops);\nSELECT doc_id, embedding <=> $1 AS dist FROM doc ORDER BY dist LIMIT 5;\n```"
+    },
+    {
+      "kind": "sourced",
+      "source": "explanation",
+      "heading": "MySQL: VECTOR type + DISTANCE()",
+      "body": "MySQL 9 adds a **`VECTOR`** type with `DISTANCE()` / `VEC_FROM_TEXT`. Native ANN vector indexing is limited compared to the others (HeatWave offers more); for open-source MySQL you often do exact distance scans or use HeatWave for scale.\n```sql\nALTER TABLE doc ADD COLUMN embedding VECTOR(1536);\nSELECT doc_id, DISTANCE(embedding, VEC_FROM_TEXT(?), 'COSINE') AS dist\nFROM doc ORDER BY dist LIMIT 5;\n```"
+    },
+    {
+      "kind": "sourced",
+      "source": "explanation",
+      "heading": "Oracle: AI Vector Search",
+      "body": "Oracle 23ai adds **AI Vector Search**: a `VECTOR` type, **`VECTOR_DISTANCE()`**, and vector indexes (HNSW, IVF). Syntax is strikingly close to SQL Server's.\n```sql\nALTER TABLE doc ADD (embedding VECTOR(1536, FLOAT32));\nCREATE VECTOR INDEX doc_vec ON doc(embedding)\n  ORGANIZATION INMEMORY NEIGHBOR GRAPH DISTANCE COSINE;\nSELECT doc_id FROM doc\nORDER BY VECTOR_DISTANCE(embedding, :q, COSINE)\nFETCH FIRST 5 ROWS ONLY;\n```"
+    },
+    {
+      "kind": "sideBySide",
+      "comparison": {
+        "id": "cmp-vector",
+        "title": "Vector and AI capabilities",
+        "description": "All four now offer vector types and ANN indexing; SQL Server and Oracle are closest in syntax, PostgreSQL uses pgvector operators, MySQL is the least mature for open-source ANN.",
+        "columns": [
+          {
+            "id": "sqlserver",
+            "label": "Microsoft SQL"
+          },
+          {
+            "id": "postgresql",
+            "label": "PostgreSQL"
+          },
+          {
+            "id": "mysql",
+            "label": "MySQL"
+          },
+          {
+            "id": "oracle",
+            "label": "Oracle Database"
+          }
+        ],
+        "rows": [
+          {
+            "aspect": "Vector type",
+            "cells": {
+              "sqlserver": "VECTOR(n) (2025)",
+              "postgresql": "vector (pgvector)",
+              "mysql": "VECTOR (9.0)",
+              "oracle": "VECTOR (23ai)"
+            }
+          },
+          {
+            "aspect": "Distance function",
+            "cells": {
+              "sqlserver": "VECTOR_DISTANCE()",
+              "postgresql": "<=> / <-> operators",
+              "mysql": "DISTANCE()",
+              "oracle": "VECTOR_DISTANCE()"
+            }
+          },
+          {
+            "aspect": "ANN index",
+            "cells": {
+              "sqlserver": "DiskANN (preview)",
+              "postgresql": "HNSW / IVFFlat",
+              "mysql": "Limited (HeatWave)",
+              "oracle": "HNSW / IVF"
+            }
+          },
+          {
+            "aspect": "In-DB embedding gen",
+            "cells": {
+              "sqlserver": "AI_GENERATE_EMBEDDINGS",
+              "postgresql": "via extension/UDF",
+              "mysql": "External",
+              "oracle": "DBMS_VECTOR / ONNX in-db"
+            }
+          },
+          {
+            "aspect": "Metrics",
+            "cells": {
+              "sqlserver": "cosine, euclidean, dot",
+              "postgresql": "cosine, L2, inner",
+              "mysql": "cosine, euclidean, dot",
+              "oracle": "cosine, euclidean, dot"
+            }
+          }
+        ],
+        "samples": [
+          {
+            "label": "Top-5 cosine nearest neighbors",
+            "code": {
+              "sqlserver": "SELECT TOP 5 DocId FROM dbo.Doc ORDER BY VECTOR_DISTANCE('cosine', Embedding, @q);",
+              "postgresql": "SELECT doc_id FROM doc ORDER BY embedding <=> $1 LIMIT 5;",
+              "mysql": "SELECT doc_id FROM doc ORDER BY DISTANCE(embedding, VEC_FROM_TEXT(?), 'COSINE') LIMIT 5;",
+              "oracle": "SELECT doc_id FROM doc ORDER BY VECTOR_DISTANCE(embedding, :q, COSINE) FETCH FIRST 5 ROWS ONLY;"
+            }
+          }
+        ],
+        "migration": {
+          "equivalent": "The store-embedding / order-by-distance pattern is identical everywhere.",
+          "different": "Index types (DiskANN vs HNSW/IVFFlat) and function vs operator syntax differ; MySQL open-source ANN is the weakest.",
+          "directMigration": "Yes for the query pattern; index DDL and distance syntax must be rewritten.",
+          "syntaxChanges": "Swap VECTOR_DISTANCE for pgvector operators or MySQL DISTANCE(); change index creation syntax.",
+          "limitations": "SQL Server DiskANN and several vector functions are in preview; MySQL open-source lacks mature ANN indexing.",
+          "whenToUse": "Choose the engine already holding your relational data so you avoid moving it — the core DP-800 value proposition."
+        }
+      }
+    },
+    {
+      "kind": "heading",
+      "text": "Real-world scenario",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "heading": "Semantic help-desk search over existing SQL data",
+      "body": "Support articles already live in SQL Server. Add a `VECTOR` column, generate embeddings with `AI_GENERATE_EMBEDDINGS`, and serve semantic search with `VECTOR_DISTANCE` — no data movement to a separate vector store. Add a DiskANN index once the corpus grows. This 'AI where your data lives' pattern is exactly what DP-800 validates."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Comparing vectors of different dimensions or models.",
+          "fix": "All vectors must share the same dimension and be produced by the same embedding model."
+        },
+        {
+          "mistake": "Using ANN and expecting exact results.",
+          "fix": "ANN trades recall for speed; use ENN when exactness matters or the set is small."
+        },
+        {
+          "mistake": "Ordering descending by distance.",
+          "fix": "Smaller distance = more similar; order ascending for nearest neighbors."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Performance & security considerations",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "body": "Normalize vectors (VECTOR_NORMALIZE) when a metric requires it. DiskANN speeds large-scale search but is preview — validate recall. Apply RLS/permissions so semantic search can't surface rows a user shouldn't see."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Cosine is the default metric for text embeddings; order ascending by distance.",
+        "ENN = exact/small; ANN/DiskANN = approximate/large.",
+        "VECTOR type, DiskANN, VECTOR_SEARCH have preview status on SQL Server 2025 — the exam may flag GA vs preview.",
+        "The whole point: run AI where the data already is, without moving it."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Store embeddings in VECTOR, rank by VECTOR_DISTANCE (cosine, ascending), and add a DiskANN index for ANN at scale. PostgreSQL (pgvector), Oracle (23ai), and MySQL 9 offer parallels; Oracle is closest in syntax. The DP-800 theme is doing AI in-database without moving data."
+    }
+  ],
+  "labId": "lab-vector",
+  "questionIds": [
+    "q-l1002-1",
+    "q-l1002-2",
+    "q-l1002-3",
+    "q-l1002-4",
+    "q-l1002-5",
+    "q-l1002-6"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "VECTOR data type",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/vector-data-type",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "VECTOR_DISTANCE",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/vector-distance-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "VECTOR_SEARCH",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/vector-search-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Vectors overview",
+      "url": "https://learn.microsoft.com/en-us/sql/sql-server/ai/vectors",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "pgvector",
+      "url": "https://github.com/pgvector/pgvector",
+      "publisher": "pgvector",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Oracle AI Vector Search",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/23/vecse/",
+      "publisher": "Oracle",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

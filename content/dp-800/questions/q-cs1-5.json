@@ -1,0 +1,29 @@
+{
+  "id": "q-cs1-5",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0505",
+  "difficulty": "advanced",
+  "prompt": "The assistant must call the model without stored secrets. Which authentication should Contoso use?",
+  "explanation": "Secure model endpoints with Managed Identity so no secrets are stored.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Managed Identity"
+    },
+    {
+      "id": "b",
+      "text": "A hardcoded API key in T-SQL"
+    },
+    {
+      "id": "c",
+      "text": "Anonymous access"
+    },
+    {
+      "id": "d",
+      "text": "A shared SQL login"
+    }
+  ],
+  "correct": "a"
+}

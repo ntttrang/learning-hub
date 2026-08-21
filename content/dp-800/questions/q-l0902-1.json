@@ -1,0 +1,29 @@
+{
+  "id": "q-l0902-1",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "lessonId": "l0902",
+  "difficulty": "advanced",
+  "prompt": "Which approach efficiently re-embeds only rows whose source text changed?",
+  "explanation": "Change Tracking identifies changed rows so you re-embed only what changed, avoiding full-corpus reprocessing.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Re-embed the entire corpus nightly"
+    },
+    {
+      "id": "b",
+      "text": "Use Change Tracking to find changed rows, then re-embed those"
+    },
+    {
+      "id": "c",
+      "text": "Never update embeddings"
+    },
+    {
+      "id": "d",
+      "text": "Delete and recreate the table daily"
+    }
+  ],
+  "correct": "b"
+}

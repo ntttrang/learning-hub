@@ -1,0 +1,300 @@
+{
+  "id": "l0503",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "order": 3,
+  "slug": "row-level-security",
+  "title": "Row-Level Security",
+  "summary": "Restrict which rows each user can see or change with predicate functions and security policies — and compare RLS across all four engines.",
+  "minutes": 55,
+  "difficulty": "advanced",
+  "flagship": true,
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Implement RLS with an inline TVF predicate and a SECURITY POLICY.",
+        "Distinguish FILTER predicates (reads) from BLOCK predicates (writes).",
+        "Avoid RLS bypass and side-channel pitfalls.",
+        "Compare RLS with PostgreSQL, MySQL, and Oracle approaches."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Multi-tenant and least-privilege designs need per-row access control enforced in the database, not the app. SQL Server's Row-Level Security does this with an inline table-valued predicate function bound to a table by a security policy — transparent to application queries."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Predicate function",
+          "definition": "An inline TVF that returns 1 for rows a user may access."
+        },
+        {
+          "term": "Security policy",
+          "definition": "The object that binds predicate functions to a table as FILTER and/or BLOCK predicates."
+        },
+        {
+          "term": "FILTER predicate",
+          "definition": "Silently removes rows from reads."
+        },
+        {
+          "term": "BLOCK predicate",
+          "definition": "Prevents writes that would violate the predicate."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "How RLS works",
+      "body": "You write an **inline TVF** that returns a row when access is allowed, then attach it via `CREATE SECURITY POLICY`. A **FILTER predicate** silently excludes rows from SELECT/UPDATE/DELETE reads; a **BLOCK predicate** stops INSERT/UPDATE that would move a row out of a user's visibility. The predicate typically uses session context (`SESSION_CONTEXT`, `USER_NAME()`, `DATABASE_PRINCIPAL_ID()`)."
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "Predicate types",
+      "body": "- **FILTER**: applies to reads (and the read portion of writes).\n- **BLOCK AFTER INSERT / AFTER UPDATE / BEFORE UPDATE / BEFORE DELETE**: prevent writing rows a user shouldn't own.\nUse both together to fully sandbox a tenant."
+    },
+    {
+      "kind": "figure",
+      "caption": "A single query passes through the RLS predicate, which appends a hidden filter based on the caller's identity.",
+      "mermaid": "flowchart TB\n    q[\"SELECT * FROM Orders\"] --> pol[\"Security policy\"]\n    pol --> pred[\"Predicate TVF returns rows WHERE TenantId = SESSION_CONTEXT\"]\n    pred --> res[\"Caller sees only their tenant's rows\"]"
+    },
+    {
+      "kind": "heading",
+      "text": "Microsoft SQL implementation",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "heading": "Predicate function + policy",
+      "body": "```sql\nCREATE SCHEMA sec;\nGO\nCREATE FUNCTION sec.fn_tenant(@TenantId int)\nRETURNS TABLE WITH SCHEMABINDING\nAS RETURN\n  SELECT 1 AS ok\n  WHERE @TenantId = CAST(SESSION_CONTEXT(N'TenantId') AS int)\n     OR DATABASE_PRINCIPAL_ID() = DATABASE_PRINCIPAL_ID('dbo');\nGO\nCREATE SECURITY POLICY sec.TenantFilter\n  ADD FILTER PREDICATE sec.fn_tenant(TenantId) ON dbo.Orders,\n  ADD BLOCK PREDICATE sec.fn_tenant(TenantId) ON dbo.Orders AFTER INSERT\n  WITH (STATE = ON);\n```"
+    },
+    {
+      "kind": "sourced",
+      "source": "explanation",
+      "heading": "Setting the session context",
+      "body": "The app sets the tenant once per connection:\n```sql\nEXEC sp_set_session_context @key = N'TenantId', @value = 42, @read_only = 1;\n```\nMark it read-only so downstream code can't spoof another tenant."
+    },
+    {
+      "kind": "heading",
+      "text": "Cross-database comparison",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "explanation",
+      "heading": "PostgreSQL: native RLS with POLICY",
+      "body": "PostgreSQL has built-in RLS. Enable it per table and define policies with `USING` (read) and `WITH CHECK` (write) expressions — a very close analog to FILTER/BLOCK.\n```sql\nALTER TABLE orders ENABLE ROW LEVEL SECURITY;\nCREATE POLICY tenant_isolation ON orders\n  USING (tenant_id = current_setting('app.tenant_id')::int)\n  WITH CHECK (tenant_id = current_setting('app.tenant_id')::int);\n```"
+    },
+    {
+      "kind": "sourced",
+      "source": "explanation",
+      "heading": "MySQL: no native RLS",
+      "body": "MySQL has **no built-in row-level security**. The common pattern is to expose data through **views that filter on a session variable or function**, and grant access only to those views:\n```sql\nCREATE VIEW my_orders AS\n  SELECT * FROM orders WHERE tenant_id = @app_tenant_id;\n```\nThis relies on discipline (users must not query base tables) rather than an engine-enforced boundary."
+    },
+    {
+      "kind": "sourced",
+      "source": "explanation",
+      "heading": "Oracle: Virtual Private Database (VPD)",
+      "body": "Oracle's **VPD** (`DBMS_RLS`) is the mature equivalent. A PL/SQL policy function returns a predicate string that Oracle appends to queries automatically.\n```sql\nBEGIN\n  DBMS_RLS.ADD_POLICY(\n    object_schema => 'APP', object_name => 'ORDERS',\n    policy_name => 'tenant_pol', function_schema => 'APP',\n    policy_function => 'tenant_predicate',\n    statement_types => 'SELECT,INSERT,UPDATE,DELETE');\nEND;\n```"
+    },
+    {
+      "kind": "sideBySide",
+      "comparison": {
+        "id": "cmp-rls",
+        "title": "Row-level security",
+        "description": "SQL Server, PostgreSQL, and Oracle enforce RLS in-engine; MySQL relies on views.",
+        "columns": [
+          {
+            "id": "sqlserver",
+            "label": "Microsoft SQL"
+          },
+          {
+            "id": "postgresql",
+            "label": "PostgreSQL"
+          },
+          {
+            "id": "mysql",
+            "label": "MySQL"
+          },
+          {
+            "id": "oracle",
+            "label": "Oracle Database"
+          }
+        ],
+        "rows": [
+          {
+            "aspect": "Native RLS",
+            "cells": {
+              "sqlserver": "Yes (SECURITY POLICY)",
+              "postgresql": "Yes (CREATE POLICY)",
+              "mysql": "No (use views)",
+              "oracle": "Yes (VPD / DBMS_RLS)"
+            }
+          },
+          {
+            "aspect": "Read filter",
+            "cells": {
+              "sqlserver": "FILTER predicate",
+              "postgresql": "USING clause",
+              "mysql": "View WHERE clause",
+              "oracle": "Policy predicate"
+            }
+          },
+          {
+            "aspect": "Write restriction",
+            "cells": {
+              "sqlserver": "BLOCK predicate",
+              "postgresql": "WITH CHECK",
+              "mysql": "WITH CHECK OPTION on view",
+              "oracle": "Policy on DML statements"
+            }
+          },
+          {
+            "aspect": "Identity source",
+            "cells": {
+              "sqlserver": "SESSION_CONTEXT / USER_NAME()",
+              "postgresql": "current_setting / current_user",
+              "mysql": "Session variable",
+              "oracle": "SYS_CONTEXT"
+            }
+          }
+        ],
+        "samples": [
+          {
+            "label": "Enable per-tenant read filtering",
+            "code": {
+              "sqlserver": "ADD FILTER PREDICATE sec.fn_tenant(TenantId) ON dbo.Orders;",
+              "postgresql": "CREATE POLICY p ON orders USING (tenant_id = current_setting('app.tenant_id')::int);",
+              "mysql": "CREATE VIEW my_orders AS SELECT * FROM orders WHERE tenant_id = @app_tenant_id;",
+              "oracle": "DBMS_RLS.ADD_POLICY(object_name=>'ORDERS', policy_function=>'tenant_predicate');"
+            }
+          }
+        ],
+        "migration": {
+          "equivalent": "SQL Server FILTER/BLOCK maps almost 1:1 to PostgreSQL USING/WITH CHECK and to Oracle VPD.",
+          "different": "MySQL has no engine-level RLS; you must emulate with views and revoke base-table access.",
+          "directMigration": "Yes to PostgreSQL/Oracle with predicate rewrites; MySQL requires a view-based redesign.",
+          "syntaxChanges": "Rewrite the predicate function and swap SESSION_CONTEXT for current_setting/SYS_CONTEXT.",
+          "limitations": "MySQL's view approach is bypassable if users retain base-table privileges.",
+          "whenToUse": "Use native RLS wherever available; on MySQL, layer views plus strict grants."
+        }
+      }
+    },
+    {
+      "kind": "heading",
+      "text": "Real-world scenario",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "heading": "Multi-tenant SaaS on one database",
+      "body": "A SaaS app stores every tenant's orders in one table. Set `TenantId` in read-only session context at login, add FILTER + BLOCK predicates, and the same application query returns only the caller's rows — with no WHERE clause in the app and no way to leak across tenants, even if the app has a bug."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Relying on RLS alone while users can still run arbitrary aggregates.",
+          "fix": "Combine RLS with least-privilege grants; RLS filters rows but users may still infer data via side channels if over-privileged."
+        },
+        {
+          "mistake": "Forgetting a BLOCK predicate.",
+          "fix": "Without BLOCK, a user could INSERT/UPDATE rows into another tenant's space even though they can't read them."
+        },
+        {
+          "mistake": "Non-inline predicate functions.",
+          "fix": "RLS predicate functions must be inline TVFs with SCHEMABINDING for performance and correctness."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Performance & security considerations",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "body": "Keep the predicate sargable (indexed TenantId) so the appended filter uses an index. Mark session context read-only. Test that dbo/admin paths behave as intended, and audit policy changes."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "FILTER = reads, BLOCK = writes. Memorize this.",
+        "Predicate functions must be inline TVFs WITH SCHEMABINDING.",
+        "Set tenant identity via sp_set_session_context with @read_only = 1.",
+        "MySQL has no native RLS — the correct answer there is 'use views + grants'."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "RLS enforces per-row access in the engine via an inline predicate function bound by a security policy: FILTER for reads, BLOCK for writes, identity from session context. PostgreSQL (POLICY) and Oracle (VPD) are close equivalents; MySQL emulates with views. Always pair RLS with least-privilege grants."
+    }
+  ],
+  "labId": "lab-rls",
+  "questionIds": [
+    "q-l0503-1",
+    "q-l0503-2",
+    "q-l0503-3",
+    "q-l0503-4",
+    "q-l0503-5"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Row-Level Security",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "sp_set_session_context",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-set-session-context-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "PostgreSQL documentation",
+      "url": "https://www.postgresql.org/docs/current/",
+      "publisher": "PostgreSQL",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "MySQL reference manual",
+      "url": "https://dev.mysql.com/doc/refman/9.0/en/",
+      "publisher": "MySQL",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Oracle Database SQL Language Reference",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/",
+      "publisher": "Oracle",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

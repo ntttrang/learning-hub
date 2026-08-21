@@ -1,0 +1,36 @@
+{
+  "id": "q-lab05-2",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0503",
+  "difficulty": "challenge",
+  "prompt": "Pacific clerks must see **only** Pacific voyages and must **not** insert or update an Atlantic row. Region is taken from `SESSION_CONTEXT` and must not be spoofable from a SET statement in the same session after login.\n\nWhich **two** are required? Each correct answer presents part of the solution.",
+  "explanation": "FILTER hides rows on SELECT; BLOCK rejects writes that would violate the predicate — both are on the DP-800 RLS skill. Read-only session context prevents `sp_set_session_context` spoofing after you set it. DDM does not stop Atlantic inserts. USER_NAME() is not the tenant region and a CHECK would break legitimate multi-region tables.",
+  "tags": [
+    "lab-coding",
+    "lab-05"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "An RLS security policy with both a FILTER predicate (reads) and a BLOCK predicate (writes)"
+    },
+    {
+      "id": "b",
+      "text": "Store tenant region in read-only session context (`sp_set_session_context … @read_only = 1`) at session start"
+    },
+    {
+      "id": "c",
+      "text": "Dynamic Data Masking on `Voyage.Region` so Atlantic values display as `XXX`"
+    },
+    {
+      "id": "d",
+      "text": "A CHECK constraint `Region = USER_NAME()` on dbo.Voyage"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

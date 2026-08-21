@@ -1,0 +1,30 @@
+{
+  "id": "q-ex1-2",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "lessonId": "l0302",
+  "difficulty": "advanced",
+  "prompt": "You must number rows within each customer by order date, restarting per customer. Which expression is correct?",
+  "explanation": "PARTITION BY CustomerId restarts numbering per customer; ORDER BY OrderDate sets the sequence.",
+  "kind": "codeReading",
+  "code": "SELECT CustomerId, OrderDate,\n  ??? AS seq\nFROM Orders;",
+  "options": [
+    {
+      "id": "a",
+      "text": "ROW_NUMBER() OVER (PARTITION BY CustomerId ORDER BY OrderDate)"
+    },
+    {
+      "id": "b",
+      "text": "ROW_NUMBER() OVER (ORDER BY OrderDate)"
+    },
+    {
+      "id": "c",
+      "text": "COUNT(*) OVER ()"
+    },
+    {
+      "id": "d",
+      "text": "RANK() OVER (PARTITION BY OrderDate)"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "q-l0101-1",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0101",
+  "difficulty": "beginner",
+  "prompt": "A reporting query scans and aggregates 50 million rows of a sales fact table. Which index type best fits this analytic workload?",
+  "explanation": "Columnstore indexes store data by column with heavy compression and batch-mode execution, ideal for scanning/aggregating large row counts. Rowstore indexes suit OLTP seeks, not big analytic scans.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A nonclustered rowstore index on every column"
+    },
+    {
+      "id": "b",
+      "text": "A clustered columnstore index"
+    },
+    {
+      "id": "c",
+      "text": "A heap with no index"
+    },
+    {
+      "id": "d",
+      "text": "A unique constraint"
+    }
+  ],
+  "correct": "b"
+}

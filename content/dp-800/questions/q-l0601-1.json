@@ -1,0 +1,29 @@
+{
+  "id": "q-l0601-1",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0601",
+  "difficulty": "intermediate",
+  "prompt": "Which command changes per-database settings like MAXDOP?",
+  "explanation": "ALTER DATABASE SCOPED CONFIGURATION sets database-level options such as MAXDOP and legacy cardinality estimation.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "ALTER DATABASE SCOPED CONFIGURATION"
+    },
+    {
+      "id": "b",
+      "text": "sp_configure only"
+    },
+    {
+      "id": "c",
+      "text": "DBCC FREEPROCCACHE"
+    },
+    {
+      "id": "d",
+      "text": "SET STATISTICS IO ON"
+    }
+  ],
+  "correct": "a"
+}

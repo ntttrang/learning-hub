@@ -1,0 +1,96 @@
+{
+  "id": "l0604",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "order": 4,
+  "slug": "blocking-and-deadlocks",
+  "title": "Blocking and deadlocks",
+  "summary": "Identify, resolve, and prevent blocking chains and deadlocks.",
+  "minutes": 30,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Diagnose blocking with DMVs.",
+        "Read a deadlock graph.",
+        "Apply prevention strategies."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Concurrency problems show up as blocking and deadlocks; the exam expects diagnosis and mitigation."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Blocking",
+          "definition": "One transaction waits for a lock held by another."
+        },
+        {
+          "term": "Deadlock",
+          "definition": "Two+ transactions each wait on locks the others hold; the engine kills a victim."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Find blocking via `sys.dm_exec_requests` (`blocking_session_id`). Capture **deadlock graphs** with Extended Events. Reduce both by keeping transactions short, accessing objects in a consistent order, indexing to shorten locks, and considering RCSI."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Retrying a deadlock victim without addressing access order.",
+          "fix": "Fix the root cause: consistent object access order and shorter transactions."
+        }
+      ]
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Consistent object access order prevents many deadlocks.",
+        "RCSI removes many reader/writer blocking scenarios."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Keep transactions short, access objects in the same order, index well, and use RCSI to cut blocking and deadlocks."
+    }
+  ],
+  "questionIds": [
+    "q-l0604-1",
+    "q-l0604-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Deadlocks guide",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-deadlocks-guide",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

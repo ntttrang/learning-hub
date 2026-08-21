@@ -1,0 +1,29 @@
+{
+  "id": "q-l1002-1",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1002",
+  "difficulty": "advanced",
+  "prompt": "Which function computes similarity between two embeddings in SQL Server?",
+  "explanation": "VECTOR_DISTANCE(metric, a, b) returns the distance for cosine, euclidean, or dot metrics.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "VECTOR_DISTANCE"
+    },
+    {
+      "id": "b",
+      "text": "DIFFERENCE"
+    },
+    {
+      "id": "c",
+      "text": "SOUNDEX"
+    },
+    {
+      "id": "d",
+      "text": "JSON_VALUE"
+    }
+  ],
+  "correct": "a"
+}

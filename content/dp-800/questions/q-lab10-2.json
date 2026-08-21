@@ -1,0 +1,34 @@
+{
+  "id": "q-lab10-2",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "lessonId": "l1002",
+  "difficulty": "challenge",
+  "prompt": "You rank reviews by cosine similarity to `@QueryVec`. Lower cosine **distance** is closer. A developer orders by `Dist DESC` and wonders why the worst matches appear first.\n\nWhat should the query look like?",
+  "explanation": "`VECTOR_DISTANCE(..., 'cosine')` returns a distance (0 = identical direction). Nearest neighbor is `ORDER BY Dist ASC`. TOP without ORDER BY is not nearest-neighbor. Do not confuse distance with a similarity that you maximize.",
+  "tags": [
+    "lab-coding",
+    "lab-10"
+  ],
+  "kind": "codeReading",
+  "code": "SELECT TOP (5) ReviewId,\n       VECTOR_DISTANCE(Embedding, @QueryVec, 'cosine') AS Dist\nFROM dbo.GearReview\nWHERE Embedding IS NOT NULL\nORDER BY Dist ???;",
+  "options": [
+    {
+      "id": "a",
+      "text": "`ORDER BY Dist ASC` — cosine distance is a distance; nearest neighbors are the smallest values"
+    },
+    {
+      "id": "b",
+      "text": "`ORDER BY Dist DESC` — cosine distance is already a similarity score"
+    },
+    {
+      "id": "c",
+      "text": "`ORDER BY ReviewId` — VECTOR_DISTANCE is not deterministic unless you sort on the key"
+    },
+    {
+      "id": "d",
+      "text": "Remove ORDER BY; `TOP (5)` without ORDER BY returns the five nearest vectors by definition"
+    }
+  ],
+  "correct": "a"
+}

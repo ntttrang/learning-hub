@@ -1,0 +1,29 @@
+{
+  "id": "q-l0401-2",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "lessonId": "l0401",
+  "difficulty": "beginner",
+  "prompt": "Copilot in Fabric provides AI assistance primarily for which context?",
+  "explanation": "Copilot in Fabric assists with data workloads inside Microsoft Fabric.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "On-prem Active Directory management"
+    },
+    {
+      "id": "b",
+      "text": "Data workloads within Microsoft Fabric"
+    },
+    {
+      "id": "c",
+      "text": "Windows kernel debugging"
+    },
+    {
+      "id": "d",
+      "text": "Email spam filtering"
+    }
+  ],
+  "correct": "b"
+}

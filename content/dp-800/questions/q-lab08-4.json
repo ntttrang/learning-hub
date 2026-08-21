@@ -1,0 +1,33 @@
+{
+  "id": "q-lab08-4",
+  "domainId": "d2",
+  "moduleId": "m08",
+  "lessonId": "l0801",
+  "difficulty": "advanced",
+  "prompt": "`dab start` fails to open a connection. Config has `\"connection-string\": \"@env('DATABASE_CONNECTION_STRING')\"`. The JSON file is valid and `dab add` succeeded yesterday.\n\nWhat is the likely miss?",
+  "explanation": "`@env('NAME')` is resolved at runtime. A missing variable is the boring, correct failure. Committing secrets is the wrong fix. Query Store and `/api` are unrelated.",
+  "tags": [
+    "lab-coding",
+    "lab-08"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "`DATABASE_CONNECTION_STRING` is unset in **this** shell / container, so `@env` resolves empty — do not paste the sa password into dab-config.json to 'fix' it"
+    },
+    {
+      "id": "b",
+      "text": "DAB cannot use environment variables; `@env` is documentation only"
+    },
+    {
+      "id": "c",
+      "text": "The REST path `/api` is illegal in DAB"
+    },
+    {
+      "id": "d",
+      "text": "You must enable Query Store on the DAB host machine"
+    }
+  ],
+  "correct": "a"
+}

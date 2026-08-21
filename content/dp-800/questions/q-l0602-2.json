@@ -1,0 +1,29 @@
+{
+  "id": "q-l0602-2",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0602",
+  "difficulty": "advanced",
+  "prompt": "You want consistent reads without readers blocking writers in a read-heavy OLTP database. What should you enable?",
+  "explanation": "RCSI uses row versioning so reads see a consistent committed version without blocking writers, unlike NOLOCK which permits dirty reads.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "READ UNCOMMITTED / NOLOCK"
+    },
+    {
+      "id": "b",
+      "text": "Read Committed Snapshot Isolation (RCSI)"
+    },
+    {
+      "id": "c",
+      "text": "SERIALIZABLE"
+    },
+    {
+      "id": "d",
+      "text": "Table locks"
+    }
+  ],
+  "correct": "b"
+}

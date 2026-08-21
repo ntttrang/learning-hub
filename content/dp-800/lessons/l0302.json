@@ -1,0 +1,96 @@
+{
+  "id": "l0302",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "order": 2,
+  "slug": "window-functions",
+  "title": "Window functions",
+  "summary": "Rank, aggregate, and offset over partitions with OVER, ROW_NUMBER, LAG/LEAD, and frames.",
+  "minutes": 35,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Use ranking, aggregate, and offset window functions.",
+        "Control frames with ROWS/RANGE BETWEEN.",
+        "Pick RANK vs DENSE_RANK vs ROW_NUMBER."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Window functions compute across a set of rows related to the current row without collapsing them."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "OVER clause",
+          "definition": "Defines the window (PARTITION BY / ORDER BY / frame) for a window function."
+        },
+        {
+          "term": "Frame",
+          "definition": "The subset of rows in the partition used for the calculation (ROWS/RANGE BETWEEN)."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "`ROW_NUMBER`, `RANK`, `DENSE_RANK`, `NTILE` for ranking; `SUM/AVG/... OVER (...)` for running totals; `LAG`/`LEAD` for offsets; `FIRST_VALUE`/`LAST_VALUE` with explicit frames. `ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW` gives a running total."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Expecting LAST_VALUE to return the partition's last row by default.",
+          "fix": "Set the frame to ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING."
+        }
+      ]
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "ROW_NUMBER is always unique; RANK leaves gaps; DENSE_RANK doesn't."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Master OVER with PARTITION BY, ORDER BY, and explicit frames — window functions appear throughout the exam."
+    }
+  ],
+  "questionIds": [
+    "q-l0302-1",
+    "q-l0302-2",
+    "q-l0302-3"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "OVER clause",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-over-clause-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

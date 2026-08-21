@@ -1,0 +1,33 @@
+{
+  "id": "q-lab06-4",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0603",
+  "difficulty": "challenge",
+  "prompt": "Isolation is READ COMMITTED (RCSI off). Session 88 runs `BEGIN TRAN; UPDATE dbo.Gear SET ListPrice += 1 WHERE GearId = 10;` and leaves the transaction open. Session 89's `SELECT ListPrice FROM dbo.Gear WHERE GearId = 10` hangs.\n\nWhich diagnosis is correct?",
+  "explanation": "Writers take X locks; readers under locking READ COMMITTED request S locks and wait. A deadlock needs a cycle (88 waits on 89 and 89 waits on 88). The engine does kill a deadlock victim — it does not hang forever. Query Store is unrelated to lock acquisition.",
+  "tags": [
+    "lab-coding",
+    "lab-06"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Session 89 is **blocked** waiting on 88's exclusive lock; it is not a deadlock until a wait cycle exists. 89 proceeds when 88 commits or rolls back"
+    },
+    {
+      "id": "b",
+      "text": "SQL Server has deadlocked; both sessions will wait forever unless you restart the instance"
+    },
+    {
+      "id": "c",
+      "text": "SELECT never takes or respects locks under READ COMMITTED, so the hang must be a network issue"
+    },
+    {
+      "id": "d",
+      "text": "Blocking cannot occur unless Query Store is enabled"
+    }
+  ],
+  "correct": "a"
+}

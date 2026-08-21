@@ -1,0 +1,29 @@
+{
+  "id": "q-ex1-1",
+  "domainId": "d1",
+  "moduleId": "m01",
+  "lessonId": "l0103",
+  "difficulty": "intermediate",
+  "prompt": "An application stores flexible product attributes and must filter on `color` across millions of rows on SQL Server 2025. Which design gives the best filter performance while keeping flexibility?",
+  "explanation": "SQL Server can't index inside JSON directly; promoting the path to a computed column and indexing it gives fast, flexible filtering. GIN is PostgreSQL-only.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Store attributes in nvarchar(max) and filter with LIKE"
+    },
+    {
+      "id": "b",
+      "text": "Store attributes in a json column and index a computed column JSON_VALUE(...,'$.color')"
+    },
+    {
+      "id": "c",
+      "text": "Create a GIN index on the json column"
+    },
+    {
+      "id": "d",
+      "text": "Store each attribute in its own sparse column"
+    }
+  ],
+  "correct": "b"
+}

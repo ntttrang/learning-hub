@@ -1,0 +1,36 @@
+{
+  "id": "q-lab06-2",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0602",
+  "difficulty": "advanced",
+  "prompt": "Query Store is on. Query 42's **latest** plan is 20× slower than an older `plan_id` after a statistics change (parameter sniffing). You cannot change the application SQL this week.\n\nWhich **two** in-database actions can stabilize it? Each correct answer presents part of the solution.",
+  "explanation": "Forcing a plan and Query Store hints both fix the query without a code deploy. Periodic FREEPROCCACHE is a blunt cache flush, not a plan regression strategy. Turning Query Store off removes the evidence and the force/hint mechanism.",
+  "tags": [
+    "lab-coding",
+    "lab-06"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "`sys.sp_query_store_force_plan` to pin the known-good plan_id"
+    },
+    {
+      "id": "b",
+      "text": "`sys.sp_query_store_set_hints` to attach an OPTION hint (for example `RECOMPILE` or `OPTIMIZE FOR`) to query_id 42"
+    },
+    {
+      "id": "c",
+      "text": "`DBCC FREEPROCCACHE` on a schedule as the only long-term fix"
+    },
+    {
+      "id": "d",
+      "text": "`ALTER DATABASE … SET QUERY_STORE = OFF` so the bad plan cannot be stored"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "q-l0402-2",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "lessonId": "l0402",
+  "difficulty": "intermediate",
+  "prompt": "In a Copilot chat session, enabling MCP tool options lets the assistant:",
+  "explanation": "MCP tool options let the assistant invoke external tools exposed over the Model Context Protocol.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Call external tools via the Model Context Protocol"
+    },
+    {
+      "id": "b",
+      "text": "Bypass authentication"
+    },
+    {
+      "id": "c",
+      "text": "Format the hard drive"
+    },
+    {
+      "id": "d",
+      "text": "Disable the model"
+    }
+  ],
+  "correct": "a"
+}

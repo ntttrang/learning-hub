@@ -1,0 +1,29 @@
+{
+  "id": "q-l0505-2",
+  "domainId": "d2",
+  "moduleId": "m05",
+  "lessonId": "l0505",
+  "difficulty": "advanced",
+  "prompt": "Data API builder endpoints should enforce authorization how?",
+  "explanation": "DAB supports per-entity, per-role authorization; combine with authentication and network limits.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Globally allow all"
+    },
+    {
+      "id": "b",
+      "text": "Per-entity, per-role permissions"
+    },
+    {
+      "id": "c",
+      "text": "Only at the network layer"
+    },
+    {
+      "id": "d",
+      "text": "Not at all; DAB is internal"
+    }
+  ],
+  "correct": "b"
+}

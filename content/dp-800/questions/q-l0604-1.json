@@ -1,0 +1,29 @@
+{
+  "id": "q-l0604-1",
+  "domainId": "d2",
+  "moduleId": "m06",
+  "lessonId": "l0604",
+  "difficulty": "advanced",
+  "prompt": "Which strategy most directly prevents many deadlocks?",
+  "explanation": "Consistent object access order avoids the circular wait that causes deadlocks; shorter transactions and good indexing also help.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Accessing objects in a consistent order across transactions"
+    },
+    {
+      "id": "b",
+      "text": "Longer transactions"
+    },
+    {
+      "id": "c",
+      "text": "Removing all indexes"
+    },
+    {
+      "id": "d",
+      "text": "Using READ UNCOMMITTED everywhere"
+    }
+  ],
+  "correct": "a"
+}

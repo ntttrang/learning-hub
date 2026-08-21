@@ -1,0 +1,29 @@
+{
+  "id": "q-ex1-10",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "lessonId": "l0403",
+  "difficulty": "advanced",
+  "prompt": "You connect Copilot to a Microsoft SQL Server MCP server endpoint. What is the primary security control you should apply?",
+  "explanation": "MCP endpoints are a new attack surface; authenticate with Managed Identity, scope tightly, and log tool calls.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Public network exposure"
+    },
+    {
+      "id": "b",
+      "text": "Managed Identity with least-privilege scope and logging"
+    },
+    {
+      "id": "c",
+      "text": "A shared admin password"
+    },
+    {
+      "id": "d",
+      "text": "Disable authentication for speed"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "q-l0901-1",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "lessonId": "l0901",
+  "difficulty": "intermediate",
+  "prompt": "Which T-SQL statement registers an external AI model for in-database use?",
+  "explanation": "CREATE EXTERNAL MODEL registers a model (embedding or chat) with its endpoint and credentials for use in T-SQL.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "CREATE EXTERNAL MODEL"
+    },
+    {
+      "id": "b",
+      "text": "CREATE MODEL TABLE"
+    },
+    {
+      "id": "c",
+      "text": "CREATE ASSEMBLY"
+    },
+    {
+      "id": "d",
+      "text": "CREATE EXTERNAL TABLE"
+    }
+  ],
+  "correct": "a"
+}

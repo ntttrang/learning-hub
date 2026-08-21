@@ -1,0 +1,87 @@
+{
+  "id": "l1004",
+  "domainId": "d3",
+  "moduleId": "m10",
+  "order": 4,
+  "slug": "evaluating-search-performance",
+  "title": "Evaluating vector and hybrid search performance",
+  "summary": "Measure recall, latency, and index trade-offs; pick index types and metrics deliberately.",
+  "minutes": 25,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Evaluate vector index types and metrics.",
+        "Balance recall vs latency for ANN.",
+        "Measure hybrid search quality."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "DP-800 expects you to evaluate, not just implement, search — recall/latency trade-offs and metric choice."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Recall",
+          "definition": "Fraction of true nearest neighbors an ANN search actually returns."
+        },
+        {
+          "term": "Latency",
+          "definition": "Time to return results; usually traded against recall in ANN."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Evaluate **index types** and **metrics** against your data. ANN parameters trade **recall** for **latency**; measure both on representative queries. For hybrid, verify RRF actually improves top-k relevance over either method alone."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "ANN tuning is a recall-vs-latency trade-off.",
+        "Always evaluate on representative queries, not toy inputs."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Choose index type/metric by measuring recall and latency on real queries; confirm hybrid beats single-method retrieval."
+    }
+  ],
+  "questionIds": [
+    "q-l1004-1",
+    "q-l1004-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Vector index evaluation",
+      "url": "https://learn.microsoft.com/en-us/sql/sql-server/ai/vectors",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

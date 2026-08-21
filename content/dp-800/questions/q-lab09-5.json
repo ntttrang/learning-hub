@@ -1,0 +1,33 @@
+{
+  "id": "q-lab09-5",
+  "domainId": "d3",
+  "moduleId": "m09",
+  "lessonId": "l0902",
+  "difficulty": "advanced",
+  "prompt": "A review row is 12,000 tokens. The embedding model caps at 8,191 input tokens. Search quality is poor on long manuals pasted into `ReviewText`.\n\nWhat should you do?",
+  "explanation": "Chunking is an explicit DP-800 skill. You cannot stuff a novel into one embedding without truncation, and dimension ≠ token count. Child rows (ReviewId + ChunkId) keep retrieval granular.",
+  "tags": [
+    "lab-coding",
+    "lab-09"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Chunk the source text (overlapping windows or structure-aware splits), embed each chunk as its own row/child, and retrieve chunks — not one truncated mega-vector"
+    },
+    {
+      "id": "b",
+      "text": "Store the 12,000-token string in `VECTOR(1536)` directly; VECTOR is nvarchar"
+    },
+    {
+      "id": "c",
+      "text": "Drop the VECTOR column and use `LIKE '%chunk%'`"
+    },
+    {
+      "id": "d",
+      "text": "Increase VECTOR dimensions to 12000 so each token is a dimension"
+    }
+  ],
+  "correct": "a"
+}

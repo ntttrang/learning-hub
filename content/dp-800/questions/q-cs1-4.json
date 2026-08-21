@@ -1,0 +1,29 @@
+{
+  "id": "q-cs1-4",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "lessonId": "l1101",
+  "difficulty": "advanced",
+  "prompt": "Contoso wants an assistant that answers using only retrieved articles. Which SQL-native call sends the grounded prompt to the model?",
+  "explanation": "sp_invoke_external_rest_endpoint calls the model endpoint from T-SQL with the grounded JSON prompt.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "sp_invoke_external_rest_endpoint"
+    },
+    {
+      "id": "b",
+      "text": "xp_cmdshell"
+    },
+    {
+      "id": "c",
+      "text": "BULK INSERT"
+    },
+    {
+      "id": "d",
+      "text": "sp_send_dbmail"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,101 @@
+{
+  "id": "l0203",
+  "domainId": "d1",
+  "moduleId": "m02",
+  "order": 3,
+  "slug": "stored-procedures-and-triggers",
+  "title": "Stored procedures and triggers",
+  "summary": "Encapsulate logic in procs, handle parameters and errors, and use triggers judiciously.",
+  "minutes": 30,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Create parameterized stored procedures with error handling.",
+        "Use DML and DDL triggers and understand inserted/deleted tables.",
+        "Recognize trigger pitfalls."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Procedures centralize business logic; triggers react to data changes but can hide behavior."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "Stored procedure",
+          "definition": "A precompiled batch of T-SQL invoked by name with parameters."
+        },
+        {
+          "term": "DML trigger",
+          "definition": "Code that fires on INSERT/UPDATE/DELETE; sees inserted and deleted pseudo-tables."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Triggers access the **`inserted`** and **`deleted`** virtual tables. AFTER triggers run post-operation; INSTEAD OF triggers replace it (common on views). Keep trigger logic set-based and short."
+    },
+    {
+      "kind": "mistakes",
+      "items": [
+        {
+          "mistake": "Writing row-by-row logic in triggers.",
+          "fix": "Triggers fire once per statement, not per row — always write set-based logic over inserted/deleted."
+        }
+      ]
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "INSTEAD OF triggers make otherwise non-updatable views updatable."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Use procs for encapsulation and triggers sparingly, always set-based, using inserted/deleted."
+    }
+  ],
+  "questionIds": [
+    "q-l0203-1",
+    "q-l0203-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Stored procedures",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/stored-procedures/stored-procedures-database-engine",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "DML triggers",
+      "url": "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/dml-triggers",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

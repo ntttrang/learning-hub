@@ -1,0 +1,34 @@
+{
+  "id": "q-l1101-3",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "lessonId": "l1101",
+  "difficulty": "advanced",
+  "prompt": "Order the steps of a SQL-native RAG pipeline.",
+  "explanation": "RAG order: retrieve relevant rows, serialize to JSON, call the model with a grounded prompt, then extract the response.",
+  "kind": "order",
+  "options": [
+    {
+      "id": "retrieve",
+      "text": "Retrieve top-k rows via vector/hybrid search"
+    },
+    {
+      "id": "json",
+      "text": "Convert rows to JSON"
+    },
+    {
+      "id": "call",
+      "text": "Call the model via sp_invoke_external_rest_endpoint"
+    },
+    {
+      "id": "extract",
+      "text": "Extract the model's answer"
+    }
+  ],
+  "correct": [
+    "retrieve",
+    "json",
+    "call",
+    "extract"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "id": "l0304",
+  "domainId": "d1",
+  "moduleId": "m03",
+  "order": 4,
+  "slug": "regex-and-fuzzy-matching",
+  "title": "Regular expressions and fuzzy string matching",
+  "summary": "Use the new REGEXP_* functions and fuzzy matchers like EDIT_DISTANCE and JARO_WINKLER_DISTANCE.",
+  "minutes": 30,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Apply REGEXP_LIKE, REGEXP_REPLACE, REGEXP_SUBSTR, and REGEXP_SPLIT_TO_TABLE.",
+        "Use fuzzy matching for approximate joins and dedup."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "SQL Server 2025 adds native regular-expression and fuzzy-matching functions — new, exam-relevant surface area."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "REGEXP_LIKE",
+          "definition": "Boolean predicate testing whether a string matches a regex pattern."
+        },
+        {
+          "term": "EDIT_DISTANCE",
+          "definition": "Levenshtein distance — number of edits to transform one string into another."
+        },
+        {
+          "term": "JARO_WINKLER_DISTANCE",
+          "definition": "Similarity metric favoring common prefixes; good for names."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Regex family: `REGEXP_LIKE`, `REGEXP_REPLACE`, `REGEXP_SUBSTR`, `REGEXP_INSTR`, `REGEXP_COUNT`, `REGEXP_MATCHES`, `REGEXP_SPLIT_TO_TABLE`. Fuzzy: `EDIT_DISTANCE`, `EDIT_DISTANCE_SIMILARITY`, `JARO_WINKLER_DISTANCE`/`_SIMILARITY`. Use fuzzy matching for approximate joins, deduplication, and data cleansing."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "These functions are SQL Server 2025 additions — expect at least one question.",
+        "Use JARO_WINKLER for person names; EDIT_DISTANCE for general typos."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "Know the REGEXP_* and fuzzy functions by name and purpose; they're fresh in the blueprint."
+    }
+  ],
+  "questionIds": [
+    "q-l0304-1",
+    "q-l0304-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "Regular expressions in SQL Server",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

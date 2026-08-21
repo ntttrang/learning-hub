@@ -1,0 +1,103 @@
+{
+  "id": "l0403",
+  "domainId": "d1",
+  "moduleId": "m04",
+  "order": 3,
+  "slug": "mcp-server-endpoints",
+  "title": "Connecting to MCP server endpoints",
+  "summary": "Connect Copilot to Microsoft SQL Server and Fabric lakehouse MCP servers for grounded, tool-using AI.",
+  "minutes": 25,
+  "difficulty": "advanced",
+  "flagship": false,
+  "blocks": [
+    {
+      "kind": "objectives",
+      "items": [
+        "Connect to MCP server endpoints for SQL Server and Fabric lakehouse.",
+        "Explain how MCP grounds the assistant in live database context."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Overview",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "MCP server endpoints let an AI assistant query and act on your SQL Server or Fabric lakehouse safely and with live context."
+    },
+    {
+      "kind": "keyTerms",
+      "terms": [
+        {
+          "term": "MCP server",
+          "definition": "A server exposing tools/resources to AI clients over the Model Context Protocol."
+        },
+        {
+          "term": "Fabric lakehouse",
+          "definition": "A Fabric analytics store combining a data lake and warehouse experience."
+        }
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Official Microsoft concepts",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "official",
+      "body": "Connect Copilot to an **MCP server endpoint** for **Microsoft SQL Server** or a **Fabric lakehouse**. The assistant can then discover schema and run scoped tools instead of guessing. Secure these endpoints (see Domain 2) with Managed Identity and least privilege."
+    },
+    {
+      "kind": "heading",
+      "text": "Performance & security considerations",
+      "level": 2
+    },
+    {
+      "kind": "sourced",
+      "source": "recommendation",
+      "body": "MCP endpoints are a new attack surface: authenticate with Managed Identity, scope permissions tightly, and log tool invocations."
+    },
+    {
+      "kind": "examTips",
+      "tips": [
+        "Know that SQL Server and Fabric lakehouse MCP endpoints are explicitly named in the blueprint.",
+        "Securing MCP endpoints is tested in Domain 2 (l0505)."
+      ]
+    },
+    {
+      "kind": "heading",
+      "text": "Summary",
+      "level": 2
+    },
+    {
+      "kind": "md",
+      "body": "MCP endpoints ground AI assistants in live SQL/Fabric context; connect them securely with Managed Identity."
+    }
+  ],
+  "questionIds": [
+    "q-l0403-1",
+    "q-l0403-2"
+  ],
+  "references": [
+    {
+      "title": "Study guide for Exam DP-800",
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "SQL Server MCP",
+      "url": "https://learn.microsoft.com/en-us/sql/",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    },
+    {
+      "title": "SQL database in Microsoft Fabric",
+      "url": "https://learn.microsoft.com/en-us/fabric/database/sql/overview",
+      "publisher": "Microsoft Learn",
+      "accessed": "2026-07-28"
+    }
+  ]
+}

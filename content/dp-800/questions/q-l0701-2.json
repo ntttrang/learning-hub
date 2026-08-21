@@ -1,0 +1,29 @@
+{
+  "id": "q-l0701-2",
+  "domainId": "d2",
+  "moduleId": "m07",
+  "lessonId": "l0701",
+  "difficulty": "intermediate",
+  "prompt": "Which project format is the modern, cross-platform recommendation?",
+  "explanation": "SDK-style SQL projects are the current recommended, cross-platform format.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "SDK-style"
+    },
+    {
+      "id": "b",
+      "text": "Classic .dtsx"
+    },
+    {
+      "id": "c",
+      "text": ".rdl"
+    },
+    {
+      "id": "d",
+      "text": ".bacpac only"
+    }
+  ],
+  "correct": "a"
+}

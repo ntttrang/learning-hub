@@ -1,0 +1,29 @@
+{
+  "id": "q-l1102-2",
+  "domainId": "d3",
+  "moduleId": "m11",
+  "lessonId": "l1102",
+  "difficulty": "advanced",
+  "prompt": "Which functions convert rows to JSON for a model and then extract the model's answer?",
+  "explanation": "FOR JSON shapes the payload sent to the model; JSON_VALUE/OPENJSON parse the JSON response.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "FOR JSON to build the payload; JSON_VALUE/OPENJSON to extract"
+    },
+    {
+      "id": "b",
+      "text": "BULK INSERT and BCP"
+    },
+    {
+      "id": "c",
+      "text": "PIVOT and UNPIVOT"
+    },
+    {
+      "id": "d",
+      "text": "STUFF and REPLACE only"
+    }
+  ],
+  "correct": "a"
+}
