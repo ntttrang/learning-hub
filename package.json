@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "test": "vitest run",
     "content:check": "vitest run src/content/content-check.test.ts",
+    "content:new": "tsx scripts/scaffold-subject.ts",
     "content:extract-gh": "tsx scripts/extract-gh-packs.ts",
     "content:extract-gh600": "tsx scripts/extract-gh600-pack.ts",
     "content:extract-dp800": "tsx scripts/extract-dp800-pack.ts",

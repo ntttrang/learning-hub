@@ -37,7 +37,12 @@ notes/bookmarks tab. Progress, attempts, notes, and bookmarks persist locally
 per subject. Installed packs: GH-900 (GitHub Foundations), GH-200 (GitHub
 Actions), GH-600 (Agentic AI Developer), DP-800 (SQL AI Developer), and the
 `content/fixture/` pack that exercises the whole schema (`npm test`, `npm run
-content:check`). On first load the hub also imports, one time, any progress
+content:check`). Adding a subject needs no core-code edits:
+`npm run content:new -- --id <kebab-id> --code <CODE> --title <t> --accent
+<token>` stamps a working starter pack (one welcome lesson and one practice
+question, `learn` + `practice` modes) under `content/<id>/`; packs are
+discovered by a Vite glob, so a running dev server must be restarted to see
+the new subject. On first load the hub also imports, one time, any progress
 left in the same browser by the retired standalone GH-200 app (lessons, labs,
 and exam history), by the GH-600 study companion (passed domains), and by the
 DP-800 donor app (lessons, labs, practice, exams, notes, bookmarks, and
