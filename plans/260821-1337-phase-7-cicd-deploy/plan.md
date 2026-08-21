@@ -35,7 +35,12 @@ reads the `learn-gh-600/` donor submodule at test time and **fails closed**
 without submodules. Code review (2026-08-21) surfaced a **second** donor-anchored
 suite: `scripts/gh600-blocks.test.ts` reads the donor at module-load via the
 same fail-closed lib, hidden from a filename grep because the read lives in
-`gh600-extract-lib.ts`.
+`gh600-extract-lib.ts`. The maiden runs then disproved donor-independence a
+third way: `tsc -b` compiles the extractor scripts against donor TS
+(`tsconfig.scripts.json` exists for exactly that), so `npm run build` itself
+needs the submodules. Decision reversed (2026-08-21, evidence-driven): CI
+checks out submodules and runs the identical local gate — full `npm test`,
+no `test:ci` slice.
 
 ## User Decisions (2026-08-21)
 
@@ -66,18 +71,18 @@ verification (phase 3).
 
 ## Success Criteria
 
-- [ ] CI runs on every push and pull request: `npm run lint`, `npm run test:ci`,
-      `npm run content:check`, `npm run build` — all green. **(Roadmap: build +
-      lint + tests + content-integrity validation in CI.)**
+- [ ] CI runs on every push and pull request: `npm run lint`, `npm test`
+      (full, donor-backed), `npm run content:check`, `npm run build` — all
+      green. **(Roadmap: build + lint + tests + content-integrity validation
+      in CI.)**
 - [ ] Push to `main` publishes the unified site to GitHub Pages; the Actions run
       is green end-to-end. **(Roadmap done-when: green CI publishes the unified
       site on push to `main`.)**
 - [ ] The live site serves `index.html` with resolving relative assets, working
       hash deep links (e.g. `#/subject/dp-800`), and Auto/Light/Dark/Night themes.
 - [ ] Pull-request runs build + test but never deploy.
-- [ ] Local `npm test` is unchanged — the full suite, including both
-      donor-anchored gh-600 suites, still runs and still fails closed
-      without the submodule.
+- [ ] CI and local run the identical command set (the `test:ci` slice was
+      removed; donor-anchored suites run in both).
 - [ ] README documents the CI gate, the deploy flow, the Pages URL, and the
       deferred Docker/AWS follow-up.
 
@@ -97,8 +102,8 @@ verification (phase 3).
 | --- | --- | --- |
 | Workflow shape | One file `.github/workflows/ci.yml`, two jobs: `build` (gate) → `deploy` (gated `if: push && refs/heads/main`) | Donor's proven pattern; PRs get the full gate without deploying |
 | Node version in CI | `node-version: 24` | Matches local dev (v24.8.0) where the toolchain (Vite 8, vitest 4, TS 6) is proven green |
-| CI test slice | New script `test:ci` = `vitest run --exclude scripts/gh600-parity.test.ts --exclude scripts/gh600-blocks.test.ts`; local `npm test` untouched | Both gh-600 suites are donor-anchored **by design** and fail closed without the submodule (reviewer-verified: `gh600-blocks` reads the donor at module-load); CI has no submodules and shouldn't clone three donor repos to re-derive extraction parity — `content:check` already validates the committed artifact graph |
-| Submodules in CI | Not checked out | Donors (all public) are extraction-time inputs, not build inputs; skipping them keeps CI fast and decoupled from donor repo availability |
+| CI test slice | **Reversed 2026-08-21:** CI checks out `submodules: recursive` and runs full `npm test` — no `test:ci` script | Maiden runs proved the gate is donor-coupled at three levels (vitest suite, tsc project graph, build); a "hermetic slice" diverged from the local gate and failed twice. One command set, identical local and CI |
+| Submodules in CI | `actions/checkout` with `submodules: recursive` | All three donors are public; the extractors compile and the parity suites test against donor sources at pinned SHAs — donors are build inputs after all |
 | Content-integrity step | Explicit `npm run content:check` step, separate from `test:ci` | Names the roadmap contract in the Actions log for direct failure triage, even though `test:ci` also covers it |
 | Asset/deploy details | No `BASE_PATH` env, no `.nojekyll` | `base: './'` is already relative (donor's BASE_PATH was Next-specific); `deploy-pages@v4` serves the artifact raw (donor's `.nojekyll` served its `out/` Next artifacts) |
 | Private-repo Pages gate | Detect-and-surface, never auto-flip | User chose private knowing Pages needs Pro; the deploy failure (or Pages API 403) is the signal — phase 3 presents Pro-vs-public as a user decision |
@@ -109,7 +114,8 @@ verification (phase 3).
 | Risk | Mitigation |
 | --- | --- |
 | Private repo + GitHub Free: Pages publish unavailable | Observable signal: `gh api …/pages` returns 403 at setup, or the `deploy` job fails with "not available for private repositories". Pre-decided response: stop, present Pro-upgrade vs flip-to-public to the user; do not silently change visibility |
-| Excluding the two donor-anchored gh-600 suites from CI lets donor/pack drift through CI | `npm test` (full, fail-closed) remains the pre-merge local gate — documented in README's CI section; `content:check` still validates the committed pack graph in CI |
+| Donor repos unavailable at pinned SHAs breaks CI (checkout fails) | All three donors public and pinned by gitlink; acceptable coupling for a personal hub — if a donor vanishes, re-extraction is a conscious local step anyway |
+| One flaky test seen once locally (1/583, unreproducible, name not captured) | If it flakes in CI, the run log names it; fix that test then — do not add retries or weaken the gate |
 | Other `scripts/` suites hidden donor/temp dependencies | Phase 1 runs the exact CI command list locally before anything is pushed — green locally is the proof |
 | `learn-gh-200` submodule pointer is dirty (`+` in `git submodule status`) | Phase 2 starts from a clean, committed tree; commit the pointer (or leave it untracked-dirty — `ignore = dirty` is set) so the pushed tree is reproducible |
 | First workflow run races Pages enablement | Enable Pages before the first push (ordering decision above); `workflow_dispatch` trigger allows a clean re-run if anything races anyway |

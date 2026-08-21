@@ -22,12 +22,14 @@ is proven green locally before the first push happens in phase 2.
   `pull_request`; the `build` job executes `npm ci` → `lint` → `test:ci` →
   `content:check` → `build` → upload-pages-artifact; a `deploy` job (same file)
   runs only on push to `main`.
-- Functional: new npm script `test:ci` runs the full Vitest suite except the
-  two donor-anchored suites (`scripts/gh600-parity.test.ts`,
-  `scripts/gh600-blocks.test.ts`); the existing `test` script is untouched.
-- Non-functional: no submodules checked out; npm cache via `setup-node`;
-  action versions pinned to the same majors the donor repo runs today
-  (`checkout@v4`, `setup-node@v4`, `upload-pages-artifact@v3`, `deploy-pages@v4`).
+- Functional: CI runs the identical local gate — `npm ci` → `lint` →
+  `npm test` (full, donor-backed) → `content:check` → `build` — so no
+  CI-only command divergence can hide runner-only failures.
+- Non-functional: submodules checked out (`recursive`) because the extractor
+  scripts compile and the parity suites test against donor sources; npm cache
+  via `setup-node`; action versions pinned to the same majors the donor repo
+  runs today (`checkout@v4`, `setup-node@v4`, `upload-pages-artifact@v3`,
+  `deploy-pages@v4`).
 
 ## Architecture
 
@@ -55,12 +57,8 @@ trigger allows manual re-runs.
 
 ## Implementation Steps
 
-1. Add to `package.json` scripts (both exclusions required — `gh600-blocks`
-   reads the donor at module-load via `gh600-extract-lib`, found in review):
-   ```json
-   "test:ci": "vitest run --exclude scripts/gh600-parity.test.ts --exclude scripts/gh600-blocks.test.ts"
-   ```
-2. Create `.github/workflows/ci.yml` with exactly this content:
+1. Create `.github/workflows/ci.yml` with exactly this content (no
+   `package.json` script change — CI runs the same `npm test` as local):
    ```yaml
    name: CI
 
@@ -85,7 +83,11 @@ trigger allows manual re-runs.
        runs-on: ubuntu-latest
        steps:
          - name: Checkout
-           uses: actions/checkout@v4   # submodules not needed: donors are extraction-time inputs
+           uses: actions/checkout@v4
+           with:
+             # Extractor scripts compile (tsc -b) and test (parity suites)
+             # against donor sources — the gate needs the submodules present.
+             submodules: recursive
          - name: Setup Node
            uses: actions/setup-node@v4
            with:
@@ -95,8 +97,8 @@ trigger allows manual re-runs.
            run: npm ci
          - name: Lint
            run: npm run lint
-         - name: Test (hermetic slice)
-           run: npm run test:ci
+         - name: Test
+           run: npm test
          - name: Content integrity
            run: npm run content:check
          - name: Build static site
@@ -118,40 +120,41 @@ trigger allows manual re-runs.
            id: deployment
            uses: actions/deploy-pages@v4
    ```
-3. Prove the exact CI command list locally, in order:
+2. Prove the exact CI command list locally, in order:
    ```bash
-   npm ci && npm run lint && npm run test:ci && npm run content:check && npm run build
+   npm ci && npm run lint && npm test && npm run content:check && npm run build
    ```
-   All must pass. Confirm `test:ci` output shows the gh-600 parity suite
-   excluded while `src/**` suites (including `content-check.test.ts`) run.
-4. Sanity-check the artifact: `dist/index.html` references relative assets
+   All must pass (donor submodules present locally make this the same run CI
+   does). One flake was seen once (1/583, unreproducible, name not captured) —
+   if it flakes in CI, fix that named test; never add retries.
+3. Sanity-check the artifact: `dist/index.html` references relative assets
    (`assets/…`, `brand/…` — no leading `/`), since `base: './'` must hold for
    the Pages sub-path `/<repo>/`.
-5. Commit: `ci: add github actions gate and pages deploy workflow`.
+4. Commit: `ci: add github actions gate and pages deploy workflow`.
 
 ## Todo
 
-- [ ] `test:ci` script added; `npm test` untouched
-- [ ] `.github/workflows/ci.yml` created with both jobs
-- [ ] Local CI command list green
-- [ ] `dist/` relative-asset spot check done
+- [x] CI gate uses the identical local command set (no `test:ci` script)
+- [x] `.github/workflows/ci.yml` created with both jobs
+- [x] Local CI command list green
+- [x] `dist/` relative-asset spot check done
 
 ## Success Criteria
 
-- [ ] The five CI commands pass locally, in workflow order, on a clean `npm ci`.
-- [ ] `test:ci` excludes exactly the two donor-anchored gh-600 suites; running
-      `npm test` still executes both (and both still fail without the donor).
-- [ ] Workflow YAML is valid (paste-check or `actionlint` if available).
+- [x] The five CI commands pass locally, in workflow order, on a clean `npm ci`.
+- [x] CI command set is identical to local (no `test:ci` divergence;
+      donor-anchored suites run in both).
+- [x] Workflow YAML is valid (paste-check or `actionlint` if available).
 
 ## Risk Assessment
 
-- **Hidden donor dependency in another suite** — resolved in review
-  (2026-08-21): `scripts/gh600-blocks.test.ts` reads the donor at module-load
-  by design, so it joins the exclusion set rather than being rewritten with
-  vendored fixtures (which would duplicate donor content and betray the suite's
-  donor-anchored purpose). Any *future* suite that touches donors accidentally
-  gets made hermetic, not excluded — exclusion is for deliberate donor-anchored
-  suites only.
+- **Donor coupling is three-level, not test-level only** — resolved by
+  reversal (2026-08-21): the maiden runs showed `tsc -b` compiles the
+  extractors against donor TS (`tsconfig.scripts.json` exists for that), so a
+  submodule-free CI can never pass `npm run build`. The original
+  no-submodules + `test:ci` slice design was replaced wholesale with
+  `submodules: recursive` + full `npm test`. Lesson recorded: when the local
+  gate is donor-coupled, CI must replicate it, not approximate it.
 - **Vitest `--exclude` semantics**: the config's `include` already restricts
   discovery to `src/**` and `scripts/**`, so overriding excludes cannot pull in
   `node_modules`. If `--exclude` behaves unexpectedly on vitest 4, fall back to

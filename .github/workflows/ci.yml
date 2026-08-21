@@ -21,7 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4 # submodules not needed: donors are extraction-time inputs
+        uses: actions/checkout@v4
+        with:
+          # Extractor scripts compile (tsc -b) and test (parity suites) against
+          # donor sources — the gate needs the submodules present.
+          submodules: recursive
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -31,8 +35,8 @@ jobs:
         run: npm ci
       - name: Lint
         run: npm run lint
-      - name: Test (hermetic slice)
-        run: npm run test:ci
+      - name: Test
+        run: npm test
       - name: Content integrity
         run: npm run content:check
       - name: Build static site
