@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-05-control-flow-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What does `unless x` mean?",
+  "explanation": "`unless` is the negated form of `if`.",
+  "tags": [
+    "control-flow",
+    "basics"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "if x"
+    },
+    {
+      "id": "b",
+      "text": "if not x"
+    },
+    {
+      "id": "c",
+      "text": "while not x"
+    },
+    {
+      "id": "d",
+      "text": "case x"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-14-lambdas-fi",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 14,
+  "title": "Lambdas and functional interfaces",
+  "minutes": 11,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Lambdas\n\nConcise implementations of SAM interfaces. Capture effectively-final locals.\n\n## Method references\n\n`Class::method`, `instance::method`, and `Class::new` are shorthand for lambdas that just call one method.\n\n## Standard functional types\n\n`Function<T,R>`, `Predicate<T>`, `Consumer<T>`, `Supplier<T>`, `BiFunction` live in `java.util.function` and power the Streams API."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "Predicate<String> nonBlank = s -> !s.isBlank();\nlist.removeIf(nonBlank.negate());\nlist.forEach(System.out::println);"
+    }
+  ],
+  "docIds": [
+    "lambdaexpressions",
+    "package-summary"
+  ]
+}

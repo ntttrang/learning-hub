@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-19-http",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 19,
+  "title": "net/http servers and clients",
+  "minutes": 13,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Server\n\nThe stdlib is production-grade. Go 1.22+ `http.ServeMux` supports method + path patterns (`GET /users/{id}`) with wildcards.\n\n## Handlers\n\nA handler is `func(w http.ResponseWriter, r *http.Request)`. Wrap handlers with middleware for logging/auth.\n\n## Client\n\nReuse a single `http.Client` with a timeout; always `defer resp.Body.Close()` and drain the body to reuse connections."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "mux := http.NewServeMux()\nmux.HandleFunc(\"GET /users/{id}\", func(w http.ResponseWriter, r *http.Request) {\n  id := r.PathValue(\"id\")\n  fmt.Fprintf(w, \"user %s\", id)\n})\nhttp.ListenAndServe(\":8080\", mux)"
+    }
+  ],
+  "docIds": [
+    "http",
+    "routing-enhancements"
+  ]
+}

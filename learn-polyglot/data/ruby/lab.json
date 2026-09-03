@@ -1,0 +1,75 @@
+{
+  "language": "ruby",
+  "labs": [
+    {
+      "id": "ruby-lab-word-freq",
+      "title": "Word frequency with Hash + Enumerable",
+      "goal": "Count word frequencies and print words that appear more than once, sorted alphabetically as `word:count` lines — classic Hash + Enumerable muscle memory.",
+      "steps": [
+        "Split the text on whitespace.",
+        "Tally counts in a Hash (or use each_with_object).",
+        "Select keys with count > 1, sort, and print word:count."
+      ],
+      "language": "ruby",
+      "starterCode": "text = \"ruby ruby java rust ruby java\"\n# TODO: print words with count > 1 as word:count, sorted\nputs text\n",
+      "solution": "text = \"ruby ruby java rust ruby java\"\nfreq = text.split.each_with_object(Hash.new(0)) { |w, h| h[w] += 1 }\nfreq.keys.select { |w| freq[w] > 1 }.sort.each do |w|\n  puts \"#{w}:#{freq[w]}\"\nend\n",
+      "expectedOutput": "java:2\nruby:3",
+      "docs": [
+        { "title": "Enumerable#each_with_object", "url": "https://docs.ruby-lang.org/en/master/Enumerable.html#method-i-each_with_object", "note": "Build a hash accumulator" },
+        { "title": "Hash", "url": "https://docs.ruby-lang.org/en/master/Hash.html", "note": "Default procs / Hash.new(0)" }
+      ]
+    },
+    {
+      "id": "ruby-lab-comparable",
+      "title": "Comparable value class",
+      "goal": "Implement `<=>` and include Comparable so Version objects sort and compare with `<` / `>` — the standard mixin pattern.",
+      "steps": [
+        "Define Version with major and minor readers.",
+        "include Comparable and implement <=> comparing [major, minor].",
+        "Print whether 1.2 < 1.10 and the sorted list."
+      ],
+      "language": "ruby",
+      "starterCode": "class Version\n  attr_reader :major, :minor\n  def initialize(major, minor)\n    @major = major\n    @minor = minor\n  end\n  # TODO: Comparable + <=>\n  def to_s = \"#{major}.#{minor}\"\nend\n\nversions = [Version.new(1, 10), Version.new(1, 2), Version.new(2, 0)]\nputs (Version.new(1, 2) < Version.new(1, 10))\nputs versions.sort.map(&:to_s).join(\", \")\n",
+      "solution": "class Version\n  include Comparable\n  attr_reader :major, :minor\n  def initialize(major, minor)\n    @major = major\n    @minor = minor\n  end\n  def <=>(other)\n    [major, minor] <=> [other.major, other.minor]\n  end\n  def to_s = \"#{major}.#{minor}\"\nend\n\nversions = [Version.new(1, 10), Version.new(1, 2), Version.new(2, 0)]\nputs (Version.new(1, 2) < Version.new(1, 10))\nputs versions.sort.map(&:to_s).join(\", \")\n",
+      "expectedOutput": "true\n1.2, 1.10, 2.0",
+      "docs": [
+        { "title": "Comparable", "url": "https://docs.ruby-lang.org/en/master/Comparable.html", "note": "Implement <=> once, get the rest" }
+      ]
+    },
+    {
+      "id": "ruby-lab-block-iterator",
+      "title": "Custom each with yield",
+      "goal": "Build a tiny collection that mixes in Enumerable by implementing `each` with `yield` — how Ruby iterators really work.",
+      "steps": [
+        "Store items in an array inside Bag.",
+        "Implement each that yields each item and returns self (or an Enumerator).",
+        "include Enumerable and print map(&:upcase).join(\",\")."
+      ],
+      "language": "ruby",
+      "starterCode": "class Bag\n  def initialize(*items) = @items = items\n  # TODO: include Enumerable, implement each\nend\n\nb = Bag.new(\"a\", \"b\", \"c\")\nputs b.map(&:upcase).join(\",\")\n",
+      "solution": "class Bag\n  include Enumerable\n  def initialize(*items) = @items = items\n\n  def each(&block)\n    return enum_for(:each) unless block_given?\n    @items.each(&block)\n    self\n  end\nend\n\nb = Bag.new(\"a\", \"b\", \"c\")\nputs b.map(&:upcase).join(\",\")\n",
+      "expectedOutput": "A,B,C",
+      "docs": [
+        { "title": "Enumerable", "url": "https://docs.ruby-lang.org/en/master/Enumerable.html", "note": "Implement each, get map/select/…" },
+        { "title": "Object#enum_for", "url": "https://docs.ruby-lang.org/en/master/Object.html#method-i-enum_for", "note": "Return an Enumerator when no block" }
+      ]
+    },
+    {
+      "id": "ruby-lab-struct-result",
+      "title": "Struct Result + service object",
+      "goal": "Return a success/failure Result from a callable service — pure Ruby pattern used heavily in Rails apps and plain scripts.",
+      "steps": [
+        "Define Result = Struct.new(:success, :value, :error).",
+        "Build CreateUser with .call that downcases email and validates.",
+        "Print the created user on success."
+      ],
+      "language": "ruby",
+      "starterCode": "Result = Struct.new(:success, :value, :error)\n\nclass CreateUser\n  def self.call(**args) = new(**args).call\n\n  def initialize(name:, email:)\n    @name = name\n    @email = email\n  end\n\n  def call\n    # TODO: validate + normalize, return Result\n    Result.new(false, nil, \"not implemented\")\n  end\nend\n\nresult = CreateUser.call(name: \"Ada\", email: \"ADA@EXAMPLE.COM\")\nif result.success\n  puts \"created #{result.value[:name]} <#{result.value[:email]}>\"\nelse\n  puts \"error: #{result.error}\"\nend\n",
+      "solution": "Result = Struct.new(:success, :value, :error)\n\nclass CreateUser\n  def self.call(**args) = new(**args).call\n\n  def initialize(name:, email:)\n    @name = name\n    @email = email\n  end\n\n  def call\n    return Result.new(false, nil, \"email required\") if @email.to_s.empty?\n\n    user = { id: 1, name: @name, email: @email.downcase }\n    Result.new(true, user, nil)\n  end\nend\n\nresult = CreateUser.call(name: \"Ada\", email: \"ADA@EXAMPLE.COM\")\nif result.success\n  puts \"created #{result.value[:name]} <#{result.value[:email]}>\"\nelse\n  puts \"error: #{result.error}\"\nend\n",
+      "expectedOutput": "created Ada <ada@example.com>",
+      "docs": [
+        { "title": "Struct", "url": "https://docs.ruby-lang.org/en/master/Struct.html", "note": "Lightweight value objects" }
+      ]
+    }
+  ]
+}

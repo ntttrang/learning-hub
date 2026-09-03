@@ -1,0 +1,20 @@
+{
+  "id": "plg-ruby-q-08-enumerable-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: `[1, 2, 3].reduce(0) { |sum, n| sum _____ n }` sums the array.",
+  "explanation": "reduce folds the array by repeatedly applying the block, here accumulating a sum.",
+  "tags": [
+    "enumerable",
+    "collections"
+  ],
+  "kind": "fill",
+  "template": "sum ___ n",
+  "blanks": [
+    {
+      "answer": "+",
+      "alternatives": [
+        "+"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-13-exceptions",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 13,
+  "title": "Exceptions: raise, rescue, ensure",
+  "minutes": 11,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## raise and rescue\n\n`raise ArgumentError, \"bad\"` throws. `begin...rescue...ensure...end` handles and cleans up. Rescue specific classes — bare `rescue` catches `StandardError`.\n\n## Custom errors\n\nSubclass `StandardError` for domain failures callers may want to handle. Reserve `Exception` subclasses for truly fatal cases.\n\n## retry\n\n`retry` re-enters the `begin` block — useful for flaky IO with a counter. Don't infinite-loop."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "class NotFound < StandardError; end\n\ndef find(id)\n  raise NotFound, \"id=#{id}\" if id.nil?\n  { id: id }\nend\n\nbegin\n  find(nil)\nrescue NotFound => e\n  puts \"handled: #{e.message}\"\nensure\n  puts \"cleanup\"\nend"
+    }
+  ],
+  "docIds": [
+    "exceptions_rdoc",
+    "Exception"
+  ]
+}

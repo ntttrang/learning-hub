@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-01-hello-repl",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 1,
+  "title": "Hello Python: the REPL and scripts",
+  "minutes": 8,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Interpreted and interactive\n\nPython runs top-to-bottom. The **REPL** (`python`) lets you experiment line by line; scripts run with `python app.py`.\n\n## No boilerplate\n\nNo class or main required. The common entry guard is `if __name__ == \"__main__\":` so a file can be both imported and run.\n\n## Indentation is syntax\n\nBlocks are defined by indentation (4 spaces), not braces. Consistency is mandatory."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "def main():\n    print(\"Ahoy, world!\")\n\nif __name__ == \"__main__\":\n    main()"
+    }
+  ],
+  "docIds": [
+    "interpreter",
+    "__main__"
+  ]
+}

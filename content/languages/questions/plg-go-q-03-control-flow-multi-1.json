@@ -1,0 +1,34 @@
+{
+  "id": "plg-go-q-03-control-flow-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements about Go's switch statement are true?",
+  "explanation": "Go switch has no implicit fallthrough, supports type switches, and can omit the condition entirely (switch { ... }).",
+  "tags": [
+    "go-03-control-flow",
+    "switch"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Cases do not fall through to the next case by default"
+    },
+    {
+      "id": "b",
+      "text": "A type switch can branch on the dynamic type of an interface value"
+    },
+    {
+      "id": "c",
+      "text": "switch always requires a condition expression"
+    },
+    {
+      "id": "d",
+      "text": "The fallthrough keyword forces execution into the next case"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

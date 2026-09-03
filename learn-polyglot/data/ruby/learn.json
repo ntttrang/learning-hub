@@ -1,0 +1,479 @@
+{
+  "language": "ruby",
+  "lessons": [
+    {
+      "id": "ruby-01-objects",
+      "title": "Everything is an object",
+      "level": "junior",
+      "tags": ["basics", "objects"],
+      "estMinutes": 10,
+      "body": "## Objects all the way down\n\nIn Ruby, numbers, strings, even `nil` and `true`/`false` are objects with methods. Call `1.class`, `nil.nil?`, `\"hi\".upcase` — there is no separate \"primitive\" layer like in Java.\n\n## Syntax feel\n\nNo semicolons, optional parentheses, `end` closes blocks and methods. Methods implicitly return the last expression — no `return` required for the happy path.\n\n## Open classes\n\nYou can reopen any class and add methods. That power enables gems and DSLs — and misuse. Prefer refinements or composition when you can.",
+      "codeSamples": [
+        {
+          "title": "Objects everywhere",
+          "language": "ruby",
+          "code": "puts 42.class          # Integer\nputs nil.class         # NilClass\nputs \"ahoy\".upcase     # AHOY\n\ndef greet(name)\n  \"Ahoy, #{name}!\"\nend\n\nputs greet(\"Corgi\")"
+        }
+      ],
+      "docs": [
+        { "title": "Ruby Language Docs", "url": "https://docs.ruby-lang.org/en/master/" },
+        { "title": "Ruby Syntax", "url": "https://docs.ruby-lang.org/en/master/syntax_rdoc.html" }
+      ]
+    },
+    {
+      "id": "ruby-02-variables-strings-symbols",
+      "title": "Variables, strings, and symbols",
+      "level": "junior",
+      "tags": ["basics", "strings", "symbols"],
+      "estMinutes": 10,
+      "body": "## Naming\n\nLocal vars are `snake_case`. Constants start with an uppercase letter (`PI`, `HttpClient`). Instance vars use `@`, class vars `@@` (prefer class instance vars), globals `$` (avoid).\n\n## Strings vs symbols\n\n`\"name\"` is a mutable string (by default). `:name` is an immutable, interned identifier — cheaper as hash keys and option labels when the set of names is fixed.\n\n## Interpolation\n\nDouble-quoted strings interpolate `#{}`. Single-quoted strings are mostly literal (only `\\\\` and `\\'`).",
+      "codeSamples": [
+        {
+          "title": "Strings and symbols",
+          "language": "ruby",
+          "code": "name = \"Corgi\"\nputs \"Ahoy, #{name}!\"\nopts = { role: :admin, active: true }\nputs opts[:role]  # :admin\nputs :admin.object_id == :admin.object_id"
+        }
+      ],
+      "docs": [
+        { "title": "String", "url": "https://docs.ruby-lang.org/en/master/String.html" },
+        { "title": "Symbol", "url": "https://docs.ruby-lang.org/en/master/Symbol.html" }
+      ]
+    },
+    {
+      "id": "ruby-03-numbers-nil-truth",
+      "title": "Numbers, nil, and truthiness",
+      "level": "junior",
+      "tags": ["basics", "truthiness"],
+      "estMinutes": 9,
+      "body": "## Numeric hierarchy\n\n`Integer` and `Float` sit under `Numeric`. Integer division of two integers stays integer (`5 / 2 == 2`); use `5.0 / 2` or `5 / 2.0` for floats, or `Rational`.\n\n## Only two falsy values\n\n`false` and `nil` are falsy. Everything else — including `0`, `\"\"`, and `[]` — is truthy. That surprises people coming from Python or JS.\n\n## Safe navigation\n\n`user&.name` returns `nil` if `user` is `nil`, instead of raising `NoMethodError`.",
+      "codeSamples": [
+        {
+          "title": "Truthiness",
+          "language": "ruby",
+          "code": "puts !!0          # true\nputs !!\"\"         # true\nputs !!nil        # false\nputs 5 / 2        # 2\nputs 5 / 2.0      # 2.5\nuser = nil\nputs user&.name.inspect  # nil"
+        }
+      ],
+      "docs": [
+        { "title": "Numeric", "url": "https://docs.ruby-lang.org/en/master/Numeric.html" },
+        { "title": "NilClass", "url": "https://docs.ruby-lang.org/en/master/NilClass.html" }
+      ]
+    },
+    {
+      "id": "ruby-04-collections",
+      "title": "Collections: Array, Hash, Range",
+      "level": "junior",
+      "tags": ["collections", "basics"],
+      "estMinutes": 11,
+      "body": "## Array\n\nOrdered, growable. Index with `[]`, append with `<<`, slice with ranges. Prefer Enumerable methods over manual index loops.\n\n## Hash\n\nKey-value map. Use symbol keys for options (`role: :admin`). Ruby 3.1+ supports shorthand `{ name: }` when the local matches the key.\n\n## Range\n\n`1..5` inclusive, `1...5` exclusive. Ranges work in `case`, slices, and as Enumerable.",
+      "codeSamples": [
+        {
+          "title": "Array and Hash",
+          "language": "ruby",
+          "code": "nums = [1, 2, 3] << 4\nputs nums[1..2].inspect   # [2, 3]\n\nuser = { name: \"Ada\", role: :admin }\nputs user[:name]\nputs (1..3).to_a.inspect  # [1, 2, 3]"
+        }
+      ],
+      "docs": [
+        { "title": "Array", "url": "https://docs.ruby-lang.org/en/master/Array.html" },
+        { "title": "Hash", "url": "https://docs.ruby-lang.org/en/master/Hash.html" },
+        { "title": "Range", "url": "https://docs.ruby-lang.org/en/master/Range.html" }
+      ]
+    },
+    {
+      "id": "ruby-05-control-flow",
+      "title": "Control flow and case",
+      "level": "junior",
+      "tags": ["control-flow", "basics"],
+      "estMinutes": 10,
+      "body": "## if / unless / while\n\n`unless` is `if not`. Modifier forms (`return if done`) keep short guards readable. Prefer early returns over deep nesting.\n\n## case / when\n\n`case` uses `===` for matching — so ranges, classes, and regexes work as `when` arms. Great for multi-branch dispatch.\n\n## Looping\n\n`while`/`until` exist, but idiomatic Ruby leans on `each`, `times`, and Enumerable.",
+      "codeSamples": [
+        {
+          "title": "case with ===",
+          "language": "ruby",
+          "code": "n = 7\nlabel = case n\n        when 0 then \"zero\"\n        when 1..9 then \"single digit\"\n        when Integer then \"integer\"\n        else \"other\"\n        end\nputs label  # single digit"
+        }
+      ],
+      "docs": [
+        { "title": "Control Expressions", "url": "https://docs.ruby-lang.org/en/master/syntax/control_expressions_rdoc.html" }
+      ]
+    },
+    {
+      "id": "ruby-06-methods-args",
+      "title": "Methods and argument styles",
+      "level": "junior",
+      "tags": ["methods", "basics"],
+      "estMinutes": 11,
+      "body": "## Parameters\n\nPositional, optional defaults, keyword args (`name:`), splat (`*args`), double-splat (`**opts`), and a trailing block (`&blk`).\n\n## Keyword args\n\nPrefer keywords for clarity at call sites. Required keywords raise if omitted. Ruby 3 separated keywords from last-hash positional args more strictly.\n\n## Predicate and bang methods\n\nConvention: `empty?` returns boolean; `sort!` mutates in place. Not enforced by the language — enforced by culture.",
+      "codeSamples": [
+        {
+          "title": "Keyword and splat",
+          "language": "ruby",
+          "code": "def connect(host:, port: 443, **opts)\n  \"#{host}:#{port} opts=#{opts}\"\nend\n\nputs connect(host: \"api.example\", timeout: 5)\n\ndef sum(*nums) = nums.sum\nputs sum(1, 2, 3)"
+        }
+      ],
+      "docs": [
+        { "title": "Calling Methods", "url": "https://docs.ruby-lang.org/en/master/syntax/calling_methods_rdoc.html" },
+        { "title": "Method Definition", "url": "https://docs.ruby-lang.org/en/master/syntax/methods_rdoc.html" }
+      ]
+    },
+    {
+      "id": "ruby-07-blocks-procs",
+      "title": "Blocks, procs, and lambdas",
+      "level": "junior",
+      "tags": ["blocks", "procs"],
+      "estMinutes": 12,
+      "body": "## Blocks everywhere\n\nA block is a chunk of code passed to a method with `do...end` or `{ }`. `each`, `map`, `select`, and `reduce` replace most manual loops.\n\n## yield\n\nMethods can `yield` to a given block — the basis of Ruby DSLs and helpers. Check with `block_given?`.\n\n## Proc vs lambda\n\n`Proc.new` / `proc` are lenient about arity and `return` returns from the enclosing method. `lambda` / `->` are strict and `return` only from the lambda.",
+      "codeSamples": [
+        {
+          "title": "yield and lambda",
+          "language": "ruby",
+          "code": "def twice\n  yield\n  yield\nend\ntwice { puts \"ahoy\" }\n\ndouble = ->(n) { n * 2 }\nputs [1, 2, 3].map(&double).inspect"
+        }
+      ],
+      "docs": [
+        { "title": "Blocks and Yields", "url": "https://docs.ruby-lang.org/en/master/syntax/calling_methods_rdoc.html#label-Block+Argument" },
+        { "title": "Proc", "url": "https://docs.ruby-lang.org/en/master/Proc.html" }
+      ]
+    },
+    {
+      "id": "ruby-08-enumerable",
+      "title": "Enumerable: map, select, reduce",
+      "level": "junior",
+      "tags": ["enumerable", "collections"],
+      "estMinutes": 12,
+      "body": "## Mixin power\n\nInclude `Enumerable` and implement `each` — you get `map`, `select`, `find`, `any?`, `group_by`, and dozens more.\n\n## Chain, don't nest\n\nPrefer `users.select(&:active?).map(&:name).sort` over nested loops. Symbol-to-proc (`&:name`) is the short form of `{ |u| u.name }`.\n\n## each_with_object\n\nBuild a hash or array accumulator without the awkward `reduce` seed when the intent is \"collect into\".",
+      "codeSamples": [
+        {
+          "title": "Enumerable chain",
+          "language": "ruby",
+          "code": "users = [\n  { name: \"Ada\", active: true },\n  { name: \"Bob\", active: false },\n  { name: \"Cam\", active: true },\n]\nnames = users.select { |u| u[:active] }.map { |u| u[:name] }.sort\nputs names.join(\", \")\n\ntotal = [1, 2, 3].reduce(0) { |sum, n| sum + n }\nputs total"
+        }
+      ],
+      "docs": [
+        { "title": "Enumerable", "url": "https://docs.ruby-lang.org/en/master/Enumerable.html" }
+      ]
+    },
+    {
+      "id": "ruby-09-string-io",
+      "title": "String formatting and IO basics",
+      "level": "junior",
+      "tags": ["strings", "io"],
+      "estMinutes": 9,
+      "body": "## Formatting\n\nInterpolation covers most cases. `format` / `sprintf` and `%` help with alignment and numeric precision.\n\n## Reading and writing\n\n`File.read`, `File.write`, and block form `File.open(...) { |f| ... }` that auto-closes. Prefer block form for resource safety.\n\n## Encoding\n\nRuby strings carry an encoding. Stick to UTF-8 unless you have a reason; be deliberate at IO boundaries.",
+      "codeSamples": [
+        {
+          "title": "Format and File",
+          "language": "ruby",
+          "code": "puts format(\"%s scored %.1f\", \"Ada\", 98.5)\nputs \"%-8s|%04d\" % [\"go\", 7]\n\n# File.open(\"out.txt\", \"w\") { |f| f.puts \"ahoy\" }"
+        }
+      ],
+      "docs": [
+        { "title": "Kernel#format", "url": "https://docs.ruby-lang.org/en/master/Kernel.html#method-i-format" },
+        { "title": "File", "url": "https://docs.ruby-lang.org/en/master/File.html" }
+      ]
+    },
+    {
+      "id": "ruby-10-classes",
+      "title": "Classes, attr_*, and self",
+      "level": "mid",
+      "tags": ["oop", "classes"],
+      "estMinutes": 12,
+      "body": "## Defining types\n\n`class Dog` with `initialize` sets up instance state in `@ivars`. `attr_reader` / `attr_writer` / `attr_accessor` generate getters and setters.\n\n## self\n\nInside an instance method, `self` is the receiver. Inside `class << self` or `def self.method`, you define class methods.\n\n## Visibility\n\n`private` and `protected` control call sites. Private methods cannot be called with an explicit receiver (except `self.foo=` setters).",
+      "codeSamples": [
+        {
+          "title": "A small class",
+          "language": "ruby",
+          "code": "class Dog\n  attr_reader :name\n  def initialize(name) = @name = name\n  def bark = \"#{@name} says woof\"\n  def self.species = \"Canis familiaris\"\nend\n\nd = Dog.new(\"Captain\")\nputs d.bark\nputs Dog.species"
+        }
+      ],
+      "docs": [
+        { "title": "Classes and Modules", "url": "https://docs.ruby-lang.org/en/master/syntax/modules_and_classes_rdoc.html" },
+        { "title": "Module#attr_accessor", "url": "https://docs.ruby-lang.org/en/master/Module.html#method-i-attr_accessor" }
+      ]
+    },
+    {
+      "id": "ruby-11-modules-mixins",
+      "title": "Modules and mixins",
+      "level": "mid",
+      "tags": ["modules", "mixins"],
+      "estMinutes": 12,
+      "body": "## Namespaces and mixins\n\nModules group constants/methods and can be mixed into classes. `include` adds instance methods; `extend` adds class methods (or methods to a single object).\n\n## Enumerable and Comparable\n\nImplement `each` → get Enumerable. Implement `<=>` → get `<`, `>`, `between?`, and `sort` support via Comparable.\n\n## Prepend\n\n`prepend` inserts a module *before* the class in the ancestor chain — useful for wrapping existing methods.",
+      "codeSamples": [
+        {
+          "title": "Comparable mixin",
+          "language": "ruby",
+          "code": "class Version\n  include Comparable\n  attr_reader :major, :minor\n  def initialize(major, minor)\n    @major = major\n    @minor = minor\n  end\n  def <=>(other)\n    [major, minor] <=> [other.major, other.minor]\n  end\nend\n\nputs Version.new(1, 2) < Version.new(1, 10)  # true"
+        }
+      ],
+      "docs": [
+        { "title": "Module", "url": "https://docs.ruby-lang.org/en/master/Module.html" },
+        { "title": "Comparable", "url": "https://docs.ruby-lang.org/en/master/Comparable.html" }
+      ]
+    },
+    {
+      "id": "ruby-12-duck-typing",
+      "title": "Duck typing and polymorphism",
+      "level": "mid",
+      "tags": ["oop", "design"],
+      "estMinutes": 10,
+      "body": "## If it quacks…\n\nRuby cares about *behavior*, not declared types. Pass any object that responds to the methods you call. Interfaces are cultural, not nominal.\n\n## respond_to? and explicit contracts\n\n`respond_to?(:each)` can guard optional behavior. For public APIs, document the expected protocol (or use a shared module) so callers know the contract.\n\n## Prefer polymorphism over case/when on class\n\nReplace `case obj; when String; when Array` with methods on each type when the set of types grows.",
+      "codeSamples": [
+        {
+          "title": "Duck-typed length",
+          "language": "ruby",
+          "code": "def describe(collection)\n  \"#{collection.size} items\"\nend\n\nputs describe([1, 2, 3])\nputs describe({ a: 1, b: 2 })\nputs describe(\"ahoy\")"
+        }
+      ],
+      "docs": [
+        { "title": "Object#respond_to?", "url": "https://docs.ruby-lang.org/en/master/Object.html#method-i-respond_to-3F" }
+      ]
+    },
+    {
+      "id": "ruby-13-exceptions",
+      "title": "Exceptions: raise, rescue, ensure",
+      "level": "mid",
+      "tags": ["exceptions", "errors"],
+      "estMinutes": 11,
+      "body": "## raise and rescue\n\n`raise ArgumentError, \"bad\"` throws. `begin...rescue...ensure...end` handles and cleans up. Rescue specific classes — bare `rescue` catches `StandardError`.\n\n## Custom errors\n\nSubclass `StandardError` for domain failures callers may want to handle. Reserve `Exception` subclasses for truly fatal cases.\n\n## retry\n\n`retry` re-enters the `begin` block — useful for flaky IO with a counter. Don't infinite-loop.",
+      "codeSamples": [
+        {
+          "title": "Custom error",
+          "language": "ruby",
+          "code": "class NotFound < StandardError; end\n\ndef find(id)\n  raise NotFound, \"id=#{id}\" if id.nil?\n  { id: id }\nend\n\nbegin\n  find(nil)\nrescue NotFound => e\n  puts \"handled: #{e.message}\"\nensure\n  puts \"cleanup\"\nend"
+        }
+      ],
+      "docs": [
+        { "title": "Exceptions", "url": "https://docs.ruby-lang.org/en/master/syntax/exceptions_rdoc.html" },
+        { "title": "Exception", "url": "https://docs.ruby-lang.org/en/master/Exception.html" }
+      ]
+    },
+    {
+      "id": "ruby-14-pattern-matching",
+      "title": "Pattern matching (case / in)",
+      "level": "mid",
+      "tags": ["pattern-matching", "ruby3"],
+      "estMinutes": 11,
+      "body": "## case / in\n\nRuby 3 pattern matching destructures arrays and hashes: `case payload; in { type: \"user\", id: } then ...`. Bind variables as you match.\n\n## find patterns and guards\n\n`in [*pre, Integer => n, *post]` and `if` guards refine matches. Use for JSON-shaped data and algebraic-style dispatch.\n\n## => vs =\n\nIn patterns, `=>` binds a matched value to a local. Prefer patterns at boundaries (parsers, message handlers), not everywhere.",
+      "codeSamples": [
+        {
+          "title": "Hash pattern",
+          "language": "ruby",
+          "code": "payload = { type: \"user\", id: 7, name: \"Ada\" }\n\ncase payload\nin { type: \"user\", id:, name: }\n  puts \"user ##{id}: #{name}\"\nin { type: \"ping\" }\n  puts \"pong\"\nelse\n  puts \"unknown\"\nend"
+        }
+      ],
+      "docs": [
+        { "title": "Pattern Matching", "url": "https://docs.ruby-lang.org/en/master/syntax/pattern_matching_rdoc.html" }
+      ]
+    },
+    {
+      "id": "ruby-15-enumerators-lazy",
+      "title": "Enumerators and lazy evaluation",
+      "level": "mid",
+      "tags": ["enumerable", "lazy"],
+      "estMinutes": 10,
+      "body": "## Enumerator\n\nCalling `each` without a block returns an `Enumerator`. Chain or pass it around. `enum_for` / `to_enum` expose custom iterators.\n\n## Lazy\n\n`lazy` defers work until you force results (`first`, `take`, `force`). Essential for infinite or huge pipelines: `(1..).lazy.select(&:odd?).map { _1 * 2 }.take(3)`.\n\n## External iterators\n\n`next` / `peek` walk an enumerator imperatively when a block-style API doesn't fit.",
+      "codeSamples": [
+        {
+          "title": "Lazy pipeline",
+          "language": "ruby",
+          "code": "result = (1..).lazy.select(&:odd?).map { |n| n * n }.take(5).force\nputs result.inspect  # [1, 9, 25, 49, 81]"
+        }
+      ],
+      "docs": [
+        { "title": "Enumerator", "url": "https://docs.ruby-lang.org/en/master/Enumerator.html" },
+        { "title": "Enumerator::Lazy", "url": "https://docs.ruby-lang.org/en/master/Enumerator/Lazy.html" }
+      ]
+    },
+    {
+      "id": "ruby-16-gems-bundler",
+      "title": "Gems and Bundler",
+      "level": "mid",
+      "tags": ["tooling", "bundler"],
+      "estMinutes": 10,
+      "body": "## RubyGems\n\nPackages are **gems**. `gem install` puts them on the system; apps should pin versions via Bundler instead.\n\n## Bundler\n\n`Gemfile` declares dependencies; `bundle install` resolves and writes `Gemfile.lock`. Commit the lockfile for apps. Run tools with `bundle exec`.\n\n## Version constraints\n\n`\"~> 2.1\"` allows 2.1.x but not 3.0. Prefer pessimistic constraints plus a lockfile over floating latest.",
+      "codeSamples": [
+        {
+          "title": "Gemfile sketch",
+          "language": "ruby",
+          "code": "# Gemfile\nsource \"https://rubygems.org\"\n\ngem \"rack\", \"~> 3.0\"\ngem \"puma\"\n\ngroup :test do\n  gem \"minitest\"\nend"
+        }
+      ],
+      "docs": [
+        { "title": "Bundler", "url": "https://bundler.io/" },
+        { "title": "RubyGems Guides", "url": "https://guides.rubygems.org/" }
+      ]
+    },
+    {
+      "id": "ruby-17-testing",
+      "title": "Testing with Minitest and RSpec",
+      "level": "mid",
+      "tags": ["testing"],
+      "estMinutes": 11,
+      "body": "## Minitest\n\nShips with Ruby. `assert_equal`, `assert_raises`, and parallel runs. Simple and fast for libraries.\n\n## RSpec\n\nExpressive DSL (`describe` / `it` / `expect`). Popular in apps; keep examples focused and avoid over-mocking.\n\n## What to test\n\nPrefer behavior at public boundaries. Table-driven examples and factories beat one giant fixture file.",
+      "codeSamples": [
+        {
+          "title": "Minitest sketch",
+          "language": "ruby",
+          "code": "require \"minitest/autorun\"\n\nclass SumTest < Minitest::Test\n  def test_sum\n    assert_equal 6, [1, 2, 3].sum\n  end\nend"
+        }
+      ],
+      "docs": [
+        { "title": "Minitest", "url": "https://docs.ruby-lang.org/en/master/Minitest.html" },
+        { "title": "RSpec", "url": "https://rspec.info/" }
+      ]
+    },
+    {
+      "id": "ruby-18-stdlib-highlights",
+      "title": "Stdlib highlights: JSON, Set, Struct",
+      "level": "mid",
+      "tags": ["stdlib"],
+      "estMinutes": 10,
+      "body": "## JSON\n\n`require \"json\"` then `JSON.parse` / `to_json`. Validate and shape data at the boundary — don't trust raw hashes deep in domain code.\n\n## Set and Struct\n\n`Set` for unique membership. `Struct.new(:x, :y)` builds a lightweight value class with accessors — great before a full class earns its keep.\n\n## Data (3.2+)\n\n`Data.define` creates immutable value objects — prefer over Struct when mutation would be a bug.",
+      "codeSamples": [
+        {
+          "title": "Struct and JSON",
+          "language": "ruby",
+          "code": "require \"json\"\nrequire \"set\"\n\nPoint = Struct.new(:x, :y, keyword_init: true)\np = Point.new(x: 1, y: 2)\nputs p.to_h.to_json\n\nputs Set[1, 2, 2, 3].to_a.inspect"
+        }
+      ],
+      "docs": [
+        { "title": "JSON", "url": "https://docs.ruby-lang.org/en/master/JSON.html" },
+        { "title": "Struct", "url": "https://docs.ruby-lang.org/en/master/Struct.html" },
+        { "title": "Data", "url": "https://docs.ruby-lang.org/en/master/Data.html" }
+      ]
+    },
+    {
+      "id": "ruby-19-metaprogramming",
+      "title": "Metaprogramming: define_method and method_missing",
+      "level": "senior",
+      "tags": ["metaprogramming"],
+      "estMinutes": 13,
+      "body": "## define_method\n\nGenerate methods from data instead of copy-paste. Prefer this over `eval` strings.\n\n## method_missing\n\nIntercept unknown messages for DSLs and proxies. Always pair with `respond_to_missing?` so `respond_to?` stays honest.\n\n## send / public_send\n\n`send` bypasses visibility; prefer `public_send` for user-influenced method names. Never `send` unsanitized input.",
+      "codeSamples": [
+        {
+          "title": "Dynamic methods",
+          "language": "ruby",
+          "code": "class Widget\n  %i[start stop reset].each do |action|\n    define_method(action) { \"#{action} ok\" }\n  end\nend\n\nw = Widget.new\nputs w.start\nputs w.public_send(:stop)"
+        }
+      ],
+      "docs": [
+        { "title": "BasicObject#method_missing", "url": "https://docs.ruby-lang.org/en/master/BasicObject.html#method-i-method_missing" },
+        { "title": "Module#define_method", "url": "https://docs.ruby-lang.org/en/master/Module.html#method-i-define_method" }
+      ]
+    },
+    {
+      "id": "ruby-20-singleton-eigenclass",
+      "title": "Singleton classes and class << self",
+      "level": "senior",
+      "tags": ["oop", "metaprogramming"],
+      "estMinutes": 11,
+      "body": "## Every object has a singleton class\n\nMethods defined on one object live on its eigenclass. `class << obj` opens that class. Class methods are instance methods of the class's singleton class.\n\n## class << self\n\nGroup class methods and make `private_class_method` clearer. Alternative: `def self.foo`.\n\n## Ancestors\n\n`obj.singleton_class.ancestors` reveals the lookup path — invaluable when debugging unexpected method resolution.",
+      "codeSamples": [
+        {
+          "title": "class << self",
+          "language": "ruby",
+          "code": "class Config\n  class << self\n    attr_accessor :env\n    def load! = @env = \"production\"\n  end\nend\n\nConfig.load!\nputs Config.env"
+        }
+      ],
+      "docs": [
+        { "title": "Singleton methods", "url": "https://docs.ruby-lang.org/en/master/syntax/methods_rdoc.html#label-Singleton+Methods" }
+      ]
+    },
+    {
+      "id": "ruby-21-refinements",
+      "title": "Refinements vs monkey-patching",
+      "level": "senior",
+      "tags": ["refinements", "design"],
+      "estMinutes": 10,
+      "body": "## Monkey patches are global\n\nReopening `String` affects the whole process. Convenient in a script; risky in a gem ecosystem.\n\n## Refinements\n\n`refine String do ... end` plus `using MyRefine` scopes patches to a file or module. Safer for library authors.\n\n## When to patch\n\nPrefer wrapper objects or modules. Use refinements for optional syntax sugar; avoid surprising core-class changes in shared code.",
+      "codeSamples": [
+        {
+          "title": "Refinement",
+          "language": "ruby",
+          "code": "module StringOps\n  refine String do\n    def shout = upcase + \"!\"\n  end\nend\n\nusing StringOps\nputs \"ahoy\".shout  # AHOY!"
+        }
+      ],
+      "docs": [
+        { "title": "Refinements", "url": "https://docs.ruby-lang.org/en/master/syntax/refinements_rdoc.html" }
+      ]
+    },
+    {
+      "id": "ruby-22-immutability",
+      "title": "Frozen strings and immutability",
+      "level": "senior",
+      "tags": ["performance", "immutability"],
+      "estMinutes": 10,
+      "body": "## freeze\n\n`obj.freeze` makes mutation raise. Frozen string literals (`# frozen_string_literal: true`) reduce allocations and catch accidental mutation.\n\n## Share safely\n\nFrozen objects are safer to share across threads. Prefer `Data.define` / frozen Structs for value objects.\n\n## dup vs clone\n\n`dup` copies without freezing or singleton methods; `clone` can preserve freeze and eigenclass methods. Know which you need.",
+      "codeSamples": [
+        {
+          "title": "Frozen literal",
+          "language": "ruby",
+          "code": "# frozen_string_literal: true\n\nmsg = \"ahoy\"\nbegin\n  msg << \"!\"\nrescue FrozenError => e\n  puts e.class\nend\n\nputs \"ahoy\".freeze.equal?(\"ahoy\".freeze)"
+        }
+      ],
+      "docs": [
+        { "title": "Object#freeze", "url": "https://docs.ruby-lang.org/en/master/Object.html#method-i-freeze" }
+      ]
+    },
+    {
+      "id": "ruby-23-concurrency",
+      "title": "Concurrency: Threads, GVL, Ractors, Fibers",
+      "level": "senior",
+      "tags": ["concurrency", "threads"],
+      "estMinutes": 14,
+      "body": "## Threads and the GVL\n\nMRI Ruby has a Global VM Lock — CPU-bound threads don't run truly in parallel. Threads still help for IO-bound work (releases GVL on blocking IO).\n\n## Fibers and Async\n\nFibers are cooperative coroutines. The `async` gem builds structured concurrency on fibers for high-concurrency IO.\n\n## Ractors\n\nRactors isolate memory for parallel CPU work with message passing. API is stricter; share only immutable/deep-copied data. For multi-core CPU, also consider multiple processes.",
+      "codeSamples": [
+        {
+          "title": "Thread for IO-ish work",
+          "language": "ruby",
+          "code": "threads = 3.times.map do |i|\n  Thread.new do\n    sleep 0.05\n    \"worker-#{i}\"\n  end\nend\nputs threads.map(&:value).sort.join(\", \")"
+        }
+      ],
+      "docs": [
+        { "title": "Thread", "url": "https://docs.ruby-lang.org/en/master/Thread.html" },
+        { "title": "Ractor", "url": "https://docs.ruby-lang.org/en/master/Ractor.html" },
+        { "title": "Fiber", "url": "https://docs.ruby-lang.org/en/master/Fiber.html" }
+      ]
+    },
+    {
+      "id": "ruby-24-yjit-profiling",
+      "title": "YJIT and profiling",
+      "level": "senior",
+      "tags": ["performance", "yjit"],
+      "estMinutes": 11,
+      "body": "## YJIT\n\nYJIT (Ruby's JIT) often cuts latency significantly on real apps. Enable in production after checking memory budget (`--yjit` or `RUBY_YJIT_ENABLE=1`).\n\n## Measure first\n\nUse `benchmark`, stackprof, or Vernier before optimizing. Most \"slow Ruby\" is IO, N+1 queries, or allocations — not missing micro-optimizations.\n\n## Allocation awareness\n\nAvoid building huge intermediate arrays in hot paths; prefer `lazy`, streaming, or in-place updates when profiling shows pressure.",
+      "codeSamples": [
+        {
+          "title": "Quick benchmark",
+          "language": "ruby",
+          "code": "require \"benchmark\"\n\nn = 100_000\nputs Benchmark.realtime {\n  n.times { \"ahoy\".upcase }\n}.round(4)"
+        }
+      ],
+      "docs": [
+        { "title": "YJIT", "url": "https://docs.ruby-lang.org/en/master/yjit_md.html" },
+        { "title": "Benchmark", "url": "https://docs.ruby-lang.org/en/master/Benchmark.html" }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "title": "Ruby Documentation",
+      "url": "https://docs.ruby-lang.org/en/",
+      "note": "Language reference"
+    },
+    {
+      "title": "Ruby-Doc.org",
+      "url": "https://ruby-doc.org/",
+      "note": "Core & stdlib API"
+    },
+    {
+      "title": "Ruby Style Guide",
+      "url": "https://rubystyle.guide/",
+      "note": "Community style conventions"
+    },
+    {
+      "title": "Bundler",
+      "url": "https://bundler.io/",
+      "note": "Dependency management"
+    }
+  ]
+}

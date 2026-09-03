@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-07-functions-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "Where must keyword-only arguments appear in a function signature?",
+  "explanation": "Parameters listed after a bare `*` (or `*args`) can only be passed by keyword.",
+  "tags": [
+    "basics",
+    "functions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Before *args"
+    },
+    {
+      "id": "b",
+      "text": "After a bare `*` (or after `*args`)"
+    },
+    {
+      "id": "c",
+      "text": "Python has no concept of keyword-only arguments"
+    },
+    {
+      "id": "d",
+      "text": "After **kwargs"
+    }
+  ],
+  "correct": "b"
+}

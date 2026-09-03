@@ -1,0 +1,13 @@
+{
+  "id": "plg-python-q-output",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "map applies square; list materializes.",
+  "kind": "fill",
+  "template": "xs = [1, 2, 3]\nprint(list(map(lambda x: x * x, xs)))\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "[1, 4, 9]"
+    }
+  ]
+}

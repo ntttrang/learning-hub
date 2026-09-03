@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-14-pattern-matching-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which keyword introduces a pattern-matching arm in a case expression (Ruby 3+)?",
+  "explanation": "case/in is Ruby's pattern matching syntax, distinct from case/when.",
+  "tags": [
+    "pattern-matching",
+    "ruby3"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "when"
+    },
+    {
+      "id": "b",
+      "text": "in"
+    },
+    {
+      "id": "c",
+      "text": "match"
+    },
+    {
+      "id": "d",
+      "text": "is"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "plg-ruby-q-14-pattern-matching-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: to bind a matched value to a local variable in a pattern, you use this operator.",
+  "explanation": "In pattern matching, => binds whatever matched the pattern on its left to the name on its right.",
+  "tags": [
+    "pattern-matching",
+    "ruby3"
+  ],
+  "kind": "fill",
+  "template": "in Integer ___ n",
+  "blanks": [
+    {
+      "answer": "=>",
+      "alternatives": [
+        "=>"
+      ]
+    }
+  ]
+}

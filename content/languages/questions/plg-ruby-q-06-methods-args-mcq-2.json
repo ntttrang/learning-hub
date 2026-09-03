@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-06-methods-args-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "What does `*nums` capture in `def sum(*nums)`?",
+  "explanation": "The splat operator gathers extra positional arguments into an array.",
+  "tags": [
+    "methods",
+    "basics"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A single value"
+    },
+    {
+      "id": "b",
+      "text": "All remaining positional arguments, collected into an array"
+    },
+    {
+      "id": "c",
+      "text": "All keyword arguments"
+    },
+    {
+      "id": "d",
+      "text": "The block passed to the method"
+    }
+  ],
+  "correct": "b"
+}

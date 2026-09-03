@@ -1,0 +1,17 @@
+{
+  "id": "plg-java-q-14-lambdas-fi-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "nonBlank.negate() is true for blank strings, so removeIf deletes \"\" and \" \", leaving [hi, ok].",
+  "tags": [
+    "lambdas",
+    "functional"
+  ],
+  "kind": "fill",
+  "template": "import java.util.*;\nimport java.util.function.*;\n\npublic class Demo {\n  public static void main(String[] args) {\n    List<String> list = new ArrayList<>(List.of(\"\", \"hi\", \" \", \"ok\"));\n    Predicate<String> nonBlank = s -> !s.isBlank();\n    list.removeIf(nonBlank.negate());\n    System.out.println(list);\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "[hi, ok]"
+    }
+  ]
+}

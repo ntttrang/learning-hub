@@ -1,0 +1,29 @@
+{
+  "id": "plg-ruby-q-19-metaprogramming-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What does define_method let you do?",
+  "explanation": "define_method generates methods programmatically, avoiding repetitive method definitions or eval strings.",
+  "tags": [
+    "metaprogramming"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Delete a method from a class"
+    },
+    {
+      "id": "b",
+      "text": "Define a method dynamically at runtime from a name and a block"
+    },
+    {
+      "id": "c",
+      "text": "Convert a method into a symbol"
+    },
+    {
+      "id": "d",
+      "text": "Freeze a method so it cannot be redefined"
+    }
+  ],
+  "correct": "b"
+}

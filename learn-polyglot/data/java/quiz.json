@@ -1,0 +1,2486 @@
+{
+  "language": "java",
+  "questions": [
+    {
+      "id": "java-q-volatile",
+      "type": "mcq",
+      "prompt": "What does volatile guarantee for a single field?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Atomicity for i++ style updates"
+        },
+        {
+          "id": "b",
+          "text": "Visibility and ordering for that field's reads/writes"
+        },
+        {
+          "id": "c",
+          "text": "Mutual exclusion across all threads"
+        },
+        {
+          "id": "d",
+          "text": "That GC will never collect the object"
+        }
+      ],
+      "answer": "b",
+      "explanation": "volatile provides visibility and happens-before for that field. Compound updates still need atomics or locks.",
+      "tags": [
+        "jmm"
+      ]
+    },
+    {
+      "id": "java-q-vt-when",
+      "type": "multi",
+      "prompt": "When are virtual threads a good default?",
+      "options": [
+        {
+          "id": "a",
+          "text": "High-concurrency blocking I/O (JDBC, HTTP)"
+        },
+        {
+          "id": "b",
+          "text": "Tight CPU-bound numerical kernels"
+        },
+        {
+          "id": "c",
+          "text": "Imperative Spring MVC request handlers"
+        },
+        {
+          "id": "d",
+          "text": "Replacing all locks with busy-spin loops"
+        }
+      ],
+      "answers": [
+        "a",
+        "c"
+      ],
+      "explanation": "Virtual threads shine on I/O-bound imperative code. CPU-bound work still needs careful pooling; they don't remove the need for correct synchronization.",
+      "tags": [
+        "loom"
+      ]
+    },
+    {
+      "id": "java-q-output",
+      "type": "output",
+      "prompt": "What does this print (assuming no reordering surprises — think happens-before via join)?",
+      "code": "class Demo {\n  static int x = 0;\n  public static void main(String[] args) throws Exception {\n    Thread t = new Thread(() -> x = 42);\n    t.start();\n    t.join();\n    System.out.println(x);\n  }\n}",
+      "language": "java",
+      "answer": "42",
+      "explanation": "Thread.join() establishes happens-before with the joined thread's termination, so the write to x is visible."
+    },
+    {
+      "id": "java-q-fill",
+      "type": "fill",
+      "prompt": "Fill the blank: Spring enables virtual threads with spring.threads.virtual._____=true",
+      "template": "spring.threads.virtual._____=true",
+      "answer": "enabled",
+      "accept": [
+        "enabled"
+      ],
+      "explanation": "Property is spring.threads.virtual.enabled=true."
+    },
+    {
+      "id": "java-q-coding",
+      "type": "coding",
+      "prompt": "Write a method that counts distinct words in a sentence (split on whitespace), case-insensitive. Return the count as an int. Print it for \"Hello hello WORLD\".",
+      "starterCode": "import java.util.*;\n\npublic class WordCount {\n  static int distinct(String s) {\n    // TODO\n    return 0;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(distinct(\"Hello hello WORLD\"));\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "import java.util.*;\n\npublic class WordCount {\n  static int distinct(String s) {\n    Set<String> set = new HashSet<>();\n    for (String w : s.trim().split(\"\\\\s+\")) {\n      if (!w.isEmpty()) set.add(w.toLowerCase());\n    }\n    return set.size();\n  }\n\n  public static void main(String[] args) {\n    System.out.println(distinct(\"Hello hello WORLD\"));\n  }\n}\n",
+      "expectedOutput": "2",
+      "explanation": "hello/Hello collapse case-insensitively; WORLD is distinct → 2."
+    },
+    {
+      "id": "java-q-01-hello-jvm-mcq-1",
+      "type": "mcq",
+      "prompt": "What does the javac compiler produce from a .java source file?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Bytecode in a .class file"
+        },
+        {
+          "id": "b",
+          "text": "Native machine code directly executable by the OS"
+        },
+        {
+          "id": "c",
+          "text": "An optimized JAR archive"
+        },
+        {
+          "id": "d",
+          "text": "Assembly for the target CPU"
+        }
+      ],
+      "answer": "a",
+      "explanation": "javac compiles Java source into JVM bytecode (.class files); the JVM then interprets/JIT-compiles it.",
+      "tags": [
+        "basics",
+        "jvm",
+        "tooling"
+      ]
+    },
+    {
+      "id": "java-q-01-hello-jvm-mcq-2",
+      "type": "mcq",
+      "prompt": "Which is the correct signature for a Java application's main entry point?",
+      "options": [
+        {
+          "id": "a",
+          "text": "public static void main(String[] args)"
+        },
+        {
+          "id": "b",
+          "text": "public void main(String[] args)"
+        },
+        {
+          "id": "c",
+          "text": "static int main(String[] args)"
+        },
+        {
+          "id": "d",
+          "text": "private static void main(String[] args)"
+        }
+      ],
+      "answer": "a",
+      "explanation": "The JVM looks for exactly `public static void main(String[] args)` to start an application.",
+      "tags": [
+        "basics",
+        "jvm"
+      ]
+    },
+    {
+      "id": "java-q-01-hello-jvm-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "public class Hello {\n  public static void main(String[] args) {\n    System.out.println(\"Ahoy, world!\");\n  }\n}",
+      "language": "java",
+      "answer": "Ahoy, world!",
+      "explanation": "System.out.println prints the string followed by a newline.",
+      "tags": [
+        "basics",
+        "jvm"
+      ]
+    },
+    {
+      "id": "java-q-01-hello-jvm-coding-1",
+      "type": "coding",
+      "prompt": "Write a program that prints exactly: Hello, JVM!",
+      "starterCode": "public class HelloJvm {\n  public static void main(String[] args) {\n    // TODO: print \"Hello, JVM!\"\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "public class HelloJvm {\n  public static void main(String[] args) {\n    System.out.println(\"Hello, JVM!\");\n  }\n}\n",
+      "expectedOutput": "Hello, JVM!",
+      "explanation": "System.out.println writes the literal text plus a trailing newline.",
+      "tags": [
+        "basics",
+        "jvm"
+      ]
+    },
+    {
+      "id": "java-q-02-primitives-vars-mcq-1",
+      "type": "mcq",
+      "prompt": "Which of these is NOT one of Java's eight primitive types?",
+      "options": [
+        {
+          "id": "a",
+          "text": "int"
+        },
+        {
+          "id": "b",
+          "text": "String"
+        },
+        {
+          "id": "c",
+          "text": "boolean"
+        },
+        {
+          "id": "d",
+          "text": "char"
+        }
+      ],
+      "answer": "b",
+      "explanation": "String is a reference type (an object), not one of the 8 primitives (byte, short, int, long, float, double, char, boolean).",
+      "tags": [
+        "basics",
+        "types"
+      ]
+    },
+    {
+      "id": "java-q-02-primitives-vars-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about `var` are true?",
+      "options": [
+        {
+          "id": "a",
+          "text": "var infers the type from the initializer"
+        },
+        {
+          "id": "b",
+          "text": "var can be used for instance fields"
+        },
+        {
+          "id": "c",
+          "text": "var is still statically typed"
+        },
+        {
+          "id": "d",
+          "text": "var makes Java dynamically typed"
+        }
+      ],
+      "answers": [
+        "a",
+        "c"
+      ],
+      "explanation": "var only works for local variables with an initializer; it is resolved at compile time, so Java remains statically typed.",
+      "tags": [
+        "basics",
+        "types"
+      ]
+    },
+    {
+      "id": "java-q-02-primitives-vars-fill-1",
+      "type": "fill",
+      "prompt": "Unboxing a null wrapper (e.g. Integer to int) throws a _____.",
+      "template": "unboxing a null Integer throws a _____",
+      "answer": "NullPointerException",
+      "accept": [
+        "NullPointerException",
+        "NPE"
+      ],
+      "explanation": "Autoboxing/unboxing calls .intValue() etc. under the hood; calling it on null throws NPE.",
+      "tags": [
+        "basics",
+        "types"
+      ]
+    },
+    {
+      "id": "java-q-02-primitives-vars-coding-1",
+      "type": "coding",
+      "prompt": "Using var, declare a=7 and b=5 (both int), then print their sum.",
+      "starterCode": "public class Sum {\n  public static void main(String[] args) {\n    // TODO: declare a and b with var, print a + b\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "public class Sum {\n  public static void main(String[] args) {\n    var a = 7;\n    var b = 5;\n    System.out.println(a + b);\n  }\n}\n",
+      "expectedOutput": "12",
+      "explanation": "var infers int from the literal initializers; a + b is standard int addition.",
+      "tags": [
+        "basics",
+        "types"
+      ]
+    },
+    {
+      "id": "java-q-03-operators-control-mcq-1",
+      "type": "mcq",
+      "prompt": "Which operators short-circuit evaluation in Java?",
+      "options": [
+        {
+          "id": "a",
+          "text": "&& and ||"
+        },
+        {
+          "id": "b",
+          "text": "& and |"
+        },
+        {
+          "id": "c",
+          "text": "== and !="
+        },
+        {
+          "id": "d",
+          "text": "+ and -"
+        }
+      ],
+      "answer": "a",
+      "explanation": "&& and || skip evaluating the right operand when the result is already determined; & and | always evaluate both sides.",
+      "tags": [
+        "basics",
+        "control-flow"
+      ]
+    },
+    {
+      "id": "java-q-03-operators-control-mcq-2",
+      "type": "mcq",
+      "prompt": "Which Java version introduced switch expressions with arrow labels (JEP 361)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "8"
+        },
+        {
+          "id": "b",
+          "text": "11"
+        },
+        {
+          "id": "c",
+          "text": "14"
+        },
+        {
+          "id": "d",
+          "text": "17"
+        }
+      ],
+      "answer": "c",
+      "explanation": "Switch expressions became a standard feature in Java 14.",
+      "tags": [
+        "basics",
+        "control-flow"
+      ]
+    },
+    {
+      "id": "java-q-03-operators-control-multi-1",
+      "type": "multi",
+      "prompt": "Which are valid loop constructs in Java?",
+      "options": [
+        {
+          "id": "a",
+          "text": "for"
+        },
+        {
+          "id": "b",
+          "text": "enhanced for (for-each)"
+        },
+        {
+          "id": "c",
+          "text": "until"
+        },
+        {
+          "id": "d",
+          "text": "do/while"
+        }
+      ],
+      "answers": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": "Java has for, enhanced for-each, while, and do/while. There is no `until` loop.",
+      "tags": [
+        "basics",
+        "control-flow"
+      ]
+    },
+    {
+      "id": "java-q-03-operators-control-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "public class Demo {\n  public static void main(String[] args) {\n    int day = 6;\n    String kind = switch (day) {\n      case 6, 7 -> \"weekend\";\n      default -> \"weekday\";\n    };\n    System.out.println(kind);\n  }\n}",
+      "language": "java",
+      "answer": "weekend",
+      "explanation": "day matches the 6,7 case label of the switch expression, producing \"weekend\".",
+      "tags": [
+        "basics",
+        "control-flow"
+      ]
+    },
+    {
+      "id": "java-q-04-strings-mcq-1",
+      "type": "mcq",
+      "prompt": "Why should StringBuilder be used inside a loop that builds up text?",
+      "options": [
+        {
+          "id": "a",
+          "text": "String is immutable, so repeated concatenation creates many intermediate objects"
+        },
+        {
+          "id": "b",
+          "text": "String is mutable and slow"
+        },
+        {
+          "id": "c",
+          "text": "StringBuilder is thread-safe by default"
+        },
+        {
+          "id": "d",
+          "text": "String does not support the + operator"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Each String concatenation in Java creates a new String object; StringBuilder mutates an internal buffer instead.",
+      "tags": [
+        "basics",
+        "strings"
+      ]
+    },
+    {
+      "id": "java-q-04-strings-fill-1",
+      "type": "fill",
+      "prompt": "Use s1._____(s2) for a case-insensitive String comparison.",
+      "template": "s1._____(s2)",
+      "answer": "equalsIgnoreCase",
+      "accept": [
+        "equalsIgnoreCase"
+      ],
+      "explanation": "equalsIgnoreCase() compares String content while ignoring case.",
+      "tags": [
+        "basics",
+        "strings"
+      ]
+    },
+    {
+      "id": "java-q-04-strings-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "public class Demo {\n  public static void main(String[] args) {\n    String name = \"Corgi\";\n    String json = \"{ \\\"name\\\": \\\"%s\\\" }\".formatted(name);\n    System.out.println(json);\n  }\n}",
+      "language": "java",
+      "answer": "{ \"name\": \"Corgi\" }",
+      "explanation": "String.formatted substitutes %s with the argument, like String.format.",
+      "tags": [
+        "basics",
+        "strings"
+      ]
+    },
+    {
+      "id": "java-q-04-strings-coding-1",
+      "type": "coding",
+      "prompt": "Write join(String[] words) using StringBuilder that returns the words separated by a single space with no trailing space. Print join(new String[]{\"a\",\"b\",\"c\"}).",
+      "starterCode": "public class Join {\n  static String join(String[] words) {\n    // TODO\n    return \"\";\n  }\n\n  public static void main(String[] args) {\n    System.out.println(join(new String[]{\"a\", \"b\", \"c\"}));\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "public class Join {\n  static String join(String[] words) {\n    StringBuilder sb = new StringBuilder();\n    for (int i = 0; i < words.length; i++) {\n      if (i > 0) sb.append(' ');\n      sb.append(words[i]);\n    }\n    return sb.toString();\n  }\n\n  public static void main(String[] args) {\n    System.out.println(join(new String[]{\"a\", \"b\", \"c\"}));\n  }\n}\n",
+      "expectedOutput": "a b c",
+      "explanation": "Appending a separator only before non-first elements avoids a trailing space.",
+      "tags": [
+        "basics",
+        "strings"
+      ]
+    },
+    {
+      "id": "java-q-05-arrays-mcq-1",
+      "type": "mcq",
+      "prompt": "What exception is thrown when accessing an array index outside its valid range?",
+      "options": [
+        {
+          "id": "a",
+          "text": "ArrayIndexOutOfBoundsException"
+        },
+        {
+          "id": "b",
+          "text": "IndexOutOfBoundsException"
+        },
+        {
+          "id": "c",
+          "text": "NullPointerException"
+        },
+        {
+          "id": "d",
+          "text": "IllegalArgumentException"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Arrays throw the more specific ArrayIndexOutOfBoundsException for invalid indices.",
+      "tags": [
+        "basics",
+        "arrays"
+      ]
+    },
+    {
+      "id": "java-q-05-arrays-mcq-2",
+      "type": "mcq",
+      "prompt": "Which utility class provides sort, fill, copyOf, equals, and toString for arrays?",
+      "options": [
+        {
+          "id": "a",
+          "text": "java.util.Arrays"
+        },
+        {
+          "id": "b",
+          "text": "java.util.Collections"
+        },
+        {
+          "id": "c",
+          "text": "java.lang.Array"
+        },
+        {
+          "id": "d",
+          "text": "java.util.ArrayUtils"
+        }
+      ],
+      "answer": "a",
+      "explanation": "java.util.Arrays holds these static helper methods.",
+      "tags": [
+        "basics",
+        "arrays"
+      ]
+    },
+    {
+      "id": "java-q-05-arrays-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Java arrays are true?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Length is fixed at creation time"
+        },
+        {
+          "id": "b",
+          "text": "2D arrays are arrays-of-arrays and rows can be jagged"
+        },
+        {
+          "id": "c",
+          "text": "Arrays automatically resize when full"
+        },
+        {
+          "id": "d",
+          "text": "Access is zero-based"
+        }
+      ],
+      "answers": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": "Java arrays cannot resize; a and b and d are correct.",
+      "tags": [
+        "basics",
+        "arrays"
+      ]
+    },
+    {
+      "id": "java-q-05-arrays-fill-1",
+      "type": "fill",
+      "prompt": "Use Arrays._____(nums) for a readable String of an array's contents instead of printing it directly.",
+      "template": "Arrays._____(nums)",
+      "answer": "toString",
+      "accept": [
+        "toString"
+      ],
+      "explanation": "Printing an array directly shows its hash-based identity string; Arrays.toString formats the elements.",
+      "tags": [
+        "basics",
+        "arrays"
+      ]
+    },
+    {
+      "id": "java-q-06-methods-mcq-1",
+      "type": "mcq",
+      "prompt": "When is method overloading resolved in Java?",
+      "options": [
+        {
+          "id": "a",
+          "text": "At compile time, based on argument types"
+        },
+        {
+          "id": "b",
+          "text": "At runtime, based on the actual object type"
+        },
+        {
+          "id": "c",
+          "text": "Never — Java disallows overloading"
+        },
+        {
+          "id": "d",
+          "text": "Only for static methods"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Overload resolution is a compile-time decision based on the static types of the arguments.",
+      "tags": [
+        "basics",
+        "methods"
+      ]
+    },
+    {
+      "id": "java-q-06-methods-mcq-2",
+      "type": "mcq",
+      "prompt": "Which rule applies to varargs parameters?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A method can declare multiple varargs parameters"
+        },
+        {
+          "id": "b",
+          "text": "The varargs parameter must be the last parameter"
+        },
+        {
+          "id": "c",
+          "text": "Varargs cannot be combined with other parameters"
+        },
+        {
+          "id": "d",
+          "text": "Varargs creates a List, not an array"
+        }
+      ],
+      "answer": "b",
+      "explanation": "Only one varargs parameter is allowed, and it must be the last one in the parameter list.",
+      "tags": [
+        "basics",
+        "methods"
+      ]
+    },
+    {
+      "id": "java-q-06-methods-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "public class Demo {\n  static int sum(int... xs) {\n    int total = 0;\n    for (int x : xs) total += x;\n    return total;\n  }\n  public static void main(String[] args) {\n    System.out.println(sum(1, 2, 3));\n  }\n}",
+      "language": "java",
+      "answer": "6",
+      "explanation": "The varargs call packs 1,2,3 into an int[], and sum totals them.",
+      "tags": [
+        "basics",
+        "methods"
+      ]
+    },
+    {
+      "id": "java-q-06-methods-coding-1",
+      "type": "coding",
+      "prompt": "Write two overloaded methods named describe: one for int returning \"int:VALUE\" and one for String returning \"str:VALUE\". Print describe(5) then describe(\"hi\") on separate lines.",
+      "starterCode": "public class Describe {\n  static String describe(int v) {\n    // TODO\n    return \"\";\n  }\n\n  static String describe(String v) {\n    // TODO\n    return \"\";\n  }\n\n  public static void main(String[] args) {\n    System.out.println(describe(5));\n    System.out.println(describe(\"hi\"));\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "public class Describe {\n  static String describe(int v) {\n    return \"int:\" + v;\n  }\n\n  static String describe(String v) {\n    return \"str:\" + v;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(describe(5));\n    System.out.println(describe(\"hi\"));\n  }\n}\n",
+      "expectedOutput": "int:5\nstr:hi",
+      "explanation": "Overload resolution picks the int or String version based on the compile-time argument type.",
+      "tags": [
+        "basics",
+        "methods"
+      ]
+    },
+    {
+      "id": "java-q-07-classes-objects-mcq-1",
+      "type": "mcq",
+      "prompt": "What does calling this(...) inside a constructor do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Calls another constructor of the same class"
+        },
+        {
+          "id": "b",
+          "text": "Calls the superclass constructor"
+        },
+        {
+          "id": "c",
+          "text": "Creates a brand new instance"
+        },
+        {
+          "id": "d",
+          "text": "Refers to a static field"
+        }
+      ],
+      "answer": "a",
+      "explanation": "this(...) chains to another constructor overload in the same class; super(...) calls the parent constructor.",
+      "tags": [
+        "oop",
+        "classes"
+      ]
+    },
+    {
+      "id": "java-q-07-classes-objects-multi-1",
+      "type": "multi",
+      "prompt": "Which are benefits of encapsulation (private fields with public methods)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Protects class invariants"
+        },
+        {
+          "id": "b",
+          "text": "Allows validation logic on mutation"
+        },
+        {
+          "id": "c",
+          "text": "Guarantees thread safety automatically"
+        },
+        {
+          "id": "d",
+          "text": "Hides implementation details from callers"
+        }
+      ],
+      "answers": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": "Encapsulation controls access and hides internals, but it does not by itself make code thread-safe.",
+      "tags": [
+        "oop",
+        "classes"
+      ]
+    },
+    {
+      "id": "java-q-07-classes-objects-fill-1",
+      "type": "fill",
+      "prompt": "A subclass constructor calls its parent's constructor with _____(...).",
+      "template": "_____(opening);",
+      "answer": "super",
+      "accept": [
+        "super"
+      ],
+      "explanation": "super(...) invokes the immediate superclass constructor.",
+      "tags": [
+        "oop",
+        "classes"
+      ]
+    },
+    {
+      "id": "java-q-07-classes-objects-coding-1",
+      "type": "coding",
+      "prompt": "Given an Account class with a constructor(opening balance in cents), deposit(long cents), and balance(): create an Account with opening balance 1000, deposit 250, then print the balance.",
+      "starterCode": "public class Main {\n  static class Account {\n    private long balanceCents;\n    Account(long opening) { this.balanceCents = opening; }\n    void deposit(long cents) {\n      // TODO: add cents to balanceCents\n    }\n    long balance() { return balanceCents; }\n  }\n\n  public static void main(String[] args) {\n    Account acc = new Account(1000);\n    acc.deposit(250);\n    System.out.println(acc.balance());\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "public class Main {\n  static class Account {\n    private long balanceCents;\n    Account(long opening) { this.balanceCents = opening; }\n    void deposit(long cents) {\n      balanceCents += cents;\n    }\n    long balance() { return balanceCents; }\n  }\n\n  public static void main(String[] args) {\n    Account acc = new Account(1000);\n    acc.deposit(250);\n    System.out.println(acc.balance());\n  }\n}\n",
+      "expectedOutput": "1250",
+      "explanation": "deposit adds cents to the private balanceCents field; 1000 + 250 = 1250.",
+      "tags": [
+        "oop",
+        "classes"
+      ]
+    },
+    {
+      "id": "java-q-08-inheritance-poly-mcq-1",
+      "type": "mcq",
+      "prompt": "What does `final` prevent when applied to a class?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Instantiation"
+        },
+        {
+          "id": "b",
+          "text": "Subclassing"
+        },
+        {
+          "id": "c",
+          "text": "Serialization"
+        },
+        {
+          "id": "d",
+          "text": "Garbage collection"
+        }
+      ],
+      "answer": "b",
+      "explanation": "A final class cannot be extended (subclassed).",
+      "tags": [
+        "oop",
+        "inheritance"
+      ]
+    },
+    {
+      "id": "java-q-08-inheritance-poly-mcq-2",
+      "type": "mcq",
+      "prompt": "Every Java class ultimately extends which class?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Object"
+        },
+        {
+          "id": "b",
+          "text": "Class"
+        },
+        {
+          "id": "c",
+          "text": "Void"
+        },
+        {
+          "id": "d",
+          "text": "Base"
+        }
+      ],
+      "answer": "a",
+      "explanation": "java.lang.Object is the implicit root of every class hierarchy.",
+      "tags": [
+        "oop",
+        "inheritance"
+      ]
+    },
+    {
+      "id": "java-q-08-inheritance-poly-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about polymorphism and dynamic dispatch are true?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The overriding method actually invoked is chosen at runtime"
+        },
+        {
+          "id": "b",
+          "text": "A parent-typed variable can reference a subclass instance"
+        },
+        {
+          "id": "c",
+          "text": "abstract classes can be instantiated directly"
+        },
+        {
+          "id": "d",
+          "text": "Composition is often preferable when the relationship isn't a true \"is-a\""
+        }
+      ],
+      "answers": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": "abstract classes cannot be instantiated directly; the other statements are correct.",
+      "tags": [
+        "oop",
+        "inheritance"
+      ]
+    },
+    {
+      "id": "java-q-08-inheritance-poly-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "class Animal { String speak() { return \"...\"; } }\nclass Dog extends Animal { @Override String speak() { return \"woof\"; } }\n\npublic class Demo {\n  public static void main(String[] args) {\n    Animal a = new Dog();\n    System.out.println(a.speak());\n  }\n}",
+      "language": "java",
+      "answer": "woof",
+      "explanation": "Even though `a` is declared as Animal, dynamic dispatch calls Dog's overridden speak() at runtime.",
+      "tags": [
+        "oop",
+        "inheritance"
+      ]
+    },
+    {
+      "id": "java-q-09-interfaces-mcq-1",
+      "type": "mcq",
+      "prompt": "What is a functional interface?",
+      "options": [
+        {
+          "id": "a",
+          "text": "An interface with exactly one abstract method"
+        },
+        {
+          "id": "b",
+          "text": "Any interface that has default methods"
+        },
+        {
+          "id": "c",
+          "text": "An interface with only static methods"
+        },
+        {
+          "id": "d",
+          "text": "An abstract class with one method"
+        }
+      ],
+      "answer": "a",
+      "explanation": "A functional interface has a single abstract method (SAM), which lets it be implemented with a lambda.",
+      "tags": [
+        "oop",
+        "interfaces"
+      ]
+    },
+    {
+      "id": "java-q-09-interfaces-fill-1",
+      "type": "fill",
+      "prompt": "The annotation that documents a functional interface's intent (and lets the compiler verify it) is @_____.",
+      "template": "@_____",
+      "answer": "FunctionalInterface",
+      "accept": [
+        "FunctionalInterface"
+      ],
+      "explanation": "@FunctionalInterface causes a compile error if the interface doesn't have exactly one abstract method.",
+      "tags": [
+        "oop",
+        "interfaces"
+      ]
+    },
+    {
+      "id": "java-q-09-interfaces-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "public class Demo {\n  interface Greeter { String greet(String name); }\n\n  public static void main(String[] args) {\n    Greeter g = n -> \"Hi \" + n;\n    System.out.println(g.greet(\"Corgi\"));\n  }\n}",
+      "language": "java",
+      "answer": "Hi Corgi",
+      "explanation": "The lambda implements Greeter's single abstract method, concatenating \"Hi \" with the argument.",
+      "tags": [
+        "oop",
+        "interfaces"
+      ]
+    },
+    {
+      "id": "java-q-09-interfaces-coding-1",
+      "type": "coding",
+      "prompt": "Create interface Shape with a default method describe() returning \"a shape\" and an abstract method area() returning double. Implement class Square(side) where area() = side*side. Print new Square(4).describe() then new Square(4).area().",
+      "starterCode": "public class Main {\n  interface Shape {\n    default String describe() { return \"a shape\"; }\n    double area();\n  }\n\n  static class Square implements Shape {\n    private final double side;\n    Square(double side) { this.side = side; }\n    public double area() {\n      // TODO: return side * side\n      return 0;\n    }\n  }\n\n  public static void main(String[] args) {\n    Square sq = new Square(4);\n    System.out.println(sq.describe());\n    System.out.println(sq.area());\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "public class Main {\n  interface Shape {\n    default String describe() { return \"a shape\"; }\n    double area();\n  }\n\n  static class Square implements Shape {\n    private final double side;\n    Square(double side) { this.side = side; }\n    public double area() {\n      return side * side;\n    }\n  }\n\n  public static void main(String[] args) {\n    Square sq = new Square(4);\n    System.out.println(sq.describe());\n    System.out.println(sq.area());\n  }\n}\n",
+      "expectedOutput": "a shape\n16.0",
+      "explanation": "describe() is inherited from the interface default; area() returns 4*4=16.0 as a double.",
+      "tags": [
+        "oop",
+        "interfaces"
+      ]
+    },
+    {
+      "id": "java-q-10-enums-records-mcq-1",
+      "type": "mcq",
+      "prompt": "What does the `record` keyword automatically generate?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Constructor, accessors, equals, hashCode, and toString"
+        },
+        {
+          "id": "b",
+          "text": "Only a constructor"
+        },
+        {
+          "id": "c",
+          "text": "A mutable builder class"
+        },
+        {
+          "id": "d",
+          "text": "Nothing beyond a regular class"
+        }
+      ],
+      "answer": "a",
+      "explanation": "record is a concise immutable data carrier: the compiler generates all of these for you.",
+      "tags": [
+        "oop",
+        "records"
+      ]
+    },
+    {
+      "id": "java-q-10-enums-records-mcq-2",
+      "type": "mcq",
+      "prompt": "Which Java version introduced sealed classes/interfaces (JEP 409)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "8"
+        },
+        {
+          "id": "b",
+          "text": "11"
+        },
+        {
+          "id": "c",
+          "text": "16"
+        },
+        {
+          "id": "d",
+          "text": "17"
+        }
+      ],
+      "answer": "d",
+      "explanation": "Sealed classes/interfaces became a standard feature in Java 17.",
+      "tags": [
+        "oop",
+        "records"
+      ]
+    },
+    {
+      "id": "java-q-10-enums-records-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about enums in Java are true?",
+      "options": [
+        {
+          "id": "a",
+          "text": "They are type-safe sets of constants"
+        },
+        {
+          "id": "b",
+          "text": "They can carry fields and methods"
+        },
+        {
+          "id": "c",
+          "text": "They can be extended by other classes via `extends`"
+        },
+        {
+          "id": "d",
+          "text": "They can be used as switch labels"
+        }
+      ],
+      "answers": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": "Enums implicitly extend java.lang.Enum and cannot be subclassed further by other classes.",
+      "tags": [
+        "oop",
+        "enums"
+      ]
+    },
+    {
+      "id": "java-q-10-enums-records-fill-1",
+      "type": "fill",
+      "prompt": "record User(String name, Role role) generates an accessor for the name field called u._____() (not getName()).",
+      "template": "u._____()",
+      "answer": "name",
+      "accept": [
+        "name"
+      ],
+      "explanation": "Record accessors are named after the component, not with a get- prefix.",
+      "tags": [
+        "oop",
+        "records"
+      ]
+    },
+    {
+      "id": "java-q-11-exceptions-mcq-1",
+      "type": "mcq",
+      "prompt": "Which of these is a checked exception?",
+      "options": [
+        {
+          "id": "a",
+          "text": "IOException"
+        },
+        {
+          "id": "b",
+          "text": "NullPointerException"
+        },
+        {
+          "id": "c",
+          "text": "ArithmeticException"
+        },
+        {
+          "id": "d",
+          "text": "IllegalStateException"
+        }
+      ],
+      "answer": "a",
+      "explanation": "IOException must be declared or caught; the others are unchecked RuntimeException subclasses.",
+      "tags": [
+        "errors",
+        "exceptions"
+      ]
+    },
+    {
+      "id": "java-q-11-exceptions-mcq-2",
+      "type": "mcq",
+      "prompt": "In a try/catch/finally, which block is guaranteed to run regardless of whether an exception occurs?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The finally block"
+        },
+        {
+          "id": "b",
+          "text": "The catch block, always"
+        },
+        {
+          "id": "c",
+          "text": "Nothing runs if an exception is thrown"
+        },
+        {
+          "id": "d",
+          "text": "Only the try block"
+        }
+      ],
+      "answer": "a",
+      "explanation": "finally always executes (except for JVM exit/crash), typically used for cleanup.",
+      "tags": [
+        "errors",
+        "exceptions"
+      ]
+    },
+    {
+      "id": "java-q-11-exceptions-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "public class Demo {\n  public static void main(String[] args) {\n    try {\n      int[] arr = new int[2];\n      System.out.println(arr[5]);\n    } catch (ArrayIndexOutOfBoundsException e) {\n      System.out.println(\"caught: \" + e.getMessage());\n    }\n  }\n}",
+      "language": "java",
+      "answer": "caught: Index 5 out of bounds for length 2",
+      "explanation": "Accessing index 5 of a length-2 array throws ArrayIndexOutOfBoundsException with that message, caught and printed.",
+      "tags": [
+        "errors",
+        "exceptions"
+      ]
+    },
+    {
+      "id": "java-q-11-exceptions-coding-1",
+      "type": "coding",
+      "prompt": "Create class Resource implementing AutoCloseable that prints \"open\" in its constructor and \"close\" in close(). Use try-with-resources to create one and print \"use\" inside the block.",
+      "starterCode": "public class Main {\n  static class Resource implements AutoCloseable {\n    Resource() {\n      System.out.println(\"open\");\n    }\n    public void close() {\n      // TODO: print \"close\"\n    }\n  }\n\n  public static void main(String[] args) {\n    try (Resource r = new Resource()) {\n      System.out.println(\"use\");\n    }\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "public class Main {\n  static class Resource implements AutoCloseable {\n    Resource() {\n      System.out.println(\"open\");\n    }\n    public void close() {\n      System.out.println(\"close\");\n    }\n  }\n\n  public static void main(String[] args) {\n    try (Resource r = new Resource()) {\n      System.out.println(\"use\");\n    }\n  }\n}\n",
+      "expectedOutput": "open\nuse\nclose",
+      "explanation": "try-with-resources calls close() automatically at the end of the block, even without an exception.",
+      "tags": [
+        "errors",
+        "exceptions"
+      ]
+    },
+    {
+      "id": "java-q-12-collections-mcq-1",
+      "type": "mcq",
+      "prompt": "Which Map implementation keeps its keys in sorted order?",
+      "options": [
+        {
+          "id": "a",
+          "text": "TreeMap"
+        },
+        {
+          "id": "b",
+          "text": "HashMap"
+        },
+        {
+          "id": "c",
+          "text": "LinkedHashMap"
+        },
+        {
+          "id": "d",
+          "text": "ArrayMap"
+        }
+      ],
+      "answer": "a",
+      "explanation": "TreeMap maintains keys in sorted order (via Comparable or a Comparator).",
+      "tags": [
+        "collections",
+        "stdlib"
+      ]
+    },
+    {
+      "id": "java-q-12-collections-multi-1",
+      "type": "multi",
+      "prompt": "Which are true about List.of(), Set.of(), and Map.of()?",
+      "options": [
+        {
+          "id": "a",
+          "text": "They create immutable collections"
+        },
+        {
+          "id": "b",
+          "text": "They allow null elements"
+        },
+        {
+          "id": "c",
+          "text": "You must copy into a mutable collection to modify the result"
+        },
+        {
+          "id": "d",
+          "text": "They are convenience factory methods in java.util"
+        }
+      ],
+      "answers": [
+        "a",
+        "c",
+        "d"
+      ],
+      "explanation": "These factory methods reject null elements and produce immutable collections.",
+      "tags": [
+        "collections",
+        "stdlib"
+      ]
+    },
+    {
+      "id": "java-q-12-collections-fill-1",
+      "type": "fill",
+      "prompt": "counts.merge(word, 1, Integer::_____) increments a counter for word, defaulting to 1 if absent.",
+      "template": "Integer::_____",
+      "answer": "sum",
+      "accept": [
+        "sum"
+      ],
+      "explanation": "Map.merge combines the existing value and 1 using Integer::sum when the key is already present.",
+      "tags": [
+        "collections",
+        "stdlib"
+      ]
+    },
+    {
+      "id": "java-q-12-collections-coding-1",
+      "type": "coding",
+      "prompt": "Count occurrences of each word in a String[] using a HashMap<String,Integer> and merge, then print the count for \"cat\" given words = {\"cat\",\"dog\",\"cat\"}.",
+      "starterCode": "import java.util.*;\n\npublic class WordFreq {\n  public static void main(String[] args) {\n    String[] words = {\"cat\", \"dog\", \"cat\"};\n    Map<String, Integer> counts = new HashMap<>();\n    // TODO: populate counts using merge\n    System.out.println(counts.get(\"cat\"));\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "import java.util.*;\n\npublic class WordFreq {\n  public static void main(String[] args) {\n    String[] words = {\"cat\", \"dog\", \"cat\"};\n    Map<String, Integer> counts = new HashMap<>();\n    for (String w : words) {\n      counts.merge(w, 1, Integer::sum);\n    }\n    System.out.println(counts.get(\"cat\"));\n  }\n}\n",
+      "expectedOutput": "2",
+      "explanation": "\"cat\" appears twice in the array, so merge accumulates its count to 2.",
+      "tags": [
+        "collections",
+        "stdlib"
+      ]
+    },
+    {
+      "id": "java-q-13-generics-mcq-1",
+      "type": "mcq",
+      "prompt": "What is type erasure in Java generics?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Generic type information is removed at runtime, replaced with raw types and casts"
+        },
+        {
+          "id": "b",
+          "text": "Generics are erased at compile time causing a compile error"
+        },
+        {
+          "id": "c",
+          "text": "Generic classes cannot be compiled"
+        },
+        {
+          "id": "d",
+          "text": "Wildcards erase method bodies"
+        }
+      ],
+      "answer": "a",
+      "explanation": "The compiler inserts casts and removes generic type parameters, so `new T[]` and `instanceof List<String>` aren't allowed.",
+      "tags": [
+        "generics",
+        "types"
+      ]
+    },
+    {
+      "id": "java-q-13-generics-mcq-2",
+      "type": "mcq",
+      "prompt": "What does PECS stand for when choosing bounded wildcards?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Producer Extends, Consumer Super"
+        },
+        {
+          "id": "b",
+          "text": "Producer Extends, Consumer Subtype"
+        },
+        {
+          "id": "c",
+          "text": "Provider Extends, Consumer Super"
+        },
+        {
+          "id": "d",
+          "text": "Producer Exact, Consumer Strict"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Use `? extends T` when reading (producing) and `? super T` when writing (consuming).",
+      "tags": [
+        "generics",
+        "types"
+      ]
+    },
+    {
+      "id": "java-q-13-generics-multi-1",
+      "type": "multi",
+      "prompt": "Which are direct consequences of type erasure?",
+      "options": [
+        {
+          "id": "a",
+          "text": "You cannot write `new T[]`"
+        },
+        {
+          "id": "b",
+          "text": "`instanceof List<String>` is not allowed"
+        },
+        {
+          "id": "c",
+          "text": "Generic type parameters are available via reflection at runtime"
+        },
+        {
+          "id": "d",
+          "text": "Raw types exist for backward compatibility"
+        }
+      ],
+      "answers": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": "Type parameters are erased, so reflection sees raw types, not the original generic parameters.",
+      "tags": [
+        "generics",
+        "types"
+      ]
+    },
+    {
+      "id": "java-q-13-generics-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "import java.util.*;\n\npublic class Demo {\n  static <T extends Comparable<T>> T max(List<? extends T> items) {\n    T best = items.get(0);\n    for (T t : items) if (t.compareTo(best) > 0) best = t;\n    return best;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(max(List.of(3, 7, 2, 9, 4)));\n  }\n}",
+      "language": "java",
+      "answer": "9",
+      "explanation": "The bounded generic max method scans the list and returns the largest element, 9.",
+      "tags": [
+        "generics",
+        "types"
+      ]
+    },
+    {
+      "id": "java-q-14-lambdas-fi-mcq-1",
+      "type": "mcq",
+      "prompt": "Which package holds standard functional interfaces like Function, Predicate, and Supplier?",
+      "options": [
+        {
+          "id": "a",
+          "text": "java.util.function"
+        },
+        {
+          "id": "b",
+          "text": "java.lang.function"
+        },
+        {
+          "id": "c",
+          "text": "java.util.lambda"
+        },
+        {
+          "id": "d",
+          "text": "java.function"
+        }
+      ],
+      "answer": "a",
+      "explanation": "java.util.function defines the standard functional interface types used across the Streams API.",
+      "tags": [
+        "lambdas",
+        "functional"
+      ]
+    },
+    {
+      "id": "java-q-14-lambdas-fi-fill-1",
+      "type": "fill",
+      "prompt": "list.forEach(System.out::_____) prints each element on its own line.",
+      "template": "System.out::_____",
+      "answer": "println",
+      "accept": [
+        "println"
+      ],
+      "explanation": "A method reference to println is used as the Consumer<T> for forEach.",
+      "tags": [
+        "lambdas",
+        "functional"
+      ]
+    },
+    {
+      "id": "java-q-14-lambdas-fi-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "import java.util.*;\nimport java.util.function.*;\n\npublic class Demo {\n  public static void main(String[] args) {\n    List<String> list = new ArrayList<>(List.of(\"\", \"hi\", \" \", \"ok\"));\n    Predicate<String> nonBlank = s -> !s.isBlank();\n    list.removeIf(nonBlank.negate());\n    System.out.println(list);\n  }\n}",
+      "language": "java",
+      "answer": "[hi, ok]",
+      "explanation": "nonBlank.negate() is true for blank strings, so removeIf deletes \"\" and \" \", leaving [hi, ok].",
+      "tags": [
+        "lambdas",
+        "functional"
+      ]
+    },
+    {
+      "id": "java-q-14-lambdas-fi-coding-1",
+      "type": "coding",
+      "prompt": "Declare a Function<Integer,Integer> named square using a lambda that returns its input squared. Print square.apply(5).",
+      "starterCode": "import java.util.function.*;\n\npublic class Square {\n  public static void main(String[] args) {\n    Function<Integer, Integer> square = null; // TODO: assign a lambda\n    System.out.println(square.apply(5));\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "import java.util.function.*;\n\npublic class Square {\n  public static void main(String[] args) {\n    Function<Integer, Integer> square = x -> x * x;\n    System.out.println(square.apply(5));\n  }\n}\n",
+      "expectedOutput": "25",
+      "explanation": "The lambda x -> x * x implements Function<Integer,Integer>.apply, giving 5*5=25.",
+      "tags": [
+        "lambdas",
+        "functional"
+      ]
+    },
+    {
+      "id": "java-q-15-streams-mcq-1",
+      "type": "mcq",
+      "prompt": "Intermediate stream operations like map/filter are:",
+      "options": [
+        {
+          "id": "a",
+          "text": "Lazy — they don't execute until a terminal operation runs"
+        },
+        {
+          "id": "b",
+          "text": "Eager, running immediately when called"
+        },
+        {
+          "id": "c",
+          "text": "Executed once eagerly then cached forever"
+        },
+        {
+          "id": "d",
+          "text": "Automatically run on a background thread"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Nothing happens in a stream pipeline until a terminal operation (e.g. collect, forEach) triggers it.",
+      "tags": [
+        "streams",
+        "functional"
+      ]
+    },
+    {
+      "id": "java-q-15-streams-mcq-2",
+      "type": "mcq",
+      "prompt": "Which method, added in Java 16, converts a stream directly into an (unmodifiable) List?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Stream.toList()"
+        },
+        {
+          "id": "b",
+          "text": "Stream.collect(toArrayList())"
+        },
+        {
+          "id": "c",
+          "text": "Stream.asList()"
+        },
+        {
+          "id": "d",
+          "text": "Stream.list()"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Stream.toList() is shorthand for .collect(Collectors.toUnmodifiableList()).",
+      "tags": [
+        "streams",
+        "functional"
+      ]
+    },
+    {
+      "id": "java-q-15-streams-multi-1",
+      "type": "multi",
+      "prompt": "Which Collectors are standard in java.util.stream.Collectors?",
+      "options": [
+        {
+          "id": "a",
+          "text": "toList"
+        },
+        {
+          "id": "b",
+          "text": "groupingBy"
+        },
+        {
+          "id": "c",
+          "text": "partitioningBy"
+        },
+        {
+          "id": "d",
+          "text": "sortInPlace"
+        }
+      ],
+      "answers": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": "toList, groupingBy, and partitioningBy are all real Collectors; sortInPlace doesn't exist.",
+      "tags": [
+        "streams",
+        "functional"
+      ]
+    },
+    {
+      "id": "java-q-15-streams-fill-1",
+      "type": "fill",
+      "prompt": "A stream pipeline can only be traversed _____; reusing it throws IllegalStateException.",
+      "template": "traversed _____",
+      "answer": "once",
+      "accept": [
+        "once",
+        "one time"
+      ],
+      "explanation": "Streams are single-use: once a terminal operation consumes the stream, it cannot be reused.",
+      "tags": [
+        "streams",
+        "functional"
+      ]
+    },
+    {
+      "id": "java-q-16-optional-mcq-1",
+      "type": "mcq",
+      "prompt": "What is Optional<T> primarily intended for?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Modeling a possibly-absent return value"
+        },
+        {
+          "id": "b",
+          "text": "Replacing all null checks everywhere, including fields"
+        },
+        {
+          "id": "c",
+          "text": "Method parameters that might be missing"
+        },
+        {
+          "id": "d",
+          "text": "Serializing data to JSON"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Optional is designed for return types signaling \"maybe a value\", not for fields or parameters.",
+      "tags": [
+        "optional",
+        "null-safety"
+      ]
+    },
+    {
+      "id": "java-q-16-optional-mcq-2",
+      "type": "mcq",
+      "prompt": "Which of these is an Optional anti-pattern?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Using Optional as a field type or method parameter"
+        },
+        {
+          "id": "b",
+          "text": "Chaining map/filter on an Optional"
+        },
+        {
+          "id": "c",
+          "text": "Using orElseThrow for a missing value"
+        },
+        {
+          "id": "d",
+          "text": "Returning Optional.empty() instead of null"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Optional is meant for return types; using it for fields or parameters is discouraged.",
+      "tags": [
+        "optional",
+        "null-safety"
+      ]
+    },
+    {
+      "id": "java-q-16-optional-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "import java.util.*;\n\npublic class Demo {\n  public static void main(String[] args) {\n    Optional<String> opt = Optional.of(\"corgi\");\n    String result = opt.map(String::toUpperCase).orElse(\"NONE\");\n    System.out.println(result);\n  }\n}",
+      "language": "java",
+      "answer": "CORGI",
+      "explanation": "map transforms the present value with toUpperCase; orElse's fallback is unused since a value is present.",
+      "tags": [
+        "optional",
+        "null-safety"
+      ]
+    },
+    {
+      "id": "java-q-16-optional-coding-1",
+      "type": "coding",
+      "prompt": "Write findFirstEven(int[] xs) returning Optional<Integer> of the first even number, or Optional.empty(). Print findFirstEven(new int[]{1,3,4,5}).orElse(-1).",
+      "starterCode": "import java.util.*;\n\npublic class FindEven {\n  static Optional<Integer> findFirstEven(int[] xs) {\n    // TODO\n    return Optional.empty();\n  }\n\n  public static void main(String[] args) {\n    System.out.println(findFirstEven(new int[]{1, 3, 4, 5}).orElse(-1));\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "import java.util.*;\n\npublic class FindEven {\n  static Optional<Integer> findFirstEven(int[] xs) {\n    for (int x : xs) {\n      if (x % 2 == 0) return Optional.of(x);\n    }\n    return Optional.empty();\n  }\n\n  public static void main(String[] args) {\n    System.out.println(findFirstEven(new int[]{1, 3, 4, 5}).orElse(-1));\n  }\n}\n",
+      "expectedOutput": "4",
+      "explanation": "4 is the first even number in {1,3,4,5}, so Optional.of(4) is returned and orElse(-1) is not used.",
+      "tags": [
+        "optional",
+        "null-safety"
+      ]
+    },
+    {
+      "id": "java-q-17-equals-hashcode-mcq-1",
+      "type": "mcq",
+      "prompt": "What must be true if two objects are equal according to equals()?",
+      "options": [
+        {
+          "id": "a",
+          "text": "They must return the same hashCode()"
+        },
+        {
+          "id": "b",
+          "text": "They must be the same object reference"
+        },
+        {
+          "id": "c",
+          "text": "Their toString() must match"
+        },
+        {
+          "id": "d",
+          "text": "They must be immutable"
+        }
+      ],
+      "answer": "a",
+      "explanation": "The equals/hashCode contract requires equal objects to produce the same hash code.",
+      "tags": [
+        "contracts",
+        "immutability"
+      ]
+    },
+    {
+      "id": "java-q-17-equals-hashcode-multi-1",
+      "type": "multi",
+      "prompt": "Which are correct practices when overriding equals/hashCode?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Override both together"
+        },
+        {
+          "id": "b",
+          "text": "Use the same set of fields in both"
+        },
+        {
+          "id": "c",
+          "text": "Freely use mutable fields as HashMap keys"
+        },
+        {
+          "id": "d",
+          "text": "Consider using record for immutable value objects"
+        }
+      ],
+      "answers": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": "Mutating a key's fields after insertion breaks HashMap lookups; avoid mutable keys.",
+      "tags": [
+        "contracts",
+        "immutability"
+      ]
+    },
+    {
+      "id": "java-q-17-equals-hashcode-fill-1",
+      "type": "fill",
+      "prompt": "Objects._____(x, y) is a convenient way to compute a hashCode from multiple fields.",
+      "template": "Objects._____(x, y)",
+      "answer": "hash",
+      "accept": [
+        "hash"
+      ],
+      "explanation": "java.util.Objects.hash(...) combines the hashCodes of its arguments.",
+      "tags": [
+        "contracts",
+        "immutability"
+      ]
+    },
+    {
+      "id": "java-q-17-equals-hashcode-coding-1",
+      "type": "coding",
+      "prompt": "Implement equals() and hashCode() for class Point(int x, int y) so two Points with equal coordinates are equal. Print new Point(1,2).equals(new Point(1,2)).",
+      "starterCode": "import java.util.*;\n\npublic class Main {\n  static class Point {\n    final int x, y;\n    Point(int x, int y) { this.x = x; this.y = y; }\n\n    @Override\n    public boolean equals(Object o) {\n      // TODO\n      return false;\n    }\n\n    @Override\n    public int hashCode() {\n      return Objects.hash(x, y);\n    }\n  }\n\n  public static void main(String[] args) {\n    System.out.println(new Point(1, 2).equals(new Point(1, 2)));\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "import java.util.*;\n\npublic class Main {\n  static class Point {\n    final int x, y;\n    Point(int x, int y) { this.x = x; this.y = y; }\n\n    @Override\n    public boolean equals(Object o) {\n      if (this == o) return true;\n      if (!(o instanceof Point p)) return false;\n      return x == p.x && y == p.y;\n    }\n\n    @Override\n    public int hashCode() {\n      return Objects.hash(x, y);\n    }\n  }\n\n  public static void main(String[] args) {\n    System.out.println(new Point(1, 2).equals(new Point(1, 2)));\n  }\n}\n",
+      "expectedOutput": "true",
+      "explanation": "equals compares x and y field-by-field, both of which match, so the result is true.",
+      "tags": [
+        "contracts",
+        "immutability"
+      ]
+    },
+    {
+      "id": "java-q-18-io-nio-mcq-1",
+      "type": "mcq",
+      "prompt": "Which class represents a modern filesystem path in java.nio.file?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Path"
+        },
+        {
+          "id": "b",
+          "text": "File"
+        },
+        {
+          "id": "c",
+          "text": "Directory"
+        },
+        {
+          "id": "d",
+          "text": "FilePath"
+        }
+      ],
+      "answer": "a",
+      "explanation": "java.nio.file.Path (used with java.nio.file.Files) is the modern replacement for java.io.File.",
+      "tags": [
+        "io",
+        "files"
+      ]
+    },
+    {
+      "id": "java-q-18-io-nio-mcq-2",
+      "type": "mcq",
+      "prompt": "What is recommended for reading or writing large amounts of data?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Buffered readers/writers or channels"
+        },
+        {
+          "id": "b",
+          "text": "Reading one byte at a time with a raw FileInputStream"
+        },
+        {
+          "id": "c",
+          "text": "Always loading the whole file with Scanner"
+        },
+        {
+          "id": "d",
+          "text": "Avoiding try-with-resources for performance"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Buffering (or NIO channels) reduces the number of costly I/O syscalls compared to unbuffered byte-by-byte access.",
+      "tags": [
+        "io",
+        "files"
+      ]
+    },
+    {
+      "id": "java-q-18-io-nio-multi-1",
+      "type": "multi",
+      "prompt": "Which are true about java.nio.file usage?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Files.readString reads an entire file into a String"
+        },
+        {
+          "id": "b",
+          "text": "You should specify StandardCharsets.UTF_8 explicitly rather than relying on the platform default"
+        },
+        {
+          "id": "c",
+          "text": "Files.lines returns a Stream that should be closed"
+        },
+        {
+          "id": "d",
+          "text": "File I/O methods never throw checked exceptions"
+        }
+      ],
+      "answers": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": "Files.readString/writeString/lines can throw IOException, a checked exception.",
+      "tags": [
+        "io",
+        "files"
+      ]
+    },
+    {
+      "id": "java-q-18-io-nio-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "import java.nio.charset.StandardCharsets;\n\npublic class Demo {\n  public static void main(String[] args) {\n    System.out.println(StandardCharsets.UTF_8.name());\n  }\n}",
+      "language": "java",
+      "answer": "UTF-8",
+      "explanation": "StandardCharsets.UTF_8.name() returns the canonical charset name \"UTF-8\".",
+      "tags": [
+        "io",
+        "files"
+      ]
+    },
+    {
+      "id": "java-q-19-testing-mcq-1",
+      "type": "mcq",
+      "prompt": "Which JUnit 5 annotation runs the same test logic over multiple sets of inputs?",
+      "options": [
+        {
+          "id": "a",
+          "text": "@ParameterizedTest"
+        },
+        {
+          "id": "b",
+          "text": "@RepeatedTest"
+        },
+        {
+          "id": "c",
+          "text": "@TestFactory"
+        },
+        {
+          "id": "d",
+          "text": "@Test"
+        }
+      ],
+      "answer": "a",
+      "explanation": "@ParameterizedTest combined with @ValueSource/@CsvSource runs one test method across many inputs.",
+      "tags": [
+        "testing",
+        "junit"
+      ]
+    },
+    {
+      "id": "java-q-19-testing-fill-1",
+      "type": "fill",
+      "prompt": "JUnit 5 setup code that runs before each test method goes in a method annotated @_____.",
+      "template": "@_____",
+      "answer": "BeforeEach",
+      "accept": [
+        "BeforeEach"
+      ],
+      "explanation": "@BeforeEach marks per-test setup; @AfterEach marks per-test teardown.",
+      "tags": [
+        "testing",
+        "junit"
+      ]
+    },
+    {
+      "id": "java-q-19-testing-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "public class Demo {\n  static int add(int a, int b) { return a + b; }\n\n  public static void main(String[] args) {\n    System.out.println(add(2, 3) == 5);\n  }\n}",
+      "language": "java",
+      "answer": "true",
+      "explanation": "add(2, 3) evaluates to 5, and 5 == 5 is true.",
+      "tags": [
+        "testing",
+        "junit"
+      ]
+    },
+    {
+      "id": "java-q-19-testing-coding-1",
+      "type": "coding",
+      "prompt": "Implement static int add(int a, int b) in class Calc. In main, print \"PASS\" if add(2,3)==5 and add(0,0)==0, otherwise print \"FAIL\".",
+      "starterCode": "public class Calc {\n  static int add(int a, int b) {\n    // TODO\n    return 0;\n  }\n\n  public static void main(String[] args) {\n    boolean ok = add(2, 3) == 5 && add(0, 0) == 0;\n    System.out.println(ok ? \"PASS\" : \"FAIL\");\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "public class Calc {\n  static int add(int a, int b) {\n    return a + b;\n  }\n\n  public static void main(String[] args) {\n    boolean ok = add(2, 3) == 5 && add(0, 0) == 0;\n    System.out.println(ok ? \"PASS\" : \"FAIL\");\n  }\n}\n",
+      "expectedOutput": "PASS",
+      "explanation": "Both assertions hold once add correctly returns a + b, so the program prints PASS.",
+      "tags": [
+        "testing",
+        "junit"
+      ]
+    },
+    {
+      "id": "java-q-20-build-modules-mcq-1",
+      "type": "mcq",
+      "prompt": "Which build tool uses a declarative XML file called pom.xml?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Maven"
+        },
+        {
+          "id": "b",
+          "text": "Gradle"
+        },
+        {
+          "id": "c",
+          "text": "Ant"
+        },
+        {
+          "id": "d",
+          "text": "Bazel"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Maven's project model and dependencies are declared in pom.xml.",
+      "tags": [
+        "maven",
+        "gradle",
+        "tooling"
+      ]
+    },
+    {
+      "id": "java-q-20-build-modules-mcq-2",
+      "type": "mcq",
+      "prompt": "What enforces strong encapsulation between Java modules?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The Java Platform Module System (module-info.java)"
+        },
+        {
+          "id": "b",
+          "text": "The classpath"
+        },
+        {
+          "id": "c",
+          "text": "Maven scopes"
+        },
+        {
+          "id": "d",
+          "text": "The JAR manifest file"
+        }
+      ],
+      "answer": "a",
+      "explanation": "The JPMS, configured via module-info.java, controls what a module exports and requires.",
+      "tags": [
+        "maven",
+        "gradle",
+        "tooling"
+      ]
+    },
+    {
+      "id": "java-q-20-build-modules-multi-1",
+      "type": "multi",
+      "prompt": "Which are true about Maven/Gradle dependency management?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Both resolve transitive dependencies from repositories"
+        },
+        {
+          "id": "b",
+          "text": "A BOM helps align versions across a family of libraries"
+        },
+        {
+          "id": "c",
+          "text": "Version conflicts can be inspected with dependency-tree tooling"
+        },
+        {
+          "id": "d",
+          "text": "Pinning dependency versions is generally discouraged"
+        }
+      ],
+      "answers": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": "Pinning versions is actually recommended for reproducible builds.",
+      "tags": [
+        "maven",
+        "gradle",
+        "tooling"
+      ]
+    },
+    {
+      "id": "java-q-20-build-modules-fill-1",
+      "type": "fill",
+      "prompt": "In a Maven dependency for a test-only library like JUnit, the _____ element is set to \"test\".",
+      "template": "<_____>test</_____>",
+      "answer": "scope",
+      "accept": [
+        "scope"
+      ],
+      "explanation": "<scope>test</scope> restricts a dependency to the test classpath only.",
+      "tags": [
+        "maven",
+        "gradle",
+        "tooling"
+      ]
+    },
+    {
+      "id": "java-q-21-generics-collections-internals-mcq-1",
+      "type": "mcq",
+      "prompt": "At what default load factor does HashMap resize (double its table and rehash)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "0.75"
+        },
+        {
+          "id": "b",
+          "text": "0.5"
+        },
+        {
+          "id": "c",
+          "text": "1.0"
+        },
+        {
+          "id": "d",
+          "text": "0.9"
+        }
+      ],
+      "answer": "a",
+      "explanation": "HashMap's default load factor is 0.75, balancing memory use and lookup speed.",
+      "tags": [
+        "collections",
+        "performance",
+        "internals"
+      ]
+    },
+    {
+      "id": "java-q-21-generics-collections-internals-mcq-2",
+      "type": "mcq",
+      "prompt": "What happens to a HashMap bucket once it exceeds the treeify threshold (8 entries)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It converts to a red-black tree for O(log n) lookup"
+        },
+        {
+          "id": "b",
+          "text": "It throws an exception"
+        },
+        {
+          "id": "c",
+          "text": "It becomes a second HashMap"
+        },
+        {
+          "id": "d",
+          "text": "Entries are silently discarded"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Past the treeify threshold, a bucket's linked list becomes a red-black tree to bound worst-case lookup cost.",
+      "tags": [
+        "collections",
+        "performance",
+        "internals"
+      ]
+    },
+    {
+      "id": "java-q-21-generics-collections-internals-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "import java.util.*;\n\npublic class Demo {\n  public static void main(String[] args) {\n    Map<String, Integer> map = new HashMap<>();\n    map.put(\"a\", 1);\n    map.put(\"a\", 2);\n    System.out.println(map.size() + \" \" + map.get(\"a\"));\n  }\n}",
+      "language": "java",
+      "answer": "1 2",
+      "explanation": "Putting the same key twice overwrites the value rather than adding an entry: size stays 1, value becomes 2.",
+      "tags": [
+        "collections",
+        "performance",
+        "internals"
+      ]
+    },
+    {
+      "id": "java-q-21-generics-collections-internals-coding-1",
+      "type": "coding",
+      "prompt": "Create a HashMap<String,Integer> pre-sized for 16 entries. Put keys \"a\",\"b\",\"a\" using merge(key,1,Integer::sum), then print the final count for key \"a\".",
+      "starterCode": "import java.util.*;\n\npublic class PreSize {\n  public static void main(String[] args) {\n    Map<String, Integer> map = new HashMap<>(16);\n    String[] keys = {\"a\", \"b\", \"a\"};\n    // TODO: merge each key into map\n    System.out.println(map.get(\"a\"));\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "import java.util.*;\n\npublic class PreSize {\n  public static void main(String[] args) {\n    Map<String, Integer> map = new HashMap<>(16);\n    String[] keys = {\"a\", \"b\", \"a\"};\n    for (String k : keys) {\n      map.merge(k, 1, Integer::sum);\n    }\n    System.out.println(map.get(\"a\"));\n  }\n}\n",
+      "expectedOutput": "2",
+      "explanation": "\"a\" appears twice, so merge accumulates its count to 2 regardless of the initial pre-sizing.",
+      "tags": [
+        "collections",
+        "performance",
+        "internals"
+      ]
+    },
+    {
+      "id": "java-q-22-concurrency-basics-mcq-1",
+      "type": "mcq",
+      "prompt": "What should you generally use instead of managing raw Threads directly?",
+      "options": [
+        {
+          "id": "a",
+          "text": "ExecutorService"
+        },
+        {
+          "id": "b",
+          "text": "Thread.sleep loops"
+        },
+        {
+          "id": "c",
+          "text": "Runtime.exec"
+        },
+        {
+          "id": "d",
+          "text": "A global static Thread field"
+        }
+      ],
+      "answer": "a",
+      "explanation": "ExecutorService manages a pool of reusable threads and lets you submit tasks without manual thread lifecycle handling.",
+      "tags": [
+        "concurrency",
+        "executors"
+      ]
+    },
+    {
+      "id": "java-q-22-concurrency-basics-multi-1",
+      "type": "multi",
+      "prompt": "Which provide thread-safe coordination for shared mutable state?",
+      "options": [
+        {
+          "id": "a",
+          "text": "synchronized"
+        },
+        {
+          "id": "b",
+          "text": "ReentrantLock"
+        },
+        {
+          "id": "c",
+          "text": "ConcurrentHashMap"
+        },
+        {
+          "id": "d",
+          "text": "A plain HashMap with no locking"
+        }
+      ],
+      "answers": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": "A plain HashMap is not thread-safe and needs external synchronization or a concurrent alternative.",
+      "tags": [
+        "concurrency",
+        "executors"
+      ]
+    },
+    {
+      "id": "java-q-22-concurrency-basics-fill-1",
+      "type": "fill",
+      "prompt": "AtomicInteger provides lock-free read-modify-write using _____ (compare-and-swap).",
+      "template": "lock-free updates via _____",
+      "answer": "CAS",
+      "accept": [
+        "CAS",
+        "compare-and-swap"
+      ],
+      "explanation": "Atomic classes use CAS instructions to update values without traditional locking.",
+      "tags": [
+        "concurrency",
+        "executors"
+      ]
+    },
+    {
+      "id": "java-q-22-concurrency-basics-coding-1",
+      "type": "coding",
+      "prompt": "Using an ExecutorService with a single thread, submit a task that returns 21*2, then print the Future's result.",
+      "starterCode": "import java.util.concurrent.*;\n\npublic class Main {\n  public static void main(String[] args) throws Exception {\n    try (ExecutorService pool = Executors.newFixedThreadPool(1)) {\n      // TODO: submit a task returning 21 * 2 and print the result\n    }\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "import java.util.concurrent.*;\n\npublic class Main {\n  public static void main(String[] args) throws Exception {\n    try (ExecutorService pool = Executors.newFixedThreadPool(1)) {\n      Future<Integer> f = pool.submit(() -> 21 * 2);\n      System.out.println(f.get());\n    }\n  }\n}\n",
+      "expectedOutput": "42",
+      "explanation": "The submitted Callable computes 21*2=42, and Future.get() blocks until that result is available.",
+      "tags": [
+        "concurrency",
+        "executors"
+      ]
+    },
+    {
+      "id": "java-q-jmm-concurrency-mcq-1",
+      "type": "mcq",
+      "prompt": "Which of the following does `volatile` NOT guarantee?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Atomicity for compound updates like i++"
+        },
+        {
+          "id": "b",
+          "text": "Visibility of writes to other threads"
+        },
+        {
+          "id": "c",
+          "text": "Ordering relative to other volatile accesses"
+        },
+        {
+          "id": "d",
+          "text": "That the JIT won't reorder across the volatile access"
+        }
+      ],
+      "answer": "a",
+      "explanation": "volatile guarantees visibility and ordering for that field, but not atomicity for read-modify-write like i++.",
+      "tags": [
+        "jmm",
+        "concurrency"
+      ]
+    },
+    {
+      "id": "java-q-jmm-concurrency-mcq-2",
+      "type": "mcq",
+      "prompt": "Which action establishes happens-before with a subsequent lock of the same monitor?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Unlocking that monitor"
+        },
+        {
+          "id": "b",
+          "text": "Reading a plain (non-volatile) int field"
+        },
+        {
+          "id": "c",
+          "text": "Starting an unrelated thread"
+        },
+        {
+          "id": "d",
+          "text": "Catching an exception"
+        }
+      ],
+      "answer": "a",
+      "explanation": "The JMM guarantees unlock of a monitor happens-before a subsequent lock of that same monitor.",
+      "tags": [
+        "jmm",
+        "concurrency"
+      ]
+    },
+    {
+      "id": "java-q-jmm-concurrency-multi-1",
+      "type": "multi",
+      "prompt": "Which are appropriate uses of a `volatile` field?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A boolean shutdown/running flag checked by multiple threads"
+        },
+        {
+          "id": "b",
+          "text": "Publishing an immutable reference after construction"
+        },
+        {
+          "id": "c",
+          "text": "Implementing a thread-safe counter with counter++"
+        },
+        {
+          "id": "d",
+          "text": "Coordinating a read-modify-write operation with no other synchronization"
+        }
+      ],
+      "answers": [
+        "a",
+        "b"
+      ],
+      "explanation": "Compound operations like counter++ are not atomic even on a volatile field; use AtomicInteger instead.",
+      "tags": [
+        "jmm",
+        "concurrency"
+      ]
+    },
+    {
+      "id": "java-q-jmm-concurrency-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "import java.util.concurrent.atomic.AtomicInteger;\n\npublic class Demo {\n  public static void main(String[] args) {\n    AtomicInteger counter = new AtomicInteger(0);\n    counter.incrementAndGet();\n    counter.incrementAndGet();\n    System.out.println(counter.get());\n  }\n}",
+      "language": "java",
+      "answer": "2",
+      "explanation": "Two calls to incrementAndGet() atomically bump the counter from 0 to 2.",
+      "tags": [
+        "jmm",
+        "concurrency"
+      ]
+    },
+    {
+      "id": "java-q-virtual-threads-mcq-1",
+      "type": "mcq",
+      "prompt": "Which JEP introduced virtual threads?",
+      "options": [
+        {
+          "id": "a",
+          "text": "JEP 444"
+        },
+        {
+          "id": "b",
+          "text": "JEP 395"
+        },
+        {
+          "id": "c",
+          "text": "JEP 361"
+        },
+        {
+          "id": "d",
+          "text": "JEP 409"
+        }
+      ],
+      "answer": "a",
+      "explanation": "JEP 444 finalized virtual threads in Java 21.",
+      "tags": [
+        "loom",
+        "java21",
+        "concurrency"
+      ]
+    },
+    {
+      "id": "java-q-virtual-threads-fill-1",
+      "type": "fill",
+      "prompt": "Executors._____() creates an executor that runs each submitted task on its own virtual thread.",
+      "template": "Executors._____()",
+      "answer": "newVirtualThreadPerTaskExecutor",
+      "accept": [
+        "newVirtualThreadPerTaskExecutor"
+      ],
+      "explanation": "This factory method creates a virtual-thread-per-task ExecutorService.",
+      "tags": [
+        "loom",
+        "java21",
+        "concurrency"
+      ]
+    },
+    {
+      "id": "java-q-virtual-threads-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "import java.util.concurrent.*;\n\npublic class Demo {\n  public static void main(String[] args) throws Exception {\n    try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {\n      Future<String> f = executor.submit(() -> \"done\");\n      System.out.println(f.get());\n    }\n  }\n}",
+      "language": "java",
+      "answer": "done",
+      "explanation": "The submitted task runs on a virtual thread and returns \"done\", which get() retrieves.",
+      "tags": [
+        "loom",
+        "java21",
+        "concurrency"
+      ]
+    },
+    {
+      "id": "java-q-virtual-threads-coding-1",
+      "type": "coding",
+      "prompt": "Using Executors.newVirtualThreadPerTaskExecutor(), submit a task that computes the sum of integers 1..100 and print the result via Future.get().",
+      "starterCode": "import java.util.concurrent.*;\n\npublic class Main {\n  public static void main(String[] args) throws Exception {\n    try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {\n      // TODO: submit a task summing 1..100 and print the result\n    }\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "import java.util.concurrent.*;\n\npublic class Main {\n  public static void main(String[] args) throws Exception {\n    try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {\n      Future<Integer> f = executor.submit(() -> {\n        int total = 0;\n        for (int i = 1; i <= 100; i++) total += i;\n        return total;\n      });\n      System.out.println(f.get());\n    }\n  }\n}\n",
+      "expectedOutput": "5050",
+      "explanation": "The sum of integers from 1 to 100 is 5050 (n*(n+1)/2 for n=100).",
+      "tags": [
+        "loom",
+        "java21",
+        "concurrency"
+      ]
+    },
+    {
+      "id": "java-q-spring-production-mcq-1",
+      "type": "mcq",
+      "prompt": "Why is constructor injection generally preferred in Spring?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dependencies are explicit and fields can be made final"
+        },
+        {
+          "id": "b",
+          "text": "It avoids needing any dependency configuration at all"
+        },
+        {
+          "id": "c",
+          "text": "It is the only injection style modern Spring supports"
+        },
+        {
+          "id": "d",
+          "text": "It disables the Spring application context"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Constructor injection makes required dependencies explicit and lets you mark fields final, which keeps tests honest.",
+      "tags": [
+        "spring",
+        "transactions",
+        "hikaricp"
+      ]
+    },
+    {
+      "id": "java-q-spring-production-mcq-2",
+      "type": "mcq",
+      "prompt": "Why does calling another @Transactional method on `this` from within the same class often silently skip the transaction?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The call bypasses the Spring AOP proxy"
+        },
+        {
+          "id": "b",
+          "text": "@Transactional only works on interfaces"
+        },
+        {
+          "id": "c",
+          "text": "Self-invocation is blocked by the JVM"
+        },
+        {
+          "id": "d",
+          "text": "Transactions cannot be nested in Spring"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Spring's declarative transactions are implemented via a proxy; calling through `this` skips that proxy entirely.",
+      "tags": [
+        "spring",
+        "transactions",
+        "hikaricp"
+      ]
+    },
+    {
+      "id": "java-q-spring-production-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about HikariCP pool sizing are true?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Size the pool for real concurrent DB users, not the number of threads"
+        },
+        {
+          "id": "b",
+          "text": "Virtual threads can increase the number of requests waiting on the pool"
+        },
+        {
+          "id": "c",
+          "text": "REQUIRES_NEW propagation can open an additional database connection"
+        },
+        {
+          "id": "d",
+          "text": "Read-only transactions never hold a connection"
+        }
+      ],
+      "answers": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": "Read-only transactions still hold a connection for the duration of the method.",
+      "tags": [
+        "spring",
+        "transactions",
+        "hikaricp"
+      ]
+    },
+    {
+      "id": "java-q-spring-production-fill-1",
+      "type": "fill",
+      "prompt": "The annotation @_____ marks a class as a Spring-managed service bean (as used on OrderService).",
+      "template": "@_____\npublic class OrderService { ... }",
+      "answer": "Service",
+      "accept": [
+        "Service"
+      ],
+      "explanation": "@Service is a specialization of @Component used for service-layer beans.",
+      "tags": [
+        "spring",
+        "transactions",
+        "hikaricp"
+      ]
+    },
+    {
+      "id": "java-q-23-gc-jvm-tuning-mcq-1",
+      "type": "mcq",
+      "prompt": "Which garbage collector is the default, balanced collector in modern JVMs?",
+      "options": [
+        {
+          "id": "a",
+          "text": "G1"
+        },
+        {
+          "id": "b",
+          "text": "ZGC"
+        },
+        {
+          "id": "c",
+          "text": "Shenandoah"
+        },
+        {
+          "id": "d",
+          "text": "Serial"
+        }
+      ],
+      "answer": "a",
+      "explanation": "G1 (Garbage-First) is the default collector, balancing throughput and pause times for most applications.",
+      "tags": [
+        "gc",
+        "jvm",
+        "performance"
+      ]
+    },
+    {
+      "id": "java-q-23-gc-jvm-tuning-mcq-2",
+      "type": "mcq",
+      "prompt": "Which collectors target sub-millisecond pause times for large heaps?",
+      "options": [
+        {
+          "id": "a",
+          "text": "ZGC and Shenandoah"
+        },
+        {
+          "id": "b",
+          "text": "G1 and Serial"
+        },
+        {
+          "id": "c",
+          "text": "Parallel and CMS"
+        },
+        {
+          "id": "d",
+          "text": "Epsilon and Serial"
+        }
+      ],
+      "answer": "a",
+      "explanation": "ZGC and Shenandoah are designed for very low pause times even with large heaps, trading some throughput.",
+      "tags": [
+        "gc",
+        "jvm",
+        "performance"
+      ]
+    },
+    {
+      "id": "java-q-23-gc-jvm-tuning-output-1",
+      "type": "output",
+      "prompt": "What does this program print?",
+      "code": "public class Demo {\n  public static void main(String[] args) {\n    long count = 0;\n    for (int i = 0; i < 5; i++) {\n      Object o = new Object();\n      count++;\n    }\n    System.out.println(count);\n  }\n}",
+      "language": "java",
+      "answer": "5",
+      "explanation": "Five short-lived Object instances are created (illustrating the generational hypothesis); count ends at 5.",
+      "tags": [
+        "gc",
+        "jvm",
+        "performance"
+      ]
+    },
+    {
+      "id": "java-q-23-gc-jvm-tuning-coding-1",
+      "type": "coding",
+      "prompt": "Write containerFlags(int mb) that returns \"-Xms{mb}m -Xmx{mb}m\" using the same value for min and max heap (a container best practice). Print containerFlags(512).",
+      "starterCode": "public class Main {\n  static String containerFlags(int mb) {\n    // TODO\n    return \"\";\n  }\n\n  public static void main(String[] args) {\n    System.out.println(containerFlags(512));\n  }\n}\n",
+      "language": "java",
+      "referenceSolution": "public class Main {\n  static String containerFlags(int mb) {\n    return \"-Xms\" + mb + \"m -Xmx\" + mb + \"m\";\n  }\n\n  public static void main(String[] args) {\n    System.out.println(containerFlags(512));\n  }\n}\n",
+      "expectedOutput": "-Xms512m -Xmx512m",
+      "explanation": "Setting -Xms equal to -Xmx avoids heap resize churn inside a fixed-memory container.",
+      "tags": [
+        "gc",
+        "jvm",
+        "performance"
+      ]
+    }
+  ]
+}

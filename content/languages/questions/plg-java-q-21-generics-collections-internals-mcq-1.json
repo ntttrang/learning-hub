@@ -1,0 +1,31 @@
+{
+  "id": "plg-java-q-21-generics-collections-internals-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "At what default load factor does HashMap resize (double its table and rehash)?",
+  "explanation": "HashMap's default load factor is 0.75, balancing memory use and lookup speed.",
+  "tags": [
+    "collections",
+    "performance",
+    "internals"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "0.75"
+    },
+    {
+      "id": "b",
+      "text": "0.5"
+    },
+    {
+      "id": "c",
+      "text": "1.0"
+    },
+    {
+      "id": "d",
+      "text": "0.9"
+    }
+  ],
+  "correct": "a"
+}

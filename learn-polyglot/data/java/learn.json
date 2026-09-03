@@ -1,0 +1,768 @@
+{
+  "language": "java",
+  "lessons": [
+    {
+      "id": "java-01-hello-jvm",
+      "title": "Hello, JVM: compile and run",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "jvm",
+        "tooling"
+      ],
+      "estMinutes": 8,
+      "body": "## The pipeline\n\nJava source (`.java`) is compiled by `javac` into **bytecode** (`.class`), which the **JVM** runs. Write once, run anywhere — the JVM abstracts the OS/CPU.\n\n## Anatomy\n\n- Every app has an entry point: `public static void main(String[] args)`.\n- Class name must match the file name for public classes.\n\n## Modern shortcut\n\nSince Java 11 you can run a single file directly: `java Hello.java` (no explicit compile step). Java 21+ even allows unnamed classes and instance `main` in preview.",
+      "codeSamples": [
+        {
+          "title": "First program",
+          "language": "java",
+          "code": "public class Hello {\n  public static void main(String[] args) {\n    System.out.println(\"Ahoy, world!\");\n  }\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Getting Started",
+          "url": "https://docs.oracle.com/en/java/javase/21/getting-started/getting-started-java.html"
+        },
+        {
+          "title": "javac Tool Reference",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/specs/man/javac.html"
+        }
+      ]
+    },
+    {
+      "id": "java-02-primitives-vars",
+      "title": "Primitives, variables, and var",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "types"
+      ],
+      "estMinutes": 9,
+      "body": "## Eight primitives\n\n`byte`, `short`, `int`, `long`, `float`, `double`, `char`, `boolean`. They hold values directly (not references) and have fixed sizes.\n\n## Wrappers\n\nEach primitive has an object wrapper (`Integer`, `Long`, `Boolean`...). Autoboxing converts between them, but beware `NullPointerException` when unboxing a `null` wrapper.\n\n## Local type inference\n\n`var` (Java 10+) infers the type from the initializer for **local variables** only. It is still statically typed — not dynamic.",
+      "codeSamples": [
+        {
+          "title": "Declarations",
+          "language": "java",
+          "code": "int count = 42;\nlong big = 10_000_000_000L;\ndouble price = 19.99;\nvar name = \"Corgi\"; // inferred String\nboolean ready = true;"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Primitive Data Types",
+          "url": "https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html"
+        },
+        {
+          "title": "Local Variable Type Inference (JEP 286)",
+          "url": "https://openjdk.org/jeps/286"
+        }
+      ]
+    },
+    {
+      "id": "java-03-operators-control",
+      "title": "Operators and control flow",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "control-flow"
+      ],
+      "estMinutes": 9,
+      "body": "## Operators\n\nArithmetic (`+ - * / %`), comparison (`== != < >`), logical (`&& || !`). `&&` and `||` short-circuit.\n\n## Branching\n\n`if/else`, and the modern **switch expression** (Java 14+) with arrow labels returns a value and requires no `break`.\n\n## Loops\n\n`for`, enhanced `for` (for-each), `while`, `do/while`. Use `break`/`continue` sparingly.",
+      "codeSamples": [
+        {
+          "title": "Switch expression",
+          "language": "java",
+          "code": "String kind = switch (day) {\n  case SATURDAY, SUNDAY -> \"weekend\";\n  default -> \"weekday\";\n};"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Operators",
+          "url": "https://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html"
+        },
+        {
+          "title": "Switch Expressions (JEP 361)",
+          "url": "https://openjdk.org/jeps/361"
+        }
+      ]
+    },
+    {
+      "id": "java-04-strings",
+      "title": "Strings, text blocks, and formatting",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "strings"
+      ],
+      "estMinutes": 10,
+      "body": "## Immutability\n\n`String` is immutable — every modification creates a new object. Use `StringBuilder` for loops that build text.\n\n## Comparison\n\nUse `.equals()` for value equality; `==` compares references. `.equalsIgnoreCase()` for case-insensitive checks.\n\n## Text blocks\n\nTriple-quoted `\"\"\"` blocks (Java 15+) preserve multi-line formatting. Use `String.format` or `formatted` for interpolation-like output.",
+      "codeSamples": [
+        {
+          "title": "StringBuilder + text block",
+          "language": "java",
+          "code": "var sb = new StringBuilder();\nfor (var w : words) sb.append(w).append(' ');\n\nString json = \"\"\"\n  { \"name\": \"%s\" }\n  \"\"\".formatted(name);"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Strings (Tutorial)",
+          "url": "https://docs.oracle.com/javase/tutorial/java/data/strings.html"
+        },
+        {
+          "title": "Text Blocks (JEP 378)",
+          "url": "https://openjdk.org/jeps/378"
+        }
+      ]
+    },
+    {
+      "id": "java-05-arrays",
+      "title": "Arrays and the Arrays utility",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "arrays"
+      ],
+      "estMinutes": 8,
+      "body": "## Fixed size\n\nArrays have a fixed length set at creation (`new int[5]`). Access is zero-based; out-of-range throws `ArrayIndexOutOfBoundsException`.\n\n## Helpers\n\n`java.util.Arrays` gives `sort`, `fill`, `copyOf`, `equals`, and `toString` (use it instead of printing an array directly).\n\n## 2D arrays\n\nJava uses arrays-of-arrays, so rows can have different lengths (jagged).",
+      "codeSamples": [
+        {
+          "title": "Sort and print",
+          "language": "java",
+          "code": "int[] nums = {5, 2, 9, 1};\nArrays.sort(nums);\nSystem.out.println(Arrays.toString(nums)); // [1, 2, 5, 9]"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Arrays Tutorial",
+          "url": "https://docs.oracle.com/javase/tutorial/java/nutsandbolts/arrays.html"
+        },
+        {
+          "title": "java.util.Arrays",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html"
+        }
+      ]
+    },
+    {
+      "id": "java-06-methods",
+      "title": "Methods, overloading, and varargs",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "methods"
+      ],
+      "estMinutes": 9,
+      "body": "## Signatures\n\nA method has a return type, name, and parameter list. `void` returns nothing.\n\n## Overloading\n\nSame name, different parameter types/counts. Resolved at **compile time** by argument types.\n\n## Varargs\n\n`Type... args` accepts zero or more arguments as an array. Only one varargs parameter allowed, and it must be last.",
+      "codeSamples": [
+        {
+          "title": "Varargs sum",
+          "language": "java",
+          "code": "static int sum(int... xs) {\n  int total = 0;\n  for (int x : xs) total += x;\n  return total;\n}\n// sum(1, 2, 3) -> 6"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Defining Methods",
+          "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/methods.html"
+        },
+        {
+          "title": "Varargs",
+          "url": "https://docs.oracle.com/javase/8/docs/technotes/guides/language/varargs.html"
+        }
+      ]
+    },
+    {
+      "id": "java-07-classes-objects",
+      "title": "Classes, objects, and constructors",
+      "level": "junior",
+      "tags": [
+        "oop",
+        "classes"
+      ],
+      "estMinutes": 11,
+      "body": "## Blueprint vs instance\n\nA class defines fields (state) and methods (behavior). `new` creates an instance and runs a constructor.\n\n## Encapsulation\n\nMake fields `private` and expose behavior through methods. This keeps invariants safe.\n\n## this and constructors\n\n`this` refers to the current instance. Constructors can call one another with `this(...)`; a subclass calls the parent with `super(...)`.",
+      "codeSamples": [
+        {
+          "title": "A small class",
+          "language": "java",
+          "code": "public class Account {\n  private long balanceCents;\n\n  public Account(long opening) { this.balanceCents = opening; }\n\n  public void deposit(long cents) { balanceCents += cents; }\n  public long balance() { return balanceCents; }\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Classes and Objects",
+          "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/"
+        }
+      ]
+    },
+    {
+      "id": "java-08-inheritance-poly",
+      "title": "Inheritance and polymorphism",
+      "level": "junior",
+      "tags": [
+        "oop",
+        "inheritance"
+      ],
+      "estMinutes": 11,
+      "body": "## extends\n\nA subclass inherits fields/methods and can `@Override` behavior. Every class ultimately extends `Object`.\n\n## Polymorphism\n\nA variable of the parent type can hold a subclass instance; the actual method called is chosen at runtime (dynamic dispatch).\n\n## final and abstract\n\n`final` prevents overriding/subclassing. `abstract` classes cannot be instantiated and may declare methods without bodies.\n\nPrefer **composition over inheritance** when the relationship is not a true \"is-a\".",
+      "codeSamples": [
+        {
+          "title": "Override and dispatch",
+          "language": "java",
+          "code": "class Animal { String speak() { return \"...\"; } }\nclass Dog extends Animal { @Override String speak() { return \"woof\"; } }\n\nAnimal a = new Dog();\nSystem.out.println(a.speak()); // woof"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Inheritance",
+          "url": "https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html"
+        },
+        {
+          "title": "Polymorphism",
+          "url": "https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html"
+        }
+      ]
+    },
+    {
+      "id": "java-09-interfaces",
+      "title": "Interfaces and default methods",
+      "level": "junior",
+      "tags": [
+        "oop",
+        "interfaces"
+      ],
+      "estMinutes": 10,
+      "body": "## Contracts\n\nAn interface declares behavior without state. A class `implements` one or many interfaces — Java's answer to multiple inheritance.\n\n## Default and static methods\n\nInterfaces can carry `default` method bodies (added in Java 8) and `static` helpers. Use defaults to evolve APIs without breaking implementers.\n\n## Functional interfaces\n\nAn interface with a single abstract method (SAM) can be implemented with a lambda. `@FunctionalInterface` documents that intent.",
+      "codeSamples": [
+        {
+          "title": "Interface + lambda",
+          "language": "java",
+          "code": "@FunctionalInterface\ninterface Greeter { String greet(String name); }\n\nGreeter g = n -> \"Hi \" + n;\nSystem.out.println(g.greet(\"Corgi\"));"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Interfaces",
+          "url": "https://docs.oracle.com/javase/tutorial/java/IandI/createinterface.html"
+        },
+        {
+          "title": "Default Methods",
+          "url": "https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html"
+        }
+      ]
+    },
+    {
+      "id": "java-10-enums-records",
+      "title": "Enums, records, and sealed types",
+      "level": "junior",
+      "tags": [
+        "oop",
+        "records",
+        "enums"
+      ],
+      "estMinutes": 11,
+      "body": "## Enums\n\nType-safe constants that can carry fields and methods. Great for fixed sets like states or roles.\n\n## Records\n\n`record` (Java 16+) is an immutable data carrier — it generates constructor, accessors, `equals`, `hashCode`, and `toString`. Perfect for DTOs and value objects.\n\n## Sealed types\n\n`sealed` classes/interfaces (Java 17+) restrict which types may extend them, enabling exhaustive `switch` pattern matching.",
+      "codeSamples": [
+        {
+          "title": "Record + enum",
+          "language": "java",
+          "code": "enum Role { ADMIN, USER }\nrecord User(String name, Role role) {}\n\nvar u = new User(\"Ada\", Role.ADMIN);\nSystem.out.println(u.name()); // Ada"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Enum Types",
+          "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html"
+        },
+        {
+          "title": "Records (JEP 395)",
+          "url": "https://openjdk.org/jeps/395"
+        },
+        {
+          "title": "Sealed Classes (JEP 409)",
+          "url": "https://openjdk.org/jeps/409"
+        }
+      ]
+    },
+    {
+      "id": "java-11-exceptions",
+      "title": "Exceptions and try-with-resources",
+      "level": "junior",
+      "tags": [
+        "errors",
+        "exceptions"
+      ],
+      "estMinutes": 11,
+      "body": "## Checked vs unchecked\n\n**Checked** exceptions (`IOException`) must be declared or caught. **Unchecked** (`RuntimeException` subclasses like `NullPointerException`) need not be.\n\n## try/catch/finally\n\n`finally` always runs — for cleanup. Prefer **try-with-resources** for anything `AutoCloseable`; it closes resources automatically, even on exceptions.\n\n## Good hygiene\n\nCatch specific types, never swallow exceptions silently, and add context to messages.",
+      "codeSamples": [
+        {
+          "title": "try-with-resources",
+          "language": "java",
+          "code": "try (var reader = Files.newBufferedReader(path)) {\n  return reader.readLine();\n} catch (IOException e) {\n  throw new UncheckedIOException(\"reading \" + path, e);\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Exceptions Tutorial",
+          "url": "https://docs.oracle.com/javase/tutorial/essential/exceptions/"
+        },
+        {
+          "title": "The try-with-resources Statement",
+          "url": "https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html"
+        }
+      ]
+    },
+    {
+      "id": "java-12-collections",
+      "title": "Collections: List, Set, Map",
+      "level": "mid",
+      "tags": [
+        "collections",
+        "stdlib"
+      ],
+      "estMinutes": 12,
+      "body": "## The core interfaces\n\n- `List` — ordered, indexed, allows duplicates (`ArrayList`, `LinkedList`).\n- `Set` — no duplicates (`HashSet`, `LinkedHashSet`, `TreeSet`).\n- `Map` — key/value (`HashMap`, `LinkedHashMap`, `TreeMap`).\n\n## Choosing\n\n`ArrayList` for random access; `ArrayDeque` for stack/queue. `HashMap` for O(1) lookup, `TreeMap` for sorted keys.\n\n## Factory methods\n\n`List.of`, `Set.of`, `Map.of` create **immutable** collections. Copy into a mutable one if you need to modify.",
+      "codeSamples": [
+        {
+          "title": "Map operations",
+          "language": "java",
+          "code": "Map<String, Integer> counts = new HashMap<>();\nfor (String w : words) {\n  counts.merge(w, 1, Integer::sum);\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Collections Framework",
+          "url": "https://docs.oracle.com/javase/tutorial/collections/"
+        },
+        {
+          "title": "List.of / Set.of / Map.of",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html#of(E...)"
+        }
+      ]
+    },
+    {
+      "id": "java-13-generics",
+      "title": "Generics and bounded wildcards",
+      "level": "mid",
+      "tags": [
+        "generics",
+        "types"
+      ],
+      "estMinutes": 13,
+      "body": "## Why generics\n\nCompile-time type safety without casts. `List<String>` guarantees only strings go in and come out.\n\n## Type erasure\n\nGenerics are erased at runtime — you cannot do `new T[]` or `instanceof List<String>`. This is why reflection sees raw types.\n\n## PECS\n\n**Producer Extends, Consumer Super**: `? extends T` to read, `? super T` to write. Bounded wildcards make APIs flexible.",
+      "codeSamples": [
+        {
+          "title": "Bounded method",
+          "language": "java",
+          "code": "static <T extends Comparable<T>> T max(List<? extends T> items) {\n  T best = items.get(0);\n  for (T t : items) if (t.compareTo(best) > 0) best = t;\n  return best;\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Generics Tutorial",
+          "url": "https://docs.oracle.com/javase/tutorial/java/generics/"
+        },
+        {
+          "title": "Wildcards",
+          "url": "https://docs.oracle.com/javase/tutorial/java/generics/wildcards.html"
+        }
+      ]
+    },
+    {
+      "id": "java-14-lambdas-fi",
+      "title": "Lambdas and functional interfaces",
+      "level": "mid",
+      "tags": [
+        "lambdas",
+        "functional"
+      ],
+      "estMinutes": 11,
+      "body": "## Lambdas\n\nConcise implementations of SAM interfaces. Capture effectively-final locals.\n\n## Method references\n\n`Class::method`, `instance::method`, and `Class::new` are shorthand for lambdas that just call one method.\n\n## Standard functional types\n\n`Function<T,R>`, `Predicate<T>`, `Consumer<T>`, `Supplier<T>`, `BiFunction` live in `java.util.function` and power the Streams API.",
+      "codeSamples": [
+        {
+          "title": "Predicate and method ref",
+          "language": "java",
+          "code": "Predicate<String> nonBlank = s -> !s.isBlank();\nlist.removeIf(nonBlank.negate());\nlist.forEach(System.out::println);"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Lambda Expressions",
+          "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html"
+        },
+        {
+          "title": "java.util.function",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/package-summary.html"
+        }
+      ]
+    },
+    {
+      "id": "java-15-streams",
+      "title": "The Streams API",
+      "level": "mid",
+      "tags": [
+        "streams",
+        "functional"
+      ],
+      "estMinutes": 13,
+      "body": "## Pipeline shape\n\nSource -> intermediate ops (`map`, `filter`, `sorted`) -> terminal op (`collect`, `reduce`, `forEach`). Intermediate ops are **lazy**; nothing runs until the terminal op.\n\n## Collectors\n\n`Collectors.toList`, `groupingBy`, `partitioningBy`, `joining` cover most needs. Java 16+ adds `Stream.toList()`.\n\n## Pitfalls\n\nDon't mutate shared state inside a stream. Avoid streams for trivial loops — clarity first. Parallel streams help only for large CPU-bound work.",
+      "codeSamples": [
+        {
+          "title": "Group by",
+          "language": "java",
+          "code": "Map<Role, List<User>> byRole = users.stream()\n    .filter(u -> u.active())\n    .collect(Collectors.groupingBy(User::role));"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Stream API",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/package-summary.html"
+        },
+        {
+          "title": "Aggregate Operations Tutorial",
+          "url": "https://docs.oracle.com/javase/tutorial/collections/streams/"
+        }
+      ]
+    },
+    {
+      "id": "java-16-optional",
+      "title": "Optional and null-safety",
+      "level": "mid",
+      "tags": [
+        "optional",
+        "null-safety"
+      ],
+      "estMinutes": 9,
+      "body": "## Intent\n\n`Optional<T>` models \"maybe a value\" for **return types** — signaling absence without `null`.\n\n## Use it well\n\nChain with `map`, `filter`, `orElse`, `orElseThrow`. Avoid `Optional.get()` without a presence check.\n\n## Anti-patterns\n\nDon't use `Optional` for fields or method parameters, and never return `null` from a method declared to return `Optional`.",
+      "codeSamples": [
+        {
+          "title": "Chained Optional",
+          "language": "java",
+          "code": "return repo.findById(id)\n    .map(User::email)\n    .orElseThrow(() -> new NotFound(\"user \" + id));"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Optional",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html"
+        }
+      ]
+    },
+    {
+      "id": "java-17-equals-hashcode",
+      "title": "equals, hashCode, and immutability",
+      "level": "mid",
+      "tags": [
+        "contracts",
+        "immutability"
+      ],
+      "estMinutes": 11,
+      "body": "## The contract\n\nIf two objects are `equals`, they **must** have the same `hashCode`. Break this and `HashMap`/`HashSet` behave unpredictably.\n\n## Rules\n\nOverride both together, use the same fields in each, and keep those fields immutable if the object is a map key.\n\n## Records help\n\n`record` generates a correct `equals`/`hashCode` for you — a strong reason to use them for value objects.",
+      "codeSamples": [
+        {
+          "title": "Objects helpers",
+          "language": "java",
+          "code": "@Override public boolean equals(Object o) {\n  if (this == o) return true;\n  if (!(o instanceof Point p)) return false;\n  return x == p.x && y == p.y;\n}\n@Override public int hashCode() { return Objects.hash(x, y); }"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Object.equals",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)"
+        },
+        {
+          "title": "Effective Java Item 10–11 (overview)",
+          "url": "https://www.oracle.com/java/technologies/javase/effective-java.html"
+        }
+      ]
+    },
+    {
+      "id": "java-18-io-nio",
+      "title": "Files and NIO.2",
+      "level": "mid",
+      "tags": [
+        "io",
+        "files"
+      ],
+      "estMinutes": 10,
+      "body": "## java.nio.file\n\n`Path` and `Files` are the modern API. Read a whole file with `Files.readString`, stream lines with `Files.lines` (close the stream!), write with `Files.writeString`.\n\n## Buffering\n\nFor large data use buffered readers/writers or channels. Always use try-with-resources.\n\n## Encoding\n\nSpecify `StandardCharsets.UTF_8` explicitly — don't rely on the platform default.",
+      "codeSamples": [
+        {
+          "title": "Read and write",
+          "language": "java",
+          "code": "Path p = Path.of(\"notes.txt\");\nString text = Files.readString(p, StandardCharsets.UTF_8);\nFiles.writeString(p, text.toUpperCase(), StandardCharsets.UTF_8);"
+        }
+      ],
+      "docs": [
+        {
+          "title": "NIO.2 Path / Files",
+          "url": "https://docs.oracle.com/javase/tutorial/essential/io/fileio.html"
+        },
+        {
+          "title": "java.nio.file.Files",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html"
+        }
+      ]
+    },
+    {
+      "id": "java-19-testing",
+      "title": "Testing with JUnit 5",
+      "level": "mid",
+      "tags": [
+        "testing",
+        "junit"
+      ],
+      "estMinutes": 12,
+      "body": "## Structure\n\n`@Test` methods, `@BeforeEach`/`@AfterEach` for setup/teardown. Use AssertJ or JUnit assertions (`assertEquals`, `assertThrows`).\n\n## Parameterized tests\n\n`@ParameterizedTest` with `@ValueSource`/`@CsvSource` runs the same logic over many inputs — the Java equivalent of table-driven tests.\n\n## Mocking\n\nMockito stubs collaborators. Prefer real objects for value logic; mock only true external boundaries.",
+      "codeSamples": [
+        {
+          "title": "Parameterized test",
+          "language": "java",
+          "code": "@ParameterizedTest\n@CsvSource({\"2,3,5\", \"0,0,0\"})\nvoid adds(int a, int b, int expected) {\n  assertEquals(expected, Calc.add(a, b));\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "JUnit 5 User Guide",
+          "url": "https://junit.org/junit5/docs/current/user-guide/"
+        },
+        {
+          "title": "Parameterized Tests",
+          "url": "https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests"
+        }
+      ]
+    },
+    {
+      "id": "java-20-build-modules",
+      "title": "Build tools and dependency management",
+      "level": "mid",
+      "tags": [
+        "maven",
+        "gradle",
+        "tooling"
+      ],
+      "estMinutes": 10,
+      "body": "## Maven vs Gradle\n\n**Maven** uses declarative `pom.xml`; **Gradle** uses a Groovy/Kotlin DSL and incremental builds. Both resolve transitive dependencies from repositories.\n\n## Semantic versioning\n\nPin versions; use a BOM (bill of materials) to align a family of libraries (e.g. Spring). Watch for version conflicts (`dependency:tree`).\n\n## Modules\n\nThe Java Platform Module System (`module-info.java`) enforces strong encapsulation; many apps still run on the classpath.",
+      "codeSamples": [
+        {
+          "title": "Maven dependency",
+          "language": "xml",
+          "code": "<dependency>\n  <groupId>org.junit.jupiter</groupId>\n  <artifactId>junit-jupiter</artifactId>\n  <version>5.11.0</version>\n  <scope>test</scope>\n</dependency>"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Maven Getting Started",
+          "url": "https://maven.apache.org/guides/getting-started/"
+        },
+        {
+          "title": "Gradle User Manual",
+          "url": "https://docs.gradle.org/current/userguide/userguide.html"
+        }
+      ]
+    },
+    {
+      "id": "java-21-generics-collections-internals",
+      "title": "HashMap internals and performance",
+      "level": "mid",
+      "tags": [
+        "collections",
+        "performance",
+        "internals"
+      ],
+      "estMinutes": 12,
+      "body": "## Buckets\n\n`HashMap` stores entries in buckets indexed by `hash(key)`. Collisions form a linked list; past a threshold (8 entries) a bucket **treeifies** into a red-black tree for O(log n) lookup.\n\n## Resizing\n\nAt load factor 0.75 the table doubles and rehashes — pre-size with `new HashMap<>(expectedSize)` for known large maps to avoid churn.\n\n## Keys\n\nGood, immutable `hashCode`s spread entries evenly. Mutable keys that change after insertion get lost.",
+      "codeSamples": [
+        {
+          "title": "Pre-sizing",
+          "language": "java",
+          "code": "// avoid repeated resizes for a known count\nvar map = new HashMap<String, Integer>(1024);"
+        }
+      ],
+      "docs": [
+        {
+          "title": "HashMap (API)",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html"
+        },
+        {
+          "title": "ConcurrentHashMap",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ConcurrentHashMap.html"
+        }
+      ]
+    },
+    {
+      "id": "java-22-concurrency-basics",
+      "title": "Threads, executors, and futures",
+      "level": "mid",
+      "tags": [
+        "concurrency",
+        "executors"
+      ],
+      "estMinutes": 13,
+      "body": "## Don't manage raw threads\n\nUse an `ExecutorService` to submit tasks and reuse threads. `Future` represents a pending result; `CompletableFuture` composes async stages.\n\n## Thread safety\n\nShared mutable state needs coordination: `synchronized`, `ReentrantLock`, or concurrent collections (`ConcurrentHashMap`).\n\n## Atomics\n\n`AtomicInteger`/`AtomicReference` give lock-free read-modify-write via CAS for simple counters and flags.",
+      "codeSamples": [
+        {
+          "title": "Executor + future",
+          "language": "java",
+          "code": "try (var pool = Executors.newFixedThreadPool(4)) {\n  Future<Integer> f = pool.submit(() -> heavy());\n  System.out.println(f.get());\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "ExecutorService",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ExecutorService.html"
+        },
+        {
+          "title": "Concurrency Tutorial",
+          "url": "https://docs.oracle.com/javase/tutorial/essential/concurrency/"
+        }
+      ]
+    },
+    {
+      "id": "java-jmm-concurrency",
+      "title": "JMM, volatile, and happens-before",
+      "level": "senior",
+      "tags": [
+        "concurrency",
+        "jvm",
+        "memory-model"
+      ],
+      "estMinutes": 12,
+      "body": "## Why this matters\n\nSenior Java interviews dig past `synchronized` into **visibility**, **atomicity**, and the **Java Memory Model (JMM)**. `volatile` guarantees visibility and ordering for a single field — not atomic compound updates.\n\n## Rules of thumb\n\n- Use `volatile` for a **flag** or **publication** of an immutable reference.\n- Use `AtomicInteger` / CAS for **read-modify-write**.\n- Prefer higher-level tools (`ConcurrentHashMap`, `CompletableFuture`, virtual threads) over hand-rolled locks.\n\n## Happens-before (practical)\n\nIf action A *happens-before* B, B sees A's writes. Unlock of a monitor happens-before a subsequent lock of the same monitor. A write to `volatile` happens-before a subsequent read of that same field.\n\n## Double-checked locking\n\nClassic singleton DCL is only correct when the instance field is `volatile`. In practice, prefer a static holder or `ConcurrentHashMap.computeIfAbsent`.",
+      "codeSamples": [
+        {
+          "title": "Volatile shutdown flag",
+          "language": "java",
+          "code": "class Worker implements Runnable {\n  private volatile boolean running = true;\n\n  public void stop() { running = false; }\n\n  public void run() {\n    while (running) {\n      // do work\n    }\n  }\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Java Memory Model (JLS Ch.17)",
+          "url": "https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html"
+        },
+        {
+          "title": "java.util.concurrent package",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/package-summary.html"
+        }
+      ]
+    },
+    {
+      "id": "java-virtual-threads",
+      "title": "Virtual threads vs CompletableFuture",
+      "level": "senior",
+      "tags": [
+        "loom",
+        "java21",
+        "concurrency"
+      ],
+      "estMinutes": 14,
+      "body": "## Virtual threads (JEP 444)\n\nLightweight, JVM-managed threads. Millions can exist because blocking I/O unmounts them from carrier OS threads.\n\n**Use for:** I/O-bound request handling, JDBC, HTTP clients — keep imperative style.\n\n**Watch for:** pinning inside `synchronized` on hot paths (prefer `ReentrantLock` in Java 21; much improved in Java 24+).\n\n## CompletableFuture\n\nBetter when you need **explicit composition** of independent async stages, custom executors, or existing reactive APIs.\n\n## Spring Boot tip\n\nEnable with `spring.threads.virtual.enabled=true`. Prefer MVC + virtual threads over WebFlux unless you need reactive backpressure end-to-end.",
+      "codeSamples": [
+        {
+          "title": "Virtual thread per task",
+          "language": "java",
+          "code": "try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {\n  Future<String> f = executor.submit(() -> fetchRemote());\n  return f.get();\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Virtual Threads (JEP 444)",
+          "url": "https://openjdk.org/jeps/444"
+        },
+        {
+          "title": "CompletableFuture",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html"
+        }
+      ]
+    },
+    {
+      "id": "java-spring-production",
+      "title": "Spring Boot production pitfalls",
+      "level": "senior",
+      "tags": [
+        "spring",
+        "transactions",
+        "hikaricp"
+      ],
+      "estMinutes": 15,
+      "body": "## Constructor injection\n\nPrefer constructor DI — dependencies are explicit, final fields are immutable, tests stay honest.\n\n## `@Transactional` traps\n\n- Self-invocation bypasses the proxy — the annotation does nothing.\n- `REQUIRES_NEW` opens a new connection; under load it can exhaust HikariCP.\n- Read-only transactions still hold a connection for the method duration.\n\n## HikariCP\n\nSize the pool for **real concurrent DB users**, not \"number of threads\". With virtual threads, many more requests can wait on the pool — monitor wait time and leaks.\n\n## Collections internals (interview favorites)\n\nKnow `HashMap` resize, treeification, and why `ConcurrentHashMap` does not lock the whole map for reads.",
+      "codeSamples": [
+        {
+          "title": "Constructor injection",
+          "language": "java",
+          "code": "@Service\npublic class OrderService {\n  private final OrderRepository repo;\n  private final PaymentClient payments;\n\n  public OrderService(OrderRepository repo, PaymentClient payments) {\n    this.repo = repo;\n    this.payments = payments;\n  }\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Spring Framework DI",
+          "url": "https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html"
+        },
+        {
+          "title": "Transaction Management",
+          "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction.html"
+        },
+        {
+          "title": "HikariCP",
+          "url": "https://github.com/brettwooldridge/HikariCP"
+        }
+      ]
+    },
+    {
+      "id": "java-23-gc-jvm-tuning",
+      "title": "Garbage collection and JVM tuning",
+      "level": "senior",
+      "tags": [
+        "gc",
+        "jvm",
+        "performance"
+      ],
+      "estMinutes": 14,
+      "body": "## Generational heap\n\nMost objects die young. The GC collects the **young generation** cheaply and promotes survivors to the **old generation**.\n\n## Collectors\n\n**G1** is the default balanced collector. **ZGC** and **Shenandoah** target sub-millisecond pauses for large heaps. Pick based on latency vs throughput goals.\n\n## Practical tuning\n\nSet `-Xms`/`-Xmx` equal in containers, size against the container memory limit, and measure with GC logs (`-Xlog:gc`), JFR, and heap dumps before tweaking flags.",
+      "codeSamples": [
+        {
+          "title": "Container-aware flags",
+          "language": "bash",
+          "code": "java -XX:+UseG1GC -Xms512m -Xmx512m \\\n  -Xlog:gc*:file=gc.log -jar app.jar"
+        }
+      ],
+      "docs": [
+        {
+          "title": "HotSpot GC Tuning Guide",
+          "url": "https://docs.oracle.com/en/java/javase/21/gctuning/"
+        },
+        {
+          "title": "ZGC",
+          "url": "https://wiki.openjdk.org/display/zgc"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "title": "Oracle Java Documentation",
+      "url": "https://docs.oracle.com/en/java/",
+      "note": "Official language & API docs"
+    },
+    {
+      "title": "Java Language Specification",
+      "url": "https://docs.oracle.com/javase/specs/jls/se21/html/index.html",
+      "note": "JLS"
+    },
+    {
+      "title": "OpenJDK JEPs",
+      "url": "https://openjdk.org/jeps/0",
+      "note": "Feature proposals & delivery"
+    },
+    {
+      "title": "Spring Boot Reference",
+      "url": "https://docs.spring.io/spring-boot/reference/",
+      "note": "Production framework docs"
+    },
+    {
+      "title": "Baeldung",
+      "url": "https://www.baeldung.com/",
+      "note": "Practical tutorials"
+    }
+  ]
+}

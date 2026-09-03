@@ -1,0 +1,20 @@
+{
+  "id": "plg-java-q-14-lambdas-fi-fill-1",
+  "domainId": "plg-java",
+  "prompt": "list.forEach(System.out::_____) prints each element on its own line.",
+  "explanation": "A method reference to println is used as the Consumer<T> for forEach.",
+  "tags": [
+    "lambdas",
+    "functional"
+  ],
+  "kind": "fill",
+  "template": "System.out::___",
+  "blanks": [
+    {
+      "answer": "println",
+      "alternatives": [
+        "println"
+      ]
+    }
+  ]
+}

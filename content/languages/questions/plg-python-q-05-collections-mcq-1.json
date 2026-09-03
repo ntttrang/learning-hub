@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-05-collections-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "Which collection type is ordered and immutable?",
+  "explanation": "A tuple is ordered but immutable — great for fixed records or dict keys.",
+  "tags": [
+    "basics",
+    "collections"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "list"
+    },
+    {
+      "id": "b",
+      "text": "tuple"
+    },
+    {
+      "id": "c",
+      "text": "set"
+    },
+    {
+      "id": "d",
+      "text": "dict"
+    }
+  ],
+  "correct": "b"
+}

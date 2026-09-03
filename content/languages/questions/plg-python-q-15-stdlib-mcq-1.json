@@ -1,0 +1,29 @@
+{
+  "id": "plg-python-q-15-stdlib-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "Which `collections` class counts hashable items and offers `most_common()`?",
+  "explanation": "`Counter` is a dict subclass specialized for counting hashable items, with `most_common(n)` for top results.",
+  "tags": [
+    "stdlib"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "defaultdict"
+    },
+    {
+      "id": "b",
+      "text": "Counter"
+    },
+    {
+      "id": "c",
+      "text": "deque"
+    },
+    {
+      "id": "d",
+      "text": "OrderedDict"
+    }
+  ],
+  "correct": "b"
+}

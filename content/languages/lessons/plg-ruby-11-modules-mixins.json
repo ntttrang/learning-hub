@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-11-modules-mixins",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 11,
+  "title": "Modules and mixins",
+  "minutes": 12,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Namespaces and mixins\n\nModules group constants/methods and can be mixed into classes. `include` adds instance methods; `extend` adds class methods (or methods to a single object).\n\n## Enumerable and Comparable\n\nImplement `each` → get Enumerable. Implement `<=>` → get `<`, `>`, `between?`, and `sort` support via Comparable.\n\n## Prepend\n\n`prepend` inserts a module *before* the class in the ancestor chain — useful for wrapping existing methods."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "class Version\n  include Comparable\n  attr_reader :major, :minor\n  def initialize(major, minor)\n    @major = major\n    @minor = minor\n  end\n  def <=>(other)\n    [major, minor] <=> [other.major, other.minor]\n  end\nend\n\nputs Version.new(1, 2) < Version.new(1, 10)  # true"
+    }
+  ],
+  "docIds": [
+    "Module-2",
+    "Comparable"
+  ]
+}

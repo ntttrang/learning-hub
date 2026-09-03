@@ -1,0 +1,20 @@
+{
+  "id": "languages",
+  "code": "LANG",
+  "title": "Languages",
+  "subtitle": "Java · Go · Python · Ruby — senior-level revision",
+  "description": "Senior-engineer revision across four stacks: core language, one flagship framework per stack, labs, practice, knowledge checks, and cross-language comparisons — ported from the donor Polyglot Revision Hub.",
+  "accent": "captain-red",
+  "disclaimers": [
+    "Content ported verbatim from the donor Polyglot Revision Hub (ntttrang/polyglot-hub)."
+  ],
+  "enabledModes": [
+    "learn",
+    "labs",
+    "practice",
+    "exams",
+    "compare",
+    "notes",
+    "revision"
+  ]
+}

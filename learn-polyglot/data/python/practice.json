@@ -1,0 +1,75 @@
+{
+  "language": "python",
+  "problems": [
+    {
+      "id": "python-practice-fizzbuzz",
+      "title": "FizzBuzz",
+      "prompt": "Print numbers 1..15, but print `Fizz` for multiples of 3, `Buzz` for multiples of 5, and `FizzBuzz` for multiples of both.",
+      "difficulty": "junior",
+      "hints": [
+        "Check divisibility by 15 first.",
+        "Use elif for the 3 and 5 cases."
+      ],
+      "language": "python",
+      "starterCode": "for i in range(1, 16):\n    # TODO\n    print(i)\n",
+      "solution": "for i in range(1, 16):\n    if i % 15 == 0:\n        print(\"FizzBuzz\")\n    elif i % 3 == 0:\n        print(\"Fizz\")\n    elif i % 5 == 0:\n        print(\"Buzz\")\n    else:\n        print(i)\n",
+      "expectedOutput": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz"
+    },
+    {
+      "id": "python-practice-reverse",
+      "title": "Reverse a string",
+      "prompt": "Reverse a string and print the reverse of `hello`.",
+      "difficulty": "junior",
+      "hints": [
+        "Slicing with a negative step reverses a sequence.",
+        "s[::-1]."
+      ],
+      "language": "python",
+      "starterCode": "def reverse(s):\n    # TODO\n    return s\n\nprint(reverse(\"hello\"))\n",
+      "solution": "def reverse(s):\n    return s[::-1]\n\nprint(reverse(\"hello\"))\n",
+      "expectedOutput": "olleh"
+    },
+    {
+      "id": "python-practice-twosum",
+      "title": "Two Sum",
+      "prompt": "Given `nums` and a `target`, return the indices of the two numbers that add up to the target. For `[2, 7, 11, 15]` and target `9`, print the indices separated by a space.",
+      "difficulty": "mid",
+      "hints": [
+        "Store each value's index in a dict as you scan.",
+        "Check if target - n is already seen."
+      ],
+      "language": "python",
+      "starterCode": "def two_sum(nums, target):\n    # TODO\n    return -1, -1\n\ni, j = two_sum([2, 7, 11, 15], 9)\nprint(i, j)\n",
+      "solution": "def two_sum(nums, target):\n    seen = {}\n    for i, n in enumerate(nums):\n        if target - n in seen:\n            return seen[target - n], i\n        seen[n] = i\n    return -1, -1\n\ni, j = two_sum([2, 7, 11, 15], 9)\nprint(i, j)\n",
+      "expectedOutput": "0 1"
+    },
+    {
+      "id": "python-practice-palindrome",
+      "title": "Palindrome check",
+      "prompt": "Return whether a string reads the same forwards and backwards. Print the result for `racecar`.",
+      "difficulty": "junior",
+      "hints": [
+        "Compare the string to its reverse.",
+        "s == s[::-1]."
+      ],
+      "language": "python",
+      "starterCode": "def is_palindrome(s):\n    # TODO\n    return False\n\nprint(is_palindrome(\"racecar\"))\n",
+      "solution": "def is_palindrome(s):\n    return s == s[::-1]\n\nprint(is_palindrome(\"racecar\"))\n",
+      "expectedOutput": "True"
+    },
+    {
+      "id": "python-practice-anagram",
+      "title": "Anagram groups",
+      "prompt": "Group words that are anagrams. Print groups as sorted comma-separated lines, groups ordered by first word alphabetically.",
+      "difficulty": "mid",
+      "hints": [
+        "Key by ''.join(sorted(word)).",
+        "Use dict[str, list[str]]."
+      ],
+      "language": "python",
+      "starterCode": "words = [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]\n# TODO\n",
+      "solution": "from collections import defaultdict\n\nwords = [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]\ngroups = defaultdict(list)\nfor w in words:\n    groups[\"\".join(sorted(w))].append(w)\n\nordered = sorted(groups.values(), key=lambda g: sorted(g)[0])\nfor g in ordered:\n    print(\",\".join(sorted(g)))\n",
+      "expectedOutput": "ate,eat,tea\nbat\nnat,tan"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "plg-java-q-spring-production-fill-1",
+  "domainId": "plg-java",
+  "prompt": "The annotation @_____ marks a class as a Spring-managed service bean (as used on OrderService).",
+  "explanation": "@Service is a specialization of @Component used for service-layer beans.",
+  "tags": [
+    "spring",
+    "transactions",
+    "hikaricp"
+  ],
+  "kind": "fill",
+  "template": "@___\npublic class OrderService { ... }",
+  "blanks": [
+    {
+      "answer": "Service",
+      "alternatives": [
+        "Service"
+      ]
+    }
+  ]
+}

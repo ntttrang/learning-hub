@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-11-modules-mixins-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What does `include SomeModule` do to a class?",
+  "explanation": "include mixes a module's methods into a class's instance method lookup chain.",
+  "tags": [
+    "modules",
+    "mixins"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Adds the module's methods as class (static) methods"
+    },
+    {
+      "id": "b",
+      "text": "Adds the module's methods as instance methods"
+    },
+    {
+      "id": "c",
+      "text": "Copies only the module's constants"
+    },
+    {
+      "id": "d",
+      "text": "Removes existing instance methods"
+    }
+  ],
+  "correct": "b"
+}

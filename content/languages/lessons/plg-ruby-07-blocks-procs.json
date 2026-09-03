@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-07-blocks-procs",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 7,
+  "title": "Blocks, procs, and lambdas",
+  "minutes": 12,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Blocks everywhere\n\nA block is a chunk of code passed to a method with `do...end` or `{ }`. `each`, `map`, `select`, and `reduce` replace most manual loops.\n\n## yield\n\nMethods can `yield` to a given block — the basis of Ruby DSLs and helpers. Check with `block_given?`.\n\n## Proc vs lambda\n\n`Proc.new` / `proc` are lenient about arity and `return` returns from the enclosing method. `lambda` / `->` are strict and `return` only from the lambda."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "def twice\n  yield\n  yield\nend\ntwice { puts \"ahoy\" }\n\ndouble = ->(n) { n * 2 }\nputs [1, 2, 3].map(&double).inspect"
+    }
+  ],
+  "docIds": [
+    "calling_methods_rdoc-2",
+    "Proc"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-13-generics-mcq-2",
+  "domainId": "plg-java",
+  "prompt": "What does PECS stand for when choosing bounded wildcards?",
+  "explanation": "Use `? extends T` when reading (producing) and `? super T` when writing (consuming).",
+  "tags": [
+    "generics",
+    "types"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Producer Extends, Consumer Super"
+    },
+    {
+      "id": "b",
+      "text": "Producer Extends, Consumer Subtype"
+    },
+    {
+      "id": "c",
+      "text": "Provider Extends, Consumer Super"
+    },
+    {
+      "id": "d",
+      "text": "Producer Exact, Consumer Strict"
+    }
+  ],
+  "correct": "a"
+}

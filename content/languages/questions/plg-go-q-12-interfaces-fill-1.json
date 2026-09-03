@@ -1,0 +1,20 @@
+{
+  "id": "plg-go-q-12-interfaces-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: the alias _____ (short for interface{}) can hold a value of any type.",
+  "explanation": "any is a predeclared alias for the empty interface, introduced for readability.",
+  "tags": [
+    "go-12-interfaces",
+    "any"
+  ],
+  "kind": "fill",
+  "template": "type ___ = interface{}",
+  "blanks": [
+    {
+      "answer": "any",
+      "alternatives": [
+        "any"
+      ]
+    }
+  ]
+}

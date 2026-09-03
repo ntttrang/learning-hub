@@ -1,0 +1,18 @@
+[
+  {
+    "id": "plg-exam-1",
+    "title": "Languages knowledge check",
+    "description": "Sampled evenly across Java, Go, Python, Ruby — fixed seed 20260903, replayable.",
+    "durationMinutes": 60,
+    "selection": {
+      "kind": "sampled",
+      "domainPlan": {
+        "plg-java": 10,
+        "plg-go": 10,
+        "plg-python": 10,
+        "plg-ruby": 10
+      },
+      "seed": 20260903
+    }
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "id": "plg-java-q-21-generics-collections-internals-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "Putting the same key twice overwrites the value rather than adding an entry: size stays 1, value becomes 2.",
+  "tags": [
+    "collections",
+    "performance",
+    "internals"
+  ],
+  "kind": "fill",
+  "template": "import java.util.*;\n\npublic class Demo {\n  public static void main(String[] args) {\n    Map<String, Integer> map = new HashMap<>();\n    map.put(\"a\", 1);\n    map.put(\"a\", 2);\n    System.out.println(map.size() + \" \" + map.get(\"a\"));\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "1 2"
+    }
+  ]
+}

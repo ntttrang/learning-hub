@@ -1,0 +1,26 @@
+{
+  "id": "plg-ruby-q-truthiness",
+  "domainId": "plg-ruby",
+  "prompt": "Which values are falsy in Ruby?",
+  "explanation": "In Ruby only false and nil are falsy. 0, \"\", and [] are all truthy.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "false, nil, 0, and \"\""
+    },
+    {
+      "id": "b",
+      "text": "Only false and nil"
+    },
+    {
+      "id": "c",
+      "text": "false, nil, and empty arrays"
+    },
+    {
+      "id": "d",
+      "text": "Only false"
+    }
+  ],
+  "correct": "b"
+}

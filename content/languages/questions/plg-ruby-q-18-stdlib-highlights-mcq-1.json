@@ -1,0 +1,29 @@
+{
+  "id": "plg-ruby-q-18-stdlib-highlights-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What does `Set[1, 2, 2, 3].to_a` return?",
+  "explanation": "Set deduplicates elements, so converting to an array drops the repeated 2.",
+  "tags": [
+    "stdlib"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "[1, 2, 2, 3]"
+    },
+    {
+      "id": "b",
+      "text": "[1, 2, 3] (order may vary)"
+    },
+    {
+      "id": "c",
+      "text": "{1, 2, 3}"
+    },
+    {
+      "id": "d",
+      "text": "It raises an error"
+    }
+  ],
+  "correct": "b"
+}

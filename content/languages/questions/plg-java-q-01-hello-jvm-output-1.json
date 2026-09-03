@@ -1,0 +1,17 @@
+{
+  "id": "plg-java-q-01-hello-jvm-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "System.out.println prints the string followed by a newline.",
+  "tags": [
+    "basics",
+    "jvm"
+  ],
+  "kind": "fill",
+  "template": "public class Hello {\n  public static void main(String[] args) {\n    System.out.println(\"Ahoy, world!\");\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "Ahoy, world!"
+    }
+  ]
+}

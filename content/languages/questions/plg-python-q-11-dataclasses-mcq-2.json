@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-11-dataclasses-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "Why use `field(default_factory=list)` instead of `roles: list[str] = []` in a dataclass?",
+  "explanation": "Mutable defaults like `[]` would be shared across instances; `default_factory` creates a fresh list per instance.",
+  "tags": [
+    "oop",
+    "dataclasses"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It's purely a stylistic preference"
+    },
+    {
+      "id": "b",
+      "text": "It avoids sharing one mutable list instance across all instances"
+    },
+    {
+      "id": "c",
+      "text": "`= []` is invalid syntax in a dataclass"
+    },
+    {
+      "id": "d",
+      "text": "It makes the field immutable"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "plg-ruby-q-10-classes-output-1",
+  "domainId": "plg-ruby",
+  "prompt": "What prints?",
+  "explanation": "bark is an instance method using @name; species is a class-level method defined with def self.",
+  "tags": [
+    "oop",
+    "classes"
+  ],
+  "kind": "fill",
+  "template": "class Dog\n  attr_reader :name\n  def initialize(name) = @name = name\n  def bark = \"#{@name} says woof\"\n  def self.species = \"Canis familiaris\"\nend\n\nd = Dog.new(\"Captain\")\nputs d.bark\nputs Dog.species\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "Captain says woof\nCanis familiaris"
+    }
+  ]
+}

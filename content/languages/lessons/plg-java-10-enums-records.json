@@ -1,0 +1,25 @@
+{
+  "id": "plg-java-10-enums-records",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 10,
+  "title": "Enums, records, and sealed types",
+  "minutes": 11,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Enums\n\nType-safe constants that can carry fields and methods. Great for fixed sets like states or roles.\n\n## Records\n\n`record` (Java 16+) is an immutable data carrier — it generates constructor, accessors, `equals`, `hashCode`, and `toString`. Perfect for DTOs and value objects.\n\n## Sealed types\n\n`sealed` classes/interfaces (Java 17+) restrict which types may extend them, enabling exhaustive `switch` pattern matching."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "enum Role { ADMIN, USER }\nrecord User(String name, Role role) {}\n\nvar u = new User(\"Ada\", Role.ADMIN);\nSystem.out.println(u.name()); // Ada"
+    }
+  ],
+  "docIds": [
+    "enum",
+    "395",
+    "409"
+  ]
+}

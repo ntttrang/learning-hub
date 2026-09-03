@@ -1,0 +1,21 @@
+{
+  "id": "plg-java-q-02-primitives-vars-fill-1",
+  "domainId": "plg-java",
+  "prompt": "Unboxing a null wrapper (e.g. Integer to int) throws a _____.",
+  "explanation": "Autoboxing/unboxing calls .intValue() etc. under the hood; calling it on null throws NPE.",
+  "tags": [
+    "basics",
+    "types"
+  ],
+  "kind": "fill",
+  "template": "unboxing a null Integer throws a ___",
+  "blanks": [
+    {
+      "answer": "NullPointerException",
+      "alternatives": [
+        "NullPointerException",
+        "NPE"
+      ]
+    }
+  ]
+}

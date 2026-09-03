@@ -1,0 +1,21 @@
+{
+  "id": "plg-python-q-22-logging-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank to get a module-level logger.",
+  "explanation": "`logging.getLogger(__name__)` returns (or creates) a logger named after the current module.",
+  "tags": [
+    "logging",
+    "stdlib"
+  ],
+  "kind": "fill",
+  "template": "logger = logging.___(__name__)",
+  "blanks": [
+    {
+      "answer": "getLogger",
+      "alternatives": [
+        "getLogger",
+        "getlogger"
+      ]
+    }
+  ]
+}

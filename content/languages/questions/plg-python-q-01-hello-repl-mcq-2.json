@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-01-hello-repl-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "What is the purpose of `if __name__ == \"__main__\":` at the bottom of a script?",
+  "explanation": "`__name__` is \"__main__\" only when the file is run directly, letting the same file be safely imported elsewhere.",
+  "tags": [
+    "basics",
+    "tooling"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Ensures that block only runs when the file is executed directly, not when imported"
+    },
+    {
+      "id": "b",
+      "text": "Declares the main class of the program"
+    },
+    {
+      "id": "c",
+      "text": "Required by Python syntax for every script"
+    },
+    {
+      "id": "d",
+      "text": "Defines a compiled entry point like Java's main method"
+    }
+  ],
+  "correct": "a"
+}

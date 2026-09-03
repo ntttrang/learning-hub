@@ -1,0 +1,25 @@
+{
+  "id": "plg-java-spring-production",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 25,
+  "title": "Spring Boot production pitfalls",
+  "minutes": 15,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Constructor injection\n\nPrefer constructor DI — dependencies are explicit, final fields are immutable, tests stay honest.\n\n## `@Transactional` traps\n\n- Self-invocation bypasses the proxy — the annotation does nothing.\n- `REQUIRES_NEW` opens a new connection; under load it can exhaust HikariCP.\n- Read-only transactions still hold a connection for the method duration.\n\n## HikariCP\n\nSize the pool for **real concurrent DB users**, not \"number of threads\". With virtual threads, many more requests can wait on the pool — monitor wait time and leaks.\n\n## Collections internals (interview favorites)\n\nKnow `HashMap` resize, treeification, and why `ConcurrentHashMap` does not lock the whole map for reads."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "@Service\npublic class OrderService {\n  private final OrderRepository repo;\n  private final PaymentClient payments;\n\n  public OrderService(OrderRepository repo, PaymentClient payments) {\n    this.repo = repo;\n    this.payments = payments;\n  }\n}"
+    }
+  ],
+  "docIds": [
+    "factory-collaborators",
+    "transaction",
+    "HikariCP"
+  ]
+}

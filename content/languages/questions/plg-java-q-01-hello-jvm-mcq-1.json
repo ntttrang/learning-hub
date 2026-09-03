@@ -1,0 +1,31 @@
+{
+  "id": "plg-java-q-01-hello-jvm-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "What does the javac compiler produce from a .java source file?",
+  "explanation": "javac compiles Java source into JVM bytecode (.class files); the JVM then interprets/JIT-compiles it.",
+  "tags": [
+    "basics",
+    "jvm",
+    "tooling"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Bytecode in a .class file"
+    },
+    {
+      "id": "b",
+      "text": "Native machine code directly executable by the OS"
+    },
+    {
+      "id": "c",
+      "text": "An optimized JAR archive"
+    },
+    {
+      "id": "d",
+      "text": "Assembly for the target CPU"
+    }
+  ],
+  "correct": "a"
+}

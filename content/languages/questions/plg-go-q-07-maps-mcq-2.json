@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-07-maps-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "What happens when you write to a nil map?",
+  "explanation": "Reading a nil map is safe and returns zero values, but writing to it panics; always initialize with make or a literal first.",
+  "tags": [
+    "go-07-maps",
+    "nil"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It panics at runtime"
+    },
+    {
+      "id": "b",
+      "text": "It silently does nothing"
+    },
+    {
+      "id": "c",
+      "text": "The map auto-initializes on first write"
+    },
+    {
+      "id": "d",
+      "text": "It returns an error value"
+    }
+  ],
+  "correct": "a"
+}

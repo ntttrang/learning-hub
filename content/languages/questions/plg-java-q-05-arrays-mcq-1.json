@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-05-arrays-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "What exception is thrown when accessing an array index outside its valid range?",
+  "explanation": "Arrays throw the more specific ArrayIndexOutOfBoundsException for invalid indices.",
+  "tags": [
+    "basics",
+    "arrays"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "ArrayIndexOutOfBoundsException"
+    },
+    {
+      "id": "b",
+      "text": "IndexOutOfBoundsException"
+    },
+    {
+      "id": "c",
+      "text": "NullPointerException"
+    },
+    {
+      "id": "d",
+      "text": "IllegalArgumentException"
+    }
+  ],
+  "correct": "a"
+}

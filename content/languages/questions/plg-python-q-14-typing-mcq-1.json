@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-14-typing-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "Are Python type hints enforced by the interpreter at runtime?",
+  "explanation": "Type hints are optional documentation for humans and static checkers; Python itself doesn't enforce them.",
+  "tags": [
+    "typing",
+    "tooling"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Yes, always"
+    },
+    {
+      "id": "b",
+      "text": "No — they're checked by external tools like mypy/pyright, not enforced at runtime"
+    },
+    {
+      "id": "c",
+      "text": "Only for function arguments, never return types"
+    },
+    {
+      "id": "d",
+      "text": "Only starting in Python 3.13+"
+    }
+  ],
+  "correct": "b"
+}

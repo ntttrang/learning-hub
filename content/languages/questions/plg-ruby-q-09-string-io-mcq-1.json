@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-09-string-io-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which approach safely reads/writes a file and automatically closes it afterward?",
+  "explanation": "The block form of File.open closes the file automatically when the block finishes, even on error.",
+  "tags": [
+    "strings",
+    "io"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "File.read only, never closing anything"
+    },
+    {
+      "id": "b",
+      "text": "The block form File.open(path) { |f| ... }"
+    },
+    {
+      "id": "c",
+      "text": "File.new without ever calling close"
+    },
+    {
+      "id": "d",
+      "text": "IO.gets"
+    }
+  ],
+  "correct": "b"
+}

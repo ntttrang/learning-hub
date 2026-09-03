@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-generics-backpressure-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "What is a common way to bound concurrency for a worker pool built on errgroup?",
+  "explanation": "errgroup.Group.SetLimit(n) caps the number of goroutines running concurrently via g.Go.",
+  "tags": [
+    "go-generics-backpressure",
+    "workers"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "g.SetLimit(n)"
+    },
+    {
+      "id": "b",
+      "text": "g.MaxWorkers(n)"
+    },
+    {
+      "id": "c",
+      "text": "Closing the group after n goroutines"
+    },
+    {
+      "id": "d",
+      "text": "Always using unbuffered channels instead"
+    }
+  ],
+  "correct": "a"
+}

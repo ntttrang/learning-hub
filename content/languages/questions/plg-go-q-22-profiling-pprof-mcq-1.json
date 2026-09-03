@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-22-profiling-pprof-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "Which import registers pprof's HTTP handlers purely for their side effect?",
+  "explanation": "Blank-importing net/http/pprof registers /debug/pprof/ handlers on the default HTTP mux.",
+  "tags": [
+    "go-22-profiling-pprof",
+    "pprof"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "\"runtime/pprof\""
+    },
+    {
+      "id": "b",
+      "text": "\"net/http/pprof\" (blank-imported)"
+    },
+    {
+      "id": "c",
+      "text": "\"net/pprof\""
+    },
+    {
+      "id": "d",
+      "text": "\"debug/pprof\""
+    }
+  ],
+  "correct": "b"
+}

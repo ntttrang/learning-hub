@@ -1,0 +1,20 @@
+{
+  "id": "plg-go-q-concurrency-lifecycle-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: errgroup._____(ctx) returns a Group and a derived context that is cancelled as soon as any goroutine in the group returns an error.",
+  "explanation": "errgroup.WithContext wires cancellation into the derived context so sibling goroutines can stop early on failure.",
+  "tags": [
+    "go-concurrency-lifecycle",
+    "errgroup"
+  ],
+  "kind": "fill",
+  "template": "g, ctx := errgroup.___(ctx)",
+  "blanks": [
+    {
+      "answer": "WithContext",
+      "alternatives": [
+        "WithContext"
+      ]
+    }
+  ]
+}

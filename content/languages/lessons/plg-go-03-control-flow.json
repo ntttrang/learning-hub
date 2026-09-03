@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-03-control-flow",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 3,
+  "title": "Control flow: if, for, switch",
+  "minutes": 9,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## One loop to rule them all\n\nGo has only `for` — it covers `while`, infinite loops, and classic counting loops.\n\n## if with init\n\n`if v, err := f(); err != nil { ... }` scopes the variable to the branch.\n\n## switch\n\nNo fallthrough by default; cases can be expressions or types. `switch` with no condition replaces long `if/else` chains."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "for i := 0; i < 3; i++ { fmt.Println(i) }\nfor scanner.Scan() { line := scanner.Text() }\nfor { break } // infinite until break"
+    }
+  ],
+  "docIds": [
+    "1",
+    "effective_go-2"
+  ]
+}

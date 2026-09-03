@@ -1,0 +1,33 @@
+{
+  "id": "plg-ruby-q-17-testing-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which are good testing practices for Ruby projects?",
+  "explanation": "Over-mocking tends to hide real bugs; testing public behavior with focused examples is preferred.",
+  "tags": [
+    "testing"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Prefer testing behavior at public boundaries"
+    },
+    {
+      "id": "b",
+      "text": "Use table-driven examples or factories over one giant fixture file"
+    },
+    {
+      "id": "c",
+      "text": "Over-mock everything so no real code path ever runs"
+    },
+    {
+      "id": "d",
+      "text": "Minitest offers assert_equal and assert_raises"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

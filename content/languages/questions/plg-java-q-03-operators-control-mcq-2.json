@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-03-operators-control-mcq-2",
+  "domainId": "plg-java",
+  "prompt": "Which Java version introduced switch expressions with arrow labels (JEP 361)?",
+  "explanation": "Switch expressions became a standard feature in Java 14.",
+  "tags": [
+    "basics",
+    "control-flow"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "8"
+    },
+    {
+      "id": "b",
+      "text": "11"
+    },
+    {
+      "id": "c",
+      "text": "14"
+    },
+    {
+      "id": "d",
+      "text": "17"
+    }
+  ],
+  "correct": "c"
+}

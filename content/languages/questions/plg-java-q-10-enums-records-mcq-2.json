@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-10-enums-records-mcq-2",
+  "domainId": "plg-java",
+  "prompt": "Which Java version introduced sealed classes/interfaces (JEP 409)?",
+  "explanation": "Sealed classes/interfaces became a standard feature in Java 17.",
+  "tags": [
+    "oop",
+    "records"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "8"
+    },
+    {
+      "id": "b",
+      "text": "11"
+    },
+    {
+      "id": "c",
+      "text": "16"
+    },
+    {
+      "id": "d",
+      "text": "17"
+    }
+  ],
+  "correct": "d"
+}

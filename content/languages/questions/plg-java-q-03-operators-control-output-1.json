@@ -1,0 +1,17 @@
+{
+  "id": "plg-java-q-03-operators-control-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "day matches the 6,7 case label of the switch expression, producing \"weekend\".",
+  "tags": [
+    "basics",
+    "control-flow"
+  ],
+  "kind": "fill",
+  "template": "public class Demo {\n  public static void main(String[] args) {\n    int day = 6;\n    String kind = switch (day) {\n      case 6, 7 -> \"weekend\";\n      default -> \"weekday\";\n    };\n    System.out.println(kind);\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "weekend"
+    }
+  ]
+}

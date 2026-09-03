@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-20-context-basics-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "How should a context.Context typically be passed into a function?",
+  "explanation": "Convention: `ctx` is the first argument to any function that can block or must respect cancellation.",
+  "tags": [
+    "go-20-context-basics",
+    "conventions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Stored as a struct field for later use"
+    },
+    {
+      "id": "b",
+      "text": "Explicitly, as the first parameter of the function"
+    },
+    {
+      "id": "c",
+      "text": "Through a package-level global variable"
+    },
+    {
+      "id": "d",
+      "text": "Wrapped inside a channel"
+    }
+  ],
+  "correct": "b"
+}

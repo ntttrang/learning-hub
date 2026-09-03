@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-05-strings-runes-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "When you write `for i, v := range s` over a string s, what type is v?",
+  "explanation": "Ranging over a string decodes UTF-8 and yields runes (Unicode code points); indexing s[i] yields a byte instead.",
+  "tags": [
+    "go-05-strings-runes",
+    "strings"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "byte"
+    },
+    {
+      "id": "b",
+      "text": "rune"
+    },
+    {
+      "id": "c",
+      "text": "string"
+    },
+    {
+      "id": "d",
+      "text": "uint8"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "plg-java-q-12-collections-multi-1",
+  "domainId": "plg-java",
+  "prompt": "Which are true about List.of(), Set.of(), and Map.of()?",
+  "explanation": "These factory methods reject null elements and produce immutable collections.",
+  "tags": [
+    "collections",
+    "stdlib"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "They create immutable collections"
+    },
+    {
+      "id": "b",
+      "text": "They allow null elements"
+    },
+    {
+      "id": "c",
+      "text": "You must copy into a mutable collection to modify the result"
+    },
+    {
+      "id": "d",
+      "text": "They are convenience factory methods in java.util"
+    }
+  ],
+  "correct": [
+    "a",
+    "c",
+    "d"
+  ]
+}

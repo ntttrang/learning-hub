@@ -1,0 +1,878 @@
+{
+  "0": {
+    "title": "OpenJDK JEPs",
+    "url": "https://openjdk.org/jeps/0"
+  },
+  "1": {
+    "title": "Tour: Flow Control",
+    "url": "https://go.dev/tour/flowcontrol/1"
+  },
+  "2": {
+    "title": "Tour: Structs",
+    "url": "https://go.dev/tour/moretypes/2"
+  },
+  "3": {
+    "title": "Python Docs",
+    "url": "https://docs.python.org/3/"
+  },
+  "4": {
+    "title": "Tour: Functions",
+    "url": "https://go.dev/tour/basics/4"
+  },
+  "9": {
+    "title": "Tour: Interfaces",
+    "url": "https://go.dev/tour/methods/9"
+  },
+  "11": {
+    "title": "Tour: Basic Types",
+    "url": "https://go.dev/tour/basics/11"
+  },
+  "19": {
+    "title": "Tour: Maps",
+    "url": "https://go.dev/tour/moretypes/19"
+  },
+  "286": {
+    "title": "Local Variable Type Inference (JEP 286)",
+    "url": "https://openjdk.org/jeps/286"
+  },
+  "361": {
+    "title": "Switch Expressions (JEP 361)",
+    "url": "https://openjdk.org/jeps/361"
+  },
+  "378": {
+    "title": "Text Blocks (JEP 378)",
+    "url": "https://openjdk.org/jeps/378"
+  },
+  "395": {
+    "title": "Records (JEP 395)",
+    "url": "https://openjdk.org/jeps/395"
+  },
+  "409": {
+    "title": "Sealed Classes (JEP 409)",
+    "url": "https://openjdk.org/jeps/409"
+  },
+  "444": {
+    "title": "Virtual Threads (JEP 444)",
+    "url": "https://openjdk.org/jeps/444"
+  },
+  "java": {
+    "title": "Oracle Java Documentation",
+    "url": "https://docs.oracle.com/en/java/"
+  },
+  "index": {
+    "title": "Java Language Specification",
+    "url": "https://docs.oracle.com/javase/specs/jls/se21/html/index.html"
+  },
+  "reference": {
+    "title": "Spring Boot Reference",
+    "url": "https://docs.spring.io/spring-boot/reference/"
+  },
+  "www.baeldung.com": {
+    "title": "Baeldung",
+    "url": "https://www.baeldung.com/"
+  },
+  "getting-started-java": {
+    "title": "Getting Started",
+    "url": "https://docs.oracle.com/en/java/javase/21/getting-started/getting-started-java.html"
+  },
+  "javac": {
+    "title": "javac Tool Reference",
+    "url": "https://docs.oracle.com/en/java/javase/21/docs/specs/man/javac.html"
+  },
+  "datatypes": {
+    "title": "Primitive Data Types",
+    "url": "https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html"
+  },
+  "operators": {
+    "title": "Operators",
+    "url": "https://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html"
+  },
+  "strings": {
+    "title": "Strings (Tutorial)",
+    "url": "https://docs.oracle.com/javase/tutorial/java/data/strings.html"
+  },
+  "arrays": {
+    "title": "Arrays Tutorial",
+    "url": "https://docs.oracle.com/javase/tutorial/java/nutsandbolts/arrays.html"
+  },
+  "Arrays": {
+    "title": "java.util.Arrays",
+    "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html"
+  },
+  "methods": {
+    "title": "Defining Methods",
+    "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/methods.html"
+  },
+  "varargs": {
+    "title": "Varargs",
+    "url": "https://docs.oracle.com/javase/8/docs/technotes/guides/language/varargs.html"
+  },
+  "javaOO": {
+    "title": "Classes and Objects",
+    "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/"
+  },
+  "subclasses": {
+    "title": "Inheritance",
+    "url": "https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html"
+  },
+  "polymorphism": {
+    "title": "Polymorphism",
+    "url": "https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html"
+  },
+  "createinterface": {
+    "title": "Interfaces",
+    "url": "https://docs.oracle.com/javase/tutorial/java/IandI/createinterface.html"
+  },
+  "defaultmethods": {
+    "title": "Default Methods",
+    "url": "https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html"
+  },
+  "enum": {
+    "title": "Enum Types",
+    "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html"
+  },
+  "exceptions": {
+    "title": "Exceptions Tutorial",
+    "url": "https://docs.oracle.com/javase/tutorial/essential/exceptions/"
+  },
+  "tryResourceClose": {
+    "title": "The try-with-resources Statement",
+    "url": "https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html"
+  },
+  "collections": {
+    "title": "Collections Framework",
+    "url": "https://docs.oracle.com/javase/tutorial/collections/"
+  },
+  "List": {
+    "title": "List.of / Set.of / Map.of",
+    "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html#of(E...)"
+  },
+  "generics": {
+    "title": "Generics Tutorial",
+    "url": "https://docs.oracle.com/javase/tutorial/java/generics/"
+  },
+  "wildcards": {
+    "title": "Wildcards",
+    "url": "https://docs.oracle.com/javase/tutorial/java/generics/wildcards.html"
+  },
+  "lambdaexpressions": {
+    "title": "Lambda Expressions",
+    "url": "https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html"
+  },
+  "package-summary": {
+    "title": "java.util.function",
+    "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/package-summary.html"
+  },
+  "package-summary-2": {
+    "title": "Stream API",
+    "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/package-summary.html"
+  },
+  "streams": {
+    "title": "Aggregate Operations Tutorial",
+    "url": "https://docs.oracle.com/javase/tutorial/collections/streams/"
+  },
+  "Optional": {
+    "title": "Optional",
+    "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html"
+  },
+  "Object": {
+    "title": "Object.equals",
+    "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)"
+  },
+  "effective-java": {
+    "title": "Effective Java Item 10–11 (overview)",
+    "url": "https://www.oracle.com/java/technologies/javase/effective-java.html"
+  },
+  "fileio": {
+    "title": "NIO.2 Path / Files",
+    "url": "https://docs.oracle.com/javase/tutorial/essential/io/fileio.html"
+  },
+  "Files": {
+    "title": "java.nio.file.Files",
+    "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html"
+  },
+  "user-guide": {
+    "title": "JUnit 5 User Guide",
+    "url": "https://junit.org/junit5/docs/current/user-guide/"
+  },
+  "user-guide-2": {
+    "title": "Parameterized Tests",
+    "url": "https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests"
+  },
+  "getting-started": {
+    "title": "Maven Getting Started",
+    "url": "https://maven.apache.org/guides/getting-started/"
+  },
+  "userguide": {
+    "title": "Gradle User Manual",
+    "url": "https://docs.gradle.org/current/userguide/userguide.html"
+  },
+  "HashMap": {
+    "title": "HashMap (API)",
+    "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html"
+  },
+  "ConcurrentHashMap": {
+    "title": "ConcurrentHashMap",
+    "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ConcurrentHashMap.html"
+  },
+  "ExecutorService": {
+    "title": "ExecutorService",
+    "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ExecutorService.html"
+  },
+  "concurrency": {
+    "title": "Concurrency Tutorial",
+    "url": "https://docs.oracle.com/javase/tutorial/essential/concurrency/"
+  },
+  "jls-17": {
+    "title": "Java Memory Model (JLS Ch.17)",
+    "url": "https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html"
+  },
+  "package-summary-3": {
+    "title": "java.util.concurrent package",
+    "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/package-summary.html"
+  },
+  "CompletableFuture": {
+    "title": "CompletableFuture",
+    "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html"
+  },
+  "factory-collaborators": {
+    "title": "Spring Framework DI",
+    "url": "https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html"
+  },
+  "transaction": {
+    "title": "Transaction Management",
+    "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction.html"
+  },
+  "HikariCP": {
+    "title": "HikariCP",
+    "url": "https://github.com/brettwooldridge/HikariCP"
+  },
+  "gctuning": {
+    "title": "HotSpot GC Tuning Guide",
+    "url": "https://docs.oracle.com/en/java/javase/21/gctuning/"
+  },
+  "zgc": {
+    "title": "ZGC",
+    "url": "https://wiki.openjdk.org/display/zgc"
+  },
+  "index-2": {
+    "title": "Spring Boot reference",
+    "url": "https://docs.spring.io/spring-boot/index.html"
+  },
+  "rest-service": {
+    "title": "Building a RESTful service",
+    "url": "https://spring.io/guides/gs/rest-service"
+  },
+  "doc": {
+    "title": "Go Documentation",
+    "url": "https://go.dev/doc/"
+  },
+  "tour": {
+    "title": "A Tour of Go",
+    "url": "https://go.dev/tour/"
+  },
+  "effective_go": {
+    "title": "Effective Go",
+    "url": "https://go.dev/doc/effective_go"
+  },
+  "gobyexample.com": {
+    "title": "Go by Example",
+    "url": "https://gobyexample.com/"
+  },
+  "std": {
+    "title": "Go Standard Library",
+    "url": "https://pkg.go.dev/std"
+  },
+  "code": {
+    "title": "How to Write Go Code",
+    "url": "https://go.dev/doc/code"
+  },
+  "mod": {
+    "title": "Go Modules Reference",
+    "url": "https://go.dev/ref/mod"
+  },
+  "spec": {
+    "title": "The Go Spec — Types",
+    "url": "https://go.dev/ref/spec#Types"
+  },
+  "effective_go-2": {
+    "title": "Effective Go: Control Structures",
+    "url": "https://go.dev/doc/effective_go#control-structures"
+  },
+  "defer-panic-and-recover": {
+    "title": "Defer, Panic, and Recover",
+    "url": "https://go.dev/blog/defer-panic-and-recover"
+  },
+  "strings-2": {
+    "title": "Strings, bytes, runes and characters",
+    "url": "https://go.dev/blog/strings"
+  },
+  "strings-3": {
+    "title": "strings package",
+    "url": "https://pkg.go.dev/strings"
+  },
+  "slices-intro": {
+    "title": "Go Slices: usage and internals",
+    "url": "https://go.dev/blog/slices-intro"
+  },
+  "SliceTricks": {
+    "title": "Slice Tricks (wiki)",
+    "url": "https://go.dev/wiki/SliceTricks"
+  },
+  "maps": {
+    "title": "Go maps in action",
+    "url": "https://go.dev/blog/maps"
+  },
+  "effective_go-3": {
+    "title": "Effective Go: Methods",
+    "url": "https://go.dev/doc/effective_go#methods"
+  },
+  "1-2": {
+    "title": "Tour: Pointers",
+    "url": "https://go.dev/tour/moretypes/1"
+  },
+  "go1.13-errors": {
+    "title": "Working with Errors in Go 1.13",
+    "url": "https://go.dev/blog/go1.13-errors"
+  },
+  "errors": {
+    "title": "errors package",
+    "url": "https://pkg.go.dev/errors"
+  },
+  "code-2": {
+    "title": "How to Write Go Code — Packages",
+    "url": "https://go.dev/doc/code#Organization"
+  },
+  "package-names": {
+    "title": "Package names",
+    "url": "https://go.dev/blog/package-names"
+  },
+  "go-proverbs.github.io": {
+    "title": "Go Proverbs (Rob Pike)",
+    "url": "https://go-proverbs.github.io/"
+  },
+  "json": {
+    "title": "encoding/json",
+    "url": "https://pkg.go.dev/encoding/json"
+  },
+  "json-2": {
+    "title": "JSON and Go",
+    "url": "https://go.dev/blog/json"
+  },
+  "intro-generics": {
+    "title": "An Introduction To Generics",
+    "url": "https://go.dev/blog/intro-generics"
+  },
+  "43651-type-parameters": {
+    "title": "Type Parameters Proposal",
+    "url": "https://go.dev/design/43651-type-parameters"
+  },
+  "slices": {
+    "title": "slices package",
+    "url": "https://pkg.go.dev/slices"
+  },
+  "maps-2": {
+    "title": "maps package",
+    "url": "https://pkg.go.dev/maps"
+  },
+  "cmp": {
+    "title": "cmp package",
+    "url": "https://pkg.go.dev/cmp"
+  },
+  "1-3": {
+    "title": "Tour: Concurrency",
+    "url": "https://go.dev/tour/concurrency/1"
+  },
+  "codelab-share": {
+    "title": "Share Memory By Communicating",
+    "url": "https://go.dev/blog/codelab-share"
+  },
+  "sync": {
+    "title": "sync package",
+    "url": "https://pkg.go.dev/sync"
+  },
+  "race_detector": {
+    "title": "Data Race Detector",
+    "url": "https://go.dev/doc/articles/race_detector"
+  },
+  "testing": {
+    "title": "testing package",
+    "url": "https://pkg.go.dev/testing"
+  },
+  "TableDrivenTests": {
+    "title": "Table Driven Tests",
+    "url": "https://go.dev/wiki/TableDrivenTests"
+  },
+  "http": {
+    "title": "net/http",
+    "url": "https://pkg.go.dev/net/http"
+  },
+  "routing-enhancements": {
+    "title": "Routing Enhancements (Go 1.22)",
+    "url": "https://go.dev/blog/routing-enhancements"
+  },
+  "context": {
+    "title": "Context package",
+    "url": "https://pkg.go.dev/context"
+  },
+  "context-2": {
+    "title": "Go Concurrency Patterns: Context",
+    "url": "https://go.dev/blog/context"
+  },
+  "govulncheck": {
+    "title": "govulncheck",
+    "url": "https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck"
+  },
+  "errgroup": {
+    "title": "errgroup",
+    "url": "https://pkg.go.dev/golang.org/x/sync/errgroup"
+  },
+  "CodeReviewComments": {
+    "title": "Go Code Review Comments",
+    "url": "https://go.dev/wiki/CodeReviewComments"
+  },
+  "errgroup-2": {
+    "title": "errgroup.SetLimit",
+    "url": "https://pkg.go.dev/golang.org/x/sync/errgroup#Group.SetLimit"
+  },
+  "semaphore": {
+    "title": "semaphore",
+    "url": "https://pkg.go.dev/golang.org/x/sync/semaphore"
+  },
+  "pprof": {
+    "title": "Profiling Go Programs",
+    "url": "https://go.dev/blog/pprof"
+  },
+  "pprof-2": {
+    "title": "net/http/pprof",
+    "url": "https://pkg.go.dev/net/http/pprof"
+  },
+  "docs": {
+    "title": "Gin documentation",
+    "url": "https://gin-gonic.com/docs/"
+  },
+  "examples": {
+    "title": "Gin examples",
+    "url": "https://github.com/gin-gonic/examples"
+  },
+  "tutorial": {
+    "title": "Python Tutorial",
+    "url": "https://docs.python.org/3/tutorial/"
+  },
+  "peps.python.org": {
+    "title": "PEPs Index",
+    "url": "https://peps.python.org/"
+  },
+  "fastapi.tiangolo.com": {
+    "title": "FastAPI documentation",
+    "url": "https://fastapi.tiangolo.com/"
+  },
+  "realpython.com": {
+    "title": "Real Python",
+    "url": "https://realpython.com/"
+  },
+  "interpreter": {
+    "title": "Using the Python Interpreter",
+    "url": "https://docs.python.org/3/tutorial/interpreter.html"
+  },
+  "__main__": {
+    "title": "__main__ — Top-level code",
+    "url": "https://docs.python.org/3/library/__main__.html"
+  },
+  "stdtypes": {
+    "title": "Built-in Types — Numeric",
+    "url": "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex"
+  },
+  "datamodel": {
+    "title": "Data Model",
+    "url": "https://docs.python.org/3/reference/datamodel.html"
+  },
+  "stdtypes-2": {
+    "title": "Text Sequence Type — str",
+    "url": "https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str"
+  },
+  "pep-0498": {
+    "title": "f-strings (PEP 498)",
+    "url": "https://peps.python.org/pep-0498/"
+  },
+  "controlflow": {
+    "title": "More Control Flow Tools",
+    "url": "https://docs.python.org/3/tutorial/controlflow.html"
+  },
+  "pep-0634": {
+    "title": "match/case (PEP 634)",
+    "url": "https://peps.python.org/pep-0634/"
+  },
+  "datastructures": {
+    "title": "Data Structures Tutorial",
+    "url": "https://docs.python.org/3/tutorial/datastructures.html"
+  },
+  "collections-2": {
+    "title": "collections — Container datatypes",
+    "url": "https://docs.python.org/3/library/collections.html"
+  },
+  "datastructures-2": {
+    "title": "List Comprehensions",
+    "url": "https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions"
+  },
+  "expressions": {
+    "title": "Generator Expressions",
+    "url": "https://docs.python.org/3/reference/expressions.html#generator-expressions"
+  },
+  "controlflow-2": {
+    "title": "Defining Functions",
+    "url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions"
+  },
+  "programming": {
+    "title": "Argument Clinic / *args **kwargs",
+    "url": "https://docs.python.org/3/faq/programming.html#what-is-the-purpose-of-the-asterisk-in-the-list"
+  },
+  "modules": {
+    "title": "Modules Tutorial",
+    "url": "https://docs.python.org/3/tutorial/modules.html"
+  },
+  "venv": {
+    "title": "venv — Virtual Environments",
+    "url": "https://docs.python.org/3/library/venv.html"
+  },
+  "uv": {
+    "title": "uv",
+    "url": "https://docs.astral.sh/uv/"
+  },
+  "errors-2": {
+    "title": "Errors and Exceptions",
+    "url": "https://docs.python.org/3/tutorial/errors.html"
+  },
+  "contextlib": {
+    "title": "contextlib",
+    "url": "https://docs.python.org/3/library/contextlib.html"
+  },
+  "classes": {
+    "title": "Classes Tutorial",
+    "url": "https://docs.python.org/3/tutorial/classes.html"
+  },
+  "functions": {
+    "title": "property()",
+    "url": "https://docs.python.org/3/library/functions.html#property"
+  },
+  "dataclasses": {
+    "title": "dataclasses",
+    "url": "https://docs.python.org/3/library/dataclasses.html"
+  },
+  "pep-0557": {
+    "title": "PEP 557 — Data Classes",
+    "url": "https://peps.python.org/pep-0557/"
+  },
+  "classes-2": {
+    "title": "Iterators",
+    "url": "https://docs.python.org/3/tutorial/classes.html#iterators"
+  },
+  "itertools": {
+    "title": "itertools",
+    "url": "https://docs.python.org/3/library/itertools.html"
+  },
+  "compound_stmts": {
+    "title": "Function Definitions — Decorators",
+    "url": "https://docs.python.org/3/reference/compound_stmts.html#function-definitions"
+  },
+  "functools": {
+    "title": "functools",
+    "url": "https://docs.python.org/3/library/functools.html"
+  },
+  "typing": {
+    "title": "typing — Support for type hints",
+    "url": "https://docs.python.org/3/library/typing.html"
+  },
+  "pep-0695": {
+    "title": "PEP 695 — Type Parameter Syntax",
+    "url": "https://peps.python.org/pep-0695/"
+  },
+  "pep-0544": {
+    "title": "Protocols (PEP 544)",
+    "url": "https://peps.python.org/pep-0544/"
+  },
+  "index-3": {
+    "title": "The Python Standard Library",
+    "url": "https://docs.python.org/3/library/index.html"
+  },
+  "pathlib": {
+    "title": "pathlib",
+    "url": "https://docs.python.org/3/library/pathlib.html"
+  },
+  "docs.pytest.org": {
+    "title": "pytest Documentation",
+    "url": "https://docs.pytest.org/"
+  },
+  "unittest": {
+    "title": "unittest",
+    "url": "https://docs.python.org/3/library/unittest.html"
+  },
+  "inputoutput": {
+    "title": "Reading and Writing Files",
+    "url": "https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files"
+  },
+  "json-3": {
+    "title": "json — JSON encoder and decoder",
+    "url": "https://docs.python.org/3/library/json.html"
+  },
+  "latest": {
+    "title": "Pydantic v2 Docs",
+    "url": "https://docs.pydantic.dev/latest/"
+  },
+  "ruff": {
+    "title": "Ruff",
+    "url": "https://docs.astral.sh/ruff/"
+  },
+  "logging": {
+    "title": "logging — Logging facility",
+    "url": "https://docs.python.org/3/library/logging.html"
+  },
+  "logging-2": {
+    "title": "Logging HOWTO",
+    "url": "https://docs.python.org/3/howto/logging.html"
+  },
+  "asyncio": {
+    "title": "asyncio",
+    "url": "https://docs.python.org/3/library/asyncio.html"
+  },
+  "asyncio-task": {
+    "title": "Coroutines and Tasks",
+    "url": "https://docs.python.org/3/library/asyncio-task.html"
+  },
+  "async": {
+    "title": "FastAPI — Concurrency and async / await",
+    "url": "https://fastapi.tiangolo.com/async/"
+  },
+  "dependencies": {
+    "title": "Dependencies",
+    "url": "https://fastapi.tiangolo.com/tutorial/dependencies/"
+  },
+  "asyncio-task-2": {
+    "title": "Structured Concurrency",
+    "url": "https://docs.python.org/3/library/asyncio-task.html#task-groups"
+  },
+  "concurrent.futures": {
+    "title": "concurrent.futures",
+    "url": "https://docs.python.org/3/library/concurrent.futures.html"
+  },
+  "pep-0703": {
+    "title": "PEP 703 — Making the GIL Optional",
+    "url": "https://peps.python.org/pep-0703/"
+  },
+  "packaging-projects": {
+    "title": "Packaging Python Projects",
+    "url": "https://packaging.python.org/en/latest/tutorials/packaging-projects/"
+  },
+  "pyproject-toml": {
+    "title": "pyproject.toml Spec",
+    "url": "https://packaging.python.org/en/latest/specifications/pyproject-toml/"
+  },
+  "profile": {
+    "title": "The Python Profilers",
+    "url": "https://docs.python.org/3/library/profile.html"
+  },
+  "timeit": {
+    "title": "timeit",
+    "url": "https://docs.python.org/3/library/timeit.html"
+  },
+  "tutorial-2": {
+    "title": "FastAPI tutorial",
+    "url": "https://fastapi.tiangolo.com/tutorial/"
+  },
+  "en": {
+    "title": "Ruby Documentation",
+    "url": "https://docs.ruby-lang.org/en/"
+  },
+  "ruby-doc.org": {
+    "title": "Ruby-Doc.org",
+    "url": "https://ruby-doc.org/"
+  },
+  "rubystyle.guide": {
+    "title": "Ruby Style Guide",
+    "url": "https://rubystyle.guide/"
+  },
+  "bundler.io": {
+    "title": "Bundler",
+    "url": "https://bundler.io/"
+  },
+  "master": {
+    "title": "Ruby Language Docs",
+    "url": "https://docs.ruby-lang.org/en/master/"
+  },
+  "syntax_rdoc": {
+    "title": "Ruby Syntax",
+    "url": "https://docs.ruby-lang.org/en/master/syntax_rdoc.html"
+  },
+  "String": {
+    "title": "String",
+    "url": "https://docs.ruby-lang.org/en/master/String.html"
+  },
+  "Symbol": {
+    "title": "Symbol",
+    "url": "https://docs.ruby-lang.org/en/master/Symbol.html"
+  },
+  "Numeric": {
+    "title": "Numeric",
+    "url": "https://docs.ruby-lang.org/en/master/Numeric.html"
+  },
+  "NilClass": {
+    "title": "NilClass",
+    "url": "https://docs.ruby-lang.org/en/master/NilClass.html"
+  },
+  "Array": {
+    "title": "Array",
+    "url": "https://docs.ruby-lang.org/en/master/Array.html"
+  },
+  "Hash": {
+    "title": "Hash",
+    "url": "https://docs.ruby-lang.org/en/master/Hash.html"
+  },
+  "Range": {
+    "title": "Range",
+    "url": "https://docs.ruby-lang.org/en/master/Range.html"
+  },
+  "control_expressions_rdoc": {
+    "title": "Control Expressions",
+    "url": "https://docs.ruby-lang.org/en/master/syntax/control_expressions_rdoc.html"
+  },
+  "calling_methods_rdoc": {
+    "title": "Calling Methods",
+    "url": "https://docs.ruby-lang.org/en/master/syntax/calling_methods_rdoc.html"
+  },
+  "methods_rdoc": {
+    "title": "Method Definition",
+    "url": "https://docs.ruby-lang.org/en/master/syntax/methods_rdoc.html"
+  },
+  "calling_methods_rdoc-2": {
+    "title": "Blocks and Yields",
+    "url": "https://docs.ruby-lang.org/en/master/syntax/calling_methods_rdoc.html#label-Block+Argument"
+  },
+  "Proc": {
+    "title": "Proc",
+    "url": "https://docs.ruby-lang.org/en/master/Proc.html"
+  },
+  "Enumerable": {
+    "title": "Enumerable",
+    "url": "https://docs.ruby-lang.org/en/master/Enumerable.html"
+  },
+  "Kernel": {
+    "title": "Kernel#format",
+    "url": "https://docs.ruby-lang.org/en/master/Kernel.html#method-i-format"
+  },
+  "File": {
+    "title": "File",
+    "url": "https://docs.ruby-lang.org/en/master/File.html"
+  },
+  "modules_and_classes_rdoc": {
+    "title": "Classes and Modules",
+    "url": "https://docs.ruby-lang.org/en/master/syntax/modules_and_classes_rdoc.html"
+  },
+  "Module": {
+    "title": "Module#attr_accessor",
+    "url": "https://docs.ruby-lang.org/en/master/Module.html#method-i-attr_accessor"
+  },
+  "Module-2": {
+    "title": "Module",
+    "url": "https://docs.ruby-lang.org/en/master/Module.html"
+  },
+  "Comparable": {
+    "title": "Comparable",
+    "url": "https://docs.ruby-lang.org/en/master/Comparable.html"
+  },
+  "Object-2": {
+    "title": "Object#respond_to?",
+    "url": "https://docs.ruby-lang.org/en/master/Object.html#method-i-respond_to-3F"
+  },
+  "exceptions_rdoc": {
+    "title": "Exceptions",
+    "url": "https://docs.ruby-lang.org/en/master/syntax/exceptions_rdoc.html"
+  },
+  "Exception": {
+    "title": "Exception",
+    "url": "https://docs.ruby-lang.org/en/master/Exception.html"
+  },
+  "pattern_matching_rdoc": {
+    "title": "Pattern Matching",
+    "url": "https://docs.ruby-lang.org/en/master/syntax/pattern_matching_rdoc.html"
+  },
+  "Enumerator": {
+    "title": "Enumerator",
+    "url": "https://docs.ruby-lang.org/en/master/Enumerator.html"
+  },
+  "Lazy": {
+    "title": "Enumerator::Lazy",
+    "url": "https://docs.ruby-lang.org/en/master/Enumerator/Lazy.html"
+  },
+  "guides.rubygems.org": {
+    "title": "RubyGems Guides",
+    "url": "https://guides.rubygems.org/"
+  },
+  "Minitest": {
+    "title": "Minitest",
+    "url": "https://docs.ruby-lang.org/en/master/Minitest.html"
+  },
+  "rspec.info": {
+    "title": "RSpec",
+    "url": "https://rspec.info/"
+  },
+  "JSON": {
+    "title": "JSON",
+    "url": "https://docs.ruby-lang.org/en/master/JSON.html"
+  },
+  "Struct": {
+    "title": "Struct",
+    "url": "https://docs.ruby-lang.org/en/master/Struct.html"
+  },
+  "Data": {
+    "title": "Data",
+    "url": "https://docs.ruby-lang.org/en/master/Data.html"
+  },
+  "BasicObject": {
+    "title": "BasicObject#method_missing",
+    "url": "https://docs.ruby-lang.org/en/master/BasicObject.html#method-i-method_missing"
+  },
+  "Module-3": {
+    "title": "Module#define_method",
+    "url": "https://docs.ruby-lang.org/en/master/Module.html#method-i-define_method"
+  },
+  "methods_rdoc-2": {
+    "title": "Singleton methods",
+    "url": "https://docs.ruby-lang.org/en/master/syntax/methods_rdoc.html#label-Singleton+Methods"
+  },
+  "refinements_rdoc": {
+    "title": "Refinements",
+    "url": "https://docs.ruby-lang.org/en/master/syntax/refinements_rdoc.html"
+  },
+  "Object-3": {
+    "title": "Object#freeze",
+    "url": "https://docs.ruby-lang.org/en/master/Object.html#method-i-freeze"
+  },
+  "Thread": {
+    "title": "Thread",
+    "url": "https://docs.ruby-lang.org/en/master/Thread.html"
+  },
+  "Ractor": {
+    "title": "Ractor",
+    "url": "https://docs.ruby-lang.org/en/master/Ractor.html"
+  },
+  "Fiber": {
+    "title": "Fiber",
+    "url": "https://docs.ruby-lang.org/en/master/Fiber.html"
+  },
+  "yjit_md": {
+    "title": "YJIT",
+    "url": "https://docs.ruby-lang.org/en/master/yjit_md.html"
+  },
+  "Benchmark": {
+    "title": "Benchmark",
+    "url": "https://docs.ruby-lang.org/en/master/Benchmark.html"
+  },
+  "guides.rubyonrails.org": {
+    "title": "Rails Guides",
+    "url": "https://guides.rubyonrails.org/"
+  },
+  "hotwired.dev": {
+    "title": "Hotwire",
+    "url": "https://hotwired.dev/"
+  }
+}

@@ -1,0 +1,1759 @@
+[
+  {
+    "id": "plg-java-lab-streams",
+    "domainId": "plg-java",
+    "title": "Aggregate with Streams + Collectors",
+    "minutes": 20,
+    "summary": "Group records and sum a field with the Stream API — the go-to way to do in-memory reporting/analytics in modern Java.",
+    "steps": [
+      {
+        "instructions": "1. Model an Order as a record (region, amount).\n2. Group by region and sum amounts with Collectors.groupingBy + summingInt.\n3. Use a TreeMap supplier for deterministic, sorted output.\n4. Print each region=total line."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```java\nimport java.util.*;\nimport java.util.stream.*;\n\npublic class Sales {\n  record Order(String region, int amount) {}\n\n  public static void main(String[] args) {\n    var orders = List.of(\n      new Order(\"EU\", 100),\n      new Order(\"US\", 200),\n      new Order(\"EU\", 50),\n      new Order(\"US\", 75)\n    );\n    // TODO: group by region, sum amount, print sorted\n  }\n}\n\n```\n\nReferences: [Collectors](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html) — groupingBy, summingInt, toMap · [Stream](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html) — Functional data processing\n\n## Solution\n\n```java\nimport java.util.*;\nimport java.util.stream.*;\n\npublic class Sales {\n  record Order(String region, int amount) {}\n\n  public static void main(String[] args) {\n    var orders = List.of(\n      new Order(\"EU\", 100),\n      new Order(\"US\", 200),\n      new Order(\"EU\", 50),\n      new Order(\"US\", 75)\n    );\n\n    Map<String, Integer> totals = orders.stream()\n      .collect(Collectors.groupingBy(\n        Order::region,\n        TreeMap::new,\n        Collectors.summingInt(Order::amount)));\n\n    totals.forEach((region, total) -> System.out.println(region + \"=\" + total));\n  }\n}\n\n```\n\n## Expected output\n\n```\nEU=150\nUS=275\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-java-lab-completablefuture",
+    "domainId": "plg-java",
+    "title": "Async compose with CompletableFuture",
+    "minutes": 20,
+    "summary": "Combine two async computations and transform the result without blocking — the standard non-reactive way to orchestrate concurrent work.",
+    "steps": [
+      {
+        "instructions": "1. supplyAsync two independent values.\n2. thenCombine them (sum).\n3. thenApply a transform (x10).\n4. get() the final result and print it."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```java\nimport java.util.concurrent.*;\n\npublic class Pipeline {\n  public static void main(String[] args) throws Exception {\n    // TODO: combine two async values, transform, print\n    System.out.println(0);\n  }\n}\n\n```\n\nReferences: [CompletableFuture](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html) — thenCombine, thenApply, allOf\n\n## Solution\n\n```java\nimport java.util.concurrent.*;\n\npublic class Pipeline {\n  public static void main(String[] args) throws Exception {\n    CompletableFuture<Integer> a = CompletableFuture.supplyAsync(() -> 2);\n    CompletableFuture<Integer> b = CompletableFuture.supplyAsync(() -> 3);\n\n    int result = a.thenCombine(b, Integer::sum)\n                  .thenApply(sum -> sum * 10)\n                  .get();\n\n    System.out.println(result);\n  }\n}\n\n```\n\n## Expected output\n\n```\n50\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-java-lab-concurrent-cache",
+    "domainId": "plg-java",
+    "title": "Thread-safe memoization cache",
+    "minutes": 20,
+    "summary": "Cache expensive results with ConcurrentHashMap.computeIfAbsent — a lock-free pattern for safe, compute-once caching under concurrency.",
+    "steps": [
+      {
+        "instructions": "1. Hold results in a ConcurrentHashMap.\n2. Use computeIfAbsent so the value is computed at most once per key.\n3. Count how many times the compute lambda actually runs.\n4. Prove repeated lookups reuse the cached value."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```java\nimport java.util.concurrent.*;\n\npublic class Memo {\n  static final ConcurrentHashMap<Integer, Long> cache = new ConcurrentHashMap<>();\n  static long computes = 0;\n\n  static long square(int n) {\n    // TODO: computeIfAbsent, increment computes on miss\n    return 0;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(square(4));\n    System.out.println(square(4));\n    System.out.println(square(5));\n    System.out.println(\"computed=\" + computes);\n  }\n}\n\n```\n\nReferences: [ConcurrentHashMap](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ConcurrentHashMap.html) — computeIfAbsent for atomic compute-once\n\n## Solution\n\n```java\nimport java.util.concurrent.*;\n\npublic class Memo {\n  static final ConcurrentHashMap<Integer, Long> cache = new ConcurrentHashMap<>();\n  static long computes = 0;\n\n  static long square(int n) {\n    return cache.computeIfAbsent(n, k -> {\n      computes++;\n      return (long) k * k;\n    });\n  }\n\n  public static void main(String[] args) {\n    System.out.println(square(4));\n    System.out.println(square(4));\n    System.out.println(square(5));\n    System.out.println(\"computed=\" + computes);\n  }\n}\n\n```\n\n## Expected output\n\n```\n16\n16\n25\ncomputed=2\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-java-lab-vt-executor",
+    "domainId": "plg-java",
+    "title": "Fan-out with virtual threads",
+    "minutes": 20,
+    "summary": "Fetch three URLs concurrently using a virtual-thread executor and join results without a reactive stack.",
+    "steps": [
+      {
+        "instructions": "1. Create a virtual-thread-per-task executor.\n2. Submit three Callable tasks that return a String (simulate with Thread.sleep + return).\n3. Collect results with Future.get() and print them joined by commas.\n4. Compare mentally: how would this look with CompletableFuture.allOf?"
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```java\nimport java.util.concurrent.*;\n\npublic class FanOut {\n  static String fetch(String id) throws Exception {\n    Thread.sleep(100);\n    return id.toUpperCase();\n  }\n\n  public static void main(String[] args) throws Exception {\n    // TODO: use virtual threads to fetch a, b, c concurrently\n    System.out.println(\"a,b,c\");\n  }\n}\n\n```\n\nReferences: [Virtual Threads (JEP 444)](https://openjdk.org/jeps/444) — Lightweight threads for high-throughput I/O\n\n## Solution\n\n```java\nimport java.util.concurrent.*;\n\npublic class FanOut {\n  static String fetch(String id) throws Exception {\n    Thread.sleep(100);\n    return id.toUpperCase();\n  }\n\n  public static void main(String[] args) throws Exception {\n    try (var ex = Executors.newVirtualThreadPerTaskExecutor()) {\n      var a = ex.submit(() -> fetch(\"a\"));\n      var b = ex.submit(() -> fetch(\"b\"));\n      var c = ex.submit(() -> fetch(\"c\"));\n      System.out.println(a.get() + \",\" + b.get() + \",\" + c.get());\n    }\n  }\n}\n\n```\n\n## Expected output\n\n```\nA,B,C\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-java-practice-fizzbuzz",
+    "domainId": "plg-java",
+    "title": "FizzBuzz",
+    "minutes": 15,
+    "summary": "Print numbers 1..15, but print `Fizz` for multiples of 3, `Buzz` for multiples of 5, and `FizzBuzz` for multiples of both.",
+    "steps": [
+      {
+        "instructions": "Print numbers 1..15, but print `Fizz` for multiples of 3, `Buzz` for multiples of 5, and `FizzBuzz` for multiples of both.\n\n```java\npublic class Main {\n  public static void main(String[] args) {\n    for (int i = 1; i <= 15; i++) {\n      // TODO\n      System.out.println(i);\n    }\n  }\n}\n\n```\n\n## Hints\n\n- Check divisibility by 15 first.\n- Use else-if chains with the modulo operator.\n\n## Solution\n\n```java\npublic class Main {\n  public static void main(String[] args) {\n    for (int i = 1; i <= 15; i++) {\n      if (i % 15 == 0) System.out.println(\"FizzBuzz\");\n      else if (i % 3 == 0) System.out.println(\"Fizz\");\n      else if (i % 5 == 0) System.out.println(\"Buzz\");\n      else System.out.println(i);\n    }\n  }\n}\n\n```\n\n## Expected output\n\n```\n1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-java-practice-reverse",
+    "domainId": "plg-java",
+    "title": "Reverse a string",
+    "minutes": 15,
+    "summary": "Reverse a string and print the reverse of `hello`.",
+    "steps": [
+      {
+        "instructions": "Reverse a string and print the reverse of `hello`.\n\n```java\npublic class Main {\n  static String reverse(String s) {\n    // TODO\n    return s;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(reverse(\"hello\"));\n  }\n}\n\n```\n\n## Hints\n\n- StringBuilder has a reverse() method.\n- new StringBuilder(s).reverse().toString().\n\n## Solution\n\n```java\npublic class Main {\n  static String reverse(String s) {\n    return new StringBuilder(s).reverse().toString();\n  }\n\n  public static void main(String[] args) {\n    System.out.println(reverse(\"hello\"));\n  }\n}\n\n```\n\n## Expected output\n\n```\nolleh\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-java-practice-twosum",
+    "domainId": "plg-java",
+    "title": "Two Sum",
+    "minutes": 15,
+    "summary": "Given `nums` and a `target`, return the indices of the two numbers that add up to the target. For `{2, 7, 11, 15}` and target `9`, print the indices separated by a space.",
+    "steps": [
+      {
+        "instructions": "Given `nums` and a `target`, return the indices of the two numbers that add up to the target. For `{2, 7, 11, 15}` and target `9`, print the indices separated by a space.\n\n```java\nimport java.util.*;\n\npublic class Main {\n  static int[] twoSum(int[] nums, int target) {\n    // TODO\n    return new int[] {-1, -1};\n  }\n\n  public static void main(String[] args) {\n    int[] r = twoSum(new int[] {2, 7, 11, 15}, 9);\n    System.out.println(r[0] + \" \" + r[1]);\n  }\n}\n\n```\n\n## Hints\n\n- Use a HashMap<Integer, Integer> from value to index.\n- For each element, look up target - nums[i].\n\n## Solution\n\n```java\nimport java.util.*;\n\npublic class Main {\n  static int[] twoSum(int[] nums, int target) {\n    Map<Integer, Integer> seen = new HashMap<>();\n    for (int i = 0; i < nums.length; i++) {\n      Integer j = seen.get(target - nums[i]);\n      if (j != null) return new int[] {j, i};\n      seen.put(nums[i], i);\n    }\n    return new int[] {-1, -1};\n  }\n\n  public static void main(String[] args) {\n    int[] r = twoSum(new int[] {2, 7, 11, 15}, 9);\n    System.out.println(r[0] + \" \" + r[1]);\n  }\n}\n\n```\n\n## Expected output\n\n```\n0 1\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-java-practice-palindrome",
+    "domainId": "plg-java",
+    "title": "Palindrome check",
+    "minutes": 15,
+    "summary": "Return whether a string reads the same forwards and backwards. Print the result for `racecar`.",
+    "steps": [
+      {
+        "instructions": "Return whether a string reads the same forwards and backwards. Print the result for `racecar`.\n\n```java\npublic class Main {\n  static boolean isPalindrome(String s) {\n    // TODO\n    return false;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(isPalindrome(\"racecar\"));\n  }\n}\n\n```\n\n## Hints\n\n- Two-pointer comparison with charAt.\n- Return false on the first mismatch.\n\n## Solution\n\n```java\npublic class Main {\n  static boolean isPalindrome(String s) {\n    int i = 0, j = s.length() - 1;\n    while (i < j) {\n      if (s.charAt(i++) != s.charAt(j--)) return false;\n    }\n    return true;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(isPalindrome(\"racecar\"));\n  }\n}\n\n```\n\n## Expected output\n\n```\ntrue\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-java-practice-lru",
+    "domainId": "plg-java",
+    "title": "Thread-safe LRU sketch",
+    "minutes": 15,
+    "summary": "Implement a minimal LRU cache with get/put, capacity N, using LinkedHashMap access-order. Discuss (in a comment) why ConcurrentHashMap alone is not enough for LRU eviction ordering.",
+    "steps": [
+      {
+        "instructions": "Implement a minimal LRU cache with get/put, capacity N, using LinkedHashMap access-order. Discuss (in a comment) why ConcurrentHashMap alone is not enough for LRU eviction ordering.\n\n```java\nimport java.util.*;\n\npublic class LruCache<K, V> {\n  private final int capacity;\n  // TODO\n\n  public LruCache(int capacity) {\n    this.capacity = capacity;\n  }\n\n  public synchronized V get(K key) {\n    return null;\n  }\n\n  public synchronized void put(K key, V value) {\n  }\n}\n\n```\n\n## Hints\n\n- LinkedHashMap(capacity, loadFactor, true) enables access-order.\n- Override removeEldestEntry for eviction.\n- Wrap mutating methods with synchronized or use a ConcurrentHashMap + separate order structure.\n\n## Solution\n\n```java\nimport java.util.*;\n\npublic class LruCache<K, V> {\n  private final int capacity;\n  private final LinkedHashMap<K, V> map;\n\n  public LruCache(int capacity) {\n    this.capacity = capacity;\n    this.map = new LinkedHashMap<>(16, 0.75f, true) {\n      @Override\n      protected boolean removeEldestEntry(Map.Entry<K, V> e) {\n        return size() > LruCache.this.capacity;\n      }\n    };\n  }\n\n  public synchronized V get(K key) {\n    return map.get(key);\n  }\n\n  public synchronized void put(K key, V value) {\n    map.put(key, value);\n  }\n}\n\n```\n\n## Expected output\n\n```\n(self-check: get returns most recently used; eldest evicted when over capacity)\n```"
+      }
+    ],
+    "difficulty": "advanced"
+  },
+  {
+    "id": "plg-java-fw-rest-controller",
+    "domainId": "plg-java",
+    "title": "1. First REST controller",
+    "minutes": 15,
+    "summary": "Expose GET /hello?name=Corgi returning {\"message\":\"Hello, Corgi\"}.",
+    "steps": [
+      {
+        "instructions": "**Concept:** A `@RestController` maps HTTP requests to methods. `@GetMapping` binds a path, and the returned object is serialized to JSON automatically by Jackson.\n\nExpose GET /hello?name=Corgi returning {\"message\":\"Hello, Corgi\"}.\n\n## Steps\n\n1. Annotate the class with @RestController.\n2. Add a @GetMapping(\"/hello\") method.\n3. Read the name via @RequestParam with a default.\n4. Return a record; Spring serializes it to JSON.\n\n## Hints\n\n- @RequestParam(defaultValue = \"world\") String name.\n- A Java record makes a tidy response body.\n\n## Starter\n\n```java\nimport org.springframework.web.bind.annotation.*;\n\n@RestController\npublic class HelloController {\n  // TODO: GET /hello?name=...\n}\n\n```\n\n## Solution\n\n```java\nimport org.springframework.web.bind.annotation.*;\n\n@RestController\npublic class HelloController {\n  public record Greeting(String message) {}\n\n  @GetMapping(\"/hello\")\n  public Greeting hello(@RequestParam(defaultValue = \"world\") String name) {\n    return new Greeting(\"Hello, \" + name);\n  }\n}\n\n```\n\n## Expected output\n\n```\nGET /hello?name=Corgi -> {\"message\":\"Hello, Corgi\"}\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-java-fw-service-di",
+    "domainId": "plg-java",
+    "title": "2. Dependency injection & service layer",
+    "minutes": 15,
+    "summary": "Move greeting logic into a GreetingService and inject it into the controller.",
+    "steps": [
+      {
+        "instructions": "**Concept:** Keep controllers thin. Business logic lives in a `@Service` bean that Spring injects via constructor. Constructor injection keeps dependencies final and testable.\n\nMove greeting logic into a GreetingService and inject it into the controller.\n\n## Steps\n\n1. Create a @Service with a greet(name) method.\n2. Declare it as a final field in the controller.\n3. Inject it through the constructor.\n4. Delegate from the endpoint to the service.\n\n## Hints\n\n- A single constructor is auto-wired; no @Autowired needed.\n- Return the service result directly.\n\n## Starter\n\n```java\nimport org.springframework.stereotype.Service;\nimport org.springframework.web.bind.annotation.*;\n\n@Service\nclass GreetingService {\n  // TODO\n}\n\n@RestController\nclass GreetingController {\n  // TODO: inject GreetingService\n}\n\n```\n\n## Solution\n\n```java\nimport org.springframework.stereotype.Service;\nimport org.springframework.web.bind.annotation.*;\n\n@Service\nclass GreetingService {\n  String greet(String name) {\n    return \"Hello, \" + name;\n  }\n}\n\n@RestController\nclass GreetingController {\n  private final GreetingService service;\n\n  GreetingController(GreetingService service) {\n    this.service = service;\n  }\n\n  @GetMapping(\"/hello\")\n  String hello(@RequestParam(defaultValue = \"world\") String name) {\n    return service.greet(name);\n  }\n}\n\n```\n\n## Expected output\n\n```\nGET /hello?name=Corgi -> Hello, Corgi\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-java-fw-validation",
+    "domainId": "plg-java",
+    "title": "3. Validate request bodies",
+    "minutes": 15,
+    "summary": "Accept POST /users with a validated body {name, email}.",
+    "steps": [
+      {
+        "instructions": "**Concept:** Use Bean Validation (`jakarta.validation`) with `@Valid` on the body. Invalid requests short-circuit with a 400 before your handler runs.\n\nAccept POST /users with a validated body {name, email}.\n\n## Steps\n\n1. Define a record with @NotBlank and @Email constraints.\n2. Annotate the @RequestBody parameter with @Valid.\n3. Return the created representation.\n\n## Hints\n\n- @Email on the email field, @NotBlank on name.\n- @Valid triggers MethodArgumentNotValidException on failure.\n\n## Starter\n\n```java\nimport jakarta.validation.constraints.*;\nimport org.springframework.web.bind.annotation.*;\n\n@RestController\nclass UserController {\n  record CreateUser(/* TODO constraints */ String name, String email) {}\n\n  // TODO: POST /users with @Valid\n}\n\n```\n\n## Solution\n\n```java\nimport jakarta.validation.Valid;\nimport jakarta.validation.constraints.*;\nimport org.springframework.web.bind.annotation.*;\n\n@RestController\nclass UserController {\n  record CreateUser(@NotBlank String name, @Email String email) {}\n\n  @PostMapping(\"/users\")\n  CreateUser create(@Valid @RequestBody CreateUser body) {\n    return body;\n  }\n}\n\n```\n\n## Expected output\n\n```\nPOST /users with a blank name -> 400 Bad Request\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-java-fw-jpa-repository",
+    "domainId": "plg-java",
+    "title": "4. Persist with Spring Data JPA",
+    "minutes": 15,
+    "summary": "Model a User entity and a repository with a findByEmail lookup.",
+    "steps": [
+      {
+        "instructions": "**Concept:** An `@Entity` maps to a table; a `JpaRepository` gives you CRUD plus derived query methods (like `findByEmail`) with zero SQL.\n\nModel a User entity and a repository with a findByEmail lookup.\n\n## Steps\n\n1. Annotate the class with @Entity and add an @Id @GeneratedValue field.\n2. Declare interface extending JpaRepository<User, Long>.\n3. Add a derived query method Optional<User> findByEmail(String email).\n\n## Hints\n\n- Spring implements the repository at runtime.\n- Method name maps to the WHERE clause.\n\n## Starter\n\n```java\nimport jakarta.persistence.*;\nimport org.springframework.data.jpa.repository.JpaRepository;\nimport java.util.Optional;\n\n@Entity\nclass User {\n  // TODO: id, name, email\n}\n\ninterface UserRepository /* TODO */ {\n}\n\n```\n\n## Solution\n\n```java\nimport jakarta.persistence.*;\nimport org.springframework.data.jpa.repository.JpaRepository;\nimport java.util.Optional;\n\n@Entity\nclass User {\n  @Id\n  @GeneratedValue(strategy = GenerationType.IDENTITY)\n  Long id;\n  String name;\n  String email;\n}\n\ninterface UserRepository extends JpaRepository<User, Long> {\n  Optional<User> findByEmail(String email);\n}\n\n```\n\n## Expected output\n\n```\nuserRepository.findByEmail(\"a@b.com\") -> Optional<User>\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-java-fw-exception-handler",
+    "domainId": "plg-java",
+    "title": "5. Global exception handling",
+    "minutes": 15,
+    "summary": "Return 404 with a JSON body when a NotFoundException is thrown.",
+    "steps": [
+      {
+        "instructions": "**Concept:** A `@RestControllerAdvice` centralizes error mapping. `@ExceptionHandler` methods translate exceptions into consistent JSON + status codes across every controller.\n\nReturn 404 with a JSON body when a NotFoundException is thrown.\n\n## Steps\n\n1. Create a NotFoundException extends RuntimeException.\n2. Add a @RestControllerAdvice class.\n3. Map it with @ExceptionHandler + @ResponseStatus(NOT_FOUND).\n\n## Hints\n\n- Return a small record { error }.\n- @ResponseStatus sets the HTTP code.\n\n## Starter\n\n```java\nimport org.springframework.http.HttpStatus;\nimport org.springframework.web.bind.annotation.*;\n\nclass NotFoundException extends RuntimeException {\n  NotFoundException(String m) { super(m); }\n}\n\n// TODO: @RestControllerAdvice mapping NotFoundException -> 404\n\n```\n\n## Solution\n\n```java\nimport org.springframework.http.HttpStatus;\nimport org.springframework.web.bind.annotation.*;\n\nclass NotFoundException extends RuntimeException {\n  NotFoundException(String m) { super(m); }\n}\n\n@RestControllerAdvice\nclass ApiExceptionHandler {\n  record ApiError(String error) {}\n\n  @ExceptionHandler(NotFoundException.class)\n  @ResponseStatus(HttpStatus.NOT_FOUND)\n  ApiError handle(NotFoundException ex) {\n    return new ApiError(ex.getMessage());\n  }\n}\n\n```\n\n## Expected output\n\n```\nthrow new NotFoundException(\"missing\") -> 404 {\"error\":\"missing\"}\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-java-fw-mockmvc-test",
+    "domainId": "plg-java",
+    "title": "6. Slice test with MockMvc",
+    "minutes": 15,
+    "summary": "Assert GET /hello?name=Corgi returns 200 and the expected body.",
+    "steps": [
+      {
+        "instructions": "**Concept:** `@WebMvcTest` loads only the web layer and gives you a `MockMvc` to drive requests without a running server. Collaborators are supplied as mocks so tests stay fast and focused.\n\nAssert GET /hello?name=Corgi returns 200 and the expected body.\n\n## Steps\n\n1. Annotate the test with @WebMvcTest(GreetingController.class).\n2. Autowire MockMvc.\n3. perform(get(...)) and assert status + content.\n\n## Hints\n\n- Use static imports from MockMvcRequestBuilders and MockMvcResultMatchers.\n- andExpect(status().isOk()).\n\n## Starter\n\n```java\nimport org.junit.jupiter.api.Test;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;\nimport org.springframework.test.web.servlet.MockMvc;\n\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;\n\n@WebMvcTest(GreetingController.class)\nclass GreetingControllerTest {\n  @Autowired MockMvc mvc;\n\n  @Test\n  void greets() throws Exception {\n    // TODO\n  }\n}\n\n```\n\n## Solution\n\n```java\nimport org.junit.jupiter.api.Test;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;\nimport org.springframework.test.web.servlet.MockMvc;\n\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;\n\n@WebMvcTest(GreetingController.class)\nclass GreetingControllerTest {\n  @Autowired MockMvc mvc;\n\n  @Test\n  void greets() throws Exception {\n    mvc.perform(get(\"/hello\").param(\"name\", \"Corgi\"))\n       .andExpect(status().isOk())\n       .andExpect(content().string(\"Hello, Corgi\"));\n  }\n}\n\n```\n\n## Expected output\n\n```\nTest passes: 200 OK, body \"Hello, Corgi\"\n```"
+      }
+    ],
+    "difficulty": "advanced"
+  },
+  {
+    "id": "plg-java-q-coding",
+    "domainId": "plg-java",
+    "title": "Write a method that counts distinct words in a sentence (split on whitespace)…",
+    "minutes": 10,
+    "summary": "Write a method that counts distinct words in a sentence (split on whitespace), case-insensitive. Return the count as an int. Print it for \"Hello hello WORLD\".",
+    "steps": [
+      {
+        "instructions": "Write a method that counts distinct words in a sentence (split on whitespace), case-insensitive. Return the count as an int. Print it for \"Hello hello WORLD\".\n\n## Starter\n\n```java\nimport java.util.*;\n\npublic class WordCount {\n  static int distinct(String s) {\n    // TODO\n    return 0;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(distinct(\"Hello hello WORLD\"));\n  }\n}\n\n```\n\n## Reference solution\n\n```java\nimport java.util.*;\n\npublic class WordCount {\n  static int distinct(String s) {\n    Set<String> set = new HashSet<>();\n    for (String w : s.trim().split(\"\\\\s+\")) {\n      if (!w.isEmpty()) set.add(w.toLowerCase());\n    }\n    return set.size();\n  }\n\n  public static void main(String[] args) {\n    System.out.println(distinct(\"Hello hello WORLD\"));\n  }\n}\n\n```\n\n## Expected output\n\n```\n2\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-01-hello-jvm-coding-1",
+    "domainId": "plg-java",
+    "title": "Write a program that prints exactly: Hello, JVM!",
+    "minutes": 10,
+    "summary": "Write a program that prints exactly: Hello, JVM!",
+    "steps": [
+      {
+        "instructions": "Write a program that prints exactly: Hello, JVM!\n\n## Starter\n\n```java\npublic class HelloJvm {\n  public static void main(String[] args) {\n    // TODO: print \"Hello, JVM!\"\n  }\n}\n\n```\n\n## Reference solution\n\n```java\npublic class HelloJvm {\n  public static void main(String[] args) {\n    System.out.println(\"Hello, JVM!\");\n  }\n}\n\n```\n\n## Expected output\n\n```\nHello, JVM!\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-02-primitives-vars-coding-1",
+    "domainId": "plg-java",
+    "title": "Using var, declare a=7 and b=5 (both int), then print their sum.",
+    "minutes": 10,
+    "summary": "Using var, declare a=7 and b=5 (both int), then print their sum.",
+    "steps": [
+      {
+        "instructions": "Using var, declare a=7 and b=5 (both int), then print their sum.\n\n## Starter\n\n```java\npublic class Sum {\n  public static void main(String[] args) {\n    // TODO: declare a and b with var, print a + b\n  }\n}\n\n```\n\n## Reference solution\n\n```java\npublic class Sum {\n  public static void main(String[] args) {\n    var a = 7;\n    var b = 5;\n    System.out.println(a + b);\n  }\n}\n\n```\n\n## Expected output\n\n```\n12\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-04-strings-coding-1",
+    "domainId": "plg-java",
+    "title": "Write join(String[] words) using StringBuilder that returns the words separat…",
+    "minutes": 10,
+    "summary": "Write join(String[] words) using StringBuilder that returns the words separated by a single space with no trailing space. Print join(new String[]{\"a\",\"b\",\"c\"}).",
+    "steps": [
+      {
+        "instructions": "Write join(String[] words) using StringBuilder that returns the words separated by a single space with no trailing space. Print join(new String[]{\"a\",\"b\",\"c\"}).\n\n## Starter\n\n```java\npublic class Join {\n  static String join(String[] words) {\n    // TODO\n    return \"\";\n  }\n\n  public static void main(String[] args) {\n    System.out.println(join(new String[]{\"a\", \"b\", \"c\"}));\n  }\n}\n\n```\n\n## Reference solution\n\n```java\npublic class Join {\n  static String join(String[] words) {\n    StringBuilder sb = new StringBuilder();\n    for (int i = 0; i < words.length; i++) {\n      if (i > 0) sb.append(' ');\n      sb.append(words[i]);\n    }\n    return sb.toString();\n  }\n\n  public static void main(String[] args) {\n    System.out.println(join(new String[]{\"a\", \"b\", \"c\"}));\n  }\n}\n\n```\n\n## Expected output\n\n```\na b c\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-06-methods-coding-1",
+    "domainId": "plg-java",
+    "title": "Write two overloaded methods named describe: one for int returning \"int:VALUE…",
+    "minutes": 10,
+    "summary": "Write two overloaded methods named describe: one for int returning \"int:VALUE\" and one for String returning \"str:VALUE\". Print describe(5) then describe(\"hi\") on separate lines.",
+    "steps": [
+      {
+        "instructions": "Write two overloaded methods named describe: one for int returning \"int:VALUE\" and one for String returning \"str:VALUE\". Print describe(5) then describe(\"hi\") on separate lines.\n\n## Starter\n\n```java\npublic class Describe {\n  static String describe(int v) {\n    // TODO\n    return \"\";\n  }\n\n  static String describe(String v) {\n    // TODO\n    return \"\";\n  }\n\n  public static void main(String[] args) {\n    System.out.println(describe(5));\n    System.out.println(describe(\"hi\"));\n  }\n}\n\n```\n\n## Reference solution\n\n```java\npublic class Describe {\n  static String describe(int v) {\n    return \"int:\" + v;\n  }\n\n  static String describe(String v) {\n    return \"str:\" + v;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(describe(5));\n    System.out.println(describe(\"hi\"));\n  }\n}\n\n```\n\n## Expected output\n\n```\nint:5\nstr:hi\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-07-classes-objects-coding-1",
+    "domainId": "plg-java",
+    "title": "Given an Account class with a constructor(opening balance in cents), deposit(…",
+    "minutes": 10,
+    "summary": "Given an Account class with a constructor(opening balance in cents), deposit(long cents), and balance(): create an Account with opening balance 1000, deposit 250, then print the balance.",
+    "steps": [
+      {
+        "instructions": "Given an Account class with a constructor(opening balance in cents), deposit(long cents), and balance(): create an Account with opening balance 1000, deposit 250, then print the balance.\n\n## Starter\n\n```java\npublic class Main {\n  static class Account {\n    private long balanceCents;\n    Account(long opening) { this.balanceCents = opening; }\n    void deposit(long cents) {\n      // TODO: add cents to balanceCents\n    }\n    long balance() { return balanceCents; }\n  }\n\n  public static void main(String[] args) {\n    Account acc = new Account(1000);\n    acc.deposit(250);\n    System.out.println(acc.balance());\n  }\n}\n\n```\n\n## Reference solution\n\n```java\npublic class Main {\n  static class Account {\n    private long balanceCents;\n    Account(long opening) { this.balanceCents = opening; }\n    void deposit(long cents) {\n      balanceCents += cents;\n    }\n    long balance() { return balanceCents; }\n  }\n\n  public static void main(String[] args) {\n    Account acc = new Account(1000);\n    acc.deposit(250);\n    System.out.println(acc.balance());\n  }\n}\n\n```\n\n## Expected output\n\n```\n1250\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-09-interfaces-coding-1",
+    "domainId": "plg-java",
+    "title": "Create interface Shape with a default method describe() returning \"a shape\" a…",
+    "minutes": 10,
+    "summary": "Create interface Shape with a default method describe() returning \"a shape\" and an abstract method area() returning double. Implement class Square(side) where area() = side*side. Print new Square(4).describe() then new Square(4).area().",
+    "steps": [
+      {
+        "instructions": "Create interface Shape with a default method describe() returning \"a shape\" and an abstract method area() returning double. Implement class Square(side) where area() = side*side. Print new Square(4).describe() then new Square(4).area().\n\n## Starter\n\n```java\npublic class Main {\n  interface Shape {\n    default String describe() { return \"a shape\"; }\n    double area();\n  }\n\n  static class Square implements Shape {\n    private final double side;\n    Square(double side) { this.side = side; }\n    public double area() {\n      // TODO: return side * side\n      return 0;\n    }\n  }\n\n  public static void main(String[] args) {\n    Square sq = new Square(4);\n    System.out.println(sq.describe());\n    System.out.println(sq.area());\n  }\n}\n\n```\n\n## Reference solution\n\n```java\npublic class Main {\n  interface Shape {\n    default String describe() { return \"a shape\"; }\n    double area();\n  }\n\n  static class Square implements Shape {\n    private final double side;\n    Square(double side) { this.side = side; }\n    public double area() {\n      return side * side;\n    }\n  }\n\n  public static void main(String[] args) {\n    Square sq = new Square(4);\n    System.out.println(sq.describe());\n    System.out.println(sq.area());\n  }\n}\n\n```\n\n## Expected output\n\n```\na shape\n16.0\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-11-exceptions-coding-1",
+    "domainId": "plg-java",
+    "title": "Create class Resource implementing AutoCloseable that prints \"open\" in its co…",
+    "minutes": 10,
+    "summary": "Create class Resource implementing AutoCloseable that prints \"open\" in its constructor and \"close\" in close(). Use try-with-resources to create one and print \"use\" inside the block.",
+    "steps": [
+      {
+        "instructions": "Create class Resource implementing AutoCloseable that prints \"open\" in its constructor and \"close\" in close(). Use try-with-resources to create one and print \"use\" inside the block.\n\n## Starter\n\n```java\npublic class Main {\n  static class Resource implements AutoCloseable {\n    Resource() {\n      System.out.println(\"open\");\n    }\n    public void close() {\n      // TODO: print \"close\"\n    }\n  }\n\n  public static void main(String[] args) {\n    try (Resource r = new Resource()) {\n      System.out.println(\"use\");\n    }\n  }\n}\n\n```\n\n## Reference solution\n\n```java\npublic class Main {\n  static class Resource implements AutoCloseable {\n    Resource() {\n      System.out.println(\"open\");\n    }\n    public void close() {\n      System.out.println(\"close\");\n    }\n  }\n\n  public static void main(String[] args) {\n    try (Resource r = new Resource()) {\n      System.out.println(\"use\");\n    }\n  }\n}\n\n```\n\n## Expected output\n\n```\nopen\nuse\nclose\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-12-collections-coding-1",
+    "domainId": "plg-java",
+    "title": "Count occurrences of each word in a String[] using a HashMap<String,Integer> …",
+    "minutes": 10,
+    "summary": "Count occurrences of each word in a String[] using a HashMap<String,Integer> and merge, then print the count for \"cat\" given words = {\"cat\",\"dog\",\"cat\"}.",
+    "steps": [
+      {
+        "instructions": "Count occurrences of each word in a String[] using a HashMap<String,Integer> and merge, then print the count for \"cat\" given words = {\"cat\",\"dog\",\"cat\"}.\n\n## Starter\n\n```java\nimport java.util.*;\n\npublic class WordFreq {\n  public static void main(String[] args) {\n    String[] words = {\"cat\", \"dog\", \"cat\"};\n    Map<String, Integer> counts = new HashMap<>();\n    // TODO: populate counts using merge\n    System.out.println(counts.get(\"cat\"));\n  }\n}\n\n```\n\n## Reference solution\n\n```java\nimport java.util.*;\n\npublic class WordFreq {\n  public static void main(String[] args) {\n    String[] words = {\"cat\", \"dog\", \"cat\"};\n    Map<String, Integer> counts = new HashMap<>();\n    for (String w : words) {\n      counts.merge(w, 1, Integer::sum);\n    }\n    System.out.println(counts.get(\"cat\"));\n  }\n}\n\n```\n\n## Expected output\n\n```\n2\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-14-lambdas-fi-coding-1",
+    "domainId": "plg-java",
+    "title": "Declare a Function<Integer,Integer> named square using a lambda that returns …",
+    "minutes": 10,
+    "summary": "Declare a Function<Integer,Integer> named square using a lambda that returns its input squared. Print square.apply(5).",
+    "steps": [
+      {
+        "instructions": "Declare a Function<Integer,Integer> named square using a lambda that returns its input squared. Print square.apply(5).\n\n## Starter\n\n```java\nimport java.util.function.*;\n\npublic class Square {\n  public static void main(String[] args) {\n    Function<Integer, Integer> square = null; // TODO: assign a lambda\n    System.out.println(square.apply(5));\n  }\n}\n\n```\n\n## Reference solution\n\n```java\nimport java.util.function.*;\n\npublic class Square {\n  public static void main(String[] args) {\n    Function<Integer, Integer> square = x -> x * x;\n    System.out.println(square.apply(5));\n  }\n}\n\n```\n\n## Expected output\n\n```\n25\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-16-optional-coding-1",
+    "domainId": "plg-java",
+    "title": "Write findFirstEven(int[] xs) returning Optional<Integer> of the first even n…",
+    "minutes": 10,
+    "summary": "Write findFirstEven(int[] xs) returning Optional<Integer> of the first even number, or Optional.empty(). Print findFirstEven(new int[]{1,3,4,5}).orElse(-1).",
+    "steps": [
+      {
+        "instructions": "Write findFirstEven(int[] xs) returning Optional<Integer> of the first even number, or Optional.empty(). Print findFirstEven(new int[]{1,3,4,5}).orElse(-1).\n\n## Starter\n\n```java\nimport java.util.*;\n\npublic class FindEven {\n  static Optional<Integer> findFirstEven(int[] xs) {\n    // TODO\n    return Optional.empty();\n  }\n\n  public static void main(String[] args) {\n    System.out.println(findFirstEven(new int[]{1, 3, 4, 5}).orElse(-1));\n  }\n}\n\n```\n\n## Reference solution\n\n```java\nimport java.util.*;\n\npublic class FindEven {\n  static Optional<Integer> findFirstEven(int[] xs) {\n    for (int x : xs) {\n      if (x % 2 == 0) return Optional.of(x);\n    }\n    return Optional.empty();\n  }\n\n  public static void main(String[] args) {\n    System.out.println(findFirstEven(new int[]{1, 3, 4, 5}).orElse(-1));\n  }\n}\n\n```\n\n## Expected output\n\n```\n4\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-17-equals-hashcode-coding-1",
+    "domainId": "plg-java",
+    "title": "Implement equals() and hashCode() for class Point(int x, int y) so two Points…",
+    "minutes": 10,
+    "summary": "Implement equals() and hashCode() for class Point(int x, int y) so two Points with equal coordinates are equal. Print new Point(1,2).equals(new Point(1,2)).",
+    "steps": [
+      {
+        "instructions": "Implement equals() and hashCode() for class Point(int x, int y) so two Points with equal coordinates are equal. Print new Point(1,2).equals(new Point(1,2)).\n\n## Starter\n\n```java\nimport java.util.*;\n\npublic class Main {\n  static class Point {\n    final int x, y;\n    Point(int x, int y) { this.x = x; this.y = y; }\n\n    @Override\n    public boolean equals(Object o) {\n      // TODO\n      return false;\n    }\n\n    @Override\n    public int hashCode() {\n      return Objects.hash(x, y);\n    }\n  }\n\n  public static void main(String[] args) {\n    System.out.println(new Point(1, 2).equals(new Point(1, 2)));\n  }\n}\n\n```\n\n## Reference solution\n\n```java\nimport java.util.*;\n\npublic class Main {\n  static class Point {\n    final int x, y;\n    Point(int x, int y) { this.x = x; this.y = y; }\n\n    @Override\n    public boolean equals(Object o) {\n      if (this == o) return true;\n      if (!(o instanceof Point p)) return false;\n      return x == p.x && y == p.y;\n    }\n\n    @Override\n    public int hashCode() {\n      return Objects.hash(x, y);\n    }\n  }\n\n  public static void main(String[] args) {\n    System.out.println(new Point(1, 2).equals(new Point(1, 2)));\n  }\n}\n\n```\n\n## Expected output\n\n```\ntrue\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-19-testing-coding-1",
+    "domainId": "plg-java",
+    "title": "Implement static int add(int a, int b) in class Calc. In main, print \"PASS\" i…",
+    "minutes": 10,
+    "summary": "Implement static int add(int a, int b) in class Calc. In main, print \"PASS\" if add(2,3)==5 and add(0,0)==0, otherwise print \"FAIL\".",
+    "steps": [
+      {
+        "instructions": "Implement static int add(int a, int b) in class Calc. In main, print \"PASS\" if add(2,3)==5 and add(0,0)==0, otherwise print \"FAIL\".\n\n## Starter\n\n```java\npublic class Calc {\n  static int add(int a, int b) {\n    // TODO\n    return 0;\n  }\n\n  public static void main(String[] args) {\n    boolean ok = add(2, 3) == 5 && add(0, 0) == 0;\n    System.out.println(ok ? \"PASS\" : \"FAIL\");\n  }\n}\n\n```\n\n## Reference solution\n\n```java\npublic class Calc {\n  static int add(int a, int b) {\n    return a + b;\n  }\n\n  public static void main(String[] args) {\n    boolean ok = add(2, 3) == 5 && add(0, 0) == 0;\n    System.out.println(ok ? \"PASS\" : \"FAIL\");\n  }\n}\n\n```\n\n## Expected output\n\n```\nPASS\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-21-generics-collections-internals-coding-1",
+    "domainId": "plg-java",
+    "title": "Create a HashMap<String,Integer> pre-sized for 16 entries. Put keys \"a\",\"b\",\"…",
+    "minutes": 10,
+    "summary": "Create a HashMap<String,Integer> pre-sized for 16 entries. Put keys \"a\",\"b\",\"a\" using merge(key,1,Integer::sum), then print the final count for key \"a\".",
+    "steps": [
+      {
+        "instructions": "Create a HashMap<String,Integer> pre-sized for 16 entries. Put keys \"a\",\"b\",\"a\" using merge(key,1,Integer::sum), then print the final count for key \"a\".\n\n## Starter\n\n```java\nimport java.util.*;\n\npublic class PreSize {\n  public static void main(String[] args) {\n    Map<String, Integer> map = new HashMap<>(16);\n    String[] keys = {\"a\", \"b\", \"a\"};\n    // TODO: merge each key into map\n    System.out.println(map.get(\"a\"));\n  }\n}\n\n```\n\n## Reference solution\n\n```java\nimport java.util.*;\n\npublic class PreSize {\n  public static void main(String[] args) {\n    Map<String, Integer> map = new HashMap<>(16);\n    String[] keys = {\"a\", \"b\", \"a\"};\n    for (String k : keys) {\n      map.merge(k, 1, Integer::sum);\n    }\n    System.out.println(map.get(\"a\"));\n  }\n}\n\n```\n\n## Expected output\n\n```\n2\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-22-concurrency-basics-coding-1",
+    "domainId": "plg-java",
+    "title": "Using an ExecutorService with a single thread, submit a task that returns 21*…",
+    "minutes": 10,
+    "summary": "Using an ExecutorService with a single thread, submit a task that returns 21*2, then print the Future's result.",
+    "steps": [
+      {
+        "instructions": "Using an ExecutorService with a single thread, submit a task that returns 21*2, then print the Future's result.\n\n## Starter\n\n```java\nimport java.util.concurrent.*;\n\npublic class Main {\n  public static void main(String[] args) throws Exception {\n    try (ExecutorService pool = Executors.newFixedThreadPool(1)) {\n      // TODO: submit a task returning 21 * 2 and print the result\n    }\n  }\n}\n\n```\n\n## Reference solution\n\n```java\nimport java.util.concurrent.*;\n\npublic class Main {\n  public static void main(String[] args) throws Exception {\n    try (ExecutorService pool = Executors.newFixedThreadPool(1)) {\n      Future<Integer> f = pool.submit(() -> 21 * 2);\n      System.out.println(f.get());\n    }\n  }\n}\n\n```\n\n## Expected output\n\n```\n42\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-virtual-threads-coding-1",
+    "domainId": "plg-java",
+    "title": "Using Executors.newVirtualThreadPerTaskExecutor(), submit a task that compute…",
+    "minutes": 10,
+    "summary": "Using Executors.newVirtualThreadPerTaskExecutor(), submit a task that computes the sum of integers 1..100 and print the result via Future.get().",
+    "steps": [
+      {
+        "instructions": "Using Executors.newVirtualThreadPerTaskExecutor(), submit a task that computes the sum of integers 1..100 and print the result via Future.get().\n\n## Starter\n\n```java\nimport java.util.concurrent.*;\n\npublic class Main {\n  public static void main(String[] args) throws Exception {\n    try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {\n      // TODO: submit a task summing 1..100 and print the result\n    }\n  }\n}\n\n```\n\n## Reference solution\n\n```java\nimport java.util.concurrent.*;\n\npublic class Main {\n  public static void main(String[] args) throws Exception {\n    try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {\n      Future<Integer> f = executor.submit(() -> {\n        int total = 0;\n        for (int i = 1; i <= 100; i++) total += i;\n        return total;\n      });\n      System.out.println(f.get());\n    }\n  }\n}\n\n```\n\n## Expected output\n\n```\n5050\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-java-q-23-gc-jvm-tuning-coding-1",
+    "domainId": "plg-java",
+    "title": "Write containerFlags(int mb) that returns \"-Xms{mb}m -Xmx{mb}m\" using the sam…",
+    "minutes": 10,
+    "summary": "Write containerFlags(int mb) that returns \"-Xms{mb}m -Xmx{mb}m\" using the same value for min and max heap (a container best practice). Print containerFlags(512).",
+    "steps": [
+      {
+        "instructions": "Write containerFlags(int mb) that returns \"-Xms{mb}m -Xmx{mb}m\" using the same value for min and max heap (a container best practice). Print containerFlags(512).\n\n## Starter\n\n```java\npublic class Main {\n  static String containerFlags(int mb) {\n    // TODO\n    return \"\";\n  }\n\n  public static void main(String[] args) {\n    System.out.println(containerFlags(512));\n  }\n}\n\n```\n\n## Reference solution\n\n```java\npublic class Main {\n  static String containerFlags(int mb) {\n    return \"-Xms\" + mb + \"m -Xmx\" + mb + \"m\";\n  }\n\n  public static void main(String[] args) {\n    System.out.println(containerFlags(512));\n  }\n}\n\n```\n\n## Expected output\n\n```\n-Xms512m -Xmx512m\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-lab-rest-api",
+    "domainId": "plg-go",
+    "title": "JSON REST endpoint (+ httptest)",
+    "minutes": 20,
+    "summary": "Expose a /healthz endpoint that returns JSON, then verify it end-to-end with httptest — the standard way to ship and test an HTTP handler in Go.",
+    "steps": [
+      {
+        "instructions": "1. Define a Health struct with JSON tags.\n2. Write a handler that sets Content-Type and encodes JSON.\n3. Spin up an httptest.Server, GET the endpoint, decode the body.\n4. Print status code + fields to prove the contract."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```go\npackage main\n\nimport (\n  \"encoding/json\"\n  \"fmt\"\n  \"net/http\"\n  \"net/http/httptest\"\n)\n\ntype Health struct {\n  Status  string `json:\"status\"`\n  Version string `json:\"version\"`\n}\n\nfunc healthHandler(w http.ResponseWriter, r *http.Request) {\n  // TODO: set header, encode Health{ok, 1.0.0}\n}\n\nfunc main() {\n  // TODO: httptest server, GET /healthz, print result\n  fmt.Println(\"\")\n}\n\n```\n\nReferences: [net/http](https://pkg.go.dev/net/http) — Server, handlers, ServeMux · [net/http/httptest](https://pkg.go.dev/net/http/httptest) — In-memory server for handler tests\n\n## Solution\n\n```go\npackage main\n\nimport (\n  \"encoding/json\"\n  \"fmt\"\n  \"net/http\"\n  \"net/http/httptest\"\n)\n\ntype Health struct {\n  Status  string `json:\"status\"`\n  Version string `json:\"version\"`\n}\n\nfunc healthHandler(w http.ResponseWriter, r *http.Request) {\n  w.Header().Set(\"Content-Type\", \"application/json\")\n  json.NewEncoder(w).Encode(Health{Status: \"ok\", Version: \"1.0.0\"})\n}\n\nfunc main() {\n  srv := httptest.NewServer(http.HandlerFunc(healthHandler))\n  defer srv.Close()\n\n  resp, err := http.Get(srv.URL + \"/healthz\")\n  if err != nil {\n    panic(err)\n  }\n  defer resp.Body.Close()\n\n  var h Health\n  if err := json.NewDecoder(resp.Body).Decode(&h); err != nil {\n    panic(err)\n  }\n  fmt.Printf(\"%d %s %s\\n\", resp.StatusCode, h.Status, h.Version)\n}\n\n```\n\n## Expected output\n\n```\n200 ok 1.0.0\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-go-lab-worker-pool",
+    "domainId": "plg-go",
+    "title": "Bounded worker pool",
+    "minutes": 20,
+    "summary": "Process a batch of jobs with a fixed number of goroutines — the canonical Go pattern for bounded concurrency (image resizing, API fan-out, etc.).",
+    "steps": [
+      {
+        "instructions": "1. Create buffered in/out channels.\n2. Start N workers that read jobs, compute, and write results.\n3. Feed jobs from a producer goroutine, then close the input.\n4. Close output once all workers finish (WaitGroup), collect and sort."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```go\npackage main\n\nimport (\n  \"fmt\"\n  \"sort\"\n  \"sync\"\n)\n\nfunc main() {\n  jobs := []int{1, 2, 3, 4, 5, 6, 7, 8}\n  const workers = 3\n  _ = workers\n  _ = sort.Ints\n  _ = sync.WaitGroup{}\n  // TODO: square each job across a pool, print sorted results\n  fmt.Println(jobs)\n}\n\n```\n\nReferences: [sync.WaitGroup](https://pkg.go.dev/sync#WaitGroup) — Wait for goroutines to finish · [Go Blog: Pipelines & cancellation](https://go.dev/blog/pipelines) — Fan-out/fan-in patterns\n\n## Solution\n\n```go\npackage main\n\nimport (\n  \"fmt\"\n  \"sort\"\n  \"sync\"\n)\n\nfunc main() {\n  jobs := []int{1, 2, 3, 4, 5, 6, 7, 8}\n  const workers = 3\n\n  in := make(chan int)\n  out := make(chan int)\n  var wg sync.WaitGroup\n\n  for i := 0; i < workers; i++ {\n    wg.Add(1)\n    go func() {\n      defer wg.Done()\n      for n := range in {\n        out <- n * n\n      }\n    }()\n  }\n\n  go func() {\n    for _, j := range jobs {\n      in <- j\n    }\n    close(in)\n  }()\n\n  go func() {\n    wg.Wait()\n    close(out)\n  }()\n\n  var results []int\n  for r := range out {\n    results = append(results, r)\n  }\n  sort.Ints(results)\n  fmt.Println(results)\n}\n\n```\n\n## Expected output\n\n```\n[1 4 9 16 25 36 49 64]\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-go-lab-graceful-shutdown",
+    "domainId": "plg-go",
+    "title": "Graceful HTTP shutdown",
+    "minutes": 20,
+    "summary": "Run an http.Server and shut it down cleanly with a context deadline — required for zero-downtime deploys and clean container stops (SIGTERM).",
+    "steps": [
+      {
+        "instructions": "1. Build a ServeMux and http.Server.\n2. Start ListenAndServe in a goroutine; treat ErrServerClosed as normal.\n3. On a shutdown trigger, call srv.Shutdown(ctx) with a timeout.\n4. Print confirmation once in-flight requests drain."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```go\npackage main\n\nimport (\n  \"context\"\n  \"fmt\"\n  \"net/http\"\n  \"time\"\n)\n\nfunc main() {\n  _ = context.Background\n  _ = time.Second\n  // TODO: start server, then Shutdown with a timeout context\n  fmt.Println(\"\")\n}\n\n```\n\nReferences: [http.Server.Shutdown](https://pkg.go.dev/net/http#Server.Shutdown) — Drain connections without dropping requests · [os/signal.NotifyContext](https://pkg.go.dev/os/signal#NotifyContext) — Wire SIGTERM to a context\n\n## Solution\n\n```go\npackage main\n\nimport (\n  \"context\"\n  \"fmt\"\n  \"net/http\"\n  \"time\"\n)\n\nfunc main() {\n  mux := http.NewServeMux()\n  mux.HandleFunc(\"/\", func(w http.ResponseWriter, r *http.Request) {\n    fmt.Fprint(w, \"hello\")\n  })\n  srv := &http.Server{Addr: \":8080\", Handler: mux}\n\n  go func() {\n    if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {\n      panic(err)\n    }\n  }()\n\n  // In production this waits on an os.Signal (SIGINT/SIGTERM).\n  time.Sleep(50 * time.Millisecond)\n\n  ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)\n  defer cancel()\n  if err := srv.Shutdown(ctx); err != nil {\n    panic(err)\n  }\n  fmt.Println(\"server stopped gracefully\")\n}\n\n```\n\n## Expected output\n\n```\nserver stopped gracefully\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-go-lab-pipeline",
+    "domainId": "plg-go",
+    "title": "Cancellable pipeline",
+    "minutes": 20,
+    "summary": "Build a tiny pipeline: generate ints 1..5, square them in workers, print sum — cancel via context.",
+    "steps": [
+      {
+        "instructions": "1. Create a context with cancel.\n2. Producer sends 1..5 on a channel and closes it.\n3. Workers read, square, send to out channel.\n4. Main sums out until closed; call cancel in a defer."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```go\npackage main\n\nimport (\n  \"context\"\n  \"fmt\"\n)\n\nfunc main() {\n  ctx, cancel := context.WithCancel(context.Background())\n  defer cancel()\n  _ = ctx\n  // TODO: pipeline that prints 55\n  fmt.Println(0)\n}\n\n```\n\nReferences: [context](https://pkg.go.dev/context) — Cancellation & deadlines\n\n## Solution\n\n```go\npackage main\n\nimport (\n  \"context\"\n  \"fmt\"\n)\n\nfunc main() {\n  ctx, cancel := context.WithCancel(context.Background())\n  defer cancel()\n\n  in := make(chan int)\n  out := make(chan int)\n\n  go func() {\n    defer close(in)\n    for i := 1; i <= 5; i++ {\n      select {\n      case <-ctx.Done():\n        return\n      case in <- i:\n      }\n    }\n  }()\n\n  go func() {\n    defer close(out)\n    for v := range in {\n      select {\n      case <-ctx.Done():\n        return\n      case out <- v * v:\n      }\n    }\n  }()\n\n  sum := 0\n  for v := range out {\n    sum += v\n  }\n  fmt.Println(sum)\n}\n\n```\n\n## Expected output\n\n```\n55\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-go-practice-fizzbuzz",
+    "domainId": "plg-go",
+    "title": "FizzBuzz",
+    "minutes": 15,
+    "summary": "Print numbers 1..15, but print `Fizz` for multiples of 3, `Buzz` for multiples of 5, and `FizzBuzz` for multiples of both.",
+    "steps": [
+      {
+        "instructions": "Print numbers 1..15, but print `Fizz` for multiples of 3, `Buzz` for multiples of 5, and `FizzBuzz` for multiples of both.\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n  for i := 1; i <= 15; i++ {\n    // TODO\n    fmt.Println(i)\n  }\n}\n\n```\n\n## Hints\n\n- Check divisibility by 15 first.\n- Use a switch with modulo cases.\n\n## Solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n  for i := 1; i <= 15; i++ {\n    switch {\n    case i%15 == 0:\n      fmt.Println(\"FizzBuzz\")\n    case i%3 == 0:\n      fmt.Println(\"Fizz\")\n    case i%5 == 0:\n      fmt.Println(\"Buzz\")\n    default:\n      fmt.Println(i)\n    }\n  }\n}\n\n```\n\n## Expected output\n\n```\n1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-go-practice-reverse",
+    "domainId": "plg-go",
+    "title": "Reverse a string",
+    "minutes": 15,
+    "summary": "Reverse a string by runes so multibyte characters stay intact. Print the reverse of `hello`.",
+    "steps": [
+      {
+        "instructions": "Reverse a string by runes so multibyte characters stay intact. Print the reverse of `hello`.\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc reverse(s string) string {\n  // TODO\n  return s\n}\n\nfunc main() {\n  fmt.Println(reverse(\"hello\"))\n}\n\n```\n\n## Hints\n\n- Convert to []rune before swapping.\n- Two-pointer swap from both ends.\n\n## Solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc reverse(s string) string {\n  r := []rune(s)\n  for i, j := 0, len(r)-1; i < j; i, j = i+1, j-1 {\n    r[i], r[j] = r[j], r[i]\n  }\n  return string(r)\n}\n\nfunc main() {\n  fmt.Println(reverse(\"hello\"))\n}\n\n```\n\n## Expected output\n\n```\nolleh\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-go-practice-twosum",
+    "domainId": "plg-go",
+    "title": "Two Sum",
+    "minutes": 15,
+    "summary": "Given `nums` and a `target`, return the indices of the two numbers that add up to the target. For `[2, 7, 11, 15]` and target `9`, print the indices separated by a space.",
+    "steps": [
+      {
+        "instructions": "Given `nums` and a `target`, return the indices of the two numbers that add up to the target. For `[2, 7, 11, 15]` and target `9`, print the indices separated by a space.\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc twoSum(nums []int, target int) (int, int) {\n  // TODO\n  return -1, -1\n}\n\nfunc main() {\n  i, j := twoSum([]int{2, 7, 11, 15}, 9)\n  fmt.Printf(\"%d %d\\n\", i, j)\n}\n\n```\n\n## Hints\n\n- Store each value's index in a map as you scan.\n- For each n, look up target-n.\n\n## Solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc twoSum(nums []int, target int) (int, int) {\n  seen := map[int]int{}\n  for i, n := range nums {\n    if j, ok := seen[target-n]; ok {\n      return j, i\n    }\n    seen[n] = i\n  }\n  return -1, -1\n}\n\nfunc main() {\n  i, j := twoSum([]int{2, 7, 11, 15}, 9)\n  fmt.Printf(\"%d %d\\n\", i, j)\n}\n\n```\n\n## Expected output\n\n```\n0 1\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-go-practice-palindrome",
+    "domainId": "plg-go",
+    "title": "Palindrome check",
+    "minutes": 15,
+    "summary": "Return whether a string reads the same forwards and backwards. Print the result for `racecar`.",
+    "steps": [
+      {
+        "instructions": "Return whether a string reads the same forwards and backwards. Print the result for `racecar`.\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc isPalindrome(s string) bool {\n  // TODO\n  return false\n}\n\nfunc main() {\n  fmt.Println(isPalindrome(\"racecar\"))\n}\n\n```\n\n## Hints\n\n- Two-pointer comparison over []rune.\n- Return false on the first mismatch.\n\n## Solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc isPalindrome(s string) bool {\n  r := []rune(s)\n  for i, j := 0, len(r)-1; i < j; i, j = i+1, j-1 {\n    if r[i] != r[j] {\n      return false\n    }\n  }\n  return true\n}\n\nfunc main() {\n  fmt.Println(isPalindrome(\"racecar\"))\n}\n\n```\n\n## Expected output\n\n```\ntrue\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-go-practice-freq",
+    "domainId": "plg-go",
+    "title": "Word frequency map",
+    "minutes": 15,
+    "summary": "Count word frequencies (split on spaces) and print words that appear more than once, sorted alphabetically as `word:count` lines.",
+    "steps": [
+      {
+        "instructions": "Count word frequencies (split on spaces) and print words that appear more than once, sorted alphabetically as `word:count` lines.\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n  text := \"go go java rust go java\"\n  // TODO\n  fmt.Println(text)\n}\n\n```\n\n## Hints\n\n- Use map[string]int.\n- Collect keys with count > 1, sort with slices.Sort, then print.\n\n## Solution\n\n```go\npackage main\n\nimport (\n  \"fmt\"\n  \"slices\"\n  \"strings\"\n)\n\nfunc main() {\n  text := \"go go java rust go java\"\n  freq := map[string]int{}\n  for _, w := range strings.Fields(text) {\n    freq[w]++\n  }\n  var keys []string\n  for k, v := range freq {\n    if v > 1 {\n      keys = append(keys, k)\n    }\n  }\n  slices.Sort(keys)\n  for _, k := range keys {\n    fmt.Printf(\"%s:%d\\n\", k, freq[k])\n  }\n}\n\n```\n\n## Expected output\n\n```\ngo:3\njava:2\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-go-fw-router-json",
+    "domainId": "plg-go",
+    "title": "1. Router and JSON response",
+    "minutes": 15,
+    "summary": "Serve GET /ping returning {\"message\":\"pong\"}.",
+    "steps": [
+      {
+        "instructions": "**Concept:** `gin.Default()` gives an engine with logger + recovery middleware. Handlers receive a `*gin.Context`; `c.JSON` writes a status code and marshals a body.\n\nServe GET /ping returning {\"message\":\"pong\"}.\n\n## Steps\n\n1. Create the engine with gin.Default().\n2. Register r.GET(\"/ping\", handler).\n3. Respond with c.JSON(http.StatusOK, gin.H{...}).\n4. Call r.Run().\n\n## Hints\n\n- gin.H is a shortcut for map[string]any.\n- http.StatusOK is 200.\n\n## Starter\n\n```go\npackage main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc main() {\n  r := gin.Default()\n  // TODO: GET /ping -> {\"message\":\"pong\"}\n  r.Run(\":8080\")\n}\n\n```\n\n## Solution\n\n```go\npackage main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc main() {\n  r := gin.Default()\n  r.GET(\"/ping\", func(c *gin.Context) {\n    c.JSON(http.StatusOK, gin.H{\"message\": \"pong\"})\n  })\n  r.Run(\":8080\")\n}\n\n```\n\n## Expected output\n\n```\nGET /ping -> {\"message\":\"pong\"}\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-go-fw-params",
+    "domainId": "plg-go",
+    "title": "2. Path and query params",
+    "minutes": 15,
+    "summary": "GET /users/:id?verbose=true echoes both values as JSON.",
+    "steps": [
+      {
+        "instructions": "**Concept:** Path segments use `:name` and are read with `c.Param`. Query string values use `c.Query` / `c.DefaultQuery`.\n\nGET /users/:id?verbose=true echoes both values as JSON.\n\n## Steps\n\n1. Declare route /users/:id.\n2. Read id with c.Param(\"id\").\n3. Read verbose with c.DefaultQuery(\"verbose\", \"false\").\n4. Return both in a JSON object.\n\n## Hints\n\n- c.Param reads path segments.\n- c.DefaultQuery supplies a fallback.\n\n## Starter\n\n```go\npackage main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc main() {\n  r := gin.Default()\n  r.GET(\"/users/:id\", func(c *gin.Context) {\n    // TODO\n  })\n  r.Run(\":8080\")\n}\n\n```\n\n## Solution\n\n```go\npackage main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc main() {\n  r := gin.Default()\n  r.GET(\"/users/:id\", func(c *gin.Context) {\n    id := c.Param(\"id\")\n    verbose := c.DefaultQuery(\"verbose\", \"false\")\n    c.JSON(http.StatusOK, gin.H{\"id\": id, \"verbose\": verbose})\n  })\n  r.Run(\":8080\")\n}\n\n```\n\n## Expected output\n\n```\nGET /users/42?verbose=true -> {\"id\":\"42\",\"verbose\":\"true\"}\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-go-fw-middleware",
+    "domainId": "plg-go",
+    "title": "3. Custom middleware",
+    "minutes": 15,
+    "summary": "Write a middleware that stores a request id and continues the chain.",
+    "steps": [
+      {
+        "instructions": "**Concept:** Middleware is a `gin.HandlerFunc` that runs around handlers. Call `c.Next()` to continue the chain; set values with `c.Set` and abort with `c.AbortWithStatus`.\n\nWrite a middleware that stores a request id and continues the chain.\n\n## Steps\n\n1. Return a gin.HandlerFunc closure.\n2. c.Set(\"requestID\", ...) before c.Next().\n3. Attach it with r.Use(...).\n4. Read it back in a handler with c.GetString.\n\n## Hints\n\n- c.Next() runs downstream handlers.\n- r.Use registers global middleware.\n\n## Starter\n\n```go\npackage main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc requestID() gin.HandlerFunc {\n  // TODO\n  return func(c *gin.Context) {}\n}\n\nfunc main() {\n  r := gin.Default()\n  r.Use(requestID())\n  r.GET(\"/\", func(c *gin.Context) {\n    c.JSON(http.StatusOK, gin.H{\"id\": c.GetString(\"requestID\")})\n  })\n  r.Run(\":8080\")\n}\n\n```\n\n## Solution\n\n```go\npackage main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n  \"github.com/google/uuid\"\n)\n\nfunc requestID() gin.HandlerFunc {\n  return func(c *gin.Context) {\n    c.Set(\"requestID\", uuid.NewString())\n    c.Next()\n  }\n}\n\nfunc main() {\n  r := gin.Default()\n  r.Use(requestID())\n  r.GET(\"/\", func(c *gin.Context) {\n    c.JSON(http.StatusOK, gin.H{\"id\": c.GetString(\"requestID\")})\n  })\n  r.Run(\":8080\")\n}\n\n```\n\n## Expected output\n\n```\nGET / -> {\"id\":\"<generated-uuid>\"}\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-go-fw-bind-validate",
+    "domainId": "plg-go",
+    "title": "4. Bind and validate JSON",
+    "minutes": 15,
+    "summary": "POST /users validates {name required, email must be an email}.",
+    "steps": [
+      {
+        "instructions": "**Concept:** `c.ShouldBindJSON` decodes the body into a struct and runs `binding` validation tags. On failure it returns an error you translate into a 400.\n\nPOST /users validates {name required, email must be an email}.\n\n## Steps\n\n1. Add binding tags: binding:\"required\" and binding:\"required,email\".\n2. Call c.ShouldBindJSON(&body).\n3. Return 400 on error, 201 with the body on success.\n\n## Hints\n\n- json tags name the fields; binding tags validate them.\n- c.ShouldBindJSON returns an error to check.\n\n## Starter\n\n```go\npackage main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\ntype CreateUser struct {\n  Name  string `json:\"name\"`\n  Email string `json:\"email\"`\n}\n\nfunc main() {\n  r := gin.Default()\n  r.POST(\"/users\", func(c *gin.Context) {\n    // TODO\n  })\n  r.Run(\":8080\")\n}\n\n```\n\n## Solution\n\n```go\npackage main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\ntype CreateUser struct {\n  Name  string `json:\"name\" binding:\"required\"`\n  Email string `json:\"email\" binding:\"required,email\"`\n}\n\nfunc main() {\n  r := gin.Default()\n  r.POST(\"/users\", func(c *gin.Context) {\n    var body CreateUser\n    if err := c.ShouldBindJSON(&body); err != nil {\n      c.JSON(http.StatusBadRequest, gin.H{\"error\": err.Error()})\n      return\n    }\n    c.JSON(http.StatusCreated, body)\n  })\n  r.Run(\":8080\")\n}\n\n```\n\n## Expected output\n\n```\nPOST /users {} -> 400; valid body -> 201\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-go-fw-route-groups",
+    "domainId": "plg-go",
+    "title": "5. Versioned route groups",
+    "minutes": 15,
+    "summary": "Expose GET /api/v1/health under a versioned group.",
+    "steps": [
+      {
+        "instructions": "**Concept:** `r.Group` shares a path prefix and middleware across related routes, so you can version an API or guard a subtree cleanly.\n\nExpose GET /api/v1/health under a versioned group.\n\n## Steps\n\n1. Create v1 := r.Group(\"/api/v1\").\n2. Register v1.GET(\"/health\", handler).\n3. Return {\"status\":\"ok\"}.\n\n## Hints\n\n- Groups can be nested and take their own .Use().\n- The prefix is prepended to every child route.\n\n## Starter\n\n```go\npackage main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc main() {\n  r := gin.Default()\n  // TODO: group /api/v1 with /health\n  r.Run(\":8080\")\n}\n\n```\n\n## Solution\n\n```go\npackage main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc main() {\n  r := gin.Default()\n  v1 := r.Group(\"/api/v1\")\n  {\n    v1.GET(\"/health\", func(c *gin.Context) {\n      c.JSON(http.StatusOK, gin.H{\"status\": \"ok\"})\n    })\n  }\n  r.Run(\":8080\")\n}\n\n```\n\n## Expected output\n\n```\nGET /api/v1/health -> {\"status\":\"ok\"}\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-go-fw-error-handling",
+    "domainId": "plg-go",
+    "title": "6. Centralized error handling",
+    "minutes": 15,
+    "summary": "Attach an error in a handler and render it from an error middleware.",
+    "steps": [
+      {
+        "instructions": "**Concept:** Handlers can attach errors with `c.Error(err)` and abort; a trailing middleware inspects `c.Errors` after `c.Next()` and renders one consistent error response.\n\nAttach an error in a handler and render it from an error middleware.\n\n## Steps\n\n1. Write middleware that calls c.Next() then checks c.Errors.\n2. If any error exists, write a JSON 500 with the last error.\n3. In the handler, call c.Error(err) and c.Abort().\n\n## Hints\n\n- c.Errors.Last() gives the most recent error.\n- Register the error middleware first with r.Use.\n\n## Starter\n\n```go\npackage main\n\nimport (\n  \"errors\"\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc errorHandler() gin.HandlerFunc {\n  // TODO\n  return func(c *gin.Context) {}\n}\n\nfunc main() {\n  r := gin.Default()\n  r.Use(errorHandler())\n  r.GET(\"/boom\", func(c *gin.Context) {\n    c.Error(errors.New(\"kaboom\"))\n    c.Abort()\n  })\n  r.Run(\":8080\")\n}\n\n```\n\n## Solution\n\n```go\npackage main\n\nimport (\n  \"errors\"\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc errorHandler() gin.HandlerFunc {\n  return func(c *gin.Context) {\n    c.Next()\n    if len(c.Errors) > 0 {\n      c.JSON(http.StatusInternalServerError, gin.H{\"error\": c.Errors.Last().Error()})\n    }\n  }\n}\n\nfunc main() {\n  r := gin.Default()\n  r.Use(errorHandler())\n  r.GET(\"/boom\", func(c *gin.Context) {\n    c.Error(errors.New(\"kaboom\"))\n    c.Abort()\n  })\n  r.Run(\":8080\")\n}\n\n```\n\n## Expected output\n\n```\nGET /boom -> 500 {\"error\":\"kaboom\"}\n```"
+      }
+    ],
+    "difficulty": "advanced"
+  },
+  {
+    "id": "plg-go-q-coding",
+    "domainId": "plg-go",
+    "title": "Implement Sum that adds ints in a slice and print Sum([]int{1,2,3,4}).",
+    "minutes": 10,
+    "summary": "Implement Sum that adds ints in a slice and print Sum([]int{1,2,3,4}).",
+    "steps": [
+      {
+        "instructions": "Implement Sum that adds ints in a slice and print Sum([]int{1,2,3,4}).\n\n## Starter\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Sum(xs []int) int {\n  // TODO\n  return 0\n}\n\nfunc main() {\n  fmt.Println(Sum([]int{1, 2, 3, 4}))\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Sum(xs []int) int {\n  s := 0\n  for _, v := range xs {\n    s += v\n  }\n  return s\n}\n\nfunc main() {\n  fmt.Println(Sum([]int{1, 2, 3, 4}))\n}\n\n```\n\n## Expected output\n\n```\n10\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-01-hello-modules-coding-1",
+    "domainId": "plg-go",
+    "title": "Write a Go program in package main that prints \"Ahoy, world!\" using fmt.Println.",
+    "minutes": 10,
+    "summary": "Write a Go program in package main that prints \"Ahoy, world!\" using fmt.Println.",
+    "steps": [
+      {
+        "instructions": "Write a Go program in package main that prints \"Ahoy, world!\" using fmt.Println.\n\n## Starter\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n  // TODO: print \"Ahoy, world!\"\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n  fmt.Println(\"Ahoy, world!\")\n}\n\n```\n\n## Expected output\n\n```\nAhoy, world!\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-03-control-flow-coding-1",
+    "domainId": "plg-go",
+    "title": "Implement Abs(n int) int that returns the absolute value of n using an if sta…",
+    "minutes": 10,
+    "summary": "Implement Abs(n int) int that returns the absolute value of n using an if statement, and print Abs(-7).",
+    "steps": [
+      {
+        "instructions": "Implement Abs(n int) int that returns the absolute value of n using an if statement, and print Abs(-7).\n\n## Starter\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Abs(n int) int {\n  // TODO\n  return 0\n}\n\nfunc main() {\n  fmt.Println(Abs(-7))\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Abs(n int) int {\n  if n < 0 {\n    return -n\n  }\n  return n\n}\n\nfunc main() {\n  fmt.Println(Abs(-7))\n}\n\n```\n\n## Expected output\n\n```\n7\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-04-functions-coding-1",
+    "domainId": "plg-go",
+    "title": "Implement makeCounter() func() int, a closure that returns 1, 2, 3, ... on su…",
+    "minutes": 10,
+    "summary": "Implement makeCounter() func() int, a closure that returns 1, 2, 3, ... on successive calls. Call it three times and print each result.",
+    "steps": [
+      {
+        "instructions": "Implement makeCounter() func() int, a closure that returns 1, 2, 3, ... on successive calls. Call it three times and print each result.\n\n## Starter\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc makeCounter() func() int {\n  // TODO: return a closure that starts at 1 and increments on each call\n  return nil\n}\n\nfunc main() {\n  next := makeCounter()\n  fmt.Println(next())\n  fmt.Println(next())\n  fmt.Println(next())\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc makeCounter() func() int {\n  n := 0\n  return func() int {\n    n++\n    return n\n  }\n}\n\nfunc main() {\n  next := makeCounter()\n  fmt.Println(next())\n  fmt.Println(next())\n  fmt.Println(next())\n}\n\n```\n\n## Expected output\n\n```\n1\n2\n3\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-06-slices-coding-1",
+    "domainId": "plg-go",
+    "title": "Implement Reverse(s []int) []int that reverses the slice in place and returns…",
+    "minutes": 10,
+    "summary": "Implement Reverse(s []int) []int that reverses the slice in place and returns it. Print Reverse([]int{1,2,3,4,5}).",
+    "steps": [
+      {
+        "instructions": "Implement Reverse(s []int) []int that reverses the slice in place and returns it. Print Reverse([]int{1,2,3,4,5}).\n\n## Starter\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Reverse(s []int) []int {\n  // TODO\n  return s\n}\n\nfunc main() {\n  fmt.Println(Reverse([]int{1, 2, 3, 4, 5}))\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Reverse(s []int) []int {\n  for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {\n    s[i], s[j] = s[j], s[i]\n  }\n  return s\n}\n\nfunc main() {\n  fmt.Println(Reverse([]int{1, 2, 3, 4, 5}))\n}\n\n```\n\n## Expected output\n\n```\n[5 4 3 2 1]\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-08-structs-coding-1",
+    "domainId": "plg-go",
+    "title": "Define type Rectangle struct{ W, H int } with a method Area() int, then print…",
+    "minutes": 10,
+    "summary": "Define type Rectangle struct{ W, H int } with a method Area() int, then print the area of Rectangle{W: 3, H: 4}.",
+    "steps": [
+      {
+        "instructions": "Define type Rectangle struct{ W, H int } with a method Area() int, then print the area of Rectangle{W: 3, H: 4}.\n\n## Starter\n\n```go\npackage main\n\nimport \"fmt\"\n\ntype Rectangle struct {\n  W, H int\n}\n\nfunc (r Rectangle) Area() int {\n  // TODO\n  return 0\n}\n\nfunc main() {\n  r := Rectangle{W: 3, H: 4}\n  fmt.Println(r.Area())\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport \"fmt\"\n\ntype Rectangle struct {\n  W, H int\n}\n\nfunc (r Rectangle) Area() int {\n  return r.W * r.H\n}\n\nfunc main() {\n  r := Rectangle{W: 3, H: 4}\n  fmt.Println(r.Area())\n}\n\n```\n\n## Expected output\n\n```\n12\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-09-pointers-coding-1",
+    "domainId": "plg-go",
+    "title": "Implement Swap(a, b *int) that swaps the values pointed to by a and b. Given …",
+    "minutes": 10,
+    "summary": "Implement Swap(a, b *int) that swaps the values pointed to by a and b. Given x, y := 1, 2, call Swap(&x, &y) and print x, y.",
+    "steps": [
+      {
+        "instructions": "Implement Swap(a, b *int) that swaps the values pointed to by a and b. Given x, y := 1, 2, call Swap(&x, &y) and print x, y.\n\n## Starter\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Swap(a, b *int) {\n  // TODO\n}\n\nfunc main() {\n  x, y := 1, 2\n  Swap(&x, &y)\n  fmt.Println(x, y)\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Swap(a, b *int) {\n  *a, *b = *b, *a\n}\n\nfunc main() {\n  x, y := 1, 2\n  Swap(&x, &y)\n  fmt.Println(x, y)\n}\n\n```\n\n## Expected output\n\n```\n2 1\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-11-packages-coding-1",
+    "domainId": "plg-go",
+    "title": "Define an unexported field `cents` inside type Amount, an exported constructo…",
+    "minutes": 10,
+    "summary": "Define an unexported field `cents` inside type Amount, an exported constructor New(cents int64) Amount, and an exported method Cents() int64. Print New(150).Cents().",
+    "steps": [
+      {
+        "instructions": "Define an unexported field `cents` inside type Amount, an exported constructor New(cents int64) Amount, and an exported method Cents() int64. Print New(150).Cents().\n\n## Starter\n\n```go\npackage main\n\nimport \"fmt\"\n\ntype Amount struct {\n  cents int64\n}\n\nfunc New(cents int64) Amount {\n  // TODO\n  return Amount{}\n}\n\nfunc (a Amount) Cents() int64 {\n  return a.cents\n}\n\nfunc main() {\n  fmt.Println(New(150).Cents())\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport \"fmt\"\n\ntype Amount struct {\n  cents int64\n}\n\nfunc New(cents int64) Amount {\n  return Amount{cents: cents}\n}\n\nfunc (a Amount) Cents() int64 {\n  return a.cents\n}\n\nfunc main() {\n  fmt.Println(New(150).Cents())\n}\n\n```\n\n## Expected output\n\n```\n150\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-13-json-coding-1",
+    "domainId": "plg-go",
+    "title": "Define type Point struct with X, Y int tagged json:\"x\" and json:\"y\". Marshal …",
+    "minutes": 10,
+    "summary": "Define type Point struct with X, Y int tagged json:\"x\" and json:\"y\". Marshal Point{X: 2, Y: 3} and print the resulting JSON string.",
+    "steps": [
+      {
+        "instructions": "Define type Point struct with X, Y int tagged json:\"x\" and json:\"y\". Marshal Point{X: 2, Y: 3} and print the resulting JSON string.\n\n## Starter\n\n```go\npackage main\n\nimport (\n  \"encoding/json\"\n  \"fmt\"\n)\n\ntype Point struct {\n  X int `json:\"x\"`\n  Y int `json:\"y\"`\n}\n\nfunc main() {\n  // TODO: marshal Point{X: 2, Y: 3} and print it as a string\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport (\n  \"encoding/json\"\n  \"fmt\"\n)\n\ntype Point struct {\n  X int `json:\"x\"`\n  Y int `json:\"y\"`\n}\n\nfunc main() {\n  b, _ := json.Marshal(Point{X: 2, Y: 3})\n  fmt.Println(string(b))\n}\n\n```\n\n## Expected output\n\n```\n{\"x\":2,\"y\":3}\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-14-generics-intro-coding-1",
+    "domainId": "plg-go",
+    "title": "Implement a generic function Map[T, U any](s []T, f func(T) U) []U. Use it to…",
+    "minutes": 10,
+    "summary": "Implement a generic function Map[T, U any](s []T, f func(T) U) []U. Use it to double each element of []int{1,2,3} and print the result.",
+    "steps": [
+      {
+        "instructions": "Implement a generic function Map[T, U any](s []T, f func(T) U) []U. Use it to double each element of []int{1,2,3} and print the result.\n\n## Starter\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Map[T, U any](s []T, f func(T) U) []U {\n  // TODO\n  return nil\n}\n\nfunc main() {\n  doubled := Map([]int{1, 2, 3}, func(n int) int { return n * 2 })\n  fmt.Println(doubled)\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Map[T, U any](s []T, f func(T) U) []U {\n  out := make([]U, len(s))\n  for i, v := range s {\n    out[i] = f(v)\n  }\n  return out\n}\n\nfunc main() {\n  doubled := Map([]int{1, 2, 3}, func(n int) int { return n * 2 })\n  fmt.Println(doubled)\n}\n\n```\n\n## Expected output\n\n```\n[2 4 6]\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-16-goroutines-channels-coding-1",
+    "domainId": "plg-go",
+    "title": "Using select, receive from an empty channel ch with a 10ms timeout via time.A…",
+    "minutes": 10,
+    "summary": "Using select, receive from an empty channel ch with a 10ms timeout via time.After. Since nothing is ever sent, print \"timeout\" when the timeout fires.",
+    "steps": [
+      {
+        "instructions": "Using select, receive from an empty channel ch with a 10ms timeout via time.After. Since nothing is ever sent, print \"timeout\" when the timeout fires.\n\n## Starter\n\n```go\npackage main\n\nimport (\n  \"fmt\"\n  \"time\"\n)\n\nfunc main() {\n  ch := make(chan int)\n  // TODO: select on ch and a 10ms timeout; print \"timeout\" if the timeout fires first\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport (\n  \"fmt\"\n  \"time\"\n)\n\nfunc main() {\n  ch := make(chan int)\n  select {\n  case v := <-ch:\n    fmt.Println(v)\n  case <-time.After(10 * time.Millisecond):\n    fmt.Println(\"timeout\")\n  }\n}\n\n```\n\n## Expected output\n\n```\ntimeout\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-18-testing-coding-1",
+    "domainId": "plg-go",
+    "title": "Implement IsEven(n int) bool. Loop over []int{1, 2, 3, 4} and print IsEven(n)…",
+    "minutes": 10,
+    "summary": "Implement IsEven(n int) bool. Loop over []int{1, 2, 3, 4} and print IsEven(n) for each.",
+    "steps": [
+      {
+        "instructions": "Implement IsEven(n int) bool. Loop over []int{1, 2, 3, 4} and print IsEven(n) for each.\n\n## Starter\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc IsEven(n int) bool {\n  // TODO\n  return false\n}\n\nfunc main() {\n  for _, n := range []int{1, 2, 3, 4} {\n    fmt.Println(IsEven(n))\n  }\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc IsEven(n int) bool {\n  return n%2 == 0\n}\n\nfunc main() {\n  for _, n := range []int{1, 2, 3, 4} {\n    fmt.Println(IsEven(n))\n  }\n}\n\n```\n\n## Expected output\n\n```\nfalse\ntrue\nfalse\ntrue\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-19-http-coding-1",
+    "domainId": "plg-go",
+    "title": "Implement greet(w http.ResponseWriter, r *http.Request) that writes \"hello\" t…",
+    "minutes": 10,
+    "summary": "Implement greet(w http.ResponseWriter, r *http.Request) that writes \"hello\" to w. Invoke it with an httptest.NewRecorder and httptest.NewRequest, then print the recorded body.",
+    "steps": [
+      {
+        "instructions": "Implement greet(w http.ResponseWriter, r *http.Request) that writes \"hello\" to w. Invoke it with an httptest.NewRecorder and httptest.NewRequest, then print the recorded body.\n\n## Starter\n\n```go\npackage main\n\nimport (\n  \"fmt\"\n  \"net/http\"\n  \"net/http/httptest\"\n)\n\nfunc greet(w http.ResponseWriter, r *http.Request) {\n  // TODO: write \"hello\" to w\n}\n\nfunc main() {\n  rec := httptest.NewRecorder()\n  req := httptest.NewRequest(\"GET\", \"/\", nil)\n  greet(rec, req)\n  fmt.Println(rec.Body.String())\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport (\n  \"fmt\"\n  \"net/http\"\n  \"net/http/httptest\"\n)\n\nfunc greet(w http.ResponseWriter, r *http.Request) {\n  fmt.Fprint(w, \"hello\")\n}\n\nfunc main() {\n  rec := httptest.NewRecorder()\n  req := httptest.NewRequest(\"GET\", \"/\", nil)\n  greet(rec, req)\n  fmt.Println(rec.Body.String())\n}\n\n```\n\n## Expected output\n\n```\nhello\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-21-modules-deps-coding-1",
+    "domainId": "plg-go",
+    "title": "Implement ModulePath() string returning \"example.com/app/v2\" and print it.",
+    "minutes": 10,
+    "summary": "Implement ModulePath() string returning \"example.com/app/v2\" and print it.",
+    "steps": [
+      {
+        "instructions": "Implement ModulePath() string returning \"example.com/app/v2\" and print it.\n\n## Starter\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc ModulePath() string {\n  // TODO\n  return \"\"\n}\n\nfunc main() {\n  fmt.Println(ModulePath())\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc ModulePath() string {\n  return \"example.com/app/v2\"\n}\n\nfunc main() {\n  fmt.Println(ModulePath())\n}\n\n```\n\n## Expected output\n\n```\nexample.com/app/v2\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-idioms-layout-coding-1",
+    "domainId": "plg-go",
+    "title": "Implement Greet(name string) string returning \"Hello, \"+name+\"!\". Using a sma…",
+    "minutes": 10,
+    "summary": "Implement Greet(name string) string returning \"Hello, \"+name+\"!\". Using a small table-driven loop with cases {\"Ada\",\"Hello, Ada!\"} and {\"\",\"Hello, !\"}, print PASS or FAIL for each case.",
+    "steps": [
+      {
+        "instructions": "Implement Greet(name string) string returning \"Hello, \"+name+\"!\". Using a small table-driven loop with cases {\"Ada\",\"Hello, Ada!\"} and {\"\",\"Hello, !\"}, print PASS or FAIL for each case.\n\n## Starter\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Greet(name string) string {\n  // TODO\n  return \"\"\n}\n\nfunc main() {\n  tests := []struct{ in, want string }{\n    {\"Ada\", \"Hello, Ada!\"},\n    {\"\", \"Hello, !\"},\n  }\n  for _, tt := range tests {\n    got := Greet(tt.in)\n    if got == tt.want {\n      fmt.Println(\"PASS\")\n    } else {\n      fmt.Println(\"FAIL\")\n    }\n  }\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Greet(name string) string {\n  return \"Hello, \" + name + \"!\"\n}\n\nfunc main() {\n  tests := []struct{ in, want string }{\n    {\"Ada\", \"Hello, Ada!\"},\n    {\"\", \"Hello, !\"},\n  }\n  for _, tt := range tests {\n    got := Greet(tt.in)\n    if got == tt.want {\n      fmt.Println(\"PASS\")\n    } else {\n      fmt.Println(\"FAIL\")\n    }\n  }\n}\n\n```\n\n## Expected output\n\n```\nPASS\nPASS\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-go-q-generics-backpressure-coding-1",
+    "domainId": "plg-go",
+    "title": "Implement a generic function Filter[T any](s []T, pred func(T) bool) []T. Use…",
+    "minutes": 10,
+    "summary": "Implement a generic function Filter[T any](s []T, pred func(T) bool) []T. Use it to keep only even numbers from []int{1,2,3,4,5,6} and print the result.",
+    "steps": [
+      {
+        "instructions": "Implement a generic function Filter[T any](s []T, pred func(T) bool) []T. Use it to keep only even numbers from []int{1,2,3,4,5,6} and print the result.\n\n## Starter\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Filter[T any](s []T, pred func(T) bool) []T {\n  // TODO\n  return nil\n}\n\nfunc main() {\n  evens := Filter([]int{1, 2, 3, 4, 5, 6}, func(n int) bool { return n%2 == 0 })\n  fmt.Println(evens)\n}\n\n```\n\n## Reference solution\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc Filter[T any](s []T, pred func(T) bool) []T {\n  out := []T{}\n  for _, v := range s {\n    if pred(v) {\n      out = append(out, v)\n    }\n  }\n  return out\n}\n\nfunc main() {\n  evens := Filter([]int{1, 2, 3, 4, 5, 6}, func(n int) bool { return n%2 == 0 })\n  fmt.Println(evens)\n}\n\n```\n\n## Expected output\n\n```\n[2 4 6]\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-lab-fastapi",
+    "domainId": "plg-python",
+    "title": "FastAPI endpoint (+ TestClient)",
+    "minutes": 20,
+    "summary": "Build a typed POST endpoint with a Pydantic body and test it in-process with TestClient — the modern production stack for Python APIs.",
+    "steps": [
+      {
+        "instructions": "1. Declare an Item model (name: str, price: float).\n2. Add POST /items/{item_id} that stores and echoes the item.\n3. Drive it with TestClient (no server, no network).\n4. Print status code + JSON to prove request validation + response shape."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```python\nfrom fastapi import FastAPI\nfrom fastapi.testclient import TestClient\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\n# TODO: POST /items/{item_id}\n\nclient = TestClient(app)\n# TODO: post and print status + json\nprint(\"\")\n\n```\n\nReferences: [FastAPI](https://fastapi.tiangolo.com/) — Typed routing + Pydantic bodies · [FastAPI: Testing](https://fastapi.tiangolo.com/tutorial/testing/) — TestClient (Starlette/httpx based)\n\n## Solution\n\n```python\nfrom fastapi import FastAPI\nfrom fastapi.testclient import TestClient\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\nitems: dict[int, Item] = {}\n\n@app.post(\"/items/{item_id}\")\ndef create_item(item_id: int, item: Item):\n    items[item_id] = item\n    return {\"id\": item_id, \"name\": item.name, \"price\": item.price}\n\nclient = TestClient(app)\nresp = client.post(\"/items/1\", json={\"name\": \"book\", \"price\": 9.5})\nprint(resp.status_code, resp.json())\n\n```\n\n## Expected output\n\n```\n200 {'id': 1, 'name': 'book', 'price': 9.5}\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-python-lab-asyncio",
+    "domainId": "plg-python",
+    "title": "Concurrent I/O with asyncio.gather",
+    "minutes": 20,
+    "summary": "Run independent async tasks concurrently and collect results in order — the pattern behind concurrent DB/API calls in async services.",
+    "steps": [
+      {
+        "instructions": "1. Write an async fetch(name, delay) coroutine.\n2. await asyncio.gather(...) three fetches with different delays.\n3. Note that gather preserves argument order, not completion order.\n4. Join and print the results."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```python\nimport asyncio\n\nasync def fetch(name: str, delay: float) -> str:\n    # TODO: sleep then return name.upper()\n    return name\n\nasync def main() -> None:\n    # TODO: gather three fetches, print joined by comma\n    print(\"\")\n\nasyncio.run(main())\n\n```\n\nReferences: [asyncio.gather](https://docs.python.org/3/library/asyncio-task.html#asyncio.gather) — Run awaitables concurrently, ordered results · [asyncio.run](https://docs.python.org/3/library/asyncio-runner.html#asyncio.run) — Entry point for async programs\n\n## Solution\n\n```python\nimport asyncio\n\nasync def fetch(name: str, delay: float) -> str:\n    await asyncio.sleep(delay)\n    return name.upper()\n\nasync def main() -> None:\n    results = await asyncio.gather(\n        fetch(\"a\", 0.03),\n        fetch(\"b\", 0.01),\n        fetch(\"c\", 0.02),\n    )\n    print(\",\".join(results))\n\nasyncio.run(main())\n\n```\n\n## Expected output\n\n```\nA,B,C\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-python-lab-retry",
+    "domainId": "plg-python",
+    "title": "Retry decorator with backoff",
+    "minutes": 20,
+    "summary": "Wrap a flaky call with a reusable retry decorator — a production staple for transient network/DB failures.",
+    "steps": [
+      {
+        "instructions": "1. Write retry(times, delay) returning a decorator.\n2. Preserve metadata with functools.wraps.\n3. Retry on exception, re-raise the last error if all attempts fail.\n4. Prove it recovers after transient failures."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```python\nimport functools\nimport time\n\ndef retry(times: int, delay: float = 0):\n    # TODO: return a decorator that retries on exception\n    def deco(fn):\n        return fn\n    return deco\n\ncalls = {\"n\": 0}\n\n@retry(times=3)\ndef flaky() -> str:\n    calls[\"n\"] += 1\n    if calls[\"n\"] < 3:\n        raise ValueError(\"boom\")\n    return \"ok\"\n\nprint(flaky(), \"after\", calls[\"n\"], \"attempts\")\n\n```\n\nReferences: [functools.wraps](https://docs.python.org/3/library/functools.html#functools.wraps) — Keep wrapped function metadata · [tenacity](https://tenacity.readthedocs.io/) — Battle-tested retry library for real projects\n\n## Solution\n\n```python\nimport functools\nimport time\n\ndef retry(times: int, delay: float = 0):\n    def deco(fn):\n        @functools.wraps(fn)\n        def wrapper(*args, **kwargs):\n            last: Exception | None = None\n            for attempt in range(1, times + 1):\n                try:\n                    return fn(*args, **kwargs)\n                except Exception as e:\n                    last = e\n                    if attempt < times:\n                        time.sleep(delay)\n            raise last\n        return wrapper\n    return deco\n\ncalls = {\"n\": 0}\n\n@retry(times=3)\ndef flaky() -> str:\n    calls[\"n\"] += 1\n    if calls[\"n\"] < 3:\n        raise ValueError(\"boom\")\n    return \"ok\"\n\nprint(flaky(), \"after\", calls[\"n\"], \"attempts\")\n\n```\n\n## Expected output\n\n```\nok after 3 attempts\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-python-lab-pydantic",
+    "domainId": "plg-python",
+    "title": "Validate with Pydantic",
+    "minutes": 20,
+    "summary": "Define a Pydantic model and parse a dict; print the email field.",
+    "steps": [
+      {
+        "instructions": "1. Create UserIn with email: str and age: int >= 0.\n2. Parse {\"email\": \"a@b.com\", \"age\": 3}.\n3. Print model.email."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```python\nfrom pydantic import BaseModel, Field\n\n# TODO: UserIn model\n\ndata = {\"email\": \"a@b.com\", \"age\": 3}\n# print email\nprint(\"\")\n\n```\n\nReferences: [Pydantic](https://docs.pydantic.dev/latest/) — Data validation & settings\n\n## Solution\n\n```python\nfrom pydantic import BaseModel, Field\n\nclass UserIn(BaseModel):\n    email: str\n    age: int = Field(ge=0)\n\ndata = {\"email\": \"a@b.com\", \"age\": 3}\nprint(UserIn.model_validate(data).email)\n\n```\n\n## Expected output\n\n```\na@b.com\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-python-practice-fizzbuzz",
+    "domainId": "plg-python",
+    "title": "FizzBuzz",
+    "minutes": 15,
+    "summary": "Print numbers 1..15, but print `Fizz` for multiples of 3, `Buzz` for multiples of 5, and `FizzBuzz` for multiples of both.",
+    "steps": [
+      {
+        "instructions": "Print numbers 1..15, but print `Fizz` for multiples of 3, `Buzz` for multiples of 5, and `FizzBuzz` for multiples of both.\n\n```python\nfor i in range(1, 16):\n    # TODO\n    print(i)\n\n```\n\n## Hints\n\n- Check divisibility by 15 first.\n- Use elif for the 3 and 5 cases.\n\n## Solution\n\n```python\nfor i in range(1, 16):\n    if i % 15 == 0:\n        print(\"FizzBuzz\")\n    elif i % 3 == 0:\n        print(\"Fizz\")\n    elif i % 5 == 0:\n        print(\"Buzz\")\n    else:\n        print(i)\n\n```\n\n## Expected output\n\n```\n1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-python-practice-reverse",
+    "domainId": "plg-python",
+    "title": "Reverse a string",
+    "minutes": 15,
+    "summary": "Reverse a string and print the reverse of `hello`.",
+    "steps": [
+      {
+        "instructions": "Reverse a string and print the reverse of `hello`.\n\n```python\ndef reverse(s):\n    # TODO\n    return s\n\nprint(reverse(\"hello\"))\n\n```\n\n## Hints\n\n- Slicing with a negative step reverses a sequence.\n- s[::-1].\n\n## Solution\n\n```python\ndef reverse(s):\n    return s[::-1]\n\nprint(reverse(\"hello\"))\n\n```\n\n## Expected output\n\n```\nolleh\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-python-practice-twosum",
+    "domainId": "plg-python",
+    "title": "Two Sum",
+    "minutes": 15,
+    "summary": "Given `nums` and a `target`, return the indices of the two numbers that add up to the target. For `[2, 7, 11, 15]` and target `9`, print the indices separated by a space.",
+    "steps": [
+      {
+        "instructions": "Given `nums` and a `target`, return the indices of the two numbers that add up to the target. For `[2, 7, 11, 15]` and target `9`, print the indices separated by a space.\n\n```python\ndef two_sum(nums, target):\n    # TODO\n    return -1, -1\n\ni, j = two_sum([2, 7, 11, 15], 9)\nprint(i, j)\n\n```\n\n## Hints\n\n- Store each value's index in a dict as you scan.\n- Check if target - n is already seen.\n\n## Solution\n\n```python\ndef two_sum(nums, target):\n    seen = {}\n    for i, n in enumerate(nums):\n        if target - n in seen:\n            return seen[target - n], i\n        seen[n] = i\n    return -1, -1\n\ni, j = two_sum([2, 7, 11, 15], 9)\nprint(i, j)\n\n```\n\n## Expected output\n\n```\n0 1\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-python-practice-palindrome",
+    "domainId": "plg-python",
+    "title": "Palindrome check",
+    "minutes": 15,
+    "summary": "Return whether a string reads the same forwards and backwards. Print the result for `racecar`.",
+    "steps": [
+      {
+        "instructions": "Return whether a string reads the same forwards and backwards. Print the result for `racecar`.\n\n```python\ndef is_palindrome(s):\n    # TODO\n    return False\n\nprint(is_palindrome(\"racecar\"))\n\n```\n\n## Hints\n\n- Compare the string to its reverse.\n- s == s[::-1].\n\n## Solution\n\n```python\ndef is_palindrome(s):\n    return s == s[::-1]\n\nprint(is_palindrome(\"racecar\"))\n\n```\n\n## Expected output\n\n```\nTrue\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-python-practice-anagram",
+    "domainId": "plg-python",
+    "title": "Anagram groups",
+    "minutes": 15,
+    "summary": "Group words that are anagrams. Print groups as sorted comma-separated lines, groups ordered by first word alphabetically.",
+    "steps": [
+      {
+        "instructions": "Group words that are anagrams. Print groups as sorted comma-separated lines, groups ordered by first word alphabetically.\n\n```python\nwords = [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]\n# TODO\n\n```\n\n## Hints\n\n- Key by ''.join(sorted(word)).\n- Use dict[str, list[str]].\n\n## Solution\n\n```python\nfrom collections import defaultdict\n\nwords = [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]\ngroups = defaultdict(list)\nfor w in words:\n    groups[\"\".join(sorted(w))].append(w)\n\nordered = sorted(groups.values(), key=lambda g: sorted(g)[0])\nfor g in ordered:\n    print(\",\".join(sorted(g)))\n\n```\n\n## Expected output\n\n```\nate,eat,tea\nbat\nnat,tan\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-python-fw-first-route",
+    "domainId": "plg-python",
+    "title": "1. First path operation",
+    "minutes": 15,
+    "summary": "Serve GET / returning {\"message\": \"pong\"}.",
+    "steps": [
+      {
+        "instructions": "**Concept:** A path operation is a function decorated with `@app.get(\"/path\")`. Whatever it returns is serialized to JSON automatically.\n\nServe GET / returning {\"message\": \"pong\"}.\n\n## Steps\n\n1. Create app = FastAPI().\n2. Decorate a function with @app.get(\"/\").\n3. Return a dict.\n\n## Hints\n\n- The decorator binds method + path.\n- Dicts become JSON responses.\n\n## Starter\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n# TODO: GET / -> {\"message\": \"pong\"}\n\n```\n\n## Solution\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef root():\n    return {\"message\": \"pong\"}\n\n```\n\n## Expected output\n\n```\nGET / -> {\"message\":\"pong\"}\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-python-fw-params",
+    "domainId": "plg-python",
+    "title": "2. Typed path and query params",
+    "minutes": 15,
+    "summary": "GET /users/{id}?verbose=false returns the parsed values, coercing types.",
+    "steps": [
+      {
+        "instructions": "**Concept:** Type-annotated function args become validated inputs: a `{id}` in the path is a path param, extra args are query params with defaults.\n\nGET /users/{id}?verbose=false returns the parsed values, coercing types.\n\n## Steps\n\n1. Declare @app.get(\"/users/{id}\").\n2. Annotate id: int and verbose: bool = False.\n3. Return both in a dict.\n\n## Hints\n\n- FastAPI coerces \"5\" -> int and \"false\" -> bool.\n- Args not in the path become query params.\n\n## Starter\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/users/{id}\")\ndef get_user(id, verbose=False):\n    # TODO: use typed params\n    return {}\n\n```\n\n## Solution\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/users/{id}\")\ndef get_user(id: int, verbose: bool = False):\n    return {\"id\": id, \"verbose\": verbose}\n\n```\n\n## Expected output\n\n```\nGET /users/42?verbose=true -> {\"id\":42,\"verbose\":true}\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-python-fw-pydantic-body",
+    "domainId": "plg-python",
+    "title": "3. Validate a request body",
+    "minutes": 15,
+    "summary": "POST /users validates {name, email} and echoes the model.",
+    "steps": [
+      {
+        "instructions": "**Concept:** A Pydantic `BaseModel` typed as a parameter is parsed from the JSON body and validated. Constraint types like `EmailStr` enforce format.\n\nPOST /users validates {name, email} and echoes the model.\n\n## Steps\n\n1. Define CreateUser(BaseModel) with name: str, email: EmailStr.\n2. Add a min length on name with Field.\n3. Accept it as a typed parameter and return it.\n\n## Hints\n\n- Field(min_length=1) rejects empty names.\n- Invalid bodies produce a 422 automatically.\n\n## Starter\n\n```python\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel, EmailStr, Field\n\napp = FastAPI()\n\nclass CreateUser(BaseModel):\n    # TODO\n    pass\n\n# TODO: POST /users\n\n```\n\n## Solution\n\n```python\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel, EmailStr, Field\n\napp = FastAPI()\n\nclass CreateUser(BaseModel):\n    name: str = Field(min_length=1)\n    email: EmailStr\n\n@app.post(\"/users\")\ndef create_user(body: CreateUser):\n    return body\n\n```\n\n## Expected output\n\n```\nPOST /users {\"name\":\"\"} -> 422; valid body -> echoed model\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-python-fw-dependency",
+    "domainId": "plg-python",
+    "title": "4. Dependency injection",
+    "minutes": 15,
+    "summary": "Inject pagination params via a dependency into GET /items.",
+    "steps": [
+      {
+        "instructions": "**Concept:** `Depends` wires reusable logic (auth, pagination, db sessions) into handlers. FastAPI resolves and injects the dependency's return value.\n\nInject pagination params via a dependency into GET /items.\n\n## Steps\n\n1. Write a function returning {\"skip\": ..., \"limit\": ...}.\n2. Add a handler param params: dict = Depends(pagination).\n3. Return the params.\n\n## Hints\n\n- Depends(callable) runs the callable per request.\n- Dependencies can have their own query params.\n\n## Starter\n\n```python\nfrom fastapi import FastAPI, Depends\n\napp = FastAPI()\n\ndef pagination(skip: int = 0, limit: int = 10):\n    # TODO\n    return {}\n\n@app.get(\"/items\")\ndef list_items(params=Depends(pagination)):\n    return params\n\n```\n\n## Solution\n\n```python\nfrom fastapi import FastAPI, Depends\n\napp = FastAPI()\n\ndef pagination(skip: int = 0, limit: int = 10):\n    return {\"skip\": skip, \"limit\": limit}\n\n@app.get(\"/items\")\ndef list_items(params: dict = Depends(pagination)):\n    return params\n\n```\n\n## Expected output\n\n```\nGET /items?skip=5&limit=2 -> {\"skip\":5,\"limit\":2}\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-python-fw-async-status",
+    "domainId": "plg-python",
+    "title": "5. Async endpoint with status code",
+    "minutes": 15,
+    "summary": "POST /notes returns 201 from an async handler.",
+    "steps": [
+      {
+        "instructions": "**Concept:** Use `async def` for IO-bound handlers so the event loop can serve other requests while awaiting. Set `status_code` on the decorator for creation semantics.\n\nPOST /notes returns 201 from an async handler.\n\n## Steps\n\n1. Decorate with @app.post(\"/notes\", status_code=201).\n2. Define an async def handler.\n3. await a coroutine (simulate IO) then return the created note.\n\n## Hints\n\n- status.HTTP_201_CREATED is the readable constant.\n- await asyncio.sleep(0) stands in for real IO.\n\n## Starter\n\n```python\nimport asyncio\nfrom fastapi import FastAPI, status\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Note(BaseModel):\n    text: str\n\n# TODO: async POST /notes returning 201\n\n```\n\n## Solution\n\n```python\nimport asyncio\nfrom fastapi import FastAPI, status\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Note(BaseModel):\n    text: str\n\n@app.post(\"/notes\", status_code=status.HTTP_201_CREATED)\nasync def create_note(note: Note):\n    await asyncio.sleep(0)\n    return note\n\n```\n\n## Expected output\n\n```\nPOST /notes {\"text\":\"hi\"} -> 201 {\"text\":\"hi\"}\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-python-fw-error-handling",
+    "domainId": "plg-python",
+    "title": "6. Error handling",
+    "minutes": 15,
+    "summary": "GET /users/{id} raises 404 for unknown ids via a custom handler.",
+    "steps": [
+      {
+        "instructions": "**Concept:** Raise `HTTPException` for expected errors, or register an `@app.exception_handler` to map a custom exception to a consistent JSON response app-wide.\n\nGET /users/{id} raises 404 for unknown ids via a custom handler.\n\n## Steps\n\n1. Define a NotFound(Exception) carrying a message.\n2. Register @app.exception_handler(NotFound) returning JSONResponse(404).\n3. Raise NotFound from the handler when the id is missing.\n\n## Hints\n\n- Return JSONResponse(status_code=404, content={...}).\n- Handlers receive (request, exc).\n\n## Starter\n\n```python\nfrom fastapi import FastAPI, Request\nfrom fastapi.responses import JSONResponse\n\napp = FastAPI()\nDB = {1: \"Ada\"}\n\nclass NotFound(Exception):\n    def __init__(self, message):\n        self.message = message\n\n# TODO: register handler and raise it\n\n```\n\n## Solution\n\n```python\nfrom fastapi import FastAPI, Request\nfrom fastapi.responses import JSONResponse\n\napp = FastAPI()\nDB = {1: \"Ada\"}\n\nclass NotFound(Exception):\n    def __init__(self, message):\n        self.message = message\n\n@app.exception_handler(NotFound)\ndef not_found_handler(request: Request, exc: NotFound):\n    return JSONResponse(status_code=404, content={\"error\": exc.message})\n\n@app.get(\"/users/{id}\")\ndef get_user(id: int):\n    if id not in DB:\n        raise NotFound(\"user not found\")\n    return {\"id\": id, \"name\": DB[id]}\n\n```\n\n## Expected output\n\n```\nGET /users/99 -> 404 {\"error\":\"user not found\"}\n```"
+      }
+    ],
+    "difficulty": "advanced"
+  },
+  {
+    "id": "plg-python-q-coding",
+    "domainId": "plg-python",
+    "title": "Write fib(n) returning the nth Fibonacci number (fib(0)=0, fib(1)=1). Print f…",
+    "minutes": 10,
+    "summary": "Write fib(n) returning the nth Fibonacci number (fib(0)=0, fib(1)=1). Print fib(10).",
+    "steps": [
+      {
+        "instructions": "Write fib(n) returning the nth Fibonacci number (fib(0)=0, fib(1)=1). Print fib(10).\n\n## Starter\n\n```python\ndef fib(n: int) -> int:\n    # TODO\n    return 0\n\nprint(fib(10))\n\n```\n\n## Reference solution\n\n```python\ndef fib(n: int) -> int:\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n\nprint(fib(10))\n\n```\n\n## Expected output\n\n```\n55\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-02-types-numbers-coding-1",
+    "domainId": "plg-python",
+    "title": "Use `divmod` to compute the quotient and remainder of 17 divided by 5, then p…",
+    "minutes": 10,
+    "summary": "Use `divmod` to compute the quotient and remainder of 17 divided by 5, then print `\"q=<quotient> r=<remainder>\"`.",
+    "steps": [
+      {
+        "instructions": "Use `divmod` to compute the quotient and remainder of 17 divided by 5, then print `\"q=<quotient> r=<remainder>\"`.\n\n## Starter\n\n```python\ndef quotient_remainder(a: int, b: int) -> str:\n    # TODO: use divmod(a, b) and return \"q=<q> r=<r>\"\n    return \"\"\n\nprint(quotient_remainder(17, 5))\n\n```\n\n## Reference solution\n\n```python\ndef quotient_remainder(a: int, b: int) -> str:\n    q, r = divmod(a, b)\n    return f\"q={q} r={r}\"\n\nprint(quotient_remainder(17, 5))\n\n```\n\n## Expected output\n\n```\nq=3 r=2\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-03-strings-coding-1",
+    "domainId": "plg-python",
+    "title": "Write `greet(name, total)` that returns `\"Hi {name}, total ${total:.2f}\"` usi…",
+    "minutes": 10,
+    "summary": "Write `greet(name, total)` that returns `\"Hi {name}, total ${total:.2f}\"` using an f-string. Print the result for name=\"Grace\", total=9.5.",
+    "steps": [
+      {
+        "instructions": "Write `greet(name, total)` that returns `\"Hi {name}, total ${total:.2f}\"` using an f-string. Print the result for name=\"Grace\", total=9.5.\n\n## Starter\n\n```python\ndef greet(name: str, total: float) -> str:\n    # TODO: return the formatted greeting using an f-string\n    return \"\"\n\nprint(greet(\"Grace\", 9.5))\n\n```\n\n## Reference solution\n\n```python\ndef greet(name: str, total: float) -> str:\n    return f\"Hi {name}, total ${total:.2f}\"\n\nprint(greet(\"Grace\", 9.5))\n\n```\n\n## Expected output\n\n```\nHi Grace, total $9.50\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-04-control-flow-coding-1",
+    "domainId": "plg-python",
+    "title": "Given `letters = [\"a\", \"b\"]` and `numbers = [1, 2]`, use `zip` to print each …",
+    "minutes": 10,
+    "summary": "Given `letters = [\"a\", \"b\"]` and `numbers = [1, 2]`, use `zip` to print each pair as `\"letter-number\"`, one per line.",
+    "steps": [
+      {
+        "instructions": "Given `letters = [\"a\", \"b\"]` and `numbers = [1, 2]`, use `zip` to print each pair as `\"letter-number\"`, one per line.\n\n## Starter\n\n```python\nletters = [\"a\", \"b\"]\nnumbers = [1, 2]\n\n# TODO: zip letters and numbers, print \"letter-number\" per line\n\n```\n\n## Reference solution\n\n```python\nletters = [\"a\", \"b\"]\nnumbers = [1, 2]\n\nfor letter, number in zip(letters, numbers):\n    print(f\"{letter}-{number}\")\n\n```\n\n## Expected output\n\n```\na-1\nb-2\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-07-functions-coding-1",
+    "domainId": "plg-python",
+    "title": "Write `append_to(item, target=None)` that avoids the mutable-default pitfall:…",
+    "minutes": 10,
+    "summary": "Write `append_to(item, target=None)` that avoids the mutable-default pitfall: create a new list per call when `target` is None, append `item`, and return it. Call it twice, once with each argument, and print both results.",
+    "steps": [
+      {
+        "instructions": "Write `append_to(item, target=None)` that avoids the mutable-default pitfall: create a new list per call when `target` is None, append `item`, and return it. Call it twice, once with each argument, and print both results.\n\n## Starter\n\n```python\ndef append_to(item, target=None):\n    # TODO: avoid the mutable default gotcha\n    target.append(item)\n    return target\n\nprint(append_to(1))\nprint(append_to(2))\n\n```\n\n## Reference solution\n\n```python\ndef append_to(item, target=None):\n    if target is None:\n        target = []\n    target.append(item)\n    return target\n\nprint(append_to(1))\nprint(append_to(2))\n\n```\n\n## Expected output\n\n```\n[1]\n[2]\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-08-modules-venv-coding-1",
+    "domainId": "plg-python",
+    "title": "Import the `os` module and print the basename of the path `\"/usr/bin/python3\"`.",
+    "minutes": 10,
+    "summary": "Import the `os` module and print the basename of the path `\"/usr/bin/python3\"`.",
+    "steps": [
+      {
+        "instructions": "Import the `os` module and print the basename of the path `\"/usr/bin/python3\"`.\n\n## Starter\n\n```python\nimport os\n\n# TODO: print the basename of \"/usr/bin/python3\"\n\n```\n\n## Reference solution\n\n```python\nimport os\n\nprint(os.path.basename(\"/usr/bin/python3\"))\n\n```\n\n## Expected output\n\n```\npython3\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-09-exceptions-coding-1",
+    "domainId": "plg-python",
+    "title": "Try to open a file that does not exist (`\"missing.txt\"`) and catch `FileNotFo…",
+    "minutes": 10,
+    "summary": "Try to open a file that does not exist (`\"missing.txt\"`) and catch `FileNotFoundError`, printing `\"not found\"` instead of letting it propagate.",
+    "steps": [
+      {
+        "instructions": "Try to open a file that does not exist (`\"missing.txt\"`) and catch `FileNotFoundError`, printing `\"not found\"` instead of letting it propagate.\n\n## Starter\n\n```python\n# TODO: try to open \"missing.txt\" and print \"not found\" if it doesn't exist\n\n```\n\n## Reference solution\n\n```python\ntry:\n    with open(\"missing.txt\") as f:\n        f.read()\nexcept FileNotFoundError:\n    print(\"not found\")\n\n```\n\n## Expected output\n\n```\nnot found\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-12-iterators-gen-coding-1",
+    "domainId": "plg-python",
+    "title": "Write a generator function `countdown(n)` that yields n, n-1, ..., down to 1.…",
+    "minutes": 10,
+    "summary": "Write a generator function `countdown(n)` that yields n, n-1, ..., down to 1. Print all values space-separated using `print(*countdown(3))`.",
+    "steps": [
+      {
+        "instructions": "Write a generator function `countdown(n)` that yields n, n-1, ..., down to 1. Print all values space-separated using `print(*countdown(3))`.\n\n## Starter\n\n```python\ndef countdown(n):\n    # TODO: yield n, n-1, ..., 1\n    pass\n\nprint(*countdown(3))\n\n```\n\n## Reference solution\n\n```python\ndef countdown(n):\n    while n > 0:\n        yield n\n        n -= 1\n\nprint(*countdown(3))\n\n```\n\n## Expected output\n\n```\n3 2 1\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-13-decorators-coding-1",
+    "domainId": "plg-python",
+    "title": "Write a `memoize` decorator using a plain dict cache. Apply it to `square(x)`…",
+    "minutes": 10,
+    "summary": "Write a `memoize` decorator using a plain dict cache. Apply it to `square(x)` (which prints \"computing\" then returns `x*x`). Call `square(4)` twice and print both results — \"computing\" should print only once.",
+    "steps": [
+      {
+        "instructions": "Write a `memoize` decorator using a plain dict cache. Apply it to `square(x)` (which prints \"computing\" then returns `x*x`). Call `square(4)` twice and print both results — \"computing\" should print only once.\n\n## Starter\n\n```python\ndef memoize(fn):\n    cache = {}\n    def wrap(x):\n        # TODO: return cached result if present, else compute and store it\n        return fn(x)\n    return wrap\n\n@memoize\ndef square(x):\n    print(\"computing\")\n    return x * x\n\nprint(square(4))\nprint(square(4))\n\n```\n\n## Reference solution\n\n```python\ndef memoize(fn):\n    cache = {}\n    def wrap(x):\n        if x not in cache:\n            cache[x] = fn(x)\n        return cache[x]\n    return wrap\n\n@memoize\ndef square(x):\n    print(\"computing\")\n    return x * x\n\nprint(square(4))\nprint(square(4))\n\n```\n\n## Expected output\n\n```\ncomputing\n16\n16\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-14-typing-coding-1",
+    "domainId": "plg-python",
+    "title": "Write `first(xs: list[int]) -> int` returning the first element of `xs`. Call…",
+    "minutes": 10,
+    "summary": "Write `first(xs: list[int]) -> int` returning the first element of `xs`. Call it with `[5, 6, 7]` and print the result.",
+    "steps": [
+      {
+        "instructions": "Write `first(xs: list[int]) -> int` returning the first element of `xs`. Call it with `[5, 6, 7]` and print the result.\n\n## Starter\n\n```python\ndef first(xs: list[int]) -> int:\n    # TODO: return the first element\n    return 0\n\nprint(first([5, 6, 7]))\n\n```\n\n## Reference solution\n\n```python\ndef first(xs: list[int]) -> int:\n    return xs[0]\n\nprint(first([5, 6, 7]))\n\n```\n\n## Expected output\n\n```\n5\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-17-files-json-coding-1",
+    "domainId": "plg-python",
+    "title": "Given `data = {\"name\": \"Ada\", \"age\": 30}`, use `json.dumps` with `indent=2` a…",
+    "minutes": 10,
+    "summary": "Given `data = {\"name\": \"Ada\", \"age\": 30}`, use `json.dumps` with `indent=2` and print the result.",
+    "steps": [
+      {
+        "instructions": "Given `data = {\"name\": \"Ada\", \"age\": 30}`, use `json.dumps` with `indent=2` and print the result.\n\n## Starter\n\n```python\nimport json\n\ndata = {\"name\": \"Ada\", \"age\": 30}\n# TODO: print json.dumps(data, indent=2)\n\n```\n\n## Reference solution\n\n```python\nimport json\n\ndata = {\"name\": \"Ada\", \"age\": 30}\nprint(json.dumps(data, indent=2))\n\n```\n\n## Expected output\n\n```\n{\n  \"name\": \"Ada\",\n  \"age\": 30\n}\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-types-tooling-coding-1",
+    "domainId": "plg-python",
+    "title": "Using `typing.Protocol`, define `Reader` requiring a `read() -> str` method, …",
+    "minutes": 10,
+    "summary": "Using `typing.Protocol`, define `Reader` requiring a `read() -> str` method, implement it with `FileLike`, and write `load(r: Reader) -> str` that calls `r.read()`. Print `load(FileLike())`.",
+    "steps": [
+      {
+        "instructions": "Using `typing.Protocol`, define `Reader` requiring a `read() -> str` method, implement it with `FileLike`, and write `load(r: Reader) -> str` that calls `r.read()`. Print `load(FileLike())`.\n\n## Starter\n\n```python\nfrom typing import Protocol\n\nclass Reader(Protocol):\n    def read(self) -> str: ...\n\nclass FileLike:\n    def read(self) -> str:\n        return \"data\"\n\ndef load(r: Reader) -> str:\n    # TODO: call r.read() and return it\n    return \"\"\n\nprint(load(FileLike()))\n\n```\n\n## Reference solution\n\n```python\nfrom typing import Protocol\n\nclass Reader(Protocol):\n    def read(self) -> str: ...\n\nclass FileLike:\n    def read(self) -> str:\n        return \"data\"\n\ndef load(r: Reader) -> str:\n    return r.read()\n\nprint(load(FileLike()))\n\n```\n\n## Expected output\n\n```\ndata\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-22-logging-coding-1",
+    "domainId": "plg-python",
+    "title": "Configure `logging.basicConfig(level=logging.INFO, stream=sys.stdout)`, get a…",
+    "minutes": 10,
+    "summary": "Configure `logging.basicConfig(level=logging.INFO, stream=sys.stdout)`, get a logger named \"app\", and log an info message `\"started\"`.",
+    "steps": [
+      {
+        "instructions": "Configure `logging.basicConfig(level=logging.INFO, stream=sys.stdout)`, get a logger named \"app\", and log an info message `\"started\"`.\n\n## Starter\n\n```python\nimport logging\nimport sys\n\nlogging.basicConfig(level=logging.INFO, stream=sys.stdout)\nlogger = logging.getLogger(\"app\")\n\n# TODO: log an info message \"started\"\n\n```\n\n## Reference solution\n\n```python\nimport logging\nimport sys\n\nlogging.basicConfig(level=logging.INFO, stream=sys.stdout)\nlogger = logging.getLogger(\"app\")\n\nlogger.info(\"started\")\n\n```\n\n## Expected output\n\n```\nINFO:app:started\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-asyncio-pools-coding-1",
+    "domainId": "plg-python",
+    "title": "Use `asyncio.TaskGroup` to run `fetch(1)` and `fetch(2)` concurrently (where …",
+    "minutes": 10,
+    "summary": "Use `asyncio.TaskGroup` to run `fetch(1)` and `fetch(2)` concurrently (where `fetch(n)` returns `n * 2`), then print both results as a list in order.",
+    "steps": [
+      {
+        "instructions": "Use `asyncio.TaskGroup` to run `fetch(1)` and `fetch(2)` concurrently (where `fetch(n)` returns `n * 2`), then print both results as a list in order.\n\n## Starter\n\n```python\nimport asyncio\n\nasync def fetch(n):\n    return n * 2\n\nasync def main():\n    # TODO: use asyncio.TaskGroup to run fetch(1) and fetch(2), print [result1, result2]\n    pass\n\nasyncio.run(main())\n\n```\n\n## Reference solution\n\n```python\nimport asyncio\n\nasync def fetch(n):\n    return n * 2\n\nasync def main():\n    async with asyncio.TaskGroup() as tg:\n        t1 = tg.create_task(fetch(1))\n        t2 = tg.create_task(fetch(2))\n    print([t1.result(), t2.result()])\n\nasyncio.run(main())\n\n```\n\n## Expected output\n\n```\n[2, 4]\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-19-gil-parallelism-coding-1",
+    "domainId": "plg-python",
+    "title": "Use `ThreadPoolExecutor` to map `square(x) = x*x` over `[1, 2, 3, 4]`, and pr…",
+    "minutes": 10,
+    "summary": "Use `ThreadPoolExecutor` to map `square(x) = x*x` over `[1, 2, 3, 4]`, and print the resulting list.",
+    "steps": [
+      {
+        "instructions": "Use `ThreadPoolExecutor` to map `square(x) = x*x` over `[1, 2, 3, 4]`, and print the resulting list.\n\n## Starter\n\n```python\nfrom concurrent.futures import ThreadPoolExecutor\n\ndef square(x):\n    return x * x\n\ndef main():\n    # TODO: use ThreadPoolExecutor to map square over [1, 2, 3, 4] and print the list of results\n    pass\n\nif __name__ == \"__main__\":\n    main()\n\n```\n\n## Reference solution\n\n```python\nfrom concurrent.futures import ThreadPoolExecutor\n\ndef square(x):\n    return x * x\n\ndef main():\n    with ThreadPoolExecutor() as pool:\n        results = list(pool.map(square, [1, 2, 3, 4]))\n    print(results)\n\nif __name__ == \"__main__\":\n    main()\n\n```\n\n## Expected output\n\n```\n[1, 4, 9, 16]\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-python-q-20-packaging-coding-1",
+    "domainId": "plg-python",
+    "title": "Write `is_compatible(version, requires_min)` comparing two `(major, minor)` t…",
+    "minutes": 10,
+    "summary": "Write `is_compatible(version, requires_min)` comparing two `(major, minor)` tuples, returning True if `version >= requires_min`. Print results for `(3, 11) vs (3, 11)` and `(3, 9) vs (3, 11)`.",
+    "steps": [
+      {
+        "instructions": "Write `is_compatible(version, requires_min)` comparing two `(major, minor)` tuples, returning True if `version >= requires_min`. Print results for `(3, 11) vs (3, 11)` and `(3, 9) vs (3, 11)`.\n\n## Starter\n\n```python\ndef is_compatible(version: tuple[int, int], requires_min: tuple[int, int]) -> bool:\n    # TODO: return True if version >= requires_min\n    return False\n\nprint(is_compatible((3, 11), (3, 11)))\nprint(is_compatible((3, 9), (3, 11)))\n\n```\n\n## Reference solution\n\n```python\ndef is_compatible(version: tuple[int, int], requires_min: tuple[int, int]) -> bool:\n    return version >= requires_min\n\nprint(is_compatible((3, 11), (3, 11)))\nprint(is_compatible((3, 9), (3, 11)))\n\n```\n\n## Expected output\n\n```\nTrue\nFalse\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-lab-word-freq",
+    "domainId": "plg-ruby",
+    "title": "Word frequency with Hash + Enumerable",
+    "minutes": 20,
+    "summary": "Count word frequencies and print words that appear more than once, sorted alphabetically as `word:count` lines — classic Hash + Enumerable muscle memory.",
+    "steps": [
+      {
+        "instructions": "1. Split the text on whitespace.\n2. Tally counts in a Hash (or use each_with_object).\n3. Select keys with count > 1, sort, and print word:count."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```ruby\ntext = \"ruby ruby java rust ruby java\"\n# TODO: print words with count > 1 as word:count, sorted\nputs text\n\n```\n\nReferences: [Enumerable#each_with_object](https://docs.ruby-lang.org/en/master/Enumerable.html#method-i-each_with_object) — Build a hash accumulator · [Hash](https://docs.ruby-lang.org/en/master/Hash.html) — Default procs / Hash.new(0)\n\n## Solution\n\n```ruby\ntext = \"ruby ruby java rust ruby java\"\nfreq = text.split.each_with_object(Hash.new(0)) { |w, h| h[w] += 1 }\nfreq.keys.select { |w| freq[w] > 1 }.sort.each do |w|\n  puts \"#{w}:#{freq[w]}\"\nend\n\n```\n\n## Expected output\n\n```\njava:2\nruby:3\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-ruby-lab-comparable",
+    "domainId": "plg-ruby",
+    "title": "Comparable value class",
+    "minutes": 20,
+    "summary": "Implement `<=>` and include Comparable so Version objects sort and compare with `<` / `>` — the standard mixin pattern.",
+    "steps": [
+      {
+        "instructions": "1. Define Version with major and minor readers.\n2. include Comparable and implement <=> comparing [major, minor].\n3. Print whether 1.2 < 1.10 and the sorted list."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```ruby\nclass Version\n  attr_reader :major, :minor\n  def initialize(major, minor)\n    @major = major\n    @minor = minor\n  end\n  # TODO: Comparable + <=>\n  def to_s = \"#{major}.#{minor}\"\nend\n\nversions = [Version.new(1, 10), Version.new(1, 2), Version.new(2, 0)]\nputs (Version.new(1, 2) < Version.new(1, 10))\nputs versions.sort.map(&:to_s).join(\", \")\n\n```\n\nReferences: [Comparable](https://docs.ruby-lang.org/en/master/Comparable.html) — Implement <=> once, get the rest\n\n## Solution\n\n```ruby\nclass Version\n  include Comparable\n  attr_reader :major, :minor\n  def initialize(major, minor)\n    @major = major\n    @minor = minor\n  end\n  def <=>(other)\n    [major, minor] <=> [other.major, other.minor]\n  end\n  def to_s = \"#{major}.#{minor}\"\nend\n\nversions = [Version.new(1, 10), Version.new(1, 2), Version.new(2, 0)]\nputs (Version.new(1, 2) < Version.new(1, 10))\nputs versions.sort.map(&:to_s).join(\", \")\n\n```\n\n## Expected output\n\n```\ntrue\n1.2, 1.10, 2.0\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-ruby-lab-block-iterator",
+    "domainId": "plg-ruby",
+    "title": "Custom each with yield",
+    "minutes": 20,
+    "summary": "Build a tiny collection that mixes in Enumerable by implementing `each` with `yield` — how Ruby iterators really work.",
+    "steps": [
+      {
+        "instructions": "1. Store items in an array inside Bag.\n2. Implement each that yields each item and returns self (or an Enumerator).\n3. include Enumerable and print map(&:upcase).join(\",\")."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```ruby\nclass Bag\n  def initialize(*items) = @items = items\n  # TODO: include Enumerable, implement each\nend\n\nb = Bag.new(\"a\", \"b\", \"c\")\nputs b.map(&:upcase).join(\",\")\n\n```\n\nReferences: [Enumerable](https://docs.ruby-lang.org/en/master/Enumerable.html) — Implement each, get map/select/… · [Object#enum_for](https://docs.ruby-lang.org/en/master/Object.html#method-i-enum_for) — Return an Enumerator when no block\n\n## Solution\n\n```ruby\nclass Bag\n  include Enumerable\n  def initialize(*items) = @items = items\n\n  def each(&block)\n    return enum_for(:each) unless block_given?\n    @items.each(&block)\n    self\n  end\nend\n\nb = Bag.new(\"a\", \"b\", \"c\")\nputs b.map(&:upcase).join(\",\")\n\n```\n\n## Expected output\n\n```\nA,B,C\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-ruby-lab-struct-result",
+    "domainId": "plg-ruby",
+    "title": "Struct Result + service object",
+    "minutes": 20,
+    "summary": "Return a success/failure Result from a callable service — pure Ruby pattern used heavily in Rails apps and plain scripts.",
+    "steps": [
+      {
+        "instructions": "1. Define Result = Struct.new(:success, :value, :error).\n2. Build CreateUser with .call that downcases email and validates.\n3. Print the created user on success."
+      },
+      {
+        "instructions": "Run against this starter code:\n\n```ruby\nResult = Struct.new(:success, :value, :error)\n\nclass CreateUser\n  def self.call(**args) = new(**args).call\n\n  def initialize(name:, email:)\n    @name = name\n    @email = email\n  end\n\n  def call\n    # TODO: validate + normalize, return Result\n    Result.new(false, nil, \"not implemented\")\n  end\nend\n\nresult = CreateUser.call(name: \"Ada\", email: \"ADA@EXAMPLE.COM\")\nif result.success\n  puts \"created #{result.value[:name]} <#{result.value[:email]}>\"\nelse\n  puts \"error: #{result.error}\"\nend\n\n```\n\nReferences: [Struct](https://docs.ruby-lang.org/en/master/Struct.html) — Lightweight value objects\n\n## Solution\n\n```ruby\nResult = Struct.new(:success, :value, :error)\n\nclass CreateUser\n  def self.call(**args) = new(**args).call\n\n  def initialize(name:, email:)\n    @name = name\n    @email = email\n  end\n\n  def call\n    return Result.new(false, nil, \"email required\") if @email.to_s.empty?\n\n    user = { id: 1, name: @name, email: @email.downcase }\n    Result.new(true, user, nil)\n  end\nend\n\nresult = CreateUser.call(name: \"Ada\", email: \"ADA@EXAMPLE.COM\")\nif result.success\n  puts \"created #{result.value[:name]} <#{result.value[:email]}>\"\nelse\n  puts \"error: #{result.error}\"\nend\n\n```\n\n## Expected output\n\n```\ncreated Ada <ada@example.com>\n```"
+      }
+    ]
+  },
+  {
+    "id": "plg-ruby-practice-fizzbuzz",
+    "domainId": "plg-ruby",
+    "title": "FizzBuzz",
+    "minutes": 15,
+    "summary": "Print numbers 1..15, but print `Fizz` for multiples of 3, `Buzz` for multiples of 5, and `FizzBuzz` for multiples of both.",
+    "steps": [
+      {
+        "instructions": "Print numbers 1..15, but print `Fizz` for multiples of 3, `Buzz` for multiples of 5, and `FizzBuzz` for multiples of both.\n\n```ruby\n(1..15).each do |i|\n  # TODO\n  puts i\nend\n\n```\n\n## Hints\n\n- Check divisibility by 15 first.\n- Use elsif for the 3 and 5 cases.\n\n## Solution\n\n```ruby\n(1..15).each do |i|\n  if i % 15 == 0\n    puts \"FizzBuzz\"\n  elsif i % 3 == 0\n    puts \"Fizz\"\n  elsif i % 5 == 0\n    puts \"Buzz\"\n  else\n    puts i\n  end\nend\n\n```\n\n## Expected output\n\n```\n1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-ruby-practice-reverse",
+    "domainId": "plg-ruby",
+    "title": "Reverse a string",
+    "minutes": 15,
+    "summary": "Reverse a string and print the reverse of `hello`.",
+    "steps": [
+      {
+        "instructions": "Reverse a string and print the reverse of `hello`.\n\n```ruby\ndef reverse(s)\n  # TODO\n  s\nend\n\nputs reverse(\"hello\")\n\n```\n\n## Hints\n\n- String has a reverse method.\n- s.reverse.\n\n## Solution\n\n```ruby\ndef reverse(s)\n  s.reverse\nend\n\nputs reverse(\"hello\")\n\n```\n\n## Expected output\n\n```\nolleh\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-ruby-practice-twosum",
+    "domainId": "plg-ruby",
+    "title": "Two Sum",
+    "minutes": 15,
+    "summary": "Given `nums` and a `target`, return the indices of the two numbers that add up to the target. For `[2, 7, 11, 15]` and target `9`, print the indices separated by a space.",
+    "steps": [
+      {
+        "instructions": "Given `nums` and a `target`, return the indices of the two numbers that add up to the target. For `[2, 7, 11, 15]` and target `9`, print the indices separated by a space.\n\n```ruby\ndef two_sum(nums, target)\n  # TODO\n  [-1, -1]\nend\n\nputs two_sum([2, 7, 11, 15], 9).join(\" \")\n\n```\n\n## Hints\n\n- Track each value's index in a hash as you scan.\n- Check if target - n is already a key.\n\n## Solution\n\n```ruby\ndef two_sum(nums, target)\n  seen = {}\n  nums.each_with_index do |n, i|\n    return [seen[target - n], i] if seen.key?(target - n)\n    seen[n] = i\n  end\n  [-1, -1]\nend\n\nputs two_sum([2, 7, 11, 15], 9).join(\" \")\n\n```\n\n## Expected output\n\n```\n0 1\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-ruby-practice-anagrams",
+    "domainId": "plg-ruby",
+    "title": "Group anagrams",
+    "minutes": 15,
+    "summary": "Group words that are anagrams. For `%w[eat tea tan ate nat bat]`, print each group as a comma-joined sorted line, and print those lines sorted.",
+    "steps": [
+      {
+        "instructions": "Group words that are anagrams. For `%w[eat tea tan ate nat bat]`, print each group as a comma-joined sorted line, and print those lines sorted.\n\n```ruby\nwords = %w[eat tea tan ate nat bat]\n# TODO: print anagram groups\nputs words.join(\",\")\n\n```\n\n## Hints\n\n- Use word.chars.sort.join as the hash key.\n- group_by then sort the groups and the words inside.\n\n## Solution\n\n```ruby\nwords = %w[eat tea tan ate nat bat]\ngroups = words.group_by { |w| w.chars.sort.join }.values\ngroups.map { |g| g.sort.join(\",\") }.sort.each { |line| puts line }\n\n```\n\n## Expected output\n\n```\nate,eat,tea\nbat\nnat,tan\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-ruby-practice-slug",
+    "domainId": "plg-ruby",
+    "title": "Slugify a title",
+    "minutes": 15,
+    "summary": "Implement `slugify` that lowercases, replaces non-alphanumerics with hyphens, and strips leading/trailing hyphens. Print slugify(\"Ahoy, Crew!\").",
+    "steps": [
+      {
+        "instructions": "Implement `slugify` that lowercases, replaces non-alphanumerics with hyphens, and strips leading/trailing hyphens. Print slugify(\"Ahoy, Crew!\").\n\n```ruby\ndef slugify(title)\n  # TODO\nend\n\nputs slugify(\"Ahoy, Crew!\")\n\n```\n\n## Hints\n\n- Downcase first.\n- gsub(/[^a-z0-9]+/, '-') then strip edge hyphens.\n\n## Solution\n\n```ruby\ndef slugify(title)\n  title.downcase.gsub(/[^a-z0-9]+/, \"-\").gsub(/^-|-$/, \"\")\nend\n\nputs slugify(\"Ahoy, Crew!\")\n\n```\n\n## Expected output\n\n```\nahoy-crew\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-ruby-fw-model-migration",
+    "domainId": "plg-ruby",
+    "title": "1. Model and migration",
+    "minutes": 15,
+    "summary": "Create an articles table (title, body) and its model.",
+    "steps": [
+      {
+        "instructions": "**Concept:** A migration describes a schema change in Ruby; the matching Active Record model maps to that table. `create_table` defines columns and timestamps.\n\nCreate an articles table (title, body) and its model.\n\n## Steps\n\n1. Write a migration with create_table :articles.\n2. Add string :title and text :body plus t.timestamps.\n3. Define class Article < ApplicationRecord.\n\n## Hints\n\n- t.timestamps adds created_at/updated_at.\n- The model is empty; Rails infers columns.\n\n## Starter\n\n```ruby\nclass CreateArticles < ActiveRecord::Migration[7.1]\n  def change\n    # TODO: create_table :articles\n  end\nend\n\nclass Article < ApplicationRecord\nend\n\n```\n\n## Solution\n\n```ruby\nclass CreateArticles < ActiveRecord::Migration[7.1]\n  def change\n    create_table :articles do |t|\n      t.string :title, null: false\n      t.text :body\n      t.timestamps\n    end\n  end\nend\n\nclass Article < ApplicationRecord\nend\n\n```\n\n## Expected output\n\n```\nrails db:migrate creates the articles table\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-ruby-fw-controller-action",
+    "domainId": "plg-ruby",
+    "title": "2. RESTful controller action",
+    "minutes": 15,
+    "summary": "Implement ArticlesController#index that assigns @articles.",
+    "steps": [
+      {
+        "instructions": "**Concept:** Controllers respond to routes. A RESTful `index` action loads records and renders the matching view via convention.\n\nImplement ArticlesController#index that assigns @articles.\n\n## Steps\n\n1. Inherit from ApplicationController.\n2. Define index that sets @articles = Article.all.\n3. Rely on convention to render index.html.erb.\n\n## Hints\n\n- Instance variables are exposed to the view.\n- No explicit render needed for the default template.\n\n## Starter\n\n```ruby\nclass ArticlesController < ApplicationController\n  def index\n    # TODO\n  end\nend\n\n```\n\n## Solution\n\n```ruby\nclass ArticlesController < ApplicationController\n  def index\n    @articles = Article.all\n  end\nend\n\n```\n\n## Expected output\n\n```\nGET /articles renders the index view with all articles\n```"
+      }
+    ],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "plg-ruby-fw-scope",
+    "domainId": "plg-ruby",
+    "title": "3. Query with a scope",
+    "minutes": 15,
+    "summary": "Add a published scope and a recent ordering scope to Article.",
+    "steps": [
+      {
+        "instructions": "**Concept:** A `scope` names a reusable, chainable query. It returns an Active Record relation so it composes with `order`, `where`, and pagination.\n\nAdd a published scope and a recent ordering scope to Article.\n\n## Steps\n\n1. scope :published, -> { where(published: true) }.\n2. scope :recent, -> { order(created_at: :desc) }.\n3. They should chain: Article.published.recent.\n\n## Hints\n\n- Scopes are lambdas returning a relation.\n- Chaining works because each returns a relation.\n\n## Starter\n\n```ruby\nclass Article < ApplicationRecord\n  # TODO: published and recent scopes\nend\n\n```\n\n## Solution\n\n```ruby\nclass Article < ApplicationRecord\n  scope :published, -> { where(published: true) }\n  scope :recent, -> { order(created_at: :desc) }\nend\n\n```\n\n## Expected output\n\n```\nArticle.published.recent -> published articles, newest first\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-ruby-fw-strong-params",
+    "domainId": "plg-ruby",
+    "title": "4. Strong parameters",
+    "minutes": 15,
+    "summary": "Implement create with an article_params allowlist.",
+    "steps": [
+      {
+        "instructions": "**Concept:** Strong parameters allowlist attributes for mass assignment, preventing clients from setting fields you did not intend. `require` + `permit` scope the payload.\n\nImplement create with an article_params allowlist.\n\n## Steps\n\n1. Define private article_params.\n2. params.require(:article).permit(:title, :body).\n3. Use it in create to build the record.\n\n## Hints\n\n- require raises if the key is missing.\n- permit lists the safe attributes.\n\n## Starter\n\n```ruby\nclass ArticlesController < ApplicationController\n  def create\n    @article = Article.new(/* TODO */)\n    if @article.save\n      redirect_to @article\n    else\n      render :new, status: :unprocessable_entity\n    end\n  end\n\n  private\n\n  # TODO: article_params\nend\n\n```\n\n## Solution\n\n```ruby\nclass ArticlesController < ApplicationController\n  def create\n    @article = Article.new(article_params)\n    if @article.save\n      redirect_to @article\n    else\n      render :new, status: :unprocessable_entity\n    end\n  end\n\n  private\n\n  def article_params\n    params.require(:article).permit(:title, :body)\n  end\nend\n\n```\n\n## Expected output\n\n```\nOnly :title and :body are permitted for mass assignment\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-ruby-fw-turbo-frame",
+    "domainId": "plg-ruby",
+    "title": "5. Turbo Frame partial update",
+    "minutes": 15,
+    "summary": "Wrap an article in an editable Turbo Frame.",
+    "steps": [
+      {
+        "instructions": "**Concept:** Hotwire's `turbo_frame_tag` scopes a region of the page. Links/forms inside a frame swap only that frame's content, giving SPA-like updates without custom JS.\n\nWrap an article in an editable Turbo Frame.\n\n## Steps\n\n1. Wrap the show content with turbo_frame_tag dom_id(@article).\n2. Add an Edit link inside the frame.\n3. The edit response reuses the same frame id to swap in place.\n\n## Hints\n\n- dom_id(@article) yields e.g. \"article_1\".\n- Matching frame ids drive the in-place swap.\n\n## Starter\n\n```erb\n<%# app/views/articles/show.html.erb %>\n<%# TODO: wrap in a turbo_frame_tag %>\n<h1><%= @article.title %></h1>\n<%= link_to \"Edit\", edit_article_path(@article) %>\n\n```\n\n## Solution\n\n```erb\n<%# app/views/articles/show.html.erb %>\n<%= turbo_frame_tag dom_id(@article) do %>\n  <h1><%= @article.title %></h1>\n  <%= link_to \"Edit\", edit_article_path(@article) %>\n<% end %>\n\n```\n\n## Expected output\n\n```\nClicking Edit swaps only the article frame, not the whole page\n```"
+      }
+    ],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "plg-ruby-fw-active-job",
+    "domainId": "plg-ruby",
+    "title": "6. Background job",
+    "minutes": 15,
+    "summary": "Create a job that logs a message and enqueue it after create.",
+    "steps": [
+      {
+        "instructions": "**Concept:** Active Job abstracts background processing. Enqueue with `perform_later` so slow work (email, cleanup) runs off the request cycle via an adapter like Solid Queue.\n\nCreate a job that logs a message and enqueue it after create.\n\n## Steps\n\n1. Define ArticleCleanupJob < ApplicationJob.\n2. Implement perform(article_id) with the work.\n3. Enqueue with ArticleCleanupJob.perform_later(@article.id).\n\n## Hints\n\n- perform_later enqueues; perform_now runs inline.\n- Pass ids, not full records, to jobs.\n\n## Starter\n\n```ruby\nclass ArticleCleanupJob < ApplicationJob\n  queue_as :default\n\n  def perform(article_id)\n    # TODO\n  end\nend\n\n# enqueue somewhere:\n# TODO\n\n```\n\n## Solution\n\n```ruby\nclass ArticleCleanupJob < ApplicationJob\n  queue_as :default\n\n  def perform(article_id)\n    article = Article.find_by(id: article_id)\n    Rails.logger.info(\"Cleaning up article #{article&.id}\")\n  end\nend\n\n# enqueue somewhere:\nArticleCleanupJob.perform_later(@article.id)\n\n```\n\n## Expected output\n\n```\nperform_later pushes the job onto the queue for async execution\n```"
+      }
+    ],
+    "difficulty": "advanced"
+  },
+  {
+    "id": "plg-ruby-q-coding",
+    "domainId": "plg-ruby",
+    "title": "Implement sum(nums) that adds integers with reduce (or sum) and print sum([1,…",
+    "minutes": 10,
+    "summary": "Implement sum(nums) that adds integers with reduce (or sum) and print sum([1, 2, 3, 4]).",
+    "steps": [
+      {
+        "instructions": "Implement sum(nums) that adds integers with reduce (or sum) and print sum([1, 2, 3, 4]).\n\n## Starter\n\n```ruby\ndef sum(nums)\n  # TODO\n  0\nend\n\nputs sum([1, 2, 3, 4])\n\n```\n\n## Reference solution\n\n```ruby\ndef sum(nums)\n  nums.reduce(0, :+)\nend\n\nputs sum([1, 2, 3, 4])\n\n```\n\n## Expected output\n\n```\n10\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-q-03-numbers-nil-truth-coding-1",
+    "domainId": "plg-ruby",
+    "title": "Write a method `safe_upcase(str)` that returns `str.upcase`, or nil if str is…",
+    "minutes": 10,
+    "summary": "Write a method `safe_upcase(str)` that returns `str.upcase`, or nil if str is nil, using the safe navigation operator. Print `safe_upcase(nil).inspect` and `safe_upcase(\"hi\")`.",
+    "steps": [
+      {
+        "instructions": "Write a method `safe_upcase(str)` that returns `str.upcase`, or nil if str is nil, using the safe navigation operator. Print `safe_upcase(nil).inspect` and `safe_upcase(\"hi\")`.\n\n## Starter\n\n```ruby\ndef safe_upcase(str)\n  # TODO\nend\n\nputs safe_upcase(nil).inspect\nputs safe_upcase(\"hi\")\n\n```\n\n## Reference solution\n\n```ruby\ndef safe_upcase(str)\n  str&.upcase\nend\n\nputs safe_upcase(nil).inspect\nputs safe_upcase(\"hi\")\n\n```\n\n## Expected output\n\n```\nnil\nHI\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-q-04-collections-coding-1",
+    "domainId": "plg-ruby",
+    "title": "Build a hash `user = { name: \"Ada\", role: :admin }` and print `user[:name]` t…",
+    "minutes": 10,
+    "summary": "Build a hash `user = { name: \"Ada\", role: :admin }` and print `user[:name]` then `(1..3).to_a.inspect`.",
+    "steps": [
+      {
+        "instructions": "Build a hash `user = { name: \"Ada\", role: :admin }` and print `user[:name]` then `(1..3).to_a.inspect`.\n\n## Starter\n\n```ruby\n# TODO: build the hash and print the required values\n\n```\n\n## Reference solution\n\n```ruby\nuser = { name: \"Ada\", role: :admin }\nputs user[:name]\nputs (1..3).to_a.inspect\n\n```\n\n## Expected output\n\n```\nAda\n[1, 2, 3]\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-q-06-methods-args-coding-1",
+    "domainId": "plg-ruby",
+    "title": "Complete `sum(*nums)` to return the total using Array#sum, and complete `conn…",
+    "minutes": 10,
+    "summary": "Complete `sum(*nums)` to return the total using Array#sum, and complete `connect(host:, port: 443, **opts)` to return \"#{host}:#{port} timeout=#{opts[:timeout]}\". Print `sum(1, 2, 3)` and `connect(host: \"api.example\", timeout: 5)`.",
+    "steps": [
+      {
+        "instructions": "Complete `sum(*nums)` to return the total using Array#sum, and complete `connect(host:, port: 443, **opts)` to return \"#{host}:#{port} timeout=#{opts[:timeout]}\". Print `sum(1, 2, 3)` and `connect(host: \"api.example\", timeout: 5)`.\n\n## Starter\n\n```ruby\ndef sum(*nums)\n  # TODO\nend\n\ndef connect(host:, port: 443, **opts)\n  # TODO\nend\n\nputs sum(1, 2, 3)\nputs connect(host: \"api.example\", timeout: 5)\n\n```\n\n## Reference solution\n\n```ruby\ndef sum(*nums)\n  nums.sum\nend\n\ndef connect(host:, port: 443, **opts)\n  \"#{host}:#{port} timeout=#{opts[:timeout]}\"\nend\n\nputs sum(1, 2, 3)\nputs connect(host: \"api.example\", timeout: 5)\n\n```\n\n## Expected output\n\n```\n6\napi.example:443 timeout=5\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-q-07-blocks-procs-coding-1",
+    "domainId": "plg-ruby",
+    "title": "Write a method `twice` that yields to its block twice, then define `double = …",
+    "minutes": 10,
+    "summary": "Write a method `twice` that yields to its block twice, then define `double = ->(n) { n * 2 }` and print `[1, 2, 3].map(&double)`.",
+    "steps": [
+      {
+        "instructions": "Write a method `twice` that yields to its block twice, then define `double = ->(n) { n * 2 }` and print `[1, 2, 3].map(&double)`.\n\n## Starter\n\n```ruby\ndef twice\n  # TODO\nend\n\ntwice { puts \"ahoy\" }\n\ndouble = nil # TODO: lambda that doubles n\nputs [1, 2, 3].map(&double).inspect\n\n```\n\n## Reference solution\n\n```ruby\ndef twice\n  yield\n  yield\nend\n\ntwice { puts \"ahoy\" }\n\ndouble = ->(n) { n * 2 }\nputs [1, 2, 3].map(&double).inspect\n\n```\n\n## Expected output\n\n```\nahoy\nahoy\n[2, 4, 6]\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-q-08-enumerable-coding-1",
+    "domainId": "plg-ruby",
+    "title": "Using each_with_object, build a hash mapping each word in [\"a\", \"bb\", \"ccc\"] …",
+    "minutes": 10,
+    "summary": "Using each_with_object, build a hash mapping each word in [\"a\", \"bb\", \"ccc\"] to its length, then print the hash's inspect.",
+    "steps": [
+      {
+        "instructions": "Using each_with_object, build a hash mapping each word in [\"a\", \"bb\", \"ccc\"] to its length, then print the hash's inspect.\n\n## Starter\n\n```ruby\nwords = [\"a\", \"bb\", \"ccc\"]\nresult = nil # TODO: use each_with_object\nputs result.inspect\n\n```\n\n## Reference solution\n\n```ruby\nwords = [\"a\", \"bb\", \"ccc\"]\nresult = words.each_with_object({}) { |w, h| h[w] = w.length }\nputs result.inspect\n\n```\n\n## Expected output\n\n```\n{\"a\"=>1, \"bb\"=>2, \"ccc\"=>3}\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-q-10-classes-coding-1",
+    "domainId": "plg-ruby",
+    "title": "Define a class Cat with attr_reader :name, an initialize(name), and an instan…",
+    "minutes": 10,
+    "summary": "Define a class Cat with attr_reader :name, an initialize(name), and an instance method meow returning \"#{name} says meow\". Print Cat.new(\"Tom\").meow.",
+    "steps": [
+      {
+        "instructions": "Define a class Cat with attr_reader :name, an initialize(name), and an instance method meow returning \"#{name} says meow\". Print Cat.new(\"Tom\").meow.\n\n## Starter\n\n```ruby\nclass Cat\n  # TODO\nend\n\nputs Cat.new(\"Tom\").meow\n\n```\n\n## Reference solution\n\n```ruby\nclass Cat\n  attr_reader :name\n\n  def initialize(name)\n    @name = name\n  end\n\n  def meow\n    \"#{name} says meow\"\n  end\nend\n\nputs Cat.new(\"Tom\").meow\n\n```\n\n## Expected output\n\n```\nTom says meow\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-q-11-modules-mixins-coding-1",
+    "domainId": "plg-ruby",
+    "title": "Create a class Version that includes Comparable, has major and minor attrs, a…",
+    "minutes": 10,
+    "summary": "Create a class Version that includes Comparable, has major and minor attrs, and compares by [major, minor]. Print whether Version.new(1, 2) < Version.new(1, 10).",
+    "steps": [
+      {
+        "instructions": "Create a class Version that includes Comparable, has major and minor attrs, and compares by [major, minor]. Print whether Version.new(1, 2) < Version.new(1, 10).\n\n## Starter\n\n```ruby\nclass Version\n  include Comparable\n  attr_reader :major, :minor\n  def initialize(major, minor)\n    @major = major\n    @minor = minor\n  end\n  # TODO: define <=>\nend\n\nputs Version.new(1, 2) < Version.new(1, 10)\n\n```\n\n## Reference solution\n\n```ruby\nclass Version\n  include Comparable\n  attr_reader :major, :minor\n  def initialize(major, minor)\n    @major = major\n    @minor = minor\n  end\n\n  def <=>(other)\n    [major, minor] <=> [other.major, other.minor]\n  end\nend\n\nputs Version.new(1, 2) < Version.new(1, 10)\n\n```\n\n## Expected output\n\n```\ntrue\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-q-13-exceptions-coding-1",
+    "domainId": "plg-ruby",
+    "title": "Define a custom error InvalidAge < StandardError. Write validate_age(age) tha…",
+    "minutes": 10,
+    "summary": "Define a custom error InvalidAge < StandardError. Write validate_age(age) that raises InvalidAge, \"age must be positive\" if age <= 0, otherwise returns age. Call validate_age(-1) inside begin/rescue and print the error message.",
+    "steps": [
+      {
+        "instructions": "Define a custom error InvalidAge < StandardError. Write validate_age(age) that raises InvalidAge, \"age must be positive\" if age <= 0, otherwise returns age. Call validate_age(-1) inside begin/rescue and print the error message.\n\n## Starter\n\n```ruby\nclass InvalidAge < StandardError; end\n\ndef validate_age(age)\n  # TODO\nend\n\nbegin\n  validate_age(-1)\nrescue InvalidAge => e\n  puts \"error: #{e.message}\"\nend\n\n```\n\n## Reference solution\n\n```ruby\nclass InvalidAge < StandardError; end\n\ndef validate_age(age)\n  raise InvalidAge, \"age must be positive\" if age <= 0\n  age\nend\n\nbegin\n  validate_age(-1)\nrescue InvalidAge => e\n  puts \"error: #{e.message}\"\nend\n\n```\n\n## Expected output\n\n```\nerror: age must be positive\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-q-14-pattern-matching-coding-1",
+    "domainId": "plg-ruby",
+    "title": "Write a case/in expression for `payload = { type: \"ping\" }` that matches `{ t…",
+    "minutes": 10,
+    "summary": "Write a case/in expression for `payload = { type: \"ping\" }` that matches `{ type: \"user\", id:, name: }` printing \"user #{id}: #{name}\", matches `{ type: \"ping\" }` printing 'pong', and otherwise prints 'unknown'.",
+    "steps": [
+      {
+        "instructions": "Write a case/in expression for `payload = { type: \"ping\" }` that matches `{ type: \"user\", id:, name: }` printing \"user #{id}: #{name}\", matches `{ type: \"ping\" }` printing 'pong', and otherwise prints 'unknown'.\n\n## Starter\n\n```ruby\npayload = { type: \"ping\" }\n\n# TODO: case/in matching\n\n```\n\n## Reference solution\n\n```ruby\npayload = { type: \"ping\" }\n\ncase payload\nin { type: \"user\", id:, name: }\n  puts \"user #{id}: #{name}\"\nin { type: \"ping\" }\n  puts \"pong\"\nelse\n  puts \"unknown\"\nend\n\n```\n\n## Expected output\n\n```\npong\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-q-15-enumerators-lazy-coding-1",
+    "domainId": "plg-ruby",
+    "title": "Using a lazy enumerator on (1..), select even numbers, map each to its square…",
+    "minutes": 10,
+    "summary": "Using a lazy enumerator on (1..), select even numbers, map each to its square, take the first 3, and print the forced array.",
+    "steps": [
+      {
+        "instructions": "Using a lazy enumerator on (1..), select even numbers, map each to its square, take the first 3, and print the forced array.\n\n## Starter\n\n```ruby\nresult = nil # TODO\nputs result.inspect\n\n```\n\n## Reference solution\n\n```ruby\nresult = (1..).lazy.select(&:even?).map { |n| n * n }.take(3).force\nputs result.inspect\n\n```\n\n## Expected output\n\n```\n[4, 16, 36]\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-q-18-stdlib-highlights-coding-1",
+    "domainId": "plg-ruby",
+    "title": "Require 'set', build Set[1, 2, 2, 3], and print its to_a.sort.inspect.",
+    "minutes": 10,
+    "summary": "Require 'set', build Set[1, 2, 2, 3], and print its to_a.sort.inspect.",
+    "steps": [
+      {
+        "instructions": "Require 'set', build Set[1, 2, 2, 3], and print its to_a.sort.inspect.\n\n## Starter\n\n```ruby\nrequire \"set\"\n\n# TODO\n\n```\n\n## Reference solution\n\n```ruby\nrequire \"set\"\n\nputs Set[1, 2, 2, 3].to_a.sort.inspect\n\n```\n\n## Expected output\n\n```\n[1, 2, 3]\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-q-19-metaprogramming-coding-1",
+    "domainId": "plg-ruby",
+    "title": "Use define_method inside a class Actions to dynamically define go and stop me…",
+    "minutes": 10,
+    "summary": "Use define_method inside a class Actions to dynamically define go and stop methods that each return \"#{name} executed\". Print both.",
+    "steps": [
+      {
+        "instructions": "Use define_method inside a class Actions to dynamically define go and stop methods that each return \"#{name} executed\". Print both.\n\n## Starter\n\n```ruby\nclass Actions\n  # TODO: use define_method for :go and :stop\nend\n\na = Actions.new\nputs a.go\nputs a.stop\n\n```\n\n## Reference solution\n\n```ruby\nclass Actions\n  %i[go stop].each do |name|\n    define_method(name) { \"#{name} executed\" }\n  end\nend\n\na = Actions.new\nputs a.go\nputs a.stop\n\n```\n\n## Expected output\n\n```\ngo executed\nstop executed\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  },
+  {
+    "id": "plg-ruby-q-24-yjit-profiling-coding-1",
+    "domainId": "plg-ruby",
+    "title": "Require 'benchmark', measure the realtime of an empty block, and print the cl…",
+    "minutes": 10,
+    "summary": "Require 'benchmark', measure the realtime of an empty block, and print the class of the returned value.",
+    "steps": [
+      {
+        "instructions": "Require 'benchmark', measure the realtime of an empty block, and print the class of the returned value.\n\n## Starter\n\n```ruby\nrequire \"benchmark\"\n\nelapsed = nil # TODO: measure Benchmark.realtime of an empty block\nputs elapsed.class\n\n```\n\n## Reference solution\n\n```ruby\nrequire \"benchmark\"\n\nelapsed = Benchmark.realtime {}\nputs elapsed.class\n\n```\n\n## Expected output\n\n```\nFloat\n```"
+      }
+    ],
+    "checks": [
+      "Self-check: compare your program's output with the expected output."
+    ]
+  }
+]

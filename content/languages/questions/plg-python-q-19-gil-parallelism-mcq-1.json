@@ -1,0 +1,31 @@
+{
+  "id": "plg-python-q-19-gil-parallelism-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "For CPU-bound work in standard CPython, which approach effectively uses multiple cores?",
+  "explanation": "Separate processes each get their own GIL and interpreter, actually using multiple cores for CPU-bound work.",
+  "tags": [
+    "concurrency",
+    "gil",
+    "performance"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Threading (threading.Thread)"
+    },
+    {
+      "id": "b",
+      "text": "multiprocessing / ProcessPoolExecutor"
+    },
+    {
+      "id": "c",
+      "text": "asyncio"
+    },
+    {
+      "id": "d",
+      "text": "Acquiring more GIL locks"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-17-sync",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 17,
+  "title": "sync: Mutex, WaitGroup, Once",
+  "minutes": 11,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## When channels aren't the answer\n\nFor protecting shared in-memory state (caches, counters), a `sync.Mutex` is simpler than channels.\n\n## WaitGroup\n\nWait for a set of goroutines to finish. `Add` before starting, `Done` in a defer, `Wait` to join.\n\n## Once and RWMutex\n\n`sync.Once` guarantees one-time init. `sync.RWMutex` allows many readers or one writer. The `-race` detector finds data races."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "var wg sync.WaitGroup\nfor _, u := range urls {\n  wg.Add(1)\n  go func(u string) {\n    defer wg.Done()\n    fetch(u)\n  }(u)\n}\nwg.Wait()"
+    }
+  ],
+  "docIds": [
+    "sync",
+    "race_detector"
+  ]
+}

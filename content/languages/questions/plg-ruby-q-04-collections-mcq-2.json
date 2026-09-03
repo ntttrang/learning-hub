@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-04-collections-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "What is the difference between `1..5` and `1...5`?",
+  "explanation": "Two dots make an inclusive range, three dots make an exclusive range.",
+  "tags": [
+    "collections",
+    "basics"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "There is no difference"
+    },
+    {
+      "id": "b",
+      "text": "`1..5` includes 5, `1...5` excludes 5"
+    },
+    {
+      "id": "c",
+      "text": "`1...5` includes 5, `1..5` excludes 5"
+    },
+    {
+      "id": "d",
+      "text": "Both exclude their endpoints"
+    }
+  ],
+  "correct": "b"
+}

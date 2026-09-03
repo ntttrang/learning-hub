@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-16-gems-bundler-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "What does the version constraint \"~> 2.1\" allow?",
+  "explanation": "The pessimistic operator ~> 2.1 allows patch/minor updates within 2.1.x but blocks 3.0.",
+  "tags": [
+    "tooling",
+    "bundler"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Any version at all"
+    },
+    {
+      "id": "b",
+      "text": "Only exactly version 2.1.0"
+    },
+    {
+      "id": "c",
+      "text": "2.1.x releases, but not 3.0"
+    },
+    {
+      "id": "d",
+      "text": "Any version below 2.1"
+    }
+  ],
+  "correct": "c"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-concurrency-lifecycle",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 22,
+  "title": "Goroutine lifecycles, context, and channels",
+  "minutes": 14,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Predictable concurrency\n\nStarting a goroutine is cheap; **owning** its lifetime is the senior skill. Every goroutine needs a purpose, a stop signal, and a way to report failure.\n\n## Context\n\nPass `context.Context` into anything that waits. Cancel on request abandonment, timeouts, and shutdown. Never store contexts in structs long-term as a rule of thumb — pass them as the first argument.\n\n## Channels vs mutexes\n\n- Channels: ownership transfer, pipelines, signaling.\n- Mutexes: protecting shared in-memory state (maps, caches).\n\nClose channels from the **producer**. Prefer `errgroup` for bounded fan-out with cancellation."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "g, ctx := errgroup.WithContext(ctx)\ng.SetLimit(8)\nfor _, u := range urls {\n  u := u\n  g.Go(func() error {\n    return fetch(ctx, u)\n  })\n}\nreturn g.Wait()"
+    }
+  ],
+  "docIds": [
+    "errgroup",
+    "context"
+  ]
+}

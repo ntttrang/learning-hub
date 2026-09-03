@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-18-io-nio",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 18,
+  "title": "Files and NIO.2",
+  "minutes": 10,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## java.nio.file\n\n`Path` and `Files` are the modern API. Read a whole file with `Files.readString`, stream lines with `Files.lines` (close the stream!), write with `Files.writeString`.\n\n## Buffering\n\nFor large data use buffered readers/writers or channels. Always use try-with-resources.\n\n## Encoding\n\nSpecify `StandardCharsets.UTF_8` explicitly — don't rely on the platform default."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "Path p = Path.of(\"notes.txt\");\nString text = Files.readString(p, StandardCharsets.UTF_8);\nFiles.writeString(p, text.toUpperCase(), StandardCharsets.UTF_8);"
+    }
+  ],
+  "docIds": [
+    "fileio",
+    "Files"
+  ]
+}

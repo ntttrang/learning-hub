@@ -1,0 +1,32 @@
+{
+  "id": "plg-java-q-vt-when",
+  "domainId": "plg-java",
+  "prompt": "When are virtual threads a good default?",
+  "explanation": "Virtual threads shine on I/O-bound imperative code. CPU-bound work still needs careful pooling; they don't remove the need for correct synchronization.",
+  "tags": [
+    "loom"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "High-concurrency blocking I/O (JDBC, HTTP)"
+    },
+    {
+      "id": "b",
+      "text": "Tight CPU-bound numerical kernels"
+    },
+    {
+      "id": "c",
+      "text": "Imperative Spring MVC request handlers"
+    },
+    {
+      "id": "d",
+      "text": "Replacing all locks with busy-spin loops"
+    }
+  ],
+  "correct": [
+    "a",
+    "c"
+  ]
+}

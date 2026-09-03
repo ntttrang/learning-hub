@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-14-generics-intro",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 14,
+  "title": "Generics: type parameters and constraints",
+  "minutes": 12,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Type parameters\n\nGo 1.18+ supports generics: `func Map[T, U any](s []T, f func(T) U) []U`. Constraints restrict allowed types.\n\n## Constraints\n\n`any`, `comparable`, and interfaces with type sets (`constraints.Ordered`). Define your own with unions like `~int | ~float64`.\n\n## When to use\n\nContainers and algorithm helpers benefit. Don't genericize everything — concrete code is often clearer."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "func Map[T, U any](s []T, f func(T) U) []U {\n  out := make([]U, len(s))\n  for i, v := range s { out[i] = f(v) }\n  return out\n}"
+    }
+  ],
+  "docIds": [
+    "intro-generics",
+    "43651-type-parameters"
+  ]
+}

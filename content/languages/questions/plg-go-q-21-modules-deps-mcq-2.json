@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-21-modules-deps-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "How does a Go module signal a major version of v2 or higher in its import path?",
+  "explanation": "Semantic import versioning encodes major version >=2 directly in the import path, e.g. example.com/pkg/v2.",
+  "tags": [
+    "go-21-modules-deps",
+    "versioning"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "The import path never changes across major versions"
+    },
+    {
+      "id": "b",
+      "text": "By appending /v2 (or higher) to the module's import path"
+    },
+    {
+      "id": "c",
+      "text": "Only go.mod records it; imports are unaffected"
+    },
+    {
+      "id": "d",
+      "text": "By renaming the entire repository"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "plg-go-q-17-sync-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: sync._____ guarantees a function runs exactly once even when called concurrently from many goroutines.",
+  "explanation": "sync.Once.Do(f) executes f a single time no matter how many goroutines call it.",
+  "tags": [
+    "go-17-sync",
+    "sync.Once"
+  ],
+  "kind": "fill",
+  "template": "var o sync.___",
+  "blanks": [
+    {
+      "answer": "Once",
+      "alternatives": [
+        "Once"
+      ]
+    }
+  ]
+}

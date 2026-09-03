@@ -1,0 +1,76 @@
+{
+  "language": "java",
+  "problems": [
+    {
+      "id": "java-practice-fizzbuzz",
+      "title": "FizzBuzz",
+      "prompt": "Print numbers 1..15, but print `Fizz` for multiples of 3, `Buzz` for multiples of 5, and `FizzBuzz` for multiples of both.",
+      "difficulty": "junior",
+      "hints": [
+        "Check divisibility by 15 first.",
+        "Use else-if chains with the modulo operator."
+      ],
+      "language": "java",
+      "starterCode": "public class Main {\n  public static void main(String[] args) {\n    for (int i = 1; i <= 15; i++) {\n      // TODO\n      System.out.println(i);\n    }\n  }\n}\n",
+      "solution": "public class Main {\n  public static void main(String[] args) {\n    for (int i = 1; i <= 15; i++) {\n      if (i % 15 == 0) System.out.println(\"FizzBuzz\");\n      else if (i % 3 == 0) System.out.println(\"Fizz\");\n      else if (i % 5 == 0) System.out.println(\"Buzz\");\n      else System.out.println(i);\n    }\n  }\n}\n",
+      "expectedOutput": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz"
+    },
+    {
+      "id": "java-practice-reverse",
+      "title": "Reverse a string",
+      "prompt": "Reverse a string and print the reverse of `hello`.",
+      "difficulty": "junior",
+      "hints": [
+        "StringBuilder has a reverse() method.",
+        "new StringBuilder(s).reverse().toString()."
+      ],
+      "language": "java",
+      "starterCode": "public class Main {\n  static String reverse(String s) {\n    // TODO\n    return s;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(reverse(\"hello\"));\n  }\n}\n",
+      "solution": "public class Main {\n  static String reverse(String s) {\n    return new StringBuilder(s).reverse().toString();\n  }\n\n  public static void main(String[] args) {\n    System.out.println(reverse(\"hello\"));\n  }\n}\n",
+      "expectedOutput": "olleh"
+    },
+    {
+      "id": "java-practice-twosum",
+      "title": "Two Sum",
+      "prompt": "Given `nums` and a `target`, return the indices of the two numbers that add up to the target. For `{2, 7, 11, 15}` and target `9`, print the indices separated by a space.",
+      "difficulty": "mid",
+      "hints": [
+        "Use a HashMap<Integer, Integer> from value to index.",
+        "For each element, look up target - nums[i]."
+      ],
+      "language": "java",
+      "starterCode": "import java.util.*;\n\npublic class Main {\n  static int[] twoSum(int[] nums, int target) {\n    // TODO\n    return new int[] {-1, -1};\n  }\n\n  public static void main(String[] args) {\n    int[] r = twoSum(new int[] {2, 7, 11, 15}, 9);\n    System.out.println(r[0] + \" \" + r[1]);\n  }\n}\n",
+      "solution": "import java.util.*;\n\npublic class Main {\n  static int[] twoSum(int[] nums, int target) {\n    Map<Integer, Integer> seen = new HashMap<>();\n    for (int i = 0; i < nums.length; i++) {\n      Integer j = seen.get(target - nums[i]);\n      if (j != null) return new int[] {j, i};\n      seen.put(nums[i], i);\n    }\n    return new int[] {-1, -1};\n  }\n\n  public static void main(String[] args) {\n    int[] r = twoSum(new int[] {2, 7, 11, 15}, 9);\n    System.out.println(r[0] + \" \" + r[1]);\n  }\n}\n",
+      "expectedOutput": "0 1"
+    },
+    {
+      "id": "java-practice-palindrome",
+      "title": "Palindrome check",
+      "prompt": "Return whether a string reads the same forwards and backwards. Print the result for `racecar`.",
+      "difficulty": "junior",
+      "hints": [
+        "Two-pointer comparison with charAt.",
+        "Return false on the first mismatch."
+      ],
+      "language": "java",
+      "starterCode": "public class Main {\n  static boolean isPalindrome(String s) {\n    // TODO\n    return false;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(isPalindrome(\"racecar\"));\n  }\n}\n",
+      "solution": "public class Main {\n  static boolean isPalindrome(String s) {\n    int i = 0, j = s.length() - 1;\n    while (i < j) {\n      if (s.charAt(i++) != s.charAt(j--)) return false;\n    }\n    return true;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(isPalindrome(\"racecar\"));\n  }\n}\n",
+      "expectedOutput": "true"
+    },
+    {
+      "id": "java-practice-lru",
+      "title": "Thread-safe LRU sketch",
+      "prompt": "Implement a minimal LRU cache with get/put, capacity N, using LinkedHashMap access-order. Discuss (in a comment) why ConcurrentHashMap alone is not enough for LRU eviction ordering.",
+      "difficulty": "senior",
+      "hints": [
+        "LinkedHashMap(capacity, loadFactor, true) enables access-order.",
+        "Override removeEldestEntry for eviction.",
+        "Wrap mutating methods with synchronized or use a ConcurrentHashMap + separate order structure."
+      ],
+      "language": "java",
+      "starterCode": "import java.util.*;\n\npublic class LruCache<K, V> {\n  private final int capacity;\n  // TODO\n\n  public LruCache(int capacity) {\n    this.capacity = capacity;\n  }\n\n  public synchronized V get(K key) {\n    return null;\n  }\n\n  public synchronized void put(K key, V value) {\n  }\n}\n",
+      "solution": "import java.util.*;\n\npublic class LruCache<K, V> {\n  private final int capacity;\n  private final LinkedHashMap<K, V> map;\n\n  public LruCache(int capacity) {\n    this.capacity = capacity;\n    this.map = new LinkedHashMap<>(16, 0.75f, true) {\n      @Override\n      protected boolean removeEldestEntry(Map.Entry<K, V> e) {\n        return size() > LruCache.this.capacity;\n      }\n    };\n  }\n\n  public synchronized V get(K key) {\n    return map.get(key);\n  }\n\n  public synchronized void put(K key, V value) {\n    map.put(key, value);\n  }\n}\n",
+      "expectedOutput": "(self-check: get returns most recently used; eldest evicted when over capacity)"
+    }
+  ]
+}

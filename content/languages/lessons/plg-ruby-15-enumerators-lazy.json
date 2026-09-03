@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-15-enumerators-lazy",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 15,
+  "title": "Enumerators and lazy evaluation",
+  "minutes": 10,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Enumerator\n\nCalling `each` without a block returns an `Enumerator`. Chain or pass it around. `enum_for` / `to_enum` expose custom iterators.\n\n## Lazy\n\n`lazy` defers work until you force results (`first`, `take`, `force`). Essential for infinite or huge pipelines: `(1..).lazy.select(&:odd?).map { _1 * 2 }.take(3)`.\n\n## External iterators\n\n`next` / `peek` walk an enumerator imperatively when a block-style API doesn't fit."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "result = (1..).lazy.select(&:odd?).map { |n| n * n }.take(5).force\nputs result.inspect  # [1, 9, 25, 49, 81]"
+    }
+  ],
+  "docIds": [
+    "Enumerator",
+    "Lazy"
+  ]
+}

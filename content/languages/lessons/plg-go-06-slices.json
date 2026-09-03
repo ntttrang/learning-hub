@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-06-slices",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 6,
+  "title": "Slices: len, cap, and append",
+  "minutes": 12,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Slice vs array\n\nArrays have fixed size; **slices** are dynamic views over a backing array with `len` and `cap`. Most code uses slices.\n\n## append\n\n`append` may allocate a new backing array when capacity is exceeded — always reassign: `s = append(s, x)`.\n\n## Gotcha\n\nSlices sharing a backing array can alias each other. `copy` or a full slice expression avoids surprising mutations."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "s := make([]int, 0, 4) // len 0, cap 4\nfor i := 0; i < 6; i++ {\n  s = append(s, i)\n}\nfmt.Println(len(s), cap(s))"
+    }
+  ],
+  "docIds": [
+    "slices-intro",
+    "SliceTricks"
+  ]
+}

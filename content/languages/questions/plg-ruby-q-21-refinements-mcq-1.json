@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-21-refinements-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What is a downside of monkey-patching a core class like String directly?",
+  "explanation": "Reopening a core class changes it everywhere in the process, which can surprise unrelated code.",
+  "tags": [
+    "refinements",
+    "design"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It's impossible in Ruby"
+    },
+    {
+      "id": "b",
+      "text": "The change is global and affects the entire process"
+    },
+    {
+      "id": "c",
+      "text": "It only affects a single object"
+    },
+    {
+      "id": "d",
+      "text": "It requires installing a gem"
+    }
+  ],
+  "correct": "b"
+}

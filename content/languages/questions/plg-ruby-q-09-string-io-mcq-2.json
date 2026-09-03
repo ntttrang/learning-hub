@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-09-string-io-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "What does `format(\"%s scored %.1f\", \"Ada\", 98.5)` produce?",
+  "explanation": "%s substitutes the string, %.1f formats the float with one decimal place.",
+  "tags": [
+    "strings",
+    "io"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "\"Ada scored 98.5\""
+    },
+    {
+      "id": "b",
+      "text": "\"Ada scored 99\""
+    },
+    {
+      "id": "c",
+      "text": "\"%s scored %.1f\""
+    },
+    {
+      "id": "d",
+      "text": "It raises an error"
+    }
+  ],
+  "correct": "a"
+}

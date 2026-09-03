@@ -1,0 +1,34 @@
+{
+  "id": "plg-java-q-18-io-nio-multi-1",
+  "domainId": "plg-java",
+  "prompt": "Which are true about java.nio.file usage?",
+  "explanation": "Files.readString/writeString/lines can throw IOException, a checked exception.",
+  "tags": [
+    "io",
+    "files"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Files.readString reads an entire file into a String"
+    },
+    {
+      "id": "b",
+      "text": "You should specify StandardCharsets.UTF_8 explicitly rather than relying on the platform default"
+    },
+    {
+      "id": "c",
+      "text": "Files.lines returns a Stream that should be closed"
+    },
+    {
+      "id": "d",
+      "text": "File I/O methods never throw checked exceptions"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-09-pointers-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "What does the expression &x produce in Go?",
+  "explanation": "& is the address-of operator, producing a pointer to x.",
+  "tags": [
+    "go-09-pointers",
+    "basics"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "The value of x dereferenced"
+    },
+    {
+      "id": "b",
+      "text": "The memory address of x, as a pointer"
+    },
+    {
+      "id": "c",
+      "text": "A copy of x wrapped in an interface"
+    },
+    {
+      "id": "d",
+      "text": "A compile error unless x is a pointer already"
+    }
+  ],
+  "correct": "b"
+}

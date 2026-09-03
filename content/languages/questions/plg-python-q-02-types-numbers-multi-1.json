@@ -1,0 +1,34 @@
+{
+  "id": "plg-python-q-02-types-numbers-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which of these values are falsy in Python?",
+  "explanation": "Empty containers, 0, \"\", and None are falsy; a non-empty list like [1] is truthy.",
+  "tags": [
+    "basics",
+    "types"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "0"
+    },
+    {
+      "id": "b",
+      "text": "\"\" (empty string)"
+    },
+    {
+      "id": "c",
+      "text": "[1] (a list with one item)"
+    },
+    {
+      "id": "d",
+      "text": "None"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

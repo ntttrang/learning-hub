@@ -1,0 +1,17 @@
+{
+  "id": "plg-java-q-04-strings-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "String.formatted substitutes %s with the argument, like String.format.",
+  "tags": [
+    "basics",
+    "strings"
+  ],
+  "kind": "fill",
+  "template": "public class Demo {\n  public static void main(String[] args) {\n    String name = \"Corgi\";\n    String json = \"{ \\\"name\\\": \\\"%s\\\" }\".formatted(name);\n    System.out.println(json);\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "{ \"name\": \"Corgi\" }"
+    }
+  ]
+}

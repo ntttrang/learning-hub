@@ -1,0 +1,20 @@
+{
+  "id": "plg-python-q-16-testing-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank: a pytest fixture needing teardown logic uses this instead of `return` to hand control back to the test.",
+  "explanation": "Code after `yield` in a fixture runs as teardown once the test using it completes.",
+  "tags": [
+    "testing",
+    "pytest"
+  ],
+  "kind": "fill",
+  "template": "@pytest.fixture\ndef db():\n    conn = connect()\n    ___ conn\n    conn.close()",
+  "blanks": [
+    {
+      "answer": "yield",
+      "alternatives": [
+        "yield"
+      ]
+    }
+  ]
+}

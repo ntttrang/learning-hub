@@ -36,7 +36,7 @@ describe('hub views', () => {
   it('reports installed packs and placeholders honestly', () => {
     render(<App />);
     expect(screen.queryAllByText('Pack not installed')).toHaveLength(0); // every roadmap placeholder now installs
-    expect(screen.getAllByText('Installed')).toHaveLength(5); // fixture + gh-200 + gh-900 + gh-600 + dp-800
+    expect(screen.getAllByText('Installed')).toHaveLength(6); // fixture + gh-200 + gh-900 + gh-600 + dp-800 + languages
   });
 
   it('cards and rail links point at subject workspaces', () => {

@@ -1,0 +1,35 @@
+{
+  "id": "plg-java-q-spring-production-multi-1",
+  "domainId": "plg-java",
+  "prompt": "Which statements about HikariCP pool sizing are true?",
+  "explanation": "Read-only transactions still hold a connection for the duration of the method.",
+  "tags": [
+    "spring",
+    "transactions",
+    "hikaricp"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Size the pool for real concurrent DB users, not the number of threads"
+    },
+    {
+      "id": "b",
+      "text": "Virtual threads can increase the number of requests waiting on the pool"
+    },
+    {
+      "id": "c",
+      "text": "REQUIRES_NEW propagation can open an additional database connection"
+    },
+    {
+      "id": "d",
+      "text": "Read-only transactions never hold a connection"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

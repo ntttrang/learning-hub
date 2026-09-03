@@ -1,0 +1,25 @@
+{
+  "id": "plg-ruby-18-stdlib-highlights",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 18,
+  "title": "Stdlib highlights: JSON, Set, Struct",
+  "minutes": 10,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## JSON\n\n`require \"json\"` then `JSON.parse` / `to_json`. Validate and shape data at the boundary — don't trust raw hashes deep in domain code.\n\n## Set and Struct\n\n`Set` for unique membership. `Struct.new(:x, :y)` builds a lightweight value class with accessors — great before a full class earns its keep.\n\n## Data (3.2+)\n\n`Data.define` creates immutable value objects — prefer over Struct when mutation would be a bug."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "require \"json\"\nrequire \"set\"\n\nPoint = Struct.new(:x, :y, keyword_init: true)\np = Point.new(x: 1, y: 2)\nputs p.to_h.to_json\n\nputs Set[1, 2, 2, 3].to_a.inspect"
+    }
+  ],
+  "docIds": [
+    "JSON",
+    "Struct",
+    "Data"
+  ]
+}

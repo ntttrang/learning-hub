@@ -1,0 +1,80 @@
+{
+  "language": "go",
+  "labs": [
+    {
+      "id": "go-lab-rest-api",
+      "title": "JSON REST endpoint (+ httptest)",
+      "goal": "Expose a /healthz endpoint that returns JSON, then verify it end-to-end with httptest — the standard way to ship and test an HTTP handler in Go.",
+      "steps": [
+        "Define a Health struct with JSON tags.",
+        "Write a handler that sets Content-Type and encodes JSON.",
+        "Spin up an httptest.Server, GET the endpoint, decode the body.",
+        "Print status code + fields to prove the contract."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport (\n  \"encoding/json\"\n  \"fmt\"\n  \"net/http\"\n  \"net/http/httptest\"\n)\n\ntype Health struct {\n  Status  string `json:\"status\"`\n  Version string `json:\"version\"`\n}\n\nfunc healthHandler(w http.ResponseWriter, r *http.Request) {\n  // TODO: set header, encode Health{ok, 1.0.0}\n}\n\nfunc main() {\n  // TODO: httptest server, GET /healthz, print result\n  fmt.Println(\"\")\n}\n",
+      "solution": "package main\n\nimport (\n  \"encoding/json\"\n  \"fmt\"\n  \"net/http\"\n  \"net/http/httptest\"\n)\n\ntype Health struct {\n  Status  string `json:\"status\"`\n  Version string `json:\"version\"`\n}\n\nfunc healthHandler(w http.ResponseWriter, r *http.Request) {\n  w.Header().Set(\"Content-Type\", \"application/json\")\n  json.NewEncoder(w).Encode(Health{Status: \"ok\", Version: \"1.0.0\"})\n}\n\nfunc main() {\n  srv := httptest.NewServer(http.HandlerFunc(healthHandler))\n  defer srv.Close()\n\n  resp, err := http.Get(srv.URL + \"/healthz\")\n  if err != nil {\n    panic(err)\n  }\n  defer resp.Body.Close()\n\n  var h Health\n  if err := json.NewDecoder(resp.Body).Decode(&h); err != nil {\n    panic(err)\n  }\n  fmt.Printf(\"%d %s %s\\n\", resp.StatusCode, h.Status, h.Version)\n}\n",
+      "expectedOutput": "200 ok 1.0.0",
+      "docs": [
+        { "title": "net/http", "url": "https://pkg.go.dev/net/http", "note": "Server, handlers, ServeMux" },
+        { "title": "net/http/httptest", "url": "https://pkg.go.dev/net/http/httptest", "note": "In-memory server for handler tests" }
+      ]
+    },
+    {
+      "id": "go-lab-worker-pool",
+      "title": "Bounded worker pool",
+      "goal": "Process a batch of jobs with a fixed number of goroutines — the canonical Go pattern for bounded concurrency (image resizing, API fan-out, etc.).",
+      "steps": [
+        "Create buffered in/out channels.",
+        "Start N workers that read jobs, compute, and write results.",
+        "Feed jobs from a producer goroutine, then close the input.",
+        "Close output once all workers finish (WaitGroup), collect and sort."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport (\n  \"fmt\"\n  \"sort\"\n  \"sync\"\n)\n\nfunc main() {\n  jobs := []int{1, 2, 3, 4, 5, 6, 7, 8}\n  const workers = 3\n  _ = workers\n  _ = sort.Ints\n  _ = sync.WaitGroup{}\n  // TODO: square each job across a pool, print sorted results\n  fmt.Println(jobs)\n}\n",
+      "solution": "package main\n\nimport (\n  \"fmt\"\n  \"sort\"\n  \"sync\"\n)\n\nfunc main() {\n  jobs := []int{1, 2, 3, 4, 5, 6, 7, 8}\n  const workers = 3\n\n  in := make(chan int)\n  out := make(chan int)\n  var wg sync.WaitGroup\n\n  for i := 0; i < workers; i++ {\n    wg.Add(1)\n    go func() {\n      defer wg.Done()\n      for n := range in {\n        out <- n * n\n      }\n    }()\n  }\n\n  go func() {\n    for _, j := range jobs {\n      in <- j\n    }\n    close(in)\n  }()\n\n  go func() {\n    wg.Wait()\n    close(out)\n  }()\n\n  var results []int\n  for r := range out {\n    results = append(results, r)\n  }\n  sort.Ints(results)\n  fmt.Println(results)\n}\n",
+      "expectedOutput": "[1 4 9 16 25 36 49 64]",
+      "docs": [
+        { "title": "sync.WaitGroup", "url": "https://pkg.go.dev/sync#WaitGroup", "note": "Wait for goroutines to finish" },
+        { "title": "Go Blog: Pipelines & cancellation", "url": "https://go.dev/blog/pipelines", "note": "Fan-out/fan-in patterns" }
+      ]
+    },
+    {
+      "id": "go-lab-graceful-shutdown",
+      "title": "Graceful HTTP shutdown",
+      "goal": "Run an http.Server and shut it down cleanly with a context deadline — required for zero-downtime deploys and clean container stops (SIGTERM).",
+      "steps": [
+        "Build a ServeMux and http.Server.",
+        "Start ListenAndServe in a goroutine; treat ErrServerClosed as normal.",
+        "On a shutdown trigger, call srv.Shutdown(ctx) with a timeout.",
+        "Print confirmation once in-flight requests drain."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport (\n  \"context\"\n  \"fmt\"\n  \"net/http\"\n  \"time\"\n)\n\nfunc main() {\n  _ = context.Background\n  _ = time.Second\n  // TODO: start server, then Shutdown with a timeout context\n  fmt.Println(\"\")\n}\n",
+      "solution": "package main\n\nimport (\n  \"context\"\n  \"fmt\"\n  \"net/http\"\n  \"time\"\n)\n\nfunc main() {\n  mux := http.NewServeMux()\n  mux.HandleFunc(\"/\", func(w http.ResponseWriter, r *http.Request) {\n    fmt.Fprint(w, \"hello\")\n  })\n  srv := &http.Server{Addr: \":8080\", Handler: mux}\n\n  go func() {\n    if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {\n      panic(err)\n    }\n  }()\n\n  // In production this waits on an os.Signal (SIGINT/SIGTERM).\n  time.Sleep(50 * time.Millisecond)\n\n  ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)\n  defer cancel()\n  if err := srv.Shutdown(ctx); err != nil {\n    panic(err)\n  }\n  fmt.Println(\"server stopped gracefully\")\n}\n",
+      "expectedOutput": "server stopped gracefully",
+      "docs": [
+        { "title": "http.Server.Shutdown", "url": "https://pkg.go.dev/net/http#Server.Shutdown", "note": "Drain connections without dropping requests" },
+        { "title": "os/signal.NotifyContext", "url": "https://pkg.go.dev/os/signal#NotifyContext", "note": "Wire SIGTERM to a context" }
+      ]
+    },
+    {
+      "id": "go-lab-pipeline",
+      "title": "Cancellable pipeline",
+      "goal": "Build a tiny pipeline: generate ints 1..5, square them in workers, print sum — cancel via context.",
+      "steps": [
+        "Create a context with cancel.",
+        "Producer sends 1..5 on a channel and closes it.",
+        "Workers read, square, send to out channel.",
+        "Main sums out until closed; call cancel in a defer."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport (\n  \"context\"\n  \"fmt\"\n)\n\nfunc main() {\n  ctx, cancel := context.WithCancel(context.Background())\n  defer cancel()\n  _ = ctx\n  // TODO: pipeline that prints 55\n  fmt.Println(0)\n}\n",
+      "solution": "package main\n\nimport (\n  \"context\"\n  \"fmt\"\n)\n\nfunc main() {\n  ctx, cancel := context.WithCancel(context.Background())\n  defer cancel()\n\n  in := make(chan int)\n  out := make(chan int)\n\n  go func() {\n    defer close(in)\n    for i := 1; i <= 5; i++ {\n      select {\n      case <-ctx.Done():\n        return\n      case in <- i:\n      }\n    }\n  }()\n\n  go func() {\n    defer close(out)\n    for v := range in {\n      select {\n      case <-ctx.Done():\n        return\n      case out <- v * v:\n      }\n    }\n  }()\n\n  sum := 0\n  for v := range out {\n    sum += v\n  }\n  fmt.Println(sum)\n}\n",
+      "expectedOutput": "55",
+      "docs": [
+        { "title": "context", "url": "https://pkg.go.dev/context", "note": "Cancellation & deadlines" }
+      ]
+    }
+  ]
+}

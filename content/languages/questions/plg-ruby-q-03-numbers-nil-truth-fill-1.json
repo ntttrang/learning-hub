@@ -1,0 +1,20 @@
+{
+  "id": "plg-ruby-q-03-numbers-nil-truth-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: the safe navigation operator returns nil instead of raising NoMethodError when the receiver is nil.",
+  "explanation": "`user&.name` calls .name only if user is not nil, otherwise evaluates to nil.",
+  "tags": [
+    "basics",
+    "truthiness"
+  ],
+  "kind": "fill",
+  "template": "user___name",
+  "blanks": [
+    {
+      "answer": "&.",
+      "alternatives": [
+        "&."
+      ]
+    }
+  ]
+}

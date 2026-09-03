@@ -1,0 +1,20 @@
+{
+  "id": "plg-python-q-09-exceptions-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank: this statement guarantees cleanup (like closing a file) even if an exception occurs.",
+  "explanation": "Context managers used via `with` guarantee `__exit__`/cleanup runs even on exceptions.",
+  "tags": [
+    "errors",
+    "exceptions"
+  ],
+  "kind": "fill",
+  "template": "___ open(path) as f: ...",
+  "blanks": [
+    {
+      "answer": "with",
+      "alternatives": [
+        "with"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "plg-java-q-04-strings-fill-1",
+  "domainId": "plg-java",
+  "prompt": "Use s1._____(s2) for a case-insensitive String comparison.",
+  "explanation": "equalsIgnoreCase() compares String content while ignoring case.",
+  "tags": [
+    "basics",
+    "strings"
+  ],
+  "kind": "fill",
+  "template": "s1.___(s2)",
+  "blanks": [
+    {
+      "answer": "equalsIgnoreCase",
+      "alternatives": [
+        "equalsIgnoreCase"
+      ]
+    }
+  ]
+}

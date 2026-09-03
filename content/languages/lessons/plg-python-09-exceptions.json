@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-09-exceptions",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 9,
+  "title": "Exceptions and context managers",
+  "minutes": 11,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## EAFP\n\nPython prefers \"easier to ask forgiveness than permission\": try the operation and catch failures rather than pre-checking.\n\n## try/except/else/finally\n\nCatch specific exceptions, use `else` for the success path, `finally` for cleanup. Re-raise with bare `raise`.\n\n## with\n\nContext managers (`with open(...) as f:`) guarantee cleanup. Write your own with `contextlib.contextmanager`."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "try:\n    with open(path) as f:\n        data = f.read()\nexcept FileNotFoundError:\n    data = \"\"\nexcept OSError as e:\n    raise RuntimeError(f\"reading {path}\") from e"
+    }
+  ],
+  "docIds": [
+    "errors-2",
+    "contextlib"
+  ]
+}

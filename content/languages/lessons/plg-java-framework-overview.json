@@ -1,0 +1,15 @@
+{
+  "id": "plg-java-framework-overview",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-framework",
+  "order": 1,
+  "title": "Java · Spring Boot",
+  "minutes": 10,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "**The de-facto standard for production Java services.**\n\nSpring Boot builds on the Spring ecosystem with opinionated auto-configuration, embedded servers, and starter dependencies so you can ship REST APIs fast. Master it by climbing this ladder: expose an endpoint, inject collaborators, validate input, persist with JPA, handle errors globally, and lock behavior down with slice tests."
+    }
+  ]
+}

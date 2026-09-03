@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-14-generics-intro-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "What does the built-in `comparable` constraint allow?",
+  "explanation": "comparable restricts type parameters to types usable with == and !=, such as for map keys.",
+  "tags": [
+    "go-14-generics-intro",
+    "constraints"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Types that support ordering with < and >"
+    },
+    {
+      "id": "b",
+      "text": "Types that support == and != comparisons"
+    },
+    {
+      "id": "c",
+      "text": "Only numeric types"
+    },
+    {
+      "id": "d",
+      "text": "Any type, with no restriction"
+    }
+  ],
+  "correct": "b"
+}

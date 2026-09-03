@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-07-classes-objects-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "What does calling this(...) inside a constructor do?",
+  "explanation": "this(...) chains to another constructor overload in the same class; super(...) calls the parent constructor.",
+  "tags": [
+    "oop",
+    "classes"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Calls another constructor of the same class"
+    },
+    {
+      "id": "b",
+      "text": "Calls the superclass constructor"
+    },
+    {
+      "id": "c",
+      "text": "Creates a brand new instance"
+    },
+    {
+      "id": "d",
+      "text": "Refers to a static field"
+    }
+  ],
+  "correct": "a"
+}

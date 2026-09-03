@@ -1,0 +1,21 @@
+{
+  "id": "plg-python-q-fastapi-async-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank: FastAPI's tool for quick fire-and-forget follow-up work after a response is sent.",
+  "explanation": "`BackgroundTasks` handles lightweight follow-ups; heavier/retryable jobs belong in Celery or Arq.",
+  "tags": [
+    "fastapi",
+    "asyncio"
+  ],
+  "kind": "fill",
+  "template": "from fastapi import ___",
+  "blanks": [
+    {
+      "answer": "BackgroundTasks",
+      "alternatives": [
+        "BackgroundTasks",
+        "backgroundtasks"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-17-sync-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "When is a sync.Mutex often simpler than using channels?",
+  "explanation": "Mutexes are a natural fit for guarding shared mutable state accessed by multiple goroutines.",
+  "tags": [
+    "go-17-sync",
+    "mutex"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "For building pipelines between goroutines"
+    },
+    {
+      "id": "b",
+      "text": "For protecting shared in-memory state like a cache or counter"
+    },
+    {
+      "id": "c",
+      "text": "For goroutine cancellation"
+    },
+    {
+      "id": "d",
+      "text": "It is never simpler than channels"
+    }
+  ],
+  "correct": "b"
+}

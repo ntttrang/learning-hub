@@ -1,0 +1,189 @@
+{
+  "topics": [
+    {
+      "id": "syntax",
+      "title": "Syntax basics",
+      "dimension": "How everyday code reads",
+      "cells": {
+        "java": {
+          "summary": "Explicit types, braces, classes as the unit of design.",
+          "language": "java",
+          "snippet": "public int add(int a, int b) {\n  return a + b;\n}"
+        },
+        "go": {
+          "summary": "Short decls, packages, multiple return values, no classes.",
+          "language": "go",
+          "snippet": "func add(a, b int) int {\n  return a + b\n}"
+        },
+        "python": {
+          "summary": "Indentation, duck typing with optional annotations.",
+          "language": "python",
+          "snippet": "def add(a: int, b: int) -> int:\n    return a + b"
+        },
+        "ruby": {
+          "summary": "Everything is an object; end closes blocks; implicit return.",
+          "language": "ruby",
+          "snippet": "def add(a, b)\n  a + b\nend"
+        }
+      }
+    },
+    {
+      "id": "typing",
+      "title": "Typing model",
+      "dimension": "How correctness is checked",
+      "cells": {
+        "java": {
+          "summary": "Static, nominal types; generics; increasingly records/sealed types."
+        },
+        "go": {
+          "summary": "Static structural interfaces; generics since 1.18; methods stay concrete-first."
+        },
+        "python": {
+          "summary": "Dynamic runtime + gradual static checking (pyright/mypy); Pydantic at boundaries."
+        },
+        "ruby": {
+          "summary": "Dynamic duck typing; optional Sorbet/RBS for gradual static checking."
+        }
+      }
+    },
+    {
+      "id": "concurrency",
+      "title": "Concurrency model",
+      "dimension": "How we scale concurrent work",
+      "cells": {
+        "java": {
+          "summary": "Platform threads, virtual threads, ExecutorService, CompletableFuture, JMM.",
+          "language": "java",
+          "snippet": "try (var ex = Executors.newVirtualThreadPerTaskExecutor()) {\n  ex.submit(task);\n}"
+        },
+        "go": {
+          "summary": "Goroutines + channels + context; errgroup for bounded fan-out.",
+          "language": "go",
+          "snippet": "g, ctx := errgroup.WithContext(ctx)\ng.Go(func() error { return work(ctx) })\ng.Wait()"
+        },
+        "python": {
+          "summary": "asyncio event loop; threads for blocking; GIL limits CPU threads.",
+          "language": "python",
+          "snippet": "async with asyncio.TaskGroup() as tg:\n    tg.create_task(work())"
+        },
+        "ruby": {
+          "summary": "Threads (GVL limits CPU parallelism); Fibers/Async for IO; Ractors for isolation."
+        }
+      }
+    },
+    {
+      "id": "errors",
+      "title": "Error handling",
+      "dimension": "Failure as a design choice",
+      "cells": {
+        "java": {
+          "summary": "Checked + unchecked exceptions; try-with-resources."
+        },
+        "go": {
+          "summary": "Explicit error returns; wrap with fmt.Errorf / %w; panic for true bugs."
+        },
+        "python": {
+          "summary": "Exceptions everywhere; EAFP style; context managers for cleanup."
+        },
+        "ruby": {
+          "summary": "raise / rescue / ensure; custom StandardError subclasses for domain failures."
+        }
+      }
+    },
+    {
+      "id": "packages",
+      "title": "Package management",
+      "dimension": "How dependencies ship",
+      "cells": {
+        "java": {
+          "summary": "Maven / Gradle; modules (JPMS) optional."
+        },
+        "go": {
+          "summary": "go.mod / go.sum; module proxy; minimal dependency culture."
+        },
+        "python": {
+          "summary": "pip / uv / poetry; lockfiles; virtualenvs."
+        },
+        "ruby": {
+          "summary": "RubyGems + Bundler; Gemfile / Gemfile.lock for apps."
+        }
+      }
+    },
+    {
+      "id": "web",
+      "title": "Web framework",
+      "dimension": "Default path to HTTP APIs / apps",
+      "cells": {
+        "java": {
+          "summary": "Spring Boot MVC / WebFlux; Jakarta EE in enterprises."
+        },
+        "go": {
+          "summary": "net/http stdlib; chi/echo/fiber when needed — frameworks stay thin."
+        },
+        "python": {
+          "summary": "FastAPI for APIs; Django for batteries-included apps."
+        },
+        "ruby": {
+          "summary": "Rails (full-stack) or Sinatra (micro); Rack under the hood."
+        }
+      }
+    },
+    {
+      "id": "testing",
+      "title": "Testing culture",
+      "dimension": "How teams prove behavior",
+      "cells": {
+        "java": {
+          "summary": "JUnit 5, AssertJ, Testcontainers, Mockito (sparingly at senior level)."
+        },
+        "go": {
+          "summary": "testing package, table-driven tests, httptest, integration over heavy mocks."
+        },
+        "python": {
+          "summary": "pytest, httpx AsyncClient, factories; hypothesis for properties."
+        },
+        "ruby": {
+          "summary": "Minitest (stdlib) or RSpec; prefer behavior at public boundaries."
+        }
+      }
+    },
+    {
+      "id": "performance",
+      "title": "Performance profile",
+      "dimension": "Where the costs show up",
+      "cells": {
+        "java": {
+          "summary": "Warm JIT, GC tuning, excellent throughput after warmup; heavier memory."
+        },
+        "go": {
+          "summary": "Fast startup, small binaries, predictable latency; GC is simpler."
+        },
+        "python": {
+          "summary": "Great for I/O and glue; CPU-bound needs native/async offload; uv/Pydantic help DX."
+        },
+        "ruby": {
+          "summary": "Developer velocity first; YJIT helps latency; watch allocations and IO."
+        }
+      }
+    },
+    {
+      "id": "usecases",
+      "title": "Best use cases",
+      "dimension": "When each stack shines",
+      "cells": {
+        "java": {
+          "summary": "Large enterprise domains, strong typing, long-lived JVM services."
+        },
+        "go": {
+          "summary": "Cloud services, CLIs, networking, infra — concurrency with simplicity."
+        },
+        "python": {
+          "summary": "APIs, data/AI, scripting, glue between systems."
+        },
+        "ruby": {
+          "summary": "Expressive apps and DSLs; rapid product iteration; scripting with readable OO."
+        }
+      }
+    }
+  ]
+}

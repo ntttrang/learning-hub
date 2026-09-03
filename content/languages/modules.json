@@ -1,0 +1,50 @@
+[
+  {
+    "id": "plg-java-core",
+    "domainId": "plg-java",
+    "order": 1,
+    "title": "Java core language"
+  },
+  {
+    "id": "plg-java-framework",
+    "domainId": "plg-java",
+    "order": 2,
+    "title": "Framework: Spring Boot"
+  },
+  {
+    "id": "plg-go-core",
+    "domainId": "plg-go",
+    "order": 3,
+    "title": "Go core language"
+  },
+  {
+    "id": "plg-go-framework",
+    "domainId": "plg-go",
+    "order": 4,
+    "title": "Framework: Gin"
+  },
+  {
+    "id": "plg-python-core",
+    "domainId": "plg-python",
+    "order": 5,
+    "title": "Python core language"
+  },
+  {
+    "id": "plg-python-framework",
+    "domainId": "plg-python",
+    "order": 6,
+    "title": "Framework: FastAPI"
+  },
+  {
+    "id": "plg-ruby-core",
+    "domainId": "plg-ruby",
+    "order": 7,
+    "title": "Ruby core language"
+  },
+  {
+    "id": "plg-ruby-framework",
+    "domainId": "plg-ruby",
+    "order": 8,
+    "title": "Framework: Ruby on Rails"
+  }
+]

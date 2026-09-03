@@ -1,0 +1,17 @@
+{
+  "id": "plg-java-q-11-exceptions-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "Accessing index 5 of a length-2 array throws ArrayIndexOutOfBoundsException with that message, caught and printed.",
+  "tags": [
+    "errors",
+    "exceptions"
+  ],
+  "kind": "fill",
+  "template": "public class Demo {\n  public static void main(String[] args) {\n    try {\n      int[] arr = new int[2];\n      System.out.println(arr[5]);\n    } catch (ArrayIndexOutOfBoundsException e) {\n      System.out.println(\"caught: \" + e.getMessage());\n    }\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "caught: Index 5 out of bounds for length 2"
+    }
+  ]
+}

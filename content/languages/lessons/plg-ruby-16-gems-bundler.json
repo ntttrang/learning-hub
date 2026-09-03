@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-16-gems-bundler",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 16,
+  "title": "Gems and Bundler",
+  "minutes": 10,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## RubyGems\n\nPackages are **gems**. `gem install` puts them on the system; apps should pin versions via Bundler instead.\n\n## Bundler\n\n`Gemfile` declares dependencies; `bundle install` resolves and writes `Gemfile.lock`. Commit the lockfile for apps. Run tools with `bundle exec`.\n\n## Version constraints\n\n`\"~> 2.1\"` allows 2.1.x but not 3.0. Prefer pessimistic constraints plus a lockfile over floating latest."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "# Gemfile\nsource \"https://rubygems.org\"\n\ngem \"rack\", \"~> 3.0\"\ngem \"puma\"\n\ngroup :test do\n  gem \"minitest\"\nend"
+    }
+  ],
+  "docIds": [
+    "bundler.io",
+    "guides.rubygems.org"
+  ]
+}

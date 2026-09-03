@@ -1,0 +1,20 @@
+{
+  "id": "plg-go-q-20-context-basics-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: always defer _____() after creating a context with WithTimeout or WithCancel, to release its resources promptly.",
+  "explanation": "Deferring cancel() releases resources associated with the context as soon as the enclosing function returns.",
+  "tags": [
+    "go-20-context-basics",
+    "cancellation"
+  ],
+  "kind": "fill",
+  "template": "ctx, cancel := context.WithTimeout(ctx, d)\ndefer ___()",
+  "blanks": [
+    {
+      "answer": "cancel",
+      "alternatives": [
+        "cancel"
+      ]
+    }
+  ]
+}

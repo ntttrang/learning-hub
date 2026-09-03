@@ -1,0 +1,34 @@
+{
+  "id": "plg-ruby-q-08-enumerable-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which methods come from mixing in Enumerable, given `each` is defined?",
+  "explanation": "map, select, and group_by all come from Enumerable; puts is a Kernel method unrelated to iteration.",
+  "tags": [
+    "enumerable",
+    "collections"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "map"
+    },
+    {
+      "id": "b",
+      "text": "select"
+    },
+    {
+      "id": "c",
+      "text": "puts"
+    },
+    {
+      "id": "d",
+      "text": "group_by"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

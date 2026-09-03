@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-04-control-flow-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "In Python 3.10+, which construct destructures values and shapes, going beyond a simple switch statement?",
+  "explanation": "Structural pattern matching via `match/case` (PEP 634) can destructure lists, dicts, and objects, not just compare values.",
+  "tags": [
+    "basics",
+    "control-flow"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "switch"
+    },
+    {
+      "id": "b",
+      "text": "match/case"
+    },
+    {
+      "id": "c",
+      "text": "select/case"
+    },
+    {
+      "id": "d",
+      "text": "cond"
+    }
+  ],
+  "correct": "b"
+}

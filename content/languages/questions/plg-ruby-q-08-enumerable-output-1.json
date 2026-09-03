@@ -1,0 +1,17 @@
+{
+  "id": "plg-ruby-q-08-enumerable-output-1",
+  "domainId": "plg-ruby",
+  "prompt": "What prints?",
+  "explanation": "select keeps only active users, map extracts names, and sort orders them alphabetically.",
+  "tags": [
+    "enumerable",
+    "collections"
+  ],
+  "kind": "fill",
+  "template": "users = [\n  { name: \"Ada\", active: true },\n  { name: \"Bob\", active: false },\n  { name: \"Cam\", active: true },\n]\nnames = users.select { |u| u[:active] }.map { |u| u[:name] }.sort\nputs names.join(\", \")\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "Ada, Cam"
+    }
+  ]
+}

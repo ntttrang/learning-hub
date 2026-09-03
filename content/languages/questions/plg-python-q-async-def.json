@@ -1,0 +1,26 @@
+{
+  "id": "plg-python-q-async-def",
+  "domainId": "plg-python",
+  "prompt": "You call a sync `requests.get` inside a FastAPI path. Best declaration?",
+  "explanation": "Blocking I/O inside async def stalls the loop. Use def, or switch to httpx.AsyncClient.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "async def — always faster"
+    },
+    {
+      "id": "b",
+      "text": "def — let FastAPI offload to a thread pool"
+    },
+    {
+      "id": "c",
+      "text": "async def and call requests.get without await"
+    },
+    {
+      "id": "d",
+      "text": "Neither — FastAPI forbids sync HTTP"
+    }
+  ],
+  "correct": "b"
+}

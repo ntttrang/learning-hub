@@ -1,0 +1,34 @@
+{
+  "id": "plg-python-q-08-modules-venv-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which statements about Python modules, packages, and environments are true?",
+  "explanation": "`uv` both creates envs and installs packages at Rust speed, replacing much of pip/venv/pyenv friction.",
+  "tags": [
+    "modules",
+    "tooling"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "A single .py file is a module"
+    },
+    {
+      "id": "b",
+      "text": "A directory containing modules is a package"
+    },
+    {
+      "id": "c",
+      "text": "Virtual environments prevent dependency collisions between projects"
+    },
+    {
+      "id": "d",
+      "text": "`uv` can only create environments, not install packages"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

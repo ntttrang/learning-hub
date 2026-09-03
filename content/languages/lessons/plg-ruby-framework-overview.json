@@ -1,0 +1,15 @@
+{
+  "id": "plg-ruby-framework-overview",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-framework",
+  "order": 1,
+  "title": "Ruby · Ruby on Rails",
+  "minutes": 10,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "**Convention-over-configuration full-stack framework with Hotwire.**\n\nRails pairs Active Record, Action Controller, and Hotwire (Turbo + Stimulus) to build full-stack apps with minimal boilerplate. Master it by modeling data with migrations, writing RESTful controllers, querying with scopes, guarding input with strong params, updating the UI with Turbo Frames, and offloading work to background jobs."
+    }
+  ]
+}

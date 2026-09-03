@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-10-classes-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "`c.area` computes 3.14159 * 2**2 = 12.56636; `print(c)` uses `__repr__` since `__str__` isn't defined.",
+  "tags": [
+    "oop",
+    "classes"
+  ],
+  "kind": "fill",
+  "template": "class Circle:\n    def __init__(self, r): self.r = r\n    @property\n    def area(self): return 3.14159 * self.r ** 2\n    def __repr__(self): return f\"Circle(r={self.r})\"\n\nc = Circle(2)\nprint(c.area)\nprint(c)\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "12.56636\nCircle(r=2)"
+    }
+  ]
+}

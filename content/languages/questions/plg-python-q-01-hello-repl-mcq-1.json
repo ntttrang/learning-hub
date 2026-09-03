@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-01-hello-repl-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "Which command runs a Python script file named `app.py` from the shell?",
+  "explanation": "`python app.py` runs the script top-to-bottom, same interpreter used interactively by the REPL.",
+  "tags": [
+    "basics",
+    "tooling"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "python app.py"
+    },
+    {
+      "id": "b",
+      "text": "run app.py"
+    },
+    {
+      "id": "c",
+      "text": "python.exe --start app.py"
+    },
+    {
+      "id": "d",
+      "text": "execute app.py"
+    }
+  ],
+  "correct": "a"
+}

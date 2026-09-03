@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-20-packaging-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "Which command builds a wheel and sdist from a Python project?",
+  "explanation": "`python -m build` (or `uv publish`'s build step) creates both wheel and sdist artifacts for distribution.",
+  "tags": [
+    "packaging",
+    "tooling"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "python -m build"
+    },
+    {
+      "id": "b",
+      "text": "python setup.py"
+    },
+    {
+      "id": "c",
+      "text": "pip build"
+    },
+    {
+      "id": "d",
+      "text": "uv build-only"
+    }
+  ],
+  "correct": "a"
+}

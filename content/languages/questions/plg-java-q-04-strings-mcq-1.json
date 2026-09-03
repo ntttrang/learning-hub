@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-04-strings-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "Why should StringBuilder be used inside a loop that builds up text?",
+  "explanation": "Each String concatenation in Java creates a new String object; StringBuilder mutates an internal buffer instead.",
+  "tags": [
+    "basics",
+    "strings"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "String is immutable, so repeated concatenation creates many intermediate objects"
+    },
+    {
+      "id": "b",
+      "text": "String is mutable and slow"
+    },
+    {
+      "id": "c",
+      "text": "StringBuilder is thread-safe by default"
+    },
+    {
+      "id": "d",
+      "text": "String does not support the + operator"
+    }
+  ],
+  "correct": "a"
+}

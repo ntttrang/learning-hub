@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-08-structs",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 8,
+  "title": "Structs, methods, and embedding",
+  "minutes": 11,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Structs\n\nGo's data type is the `struct`. Attach behavior via **methods** with a receiver. Use a pointer receiver to mutate or avoid copying large structs.\n\n## Embedding\n\nGo favors **composition**: embed a struct to promote its fields/methods — no inheritance, but similar reuse.\n\n## Constructors\n\nGo has no constructors; use a `New...` function returning the value or pointer."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "type Counter struct{ n int }\n\nfunc (c *Counter) Inc() { c.n++ }\nfunc (c Counter) Value() int { return c.n }\n\nc := &Counter{}\nc.Inc()"
+    }
+  ],
+  "docIds": [
+    "2",
+    "effective_go-3"
+  ]
+}

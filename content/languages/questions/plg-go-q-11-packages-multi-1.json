@@ -1,0 +1,34 @@
+{
+  "id": "plg-go-q-11-packages-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements about Go package design are true?",
+  "explanation": "Go style discourages generic names like utils; packages should be named after what they provide.",
+  "tags": [
+    "go-11-packages",
+    "style"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "One directory typically corresponds to one package"
+    },
+    {
+      "id": "b",
+      "text": "Idiomatic package names should be generic, like \"utils\" or \"common\""
+    },
+    {
+      "id": "c",
+      "text": "Lowercase identifiers are package-private"
+    },
+    {
+      "id": "d",
+      "text": "init() should generally avoid heavy work like network calls"
+    }
+  ],
+  "correct": [
+    "a",
+    "c",
+    "d"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-symbols",
+  "domainId": "plg-ruby",
+  "prompt": "Which statements about symbols are true?",
+  "explanation": "Symbols are interned identifiers, great as option/hash keys. Strings are separate objects (unless frozen/deduped).",
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": ":name is an immutable identifier"
+    },
+    {
+      "id": "b",
+      "text": "Symbols are often used as hash keys for fixed option names"
+    },
+    {
+      "id": "c",
+      "text": "\"name\" and :name are the same object"
+    },
+    {
+      "id": "d",
+      "text": "Two writings of :admin refer to the same interned object"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

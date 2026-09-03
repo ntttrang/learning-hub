@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-16-testing",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 16,
+  "title": "Testing with pytest",
+  "minutes": 12,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Plain functions\n\npytest discovers `test_*.py` files and `test_*` functions. Just use `assert` — pytest rewrites it for rich output.\n\n## Fixtures\n\n`@pytest.fixture` provides reusable setup (temp dirs, DB sessions) with teardown via `yield`.\n\n## Parametrize\n\n`@pytest.mark.parametrize` runs a test across many inputs — Python's table-driven testing."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "import pytest\n\n@pytest.mark.parametrize(\"a,b,expected\", [(2, 3, 5), (0, 0, 0)])\ndef test_add(a, b, expected):\n    assert add(a, b) == expected"
+    }
+  ],
+  "docIds": [
+    "docs.pytest.org",
+    "unittest"
+  ]
+}

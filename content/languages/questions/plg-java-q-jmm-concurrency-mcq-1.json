@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-jmm-concurrency-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "Which of the following does `volatile` NOT guarantee?",
+  "explanation": "volatile guarantees visibility and ordering for that field, but not atomicity for read-modify-write like i++.",
+  "tags": [
+    "jmm",
+    "concurrency"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Atomicity for compound updates like i++"
+    },
+    {
+      "id": "b",
+      "text": "Visibility of writes to other threads"
+    },
+    {
+      "id": "c",
+      "text": "Ordering relative to other volatile accesses"
+    },
+    {
+      "id": "d",
+      "text": "That the JIT won't reorder across the volatile access"
+    }
+  ],
+  "correct": "a"
+}

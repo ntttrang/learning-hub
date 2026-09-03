@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-07-maps-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "\"b\" was never set, so the comma-ok read returns the zero value 0 and ok=false.",
+  "tags": [
+    "go-07-maps",
+    "comma-ok"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  m := map[string]int{}\n  m[\"a\"]++\n  v, ok := m[\"b\"]\n  fmt.Println(v, ok)\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "0 false"
+    }
+  ]
+}

@@ -1,0 +1,744 @@
+{
+  "language": "python",
+  "lessons": [
+    {
+      "id": "python-01-hello-repl",
+      "title": "Hello Python: the REPL and scripts",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "tooling"
+      ],
+      "estMinutes": 8,
+      "body": "## Interpreted and interactive\n\nPython runs top-to-bottom. The **REPL** (`python`) lets you experiment line by line; scripts run with `python app.py`.\n\n## No boilerplate\n\nNo class or main required. The common entry guard is `if __name__ == \"__main__\":` so a file can be both imported and run.\n\n## Indentation is syntax\n\nBlocks are defined by indentation (4 spaces), not braces. Consistency is mandatory.",
+      "codeSamples": [
+        {
+          "title": "Script entry",
+          "language": "python",
+          "code": "def main():\n    print(\"Ahoy, world!\")\n\nif __name__ == \"__main__\":\n    main()"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Using the Python Interpreter",
+          "url": "https://docs.python.org/3/tutorial/interpreter.html"
+        },
+        {
+          "title": "__main__ — Top-level code",
+          "url": "https://docs.python.org/3/library/__main__.html"
+        }
+      ]
+    },
+    {
+      "id": "python-02-types-numbers",
+      "title": "Variables, numbers, and dynamic typing",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "types"
+      ],
+      "estMinutes": 9,
+      "body": "## Dynamic but strong\n\nVariables are names bound to objects; types live on the object, not the name. Python won't silently coerce `\"1\" + 1`.\n\n## Numbers\n\n`int` has arbitrary precision (no overflow). `float` is IEEE-754. Use `//` for floor division, `%` for remainder, `**` for power.\n\n## Truthiness\n\nEmpty containers, `0`, `\"\"`, and `None` are falsy; most other values are truthy.",
+      "codeSamples": [
+        {
+          "title": "Numeric ops",
+          "language": "python",
+          "code": "big = 2 ** 100          # arbitrary precision\nq, r = divmod(17, 5)     # (3, 2)\nprice = 19.99\nname = \"Corgi\""
+        }
+      ],
+      "docs": [
+        {
+          "title": "Built-in Types — Numeric",
+          "url": "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex"
+        },
+        {
+          "title": "Data Model",
+          "url": "https://docs.python.org/3/reference/datamodel.html"
+        }
+      ]
+    },
+    {
+      "id": "python-03-strings",
+      "title": "Strings and f-strings",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "strings"
+      ],
+      "estMinutes": 10,
+      "body": "## Immutable text\n\nStrings are immutable sequences of Unicode. Slicing (`s[1:4]`), `split`, `join`, `strip`, and `replace` cover most work.\n\n## f-strings\n\nThe modern way to format: `f\"Hi {name}, total {total:.2f}\"`. They also support `=` for debugging: `f\"{x=}\"`.\n\n## Bytes vs str\n\n`str` is text; `bytes` is raw data. Encode/decode explicitly with UTF-8 at I/O boundaries.",
+      "codeSamples": [
+        {
+          "title": "f-string formatting",
+          "language": "python",
+          "code": "name, total = \"Ada\", 19.5\nprint(f\"Hi {name}, total ${total:.2f}\")\nprint(f\"{total=}\")  # total=19.5"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Text Sequence Type — str",
+          "url": "https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str"
+        },
+        {
+          "title": "f-strings (PEP 498)",
+          "url": "https://peps.python.org/pep-0498/"
+        }
+      ]
+    },
+    {
+      "id": "python-04-control-flow",
+      "title": "Control flow and match",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "control-flow"
+      ],
+      "estMinutes": 9,
+      "body": "## if/elif/else\n\nClean conditionals with no parentheses required. Chained comparisons work: `0 < x < 10`.\n\n## Loops\n\n`for x in iterable` and `while`. Use `enumerate` for indices and `zip` to iterate in parallel. `break`, `continue`, and the rarely-used loop `else`.\n\n## Structural pattern matching\n\n`match/case` (Python 3.10+) destructures values and shapes — more than a switch.",
+      "codeSamples": [
+        {
+          "title": "match statement",
+          "language": "python",
+          "code": "match command.split():\n    case [\"go\", direction]:\n        move(direction)\n    case [\"quit\"]:\n        stop()\n    case _:\n        print(\"unknown\")"
+        }
+      ],
+      "docs": [
+        {
+          "title": "More Control Flow Tools",
+          "url": "https://docs.python.org/3/tutorial/controlflow.html"
+        },
+        {
+          "title": "match/case (PEP 634)",
+          "url": "https://peps.python.org/pep-0634/"
+        }
+      ]
+    },
+    {
+      "id": "python-05-collections",
+      "title": "Lists, tuples, sets, and dicts",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "collections"
+      ],
+      "estMinutes": 12,
+      "body": "## The four workhorses\n\n- `list` — ordered, mutable.\n- `tuple` — ordered, immutable (great as fixed records / dict keys).\n- `set` — unique, unordered.\n- `dict` — key/value, insertion-ordered since 3.7.\n\n## Idioms\n\n`d.get(k, default)`, `d.setdefault`, membership with `in` (O(1) for set/dict). Unpack with `a, b = pair`.",
+      "codeSamples": [
+        {
+          "title": "Dict counting",
+          "language": "python",
+          "code": "counts = {}\nfor w in words:\n    counts[w] = counts.get(w, 0) + 1\n\npair = (1, 2)\nx, y = pair"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Data Structures Tutorial",
+          "url": "https://docs.python.org/3/tutorial/datastructures.html"
+        },
+        {
+          "title": "collections — Container datatypes",
+          "url": "https://docs.python.org/3/library/collections.html"
+        }
+      ]
+    },
+    {
+      "id": "python-06-comprehensions",
+      "title": "Comprehensions and generators",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "comprehensions"
+      ],
+      "estMinutes": 10,
+      "body": "## Comprehensions\n\nBuild lists/sets/dicts concisely: `[x*x for x in nums if x % 2 == 0]`. Readable and fast.\n\n## Generator expressions\n\nSwap `[]` for `()` to get a **lazy** generator that yields items one at a time — memory-friendly for large data.\n\n## Don't overdo it\n\nNested, side-effecting comprehensions hurt readability. A plain loop is sometimes clearer.",
+      "codeSamples": [
+        {
+          "title": "Comprehension + generator",
+          "language": "python",
+          "code": "squares = [x * x for x in range(10)]\nby_id = {u.id: u for u in users}\ntotal = sum(x * x for x in range(1_000_000))  # lazy"
+        }
+      ],
+      "docs": [
+        {
+          "title": "List Comprehensions",
+          "url": "https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions"
+        },
+        {
+          "title": "Generator Expressions",
+          "url": "https://docs.python.org/3/reference/expressions.html#generator-expressions"
+        }
+      ]
+    },
+    {
+      "id": "python-07-functions",
+      "title": "Functions, args, and defaults",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "functions"
+      ],
+      "estMinutes": 11,
+      "body": "## Flexible signatures\n\nPositional, keyword, `*args`, and `**kwargs`. Keyword-only args come after `*`; positional-only before `/`.\n\n## Default gotcha\n\nNever use a mutable default (`def f(x=[])`) — it is created once and shared. Use `None` and create inside.\n\n## Docstrings\n\nThe first string in a function is its docstring, surfaced by `help()` and tools.",
+      "codeSamples": [
+        {
+          "title": "Safe default",
+          "language": "python",
+          "code": "def append_to(item, target=None):\n    if target is None:\n        target = []\n    target.append(item)\n    return target"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Defining Functions",
+          "url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions"
+        },
+        {
+          "title": "Argument Clinic / *args **kwargs",
+          "url": "https://docs.python.org/3/faq/programming.html#what-is-the-purpose-of-the-asterisk-in-the-list"
+        }
+      ]
+    },
+    {
+      "id": "python-08-modules-venv",
+      "title": "Modules, packages, and virtualenvs",
+      "level": "junior",
+      "tags": [
+        "modules",
+        "tooling"
+      ],
+      "estMinutes": 10,
+      "body": "## Imports\n\nA `.py` file is a module; a directory with modules is a package. Prefer explicit imports (`from pkg.mod import thing`).\n\n## Isolation\n\nUse a virtual environment per project so dependencies don't collide. `python -m venv .venv` then activate.\n\n## Modern tooling\n\n`uv` creates envs and installs deps at Rust speed, replacing much of pip/venv/pyenv friction.",
+      "codeSamples": [
+        {
+          "title": "Create and use an env",
+          "language": "bash",
+          "code": "python -m venv .venv\nsource .venv/bin/activate\npip install httpx\n# or: uv venv && uv pip install httpx"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Modules Tutorial",
+          "url": "https://docs.python.org/3/tutorial/modules.html"
+        },
+        {
+          "title": "venv — Virtual Environments",
+          "url": "https://docs.python.org/3/library/venv.html"
+        },
+        {
+          "title": "uv docs",
+          "url": "https://docs.astral.sh/uv/"
+        }
+      ]
+    },
+    {
+      "id": "python-09-exceptions",
+      "title": "Exceptions and context managers",
+      "level": "junior",
+      "tags": [
+        "errors",
+        "exceptions"
+      ],
+      "estMinutes": 11,
+      "body": "## EAFP\n\nPython prefers \"easier to ask forgiveness than permission\": try the operation and catch failures rather than pre-checking.\n\n## try/except/else/finally\n\nCatch specific exceptions, use `else` for the success path, `finally` for cleanup. Re-raise with bare `raise`.\n\n## with\n\nContext managers (`with open(...) as f:`) guarantee cleanup. Write your own with `contextlib.contextmanager`.",
+      "codeSamples": [
+        {
+          "title": "with + specific except",
+          "language": "python",
+          "code": "try:\n    with open(path) as f:\n        data = f.read()\nexcept FileNotFoundError:\n    data = \"\"\nexcept OSError as e:\n    raise RuntimeError(f\"reading {path}\") from e"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Errors and Exceptions",
+          "url": "https://docs.python.org/3/tutorial/errors.html"
+        },
+        {
+          "title": "contextlib",
+          "url": "https://docs.python.org/3/library/contextlib.html"
+        }
+      ]
+    },
+    {
+      "id": "python-10-classes",
+      "title": "Classes, dunder methods, and properties",
+      "level": "junior",
+      "tags": [
+        "oop",
+        "classes"
+      ],
+      "estMinutes": 12,
+      "body": "## Objects\n\nDefine `__init__` for construction; `self` is the instance. Methods are functions with `self` first.\n\n## Dunder methods\n\nSpecial methods power syntax: `__repr__`, `__eq__`, `__len__`, `__iter__`. Implement `__repr__` for debuggable objects.\n\n## Properties\n\n`@property` exposes computed attributes without breaking the `obj.attr` interface — no Java-style getters.",
+      "codeSamples": [
+        {
+          "title": "Class with property",
+          "language": "python",
+          "code": "class Circle:\n    def __init__(self, r): self.r = r\n    @property\n    def area(self): return 3.14159 * self.r ** 2\n    def __repr__(self): return f\"Circle(r={self.r})\""
+        }
+      ],
+      "docs": [
+        {
+          "title": "Classes Tutorial",
+          "url": "https://docs.python.org/3/tutorial/classes.html"
+        },
+        {
+          "title": "property()",
+          "url": "https://docs.python.org/3/library/functions.html#property"
+        }
+      ]
+    },
+    {
+      "id": "python-11-dataclasses",
+      "title": "Dataclasses and namedtuples",
+      "level": "junior",
+      "tags": [
+        "oop",
+        "dataclasses"
+      ],
+      "estMinutes": 10,
+      "body": "## Less boilerplate\n\n`@dataclass` generates `__init__`, `__repr__`, and `__eq__` from annotated fields — Python's value object.\n\n## Defaults and immutability\n\nProvide defaults, use `field(default_factory=list)` for mutable ones, and `frozen=True` for immutable records.\n\n## When to use what\n\n`NamedTuple` for lightweight immutable tuples; dataclass for richer mutable/immutable records; Pydantic when you need validation.",
+      "codeSamples": [
+        {
+          "title": "Dataclass",
+          "language": "python",
+          "code": "from dataclasses import dataclass, field\n\n@dataclass\nclass User:\n    name: str\n    roles: list[str] = field(default_factory=list)"
+        }
+      ],
+      "docs": [
+        {
+          "title": "dataclasses",
+          "url": "https://docs.python.org/3/library/dataclasses.html"
+        },
+        {
+          "title": "PEP 557 — Data Classes",
+          "url": "https://peps.python.org/pep-0557/"
+        }
+      ]
+    },
+    {
+      "id": "python-12-iterators-gen",
+      "title": "Iterators, generators, and yield",
+      "level": "mid",
+      "tags": [
+        "iterators",
+        "generators"
+      ],
+      "estMinutes": 12,
+      "body": "## The iterator protocol\n\nAnything with `__iter__`/`__next__` is iterable. `for` loops and comprehensions consume iterators.\n\n## yield\n\nA function with `yield` is a generator — it pauses and resumes, producing values lazily. Great for streams and pipelines.\n\n## itertools\n\n`chain`, `islice`, `groupby`, `count`, and `product` compose iterators efficiently without building intermediate lists.",
+      "codeSamples": [
+        {
+          "title": "Generator function",
+          "language": "python",
+          "code": "def read_lines(path):\n    with open(path) as f:\n        for line in f:\n            yield line.rstrip()\n\nfor line in read_lines(\"log.txt\"):\n    process(line)"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Iterators",
+          "url": "https://docs.python.org/3/tutorial/classes.html#iterators"
+        },
+        {
+          "title": "itertools",
+          "url": "https://docs.python.org/3/library/itertools.html"
+        }
+      ]
+    },
+    {
+      "id": "python-13-decorators",
+      "title": "Decorators and closures",
+      "level": "mid",
+      "tags": [
+        "decorators",
+        "functional"
+      ],
+      "estMinutes": 12,
+      "body": "## Functions are objects\n\nYou can pass, return, and nest functions. A **closure** captures variables from its enclosing scope.\n\n## Decorators\n\nA decorator wraps a function to add behavior (logging, caching, timing). Use `functools.wraps` to preserve metadata.\n\n## Handy stdlib decorators\n\n`@functools.cache`/`lru_cache` memoize, `@property`, `@staticmethod`, and `@dataclass` are all decorators.",
+      "codeSamples": [
+        {
+          "title": "Timing decorator",
+          "language": "python",
+          "code": "import functools, time\n\ndef timed(fn):\n    @functools.wraps(fn)\n    def wrap(*a, **k):\n        t = time.perf_counter()\n        try: return fn(*a, **k)\n        finally: print(fn.__name__, time.perf_counter() - t)\n    return wrap"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Function Definitions — Decorators",
+          "url": "https://docs.python.org/3/reference/compound_stmts.html#function-definitions"
+        },
+        {
+          "title": "functools",
+          "url": "https://docs.python.org/3/library/functools.html"
+        }
+      ]
+    },
+    {
+      "id": "python-14-typing",
+      "title": "Type hints and static checking",
+      "level": "mid",
+      "tags": [
+        "typing",
+        "tooling"
+      ],
+      "estMinutes": 12,
+      "body": "## Gradual typing\n\nType hints are optional and not enforced at runtime, but tools like **mypy**/**pyright** check them. They document intent and catch bugs.\n\n## Modern syntax\n\nUse builtin generics (`list[int]`, `dict[str, int]`), `X | None` unions, and PEP 695 type parameters (`def first[T](xs: list[T]) -> T`).\n\n## Protocols\n\n`typing.Protocol` gives structural (duck) typing you can type-check — accept anything with the right shape.",
+      "codeSamples": [
+        {
+          "title": "Typed function + Protocol",
+          "language": "python",
+          "code": "from typing import Protocol\n\nclass Reader(Protocol):\n    def read(self) -> str: ...\n\ndef load(r: Reader) -> str:\n    return r.read()"
+        }
+      ],
+      "docs": [
+        {
+          "title": "typing — Support for type hints",
+          "url": "https://docs.python.org/3/library/typing.html"
+        },
+        {
+          "title": "PEP 695 — Type Parameter Syntax",
+          "url": "https://peps.python.org/pep-0695/"
+        },
+        {
+          "title": "Protocols (PEP 544)",
+          "url": "https://peps.python.org/pep-0544/"
+        }
+      ]
+    },
+    {
+      "id": "python-15-stdlib",
+      "title": "Standard library essentials",
+      "level": "mid",
+      "tags": [
+        "stdlib"
+      ],
+      "estMinutes": 11,
+      "body": "## Batteries included\n\n- `pathlib.Path` for filesystem paths.\n- `collections`: `defaultdict`, `Counter`, `deque`.\n- `datetime` + `zoneinfo` for timezone-aware times.\n- `json`, `csv`, `re` for data.\n\n## Prefer stdlib\n\nReach for the standard library before adding a dependency — it's audited, stable, and dependency-free.",
+      "codeSamples": [
+        {
+          "title": "Counter and Path",
+          "language": "python",
+          "code": "from collections import Counter\nfrom pathlib import Path\n\ntext = Path(\"poem.txt\").read_text(encoding=\"utf-8\")\ntop = Counter(text.split()).most_common(3)"
+        }
+      ],
+      "docs": [
+        {
+          "title": "The Python Standard Library",
+          "url": "https://docs.python.org/3/library/index.html"
+        },
+        {
+          "title": "pathlib",
+          "url": "https://docs.python.org/3/library/pathlib.html"
+        }
+      ]
+    },
+    {
+      "id": "python-16-testing",
+      "title": "Testing with pytest",
+      "level": "mid",
+      "tags": [
+        "testing",
+        "pytest"
+      ],
+      "estMinutes": 12,
+      "body": "## Plain functions\n\npytest discovers `test_*.py` files and `test_*` functions. Just use `assert` — pytest rewrites it for rich output.\n\n## Fixtures\n\n`@pytest.fixture` provides reusable setup (temp dirs, DB sessions) with teardown via `yield`.\n\n## Parametrize\n\n`@pytest.mark.parametrize` runs a test across many inputs — Python's table-driven testing.",
+      "codeSamples": [
+        {
+          "title": "Parametrized test",
+          "language": "python",
+          "code": "import pytest\n\n@pytest.mark.parametrize(\"a,b,expected\", [(2, 3, 5), (0, 0, 0)])\ndef test_add(a, b, expected):\n    assert add(a, b) == expected"
+        }
+      ],
+      "docs": [
+        {
+          "title": "pytest Documentation",
+          "url": "https://docs.pytest.org/"
+        },
+        {
+          "title": "unittest",
+          "url": "https://docs.python.org/3/library/unittest.html"
+        }
+      ]
+    },
+    {
+      "id": "python-17-files-json",
+      "title": "Files, JSON, and serialization",
+      "level": "mid",
+      "tags": [
+        "io",
+        "json"
+      ],
+      "estMinutes": 10,
+      "body": "## pathlib first\n\n`Path.read_text` / `write_text` handle small files. For large data, iterate line by line to bound memory.\n\n## JSON\n\n`json.loads`/`dumps` round-trip Python dicts. Use `default=` for custom types and `indent=` for readable output.\n\n## Encoding discipline\n\nAlways pass `encoding=\"utf-8\"`; never rely on the platform default, which differs across OSes.",
+      "codeSamples": [
+        {
+          "title": "JSON round-trip",
+          "language": "python",
+          "code": "import json\nfrom pathlib import Path\n\ndata = json.loads(Path(\"in.json\").read_text(encoding=\"utf-8\"))\nPath(\"out.json\").write_text(json.dumps(data, indent=2), encoding=\"utf-8\")"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Reading and Writing Files",
+          "url": "https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files"
+        },
+        {
+          "title": "json — JSON encoder and decoder",
+          "url": "https://docs.python.org/3/library/json.html"
+        }
+      ]
+    },
+    {
+      "id": "python-types-tooling",
+      "title": "Types, Pydantic v2, uv, and Ruff",
+      "level": "mid",
+      "tags": [
+        "typing",
+        "tooling"
+      ],
+      "estMinutes": 10,
+      "body": "## Types\n\nPEP 695 type params, `Protocol`, and strict type checkers (pyright/mypy) are expected on serious teams.\n\n## Pydantic v2\n\nRust core — much faster. Prefer `Annotated` constraints and settings via `pydantic-settings`.\n\n## Tooling\n\n`uv` replaces a lot of pip/poetry/pyenv friction. `Ruff` covers lint + format at Rust speed.\n\n## GIL note\n\nFree-threading is experimental in recent CPython — know what it means, don't assume production readiness everywhere.",
+      "codeSamples": [
+        {
+          "title": "Pydantic model",
+          "language": "python",
+          "code": "from pydantic import BaseModel, Field, EmailStr\n\nclass UserCreate(BaseModel):\n    email: EmailStr\n    name: str = Field(min_length=1, max_length=80)"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Pydantic v2 Docs",
+          "url": "https://docs.pydantic.dev/latest/"
+        },
+        {
+          "title": "Ruff",
+          "url": "https://docs.astral.sh/ruff/"
+        },
+        {
+          "title": "uv",
+          "url": "https://docs.astral.sh/uv/"
+        }
+      ]
+    },
+    {
+      "id": "python-22-logging",
+      "title": "Logging and configuration",
+      "level": "mid",
+      "tags": [
+        "logging",
+        "stdlib"
+      ],
+      "estMinutes": 10,
+      "body": "## Never print in production\n\nUse the `logging` module: leveled, configurable, and routable to files/services. Get a module-level logger with `logging.getLogger(__name__)`.\n\n## Levels\n\n`DEBUG < INFO < WARNING < ERROR < CRITICAL`. Configure once at startup with `basicConfig` or `dictConfig`; libraries should only emit, not configure.\n\n## Structured logs\n\nEmit key/value context (request id, user) for searchable logs. `logger.exception` inside an `except` captures the traceback.",
+      "codeSamples": [
+        {
+          "title": "Module logger",
+          "language": "python",
+          "code": "import logging\nlogger = logging.getLogger(__name__)\n\ntry:\n    risky()\nexcept Exception:\n    logger.exception(\"risky failed\", extra={\"user\": uid})"
+        }
+      ],
+      "docs": [
+        {
+          "title": "logging — Logging facility",
+          "url": "https://docs.python.org/3/library/logging.html"
+        },
+        {
+          "title": "Logging HOWTO",
+          "url": "https://docs.python.org/3/howto/logging.html"
+        }
+      ]
+    },
+    {
+      "id": "python-18-async-intro",
+      "title": "async/await fundamentals",
+      "level": "mid",
+      "tags": [
+        "asyncio",
+        "async"
+      ],
+      "estMinutes": 12,
+      "body": "## Cooperative concurrency\n\n`async def` defines a coroutine; `await` yields control while waiting on I/O. A single thread juggles thousands of awaits.\n\n## Running\n\n`asyncio.run(main())` starts the event loop. `await` only inside `async` functions.\n\n## The trap\n\nCalling a blocking function (`requests`, `time.sleep`) inside a coroutine stalls the whole loop. Use async libraries or `run_in_executor`.",
+      "codeSamples": [
+        {
+          "title": "Basic coroutine",
+          "language": "python",
+          "code": "import asyncio, httpx\n\nasync def main():\n    async with httpx.AsyncClient() as client:\n        r = await client.get(\"https://example.com\")\n        print(r.status_code)\n\nasyncio.run(main())"
+        }
+      ],
+      "docs": [
+        {
+          "title": "asyncio",
+          "url": "https://docs.python.org/3/library/asyncio.html"
+        },
+        {
+          "title": "Coroutines and Tasks",
+          "url": "https://docs.python.org/3/library/asyncio-task.html"
+        }
+      ]
+    },
+    {
+      "id": "python-fastapi-async",
+      "title": "FastAPI: async def vs def",
+      "level": "senior",
+      "tags": [
+        "fastapi",
+        "asyncio"
+      ],
+      "estMinutes": 12,
+      "body": "## The production footgun\n\n`async def` is not automatically faster. Use `async def` when you **await** async I/O. If the body calls blocking libraries (`requests`, sync ORM, `time.sleep`), prefer plain `def` so FastAPI offloads to a thread pool — or you will block the event loop.\n\n## Stack\n\nFastAPI + Pydantic v2 + SQLAlchemy 2.0 async + asyncpg is the common 2026 API stack. Keep create/update/response schemas separate so secrets never leak.\n\n## Background work\n\n`BackgroundTasks` for quick follow-ups. Celery/Arq for heavy or retryable jobs.",
+      "codeSamples": [
+        {
+          "title": "Route style choice",
+          "language": "python",
+          "code": "@app.get(\"/users/{id}\")\nasync def get_user(id: int, session: AsyncSession = Depends(get_session)):\n    return await session.get(User, id)\n\n@app.post(\"/report\")\ndef build_report():  # sync PDF lib — threadpool\n    return render_pdf()"
+        }
+      ],
+      "docs": [
+        {
+          "title": "FastAPI — Concurrency and async / await",
+          "url": "https://fastapi.tiangolo.com/async/"
+        },
+        {
+          "title": "Dependencies",
+          "url": "https://fastapi.tiangolo.com/tutorial/dependencies/"
+        }
+      ]
+    },
+    {
+      "id": "python-asyncio-pools",
+      "title": "TaskGroup, pools, and connection math",
+      "level": "senior",
+      "tags": [
+        "asyncio",
+        "db"
+      ],
+      "estMinutes": 11,
+      "body": "## TaskGroup vs gather\n\n`asyncio.TaskGroup` cancels siblings on failure (structured concurrency). Prefer it for related tasks.\n\n## Connection pools\n\nOne async worker can multiplex thousands of requests. Size DB pools relative to workers × concurrent awaits, or you'll hit `too many connections`.\n\n## CPU-bound\n\nOffload to processes/queues — threads still contend on the GIL for pure Python CPU work.",
+      "codeSamples": [
+        {
+          "title": "TaskGroup",
+          "language": "python",
+          "code": "async with asyncio.TaskGroup() as tg:\n    tg.create_task(fetch(a))\n    tg.create_task(fetch(b))"
+        }
+      ],
+      "docs": [
+        {
+          "title": "TaskGroup",
+          "url": "https://docs.python.org/3/library/asyncio-task.html#task-groups"
+        },
+        {
+          "title": "Structured Concurrency",
+          "url": "https://docs.python.org/3/library/asyncio-task.html#task-groups"
+        }
+      ]
+    },
+    {
+      "id": "python-19-gil-parallelism",
+      "title": "The GIL, threads, and processes",
+      "level": "senior",
+      "tags": [
+        "concurrency",
+        "gil",
+        "performance"
+      ],
+      "estMinutes": 13,
+      "body": "## What the GIL does\n\nCPython's Global Interpreter Lock lets only one thread execute Python bytecode at a time. Threads still help **I/O-bound** work (they release the GIL while waiting).\n\n## CPU-bound work\n\nUse `multiprocessing` or `concurrent.futures.ProcessPoolExecutor` to use multiple cores, or push hot loops into NumPy/C extensions.\n\n## Free-threading\n\nPython 3.13+ ships an experimental no-GIL build. Know it exists, but don't assume ecosystem/library readiness in production yet.",
+      "codeSamples": [
+        {
+          "title": "Process pool for CPU work",
+          "language": "python",
+          "code": "from concurrent.futures import ProcessPoolExecutor\n\nwith ProcessPoolExecutor() as pool:\n    results = list(pool.map(crunch, chunks))"
+        }
+      ],
+      "docs": [
+        {
+          "title": "concurrent.futures",
+          "url": "https://docs.python.org/3/library/concurrent.futures.html"
+        },
+        {
+          "title": "PEP 703 — Making the GIL Optional",
+          "url": "https://peps.python.org/pep-0703/"
+        }
+      ]
+    },
+    {
+      "id": "python-20-packaging",
+      "title": "Packaging and publishing",
+      "level": "senior",
+      "tags": [
+        "packaging",
+        "tooling"
+      ],
+      "estMinutes": 11,
+      "body": "## pyproject.toml\n\nThe single source of truth for metadata, dependencies, and build config. `uv`, `hatch`, and `pip` all read it.\n\n## Building and publishing\n\n`python -m build` creates a wheel + sdist; `twine upload` (or `uv publish`) pushes to PyPI. Pin a compatible Python range.\n\n## Reproducibility\n\nLock dependencies (`uv.lock`/`requirements.txt`) for apps; keep libraries' constraints loose. Separate dev and runtime deps.",
+      "codeSamples": [
+        {
+          "title": "pyproject essentials",
+          "language": "toml",
+          "code": "[project]\nname = \"corgi-cli\"\nversion = \"0.1.0\"\nrequires-python = \">=3.11\"\ndependencies = [\"httpx>=0.27\"]\n\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\""
+        }
+      ],
+      "docs": [
+        {
+          "title": "Packaging Python Projects",
+          "url": "https://packaging.python.org/en/latest/tutorials/packaging-projects/"
+        },
+        {
+          "title": "pyproject.toml Spec",
+          "url": "https://packaging.python.org/en/latest/specifications/pyproject-toml/"
+        }
+      ]
+    },
+    {
+      "id": "python-21-performance",
+      "title": "Profiling and performance",
+      "level": "senior",
+      "tags": [
+        "performance",
+        "profiling"
+      ],
+      "estMinutes": 12,
+      "body": "## Measure, don't guess\n\nProfile with `cProfile`/`pstats` or `py-spy` (sampling, no code change). Find the real hot path before optimizing.\n\n## Common wins\n\nUse the right data structure (set for membership), avoid quadratic loops, cache with `functools.lru_cache`, and vectorize numeric work with NumPy.\n\n## Micro-benchmark\n\n`timeit` for small snippets. Beware premature optimization — readable code first, then optimize the measured bottleneck.",
+      "codeSamples": [
+        {
+          "title": "Profile a call",
+          "language": "python",
+          "code": "import cProfile, pstats\ncProfile.run(\"main()\", \"out.prof\")\npstats.Stats(\"out.prof\").sort_stats(\"cumulative\").print_stats(10)"
+        }
+      ],
+      "docs": [
+        {
+          "title": "The Python Profilers",
+          "url": "https://docs.python.org/3/library/profile.html"
+        },
+        {
+          "title": "timeit",
+          "url": "https://docs.python.org/3/library/timeit.html"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "title": "Python Docs",
+      "url": "https://docs.python.org/3/",
+      "note": "Official language reference & tutorials"
+    },
+    {
+      "title": "Python Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "note": "Official beginner path"
+    },
+    {
+      "title": "PEPs Index",
+      "url": "https://peps.python.org/",
+      "note": "Language evolution"
+    },
+    {
+      "title": "FastAPI Docs",
+      "url": "https://fastapi.tiangolo.com/",
+      "note": "Modern API framework"
+    },
+    {
+      "title": "Real Python",
+      "url": "https://realpython.com/",
+      "note": "In-depth tutorials"
+    }
+  ]
+}

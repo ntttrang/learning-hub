@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-fastapi-async-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "A FastAPI route body calls a synchronous PDF-rendering library. How should the route function be declared?",
+  "explanation": "A blocking call inside `async def` would stall the event loop; plain `def` runs in FastAPI's thread pool instead.",
+  "tags": [
+    "fastapi",
+    "asyncio"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "async def — always faster"
+    },
+    {
+      "id": "b",
+      "text": "Plain def, so FastAPI offloads it to a thread pool"
+    },
+    {
+      "id": "c",
+      "text": "async def, calling the sync function without await"
+    },
+    {
+      "id": "d",
+      "text": "It doesn't matter which one you pick"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-18-testing",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 18,
+  "title": "Testing and table-driven tests",
+  "minutes": 12,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Built-in testing\n\nFiles ending in `_test.go`, functions `TestXxx(t *testing.T)`. Run with `go test ./...`.\n\n## Table-driven\n\nThe idiomatic pattern: a slice of cases in a loop, often with `t.Run(name, ...)` subtests for clear failures.\n\n## Coverage and benchmarks\n\n`go test -cover` and `BenchmarkXxx(b *testing.B)` come free. Use `t.Parallel()` where safe."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "func TestParse(t *testing.T) {\n  tests := []struct{ in, want string }{\n    {\"a\", \"A\"},\n    {\"\", \"\"},\n  }\n  for _, tt := range tests {\n    if got := Parse(tt.in); got != tt.want {\n      t.Fatalf(\"Parse(%q)=%q want %q\", tt.in, got, tt.want)\n    }\n  }\n}"
+    }
+  ],
+  "docIds": [
+    "testing",
+    "TableDrivenTests"
+  ]
+}

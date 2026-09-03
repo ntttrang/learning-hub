@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-18-testing-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "What must a Go test function's name start with, in a *_test.go file?",
+  "explanation": "`go test` discovers functions named TestXxx(t *testing.T) in files ending with _test.go.",
+  "tags": [
+    "go-18-testing",
+    "basics"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Check"
+    },
+    {
+      "id": "b",
+      "text": "Test"
+    },
+    {
+      "id": "c",
+      "text": "Verify"
+    },
+    {
+      "id": "d",
+      "text": "Spec"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-03-strings-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "Given `total = 19.5`, what does `f\"{total=}\"` print?",
+  "explanation": "The `=` specifier in f-strings echoes the expression text plus `=` before the value — great for debugging.",
+  "tags": [
+    "basics",
+    "strings"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "total=19.5"
+    },
+    {
+      "id": "b",
+      "text": "19.5"
+    },
+    {
+      "id": "c",
+      "text": "Raises SyntaxError"
+    },
+    {
+      "id": "d",
+      "text": "{total}"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-05-collections",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 5,
+  "title": "Lists, tuples, sets, and dicts",
+  "minutes": 12,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## The four workhorses\n\n- `list` — ordered, mutable.\n- `tuple` — ordered, immutable (great as fixed records / dict keys).\n- `set` — unique, unordered.\n- `dict` — key/value, insertion-ordered since 3.7.\n\n## Idioms\n\n`d.get(k, default)`, `d.setdefault`, membership with `in` (O(1) for set/dict). Unpack with `a, b = pair`."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "counts = {}\nfor w in words:\n    counts[w] = counts.get(w, 0) + 1\n\npair = (1, 2)\nx, y = pair"
+    }
+  ],
+  "docIds": [
+    "datastructures",
+    "collections-2"
+  ]
+}

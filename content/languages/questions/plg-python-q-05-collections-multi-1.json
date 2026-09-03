@@ -1,0 +1,34 @@
+{
+  "id": "plg-python-q-05-collections-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which statements about Python `dict` are true?",
+  "explanation": "Dict/set membership is O(1) average, not O(n); keys must be hashable and insertion order is preserved since 3.7.",
+  "tags": [
+    "basics",
+    "collections"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Dicts have been insertion-ordered since Python 3.7"
+    },
+    {
+      "id": "b",
+      "text": "`d.get(k, default)` avoids a KeyError when k is missing"
+    },
+    {
+      "id": "c",
+      "text": "Membership test `k in d` is O(n)"
+    },
+    {
+      "id": "d",
+      "text": "Dict keys must be hashable"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

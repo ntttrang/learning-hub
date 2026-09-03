@@ -1,0 +1,22 @@
+{
+  "id": "plg-python-q-01-hello-repl-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank about Python's syntax rules.",
+  "explanation": "Indentation is syntactically significant in Python; consistency is mandatory within a block.",
+  "tags": [
+    "basics",
+    "tooling"
+  ],
+  "kind": "fill",
+  "template": "Blocks in Python are defined by ___ (4 spaces), not braces.",
+  "blanks": [
+    {
+      "answer": "indentation",
+      "alternatives": [
+        "indentation",
+        "consistent indentation",
+        "whitespace indentation"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "plg-java-q-23-gc-jvm-tuning-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "Five short-lived Object instances are created (illustrating the generational hypothesis); count ends at 5.",
+  "tags": [
+    "gc",
+    "jvm",
+    "performance"
+  ],
+  "kind": "fill",
+  "template": "public class Demo {\n  public static void main(String[] args) {\n    long count = 0;\n    for (int i = 0; i < 5; i++) {\n      Object o = new Object();\n      count++;\n    }\n    System.out.println(count);\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "5"
+    }
+  ]
+}

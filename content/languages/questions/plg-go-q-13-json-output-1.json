@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-13-json-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "Email is empty and tagged omitempty, so it is dropped from the output object.",
+  "tags": [
+    "go-13-json",
+    "omitempty"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport (\n  \"encoding/json\"\n  \"fmt\"\n)\n\ntype User struct {\n  ID    int    `json:\"id\"`\n  Name  string `json:\"name\"`\n  Email string `json:\"email,omitempty\"`\n}\n\nfunc main() {\n  b, _ := json.Marshal(User{ID: 1, Name: \"Ada\"})\n  fmt.Println(string(b))\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "{\"id\":1,\"name\":\"Ada\"}"
+    }
+  ]
+}

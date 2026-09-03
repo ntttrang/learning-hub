@@ -1,0 +1,20 @@
+{
+  "id": "plg-go-q-09-pointers-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: *n _____ 2 multiplies the pointed-to value in place and stores it back through the pointer.",
+  "explanation": "*n *= 2 dereferences n, multiplies by 2, and assigns the result back through the pointer.",
+  "tags": [
+    "go-09-pointers",
+    "operators"
+  ],
+  "kind": "fill",
+  "template": "func double(n *int) { *n ___ 2 }",
+  "blanks": [
+    {
+      "answer": "*=",
+      "alternatives": [
+        "*="
+      ]
+    }
+  ]
+}

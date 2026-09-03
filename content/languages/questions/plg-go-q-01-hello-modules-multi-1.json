@@ -1,0 +1,34 @@
+{
+  "id": "plg-go-q-01-hello-modules-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements about go run, go build, and gofmt are true?",
+  "explanation": "go build outputs a static binary runnable without Go installed; go run is compile+run in one step; gofmt is the single formatting standard.",
+  "tags": [
+    "go-01-hello-modules",
+    "tooling"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "go run compiles and runs the program in one step"
+    },
+    {
+      "id": "b",
+      "text": "go build produces a single static binary that needs no separate runtime"
+    },
+    {
+      "id": "c",
+      "text": "go build requires the Go toolchain to be installed on the target machine to run the binary"
+    },
+    {
+      "id": "d",
+      "text": "gofmt enforces one canonical formatting style"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

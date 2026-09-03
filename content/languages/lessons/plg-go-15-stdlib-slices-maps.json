@@ -1,0 +1,25 @@
+{
+  "id": "plg-go-15-stdlib-slices-maps",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 15,
+  "title": "slices and maps helper packages",
+  "minutes": 9,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Batteries included\n\nThe generic `slices` and `maps` packages remove hand-rolled loops: `slices.Contains`, `slices.Sort`, `slices.Index`, `maps.Keys`, `maps.Clone`.\n\n## Sorting\n\n`slices.SortFunc` takes a comparison returning -1/0/1; pair with `cmp.Compare`.\n\n## Iterators\n\nGo 1.23+ adds range-over-func iterators; `maps.Keys` now returns an iterator you can range over."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "slices.SortFunc(users, func(a, b User) int {\n  return cmp.Compare(a.Name, b.Name)\n})"
+    }
+  ],
+  "docIds": [
+    "slices",
+    "maps-2",
+    "cmp"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-04-control-flow-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "What does the expression `0 < x < 10` check?",
+  "explanation": "Python supports chained comparisons: `0 < x < 10` is equivalent to `0 < x and x < 10`.",
+  "tags": [
+    "basics",
+    "control-flow"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "x is strictly between 0 and 10"
+    },
+    {
+      "id": "b",
+      "text": "x equals 0 or 10"
+    },
+    {
+      "id": "c",
+      "text": "Syntax error — Python doesn't support chained comparisons"
+    },
+    {
+      "id": "d",
+      "text": "x is 0 AND x is 10 (always False)"
+    }
+  ],
+  "correct": "a"
+}

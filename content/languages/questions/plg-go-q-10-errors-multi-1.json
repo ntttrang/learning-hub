@@ -1,0 +1,34 @@
+{
+  "id": "plg-go-q-10-errors-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements about Go error handling are correct?",
+  "explanation": "Go has no exceptions for errors; errors.Is/As traverse wrapped chains, and sentinels are typically errors.New values.",
+  "tags": [
+    "go-10-errors",
+    "sentinels"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "errors.Is checks for a sentinel error match through the wrap chain"
+    },
+    {
+      "id": "b",
+      "text": "errors.As extracts a specific error type from the chain"
+    },
+    {
+      "id": "c",
+      "text": "Go has try/catch exceptions dedicated to error handling"
+    },
+    {
+      "id": "d",
+      "text": "Exported sentinel errors are commonly declared with errors.New"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-15-enumerators-lazy-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "Why use `.lazy` on a pipeline built from `(1..)`?",
+  "explanation": "lazy builds a pipeline of deferred operations, only computing values as they're pulled by take/first/force.",
+  "tags": [
+    "enumerable",
+    "lazy"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It automatically sorts the elements"
+    },
+    {
+      "id": "b",
+      "text": "It defers evaluation so the pipeline can work with infinite or huge sequences without building large intermediate arrays"
+    },
+    {
+      "id": "c",
+      "text": "It parallelizes the computation across threads"
+    },
+    {
+      "id": "d",
+      "text": "It caches results permanently across calls"
+    }
+  ],
+  "correct": "b"
+}

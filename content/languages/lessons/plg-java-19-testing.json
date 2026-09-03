@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-19-testing",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 19,
+  "title": "Testing with JUnit 5",
+  "minutes": 12,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Structure\n\n`@Test` methods, `@BeforeEach`/`@AfterEach` for setup/teardown. Use AssertJ or JUnit assertions (`assertEquals`, `assertThrows`).\n\n## Parameterized tests\n\n`@ParameterizedTest` with `@ValueSource`/`@CsvSource` runs the same logic over many inputs — the Java equivalent of table-driven tests.\n\n## Mocking\n\nMockito stubs collaborators. Prefer real objects for value logic; mock only true external boundaries."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "@ParameterizedTest\n@CsvSource({\"2,3,5\", \"0,0,0\"})\nvoid adds(int a, int b, int expected) {\n  assertEquals(expected, Calc.add(a, b));\n}"
+    }
+  ],
+  "docIds": [
+    "user-guide",
+    "user-guide-2"
+  ]
+}

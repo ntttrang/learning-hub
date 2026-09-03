@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-20-singleton-eigenclass-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What does `class << self` inside a class body do?",
+  "explanation": "class << self opens the eigenclass of the current class, a common way to group class-level methods.",
+  "tags": [
+    "oop",
+    "metaprogramming"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Opens the singleton class of the class itself, for defining class methods"
+    },
+    {
+      "id": "b",
+      "text": "Creates a subclass"
+    },
+    {
+      "id": "c",
+      "text": "Defines regular instance methods"
+    },
+    {
+      "id": "d",
+      "text": "Deletes self"
+    }
+  ],
+  "correct": "a"
+}

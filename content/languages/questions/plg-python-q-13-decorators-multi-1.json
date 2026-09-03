@@ -1,0 +1,34 @@
+{
+  "id": "plg-python-q-13-decorators-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which of these are decorators discussed as part of the standard library / language?",
+  "explanation": "`lru_cache`, `property`, `staticmethod`, and `dataclass` are all decorators; `@synchronized` isn't a Python builtin.",
+  "tags": [
+    "decorators",
+    "functional"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "@functools.lru_cache"
+    },
+    {
+      "id": "b",
+      "text": "@property"
+    },
+    {
+      "id": "c",
+      "text": "@staticmethod"
+    },
+    {
+      "id": "d",
+      "text": "@synchronized"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

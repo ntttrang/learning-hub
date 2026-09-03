@@ -1,0 +1,31 @@
+{
+  "id": "plg-java-q-20-build-modules-mcq-2",
+  "domainId": "plg-java",
+  "prompt": "What enforces strong encapsulation between Java modules?",
+  "explanation": "The JPMS, configured via module-info.java, controls what a module exports and requires.",
+  "tags": [
+    "maven",
+    "gradle",
+    "tooling"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "The Java Platform Module System (module-info.java)"
+    },
+    {
+      "id": "b",
+      "text": "The classpath"
+    },
+    {
+      "id": "c",
+      "text": "Maven scopes"
+    },
+    {
+      "id": "d",
+      "text": "The JAR manifest file"
+    }
+  ],
+  "correct": "a"
+}

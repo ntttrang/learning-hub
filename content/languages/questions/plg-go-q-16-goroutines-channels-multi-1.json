@@ -1,0 +1,34 @@
+{
+  "id": "plg-go-q-16-goroutines-channels-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements about channels and select are true?",
+  "explanation": "Channels are typed and can carry any type, including structs, interfaces, and other channels.",
+  "tags": [
+    "go-16-goroutines-channels",
+    "select"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "select can wait on multiple channel operations simultaneously"
+    },
+    {
+      "id": "b",
+      "text": "A buffered channel decouples sender and receiver up to its capacity"
+    },
+    {
+      "id": "c",
+      "text": "Channels can only carry numeric types"
+    },
+    {
+      "id": "d",
+      "text": "\"Share memory by communicating\" is a core Go concurrency philosophy"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

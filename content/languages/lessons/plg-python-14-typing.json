@@ -1,0 +1,25 @@
+{
+  "id": "plg-python-14-typing",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 14,
+  "title": "Type hints and static checking",
+  "minutes": 12,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Gradual typing\n\nType hints are optional and not enforced at runtime, but tools like **mypy**/**pyright** check them. They document intent and catch bugs.\n\n## Modern syntax\n\nUse builtin generics (`list[int]`, `dict[str, int]`), `X | None` unions, and PEP 695 type parameters (`def first[T](xs: list[T]) -> T`).\n\n## Protocols\n\n`typing.Protocol` gives structural (duck) typing you can type-check — accept anything with the right shape."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "from typing import Protocol\n\nclass Reader(Protocol):\n    def read(self) -> str: ...\n\ndef load(r: Reader) -> str:\n    return r.read()"
+    }
+  ],
+  "docIds": [
+    "typing",
+    "pep-0695",
+    "pep-0544"
+  ]
+}

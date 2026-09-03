@@ -1,0 +1,137 @@
+{
+  "language": "go",
+  "framework": {
+    "name": "Gin",
+    "tagline": "A fast, minimal HTTP web framework for Go.",
+    "overview": "Gin wraps net/http with a radix-tree router, middleware chain, and ergonomic JSON binding/validation. Master it by starting with a JSON endpoint, then params, middleware, request binding with validation, route groups, and centralized error handling.",
+    "docs": [
+      { "title": "Gin documentation", "url": "https://gin-gonic.com/docs/" },
+      { "title": "Gin examples", "url": "https://github.com/gin-gonic/examples" }
+    ]
+  },
+  "challenges": [
+    {
+      "id": "go-fw-router-json",
+      "title": "1. Router and JSON response",
+      "difficulty": "junior",
+      "concept": "`gin.Default()` gives an engine with logger + recovery middleware. Handlers receive a `*gin.Context`; `c.JSON` writes a status code and marshals a body.",
+      "goal": "Serve GET /ping returning {\"message\":\"pong\"}.",
+      "steps": [
+        "Create the engine with gin.Default().",
+        "Register r.GET(\"/ping\", handler).",
+        "Respond with c.JSON(http.StatusOK, gin.H{...}).",
+        "Call r.Run()."
+      ],
+      "hints": [
+        "gin.H is a shortcut for map[string]any.",
+        "http.StatusOK is 200."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc main() {\n  r := gin.Default()\n  // TODO: GET /ping -> {\"message\":\"pong\"}\n  r.Run(\":8080\")\n}\n",
+      "solution": "package main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc main() {\n  r := gin.Default()\n  r.GET(\"/ping\", func(c *gin.Context) {\n    c.JSON(http.StatusOK, gin.H{\"message\": \"pong\"})\n  })\n  r.Run(\":8080\")\n}\n",
+      "expectedOutput": "GET /ping -> {\"message\":\"pong\"}"
+    },
+    {
+      "id": "go-fw-params",
+      "title": "2. Path and query params",
+      "difficulty": "junior",
+      "concept": "Path segments use `:name` and are read with `c.Param`. Query string values use `c.Query` / `c.DefaultQuery`.",
+      "goal": "GET /users/:id?verbose=true echoes both values as JSON.",
+      "steps": [
+        "Declare route /users/:id.",
+        "Read id with c.Param(\"id\").",
+        "Read verbose with c.DefaultQuery(\"verbose\", \"false\").",
+        "Return both in a JSON object."
+      ],
+      "hints": [
+        "c.Param reads path segments.",
+        "c.DefaultQuery supplies a fallback."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc main() {\n  r := gin.Default()\n  r.GET(\"/users/:id\", func(c *gin.Context) {\n    // TODO\n  })\n  r.Run(\":8080\")\n}\n",
+      "solution": "package main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc main() {\n  r := gin.Default()\n  r.GET(\"/users/:id\", func(c *gin.Context) {\n    id := c.Param(\"id\")\n    verbose := c.DefaultQuery(\"verbose\", \"false\")\n    c.JSON(http.StatusOK, gin.H{\"id\": id, \"verbose\": verbose})\n  })\n  r.Run(\":8080\")\n}\n",
+      "expectedOutput": "GET /users/42?verbose=true -> {\"id\":\"42\",\"verbose\":\"true\"}"
+    },
+    {
+      "id": "go-fw-middleware",
+      "title": "3. Custom middleware",
+      "difficulty": "mid",
+      "concept": "Middleware is a `gin.HandlerFunc` that runs around handlers. Call `c.Next()` to continue the chain; set values with `c.Set` and abort with `c.AbortWithStatus`.",
+      "goal": "Write a middleware that stores a request id and continues the chain.",
+      "steps": [
+        "Return a gin.HandlerFunc closure.",
+        "c.Set(\"requestID\", ...) before c.Next().",
+        "Attach it with r.Use(...).",
+        "Read it back in a handler with c.GetString."
+      ],
+      "hints": [
+        "c.Next() runs downstream handlers.",
+        "r.Use registers global middleware."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc requestID() gin.HandlerFunc {\n  // TODO\n  return func(c *gin.Context) {}\n}\n\nfunc main() {\n  r := gin.Default()\n  r.Use(requestID())\n  r.GET(\"/\", func(c *gin.Context) {\n    c.JSON(http.StatusOK, gin.H{\"id\": c.GetString(\"requestID\")})\n  })\n  r.Run(\":8080\")\n}\n",
+      "solution": "package main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n  \"github.com/google/uuid\"\n)\n\nfunc requestID() gin.HandlerFunc {\n  return func(c *gin.Context) {\n    c.Set(\"requestID\", uuid.NewString())\n    c.Next()\n  }\n}\n\nfunc main() {\n  r := gin.Default()\n  r.Use(requestID())\n  r.GET(\"/\", func(c *gin.Context) {\n    c.JSON(http.StatusOK, gin.H{\"id\": c.GetString(\"requestID\")})\n  })\n  r.Run(\":8080\")\n}\n",
+      "expectedOutput": "GET / -> {\"id\":\"<generated-uuid>\"}"
+    },
+    {
+      "id": "go-fw-bind-validate",
+      "title": "4. Bind and validate JSON",
+      "difficulty": "mid",
+      "concept": "`c.ShouldBindJSON` decodes the body into a struct and runs `binding` validation tags. On failure it returns an error you translate into a 400.",
+      "goal": "POST /users validates {name required, email must be an email}.",
+      "steps": [
+        "Add binding tags: binding:\"required\" and binding:\"required,email\".",
+        "Call c.ShouldBindJSON(&body).",
+        "Return 400 on error, 201 with the body on success."
+      ],
+      "hints": [
+        "json tags name the fields; binding tags validate them.",
+        "c.ShouldBindJSON returns an error to check."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\ntype CreateUser struct {\n  Name  string `json:\"name\"`\n  Email string `json:\"email\"`\n}\n\nfunc main() {\n  r := gin.Default()\n  r.POST(\"/users\", func(c *gin.Context) {\n    // TODO\n  })\n  r.Run(\":8080\")\n}\n",
+      "solution": "package main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\ntype CreateUser struct {\n  Name  string `json:\"name\" binding:\"required\"`\n  Email string `json:\"email\" binding:\"required,email\"`\n}\n\nfunc main() {\n  r := gin.Default()\n  r.POST(\"/users\", func(c *gin.Context) {\n    var body CreateUser\n    if err := c.ShouldBindJSON(&body); err != nil {\n      c.JSON(http.StatusBadRequest, gin.H{\"error\": err.Error()})\n      return\n    }\n    c.JSON(http.StatusCreated, body)\n  })\n  r.Run(\":8080\")\n}\n",
+      "expectedOutput": "POST /users {} -> 400; valid body -> 201"
+    },
+    {
+      "id": "go-fw-route-groups",
+      "title": "5. Versioned route groups",
+      "difficulty": "mid",
+      "concept": "`r.Group` shares a path prefix and middleware across related routes, so you can version an API or guard a subtree cleanly.",
+      "goal": "Expose GET /api/v1/health under a versioned group.",
+      "steps": [
+        "Create v1 := r.Group(\"/api/v1\").",
+        "Register v1.GET(\"/health\", handler).",
+        "Return {\"status\":\"ok\"}."
+      ],
+      "hints": [
+        "Groups can be nested and take their own .Use().",
+        "The prefix is prepended to every child route."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc main() {\n  r := gin.Default()\n  // TODO: group /api/v1 with /health\n  r.Run(\":8080\")\n}\n",
+      "solution": "package main\n\nimport (\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc main() {\n  r := gin.Default()\n  v1 := r.Group(\"/api/v1\")\n  {\n    v1.GET(\"/health\", func(c *gin.Context) {\n      c.JSON(http.StatusOK, gin.H{\"status\": \"ok\"})\n    })\n  }\n  r.Run(\":8080\")\n}\n",
+      "expectedOutput": "GET /api/v1/health -> {\"status\":\"ok\"}"
+    },
+    {
+      "id": "go-fw-error-handling",
+      "title": "6. Centralized error handling",
+      "difficulty": "senior",
+      "concept": "Handlers can attach errors with `c.Error(err)` and abort; a trailing middleware inspects `c.Errors` after `c.Next()` and renders one consistent error response.",
+      "goal": "Attach an error in a handler and render it from an error middleware.",
+      "steps": [
+        "Write middleware that calls c.Next() then checks c.Errors.",
+        "If any error exists, write a JSON 500 with the last error.",
+        "In the handler, call c.Error(err) and c.Abort()."
+      ],
+      "hints": [
+        "c.Errors.Last() gives the most recent error.",
+        "Register the error middleware first with r.Use."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport (\n  \"errors\"\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc errorHandler() gin.HandlerFunc {\n  // TODO\n  return func(c *gin.Context) {}\n}\n\nfunc main() {\n  r := gin.Default()\n  r.Use(errorHandler())\n  r.GET(\"/boom\", func(c *gin.Context) {\n    c.Error(errors.New(\"kaboom\"))\n    c.Abort()\n  })\n  r.Run(\":8080\")\n}\n",
+      "solution": "package main\n\nimport (\n  \"errors\"\n  \"net/http\"\n\n  \"github.com/gin-gonic/gin\"\n)\n\nfunc errorHandler() gin.HandlerFunc {\n  return func(c *gin.Context) {\n    c.Next()\n    if len(c.Errors) > 0 {\n      c.JSON(http.StatusInternalServerError, gin.H{\"error\": c.Errors.Last().Error()})\n    }\n  }\n}\n\nfunc main() {\n  r := gin.Default()\n  r.Use(errorHandler())\n  r.GET(\"/boom\", func(c *gin.Context) {\n    c.Error(errors.New(\"kaboom\"))\n    c.Abort()\n  })\n  r.Run(\":8080\")\n}\n",
+      "expectedOutput": "GET /boom -> 500 {\"error\":\"kaboom\"}"
+    }
+  ]
+}

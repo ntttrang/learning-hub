@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-asyncio-pools-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "Why can't adding more threads speed up pure Python CPU-bound work?",
+  "explanation": "The GIL lets only one thread run Python bytecode at a time, so CPU-bound work needs processes, not threads.",
+  "tags": [
+    "asyncio",
+    "db"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Threads are disabled in modern Python"
+    },
+    {
+      "id": "b",
+      "text": "They still contend on the GIL"
+    },
+    {
+      "id": "c",
+      "text": "Threads cost too much memory to be useful"
+    },
+    {
+      "id": "d",
+      "text": "CPU-bound work must always run inside asyncio"
+    }
+  ],
+  "correct": "b"
+}

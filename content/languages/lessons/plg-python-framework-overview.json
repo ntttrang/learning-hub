@@ -1,0 +1,15 @@
+{
+  "id": "plg-python-framework-overview",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-framework",
+  "order": 1,
+  "title": "Python · FastAPI",
+  "minutes": 10,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "**Modern, type-hint-driven Python APIs with automatic docs.**\n\nFastAPI turns Python type hints into request parsing, validation (via Pydantic), and OpenAPI docs. Master it by defining path operations, typed params, validated request bodies, dependency injection, async endpoints with status codes, and clean error handling."
+    }
+  ]
+}

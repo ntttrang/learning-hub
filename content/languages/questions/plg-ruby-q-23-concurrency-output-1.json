@@ -1,0 +1,17 @@
+{
+  "id": "plg-ruby-q-23-concurrency-output-1",
+  "domainId": "plg-ruby",
+  "prompt": "What prints?",
+  "explanation": "Thread#value waits for each thread and returns its block's result; sorting gives deterministic order.",
+  "tags": [
+    "concurrency",
+    "threads"
+  ],
+  "kind": "fill",
+  "template": "threads = 3.times.map do |i|\n  Thread.new { \"worker-#{i}\" }\nend\nputs threads.map(&:value).sort.join(\", \")\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "worker-0, worker-1, worker-2"
+    }
+  ]
+}

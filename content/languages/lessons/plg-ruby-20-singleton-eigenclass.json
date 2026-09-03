@@ -1,0 +1,23 @@
+{
+  "id": "plg-ruby-20-singleton-eigenclass",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 20,
+  "title": "Singleton classes and class << self",
+  "minutes": 11,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Every object has a singleton class\n\nMethods defined on one object live on its eigenclass. `class << obj` opens that class. Class methods are instance methods of the class's singleton class.\n\n## class << self\n\nGroup class methods and make `private_class_method` clearer. Alternative: `def self.foo`.\n\n## Ancestors\n\n`obj.singleton_class.ancestors` reveals the lookup path — invaluable when debugging unexpected method resolution."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "class Config\n  class << self\n    attr_accessor :env\n    def load! = @env = \"production\"\n  end\nend\n\nConfig.load!\nputs Config.env"
+    }
+  ],
+  "docIds": [
+    "methods_rdoc-2"
+  ]
+}

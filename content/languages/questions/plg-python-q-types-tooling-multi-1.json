@@ -1,0 +1,33 @@
+{
+  "id": "plg-python-q-types-tooling-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which are modern Python tools mentioned for typing/tooling?",
+  "explanation": "`uv` and `Ruff` are Rust-speed Python tooling; Maven and Gradle are JVM build tools, unrelated here.",
+  "tags": [
+    "typing",
+    "tooling"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "uv (env + package management)"
+    },
+    {
+      "id": "b",
+      "text": "Ruff (lint + format)"
+    },
+    {
+      "id": "c",
+      "text": "Maven"
+    },
+    {
+      "id": "d",
+      "text": "Gradle"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

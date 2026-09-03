@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-22-concurrency-basics-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "What should you generally use instead of managing raw Threads directly?",
+  "explanation": "ExecutorService manages a pool of reusable threads and lets you submit tasks without manual thread lifecycle handling.",
+  "tags": [
+    "concurrency",
+    "executors"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "ExecutorService"
+    },
+    {
+      "id": "b",
+      "text": "Thread.sleep loops"
+    },
+    {
+      "id": "c",
+      "text": "Runtime.exec"
+    },
+    {
+      "id": "d",
+      "text": "A global static Thread field"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-10-classes",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 10,
+  "title": "Classes, attr_*, and self",
+  "minutes": 12,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Defining types\n\n`class Dog` with `initialize` sets up instance state in `@ivars`. `attr_reader` / `attr_writer` / `attr_accessor` generate getters and setters.\n\n## self\n\nInside an instance method, `self` is the receiver. Inside `class << self` or `def self.method`, you define class methods.\n\n## Visibility\n\n`private` and `protected` control call sites. Private methods cannot be called with an explicit receiver (except `self.foo=` setters)."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "class Dog\n  attr_reader :name\n  def initialize(name) = @name = name\n  def bark = \"#{@name} says woof\"\n  def self.species = \"Canis familiaris\"\nend\n\nd = Dog.new(\"Captain\")\nputs d.bark\nputs Dog.species"
+    }
+  ],
+  "docIds": [
+    "modules_and_classes_rdoc",
+    "Module"
+  ]
+}

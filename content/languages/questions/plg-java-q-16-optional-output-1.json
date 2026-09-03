@@ -1,0 +1,17 @@
+{
+  "id": "plg-java-q-16-optional-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "map transforms the present value with toUpperCase; orElse's fallback is unused since a value is present.",
+  "tags": [
+    "optional",
+    "null-safety"
+  ],
+  "kind": "fill",
+  "template": "import java.util.*;\n\npublic class Demo {\n  public static void main(String[] args) {\n    Optional<String> opt = Optional.of(\"corgi\");\n    String result = opt.map(String::toUpperCase).orElse(\"NONE\");\n    System.out.println(result);\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "CORGI"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-01-hello-modules-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "Which command creates a new Go module and its go.mod file?",
+  "explanation": "go mod init creates go.mod, declaring the module path for the project.",
+  "tags": [
+    "go-01-hello-modules",
+    "modules"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "go mod init example.com/app"
+    },
+    {
+      "id": "b",
+      "text": "go build init"
+    },
+    {
+      "id": "c",
+      "text": "go new module example.com/app"
+    },
+    {
+      "id": "d",
+      "text": "go run init"
+    }
+  ],
+  "correct": "a"
+}

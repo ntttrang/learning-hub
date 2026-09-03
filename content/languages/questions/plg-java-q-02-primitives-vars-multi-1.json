@@ -1,0 +1,33 @@
+{
+  "id": "plg-java-q-02-primitives-vars-multi-1",
+  "domainId": "plg-java",
+  "prompt": "Which statements about `var` are true?",
+  "explanation": "var only works for local variables with an initializer; it is resolved at compile time, so Java remains statically typed.",
+  "tags": [
+    "basics",
+    "types"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "var infers the type from the initializer"
+    },
+    {
+      "id": "b",
+      "text": "var can be used for instance fields"
+    },
+    {
+      "id": "c",
+      "text": "var is still statically typed"
+    },
+    {
+      "id": "d",
+      "text": "var makes Java dynamically typed"
+    }
+  ],
+  "correct": [
+    "a",
+    "c"
+  ]
+}

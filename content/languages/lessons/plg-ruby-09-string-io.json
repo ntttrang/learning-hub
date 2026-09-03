@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-09-string-io",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 9,
+  "title": "String formatting and IO basics",
+  "minutes": 9,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Formatting\n\nInterpolation covers most cases. `format` / `sprintf` and `%` help with alignment and numeric precision.\n\n## Reading and writing\n\n`File.read`, `File.write`, and block form `File.open(...) { |f| ... }` that auto-closes. Prefer block form for resource safety.\n\n## Encoding\n\nRuby strings carry an encoding. Stick to UTF-8 unless you have a reason; be deliberate at IO boundaries."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "puts format(\"%s scored %.1f\", \"Ada\", 98.5)\nputs \"%-8s|%04d\" % [\"go\", 7]\n\n# File.open(\"out.txt\", \"w\") { |f| f.puts \"ahoy\" }"
+    }
+  ],
+  "docIds": [
+    "Kernel",
+    "File"
+  ]
+}

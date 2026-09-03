@@ -1,0 +1,34 @@
+{
+  "id": "plg-ruby-q-06-methods-args-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which are true about Ruby method argument conventions?",
+  "explanation": "The ? and ! suffixes are purely a naming convention; Ruby does not enforce their meaning.",
+  "tags": [
+    "methods",
+    "basics"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "`sort!` mutates the receiver in place by convention"
+    },
+    {
+      "id": "b",
+      "text": "`empty?` conventionally returns a boolean"
+    },
+    {
+      "id": "c",
+      "text": "The ? and ! suffixes are enforced by the Ruby interpreter, not just convention"
+    },
+    {
+      "id": "d",
+      "text": "`**opts` collects extra keyword arguments into a hash"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

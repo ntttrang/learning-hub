@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-03-strings-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "`{total:.2f}` formats the float with exactly two decimal places.",
+  "tags": [
+    "basics",
+    "strings"
+  ],
+  "kind": "fill",
+  "template": "name, total = \"Ada\", 19.5\nprint(f\"Hi {name}, total ${total:.2f}\")\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "Hi Ada, total $19.50"
+    }
+  ]
+}

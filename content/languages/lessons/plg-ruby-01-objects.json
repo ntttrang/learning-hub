@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-01-objects",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 1,
+  "title": "Everything is an object",
+  "minutes": 10,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Objects all the way down\n\nIn Ruby, numbers, strings, even `nil` and `true`/`false` are objects with methods. Call `1.class`, `nil.nil?`, `\"hi\".upcase` — there is no separate \"primitive\" layer like in Java.\n\n## Syntax feel\n\nNo semicolons, optional parentheses, `end` closes blocks and methods. Methods implicitly return the last expression — no `return` required for the happy path.\n\n## Open classes\n\nYou can reopen any class and add methods. That power enables gems and DSLs — and misuse. Prefer refinements or composition when you can."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "puts 42.class          # Integer\nputs nil.class         # NilClass\nputs \"ahoy\".upcase     # AHOY\n\ndef greet(name)\n  \"Ahoy, #{name}!\"\nend\n\nputs greet(\"Corgi\")"
+    }
+  ],
+  "docIds": [
+    "master",
+    "syntax_rdoc"
+  ]
+}

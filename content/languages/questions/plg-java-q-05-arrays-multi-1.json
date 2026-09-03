@@ -1,0 +1,34 @@
+{
+  "id": "plg-java-q-05-arrays-multi-1",
+  "domainId": "plg-java",
+  "prompt": "Which statements about Java arrays are true?",
+  "explanation": "Java arrays cannot resize; a and b and d are correct.",
+  "tags": [
+    "basics",
+    "arrays"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Length is fixed at creation time"
+    },
+    {
+      "id": "b",
+      "text": "2D arrays are arrays-of-arrays and rows can be jagged"
+    },
+    {
+      "id": "c",
+      "text": "Arrays automatically resize when full"
+    },
+    {
+      "id": "d",
+      "text": "Access is zero-based"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

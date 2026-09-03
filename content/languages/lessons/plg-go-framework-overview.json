@@ -1,0 +1,15 @@
+{
+  "id": "plg-go-framework-overview",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-framework",
+  "order": 1,
+  "title": "Go · Gin",
+  "minutes": 10,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "**A fast, minimal HTTP web framework for Go.**\n\nGin wraps net/http with a radix-tree router, middleware chain, and ergonomic JSON binding/validation. Master it by starting with a JSON endpoint, then params, middleware, request binding with validation, route groups, and centralized error handling."
+    }
+  ]
+}

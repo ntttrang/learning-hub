@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-09-pointers-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "Which statement correctly describes Go pointers?",
+  "explanation": "Go disallows pointer arithmetic and its garbage collector prevents dangling pointers; dereferencing nil panics.",
+  "tags": [
+    "go-09-pointers",
+    "safety"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "They support pointer arithmetic like C"
+    },
+    {
+      "id": "b",
+      "text": "They are memory-safe: no arithmetic, and the GC keeps referenced memory alive"
+    },
+    {
+      "id": "c",
+      "text": "They must be manually freed with a free() call"
+    },
+    {
+      "id": "d",
+      "text": "Dereferencing a nil pointer silently returns the zero value"
+    }
+  ],
+  "correct": "b"
+}

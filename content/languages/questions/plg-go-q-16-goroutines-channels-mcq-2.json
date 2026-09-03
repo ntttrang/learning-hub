@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-16-goroutines-channels-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "What happens when you send on an unbuffered channel?",
+  "explanation": "Unbuffered channels synchronize sender and receiver: the send blocks until a matching receive occurs.",
+  "tags": [
+    "go-16-goroutines-channels",
+    "channels"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It returns immediately regardless of whether a receiver is ready"
+    },
+    {
+      "id": "b",
+      "text": "It blocks until a receiver is ready to receive"
+    },
+    {
+      "id": "c",
+      "text": "It always panics"
+    },
+    {
+      "id": "d",
+      "text": "It silently drops the value"
+    }
+  ],
+  "correct": "b"
+}

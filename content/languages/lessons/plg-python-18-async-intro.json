@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-18-async-intro",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 20,
+  "title": "async/await fundamentals",
+  "minutes": 12,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Cooperative concurrency\n\n`async def` defines a coroutine; `await` yields control while waiting on I/O. A single thread juggles thousands of awaits.\n\n## Running\n\n`asyncio.run(main())` starts the event loop. `await` only inside `async` functions.\n\n## The trap\n\nCalling a blocking function (`requests`, `time.sleep`) inside a coroutine stalls the whole loop. Use async libraries or `run_in_executor`."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "import asyncio, httpx\n\nasync def main():\n    async with httpx.AsyncClient() as client:\n        r = await client.get(\"https://example.com\")\n        print(r.status_code)\n\nasyncio.run(main())"
+    }
+  ],
+  "docIds": [
+    "asyncio",
+    "asyncio-task"
+  ]
+}

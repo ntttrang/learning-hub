@@ -1,0 +1,29 @@
+{
+  "id": "plg-java-q-volatile",
+  "domainId": "plg-java",
+  "prompt": "What does volatile guarantee for a single field?",
+  "explanation": "volatile provides visibility and happens-before for that field. Compound updates still need atomics or locks.",
+  "tags": [
+    "jmm"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Atomicity for i++ style updates"
+    },
+    {
+      "id": "b",
+      "text": "Visibility and ordering for that field's reads/writes"
+    },
+    {
+      "id": "c",
+      "text": "Mutual exclusion across all threads"
+    },
+    {
+      "id": "d",
+      "text": "That GC will never collect the object"
+    }
+  ],
+  "correct": "b"
+}

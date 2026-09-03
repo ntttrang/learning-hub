@@ -1,0 +1,34 @@
+{
+  "id": "plg-java-q-17-equals-hashcode-multi-1",
+  "domainId": "plg-java",
+  "prompt": "Which are correct practices when overriding equals/hashCode?",
+  "explanation": "Mutating a key's fields after insertion breaks HashMap lookups; avoid mutable keys.",
+  "tags": [
+    "contracts",
+    "immutability"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Override both together"
+    },
+    {
+      "id": "b",
+      "text": "Use the same set of fields in both"
+    },
+    {
+      "id": "c",
+      "text": "Freely use mutable fields as HashMap keys"
+    },
+    {
+      "id": "d",
+      "text": "Consider using record for immutable value objects"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

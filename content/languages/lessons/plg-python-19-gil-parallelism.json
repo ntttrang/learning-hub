@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-19-gil-parallelism",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 23,
+  "title": "The GIL, threads, and processes",
+  "minutes": 13,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## What the GIL does\n\nCPython's Global Interpreter Lock lets only one thread execute Python bytecode at a time. Threads still help **I/O-bound** work (they release the GIL while waiting).\n\n## CPU-bound work\n\nUse `multiprocessing` or `concurrent.futures.ProcessPoolExecutor` to use multiple cores, or push hot loops into NumPy/C extensions.\n\n## Free-threading\n\nPython 3.13+ ships an experimental no-GIL build. Know it exists, but don't assume ecosystem/library readiness in production yet."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "from concurrent.futures import ProcessPoolExecutor\n\nwith ProcessPoolExecutor() as pool:\n    results = list(pool.map(crunch, chunks))"
+    }
+  ],
+  "docIds": [
+    "concurrent.futures",
+    "pep-0703"
+  ]
+}

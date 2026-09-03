@@ -1,0 +1,17 @@
+{
+  "id": "plg-ruby-q-05-control-flow-output-1",
+  "domainId": "plg-ruby",
+  "prompt": "What prints?",
+  "explanation": "case tries when arms in order; 7 matches the 1..9 range before the broader Integer arm.",
+  "tags": [
+    "control-flow",
+    "basics"
+  ],
+  "kind": "fill",
+  "template": "n = 7\nlabel = case n\n        when 0 then \"zero\"\n        when 1..9 then \"single digit\"\n        when Integer then \"integer\"\n        else \"other\"\n        end\nputs label\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "single digit"
+    }
+  ]
+}

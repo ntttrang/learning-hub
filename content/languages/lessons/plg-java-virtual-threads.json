@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-virtual-threads",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 24,
+  "title": "Virtual threads vs CompletableFuture",
+  "minutes": 14,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Virtual threads (JEP 444)\n\nLightweight, JVM-managed threads. Millions can exist because blocking I/O unmounts them from carrier OS threads.\n\n**Use for:** I/O-bound request handling, JDBC, HTTP clients — keep imperative style.\n\n**Watch for:** pinning inside `synchronized` on hot paths (prefer `ReentrantLock` in Java 21; much improved in Java 24+).\n\n## CompletableFuture\n\nBetter when you need **explicit composition** of independent async stages, custom executors, or existing reactive APIs.\n\n## Spring Boot tip\n\nEnable with `spring.threads.virtual.enabled=true`. Prefer MVC + virtual threads over WebFlux unless you need reactive backpressure end-to-end."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {\n  Future<String> f = executor.submit(() -> fetchRemote());\n  return f.get();\n}"
+    }
+  ],
+  "docIds": [
+    "444",
+    "CompletableFuture"
+  ]
+}

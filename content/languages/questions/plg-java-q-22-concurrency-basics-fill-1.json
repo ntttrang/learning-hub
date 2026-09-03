@@ -1,0 +1,21 @@
+{
+  "id": "plg-java-q-22-concurrency-basics-fill-1",
+  "domainId": "plg-java",
+  "prompt": "AtomicInteger provides lock-free read-modify-write using _____ (compare-and-swap).",
+  "explanation": "Atomic classes use CAS instructions to update values without traditional locking.",
+  "tags": [
+    "concurrency",
+    "executors"
+  ],
+  "kind": "fill",
+  "template": "lock-free updates via ___",
+  "blanks": [
+    {
+      "answer": "CAS",
+      "alternatives": [
+        "CAS",
+        "compare-and-swap"
+      ]
+    }
+  ]
+}

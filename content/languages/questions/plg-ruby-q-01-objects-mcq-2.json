@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-01-objects-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "Which statement about Ruby's object model is true?",
+  "explanation": "Ruby has no separate primitive layer; numbers, nil, and booleans are all objects with methods.",
+  "tags": [
+    "basics",
+    "objects"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Everything in Ruby, including nil and true, is an object"
+    },
+    {
+      "id": "b",
+      "text": "Ruby has unboxed primitive types like Java's int"
+    },
+    {
+      "id": "c",
+      "text": "Only classes you define yourself are objects"
+    },
+    {
+      "id": "d",
+      "text": "nil is a special keyword, not an object"
+    }
+  ],
+  "correct": "a"
+}

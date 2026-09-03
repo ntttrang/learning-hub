@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-18-async-intro-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "What starts the asyncio event loop and runs a coroutine to completion?",
+  "explanation": "`asyncio.run(main())` creates an event loop, runs `main()` to completion, and cleans up.",
+  "tags": [
+    "asyncio",
+    "async"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "asyncio.start(main())"
+    },
+    {
+      "id": "b",
+      "text": "asyncio.run(main())"
+    },
+    {
+      "id": "c",
+      "text": "main().run()"
+    },
+    {
+      "id": "d",
+      "text": "await main() (with no event loop running)"
+    }
+  ],
+  "correct": "b"
+}

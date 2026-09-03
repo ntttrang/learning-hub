@@ -1,0 +1,75 @@
+{
+  "language": "ruby",
+  "problems": [
+    {
+      "id": "ruby-practice-fizzbuzz",
+      "title": "FizzBuzz",
+      "prompt": "Print numbers 1..15, but print `Fizz` for multiples of 3, `Buzz` for multiples of 5, and `FizzBuzz` for multiples of both.",
+      "difficulty": "junior",
+      "hints": [
+        "Check divisibility by 15 first.",
+        "Use elsif for the 3 and 5 cases."
+      ],
+      "language": "ruby",
+      "starterCode": "(1..15).each do |i|\n  # TODO\n  puts i\nend\n",
+      "solution": "(1..15).each do |i|\n  if i % 15 == 0\n    puts \"FizzBuzz\"\n  elsif i % 3 == 0\n    puts \"Fizz\"\n  elsif i % 5 == 0\n    puts \"Buzz\"\n  else\n    puts i\n  end\nend\n",
+      "expectedOutput": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz"
+    },
+    {
+      "id": "ruby-practice-reverse",
+      "title": "Reverse a string",
+      "prompt": "Reverse a string and print the reverse of `hello`.",
+      "difficulty": "junior",
+      "hints": [
+        "String has a reverse method.",
+        "s.reverse."
+      ],
+      "language": "ruby",
+      "starterCode": "def reverse(s)\n  # TODO\n  s\nend\n\nputs reverse(\"hello\")\n",
+      "solution": "def reverse(s)\n  s.reverse\nend\n\nputs reverse(\"hello\")\n",
+      "expectedOutput": "olleh"
+    },
+    {
+      "id": "ruby-practice-twosum",
+      "title": "Two Sum",
+      "prompt": "Given `nums` and a `target`, return the indices of the two numbers that add up to the target. For `[2, 7, 11, 15]` and target `9`, print the indices separated by a space.",
+      "difficulty": "mid",
+      "hints": [
+        "Track each value's index in a hash as you scan.",
+        "Check if target - n is already a key."
+      ],
+      "language": "ruby",
+      "starterCode": "def two_sum(nums, target)\n  # TODO\n  [-1, -1]\nend\n\nputs two_sum([2, 7, 11, 15], 9).join(\" \")\n",
+      "solution": "def two_sum(nums, target)\n  seen = {}\n  nums.each_with_index do |n, i|\n    return [seen[target - n], i] if seen.key?(target - n)\n    seen[n] = i\n  end\n  [-1, -1]\nend\n\nputs two_sum([2, 7, 11, 15], 9).join(\" \")\n",
+      "expectedOutput": "0 1"
+    },
+    {
+      "id": "ruby-practice-anagrams",
+      "title": "Group anagrams",
+      "prompt": "Group words that are anagrams. For `%w[eat tea tan ate nat bat]`, print each group as a comma-joined sorted line, and print those lines sorted.",
+      "difficulty": "mid",
+      "hints": [
+        "Use word.chars.sort.join as the hash key.",
+        "group_by then sort the groups and the words inside."
+      ],
+      "language": "ruby",
+      "starterCode": "words = %w[eat tea tan ate nat bat]\n# TODO: print anagram groups\nputs words.join(\",\")\n",
+      "solution": "words = %w[eat tea tan ate nat bat]\ngroups = words.group_by { |w| w.chars.sort.join }.values\ngroups.map { |g| g.sort.join(\",\") }.sort.each { |line| puts line }\n",
+      "expectedOutput": "ate,eat,tea\nbat\nnat,tan"
+    },
+    {
+      "id": "ruby-practice-slug",
+      "title": "Slugify a title",
+      "prompt": "Implement `slugify` that lowercases, replaces non-alphanumerics with hyphens, and strips leading/trailing hyphens. Print slugify(\"Ahoy, Crew!\").",
+      "difficulty": "junior",
+      "hints": [
+        "Downcase first.",
+        "gsub(/[^a-z0-9]+/, '-') then strip edge hyphens."
+      ],
+      "language": "ruby",
+      "starterCode": "def slugify(title)\n  # TODO\nend\n\nputs slugify(\"Ahoy, Crew!\")\n",
+      "solution": "def slugify(title)\n  title.downcase.gsub(/[^a-z0-9]+/, \"-\").gsub(/^-|-$/, \"\")\nend\n\nputs slugify(\"Ahoy, Crew!\")\n",
+      "expectedOutput": "ahoy-crew"
+    }
+  ]
+}

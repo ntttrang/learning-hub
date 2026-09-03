@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-14-lambdas-fi-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "Which package holds standard functional interfaces like Function, Predicate, and Supplier?",
+  "explanation": "java.util.function defines the standard functional interface types used across the Streams API.",
+  "tags": [
+    "lambdas",
+    "functional"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "java.util.function"
+    },
+    {
+      "id": "b",
+      "text": "java.lang.function"
+    },
+    {
+      "id": "c",
+      "text": "java.util.lambda"
+    },
+    {
+      "id": "d",
+      "text": "java.function"
+    }
+  ],
+  "correct": "a"
+}

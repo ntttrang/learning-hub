@@ -1,0 +1,22 @@
+{
+  "id": "plg-python-q-18-async-intro-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank: calling a blocking function like `time.sleep` inside a coroutine _____ the entire event loop.",
+  "explanation": "Cooperative concurrency relies on coroutines yielding control at `await`; a blocking call prevents that.",
+  "tags": [
+    "asyncio",
+    "async"
+  ],
+  "kind": "fill",
+  "template": "A blocking call inside async def ___ the event loop.",
+  "blanks": [
+    {
+      "answer": "stalls",
+      "alternatives": [
+        "stalls",
+        "blocks",
+        "freezes"
+      ]
+    }
+  ]
+}

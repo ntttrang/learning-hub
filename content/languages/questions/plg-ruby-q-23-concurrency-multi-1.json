@@ -1,0 +1,34 @@
+{
+  "id": "plg-ruby-q-23-concurrency-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which statements about Ruby concurrency are true?",
+  "explanation": "Ractors deliberately restrict shared memory, requiring immutable or deep-copied data between them.",
+  "tags": [
+    "concurrency",
+    "threads"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Threads release the GVL during blocking IO, helping IO-bound concurrency"
+    },
+    {
+      "id": "b",
+      "text": "Fibers are cooperative coroutines"
+    },
+    {
+      "id": "c",
+      "text": "Ractors share all memory freely with no restrictions"
+    },
+    {
+      "id": "d",
+      "text": "For multi-core CPU-bound work, processes or Ractors are options since threads are limited by the GVL"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

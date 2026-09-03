@@ -1,0 +1,20 @@
+{
+  "id": "plg-python-q-11-dataclasses-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank: this dataclass parameter makes instances immutable, raising on attribute assignment.",
+  "explanation": "`frozen=True` disables attribute mutation after construction, similar to a namedtuple.",
+  "tags": [
+    "oop",
+    "dataclasses"
+  ],
+  "kind": "fill",
+  "template": "@dataclass(___=True)",
+  "blanks": [
+    {
+      "answer": "frozen",
+      "alternatives": [
+        "frozen"
+      ]
+    }
+  ]
+}

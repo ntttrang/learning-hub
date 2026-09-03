@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-03-control-flow-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "A condition-less switch evaluates each case as a boolean; x < 10 is the first true case.",
+  "tags": [
+    "go-03-control-flow",
+    "switch"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  x := 5\n  switch {\n  case x < 3:\n    fmt.Println(\"small\")\n  case x < 10:\n    fmt.Println(\"medium\")\n  default:\n    fmt.Println(\"large\")\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "medium"
+    }
+  ]
+}

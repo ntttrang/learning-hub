@@ -1,0 +1,21 @@
+{
+  "id": "plg-java-q-virtual-threads-fill-1",
+  "domainId": "plg-java",
+  "prompt": "Executors._____() creates an executor that runs each submitted task on its own virtual thread.",
+  "explanation": "This factory method creates a virtual-thread-per-task ExecutorService.",
+  "tags": [
+    "loom",
+    "java21",
+    "concurrency"
+  ],
+  "kind": "fill",
+  "template": "Executors.___()",
+  "blanks": [
+    {
+      "answer": "newVirtualThreadPerTaskExecutor",
+      "alternatives": [
+        "newVirtualThreadPerTaskExecutor"
+      ]
+    }
+  ]
+}

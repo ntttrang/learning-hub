@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-02-primitives-vars-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "Which of these is NOT one of Java's eight primitive types?",
+  "explanation": "String is a reference type (an object), not one of the 8 primitives (byte, short, int, long, float, double, char, boolean).",
+  "tags": [
+    "basics",
+    "types"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "int"
+    },
+    {
+      "id": "b",
+      "text": "String"
+    },
+    {
+      "id": "c",
+      "text": "boolean"
+    },
+    {
+      "id": "d",
+      "text": "char"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-17-equals-hashcode",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 17,
+  "title": "equals, hashCode, and immutability",
+  "minutes": 11,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## The contract\n\nIf two objects are `equals`, they **must** have the same `hashCode`. Break this and `HashMap`/`HashSet` behave unpredictably.\n\n## Rules\n\nOverride both together, use the same fields in each, and keep those fields immutable if the object is a map key.\n\n## Records help\n\n`record` generates a correct `equals`/`hashCode` for you — a strong reason to use them for value objects."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "@Override public boolean equals(Object o) {\n  if (this == o) return true;\n  if (!(o instanceof Point p)) return false;\n  return x == p.x && y == p.y;\n}\n@Override public int hashCode() { return Objects.hash(x, y); }"
+    }
+  ],
+  "docIds": [
+    "Object",
+    "effective-java"
+  ]
+}

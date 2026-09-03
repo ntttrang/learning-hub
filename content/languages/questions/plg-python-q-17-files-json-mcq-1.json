@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-17-files-json-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "Why should you always pass `encoding=\"utf-8\"` explicitly when reading/writing text files?",
+  "explanation": "Relying on the platform default encoding can silently break text handling when code runs on a different OS.",
+  "tags": [
+    "io",
+    "json"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It's faster than the default"
+    },
+    {
+      "id": "b",
+      "text": "The platform default encoding varies across OSes, causing inconsistent behavior"
+    },
+    {
+      "id": "c",
+      "text": "Python requires it syntactically"
+    },
+    {
+      "id": "d",
+      "text": "It disables output buffering"
+    }
+  ],
+  "correct": "b"
+}

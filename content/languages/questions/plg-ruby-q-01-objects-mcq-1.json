@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-01-objects-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What does `42.class` return in Ruby?",
+  "explanation": "Ruby unified Fixnum/Bignum into a single Integer class (since Ruby 2.4).",
+  "tags": [
+    "basics",
+    "objects"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Integer"
+    },
+    {
+      "id": "b",
+      "text": "Fixnum"
+    },
+    {
+      "id": "c",
+      "text": "Number"
+    },
+    {
+      "id": "d",
+      "text": "int"
+    }
+  ],
+  "correct": "a"
+}

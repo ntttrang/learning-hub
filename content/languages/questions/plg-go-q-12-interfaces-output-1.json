@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-12-interfaces-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "The type switch matches int for 42 and string for \"hi\", formatting each accordingly.",
+  "tags": [
+    "go-12-interfaces",
+    "type-switch"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport \"fmt\"\n\nfunc describe(v any) string {\n  switch x := v.(type) {\n  case int:\n    return fmt.Sprintf(\"int %d\", x)\n  case string:\n    return \"string \" + x\n  default:\n    return \"unknown\"\n  }\n}\n\nfunc main() {\n  fmt.Println(describe(42))\n  fmt.Println(describe(\"hi\"))\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "int 42\nstring hi"
+    }
+  ]
+}

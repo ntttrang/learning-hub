@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-06-slices-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "What happens when append is called on a slice whose capacity is exceeded?",
+  "explanation": "append grows the backing array when needed, which is why the result must be reassigned.",
+  "tags": [
+    "go-06-slices",
+    "append"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It panics"
+    },
+    {
+      "id": "b",
+      "text": "It allocates a new, larger backing array and copies the elements"
+    },
+    {
+      "id": "c",
+      "text": "It silently drops the new elements"
+    },
+    {
+      "id": "d",
+      "text": "It wraps around and overwrites the start"
+    }
+  ],
+  "correct": "b"
+}

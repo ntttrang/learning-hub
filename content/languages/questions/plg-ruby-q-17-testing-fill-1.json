@@ -1,0 +1,20 @@
+{
+  "id": "plg-ruby-q-17-testing-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: this Minitest assertion checks that two values are equal.",
+  "explanation": "assert_equal(expected, actual) is Minitest's core equality assertion.",
+  "tags": [
+    "testing"
+  ],
+  "kind": "fill",
+  "template": "assert___(6, [1, 2, 3].sum)",
+  "blanks": [
+    {
+      "answer": "_equal",
+      "alternatives": [
+        "_equal",
+        "equal"
+      ]
+    }
+  ]
+}

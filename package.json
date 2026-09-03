@@ -12,6 +12,7 @@
     "content:extract-gh": "tsx scripts/extract-gh-packs.ts",
     "content:extract-gh600": "tsx scripts/extract-gh600-pack.ts",
     "content:extract-dp800": "tsx scripts/extract-dp800-pack.ts",
+    "content:extract-polyglot": "tsx scripts/extract-polyglot-pack.ts",
     "lint": "oxlint src scripts",
     "preview": "vite preview"
   },

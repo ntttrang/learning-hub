@@ -1,0 +1,17 @@
+{
+  "id": "plg-java-q-13-generics-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "The bounded generic max method scans the list and returns the largest element, 9.",
+  "tags": [
+    "generics",
+    "types"
+  ],
+  "kind": "fill",
+  "template": "import java.util.*;\n\npublic class Demo {\n  static <T extends Comparable<T>> T max(List<? extends T> items) {\n    T best = items.get(0);\n    for (T t : items) if (t.compareTo(best) > 0) best = t;\n    return best;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(max(List.of(3, 7, 2, 9, 4)));\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "9"
+    }
+  ]
+}

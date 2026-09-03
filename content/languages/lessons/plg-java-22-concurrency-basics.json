@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-22-concurrency-basics",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 22,
+  "title": "Threads, executors, and futures",
+  "minutes": 13,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Don't manage raw threads\n\nUse an `ExecutorService` to submit tasks and reuse threads. `Future` represents a pending result; `CompletableFuture` composes async stages.\n\n## Thread safety\n\nShared mutable state needs coordination: `synchronized`, `ReentrantLock`, or concurrent collections (`ConcurrentHashMap`).\n\n## Atomics\n\n`AtomicInteger`/`AtomicReference` give lock-free read-modify-write via CAS for simple counters and flags."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "try (var pool = Executors.newFixedThreadPool(4)) {\n  Future<Integer> f = pool.submit(() -> heavy());\n  System.out.println(f.get());\n}"
+    }
+  ],
+  "docIds": [
+    "ExecutorService",
+    "concurrency"
+  ]
+}

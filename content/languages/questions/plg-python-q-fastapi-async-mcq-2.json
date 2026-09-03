@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-fastapi-async-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "What is the common 2026 FastAPI production stack described in the lesson?",
+  "explanation": "FastAPI + Pydantic v2 + async SQLAlchemy 2.0 + asyncpg is the common modern async Python API stack.",
+  "tags": [
+    "fastapi",
+    "asyncio"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "FastAPI + Pydantic v2 + SQLAlchemy 2.0 async + asyncpg"
+    },
+    {
+      "id": "b",
+      "text": "Django + DRF + Celery only"
+    },
+    {
+      "id": "c",
+      "text": "Flask + SQLAlchemy 1.x + gunicorn only"
+    },
+    {
+      "id": "d",
+      "text": "FastAPI + Spring Data JPA"
+    }
+  ],
+  "correct": "a"
+}

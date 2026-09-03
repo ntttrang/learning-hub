@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-03-operators-control",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 3,
+  "title": "Operators and control flow",
+  "minutes": 9,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Operators\n\nArithmetic (`+ - * / %`), comparison (`== != < >`), logical (`&& || !`). `&&` and `||` short-circuit.\n\n## Branching\n\n`if/else`, and the modern **switch expression** (Java 14+) with arrow labels returns a value and requires no `break`.\n\n## Loops\n\n`for`, enhanced `for` (for-each), `while`, `do/while`. Use `break`/`continue` sparingly."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "String kind = switch (day) {\n  case SATURDAY, SUNDAY -> \"weekend\";\n  default -> \"weekday\";\n};"
+    }
+  ],
+  "docIds": [
+    "operators",
+    "361"
+  ]
+}

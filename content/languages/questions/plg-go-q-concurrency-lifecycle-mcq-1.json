@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-concurrency-lifecycle-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "Beyond just starting a goroutine, what is described as the \"senior skill\"?",
+  "explanation": "Starting a goroutine is cheap; managing its lifecycle and failure reporting is what separates robust concurrent code.",
+  "tags": [
+    "go-concurrency-lifecycle",
+    "goroutines"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Making goroutines start as fast as possible"
+    },
+    {
+      "id": "b",
+      "text": "Owning its lifetime: giving it a purpose, a stop signal, and a way to report failure"
+    },
+    {
+      "id": "c",
+      "text": "Avoiding goroutines entirely in favor of global state"
+    },
+    {
+      "id": "d",
+      "text": "Never using channels"
+    }
+  ],
+  "correct": "b"
+}

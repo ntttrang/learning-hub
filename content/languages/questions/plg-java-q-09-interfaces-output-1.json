@@ -1,0 +1,17 @@
+{
+  "id": "plg-java-q-09-interfaces-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "The lambda implements Greeter's single abstract method, concatenating \"Hi \" with the argument.",
+  "tags": [
+    "oop",
+    "interfaces"
+  ],
+  "kind": "fill",
+  "template": "public class Demo {\n  interface Greeter { String greet(String name); }\n\n  public static void main(String[] args) {\n    Greeter g = n -> \"Hi \" + n;\n    System.out.println(g.greet(\"Corgi\"));\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "Hi Corgi"
+    }
+  ]
+}

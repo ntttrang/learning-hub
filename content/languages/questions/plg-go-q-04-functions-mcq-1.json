@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-04-functions-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "What is the idiomatic Go convention for a function that can fail?",
+  "explanation": "Go favors explicit multiple returns of (value, error) over exceptions.",
+  "tags": [
+    "go-04-functions",
+    "errors"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Return (value, error) and let the caller check err"
+    },
+    {
+      "id": "b",
+      "text": "Throw an exception with panic and always recover in the caller"
+    },
+    {
+      "id": "c",
+      "text": "Return nil to mean success"
+    },
+    {
+      "id": "d",
+      "text": "Always panic on failure"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-16-testing-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "Which decorator runs the same test function against multiple sets of inputs?",
+  "explanation": "`@pytest.mark.parametrize(\"a,b,expected\", [...])` is Python's table-driven testing, running once per input row.",
+  "tags": [
+    "testing",
+    "pytest"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "@pytest.fixture"
+    },
+    {
+      "id": "b",
+      "text": "@pytest.mark.parametrize"
+    },
+    {
+      "id": "c",
+      "text": "@pytest.mark.repeat"
+    },
+    {
+      "id": "d",
+      "text": "@pytest.mark.skip"
+    }
+  ],
+  "correct": "b"
+}

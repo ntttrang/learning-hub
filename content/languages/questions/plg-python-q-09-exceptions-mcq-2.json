@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-09-exceptions-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "Which clause of a try statement runs only if no exception was raised in the try block?",
+  "explanation": "`else` runs after a successful try block (no exception); `finally` always runs, for cleanup.",
+  "tags": [
+    "errors",
+    "exceptions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "finally"
+    },
+    {
+      "id": "b",
+      "text": "else"
+    },
+    {
+      "id": "c",
+      "text": "except"
+    },
+    {
+      "id": "d",
+      "text": "raise"
+    }
+  ],
+  "correct": "b"
+}

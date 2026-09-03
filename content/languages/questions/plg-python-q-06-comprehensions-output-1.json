@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-06-comprehensions-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "range(5) yields 0..4; squaring each gives [0, 1, 4, 9, 16].",
+  "tags": [
+    "basics",
+    "comprehensions"
+  ],
+  "kind": "fill",
+  "template": "squares = [x * x for x in range(5)]\nprint(squares)\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "[0, 1, 4, 9, 16]"
+    }
+  ]
+}

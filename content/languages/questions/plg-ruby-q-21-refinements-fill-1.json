@@ -1,0 +1,20 @@
+{
+  "id": "plg-ruby-q-21-refinements-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: after defining `refine String do ... end` inside module StringOps, this activates it in the current file.",
+  "explanation": "using StringOps turns on the refinement for the remainder of the current file or scope.",
+  "tags": [
+    "refinements",
+    "design"
+  ],
+  "kind": "fill",
+  "template": "___ StringOps",
+  "blanks": [
+    {
+      "answer": "using",
+      "alternatives": [
+        "using"
+      ]
+    }
+  ]
+}

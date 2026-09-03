@@ -1,0 +1,34 @@
+{
+  "id": "plg-ruby-q-11-modules-mixins-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which statements about Ruby modules are true?",
+  "explanation": "Modules cannot be instantiated; they exist for namespacing and mixins via include/extend/prepend.",
+  "tags": [
+    "modules",
+    "mixins"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "extend adds a module's methods as class or singleton methods"
+    },
+    {
+      "id": "b",
+      "text": "prepend inserts a module before the class in the ancestor chain"
+    },
+    {
+      "id": "c",
+      "text": "A module can be instantiated directly with .new, like a class"
+    },
+    {
+      "id": "d",
+      "text": "Modules can hold constants and namespace related code"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-10-classes-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which method generates both a getter and a setter for an instance variable?",
+  "explanation": "attr_accessor combines attr_reader and attr_writer into one call.",
+  "tags": [
+    "oop",
+    "classes"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "attr_reader"
+    },
+    {
+      "id": "b",
+      "text": "attr_writer"
+    },
+    {
+      "id": "c",
+      "text": "attr_accessor"
+    },
+    {
+      "id": "d",
+      "text": "attr_both"
+    }
+  ],
+  "correct": "c"
+}

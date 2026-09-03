@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-21-performance-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "Which data structure gives O(1) average membership testing (`x in collection`)?",
+  "explanation": "`set` (and `dict`) use hashing for O(1) average membership checks, versus O(n) for list/tuple/str.",
+  "tags": [
+    "performance",
+    "profiling"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "list"
+    },
+    {
+      "id": "b",
+      "text": "set"
+    },
+    {
+      "id": "c",
+      "text": "tuple"
+    },
+    {
+      "id": "d",
+      "text": "str"
+    }
+  ],
+  "correct": "b"
+}

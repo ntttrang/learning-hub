@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-12-interfaces-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "What is the idiomatic Go guidance regarding interfaces in function signatures?",
+  "explanation": "Accepting interfaces maximizes caller flexibility, while returning concrete types keeps call sites simple.",
+  "tags": [
+    "go-12-interfaces",
+    "idioms"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Accept concrete types, return interfaces"
+    },
+    {
+      "id": "b",
+      "text": "Accept interfaces, return concrete types"
+    },
+    {
+      "id": "c",
+      "text": "Avoid interfaces entirely"
+    },
+    {
+      "id": "d",
+      "text": "Always return `any`"
+    }
+  ],
+  "correct": "b"
+}

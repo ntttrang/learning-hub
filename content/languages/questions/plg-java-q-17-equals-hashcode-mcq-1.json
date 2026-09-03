@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-17-equals-hashcode-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "What must be true if two objects are equal according to equals()?",
+  "explanation": "The equals/hashCode contract requires equal objects to produce the same hash code.",
+  "tags": [
+    "contracts",
+    "immutability"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "They must return the same hashCode()"
+    },
+    {
+      "id": "b",
+      "text": "They must be the same object reference"
+    },
+    {
+      "id": "c",
+      "text": "Their toString() must match"
+    },
+    {
+      "id": "d",
+      "text": "They must be immutable"
+    }
+  ],
+  "correct": "a"
+}

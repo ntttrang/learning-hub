@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-concurrency-lifecycle-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "Which side of a channel should typically close it?",
+  "explanation": "Closing from the producer avoids sending on a closed channel, which would panic.",
+  "tags": [
+    "go-concurrency-lifecycle",
+    "channels"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "The consumer"
+    },
+    {
+      "id": "b",
+      "text": "The producer"
+    },
+    {
+      "id": "c",
+      "text": "Either side, chosen at random"
+    },
+    {
+      "id": "d",
+      "text": "Channels never need to be closed"
+    }
+  ],
+  "correct": "b"
+}

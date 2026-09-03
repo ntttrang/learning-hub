@@ -1,0 +1,20 @@
+{
+  "id": "plg-python-q-21-performance-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank: `py-spy` is a _____ profiler, meaning it doesn't require modifying your code.",
+  "explanation": "Sampling profilers periodically inspect the call stack from outside the process, unlike instrumenting profilers like cProfile.",
+  "tags": [
+    "performance",
+    "profiling"
+  ],
+  "kind": "fill",
+  "template": "py-spy is a ___ profiler (no code changes needed).",
+  "blanks": [
+    {
+      "answer": "sampling",
+      "alternatives": [
+        "sampling"
+      ]
+    }
+  ]
+}

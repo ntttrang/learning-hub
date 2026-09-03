@@ -1,0 +1,320 @@
+[
+  {
+    "id": "plg-syntax",
+    "title": "Syntax basics",
+    "columns": [
+      {
+        "id": "plg-java",
+        "label": "Java"
+      },
+      {
+        "id": "plg-go",
+        "label": "Go"
+      },
+      {
+        "id": "plg-python",
+        "label": "Python"
+      },
+      {
+        "id": "plg-ruby",
+        "label": "Ruby"
+      }
+    ],
+    "rows": [
+      {
+        "aspect": "How everyday code reads",
+        "cells": {
+          "plg-java": "Explicit types, braces, classes as the unit of design.",
+          "plg-go": "Short decls, packages, multiple return values, no classes.",
+          "plg-python": "Indentation, duck typing with optional annotations.",
+          "plg-ruby": "Everything is an object; end closes blocks; implicit return."
+        }
+      }
+    ],
+    "samples": [
+      {
+        "label": "Syntax basics",
+        "code": {
+          "plg-java": "public int add(int a, int b) {\n  return a + b;\n}",
+          "plg-go": "func add(a, b int) int {\n  return a + b\n}",
+          "plg-python": "def add(a: int, b: int) -> int:\n    return a + b",
+          "plg-ruby": "def add(a, b)\n  a + b\nend"
+        }
+      }
+    ]
+  },
+  {
+    "id": "plg-typing",
+    "title": "Typing model",
+    "columns": [
+      {
+        "id": "plg-java",
+        "label": "Java"
+      },
+      {
+        "id": "plg-go",
+        "label": "Go"
+      },
+      {
+        "id": "plg-python",
+        "label": "Python"
+      },
+      {
+        "id": "plg-ruby",
+        "label": "Ruby"
+      }
+    ],
+    "rows": [
+      {
+        "aspect": "How correctness is checked",
+        "cells": {
+          "plg-java": "Static, nominal types; generics; increasingly records/sealed types.",
+          "plg-go": "Static structural interfaces; generics since 1.18; methods stay concrete-first.",
+          "plg-python": "Dynamic runtime + gradual static checking (pyright/mypy); Pydantic at boundaries.",
+          "plg-ruby": "Dynamic duck typing; optional Sorbet/RBS for gradual static checking."
+        }
+      }
+    ]
+  },
+  {
+    "id": "plg-concurrency",
+    "title": "Concurrency model",
+    "columns": [
+      {
+        "id": "plg-java",
+        "label": "Java"
+      },
+      {
+        "id": "plg-go",
+        "label": "Go"
+      },
+      {
+        "id": "plg-python",
+        "label": "Python"
+      },
+      {
+        "id": "plg-ruby",
+        "label": "Ruby"
+      }
+    ],
+    "rows": [
+      {
+        "aspect": "How we scale concurrent work",
+        "cells": {
+          "plg-java": "Platform threads, virtual threads, ExecutorService, CompletableFuture, JMM.",
+          "plg-go": "Goroutines + channels + context; errgroup for bounded fan-out.",
+          "plg-python": "asyncio event loop; threads for blocking; GIL limits CPU threads.",
+          "plg-ruby": "Threads (GVL limits CPU parallelism); Fibers/Async for IO; Ractors for isolation."
+        }
+      }
+    ],
+    "samples": [
+      {
+        "label": "Concurrency model",
+        "code": {
+          "plg-java": "try (var ex = Executors.newVirtualThreadPerTaskExecutor()) {\n  ex.submit(task);\n}",
+          "plg-go": "g, ctx := errgroup.WithContext(ctx)\ng.Go(func() error { return work(ctx) })\ng.Wait()",
+          "plg-python": "async with asyncio.TaskGroup() as tg:\n    tg.create_task(work())"
+        }
+      }
+    ]
+  },
+  {
+    "id": "plg-errors",
+    "title": "Error handling",
+    "columns": [
+      {
+        "id": "plg-java",
+        "label": "Java"
+      },
+      {
+        "id": "plg-go",
+        "label": "Go"
+      },
+      {
+        "id": "plg-python",
+        "label": "Python"
+      },
+      {
+        "id": "plg-ruby",
+        "label": "Ruby"
+      }
+    ],
+    "rows": [
+      {
+        "aspect": "Failure as a design choice",
+        "cells": {
+          "plg-java": "Checked + unchecked exceptions; try-with-resources.",
+          "plg-go": "Explicit error returns; wrap with fmt.Errorf / %w; panic for true bugs.",
+          "plg-python": "Exceptions everywhere; EAFP style; context managers for cleanup.",
+          "plg-ruby": "raise / rescue / ensure; custom StandardError subclasses for domain failures."
+        }
+      }
+    ]
+  },
+  {
+    "id": "plg-packages",
+    "title": "Package management",
+    "columns": [
+      {
+        "id": "plg-java",
+        "label": "Java"
+      },
+      {
+        "id": "plg-go",
+        "label": "Go"
+      },
+      {
+        "id": "plg-python",
+        "label": "Python"
+      },
+      {
+        "id": "plg-ruby",
+        "label": "Ruby"
+      }
+    ],
+    "rows": [
+      {
+        "aspect": "How dependencies ship",
+        "cells": {
+          "plg-java": "Maven / Gradle; modules (JPMS) optional.",
+          "plg-go": "go.mod / go.sum; module proxy; minimal dependency culture.",
+          "plg-python": "pip / uv / poetry; lockfiles; virtualenvs.",
+          "plg-ruby": "RubyGems + Bundler; Gemfile / Gemfile.lock for apps."
+        }
+      }
+    ]
+  },
+  {
+    "id": "plg-web",
+    "title": "Web framework",
+    "columns": [
+      {
+        "id": "plg-java",
+        "label": "Java"
+      },
+      {
+        "id": "plg-go",
+        "label": "Go"
+      },
+      {
+        "id": "plg-python",
+        "label": "Python"
+      },
+      {
+        "id": "plg-ruby",
+        "label": "Ruby"
+      }
+    ],
+    "rows": [
+      {
+        "aspect": "Default path to HTTP APIs / apps",
+        "cells": {
+          "plg-java": "Spring Boot MVC / WebFlux; Jakarta EE in enterprises.",
+          "plg-go": "net/http stdlib; chi/echo/fiber when needed — frameworks stay thin.",
+          "plg-python": "FastAPI for APIs; Django for batteries-included apps.",
+          "plg-ruby": "Rails (full-stack) or Sinatra (micro); Rack under the hood."
+        }
+      }
+    ]
+  },
+  {
+    "id": "plg-testing",
+    "title": "Testing culture",
+    "columns": [
+      {
+        "id": "plg-java",
+        "label": "Java"
+      },
+      {
+        "id": "plg-go",
+        "label": "Go"
+      },
+      {
+        "id": "plg-python",
+        "label": "Python"
+      },
+      {
+        "id": "plg-ruby",
+        "label": "Ruby"
+      }
+    ],
+    "rows": [
+      {
+        "aspect": "How teams prove behavior",
+        "cells": {
+          "plg-java": "JUnit 5, AssertJ, Testcontainers, Mockito (sparingly at senior level).",
+          "plg-go": "testing package, table-driven tests, httptest, integration over heavy mocks.",
+          "plg-python": "pytest, httpx AsyncClient, factories; hypothesis for properties.",
+          "plg-ruby": "Minitest (stdlib) or RSpec; prefer behavior at public boundaries."
+        }
+      }
+    ]
+  },
+  {
+    "id": "plg-performance",
+    "title": "Performance profile",
+    "columns": [
+      {
+        "id": "plg-java",
+        "label": "Java"
+      },
+      {
+        "id": "plg-go",
+        "label": "Go"
+      },
+      {
+        "id": "plg-python",
+        "label": "Python"
+      },
+      {
+        "id": "plg-ruby",
+        "label": "Ruby"
+      }
+    ],
+    "rows": [
+      {
+        "aspect": "Where the costs show up",
+        "cells": {
+          "plg-java": "Warm JIT, GC tuning, excellent throughput after warmup; heavier memory.",
+          "plg-go": "Fast startup, small binaries, predictable latency; GC is simpler.",
+          "plg-python": "Great for I/O and glue; CPU-bound needs native/async offload; uv/Pydantic help DX.",
+          "plg-ruby": "Developer velocity first; YJIT helps latency; watch allocations and IO."
+        }
+      }
+    ]
+  },
+  {
+    "id": "plg-usecases",
+    "title": "Best use cases",
+    "columns": [
+      {
+        "id": "plg-java",
+        "label": "Java"
+      },
+      {
+        "id": "plg-go",
+        "label": "Go"
+      },
+      {
+        "id": "plg-python",
+        "label": "Python"
+      },
+      {
+        "id": "plg-ruby",
+        "label": "Ruby"
+      }
+    ],
+    "rows": [
+      {
+        "aspect": "When each stack shines",
+        "cells": {
+          "plg-java": "Large enterprise domains, strong typing, long-lived JVM services.",
+          "plg-go": "Cloud services, CLIs, networking, infra — concurrency with simplicity.",
+          "plg-python": "APIs, data/AI, scripting, glue between systems.",
+          "plg-ruby": "Expressive apps and DSLs; rapid product iteration; scripting with readable OO."
+        }
+      }
+    ]
+  }
+]

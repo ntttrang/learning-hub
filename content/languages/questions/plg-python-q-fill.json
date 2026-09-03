@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-fill",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank: FastAPI dependency injection uses the _____ callable.",
+  "explanation": "from fastapi import Depends.",
+  "kind": "fill",
+  "template": "Depends / ___",
+  "blanks": [
+    {
+      "answer": "Depends",
+      "alternatives": [
+        "Depends",
+        "depends"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-16-testing-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "This mirrors what a pytest `assert add(2, 3) == 5` checks internally — the comparison evaluates to True.",
+  "tags": [
+    "testing",
+    "pytest"
+  ],
+  "kind": "fill",
+  "template": "def add(a, b):\n    return a + b\n\nprint(add(2, 3) == 5)\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "True"
+    }
+  ]
+}

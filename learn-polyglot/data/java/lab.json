@@ -1,0 +1,78 @@
+{
+  "language": "java",
+  "labs": [
+    {
+      "id": "java-lab-streams",
+      "title": "Aggregate with Streams + Collectors",
+      "goal": "Group records and sum a field with the Stream API — the go-to way to do in-memory reporting/analytics in modern Java.",
+      "steps": [
+        "Model an Order as a record (region, amount).",
+        "Group by region and sum amounts with Collectors.groupingBy + summingInt.",
+        "Use a TreeMap supplier for deterministic, sorted output.",
+        "Print each region=total line."
+      ],
+      "language": "java",
+      "starterCode": "import java.util.*;\nimport java.util.stream.*;\n\npublic class Sales {\n  record Order(String region, int amount) {}\n\n  public static void main(String[] args) {\n    var orders = List.of(\n      new Order(\"EU\", 100),\n      new Order(\"US\", 200),\n      new Order(\"EU\", 50),\n      new Order(\"US\", 75)\n    );\n    // TODO: group by region, sum amount, print sorted\n  }\n}\n",
+      "solution": "import java.util.*;\nimport java.util.stream.*;\n\npublic class Sales {\n  record Order(String region, int amount) {}\n\n  public static void main(String[] args) {\n    var orders = List.of(\n      new Order(\"EU\", 100),\n      new Order(\"US\", 200),\n      new Order(\"EU\", 50),\n      new Order(\"US\", 75)\n    );\n\n    Map<String, Integer> totals = orders.stream()\n      .collect(Collectors.groupingBy(\n        Order::region,\n        TreeMap::new,\n        Collectors.summingInt(Order::amount)));\n\n    totals.forEach((region, total) -> System.out.println(region + \"=\" + total));\n  }\n}\n",
+      "expectedOutput": "EU=150\nUS=275",
+      "docs": [
+        { "title": "Collectors", "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html", "note": "groupingBy, summingInt, toMap" },
+        { "title": "Stream", "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html", "note": "Functional data processing" }
+      ]
+    },
+    {
+      "id": "java-lab-completablefuture",
+      "title": "Async compose with CompletableFuture",
+      "goal": "Combine two async computations and transform the result without blocking — the standard non-reactive way to orchestrate concurrent work.",
+      "steps": [
+        "supplyAsync two independent values.",
+        "thenCombine them (sum).",
+        "thenApply a transform (x10).",
+        "get() the final result and print it."
+      ],
+      "language": "java",
+      "starterCode": "import java.util.concurrent.*;\n\npublic class Pipeline {\n  public static void main(String[] args) throws Exception {\n    // TODO: combine two async values, transform, print\n    System.out.println(0);\n  }\n}\n",
+      "solution": "import java.util.concurrent.*;\n\npublic class Pipeline {\n  public static void main(String[] args) throws Exception {\n    CompletableFuture<Integer> a = CompletableFuture.supplyAsync(() -> 2);\n    CompletableFuture<Integer> b = CompletableFuture.supplyAsync(() -> 3);\n\n    int result = a.thenCombine(b, Integer::sum)\n                  .thenApply(sum -> sum * 10)\n                  .get();\n\n    System.out.println(result);\n  }\n}\n",
+      "expectedOutput": "50",
+      "docs": [
+        { "title": "CompletableFuture", "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html", "note": "thenCombine, thenApply, allOf" }
+      ]
+    },
+    {
+      "id": "java-lab-concurrent-cache",
+      "title": "Thread-safe memoization cache",
+      "goal": "Cache expensive results with ConcurrentHashMap.computeIfAbsent — a lock-free pattern for safe, compute-once caching under concurrency.",
+      "steps": [
+        "Hold results in a ConcurrentHashMap.",
+        "Use computeIfAbsent so the value is computed at most once per key.",
+        "Count how many times the compute lambda actually runs.",
+        "Prove repeated lookups reuse the cached value."
+      ],
+      "language": "java",
+      "starterCode": "import java.util.concurrent.*;\n\npublic class Memo {\n  static final ConcurrentHashMap<Integer, Long> cache = new ConcurrentHashMap<>();\n  static long computes = 0;\n\n  static long square(int n) {\n    // TODO: computeIfAbsent, increment computes on miss\n    return 0;\n  }\n\n  public static void main(String[] args) {\n    System.out.println(square(4));\n    System.out.println(square(4));\n    System.out.println(square(5));\n    System.out.println(\"computed=\" + computes);\n  }\n}\n",
+      "solution": "import java.util.concurrent.*;\n\npublic class Memo {\n  static final ConcurrentHashMap<Integer, Long> cache = new ConcurrentHashMap<>();\n  static long computes = 0;\n\n  static long square(int n) {\n    return cache.computeIfAbsent(n, k -> {\n      computes++;\n      return (long) k * k;\n    });\n  }\n\n  public static void main(String[] args) {\n    System.out.println(square(4));\n    System.out.println(square(4));\n    System.out.println(square(5));\n    System.out.println(\"computed=\" + computes);\n  }\n}\n",
+      "expectedOutput": "16\n16\n25\ncomputed=2",
+      "docs": [
+        { "title": "ConcurrentHashMap", "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ConcurrentHashMap.html", "note": "computeIfAbsent for atomic compute-once" }
+      ]
+    },
+    {
+      "id": "java-lab-vt-executor",
+      "title": "Fan-out with virtual threads",
+      "goal": "Fetch three URLs concurrently using a virtual-thread executor and join results without a reactive stack.",
+      "steps": [
+        "Create a virtual-thread-per-task executor.",
+        "Submit three Callable tasks that return a String (simulate with Thread.sleep + return).",
+        "Collect results with Future.get() and print them joined by commas.",
+        "Compare mentally: how would this look with CompletableFuture.allOf?"
+      ],
+      "language": "java",
+      "starterCode": "import java.util.concurrent.*;\n\npublic class FanOut {\n  static String fetch(String id) throws Exception {\n    Thread.sleep(100);\n    return id.toUpperCase();\n  }\n\n  public static void main(String[] args) throws Exception {\n    // TODO: use virtual threads to fetch a, b, c concurrently\n    System.out.println(\"a,b,c\");\n  }\n}\n",
+      "solution": "import java.util.concurrent.*;\n\npublic class FanOut {\n  static String fetch(String id) throws Exception {\n    Thread.sleep(100);\n    return id.toUpperCase();\n  }\n\n  public static void main(String[] args) throws Exception {\n    try (var ex = Executors.newVirtualThreadPerTaskExecutor()) {\n      var a = ex.submit(() -> fetch(\"a\"));\n      var b = ex.submit(() -> fetch(\"b\"));\n      var c = ex.submit(() -> fetch(\"c\"));\n      System.out.println(a.get() + \",\" + b.get() + \",\" + c.get());\n    }\n  }\n}\n",
+      "expectedOutput": "A,B,C",
+      "docs": [
+        { "title": "Virtual Threads (JEP 444)", "url": "https://openjdk.org/jeps/444", "note": "Lightweight threads for high-throughput I/O" }
+      ]
+    }
+  ]
+}

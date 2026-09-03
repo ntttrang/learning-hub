@@ -1,0 +1,33 @@
+{
+  "id": "plg-python-q-15-stdlib-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which stdlib modules are mentioned for filesystem paths, timezone-aware times, and pattern matching, respectively?",
+  "explanation": "`pathlib`, `zoneinfo`, and `re` are all standard library; `requests` is a third-party package.",
+  "tags": [
+    "stdlib"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "pathlib"
+    },
+    {
+      "id": "b",
+      "text": "zoneinfo"
+    },
+    {
+      "id": "c",
+      "text": "re"
+    },
+    {
+      "id": "d",
+      "text": "requests"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "plg-ruby-q-13-exceptions-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: catching a NotFound error and binding it to a local variable is written like this.",
+  "explanation": "The => operator binds the rescued exception instance to the given variable name.",
+  "tags": [
+    "exceptions",
+    "errors"
+  ],
+  "kind": "fill",
+  "template": "rescue NotFound ___ e",
+  "blanks": [
+    {
+      "answer": "=>",
+      "alternatives": [
+        "=>"
+      ]
+    }
+  ]
+}

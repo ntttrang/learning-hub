@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-12-iterators-gen-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "What does a function containing `yield` become when called?",
+  "explanation": "Calling a generator function returns a generator object; it pauses/resumes at each `yield`.",
+  "tags": [
+    "iterators",
+    "generators"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A regular function returning a list"
+    },
+    {
+      "id": "b",
+      "text": "A generator that produces values lazily"
+    },
+    {
+      "id": "c",
+      "text": "A coroutine requiring `await`"
+    },
+    {
+      "id": "d",
+      "text": "A decorator"
+    }
+  ],
+  "correct": "b"
+}

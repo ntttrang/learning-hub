@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-20-packaging",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 24,
+  "title": "Packaging and publishing",
+  "minutes": 11,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## pyproject.toml\n\nThe single source of truth for metadata, dependencies, and build config. `uv`, `hatch`, and `pip` all read it.\n\n## Building and publishing\n\n`python -m build` creates a wheel + sdist; `twine upload` (or `uv publish`) pushes to PyPI. Pin a compatible Python range.\n\n## Reproducibility\n\nLock dependencies (`uv.lock`/`requirements.txt`) for apps; keep libraries' constraints loose. Separate dev and runtime deps."
+    },
+    {
+      "kind": "code",
+      "language": "toml",
+      "code": "[project]\nname = \"corgi-cli\"\nversion = \"0.1.0\"\nrequires-python = \">=3.11\"\ndependencies = [\"httpx>=0.27\"]\n\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\""
+    }
+  ],
+  "docIds": [
+    "packaging-projects",
+    "pyproject-toml"
+  ]
+}

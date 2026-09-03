@@ -1,0 +1,31 @@
+{
+  "id": "plg-java-q-21-generics-collections-internals-mcq-2",
+  "domainId": "plg-java",
+  "prompt": "What happens to a HashMap bucket once it exceeds the treeify threshold (8 entries)?",
+  "explanation": "Past the treeify threshold, a bucket's linked list becomes a red-black tree to bound worst-case lookup cost.",
+  "tags": [
+    "collections",
+    "performance",
+    "internals"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It converts to a red-black tree for O(log n) lookup"
+    },
+    {
+      "id": "b",
+      "text": "It throws an exception"
+    },
+    {
+      "id": "c",
+      "text": "It becomes a second HashMap"
+    },
+    {
+      "id": "d",
+      "text": "Entries are silently discarded"
+    }
+  ],
+  "correct": "a"
+}

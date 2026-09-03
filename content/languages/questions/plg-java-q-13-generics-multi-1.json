@@ -1,0 +1,34 @@
+{
+  "id": "plg-java-q-13-generics-multi-1",
+  "domainId": "plg-java",
+  "prompt": "Which are direct consequences of type erasure?",
+  "explanation": "Type parameters are erased, so reflection sees raw types, not the original generic parameters.",
+  "tags": [
+    "generics",
+    "types"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "You cannot write `new T[]`"
+    },
+    {
+      "id": "b",
+      "text": "`instanceof List<String>` is not allowed"
+    },
+    {
+      "id": "c",
+      "text": "Generic type parameters are available via reflection at runtime"
+    },
+    {
+      "id": "d",
+      "text": "Raw types exist for backward compatibility"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "plg-go-q-05-strings-runes-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: use strings._____ in loops to avoid quadratic-time string concatenation.",
+  "explanation": "strings.Builder accumulates writes efficiently, unlike repeated + concatenation.",
+  "tags": [
+    "go-05-strings-runes",
+    "strings"
+  ],
+  "kind": "fill",
+  "template": "var b strings.___",
+  "blanks": [
+    {
+      "answer": "Builder",
+      "alternatives": [
+        "Builder"
+      ]
+    }
+  ]
+}

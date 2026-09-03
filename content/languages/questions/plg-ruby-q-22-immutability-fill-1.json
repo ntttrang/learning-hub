@@ -1,0 +1,21 @@
+{
+  "id": "plg-ruby-q-22-immutability-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: adding `# frozen_string_literal: true` at the top of a file freezes string _____ by default.",
+  "explanation": "The magic comment freezes every string literal in the file automatically.",
+  "tags": [
+    "performance",
+    "immutability"
+  ],
+  "kind": "fill",
+  "template": "freezes string ___ by default",
+  "blanks": [
+    {
+      "answer": "literals",
+      "alternatives": [
+        "literals",
+        "literal"
+      ]
+    }
+  ]
+}

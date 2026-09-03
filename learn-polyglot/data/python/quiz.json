@@ -1,0 +1,1294 @@
+{
+  "language": "python",
+  "questions": [
+    {
+      "id": "python-q-async-def",
+      "type": "mcq",
+      "prompt": "You call a sync `requests.get` inside a FastAPI path. Best declaration?",
+      "options": [
+        { "id": "a", "text": "async def — always faster" },
+        { "id": "b", "text": "def — let FastAPI offload to a thread pool" },
+        { "id": "c", "text": "async def and call requests.get without await" },
+        { "id": "d", "text": "Neither — FastAPI forbids sync HTTP" }
+      ],
+      "answer": "b",
+      "explanation": "Blocking I/O inside async def stalls the loop. Use def, or switch to httpx.AsyncClient."
+    },
+    {
+      "id": "python-q-stack",
+      "type": "multi",
+      "prompt": "Common pieces of a modern Python API stack:",
+      "options": [
+        { "id": "a", "text": "FastAPI" },
+        { "id": "b", "text": "Pydantic v2" },
+        { "id": "c", "text": "Spring Data JPA" },
+        { "id": "d", "text": "SQLAlchemy 2.0 async" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Spring Data is Java. FastAPI + Pydantic v2 + async SQLAlchemy is the usual combo."
+    },
+    {
+      "id": "python-q-output",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "xs = [1, 2, 3]\nprint(list(map(lambda x: x * x, xs)))",
+      "language": "python",
+      "answer": "[1, 4, 9]",
+      "explanation": "map applies square; list materializes."
+    },
+    {
+      "id": "python-q-fill",
+      "type": "fill",
+      "prompt": "Fill the blank: FastAPI dependency injection uses the _____ callable.",
+      "template": "Depends / _____",
+      "answer": "Depends",
+      "accept": ["Depends", "depends"],
+      "explanation": "from fastapi import Depends."
+    },
+    {
+      "id": "python-q-coding",
+      "type": "coding",
+      "prompt": "Write fib(n) returning the nth Fibonacci number (fib(0)=0, fib(1)=1). Print fib(10).",
+      "starterCode": "def fib(n: int) -> int:\n    # TODO\n    return 0\n\nprint(fib(10))\n",
+      "language": "python",
+      "referenceSolution": "def fib(n: int) -> int:\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n\nprint(fib(10))\n",
+      "expectedOutput": "55",
+      "explanation": "Iterative Fibonacci; fib(10)=55."
+    },
+    {
+      "id": "python-q-01-hello-repl-mcq-1",
+      "type": "mcq",
+      "prompt": "Which command runs a Python script file named `app.py` from the shell?",
+      "options": [
+        { "id": "a", "text": "python app.py" },
+        { "id": "b", "text": "run app.py" },
+        { "id": "c", "text": "python.exe --start app.py" },
+        { "id": "d", "text": "execute app.py" }
+      ],
+      "answer": "a",
+      "explanation": "`python app.py` runs the script top-to-bottom, same interpreter used interactively by the REPL.",
+      "tags": ["basics", "tooling"]
+    },
+    {
+      "id": "python-q-01-hello-repl-mcq-2",
+      "type": "mcq",
+      "prompt": "What is the purpose of `if __name__ == \"__main__\":` at the bottom of a script?",
+      "options": [
+        { "id": "a", "text": "Ensures that block only runs when the file is executed directly, not when imported" },
+        { "id": "b", "text": "Declares the main class of the program" },
+        { "id": "c", "text": "Required by Python syntax for every script" },
+        { "id": "d", "text": "Defines a compiled entry point like Java's main method" }
+      ],
+      "answer": "a",
+      "explanation": "`__name__` is \"__main__\" only when the file is run directly, letting the same file be safely imported elsewhere.",
+      "tags": ["basics", "tooling"]
+    },
+    {
+      "id": "python-q-01-hello-repl-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "def main():\n    print(\"Ahoy, world!\")\n\nif __name__ == \"__main__\":\n    main()",
+      "language": "python",
+      "answer": "Ahoy, world!",
+      "explanation": "The file is executed directly, so `__name__ == \"__main__\"` is True and `main()` runs.",
+      "tags": ["basics", "tooling"]
+    },
+    {
+      "id": "python-q-01-hello-repl-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank about Python's syntax rules.",
+      "template": "Blocks in Python are defined by _____ (4 spaces), not braces.",
+      "answer": "indentation",
+      "accept": ["indentation", "consistent indentation", "whitespace indentation"],
+      "explanation": "Indentation is syntactically significant in Python; consistency is mandatory within a block.",
+      "tags": ["basics", "tooling"]
+    },
+    {
+      "id": "python-q-02-types-numbers-mcq-1",
+      "type": "mcq",
+      "prompt": "What happens when you evaluate `\"1\" + 1` in Python?",
+      "options": [
+        { "id": "a", "text": "Raises TypeError" },
+        { "id": "b", "text": "Returns \"11\"" },
+        { "id": "c", "text": "Returns 2" },
+        { "id": "d", "text": "Returns 1.0" }
+      ],
+      "answer": "a",
+      "explanation": "Python is strongly typed and won't silently coerce str + int; it raises a TypeError.",
+      "tags": ["basics", "types"]
+    },
+    {
+      "id": "python-q-02-types-numbers-mcq-2",
+      "type": "mcq",
+      "prompt": "What does `17 // 5` evaluate to?",
+      "options": [
+        { "id": "a", "text": "3.4" },
+        { "id": "b", "text": "3" },
+        { "id": "c", "text": "2" },
+        { "id": "d", "text": "17" }
+      ],
+      "answer": "b",
+      "explanation": "`//` is floor division: 17 // 5 == 3, with remainder 2 available via `%` or `divmod`.",
+      "tags": ["basics", "types"]
+    },
+    {
+      "id": "python-q-02-types-numbers-multi-1",
+      "type": "multi",
+      "prompt": "Which of these values are falsy in Python?",
+      "options": [
+        { "id": "a", "text": "0" },
+        { "id": "b", "text": "\"\" (empty string)" },
+        { "id": "c", "text": "[1] (a list with one item)" },
+        { "id": "d", "text": "None" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Empty containers, 0, \"\", and None are falsy; a non-empty list like [1] is truthy.",
+      "tags": ["basics", "types"]
+    },
+    {
+      "id": "python-q-02-types-numbers-coding-1",
+      "type": "coding",
+      "prompt": "Use `divmod` to compute the quotient and remainder of 17 divided by 5, then print `\"q=<quotient> r=<remainder>\"`.",
+      "starterCode": "def quotient_remainder(a: int, b: int) -> str:\n    # TODO: use divmod(a, b) and return \"q=<q> r=<r>\"\n    return \"\"\n\nprint(quotient_remainder(17, 5))\n",
+      "language": "python",
+      "referenceSolution": "def quotient_remainder(a: int, b: int) -> str:\n    q, r = divmod(a, b)\n    return f\"q={q} r={r}\"\n\nprint(quotient_remainder(17, 5))\n",
+      "expectedOutput": "q=3 r=2",
+      "explanation": "`divmod(17, 5)` returns `(3, 2)`, unpacked into q and r for the formatted string.",
+      "tags": ["basics", "types"]
+    },
+    {
+      "id": "python-q-03-strings-mcq-1",
+      "type": "mcq",
+      "prompt": "Given `total = 19.5`, what does `f\"{total=}\"` print?",
+      "options": [
+        { "id": "a", "text": "total=19.5" },
+        { "id": "b", "text": "19.5" },
+        { "id": "c", "text": "Raises SyntaxError" },
+        { "id": "d", "text": "{total}" }
+      ],
+      "answer": "a",
+      "explanation": "The `=` specifier in f-strings echoes the expression text plus `=` before the value — great for debugging.",
+      "tags": ["basics", "strings"]
+    },
+    {
+      "id": "python-q-03-strings-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Python strings are true?",
+      "options": [
+        { "id": "a", "text": "Strings are immutable" },
+        { "id": "b", "text": "`s[1:4]` returns a slice of the string" },
+        { "id": "c", "text": "`bytes` and `str` are interchangeable without encoding" },
+        { "id": "d", "text": "`str.join(iterable)` concatenates strings with a separator" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "str is immutable Unicode text; bytes is raw data — you must encode/decode explicitly (UTF-8) at I/O boundaries.",
+      "tags": ["basics", "strings"]
+    },
+    {
+      "id": "python-q-03-strings-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "name, total = \"Ada\", 19.5\nprint(f\"Hi {name}, total ${total:.2f}\")",
+      "language": "python",
+      "answer": "Hi Ada, total $19.50",
+      "explanation": "`{total:.2f}` formats the float with exactly two decimal places.",
+      "tags": ["basics", "strings"]
+    },
+    {
+      "id": "python-q-03-strings-coding-1",
+      "type": "coding",
+      "prompt": "Write `greet(name, total)` that returns `\"Hi {name}, total ${total:.2f}\"` using an f-string. Print the result for name=\"Grace\", total=9.5.",
+      "starterCode": "def greet(name: str, total: float) -> str:\n    # TODO: return the formatted greeting using an f-string\n    return \"\"\n\nprint(greet(\"Grace\", 9.5))\n",
+      "language": "python",
+      "referenceSolution": "def greet(name: str, total: float) -> str:\n    return f\"Hi {name}, total ${total:.2f}\"\n\nprint(greet(\"Grace\", 9.5))\n",
+      "expectedOutput": "Hi Grace, total $9.50",
+      "explanation": "`:.2f` rounds/pads the float to two decimals, so 9.5 becomes 9.50.",
+      "tags": ["basics", "strings"]
+    },
+    {
+      "id": "python-q-04-control-flow-mcq-1",
+      "type": "mcq",
+      "prompt": "What does the expression `0 < x < 10` check?",
+      "options": [
+        { "id": "a", "text": "x is strictly between 0 and 10" },
+        { "id": "b", "text": "x equals 0 or 10" },
+        { "id": "c", "text": "Syntax error — Python doesn't support chained comparisons" },
+        { "id": "d", "text": "x is 0 AND x is 10 (always False)" }
+      ],
+      "answer": "a",
+      "explanation": "Python supports chained comparisons: `0 < x < 10` is equivalent to `0 < x and x < 10`.",
+      "tags": ["basics", "control-flow"]
+    },
+    {
+      "id": "python-q-04-control-flow-mcq-2",
+      "type": "mcq",
+      "prompt": "In Python 3.10+, which construct destructures values and shapes, going beyond a simple switch statement?",
+      "options": [
+        { "id": "a", "text": "switch" },
+        { "id": "b", "text": "match/case" },
+        { "id": "c", "text": "select/case" },
+        { "id": "d", "text": "cond" }
+      ],
+      "answer": "b",
+      "explanation": "Structural pattern matching via `match/case` (PEP 634) can destructure lists, dicts, and objects, not just compare values.",
+      "tags": ["basics", "control-flow"]
+    },
+    {
+      "id": "python-q-04-control-flow-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: this builtin yields (index, value) pairs while looping.",
+      "template": "for i, val in _____(items):",
+      "answer": "enumerate",
+      "accept": ["enumerate"],
+      "explanation": "`enumerate(items)` produces (index, value) tuples, avoiding manual index counters.",
+      "tags": ["basics", "control-flow"]
+    },
+    {
+      "id": "python-q-04-control-flow-coding-1",
+      "type": "coding",
+      "prompt": "Given `letters = [\"a\", \"b\"]` and `numbers = [1, 2]`, use `zip` to print each pair as `\"letter-number\"`, one per line.",
+      "starterCode": "letters = [\"a\", \"b\"]\nnumbers = [1, 2]\n\n# TODO: zip letters and numbers, print \"letter-number\" per line\n",
+      "language": "python",
+      "referenceSolution": "letters = [\"a\", \"b\"]\nnumbers = [1, 2]\n\nfor letter, number in zip(letters, numbers):\n    print(f\"{letter}-{number}\")\n",
+      "expectedOutput": "a-1\nb-2",
+      "explanation": "`zip` pairs elements from both iterables positionally, stopping at the shortest.",
+      "tags": ["basics", "control-flow"]
+    },
+    {
+      "id": "python-q-05-collections-mcq-1",
+      "type": "mcq",
+      "prompt": "Which collection type is ordered and immutable?",
+      "options": [
+        { "id": "a", "text": "list" },
+        { "id": "b", "text": "tuple" },
+        { "id": "c", "text": "set" },
+        { "id": "d", "text": "dict" }
+      ],
+      "answer": "b",
+      "explanation": "A tuple is ordered but immutable — great for fixed records or dict keys.",
+      "tags": ["basics", "collections"]
+    },
+    {
+      "id": "python-q-05-collections-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Python `dict` are true?",
+      "options": [
+        { "id": "a", "text": "Dicts have been insertion-ordered since Python 3.7" },
+        { "id": "b", "text": "`d.get(k, default)` avoids a KeyError when k is missing" },
+        { "id": "c", "text": "Membership test `k in d` is O(n)" },
+        { "id": "d", "text": "Dict keys must be hashable" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Dict/set membership is O(1) average, not O(n); keys must be hashable and insertion order is preserved since 3.7.",
+      "tags": ["basics", "collections"]
+    },
+    {
+      "id": "python-q-05-collections-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank to increment a word counter safely without KeyError.",
+      "template": "counts[w] = counts.get(w, 0) + _____",
+      "answer": "1",
+      "accept": ["1"],
+      "explanation": "`get(w, 0)` defaults missing words to 0 before adding 1.",
+      "tags": ["basics", "collections"]
+    },
+    {
+      "id": "python-q-05-collections-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "counts = {}\nfor w in [\"a\", \"b\", \"a\"]:\n    counts[w] = counts.get(w, 0) + 1\nprint(counts)",
+      "language": "python",
+      "answer": "{'a': 2, 'b': 1}",
+      "explanation": "'a' is seen twice, 'b' once; insertion order (first seen) is preserved in the dict's repr.",
+      "tags": ["basics", "collections"]
+    },
+    {
+      "id": "python-q-06-comprehensions-mcq-1",
+      "type": "mcq",
+      "prompt": "What is the main advantage of the generator expression `(x*x for x in range(10))` over the list comprehension `[x*x for x in range(10)]`?",
+      "options": [
+        { "id": "a", "text": "It runs with better asymptotic time complexity" },
+        { "id": "b", "text": "It's lazy and memory-friendly, not materializing all items at once" },
+        { "id": "c", "text": "It supports item mutation" },
+        { "id": "d", "text": "It's the only way to filter items with `if`" }
+      ],
+      "answer": "b",
+      "explanation": "Generator expressions yield one item at a time instead of building the whole sequence in memory.",
+      "tags": ["basics", "comprehensions"]
+    },
+    {
+      "id": "python-q-06-comprehensions-mcq-2",
+      "type": "mcq",
+      "prompt": "Which syntax change turns a list comprehension into a generator expression?",
+      "options": [
+        { "id": "a", "text": "Replace [] with {}" },
+        { "id": "b", "text": "Replace [] with ()" },
+        { "id": "c", "text": "Add the `yield` keyword" },
+        { "id": "d", "text": "Add the `lazy` keyword" }
+      ],
+      "answer": "b",
+      "explanation": "Swapping square brackets for parentheses produces a lazy generator expression instead of a list.",
+      "tags": ["basics", "comprehensions"]
+    },
+    {
+      "id": "python-q-06-comprehensions-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "squares = [x * x for x in range(5)]\nprint(squares)",
+      "language": "python",
+      "answer": "[0, 1, 4, 9, 16]",
+      "explanation": "range(5) yields 0..4; squaring each gives [0, 1, 4, 9, 16].",
+      "tags": ["basics", "comprehensions"]
+    },
+    {
+      "id": "python-q-06-comprehensions-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank in a dict comprehension that maps each user's id to the user object.",
+      "template": "by_id = {_____: u for u in users}",
+      "answer": "u.id",
+      "accept": ["u.id"],
+      "explanation": "The expression before `for` becomes the dict key; `u.id` is evaluated for each user `u`.",
+      "tags": ["basics", "comprehensions"]
+    },
+    {
+      "id": "python-q-07-functions-mcq-1",
+      "type": "mcq",
+      "prompt": "What's wrong with `def f(x=[]):`?",
+      "options": [
+        { "id": "a", "text": "Nothing, it's idiomatic Python" },
+        { "id": "b", "text": "The default list is created once and shared across all calls" },
+        { "id": "c", "text": "Python forbids list literals as defaults" },
+        { "id": "d", "text": "It raises a TypeError at call time" }
+      ],
+      "answer": "b",
+      "explanation": "Mutable default arguments are evaluated once at definition time and shared between calls — a classic gotcha.",
+      "tags": ["basics", "functions"]
+    },
+    {
+      "id": "python-q-07-functions-mcq-2",
+      "type": "mcq",
+      "prompt": "Where must keyword-only arguments appear in a function signature?",
+      "options": [
+        { "id": "a", "text": "Before *args" },
+        { "id": "b", "text": "After a bare `*` (or after `*args`)" },
+        { "id": "c", "text": "Python has no concept of keyword-only arguments" },
+        { "id": "d", "text": "After **kwargs" }
+      ],
+      "answer": "b",
+      "explanation": "Parameters listed after a bare `*` (or `*args`) can only be passed by keyword.",
+      "tags": ["basics", "functions"]
+    },
+    {
+      "id": "python-q-07-functions-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about function docstrings are true?",
+      "options": [
+        { "id": "a", "text": "It's the first string literal in the function body" },
+        { "id": "b", "text": "It's surfaced by `help()`" },
+        { "id": "c", "text": "The interpreter requires every function to have one" },
+        { "id": "d", "text": "Many tools use it for documentation generation" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Docstrings are optional but conventionally the first statement, exposed via `help()` and documentation tools.",
+      "tags": ["basics", "functions"]
+    },
+    {
+      "id": "python-q-07-functions-coding-1",
+      "type": "coding",
+      "prompt": "Write `append_to(item, target=None)` that avoids the mutable-default pitfall: create a new list per call when `target` is None, append `item`, and return it. Call it twice, once with each argument, and print both results.",
+      "starterCode": "def append_to(item, target=None):\n    # TODO: avoid the mutable default gotcha\n    target.append(item)\n    return target\n\nprint(append_to(1))\nprint(append_to(2))\n",
+      "language": "python",
+      "referenceSolution": "def append_to(item, target=None):\n    if target is None:\n        target = []\n    target.append(item)\n    return target\n\nprint(append_to(1))\nprint(append_to(2))\n",
+      "expectedOutput": "[1]\n[2]",
+      "explanation": "Using `None` and creating the list inside the function ensures each call starts with a fresh list.",
+      "tags": ["basics", "functions"]
+    },
+    {
+      "id": "python-q-08-modules-venv-mcq-1",
+      "type": "mcq",
+      "prompt": "Which command creates a Python virtual environment using only the standard library?",
+      "options": [
+        { "id": "a", "text": "python -m venv .venv" },
+        { "id": "b", "text": "pip install venv" },
+        { "id": "c", "text": "python venv create" },
+        { "id": "d", "text": "python -m pip venv" }
+      ],
+      "answer": "a",
+      "explanation": "`python -m venv .venv` creates an isolated environment; activate it, then install dependencies.",
+      "tags": ["modules", "tooling"]
+    },
+    {
+      "id": "python-q-08-modules-venv-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Python modules, packages, and environments are true?",
+      "options": [
+        { "id": "a", "text": "A single .py file is a module" },
+        { "id": "b", "text": "A directory containing modules is a package" },
+        { "id": "c", "text": "Virtual environments prevent dependency collisions between projects" },
+        { "id": "d", "text": "`uv` can only create environments, not install packages" }
+      ],
+      "answers": ["a", "b", "c"],
+      "explanation": "`uv` both creates envs and installs packages at Rust speed, replacing much of pip/venv/pyenv friction.",
+      "tags": ["modules", "tooling"]
+    },
+    {
+      "id": "python-q-08-modules-venv-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "import math\nprint(math.floor(3.7))",
+      "language": "python",
+      "answer": "3",
+      "explanation": "`import math` brings the stdlib module into scope; `math.floor(3.7)` rounds down to 3.",
+      "tags": ["modules", "tooling"]
+    },
+    {
+      "id": "python-q-08-modules-venv-coding-1",
+      "type": "coding",
+      "prompt": "Import the `os` module and print the basename of the path `\"/usr/bin/python3\"`.",
+      "starterCode": "import os\n\n# TODO: print the basename of \"/usr/bin/python3\"\n",
+      "language": "python",
+      "referenceSolution": "import os\n\nprint(os.path.basename(\"/usr/bin/python3\"))\n",
+      "expectedOutput": "python3",
+      "explanation": "`os.path.basename` returns the final path component, ignoring the directory prefix.",
+      "tags": ["modules", "tooling"]
+    },
+    {
+      "id": "python-q-09-exceptions-mcq-1",
+      "type": "mcq",
+      "prompt": "What does the Python idiom \"EAFP\" stand for?",
+      "options": [
+        { "id": "a", "text": "Easier to Ask Forgiveness than Permission" },
+        { "id": "b", "text": "Explicit Args, Flexible Params" },
+        { "id": "c", "text": "Exceptions Are For Programmers" },
+        { "id": "d", "text": "Early Abort, Fast Path" }
+      ],
+      "answer": "a",
+      "explanation": "EAFP means try the operation and handle failures with except, rather than pre-checking conditions.",
+      "tags": ["errors", "exceptions"]
+    },
+    {
+      "id": "python-q-09-exceptions-mcq-2",
+      "type": "mcq",
+      "prompt": "Which clause of a try statement runs only if no exception was raised in the try block?",
+      "options": [
+        { "id": "a", "text": "finally" },
+        { "id": "b", "text": "else" },
+        { "id": "c", "text": "except" },
+        { "id": "d", "text": "raise" }
+      ],
+      "answer": "b",
+      "explanation": "`else` runs after a successful try block (no exception); `finally` always runs, for cleanup.",
+      "tags": ["errors", "exceptions"]
+    },
+    {
+      "id": "python-q-09-exceptions-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: this statement guarantees cleanup (like closing a file) even if an exception occurs.",
+      "template": "_____ open(path) as f: ...",
+      "answer": "with",
+      "accept": ["with"],
+      "explanation": "Context managers used via `with` guarantee `__exit__`/cleanup runs even on exceptions.",
+      "tags": ["errors", "exceptions"]
+    },
+    {
+      "id": "python-q-09-exceptions-coding-1",
+      "type": "coding",
+      "prompt": "Try to open a file that does not exist (`\"missing.txt\"`) and catch `FileNotFoundError`, printing `\"not found\"` instead of letting it propagate.",
+      "starterCode": "# TODO: try to open \"missing.txt\" and print \"not found\" if it doesn't exist\n",
+      "language": "python",
+      "referenceSolution": "try:\n    with open(\"missing.txt\") as f:\n        f.read()\nexcept FileNotFoundError:\n    print(\"not found\")\n",
+      "expectedOutput": "not found",
+      "explanation": "Catching the specific `FileNotFoundError` follows EAFP and avoids masking other error types.",
+      "tags": ["errors", "exceptions"]
+    },
+    {
+      "id": "python-q-10-classes-mcq-1",
+      "type": "mcq",
+      "prompt": "Which dunder method controls what `repr(obj)` (and the interactive echo) displays?",
+      "options": [
+        { "id": "a", "text": "__str__" },
+        { "id": "b", "text": "__repr__" },
+        { "id": "c", "text": "__display__" },
+        { "id": "d", "text": "__text__" }
+      ],
+      "answer": "b",
+      "explanation": "`repr()` calls `__repr__`; implementing it makes objects debuggable in logs and the REPL.",
+      "tags": ["oop", "classes"]
+    },
+    {
+      "id": "python-q-10-classes-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about the `@property` decorator are true?",
+      "options": [
+        { "id": "a", "text": "Lets you expose computed attributes accessed like plain attributes" },
+        { "id": "b", "text": "Requires callers to invoke it with parentheses like a method" },
+        { "id": "c", "text": "Avoids Java-style getter/setter boilerplate" },
+        { "id": "d", "text": "Can be paired with a matching `@x.setter` for write access" }
+      ],
+      "answers": ["a", "c", "d"],
+      "explanation": "Properties are accessed as `obj.attr` (no parentheses); an optional `@x.setter` allows assignment.",
+      "tags": ["oop", "classes"]
+    },
+    {
+      "id": "python-q-10-classes-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: the conventional first parameter of an instance method, referring to the instance itself.",
+      "template": "def area(_____): ...",
+      "answer": "self",
+      "accept": ["self"],
+      "explanation": "`self` is the instance, passed automatically when calling `instance.method()`.",
+      "tags": ["oop", "classes"]
+    },
+    {
+      "id": "python-q-10-classes-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "class Circle:\n    def __init__(self, r): self.r = r\n    @property\n    def area(self): return 3.14159 * self.r ** 2\n    def __repr__(self): return f\"Circle(r={self.r})\"\n\nc = Circle(2)\nprint(c.area)\nprint(c)",
+      "language": "python",
+      "answer": "12.56636\nCircle(r=2)",
+      "explanation": "`c.area` computes 3.14159 * 2**2 = 12.56636; `print(c)` uses `__repr__` since `__str__` isn't defined.",
+      "tags": ["oop", "classes"]
+    },
+    {
+      "id": "python-q-11-dataclasses-mcq-1",
+      "type": "mcq",
+      "prompt": "What does `@dataclass` automatically generate for a class with annotated fields?",
+      "options": [
+        { "id": "a", "text": "__init__, __repr__, and __eq__" },
+        { "id": "b", "text": "Only __init__" },
+        { "id": "c", "text": "A full ORM mapping to a database table" },
+        { "id": "d", "text": "Thread-safety guarantees" }
+      ],
+      "answer": "a",
+      "explanation": "`@dataclass` reduces boilerplate by generating `__init__`, `__repr__`, and `__eq__` from the annotated fields.",
+      "tags": ["oop", "dataclasses"]
+    },
+    {
+      "id": "python-q-11-dataclasses-mcq-2",
+      "type": "mcq",
+      "prompt": "Why use `field(default_factory=list)` instead of `roles: list[str] = []` in a dataclass?",
+      "options": [
+        { "id": "a", "text": "It's purely a stylistic preference" },
+        { "id": "b", "text": "It avoids sharing one mutable list instance across all instances" },
+        { "id": "c", "text": "`= []` is invalid syntax in a dataclass" },
+        { "id": "d", "text": "It makes the field immutable" }
+      ],
+      "answer": "b",
+      "explanation": "Mutable defaults like `[]` would be shared across instances; `default_factory` creates a fresh list per instance.",
+      "tags": ["oop", "dataclasses"]
+    },
+    {
+      "id": "python-q-11-dataclasses-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "from dataclasses import dataclass, field\n\n@dataclass\nclass User:\n    name: str\n    roles: list[str] = field(default_factory=list)\n\nu = User(\"Ada\")\nprint(u)",
+      "language": "python",
+      "answer": "User(name='Ada', roles=[])",
+      "explanation": "The generated `__repr__` shows field names and values; `roles` defaults to an empty list.",
+      "tags": ["oop", "dataclasses"]
+    },
+    {
+      "id": "python-q-11-dataclasses-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: this dataclass parameter makes instances immutable, raising on attribute assignment.",
+      "template": "@dataclass(_____=True)",
+      "answer": "frozen",
+      "accept": ["frozen"],
+      "explanation": "`frozen=True` disables attribute mutation after construction, similar to a namedtuple.",
+      "tags": ["oop", "dataclasses"]
+    },
+    {
+      "id": "python-q-12-iterators-gen-mcq-1",
+      "type": "mcq",
+      "prompt": "Which two dunder methods define the iterator protocol?",
+      "options": [
+        { "id": "a", "text": "__get__ and __set__" },
+        { "id": "b", "text": "__iter__ and __next__" },
+        { "id": "c", "text": "__enter__ and __exit__" },
+        { "id": "d", "text": "__call__ and __init__" }
+      ],
+      "answer": "b",
+      "explanation": "`__iter__` returns an iterator; `__next__` produces values, raising `StopIteration` when exhausted.",
+      "tags": ["iterators", "generators"]
+    },
+    {
+      "id": "python-q-12-iterators-gen-mcq-2",
+      "type": "mcq",
+      "prompt": "What does a function containing `yield` become when called?",
+      "options": [
+        { "id": "a", "text": "A regular function returning a list" },
+        { "id": "b", "text": "A generator that produces values lazily" },
+        { "id": "c", "text": "A coroutine requiring `await`" },
+        { "id": "d", "text": "A decorator" }
+      ],
+      "answer": "b",
+      "explanation": "Calling a generator function returns a generator object; it pauses/resumes at each `yield`.",
+      "tags": ["iterators", "generators"]
+    },
+    {
+      "id": "python-q-12-iterators-gen-multi-1",
+      "type": "multi",
+      "prompt": "Which are `itertools` functions used to compose iterators efficiently?",
+      "options": [
+        { "id": "a", "text": "chain" },
+        { "id": "b", "text": "islice" },
+        { "id": "c", "text": "groupby" },
+        { "id": "d", "text": "sorted" }
+      ],
+      "answers": ["a", "b", "c"],
+      "explanation": "`chain`, `islice`, and `groupby` live in `itertools`; `sorted` is a builtin, not part of itertools.",
+      "tags": ["iterators", "generators"]
+    },
+    {
+      "id": "python-q-12-iterators-gen-coding-1",
+      "type": "coding",
+      "prompt": "Write a generator function `countdown(n)` that yields n, n-1, ..., down to 1. Print all values space-separated using `print(*countdown(3))`.",
+      "starterCode": "def countdown(n):\n    # TODO: yield n, n-1, ..., 1\n    pass\n\nprint(*countdown(3))\n",
+      "language": "python",
+      "referenceSolution": "def countdown(n):\n    while n > 0:\n        yield n\n        n -= 1\n\nprint(*countdown(3))\n",
+      "expectedOutput": "3 2 1",
+      "explanation": "The generator yields 3, 2, 1 in order; `print(*...)` unpacks them as separate space-joined args.",
+      "tags": ["iterators", "generators"]
+    },
+    {
+      "id": "python-q-13-decorators-mcq-1",
+      "type": "mcq",
+      "prompt": "What does `functools.wraps` do when writing a decorator?",
+      "options": [
+        { "id": "a", "text": "Speeds up the wrapped function" },
+        { "id": "b", "text": "Preserves the original function's metadata (name, docstring) on the wrapper" },
+        { "id": "c", "text": "Automatically caches results" },
+        { "id": "d", "text": "Converts the function into a generator" }
+      ],
+      "answer": "b",
+      "explanation": "Without `@functools.wraps(fn)`, the wrapper's `__name__`/`__doc__` would shadow the original function's.",
+      "tags": ["decorators", "functional"]
+    },
+    {
+      "id": "python-q-13-decorators-multi-1",
+      "type": "multi",
+      "prompt": "Which of these are decorators discussed as part of the standard library / language?",
+      "options": [
+        { "id": "a", "text": "@functools.lru_cache" },
+        { "id": "b", "text": "@property" },
+        { "id": "c", "text": "@staticmethod" },
+        { "id": "d", "text": "@synchronized" }
+      ],
+      "answers": ["a", "b", "c"],
+      "explanation": "`lru_cache`, `property`, `staticmethod`, and `dataclass` are all decorators; `@synchronized` isn't a Python builtin.",
+      "tags": ["decorators", "functional"]
+    },
+    {
+      "id": "python-q-13-decorators-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "import functools\n\ndef shout(fn):\n    @functools.wraps(fn)\n    def wrap(*a, **k):\n        return fn(*a, **k).upper()\n    return wrap\n\n@shout\ndef greet(name):\n    return f\"hi {name}\"\n\nprint(greet(\"ada\"))",
+      "language": "python",
+      "answer": "HI ADA",
+      "explanation": "The `shout` decorator uppercases whatever the wrapped function returns.",
+      "tags": ["decorators", "functional"]
+    },
+    {
+      "id": "python-q-13-decorators-coding-1",
+      "type": "coding",
+      "prompt": "Write a `memoize` decorator using a plain dict cache. Apply it to `square(x)` (which prints \"computing\" then returns `x*x`). Call `square(4)` twice and print both results — \"computing\" should print only once.",
+      "starterCode": "def memoize(fn):\n    cache = {}\n    def wrap(x):\n        # TODO: return cached result if present, else compute and store it\n        return fn(x)\n    return wrap\n\n@memoize\ndef square(x):\n    print(\"computing\")\n    return x * x\n\nprint(square(4))\nprint(square(4))\n",
+      "language": "python",
+      "referenceSolution": "def memoize(fn):\n    cache = {}\n    def wrap(x):\n        if x not in cache:\n            cache[x] = fn(x)\n        return cache[x]\n    return wrap\n\n@memoize\ndef square(x):\n    print(\"computing\")\n    return x * x\n\nprint(square(4))\nprint(square(4))\n",
+      "expectedOutput": "computing\n16\n16",
+      "explanation": "The cache dict stores results keyed by argument, so the second call skips recomputation and the print.",
+      "tags": ["decorators", "functional"]
+    },
+    {
+      "id": "python-q-14-typing-mcq-1",
+      "type": "mcq",
+      "prompt": "Are Python type hints enforced by the interpreter at runtime?",
+      "options": [
+        { "id": "a", "text": "Yes, always" },
+        { "id": "b", "text": "No — they're checked by external tools like mypy/pyright, not enforced at runtime" },
+        { "id": "c", "text": "Only for function arguments, never return types" },
+        { "id": "d", "text": "Only starting in Python 3.13+" }
+      ],
+      "answer": "b",
+      "explanation": "Type hints are optional documentation for humans and static checkers; Python itself doesn't enforce them.",
+      "tags": ["typing", "tooling"]
+    },
+    {
+      "id": "python-q-14-typing-mcq-2",
+      "type": "mcq",
+      "prompt": "What does `typing.Protocol` enable?",
+      "options": [
+        { "id": "a", "text": "Runtime type coercion" },
+        { "id": "b", "text": "Structural (duck) typing that a static checker can verify" },
+        { "id": "c", "text": "Automatic JSON serialization" },
+        { "id": "d", "text": "Multiple inheritance restrictions" }
+      ],
+      "answer": "b",
+      "explanation": "A `Protocol` describes required methods/attributes; anything matching that shape satisfies it, without explicit inheritance.",
+      "tags": ["typing", "tooling"]
+    },
+    {
+      "id": "python-q-14-typing-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: the PEP 604 syntax for \"int or None\" as a type hint.",
+      "template": "def find(id: int) -> int _____ None: ...",
+      "answer": "|",
+      "accept": ["|"],
+      "explanation": "`X | None` is the modern union syntax, replacing `Optional[X]` / `Union[X, None]`.",
+      "tags": ["typing", "tooling"]
+    },
+    {
+      "id": "python-q-14-typing-coding-1",
+      "type": "coding",
+      "prompt": "Write `first(xs: list[int]) -> int` returning the first element of `xs`. Call it with `[5, 6, 7]` and print the result.",
+      "starterCode": "def first(xs: list[int]) -> int:\n    # TODO: return the first element\n    return 0\n\nprint(first([5, 6, 7]))\n",
+      "language": "python",
+      "referenceSolution": "def first(xs: list[int]) -> int:\n    return xs[0]\n\nprint(first([5, 6, 7]))\n",
+      "expectedOutput": "5",
+      "explanation": "Type hints like `list[int]` document intent but don't affect the runtime indexing behavior.",
+      "tags": ["typing", "tooling"]
+    },
+    {
+      "id": "python-q-15-stdlib-mcq-1",
+      "type": "mcq",
+      "prompt": "Which `collections` class counts hashable items and offers `most_common()`?",
+      "options": [
+        { "id": "a", "text": "defaultdict" },
+        { "id": "b", "text": "Counter" },
+        { "id": "c", "text": "deque" },
+        { "id": "d", "text": "OrderedDict" }
+      ],
+      "answer": "b",
+      "explanation": "`Counter` is a dict subclass specialized for counting hashable items, with `most_common(n)` for top results.",
+      "tags": ["stdlib"]
+    },
+    {
+      "id": "python-q-15-stdlib-multi-1",
+      "type": "multi",
+      "prompt": "Which stdlib modules are mentioned for filesystem paths, timezone-aware times, and pattern matching, respectively?",
+      "options": [
+        { "id": "a", "text": "pathlib" },
+        { "id": "b", "text": "zoneinfo" },
+        { "id": "c", "text": "re" },
+        { "id": "d", "text": "requests" }
+      ],
+      "answers": ["a", "b", "c"],
+      "explanation": "`pathlib`, `zoneinfo`, and `re` are all standard library; `requests` is a third-party package.",
+      "tags": ["stdlib"]
+    },
+    {
+      "id": "python-q-15-stdlib-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank to get the 3 most frequent words from a Counter.",
+      "template": "Counter(text.split())._____(3)",
+      "answer": "most_common",
+      "accept": ["most_common"],
+      "explanation": "`most_common(n)` returns the n most frequent (item, count) pairs, sorted by count descending.",
+      "tags": ["stdlib"]
+    },
+    {
+      "id": "python-q-15-stdlib-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "from collections import Counter\ntop = Counter([\"a\", \"b\", \"a\", \"c\", \"a\", \"b\"]).most_common(2)\nprint(top)",
+      "language": "python",
+      "answer": "[('a', 3), ('b', 2)]",
+      "explanation": "'a' appears 3 times, 'b' 2 times, 'c' once; `most_common(2)` returns the top two by count.",
+      "tags": ["stdlib"]
+    },
+    {
+      "id": "python-q-16-testing-mcq-1",
+      "type": "mcq",
+      "prompt": "How does pytest discover tests by default?",
+      "options": [
+        { "id": "a", "text": "Classes whose name ends in 'Test'" },
+        { "id": "b", "text": "Files and functions named test_*.py / test_*" },
+        { "id": "c", "text": "Only via a manifest file listing every test" },
+        { "id": "d", "text": "Functions decorated with @test" }
+      ],
+      "answer": "b",
+      "explanation": "pytest's default discovery collects `test_*.py` files and `test_*` functions (and `Test*` classes), no registration needed.",
+      "tags": ["testing", "pytest"]
+    },
+    {
+      "id": "python-q-16-testing-mcq-2",
+      "type": "mcq",
+      "prompt": "Which decorator runs the same test function against multiple sets of inputs?",
+      "options": [
+        { "id": "a", "text": "@pytest.fixture" },
+        { "id": "b", "text": "@pytest.mark.parametrize" },
+        { "id": "c", "text": "@pytest.mark.repeat" },
+        { "id": "d", "text": "@pytest.mark.skip" }
+      ],
+      "answer": "b",
+      "explanation": "`@pytest.mark.parametrize(\"a,b,expected\", [...])` is Python's table-driven testing, running once per input row.",
+      "tags": ["testing", "pytest"]
+    },
+    {
+      "id": "python-q-16-testing-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "def add(a, b):\n    return a + b\n\nprint(add(2, 3) == 5)",
+      "language": "python",
+      "answer": "True",
+      "explanation": "This mirrors what a pytest `assert add(2, 3) == 5` checks internally — the comparison evaluates to True.",
+      "tags": ["testing", "pytest"]
+    },
+    {
+      "id": "python-q-16-testing-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: a pytest fixture needing teardown logic uses this instead of `return` to hand control back to the test.",
+      "template": "@pytest.fixture\ndef db():\n    conn = connect()\n    _____ conn\n    conn.close()",
+      "answer": "yield",
+      "accept": ["yield"],
+      "explanation": "Code after `yield` in a fixture runs as teardown once the test using it completes.",
+      "tags": ["testing", "pytest"]
+    },
+    {
+      "id": "python-q-17-files-json-mcq-1",
+      "type": "mcq",
+      "prompt": "Why should you always pass `encoding=\"utf-8\"` explicitly when reading/writing text files?",
+      "options": [
+        { "id": "a", "text": "It's faster than the default" },
+        { "id": "b", "text": "The platform default encoding varies across OSes, causing inconsistent behavior" },
+        { "id": "c", "text": "Python requires it syntactically" },
+        { "id": "d", "text": "It disables output buffering" }
+      ],
+      "answer": "b",
+      "explanation": "Relying on the platform default encoding can silently break text handling when code runs on a different OS.",
+      "tags": ["io", "json"]
+    },
+    {
+      "id": "python-q-17-files-json-mcq-2",
+      "type": "mcq",
+      "prompt": "Which `json.dumps` parameter produces human-readable, indented output?",
+      "options": [
+        { "id": "a", "text": "sort_keys" },
+        { "id": "b", "text": "indent" },
+        { "id": "c", "text": "separators" },
+        { "id": "d", "text": "default" }
+      ],
+      "answer": "b",
+      "explanation": "`indent=2` (or any int) pretty-prints nested JSON with that many spaces per level.",
+      "tags": ["io", "json"]
+    },
+    {
+      "id": "python-q-17-files-json-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about JSON handling in Python are true?",
+      "options": [
+        { "id": "a", "text": "json.loads parses a JSON string into Python objects" },
+        { "id": "b", "text": "json.dumps serializes Python objects to a JSON string" },
+        { "id": "c", "text": "json can natively serialize arbitrary custom classes without help" },
+        { "id": "d", "text": "`default=` lets you provide a fallback serializer for custom types" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Custom objects aren't JSON-serializable by default; `default=` supplies a function to convert them.",
+      "tags": ["io", "json"]
+    },
+    {
+      "id": "python-q-17-files-json-coding-1",
+      "type": "coding",
+      "prompt": "Given `data = {\"name\": \"Ada\", \"age\": 30}`, use `json.dumps` with `indent=2` and print the result.",
+      "starterCode": "import json\n\ndata = {\"name\": \"Ada\", \"age\": 30}\n# TODO: print json.dumps(data, indent=2)\n",
+      "language": "python",
+      "referenceSolution": "import json\n\ndata = {\"name\": \"Ada\", \"age\": 30}\nprint(json.dumps(data, indent=2))\n",
+      "expectedOutput": "{\n  \"name\": \"Ada\",\n  \"age\": 30\n}",
+      "explanation": "`indent=2` pretty-prints the dict with 2-space nesting, preserving key insertion order.",
+      "tags": ["io", "json"]
+    },
+    {
+      "id": "python-q-types-tooling-mcq-1",
+      "type": "mcq",
+      "prompt": "What is notable about Pydantic v2 compared to v1?",
+      "options": [
+        { "id": "a", "text": "It's pure Python and slower" },
+        { "id": "b", "text": "It has a Rust core, making it significantly faster" },
+        { "id": "c", "text": "It removed data validation entirely" },
+        { "id": "d", "text": "It only works inside FastAPI" }
+      ],
+      "answer": "b",
+      "explanation": "Pydantic v2's validation core is written in Rust (pydantic-core), a large speed improvement over v1.",
+      "tags": ["typing", "tooling"]
+    },
+    {
+      "id": "python-q-types-tooling-multi-1",
+      "type": "multi",
+      "prompt": "Which are modern Python tools mentioned for typing/tooling?",
+      "options": [
+        { "id": "a", "text": "uv (env + package management)" },
+        { "id": "b", "text": "Ruff (lint + format)" },
+        { "id": "c", "text": "Maven" },
+        { "id": "d", "text": "Gradle" }
+      ],
+      "answers": ["a", "b"],
+      "explanation": "`uv` and `Ruff` are Rust-speed Python tooling; Maven and Gradle are JVM build tools, unrelated here.",
+      "tags": ["typing", "tooling"]
+    },
+    {
+      "id": "python-q-types-tooling-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "def first(xs: list[int]) -> int:\n    return xs[0]\n\nprint(first([10, 20, 30]))",
+      "language": "python",
+      "answer": "10",
+      "explanation": "Type hints (`list[int]`, `-> int`) are documentation only; the function simply returns the first item.",
+      "tags": ["typing", "tooling"]
+    },
+    {
+      "id": "python-q-types-tooling-coding-1",
+      "type": "coding",
+      "prompt": "Using `typing.Protocol`, define `Reader` requiring a `read() -> str` method, implement it with `FileLike`, and write `load(r: Reader) -> str` that calls `r.read()`. Print `load(FileLike())`.",
+      "starterCode": "from typing import Protocol\n\nclass Reader(Protocol):\n    def read(self) -> str: ...\n\nclass FileLike:\n    def read(self) -> str:\n        return \"data\"\n\ndef load(r: Reader) -> str:\n    # TODO: call r.read() and return it\n    return \"\"\n\nprint(load(FileLike()))\n",
+      "language": "python",
+      "referenceSolution": "from typing import Protocol\n\nclass Reader(Protocol):\n    def read(self) -> str: ...\n\nclass FileLike:\n    def read(self) -> str:\n        return \"data\"\n\ndef load(r: Reader) -> str:\n    return r.read()\n\nprint(load(FileLike()))\n",
+      "expectedOutput": "data",
+      "explanation": "`FileLike` satisfies `Reader` structurally (duck typing) just by having a matching `read()` method.",
+      "tags": ["typing", "tooling"]
+    },
+    {
+      "id": "python-q-22-logging-mcq-1",
+      "type": "mcq",
+      "prompt": "What is the correct ordering of logging levels from least to most severe?",
+      "options": [
+        { "id": "a", "text": "INFO < DEBUG < WARNING < ERROR < CRITICAL" },
+        { "id": "b", "text": "DEBUG < INFO < WARNING < ERROR < CRITICAL" },
+        { "id": "c", "text": "DEBUG < WARNING < INFO < ERROR < CRITICAL" },
+        { "id": "d", "text": "WARNING < DEBUG < INFO < CRITICAL < ERROR" }
+      ],
+      "answer": "b",
+      "explanation": "The standard `logging` severity order is DEBUG < INFO < WARNING < ERROR < CRITICAL.",
+      "tags": ["logging", "stdlib"]
+    },
+    {
+      "id": "python-q-22-logging-mcq-2",
+      "type": "mcq",
+      "prompt": "Which logger method automatically captures the current exception traceback when called inside an `except` block?",
+      "options": [
+        { "id": "a", "text": "logger.error" },
+        { "id": "b", "text": "logger.warning" },
+        { "id": "c", "text": "logger.exception" },
+        { "id": "d", "text": "logger.critical" }
+      ],
+      "answer": "c",
+      "explanation": "`logger.exception(msg)` logs at ERROR level and appends the traceback of the currently handled exception.",
+      "tags": ["logging", "stdlib"]
+    },
+    {
+      "id": "python-q-22-logging-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank to get a module-level logger.",
+      "template": "logger = logging._____(__name__)",
+      "answer": "getLogger",
+      "accept": ["getLogger", "getlogger"],
+      "explanation": "`logging.getLogger(__name__)` returns (or creates) a logger named after the current module.",
+      "tags": ["logging", "stdlib"]
+    },
+    {
+      "id": "python-q-22-logging-coding-1",
+      "type": "coding",
+      "prompt": "Configure `logging.basicConfig(level=logging.INFO, stream=sys.stdout)`, get a logger named \"app\", and log an info message `\"started\"`.",
+      "starterCode": "import logging\nimport sys\n\nlogging.basicConfig(level=logging.INFO, stream=sys.stdout)\nlogger = logging.getLogger(\"app\")\n\n# TODO: log an info message \"started\"\n",
+      "language": "python",
+      "referenceSolution": "import logging\nimport sys\n\nlogging.basicConfig(level=logging.INFO, stream=sys.stdout)\nlogger = logging.getLogger(\"app\")\n\nlogger.info(\"started\")\n",
+      "expectedOutput": "INFO:app:started",
+      "explanation": "`basicConfig`'s default format is `%(levelname)s:%(name)s:%(message)s`; routing to stdout (instead of the default stderr) makes output easy to capture.",
+      "tags": ["logging", "stdlib"]
+    },
+    {
+      "id": "python-q-18-async-intro-mcq-1",
+      "type": "mcq",
+      "prompt": "What starts the asyncio event loop and runs a coroutine to completion?",
+      "options": [
+        { "id": "a", "text": "asyncio.start(main())" },
+        { "id": "b", "text": "asyncio.run(main())" },
+        { "id": "c", "text": "main().run()" },
+        { "id": "d", "text": "await main() (with no event loop running)" }
+      ],
+      "answer": "b",
+      "explanation": "`asyncio.run(main())` creates an event loop, runs `main()` to completion, and cleans up.",
+      "tags": ["asyncio", "async"]
+    },
+    {
+      "id": "python-q-18-async-intro-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about async/await in Python are true?",
+      "options": [
+        { "id": "a", "text": "`await` can only be used inside an `async def` function" },
+        { "id": "b", "text": "A single thread can juggle thousands of awaiting coroutines" },
+        { "id": "c", "text": "Calling `time.sleep()` inside a coroutine is non-blocking" },
+        { "id": "d", "text": "`async def` defines a coroutine function" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "`time.sleep()` blocks the whole event loop; use `await asyncio.sleep()` instead for non-blocking waits.",
+      "tags": ["asyncio", "async"]
+    },
+    {
+      "id": "python-q-18-async-intro-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: calling a blocking function like `time.sleep` inside a coroutine _____ the entire event loop.",
+      "template": "A blocking call inside async def _____ the event loop.",
+      "answer": "stalls",
+      "accept": ["stalls", "blocks", "freezes"],
+      "explanation": "Cooperative concurrency relies on coroutines yielding control at `await`; a blocking call prevents that.",
+      "tags": ["asyncio", "async"]
+    },
+    {
+      "id": "python-q-18-async-intro-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "import asyncio\n\nasync def greet():\n    return \"hi\"\n\nasync def main():\n    result = await greet()\n    print(result)\n\nasyncio.run(main())",
+      "language": "python",
+      "answer": "hi",
+      "explanation": "`await greet()` resumes once the coroutine returns \"hi\", which is then printed.",
+      "tags": ["asyncio", "async"]
+    },
+    {
+      "id": "python-q-fastapi-async-mcq-1",
+      "type": "mcq",
+      "prompt": "A FastAPI route body calls a synchronous PDF-rendering library. How should the route function be declared?",
+      "options": [
+        { "id": "a", "text": "async def — always faster" },
+        { "id": "b", "text": "Plain def, so FastAPI offloads it to a thread pool" },
+        { "id": "c", "text": "async def, calling the sync function without await" },
+        { "id": "d", "text": "It doesn't matter which one you pick" }
+      ],
+      "answer": "b",
+      "explanation": "A blocking call inside `async def` would stall the event loop; plain `def` runs in FastAPI's thread pool instead.",
+      "tags": ["fastapi", "asyncio"]
+    },
+    {
+      "id": "python-q-fastapi-async-mcq-2",
+      "type": "mcq",
+      "prompt": "What is the common 2026 FastAPI production stack described in the lesson?",
+      "options": [
+        { "id": "a", "text": "FastAPI + Pydantic v2 + SQLAlchemy 2.0 async + asyncpg" },
+        { "id": "b", "text": "Django + DRF + Celery only" },
+        { "id": "c", "text": "Flask + SQLAlchemy 1.x + gunicorn only" },
+        { "id": "d", "text": "FastAPI + Spring Data JPA" }
+      ],
+      "answer": "a",
+      "explanation": "FastAPI + Pydantic v2 + async SQLAlchemy 2.0 + asyncpg is the common modern async Python API stack.",
+      "tags": ["fastapi", "asyncio"]
+    },
+    {
+      "id": "python-q-fastapi-async-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "def build_report():  # sync PDF lib — belongs in a threadpool route\n    return \"PDF bytes\"\n\nprint(build_report())",
+      "language": "python",
+      "answer": "PDF bytes",
+      "explanation": "This mirrors a sync route handler body: it simply returns its computed result.",
+      "tags": ["fastapi", "asyncio"]
+    },
+    {
+      "id": "python-q-fastapi-async-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: FastAPI's tool for quick fire-and-forget follow-up work after a response is sent.",
+      "template": "from fastapi import _____",
+      "answer": "BackgroundTasks",
+      "accept": ["BackgroundTasks", "backgroundtasks"],
+      "explanation": "`BackgroundTasks` handles lightweight follow-ups; heavier/retryable jobs belong in Celery or Arq.",
+      "tags": ["fastapi", "asyncio"]
+    },
+    {
+      "id": "python-q-asyncio-pools-mcq-1",
+      "type": "mcq",
+      "prompt": "What does `asyncio.TaskGroup` do differently from `asyncio.gather` when one task fails?",
+      "options": [
+        { "id": "a", "text": "Nothing different — they behave identically" },
+        { "id": "b", "text": "It cancels sibling tasks (structured concurrency)" },
+        { "id": "c", "text": "It automatically retries the failed task" },
+        { "id": "d", "text": "It silently ignores the failure" }
+      ],
+      "answer": "b",
+      "explanation": "`TaskGroup` implements structured concurrency: a failing task cancels its siblings and propagates the error.",
+      "tags": ["asyncio", "db"]
+    },
+    {
+      "id": "python-q-asyncio-pools-mcq-2",
+      "type": "mcq",
+      "prompt": "Why can't adding more threads speed up pure Python CPU-bound work?",
+      "options": [
+        { "id": "a", "text": "Threads are disabled in modern Python" },
+        { "id": "b", "text": "They still contend on the GIL" },
+        { "id": "c", "text": "Threads cost too much memory to be useful" },
+        { "id": "d", "text": "CPU-bound work must always run inside asyncio" }
+      ],
+      "answer": "b",
+      "explanation": "The GIL lets only one thread run Python bytecode at a time, so CPU-bound work needs processes, not threads.",
+      "tags": ["asyncio", "db"]
+    },
+    {
+      "id": "python-q-asyncio-pools-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about async connection pools and concurrency are true per the lesson?",
+      "options": [
+        { "id": "a", "text": "One async worker can multiplex thousands of requests" },
+        { "id": "b", "text": "DB pool size should relate to workers × concurrent awaits" },
+        { "id": "c", "text": "CPU-bound work should be offloaded to processes/queues" },
+        { "id": "d", "text": "Threads have no GIL contention for pure Python CPU work" }
+      ],
+      "answers": ["a", "b", "c"],
+      "explanation": "Undersized pools relative to worker×concurrency lead to 'too many connections'; CPU work still contends on the GIL under threads.",
+      "tags": ["asyncio", "db"]
+    },
+    {
+      "id": "python-q-asyncio-pools-coding-1",
+      "type": "coding",
+      "prompt": "Use `asyncio.TaskGroup` to run `fetch(1)` and `fetch(2)` concurrently (where `fetch(n)` returns `n * 2`), then print both results as a list in order.",
+      "starterCode": "import asyncio\n\nasync def fetch(n):\n    return n * 2\n\nasync def main():\n    # TODO: use asyncio.TaskGroup to run fetch(1) and fetch(2), print [result1, result2]\n    pass\n\nasyncio.run(main())\n",
+      "language": "python",
+      "referenceSolution": "import asyncio\n\nasync def fetch(n):\n    return n * 2\n\nasync def main():\n    async with asyncio.TaskGroup() as tg:\n        t1 = tg.create_task(fetch(1))\n        t2 = tg.create_task(fetch(2))\n    print([t1.result(), t2.result()])\n\nasyncio.run(main())\n",
+      "expectedOutput": "[2, 4]",
+      "explanation": "Both tasks run concurrently inside the `TaskGroup`; results are retrieved after the `async with` block exits.",
+      "tags": ["asyncio", "db"]
+    },
+    {
+      "id": "python-q-19-gil-parallelism-mcq-1",
+      "type": "mcq",
+      "prompt": "For CPU-bound work in standard CPython, which approach effectively uses multiple cores?",
+      "options": [
+        { "id": "a", "text": "Threading (threading.Thread)" },
+        { "id": "b", "text": "multiprocessing / ProcessPoolExecutor" },
+        { "id": "c", "text": "asyncio" },
+        { "id": "d", "text": "Acquiring more GIL locks" }
+      ],
+      "answer": "b",
+      "explanation": "Separate processes each get their own GIL and interpreter, actually using multiple cores for CPU-bound work.",
+      "tags": ["concurrency", "gil", "performance"]
+    },
+    {
+      "id": "python-q-19-gil-parallelism-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about the GIL are true?",
+      "options": [
+        { "id": "a", "text": "It allows only one thread to execute Python bytecode at a time" },
+        { "id": "b", "text": "Threads release the GIL while waiting on I/O, so threading still helps I/O-bound work" },
+        { "id": "c", "text": "It has no impact on CPU-bound multithreaded performance" },
+        { "id": "d", "text": "Python 3.13+ has an experimental free-threaded (no-GIL) build" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "The GIL hurts CPU-bound multithreading (only one thread runs bytecode at a time) but not I/O-bound threading.",
+      "tags": ["concurrency", "gil", "performance"]
+    },
+    {
+      "id": "python-q-19-gil-parallelism-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "from concurrent.futures import ThreadPoolExecutor\n\ndef double(x):\n    return x * 2\n\nwith ThreadPoolExecutor() as pool:\n    results = list(pool.map(double, [1, 2, 3]))\nprint(results)",
+      "language": "python",
+      "answer": "[2, 4, 6]",
+      "explanation": "`pool.map` applies `double` to each item; `list()` materializes results in input order.",
+      "tags": ["concurrency", "gil", "performance"]
+    },
+    {
+      "id": "python-q-19-gil-parallelism-coding-1",
+      "type": "coding",
+      "prompt": "Use `ThreadPoolExecutor` to map `square(x) = x*x` over `[1, 2, 3, 4]`, and print the resulting list.",
+      "starterCode": "from concurrent.futures import ThreadPoolExecutor\n\ndef square(x):\n    return x * x\n\ndef main():\n    # TODO: use ThreadPoolExecutor to map square over [1, 2, 3, 4] and print the list of results\n    pass\n\nif __name__ == \"__main__\":\n    main()\n",
+      "language": "python",
+      "referenceSolution": "from concurrent.futures import ThreadPoolExecutor\n\ndef square(x):\n    return x * x\n\ndef main():\n    with ThreadPoolExecutor() as pool:\n        results = list(pool.map(square, [1, 2, 3, 4]))\n    print(results)\n\nif __name__ == \"__main__\":\n    main()\n",
+      "expectedOutput": "[1, 4, 9, 16]",
+      "explanation": "`pool.map` preserves input order; for CPU-bound work a process pool would be needed to truly parallelize.",
+      "tags": ["concurrency", "gil", "performance"]
+    },
+    {
+      "id": "python-q-20-packaging-mcq-1",
+      "type": "mcq",
+      "prompt": "Which file is the modern single source of truth for a Python package's metadata, dependencies, and build config?",
+      "options": [
+        { "id": "a", "text": "setup.py only" },
+        { "id": "b", "text": "pyproject.toml" },
+        { "id": "c", "text": "requirements.txt" },
+        { "id": "d", "text": "Pipfile" }
+      ],
+      "answer": "b",
+      "explanation": "`pyproject.toml` is read by uv, hatch, and pip alike as the canonical project metadata/build file.",
+      "tags": ["packaging", "tooling"]
+    },
+    {
+      "id": "python-q-20-packaging-mcq-2",
+      "type": "mcq",
+      "prompt": "Which command builds a wheel and sdist from a Python project?",
+      "options": [
+        { "id": "a", "text": "python -m build" },
+        { "id": "b", "text": "python setup.py" },
+        { "id": "c", "text": "pip build" },
+        { "id": "d", "text": "uv build-only" }
+      ],
+      "answer": "a",
+      "explanation": "`python -m build` (or `uv publish`'s build step) creates both wheel and sdist artifacts for distribution.",
+      "tags": ["packaging", "tooling"]
+    },
+    {
+      "id": "python-q-20-packaging-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: applications should lock dependencies precisely, while libraries should keep their version constraints _____.",
+      "template": "Apps: pin exact versions. Libraries: keep constraints _____.",
+      "answer": "loose",
+      "accept": ["loose", "flexible"],
+      "explanation": "Loose constraints in libraries avoid version conflicts for consumers; apps pin exact versions for reproducibility.",
+      "tags": ["packaging", "tooling"]
+    },
+    {
+      "id": "python-q-20-packaging-coding-1",
+      "type": "coding",
+      "prompt": "Write `is_compatible(version, requires_min)` comparing two `(major, minor)` tuples, returning True if `version >= requires_min`. Print results for `(3, 11) vs (3, 11)` and `(3, 9) vs (3, 11)`.",
+      "starterCode": "def is_compatible(version: tuple[int, int], requires_min: tuple[int, int]) -> bool:\n    # TODO: return True if version >= requires_min\n    return False\n\nprint(is_compatible((3, 11), (3, 11)))\nprint(is_compatible((3, 9), (3, 11)))\n",
+      "language": "python",
+      "referenceSolution": "def is_compatible(version: tuple[int, int], requires_min: tuple[int, int]) -> bool:\n    return version >= requires_min\n\nprint(is_compatible((3, 11), (3, 11)))\nprint(is_compatible((3, 9), (3, 11)))\n",
+      "expectedOutput": "True\nFalse",
+      "explanation": "Tuple comparison is lexicographic, so `(3, 11) >= (3, 11)` is True and `(3, 9) >= (3, 11)` is False.",
+      "tags": ["packaging", "tooling"]
+    },
+    {
+      "id": "python-q-21-performance-mcq-1",
+      "type": "mcq",
+      "prompt": "Which data structure gives O(1) average membership testing (`x in collection`)?",
+      "options": [
+        { "id": "a", "text": "list" },
+        { "id": "b", "text": "set" },
+        { "id": "c", "text": "tuple" },
+        { "id": "d", "text": "str" }
+      ],
+      "answer": "b",
+      "explanation": "`set` (and `dict`) use hashing for O(1) average membership checks, versus O(n) for list/tuple/str.",
+      "tags": ["performance", "profiling"]
+    },
+    {
+      "id": "python-q-21-performance-multi-1",
+      "type": "multi",
+      "prompt": "Which are recommended performance practices from the lesson?",
+      "options": [
+        { "id": "a", "text": "Profile before optimizing (cProfile/py-spy)" },
+        { "id": "b", "text": "Cache expensive pure functions with functools.lru_cache" },
+        { "id": "c", "text": "Always rewrite hot loops in C first, before measuring" },
+        { "id": "d", "text": "Use timeit for small snippet benchmarks" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "\"Measure, don't guess\" — profile first; rewriting in C without measuring is premature optimization.",
+      "tags": ["performance", "profiling"]
+    },
+    {
+      "id": "python-q-21-performance-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: `py-spy` is a _____ profiler, meaning it doesn't require modifying your code.",
+      "template": "py-spy is a _____ profiler (no code changes needed).",
+      "answer": "sampling",
+      "accept": ["sampling"],
+      "explanation": "Sampling profilers periodically inspect the call stack from outside the process, unlike instrumenting profilers like cProfile.",
+      "tags": ["performance", "profiling"]
+    },
+    {
+      "id": "python-q-21-performance-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "import functools\n\n@functools.lru_cache\ndef square(x):\n    return x * x\n\nprint(square(4), square(4))",
+      "language": "python",
+      "answer": "16 16",
+      "explanation": "`lru_cache` memoizes results; both calls with x=4 print 16 (the second is served from cache).",
+      "tags": ["performance", "profiling"]
+    }
+  ]
+}

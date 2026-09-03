@@ -1,0 +1,134 @@
+{
+  "language": "ruby",
+  "framework": {
+    "name": "Ruby on Rails",
+    "tagline": "Convention-over-configuration full-stack framework with Hotwire.",
+    "overview": "Rails pairs Active Record, Action Controller, and Hotwire (Turbo + Stimulus) to build full-stack apps with minimal boilerplate. Master it by modeling data with migrations, writing RESTful controllers, querying with scopes, guarding input with strong params, updating the UI with Turbo Frames, and offloading work to background jobs.",
+    "docs": [
+      { "title": "Rails Guides", "url": "https://guides.rubyonrails.org/" },
+      { "title": "Hotwire", "url": "https://hotwired.dev/" }
+    ]
+  },
+  "challenges": [
+    {
+      "id": "ruby-fw-model-migration",
+      "title": "1. Model and migration",
+      "difficulty": "junior",
+      "concept": "A migration describes a schema change in Ruby; the matching Active Record model maps to that table. `create_table` defines columns and timestamps.",
+      "goal": "Create an articles table (title, body) and its model.",
+      "steps": [
+        "Write a migration with create_table :articles.",
+        "Add string :title and text :body plus t.timestamps.",
+        "Define class Article < ApplicationRecord."
+      ],
+      "hints": [
+        "t.timestamps adds created_at/updated_at.",
+        "The model is empty; Rails infers columns."
+      ],
+      "language": "ruby",
+      "starterCode": "class CreateArticles < ActiveRecord::Migration[7.1]\n  def change\n    # TODO: create_table :articles\n  end\nend\n\nclass Article < ApplicationRecord\nend\n",
+      "solution": "class CreateArticles < ActiveRecord::Migration[7.1]\n  def change\n    create_table :articles do |t|\n      t.string :title, null: false\n      t.text :body\n      t.timestamps\n    end\n  end\nend\n\nclass Article < ApplicationRecord\nend\n",
+      "expectedOutput": "rails db:migrate creates the articles table"
+    },
+    {
+      "id": "ruby-fw-controller-action",
+      "title": "2. RESTful controller action",
+      "difficulty": "junior",
+      "concept": "Controllers respond to routes. A RESTful `index` action loads records and renders the matching view via convention.",
+      "goal": "Implement ArticlesController#index that assigns @articles.",
+      "steps": [
+        "Inherit from ApplicationController.",
+        "Define index that sets @articles = Article.all.",
+        "Rely on convention to render index.html.erb."
+      ],
+      "hints": [
+        "Instance variables are exposed to the view.",
+        "No explicit render needed for the default template."
+      ],
+      "language": "ruby",
+      "starterCode": "class ArticlesController < ApplicationController\n  def index\n    # TODO\n  end\nend\n",
+      "solution": "class ArticlesController < ApplicationController\n  def index\n    @articles = Article.all\n  end\nend\n",
+      "expectedOutput": "GET /articles renders the index view with all articles"
+    },
+    {
+      "id": "ruby-fw-scope",
+      "title": "3. Query with a scope",
+      "difficulty": "mid",
+      "concept": "A `scope` names a reusable, chainable query. It returns an Active Record relation so it composes with `order`, `where`, and pagination.",
+      "goal": "Add a published scope and a recent ordering scope to Article.",
+      "steps": [
+        "scope :published, -> { where(published: true) }.",
+        "scope :recent, -> { order(created_at: :desc) }.",
+        "They should chain: Article.published.recent."
+      ],
+      "hints": [
+        "Scopes are lambdas returning a relation.",
+        "Chaining works because each returns a relation."
+      ],
+      "language": "ruby",
+      "starterCode": "class Article < ApplicationRecord\n  # TODO: published and recent scopes\nend\n",
+      "solution": "class Article < ApplicationRecord\n  scope :published, -> { where(published: true) }\n  scope :recent, -> { order(created_at: :desc) }\nend\n",
+      "expectedOutput": "Article.published.recent -> published articles, newest first"
+    },
+    {
+      "id": "ruby-fw-strong-params",
+      "title": "4. Strong parameters",
+      "difficulty": "mid",
+      "concept": "Strong parameters allowlist attributes for mass assignment, preventing clients from setting fields you did not intend. `require` + `permit` scope the payload.",
+      "goal": "Implement create with an article_params allowlist.",
+      "steps": [
+        "Define private article_params.",
+        "params.require(:article).permit(:title, :body).",
+        "Use it in create to build the record."
+      ],
+      "hints": [
+        "require raises if the key is missing.",
+        "permit lists the safe attributes."
+      ],
+      "language": "ruby",
+      "starterCode": "class ArticlesController < ApplicationController\n  def create\n    @article = Article.new(/* TODO */)\n    if @article.save\n      redirect_to @article\n    else\n      render :new, status: :unprocessable_entity\n    end\n  end\n\n  private\n\n  # TODO: article_params\nend\n",
+      "solution": "class ArticlesController < ApplicationController\n  def create\n    @article = Article.new(article_params)\n    if @article.save\n      redirect_to @article\n    else\n      render :new, status: :unprocessable_entity\n    end\n  end\n\n  private\n\n  def article_params\n    params.require(:article).permit(:title, :body)\n  end\nend\n",
+      "expectedOutput": "Only :title and :body are permitted for mass assignment"
+    },
+    {
+      "id": "ruby-fw-turbo-frame",
+      "title": "5. Turbo Frame partial update",
+      "difficulty": "mid",
+      "concept": "Hotwire's `turbo_frame_tag` scopes a region of the page. Links/forms inside a frame swap only that frame's content, giving SPA-like updates without custom JS.",
+      "goal": "Wrap an article in an editable Turbo Frame.",
+      "steps": [
+        "Wrap the show content with turbo_frame_tag dom_id(@article).",
+        "Add an Edit link inside the frame.",
+        "The edit response reuses the same frame id to swap in place."
+      ],
+      "hints": [
+        "dom_id(@article) yields e.g. \"article_1\".",
+        "Matching frame ids drive the in-place swap."
+      ],
+      "language": "erb",
+      "starterCode": "<%# app/views/articles/show.html.erb %>\n<%# TODO: wrap in a turbo_frame_tag %>\n<h1><%= @article.title %></h1>\n<%= link_to \"Edit\", edit_article_path(@article) %>\n",
+      "solution": "<%# app/views/articles/show.html.erb %>\n<%= turbo_frame_tag dom_id(@article) do %>\n  <h1><%= @article.title %></h1>\n  <%= link_to \"Edit\", edit_article_path(@article) %>\n<% end %>\n",
+      "expectedOutput": "Clicking Edit swaps only the article frame, not the whole page"
+    },
+    {
+      "id": "ruby-fw-active-job",
+      "title": "6. Background job",
+      "difficulty": "senior",
+      "concept": "Active Job abstracts background processing. Enqueue with `perform_later` so slow work (email, cleanup) runs off the request cycle via an adapter like Solid Queue.",
+      "goal": "Create a job that logs a message and enqueue it after create.",
+      "steps": [
+        "Define ArticleCleanupJob < ApplicationJob.",
+        "Implement perform(article_id) with the work.",
+        "Enqueue with ArticleCleanupJob.perform_later(@article.id)."
+      ],
+      "hints": [
+        "perform_later enqueues; perform_now runs inline.",
+        "Pass ids, not full records, to jobs."
+      ],
+      "language": "ruby",
+      "starterCode": "class ArticleCleanupJob < ApplicationJob\n  queue_as :default\n\n  def perform(article_id)\n    # TODO\n  end\nend\n\n# enqueue somewhere:\n# TODO\n",
+      "solution": "class ArticleCleanupJob < ApplicationJob\n  queue_as :default\n\n  def perform(article_id)\n    article = Article.find_by(id: article_id)\n    Rails.logger.info(\"Cleaning up article #{article&.id}\")\n  end\nend\n\n# enqueue somewhere:\nArticleCleanupJob.perform_later(@article.id)\n",
+      "expectedOutput": "perform_later pushes the job onto the queue for async execution"
+    }
+  ]
+}

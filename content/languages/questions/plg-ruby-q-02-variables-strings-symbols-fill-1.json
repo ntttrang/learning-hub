@@ -1,0 +1,23 @@
+{
+  "id": "plg-ruby-q-02-variables-strings-symbols-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: Ruby local variable and method names conventionally use _____ naming, e.g. `user_name`.",
+  "explanation": "Ruby style favors snake_case for locals and methods; constants use PascalCase or SCREAMING_SNAKE_CASE.",
+  "tags": [
+    "basics",
+    "strings",
+    "symbols"
+  ],
+  "kind": "fill",
+  "template": "variable naming convention: ___",
+  "blanks": [
+    {
+      "answer": "snake_case",
+      "alternatives": [
+        "snake_case",
+        "snake case",
+        "snake-case"
+      ]
+    }
+  ]
+}

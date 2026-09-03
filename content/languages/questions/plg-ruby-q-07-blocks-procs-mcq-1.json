@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-07-blocks-procs-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What does `yield` do inside a method?",
+  "explanation": "yield invokes the block given to the enclosing method call.",
+  "tags": [
+    "blocks",
+    "procs"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Defines a new method"
+    },
+    {
+      "id": "b",
+      "text": "Calls the block passed to the method"
+    },
+    {
+      "id": "c",
+      "text": "Raises an exception"
+    },
+    {
+      "id": "d",
+      "text": "Always returns nil"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "plg-ruby-q-01-objects-output-1",
+  "domainId": "plg-ruby",
+  "prompt": "What prints?",
+  "explanation": "`class` returns an object's class; nil is the sole instance of NilClass.",
+  "tags": [
+    "basics",
+    "objects"
+  ],
+  "kind": "fill",
+  "template": "puts 42.class\nputs nil.class\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "Integer\nNilClass"
+    }
+  ]
+}

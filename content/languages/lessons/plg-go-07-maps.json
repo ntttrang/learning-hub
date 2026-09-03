@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-07-maps",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 7,
+  "title": "Maps and the comma-ok idiom",
+  "minutes": 9,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Basics\n\n`make(map[K]V)` creates a map. Reading a missing key returns the zero value — use the **comma-ok** form to distinguish absent from zero.\n\n## Iteration order\n\nMap iteration order is **randomized** on purpose; never rely on it. Sort keys if you need order.\n\n## Nil maps\n\nReading a nil map is fine; writing panics. Always initialize before writing."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "counts := map[string]int{}\ncounts[\"a\"]++\n\nif v, ok := counts[\"b\"]; ok {\n  fmt.Println(v)\n} else {\n  fmt.Println(\"missing\")\n}"
+    }
+  ],
+  "docIds": [
+    "maps",
+    "19"
+  ]
+}

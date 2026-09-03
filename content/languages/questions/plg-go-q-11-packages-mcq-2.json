@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-11-packages-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "When does a package's init() function run?",
+  "explanation": "init() runs once per package at program startup, before main, without being called explicitly.",
+  "tags": [
+    "go-11-packages",
+    "init"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Every time one of its functions is called"
+    },
+    {
+      "id": "b",
+      "text": "Automatically, once, when the package is loaded"
+    },
+    {
+      "id": "c",
+      "text": "Only when explicitly called from main"
+    },
+    {
+      "id": "d",
+      "text": "Never automatically; it must be invoked manually"
+    }
+  ],
+  "correct": "b"
+}

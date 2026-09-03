@@ -1,0 +1,16 @@
+{
+  "id": "plg-python-q-15-stdlib-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "'a' appears 3 times, 'b' 2 times, 'c' once; `most_common(2)` returns the top two by count.",
+  "tags": [
+    "stdlib"
+  ],
+  "kind": "fill",
+  "template": "from collections import Counter\ntop = Counter([\"a\", \"b\", \"a\", \"c\", \"a\", \"b\"]).most_common(2)\nprint(top)\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "[('a', 3), ('b', 2)]"
+    }
+  ]
+}

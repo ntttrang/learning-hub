@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-20-singleton-eigenclass-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "Where do methods defined directly on a single object instance live?",
+  "explanation": "Every object has its own singleton class where per-object methods are stored.",
+  "tags": [
+    "oop",
+    "metaprogramming"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "In the object's class"
+    },
+    {
+      "id": "b",
+      "text": "In the object's singleton (eigen)class"
+    },
+    {
+      "id": "c",
+      "text": "In the Object class"
+    },
+    {
+      "id": "d",
+      "text": "Nowhere; it's not possible in Ruby"
+    }
+  ],
+  "correct": "b"
+}

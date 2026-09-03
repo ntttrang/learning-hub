@@ -1,0 +1,1312 @@
+{
+  "language": "ruby",
+  "questions": [
+    {
+      "id": "ruby-q-truthiness",
+      "type": "mcq",
+      "prompt": "Which values are falsy in Ruby?",
+      "options": [
+        { "id": "a", "text": "false, nil, 0, and \"\"" },
+        { "id": "b", "text": "Only false and nil" },
+        { "id": "c", "text": "false, nil, and empty arrays" },
+        { "id": "d", "text": "Only false" }
+      ],
+      "answer": "b",
+      "explanation": "In Ruby only false and nil are falsy. 0, \"\", and [] are all truthy."
+    },
+    {
+      "id": "ruby-q-symbols",
+      "type": "multi",
+      "prompt": "Which statements about symbols are true?",
+      "options": [
+        { "id": "a", "text": ":name is an immutable identifier" },
+        { "id": "b", "text": "Symbols are often used as hash keys for fixed option names" },
+        { "id": "c", "text": "\"name\" and :name are the same object" },
+        { "id": "d", "text": "Two writings of :admin refer to the same interned object" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Symbols are interned identifiers, great as option/hash keys. Strings are separate objects (unless frozen/deduped)."
+    },
+    {
+      "id": "ruby-q-output",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "puts [1, 2, 3].map { |n| n * 2 }.join(\",\")",
+      "language": "ruby",
+      "answer": "2,4,6",
+      "explanation": "map doubles each element; join inserts commas."
+    },
+    {
+      "id": "ruby-q-fill",
+      "type": "fill",
+      "prompt": "Fill the blank: include Comparable and implement _____ so `<`, `>`, and `between?` work.",
+      "template": "def _____(other)",
+      "answer": "<=>",
+      "accept": ["<=>", "<=> "],
+      "explanation": "Comparable builds ordering methods from spaceship <=>."
+    },
+    {
+      "id": "ruby-q-coding",
+      "type": "coding",
+      "prompt": "Implement sum(nums) that adds integers with reduce (or sum) and print sum([1, 2, 3, 4]).",
+      "starterCode": "def sum(nums)\n  # TODO\n  0\nend\n\nputs sum([1, 2, 3, 4])\n",
+      "language": "ruby",
+      "referenceSolution": "def sum(nums)\n  nums.reduce(0, :+)\nend\n\nputs sum([1, 2, 3, 4])\n",
+      "expectedOutput": "10",
+      "explanation": "reduce(0, :+) folds addition; Array#sum also works."
+    },
+    {
+      "id": "ruby-q-01-objects-mcq-1",
+      "type": "mcq",
+      "prompt": "What does `42.class` return in Ruby?",
+      "options": [
+        { "id": "a", "text": "Integer" },
+        { "id": "b", "text": "Fixnum" },
+        { "id": "c", "text": "Number" },
+        { "id": "d", "text": "int" }
+      ],
+      "answer": "a",
+      "explanation": "Ruby unified Fixnum/Bignum into a single Integer class (since Ruby 2.4).",
+      "tags": ["basics", "objects"]
+    },
+    {
+      "id": "ruby-q-01-objects-mcq-2",
+      "type": "mcq",
+      "prompt": "Which statement about Ruby's object model is true?",
+      "options": [
+        { "id": "a", "text": "Everything in Ruby, including nil and true, is an object" },
+        { "id": "b", "text": "Ruby has unboxed primitive types like Java's int" },
+        { "id": "c", "text": "Only classes you define yourself are objects" },
+        { "id": "d", "text": "nil is a special keyword, not an object" }
+      ],
+      "answer": "a",
+      "explanation": "Ruby has no separate primitive layer; numbers, nil, and booleans are all objects with methods.",
+      "tags": ["basics", "objects"]
+    },
+    {
+      "id": "ruby-q-01-objects-multi-1",
+      "type": "multi",
+      "prompt": "Which of the following are true about Ruby's object model?",
+      "options": [
+        { "id": "a", "text": "You can call methods directly on numeric literals, e.g. 1.class" },
+        { "id": "b", "text": "Methods implicitly return the value of their last expression" },
+        { "id": "c", "text": "return is required at the end of every method" },
+        { "id": "d", "text": "You can reopen and add methods to existing classes like String" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Ruby methods return their last expression without an explicit return, and classes stay open for reopening (use carefully).",
+      "tags": ["basics", "objects"]
+    },
+    {
+      "id": "ruby-q-01-objects-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "puts 42.class\nputs nil.class",
+      "language": "ruby",
+      "answer": "Integer\nNilClass",
+      "explanation": "`class` returns an object's class; nil is the sole instance of NilClass.",
+      "tags": ["basics", "objects"]
+    },
+    {
+      "id": "ruby-q-02-variables-strings-symbols-mcq-1",
+      "type": "mcq",
+      "prompt": "What is the key difference between a String and a Symbol in Ruby?",
+      "options": [
+        { "id": "a", "text": "Symbols are mutable, strings are immutable" },
+        { "id": "b", "text": "Symbols are immutable and interned, so the same symbol is always the same object" },
+        { "id": "c", "text": "Strings can be hash keys but symbols cannot" },
+        { "id": "d", "text": "There is no difference; they are interchangeable" }
+      ],
+      "answer": "b",
+      "explanation": "Symbols are interned once and reused, making them cheap identifiers for fixed names like hash keys.",
+      "tags": ["basics", "strings", "symbols"]
+    },
+    {
+      "id": "ruby-q-02-variables-strings-symbols-mcq-2",
+      "type": "mcq",
+      "prompt": "Which of the following correctly interpolates a variable into a string?",
+      "options": [
+        { "id": "a", "text": "'Hello #{name}'" },
+        { "id": "b", "text": "\"Hello #{name}\"" },
+        { "id": "c", "text": "\"Hello \" + #{name}" },
+        { "id": "d", "text": "\"Hello $name\"" }
+      ],
+      "answer": "b",
+      "explanation": "Double-quoted strings support #{} interpolation; single-quoted strings are mostly literal.",
+      "tags": ["basics", "strings", "symbols"]
+    },
+    {
+      "id": "ruby-q-02-variables-strings-symbols-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "name = \"Corgi\"\nputs \"Ahoy, #{name}!\"\nputs :admin.object_id == :admin.object_id",
+      "language": "ruby",
+      "answer": "Ahoy, Corgi!\ntrue",
+      "explanation": "Interpolation embeds the variable; symbols with the same name are always the same interned object.",
+      "tags": ["basics", "strings", "symbols"]
+    },
+    {
+      "id": "ruby-q-02-variables-strings-symbols-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: Ruby local variable and method names conventionally use _____ naming, e.g. `user_name`.",
+      "template": "variable naming convention: _____",
+      "answer": "snake_case",
+      "accept": ["snake_case", "snake case", "snake-case"],
+      "explanation": "Ruby style favors snake_case for locals and methods; constants use PascalCase or SCREAMING_SNAKE_CASE.",
+      "tags": ["basics", "strings", "symbols"]
+    },
+    {
+      "id": "ruby-q-03-numbers-nil-truth-mcq-1",
+      "type": "mcq",
+      "prompt": "What is the result of `5 / 2` in Ruby?",
+      "options": [
+        { "id": "a", "text": "2.5" },
+        { "id": "b", "text": "2" },
+        { "id": "c", "text": "3" },
+        { "id": "d", "text": "It raises an error" }
+      ],
+      "answer": "b",
+      "explanation": "Integer division of two integers truncates toward zero; use 5 / 2.0 for a float result.",
+      "tags": ["basics", "truthiness"]
+    },
+    {
+      "id": "ruby-q-03-numbers-nil-truth-mcq-2",
+      "type": "mcq",
+      "prompt": "Which of these values is falsy in Ruby?",
+      "options": [
+        { "id": "a", "text": "0" },
+        { "id": "b", "text": "\"\"" },
+        { "id": "c", "text": "[]" },
+        { "id": "d", "text": "nil" }
+      ],
+      "answer": "d",
+      "explanation": "Only false and nil are falsy in Ruby; 0, empty strings, and empty arrays are all truthy.",
+      "tags": ["basics", "truthiness"]
+    },
+    {
+      "id": "ruby-q-03-numbers-nil-truth-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: the safe navigation operator returns nil instead of raising NoMethodError when the receiver is nil.",
+      "template": "user_____name",
+      "answer": "&.",
+      "accept": ["&."],
+      "explanation": "`user&.name` calls .name only if user is not nil, otherwise evaluates to nil.",
+      "tags": ["basics", "truthiness"]
+    },
+    {
+      "id": "ruby-q-03-numbers-nil-truth-coding-1",
+      "type": "coding",
+      "prompt": "Write a method `safe_upcase(str)` that returns `str.upcase`, or nil if str is nil, using the safe navigation operator. Print `safe_upcase(nil).inspect` and `safe_upcase(\"hi\")`.",
+      "starterCode": "def safe_upcase(str)\n  # TODO\nend\n\nputs safe_upcase(nil).inspect\nputs safe_upcase(\"hi\")\n",
+      "language": "ruby",
+      "referenceSolution": "def safe_upcase(str)\n  str&.upcase\nend\n\nputs safe_upcase(nil).inspect\nputs safe_upcase(\"hi\")\n",
+      "expectedOutput": "nil\nHI",
+      "explanation": "`str&.upcase` short-circuits to nil when str is nil, avoiding a NoMethodError.",
+      "tags": ["basics", "truthiness"]
+    },
+    {
+      "id": "ruby-q-04-collections-mcq-1",
+      "type": "mcq",
+      "prompt": "Given `nums = [1, 2, 3, 4]`, what does `nums[1..2]` return?",
+      "options": [
+        { "id": "a", "text": "[2, 3]" },
+        { "id": "b", "text": "[1, 2]" },
+        { "id": "c", "text": "[2, 3, 4]" },
+        { "id": "d", "text": "[1, 2, 3]" }
+      ],
+      "answer": "a",
+      "explanation": "Range slicing is inclusive: index 1 through index 2 gives elements 2 and 3.",
+      "tags": ["collections", "basics"]
+    },
+    {
+      "id": "ruby-q-04-collections-mcq-2",
+      "type": "mcq",
+      "prompt": "What is the difference between `1..5` and `1...5`?",
+      "options": [
+        { "id": "a", "text": "There is no difference" },
+        { "id": "b", "text": "`1..5` includes 5, `1...5` excludes 5" },
+        { "id": "c", "text": "`1...5` includes 5, `1..5` excludes 5" },
+        { "id": "d", "text": "Both exclude their endpoints" }
+      ],
+      "answer": "b",
+      "explanation": "Two dots make an inclusive range, three dots make an exclusive range.",
+      "tags": ["collections", "basics"]
+    },
+    {
+      "id": "ruby-q-04-collections-coding-1",
+      "type": "coding",
+      "prompt": "Build a hash `user = { name: \"Ada\", role: :admin }` and print `user[:name]` then `(1..3).to_a.inspect`.",
+      "starterCode": "# TODO: build the hash and print the required values\n",
+      "language": "ruby",
+      "referenceSolution": "user = { name: \"Ada\", role: :admin }\nputs user[:name]\nputs (1..3).to_a.inspect\n",
+      "expectedOutput": "Ada\n[1, 2, 3]",
+      "explanation": "Hash literals with symbol keys read naturally with []; Range#to_a expands an inclusive range.",
+      "tags": ["collections", "basics"]
+    },
+    {
+      "id": "ruby-q-04-collections-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Ruby Hash literals are true (Ruby 3.1+)?",
+      "options": [
+        { "id": "a", "text": "`{ name: \"Ada\" }` uses the symbol key :name" },
+        { "id": "b", "text": "`{ name: }` is valid shorthand when a local variable `name` already exists" },
+        { "id": "c", "text": "Hash keys must always be symbols" },
+        { "id": "d", "text": "You can use strings as hash keys too" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Ruby 3.1 added hash shorthand syntax; hash keys can be any object, not just symbols.",
+      "tags": ["collections", "basics"]
+    },
+    {
+      "id": "ruby-q-05-control-flow-mcq-1",
+      "type": "mcq",
+      "prompt": "What does `unless x` mean?",
+      "options": [
+        { "id": "a", "text": "if x" },
+        { "id": "b", "text": "if not x" },
+        { "id": "c", "text": "while not x" },
+        { "id": "d", "text": "case x" }
+      ],
+      "answer": "b",
+      "explanation": "`unless` is the negated form of `if`.",
+      "tags": ["control-flow", "basics"]
+    },
+    {
+      "id": "ruby-q-05-control-flow-mcq-2",
+      "type": "mcq",
+      "prompt": "In a `case`/`when` statement, which operator does Ruby use to test each `when` clause against the case value?",
+      "options": [
+        { "id": "a", "text": "==" },
+        { "id": "b", "text": "===" },
+        { "id": "c", "text": "eql?" },
+        { "id": "d", "text": "equal?" }
+      ],
+      "answer": "b",
+      "explanation": "case/when calls `when_value === case_value`, which is why ranges, classes, and regexes work as when arms.",
+      "tags": ["control-flow", "basics"]
+    },
+    {
+      "id": "ruby-q-05-control-flow-multi-1",
+      "type": "multi",
+      "prompt": "Which of these are valid, idiomatic `when` clause matchers for `case n`?",
+      "options": [
+        { "id": "a", "text": "`when 1..9` matches numbers in that range" },
+        { "id": "b", "text": "`when Integer` matches when the case value is an Integer" },
+        { "id": "c", "text": "Regular expression literals can be used as when arms to pattern-match strings" },
+        { "id": "d", "text": "case/when always uses == for comparisons, never ===" }
+      ],
+      "answers": ["a", "b", "c"],
+      "explanation": "case/when relies on === for matching, which is why ranges, classes, and regexes all work as when arms.",
+      "tags": ["control-flow", "basics"]
+    },
+    {
+      "id": "ruby-q-05-control-flow-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "n = 7\nlabel = case n\n        when 0 then \"zero\"\n        when 1..9 then \"single digit\"\n        when Integer then \"integer\"\n        else \"other\"\n        end\nputs label",
+      "language": "ruby",
+      "answer": "single digit",
+      "explanation": "case tries when arms in order; 7 matches the 1..9 range before the broader Integer arm.",
+      "tags": ["control-flow", "basics"]
+    },
+    {
+      "id": "ruby-q-06-methods-args-mcq-1",
+      "type": "mcq",
+      "prompt": "In `def connect(host:, port: 443, **opts)`, what kind of parameter is `host:`?",
+      "options": [
+        { "id": "a", "text": "An optional keyword argument with a default" },
+        { "id": "b", "text": "A required keyword argument" },
+        { "id": "c", "text": "A positional argument" },
+        { "id": "d", "text": "A splat argument" }
+      ],
+      "answer": "b",
+      "explanation": "A keyword parameter with no default (`host:`) is required; omitting it raises ArgumentError.",
+      "tags": ["methods", "basics"]
+    },
+    {
+      "id": "ruby-q-06-methods-args-mcq-2",
+      "type": "mcq",
+      "prompt": "What does `*nums` capture in `def sum(*nums)`?",
+      "options": [
+        { "id": "a", "text": "A single value" },
+        { "id": "b", "text": "All remaining positional arguments, collected into an array" },
+        { "id": "c", "text": "All keyword arguments" },
+        { "id": "d", "text": "The block passed to the method" }
+      ],
+      "answer": "b",
+      "explanation": "The splat operator gathers extra positional arguments into an array.",
+      "tags": ["methods", "basics"]
+    },
+    {
+      "id": "ruby-q-06-methods-args-multi-1",
+      "type": "multi",
+      "prompt": "Which are true about Ruby method argument conventions?",
+      "options": [
+        { "id": "a", "text": "`sort!` mutates the receiver in place by convention" },
+        { "id": "b", "text": "`empty?` conventionally returns a boolean" },
+        { "id": "c", "text": "The ? and ! suffixes are enforced by the Ruby interpreter, not just convention" },
+        { "id": "d", "text": "`**opts` collects extra keyword arguments into a hash" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "The ? and ! suffixes are purely a naming convention; Ruby does not enforce their meaning.",
+      "tags": ["methods", "basics"]
+    },
+    {
+      "id": "ruby-q-06-methods-args-coding-1",
+      "type": "coding",
+      "prompt": "Complete `sum(*nums)` to return the total using Array#sum, and complete `connect(host:, port: 443, **opts)` to return \"#{host}:#{port} timeout=#{opts[:timeout]}\". Print `sum(1, 2, 3)` and `connect(host: \"api.example\", timeout: 5)`.",
+      "starterCode": "def sum(*nums)\n  # TODO\nend\n\ndef connect(host:, port: 443, **opts)\n  # TODO\nend\n\nputs sum(1, 2, 3)\nputs connect(host: \"api.example\", timeout: 5)\n",
+      "language": "ruby",
+      "referenceSolution": "def sum(*nums)\n  nums.sum\nend\n\ndef connect(host:, port: 443, **opts)\n  \"#{host}:#{port} timeout=#{opts[:timeout]}\"\nend\n\nputs sum(1, 2, 3)\nputs connect(host: \"api.example\", timeout: 5)\n",
+      "expectedOutput": "6\napi.example:443 timeout=5",
+      "explanation": "sum totals a splat array; connect combines required/optional keywords with a double-splat catch-all.",
+      "tags": ["methods", "basics"]
+    },
+    {
+      "id": "ruby-q-07-blocks-procs-mcq-1",
+      "type": "mcq",
+      "prompt": "What does `yield` do inside a method?",
+      "options": [
+        { "id": "a", "text": "Defines a new method" },
+        { "id": "b", "text": "Calls the block passed to the method" },
+        { "id": "c", "text": "Raises an exception" },
+        { "id": "d", "text": "Always returns nil" }
+      ],
+      "answer": "b",
+      "explanation": "yield invokes the block given to the enclosing method call.",
+      "tags": ["blocks", "procs"]
+    },
+    {
+      "id": "ruby-q-07-blocks-procs-mcq-2",
+      "type": "mcq",
+      "prompt": "What is a key difference between a proc and a lambda?",
+      "options": [
+        { "id": "a", "text": "A lambda is strict about arity and returns only from itself; a proc is lenient and returns from the enclosing method" },
+        { "id": "b", "text": "A proc cannot be called at all" },
+        { "id": "c", "text": "A lambda cannot take arguments" },
+        { "id": "d", "text": "They behave identically in every way" }
+      ],
+      "answer": "a",
+      "explanation": "lambda enforces argument count and its `return` only exits the lambda itself, unlike proc.",
+      "tags": ["blocks", "procs"]
+    },
+    {
+      "id": "ruby-q-07-blocks-procs-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: inside a method, this predicate checks whether a block was passed before calling yield.",
+      "template": "_____ ? yield : nil",
+      "answer": "block_given?",
+      "accept": ["block_given?"],
+      "explanation": "block_given? returns true if the current method was called with a block.",
+      "tags": ["blocks", "procs"]
+    },
+    {
+      "id": "ruby-q-07-blocks-procs-coding-1",
+      "type": "coding",
+      "prompt": "Write a method `twice` that yields to its block twice, then define `double = ->(n) { n * 2 }` and print `[1, 2, 3].map(&double)`.",
+      "starterCode": "def twice\n  # TODO\nend\n\ntwice { puts \"ahoy\" }\n\ndouble = nil # TODO: lambda that doubles n\nputs [1, 2, 3].map(&double).inspect\n",
+      "language": "ruby",
+      "referenceSolution": "def twice\n  yield\n  yield\nend\n\ntwice { puts \"ahoy\" }\n\ndouble = ->(n) { n * 2 }\nputs [1, 2, 3].map(&double).inspect\n",
+      "expectedOutput": "ahoy\nahoy\n[2, 4, 6]",
+      "explanation": "yield called twice runs the block twice; &double converts the lambda into a block for map.",
+      "tags": ["blocks", "procs"]
+    },
+    {
+      "id": "ruby-q-08-enumerable-mcq-1",
+      "type": "mcq",
+      "prompt": "What must a class implement to gain access to Enumerable methods like map and select via `include Enumerable`?",
+      "options": [
+        { "id": "a", "text": "to_a" },
+        { "id": "b", "text": "each" },
+        { "id": "c", "text": "size" },
+        { "id": "d", "text": "<=>" }
+      ],
+      "answer": "b",
+      "explanation": "Enumerable derives all of its methods from a single `each` implementation.",
+      "tags": ["enumerable", "collections"]
+    },
+    {
+      "id": "ruby-q-08-enumerable-multi-1",
+      "type": "multi",
+      "prompt": "Which methods come from mixing in Enumerable, given `each` is defined?",
+      "options": [
+        { "id": "a", "text": "map" },
+        { "id": "b", "text": "select" },
+        { "id": "c", "text": "puts" },
+        { "id": "d", "text": "group_by" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "map, select, and group_by all come from Enumerable; puts is a Kernel method unrelated to iteration.",
+      "tags": ["enumerable", "collections"]
+    },
+    {
+      "id": "ruby-q-08-enumerable-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "users = [\n  { name: \"Ada\", active: true },\n  { name: \"Bob\", active: false },\n  { name: \"Cam\", active: true },\n]\nnames = users.select { |u| u[:active] }.map { |u| u[:name] }.sort\nputs names.join(\", \")",
+      "language": "ruby",
+      "answer": "Ada, Cam",
+      "explanation": "select keeps only active users, map extracts names, and sort orders them alphabetically.",
+      "tags": ["enumerable", "collections"]
+    },
+    {
+      "id": "ruby-q-08-enumerable-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: `[1, 2, 3].reduce(0) { |sum, n| sum _____ n }` sums the array.",
+      "template": "sum _____ n",
+      "answer": "+",
+      "accept": ["+"],
+      "explanation": "reduce folds the array by repeatedly applying the block, here accumulating a sum.",
+      "tags": ["enumerable", "collections"]
+    },
+    {
+      "id": "ruby-q-08-enumerable-coding-1",
+      "type": "coding",
+      "prompt": "Using each_with_object, build a hash mapping each word in [\"a\", \"bb\", \"ccc\"] to its length, then print the hash's inspect.",
+      "starterCode": "words = [\"a\", \"bb\", \"ccc\"]\nresult = nil # TODO: use each_with_object\nputs result.inspect\n",
+      "language": "ruby",
+      "referenceSolution": "words = [\"a\", \"bb\", \"ccc\"]\nresult = words.each_with_object({}) { |w, h| h[w] = w.length }\nputs result.inspect\n",
+      "expectedOutput": "{\"a\"=>1, \"bb\"=>2, \"ccc\"=>3}",
+      "explanation": "each_with_object threads an accumulator (here a hash) through the iteration and returns it.",
+      "tags": ["enumerable", "collections"]
+    },
+    {
+      "id": "ruby-q-09-string-io-mcq-1",
+      "type": "mcq",
+      "prompt": "Which approach safely reads/writes a file and automatically closes it afterward?",
+      "options": [
+        { "id": "a", "text": "File.read only, never closing anything" },
+        { "id": "b", "text": "The block form File.open(path) { |f| ... }" },
+        { "id": "c", "text": "File.new without ever calling close" },
+        { "id": "d", "text": "IO.gets" }
+      ],
+      "answer": "b",
+      "explanation": "The block form of File.open closes the file automatically when the block finishes, even on error.",
+      "tags": ["strings", "io"]
+    },
+    {
+      "id": "ruby-q-09-string-io-mcq-2",
+      "type": "mcq",
+      "prompt": "What does `format(\"%s scored %.1f\", \"Ada\", 98.5)` produce?",
+      "options": [
+        { "id": "a", "text": "\"Ada scored 98.5\"" },
+        { "id": "b", "text": "\"Ada scored 99\"" },
+        { "id": "c", "text": "\"%s scored %.1f\"" },
+        { "id": "d", "text": "It raises an error" }
+      ],
+      "answer": "a",
+      "explanation": "%s substitutes the string, %.1f formats the float with one decimal place.",
+      "tags": ["strings", "io"]
+    },
+    {
+      "id": "ruby-q-09-string-io-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "puts \"%-8s|%04d\" % [\"go\", 7]",
+      "language": "ruby",
+      "answer": "go      |0007",
+      "explanation": "%-8s left-justifies \"go\" in an 8-character field; %04d zero-pads 7 to four digits.",
+      "tags": ["strings", "io"]
+    },
+    {
+      "id": "ruby-q-09-string-io-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: adding this magic comment at the top of a file makes string literals frozen by default.",
+      "template": "# frozen_string_literal: _____",
+      "answer": "true",
+      "accept": ["true"],
+      "explanation": "The frozen_string_literal magic comment freezes every string literal in the file, reducing allocations.",
+      "tags": ["strings", "io"]
+    },
+    {
+      "id": "ruby-q-10-classes-mcq-1",
+      "type": "mcq",
+      "prompt": "Which method generates both a getter and a setter for an instance variable?",
+      "options": [
+        { "id": "a", "text": "attr_reader" },
+        { "id": "b", "text": "attr_writer" },
+        { "id": "c", "text": "attr_accessor" },
+        { "id": "d", "text": "attr_both" }
+      ],
+      "answer": "c",
+      "explanation": "attr_accessor combines attr_reader and attr_writer into one call.",
+      "tags": ["oop", "classes"]
+    },
+    {
+      "id": "ruby-q-10-classes-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about self and visibility in Ruby classes are true?",
+      "options": [
+        { "id": "a", "text": "Inside an instance method, self refers to the current instance" },
+        { "id": "b", "text": "`def self.method` defines a class method" },
+        { "id": "c", "text": "Private methods can always be called with an explicit receiver" },
+        { "id": "d", "text": "Private methods generally cannot be called with an explicit receiver, except for self.foo= setters" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Ruby's private methods restrict explicit-receiver calls, with a carve-out for self.attr= setter syntax.",
+      "tags": ["oop", "classes"]
+    },
+    {
+      "id": "ruby-q-10-classes-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "class Dog\n  attr_reader :name\n  def initialize(name) = @name = name\n  def bark = \"#{@name} says woof\"\n  def self.species = \"Canis familiaris\"\nend\n\nd = Dog.new(\"Captain\")\nputs d.bark\nputs Dog.species",
+      "language": "ruby",
+      "answer": "Captain says woof\nCanis familiaris",
+      "explanation": "bark is an instance method using @name; species is a class-level method defined with def self.",
+      "tags": ["oop", "classes"]
+    },
+    {
+      "id": "ruby-q-10-classes-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: `attr_reader :name` is roughly shorthand for defining this getter method body.",
+      "template": "def name; _____; end",
+      "answer": "@name",
+      "accept": ["@name"],
+      "explanation": "attr_reader generates a method that simply returns the matching instance variable.",
+      "tags": ["oop", "classes"]
+    },
+    {
+      "id": "ruby-q-10-classes-coding-1",
+      "type": "coding",
+      "prompt": "Define a class Cat with attr_reader :name, an initialize(name), and an instance method meow returning \"#{name} says meow\". Print Cat.new(\"Tom\").meow.",
+      "starterCode": "class Cat\n  # TODO\nend\n\nputs Cat.new(\"Tom\").meow\n",
+      "language": "ruby",
+      "referenceSolution": "class Cat\n  attr_reader :name\n\n  def initialize(name)\n    @name = name\n  end\n\n  def meow\n    \"#{name} says meow\"\n  end\nend\n\nputs Cat.new(\"Tom\").meow\n",
+      "expectedOutput": "Tom says meow",
+      "explanation": "attr_reader exposes @name as name, which meow uses via interpolation.",
+      "tags": ["oop", "classes"]
+    },
+    {
+      "id": "ruby-q-11-modules-mixins-mcq-1",
+      "type": "mcq",
+      "prompt": "What does `include SomeModule` do to a class?",
+      "options": [
+        { "id": "a", "text": "Adds the module's methods as class (static) methods" },
+        { "id": "b", "text": "Adds the module's methods as instance methods" },
+        { "id": "c", "text": "Copies only the module's constants" },
+        { "id": "d", "text": "Removes existing instance methods" }
+      ],
+      "answer": "b",
+      "explanation": "include mixes a module's methods into a class's instance method lookup chain.",
+      "tags": ["modules", "mixins"]
+    },
+    {
+      "id": "ruby-q-11-modules-mixins-mcq-2",
+      "type": "mcq",
+      "prompt": "What must a class implement to get comparison operators like < and between? from Comparable?",
+      "options": [
+        { "id": "a", "text": "each" },
+        { "id": "b", "text": "<=>" },
+        { "id": "c", "text": "to_s" },
+        { "id": "d", "text": "== only" }
+      ],
+      "answer": "b",
+      "explanation": "Comparable derives <, >, ==, and between? from a single <=> (spaceship) implementation.",
+      "tags": ["modules", "mixins"]
+    },
+    {
+      "id": "ruby-q-11-modules-mixins-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Ruby modules are true?",
+      "options": [
+        { "id": "a", "text": "extend adds a module's methods as class or singleton methods" },
+        { "id": "b", "text": "prepend inserts a module before the class in the ancestor chain" },
+        { "id": "c", "text": "A module can be instantiated directly with .new, like a class" },
+        { "id": "d", "text": "Modules can hold constants and namespace related code" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Modules cannot be instantiated; they exist for namespacing and mixins via include/extend/prepend.",
+      "tags": ["modules", "mixins"]
+    },
+    {
+      "id": "ruby-q-11-modules-mixins-coding-1",
+      "type": "coding",
+      "prompt": "Create a class Version that includes Comparable, has major and minor attrs, and compares by [major, minor]. Print whether Version.new(1, 2) < Version.new(1, 10).",
+      "starterCode": "class Version\n  include Comparable\n  attr_reader :major, :minor\n  def initialize(major, minor)\n    @major = major\n    @minor = minor\n  end\n  # TODO: define <=>\nend\n\nputs Version.new(1, 2) < Version.new(1, 10)\n",
+      "language": "ruby",
+      "referenceSolution": "class Version\n  include Comparable\n  attr_reader :major, :minor\n  def initialize(major, minor)\n    @major = major\n    @minor = minor\n  end\n\n  def <=>(other)\n    [major, minor] <=> [other.major, other.minor]\n  end\nend\n\nputs Version.new(1, 2) < Version.new(1, 10)\n",
+      "expectedOutput": "true",
+      "explanation": "Comparing [1, 2] <=> [1, 10] delegates to Array's lexicographic comparison, giving -1 (less than).",
+      "tags": ["modules", "mixins"]
+    },
+    {
+      "id": "ruby-q-12-duck-typing-mcq-1",
+      "type": "mcq",
+      "prompt": "What is \"duck typing\" in Ruby?",
+      "options": [
+        { "id": "a", "text": "Checking an object's declared class before calling any method" },
+        { "id": "b", "text": "Caring about whether an object responds to the needed methods, not its declared type" },
+        { "id": "c", "text": "A static type-checking tool bundled with Ruby" },
+        { "id": "d", "text": "A design pattern that only applies to arrays" }
+      ],
+      "answer": "b",
+      "explanation": "Ruby favors behavior over declared type: if an object responds to the right methods, it can be used.",
+      "tags": ["oop", "design"]
+    },
+    {
+      "id": "ruby-q-12-duck-typing-mcq-2",
+      "type": "mcq",
+      "prompt": "Which method lets you check if an object supports a specific method before calling it?",
+      "options": [
+        { "id": "a", "text": "is_a?" },
+        { "id": "b", "text": "respond_to?" },
+        { "id": "c", "text": "kind_of?" },
+        { "id": "d", "text": "class ==" }
+      ],
+      "answer": "b",
+      "explanation": "respond_to?(:method_name) checks behavior directly, independent of the object's class.",
+      "tags": ["oop", "design"]
+    },
+    {
+      "id": "ruby-q-12-duck-typing-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: `def describe(collection); \"#{collection._____} items\"; end` works for Array, Hash, and String because they all respond to it.",
+      "template": "collection._____",
+      "answer": "size",
+      "accept": ["size", "length"],
+      "explanation": "Array, Hash, and String all implement size (and length), so duck typing lets one method work across types.",
+      "tags": ["oop", "design"]
+    },
+    {
+      "id": "ruby-q-12-duck-typing-multi-1",
+      "type": "multi",
+      "prompt": "Which of these objects respond to .size and could be passed to a duck-typed describe(collection) method?",
+      "options": [
+        { "id": "a", "text": "[1, 2, 3]" },
+        { "id": "b", "text": "{ a: 1, b: 2 }" },
+        { "id": "c", "text": "\"ahoy\"" },
+        { "id": "d", "text": "nil" }
+      ],
+      "answers": ["a", "b", "c"],
+      "explanation": "Array, Hash, and String all define size; nil does not, so calling nil.size raises NoMethodError.",
+      "tags": ["oop", "design"]
+    },
+    {
+      "id": "ruby-q-13-exceptions-mcq-1",
+      "type": "mcq",
+      "prompt": "What does a bare `rescue` (with no class specified) catch?",
+      "options": [
+        { "id": "a", "text": "Every Exception, including fatal system ones" },
+        { "id": "b", "text": "Only StandardError and its subclasses" },
+        { "id": "c", "text": "Only custom error classes" },
+        { "id": "d", "text": "Nothing; it's invalid syntax" }
+      ],
+      "answer": "b",
+      "explanation": "A bare rescue defaults to StandardError, deliberately leaving truly fatal Exceptions uncaught.",
+      "tags": ["exceptions", "errors"]
+    },
+    {
+      "id": "ruby-q-13-exceptions-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Ruby exceptions are true?",
+      "options": [
+        { "id": "a", "text": "ensure code always runs whether or not an exception was raised" },
+        { "id": "b", "text": "Custom domain errors should generally subclass StandardError" },
+        { "id": "c", "text": "retry re-enters the begin block" },
+        { "id": "d", "text": "raise can only be used with the base Exception class" }
+      ],
+      "answers": ["a", "b", "c"],
+      "explanation": "raise works with any Exception subclass; StandardError is the conventional base for domain errors.",
+      "tags": ["exceptions", "errors"]
+    },
+    {
+      "id": "ruby-q-13-exceptions-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "class NotFound < StandardError; end\n\ndef find(id)\n  raise NotFound, \"id=#{id}\" if id.nil?\n  { id: id }\nend\n\nbegin\n  find(nil)\nrescue NotFound => e\n  puts \"handled: #{e.message}\"\nensure\n  puts \"cleanup\"\nend",
+      "language": "ruby",
+      "answer": "handled: id=\ncleanup",
+      "explanation": "id is nil so it interpolates to an empty string, giving message \"id=\"; ensure always runs afterward.",
+      "tags": ["exceptions", "errors"]
+    },
+    {
+      "id": "ruby-q-13-exceptions-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: catching a NotFound error and binding it to a local variable is written like this.",
+      "template": "rescue NotFound _____ e",
+      "answer": "=>",
+      "accept": ["=>"],
+      "explanation": "The => operator binds the rescued exception instance to the given variable name.",
+      "tags": ["exceptions", "errors"]
+    },
+    {
+      "id": "ruby-q-13-exceptions-coding-1",
+      "type": "coding",
+      "prompt": "Define a custom error InvalidAge < StandardError. Write validate_age(age) that raises InvalidAge, \"age must be positive\" if age <= 0, otherwise returns age. Call validate_age(-1) inside begin/rescue and print the error message.",
+      "starterCode": "class InvalidAge < StandardError; end\n\ndef validate_age(age)\n  # TODO\nend\n\nbegin\n  validate_age(-1)\nrescue InvalidAge => e\n  puts \"error: #{e.message}\"\nend\n",
+      "language": "ruby",
+      "referenceSolution": "class InvalidAge < StandardError; end\n\ndef validate_age(age)\n  raise InvalidAge, \"age must be positive\" if age <= 0\n  age\nend\n\nbegin\n  validate_age(-1)\nrescue InvalidAge => e\n  puts \"error: #{e.message}\"\nend\n",
+      "expectedOutput": "error: age must be positive",
+      "explanation": "Guard clauses that raise custom errors keep validation logic readable and rescuable by type.",
+      "tags": ["exceptions", "errors"]
+    },
+    {
+      "id": "ruby-q-14-pattern-matching-mcq-1",
+      "type": "mcq",
+      "prompt": "Which keyword introduces a pattern-matching arm in a case expression (Ruby 3+)?",
+      "options": [
+        { "id": "a", "text": "when" },
+        { "id": "b", "text": "in" },
+        { "id": "c", "text": "match" },
+        { "id": "d", "text": "is" }
+      ],
+      "answer": "b",
+      "explanation": "case/in is Ruby's pattern matching syntax, distinct from case/when.",
+      "tags": ["pattern-matching", "ruby3"]
+    },
+    {
+      "id": "ruby-q-14-pattern-matching-mcq-2",
+      "type": "mcq",
+      "prompt": "In `case payload; in { type: \"user\", id: } ... end`, what does the bare `id:` do?",
+      "options": [
+        { "id": "a", "text": "Requires the key id to equal true" },
+        { "id": "b", "text": "Matches the value at key :id and binds it to a local variable id" },
+        { "id": "c", "text": "Ignores the id key entirely" },
+        { "id": "d", "text": "Raises a syntax error" }
+      ],
+      "answer": "b",
+      "explanation": "Shorthand hash pattern keys both match the key's presence and bind its value to a local variable.",
+      "tags": ["pattern-matching", "ruby3"]
+    },
+    {
+      "id": "ruby-q-14-pattern-matching-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: to bind a matched value to a local variable in a pattern, you use this operator.",
+      "template": "in Integer _____ n",
+      "answer": "=>",
+      "accept": ["=>"],
+      "explanation": "In pattern matching, => binds whatever matched the pattern on its left to the name on its right.",
+      "tags": ["pattern-matching", "ruby3"]
+    },
+    {
+      "id": "ruby-q-14-pattern-matching-coding-1",
+      "type": "coding",
+      "prompt": "Write a case/in expression for `payload = { type: \"ping\" }` that matches `{ type: \"user\", id:, name: }` printing \"user #{id}: #{name}\", matches `{ type: \"ping\" }` printing 'pong', and otherwise prints 'unknown'.",
+      "starterCode": "payload = { type: \"ping\" }\n\n# TODO: case/in matching\n",
+      "language": "ruby",
+      "referenceSolution": "payload = { type: \"ping\" }\n\ncase payload\nin { type: \"user\", id:, name: }\n  puts \"user #{id}: #{name}\"\nin { type: \"ping\" }\n  puts \"pong\"\nelse\n  puts \"unknown\"\nend\n",
+      "expectedOutput": "pong",
+      "explanation": "The payload lacks a matching type: \"user\" key, so it falls through to the { type: \"ping\" } arm.",
+      "tags": ["pattern-matching", "ruby3"]
+    },
+    {
+      "id": "ruby-q-15-enumerators-lazy-mcq-1",
+      "type": "mcq",
+      "prompt": "What does calling `.each` without a block return?",
+      "options": [
+        { "id": "a", "text": "nil" },
+        { "id": "b", "text": "An Enumerator" },
+        { "id": "c", "text": "An Array" },
+        { "id": "d", "text": "A syntax error" }
+      ],
+      "answer": "b",
+      "explanation": "Without a block, iterator methods return an Enumerator that can be chained or driven manually.",
+      "tags": ["enumerable", "lazy"]
+    },
+    {
+      "id": "ruby-q-15-enumerators-lazy-mcq-2",
+      "type": "mcq",
+      "prompt": "Why use `.lazy` on a pipeline built from `(1..)`?",
+      "options": [
+        { "id": "a", "text": "It automatically sorts the elements" },
+        { "id": "b", "text": "It defers evaluation so the pipeline can work with infinite or huge sequences without building large intermediate arrays" },
+        { "id": "c", "text": "It parallelizes the computation across threads" },
+        { "id": "d", "text": "It caches results permanently across calls" }
+      ],
+      "answer": "b",
+      "explanation": "lazy builds a pipeline of deferred operations, only computing values as they're pulled by take/first/force.",
+      "tags": ["enumerable", "lazy"]
+    },
+    {
+      "id": "ruby-q-15-enumerators-lazy-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: this method call on a lazy enumerator triggers evaluation and returns a real array.",
+      "template": "(1..).lazy.select(&:odd?).map { |n| n * n }.take(3)._____",
+      "answer": "force",
+      "accept": ["force", "to_a"],
+      "explanation": "force (or to_a) pulls values through the lazy pipeline and materializes them into an Array.",
+      "tags": ["enumerable", "lazy"]
+    },
+    {
+      "id": "ruby-q-15-enumerators-lazy-coding-1",
+      "type": "coding",
+      "prompt": "Using a lazy enumerator on (1..), select even numbers, map each to its square, take the first 3, and print the forced array.",
+      "starterCode": "result = nil # TODO\nputs result.inspect\n",
+      "language": "ruby",
+      "referenceSolution": "result = (1..).lazy.select(&:even?).map { |n| n * n }.take(3).force\nputs result.inspect\n",
+      "expectedOutput": "[4, 16, 36]",
+      "explanation": "The lazy chain only computes as many even squares as needed to satisfy take(3).",
+      "tags": ["enumerable", "lazy"]
+    },
+    {
+      "id": "ruby-q-16-gems-bundler-mcq-1",
+      "type": "mcq",
+      "prompt": "What file does `bundle install` generate to lock exact dependency versions?",
+      "options": [
+        { "id": "a", "text": "Gemfile" },
+        { "id": "b", "text": "Gemfile.lock" },
+        { "id": "c", "text": "bundle.json" },
+        { "id": "d", "text": "package-lock.json" }
+      ],
+      "answer": "b",
+      "explanation": "Gemfile.lock records the exact resolved versions and should be committed for applications.",
+      "tags": ["tooling", "bundler"]
+    },
+    {
+      "id": "ruby-q-16-gems-bundler-mcq-2",
+      "type": "mcq",
+      "prompt": "What does the version constraint \"~> 2.1\" allow?",
+      "options": [
+        { "id": "a", "text": "Any version at all" },
+        { "id": "b", "text": "Only exactly version 2.1.0" },
+        { "id": "c", "text": "2.1.x releases, but not 3.0" },
+        { "id": "d", "text": "Any version below 2.1" }
+      ],
+      "answer": "c",
+      "explanation": "The pessimistic operator ~> 2.1 allows patch/minor updates within 2.1.x but blocks 3.0.",
+      "tags": ["tooling", "bundler"]
+    },
+    {
+      "id": "ruby-q-16-gems-bundler-multi-1",
+      "type": "multi",
+      "prompt": "Which practices are recommended when managing gem dependencies?",
+      "options": [
+        { "id": "a", "text": "Commit Gemfile.lock for applications" },
+        { "id": "b", "text": "Run tools with bundle exec to use the locked versions" },
+        { "id": "c", "text": "Always float dependencies to the latest version with no constraints" },
+        { "id": "d", "text": "Use pessimistic version constraints like ~>" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Floating unconstrained dependencies risks unexpected breakage; pinning plus a lockfile is safer.",
+      "tags": ["tooling", "bundler"]
+    },
+    {
+      "id": "ruby-q-16-gems-bundler-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: this command ensures a tool runs with the exact gem versions from Gemfile.lock.",
+      "template": "_____ exec rspec",
+      "answer": "bundle",
+      "accept": ["bundle"],
+      "explanation": "bundle exec runs a command within the context of the bundled (locked) gem versions.",
+      "tags": ["tooling", "bundler"]
+    },
+    {
+      "id": "ruby-q-17-testing-mcq-1",
+      "type": "mcq",
+      "prompt": "Which testing library ships with Ruby's standard library?",
+      "options": [
+        { "id": "a", "text": "RSpec" },
+        { "id": "b", "text": "Minitest" },
+        { "id": "c", "text": "Jasmine" },
+        { "id": "d", "text": "Cucumber" }
+      ],
+      "answer": "b",
+      "explanation": "Minitest is bundled with Ruby, while RSpec is a separate popular gem.",
+      "tags": ["testing"]
+    },
+    {
+      "id": "ruby-q-17-testing-mcq-2",
+      "type": "mcq",
+      "prompt": "In RSpec, which method sets an expectation on a value?",
+      "options": [
+        { "id": "a", "text": "assert" },
+        { "id": "b", "text": "expect" },
+        { "id": "c", "text": "should_be" },
+        { "id": "d", "text": "verify" }
+      ],
+      "answer": "b",
+      "explanation": "RSpec's expressive DSL uses expect(value).to matcher for assertions.",
+      "tags": ["testing"]
+    },
+    {
+      "id": "ruby-q-17-testing-multi-1",
+      "type": "multi",
+      "prompt": "Which are good testing practices for Ruby projects?",
+      "options": [
+        { "id": "a", "text": "Prefer testing behavior at public boundaries" },
+        { "id": "b", "text": "Use table-driven examples or factories over one giant fixture file" },
+        { "id": "c", "text": "Over-mock everything so no real code path ever runs" },
+        { "id": "d", "text": "Minitest offers assert_equal and assert_raises" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Over-mocking tends to hide real bugs; testing public behavior with focused examples is preferred.",
+      "tags": ["testing"]
+    },
+    {
+      "id": "ruby-q-17-testing-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: this Minitest assertion checks that two values are equal.",
+      "template": "assert_____(6, [1, 2, 3].sum)",
+      "answer": "_equal",
+      "accept": ["_equal", "equal"],
+      "explanation": "assert_equal(expected, actual) is Minitest's core equality assertion.",
+      "tags": ["testing"]
+    },
+    {
+      "id": "ruby-q-18-stdlib-highlights-mcq-1",
+      "type": "mcq",
+      "prompt": "What does `Set[1, 2, 2, 3].to_a` return?",
+      "options": [
+        { "id": "a", "text": "[1, 2, 2, 3]" },
+        { "id": "b", "text": "[1, 2, 3] (order may vary)" },
+        { "id": "c", "text": "{1, 2, 3}" },
+        { "id": "d", "text": "It raises an error" }
+      ],
+      "answer": "b",
+      "explanation": "Set deduplicates elements, so converting to an array drops the repeated 2.",
+      "tags": ["stdlib"]
+    },
+    {
+      "id": "ruby-q-18-stdlib-highlights-mcq-2",
+      "type": "mcq",
+      "prompt": "What is the advantage of Data.define (Ruby 3.2+) over Struct.new?",
+      "options": [
+        { "id": "a", "text": "It's mutable by default" },
+        { "id": "b", "text": "It creates immutable value objects" },
+        { "id": "c", "text": "It's always slower" },
+        { "id": "d", "text": "It only supports symbol values" }
+      ],
+      "answer": "b",
+      "explanation": "Data.define builds frozen, immutable value objects, preventing accidental mutation bugs.",
+      "tags": ["stdlib"]
+    },
+    {
+      "id": "ruby-q-18-stdlib-highlights-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: this Struct option allows constructing instances with named arguments like Point.new(x: 1, y: 2).",
+      "template": "Struct.new(:x, :y, _____: true)",
+      "answer": "keyword_init",
+      "accept": ["keyword_init"],
+      "explanation": "keyword_init: true makes the generated Struct's constructor accept keyword arguments.",
+      "tags": ["stdlib"]
+    },
+    {
+      "id": "ruby-q-18-stdlib-highlights-coding-1",
+      "type": "coding",
+      "prompt": "Require 'set', build Set[1, 2, 2, 3], and print its to_a.sort.inspect.",
+      "starterCode": "require \"set\"\n\n# TODO\n",
+      "language": "ruby",
+      "referenceSolution": "require \"set\"\n\nputs Set[1, 2, 2, 3].to_a.sort.inspect\n",
+      "expectedOutput": "[1, 2, 3]",
+      "explanation": "Sets automatically deduplicate; sorting gives a deterministic array for printing.",
+      "tags": ["stdlib"]
+    },
+    {
+      "id": "ruby-q-19-metaprogramming-mcq-1",
+      "type": "mcq",
+      "prompt": "What does define_method let you do?",
+      "options": [
+        { "id": "a", "text": "Delete a method from a class" },
+        { "id": "b", "text": "Define a method dynamically at runtime from a name and a block" },
+        { "id": "c", "text": "Convert a method into a symbol" },
+        { "id": "d", "text": "Freeze a method so it cannot be redefined" }
+      ],
+      "answer": "b",
+      "explanation": "define_method generates methods programmatically, avoiding repetitive method definitions or eval strings.",
+      "tags": ["metaprogramming"]
+    },
+    {
+      "id": "ruby-q-19-metaprogramming-multi-1",
+      "type": "multi",
+      "prompt": "Which practices are recommended around metaprogramming in Ruby?",
+      "options": [
+        { "id": "a", "text": "Pair method_missing with respond_to_missing?" },
+        { "id": "b", "text": "Prefer define_method over building code with eval strings" },
+        { "id": "c", "text": "Use send freely on unsanitized user input" },
+        { "id": "d", "text": "Prefer public_send when the method name comes from user input" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "send bypasses visibility and is dangerous with untrusted input; public_send respects encapsulation.",
+      "tags": ["metaprogramming"]
+    },
+    {
+      "id": "ruby-q-19-metaprogramming-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "class Widget\n  %i[start stop reset].each do |action|\n    define_method(action) { \"#{action} ok\" }\n  end\nend\n\nw = Widget.new\nputs w.start\nputs w.public_send(:stop)",
+      "language": "ruby",
+      "answer": "start ok\nstop ok",
+      "explanation": "define_method generated start, stop, and reset methods, each returning a string built from its action name.",
+      "tags": ["metaprogramming"]
+    },
+    {
+      "id": "ruby-q-19-metaprogramming-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: intercepting calls to undefined methods is done by overriding this hook, which should be paired with respond_to_missing?.",
+      "template": "def _____(name, *args)",
+      "answer": "method_missing",
+      "accept": ["method_missing"],
+      "explanation": "method_missing is called when no matching method is found, enabling dynamic proxies and DSLs.",
+      "tags": ["metaprogramming"]
+    },
+    {
+      "id": "ruby-q-19-metaprogramming-coding-1",
+      "type": "coding",
+      "prompt": "Use define_method inside a class Actions to dynamically define go and stop methods that each return \"#{name} executed\". Print both.",
+      "starterCode": "class Actions\n  # TODO: use define_method for :go and :stop\nend\n\na = Actions.new\nputs a.go\nputs a.stop\n",
+      "language": "ruby",
+      "referenceSolution": "class Actions\n  %i[go stop].each do |name|\n    define_method(name) { \"#{name} executed\" }\n  end\nend\n\na = Actions.new\nputs a.go\nputs a.stop\n",
+      "expectedOutput": "go executed\nstop executed",
+      "explanation": "Iterating over a symbol list with define_method avoids writing near-identical methods by hand.",
+      "tags": ["metaprogramming"]
+    },
+    {
+      "id": "ruby-q-20-singleton-eigenclass-mcq-1",
+      "type": "mcq",
+      "prompt": "What does `class << self` inside a class body do?",
+      "options": [
+        { "id": "a", "text": "Opens the singleton class of the class itself, for defining class methods" },
+        { "id": "b", "text": "Creates a subclass" },
+        { "id": "c", "text": "Defines regular instance methods" },
+        { "id": "d", "text": "Deletes self" }
+      ],
+      "answer": "a",
+      "explanation": "class << self opens the eigenclass of the current class, a common way to group class-level methods.",
+      "tags": ["oop", "metaprogramming"]
+    },
+    {
+      "id": "ruby-q-20-singleton-eigenclass-mcq-2",
+      "type": "mcq",
+      "prompt": "Where do methods defined directly on a single object instance live?",
+      "options": [
+        { "id": "a", "text": "In the object's class" },
+        { "id": "b", "text": "In the object's singleton (eigen)class" },
+        { "id": "c", "text": "In the Object class" },
+        { "id": "d", "text": "Nowhere; it's not possible in Ruby" }
+      ],
+      "answer": "b",
+      "explanation": "Every object has its own singleton class where per-object methods are stored.",
+      "tags": ["oop", "metaprogramming"]
+    },
+    {
+      "id": "ruby-q-20-singleton-eigenclass-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about singleton classes are true?",
+      "options": [
+        { "id": "a", "text": "def self.foo is an alternative to class << self for a single method" },
+        { "id": "b", "text": "obj.singleton_class.ancestors shows the method lookup path" },
+        { "id": "c", "text": "Every Ruby object can have its own singleton class" },
+        { "id": "d", "text": "Singleton classes only exist for the top-level main object" }
+      ],
+      "answers": ["a", "b", "c"],
+      "explanation": "Any object—not just main—can have a singleton class holding methods defined only on it.",
+      "tags": ["oop", "metaprogramming"]
+    },
+    {
+      "id": "ruby-q-20-singleton-eigenclass-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "class Config\n  class << self\n    attr_accessor :env\n    def load! = @env = \"production\"\n  end\nend\n\nConfig.load!\nputs Config.env",
+      "language": "ruby",
+      "answer": "production",
+      "explanation": "class << self defines env/env= and load! as class methods on Config's singleton class.",
+      "tags": ["oop", "metaprogramming"]
+    },
+    {
+      "id": "ruby-q-21-refinements-mcq-1",
+      "type": "mcq",
+      "prompt": "What is a downside of monkey-patching a core class like String directly?",
+      "options": [
+        { "id": "a", "text": "It's impossible in Ruby" },
+        { "id": "b", "text": "The change is global and affects the entire process" },
+        { "id": "c", "text": "It only affects a single object" },
+        { "id": "d", "text": "It requires installing a gem" }
+      ],
+      "answer": "b",
+      "explanation": "Reopening a core class changes it everywhere in the process, which can surprise unrelated code.",
+      "tags": ["refinements", "design"]
+    },
+    {
+      "id": "ruby-q-21-refinements-mcq-2",
+      "type": "mcq",
+      "prompt": "How do you activate a refinement in the current file or scope?",
+      "options": [
+        { "id": "a", "text": "require it like a normal file" },
+        { "id": "b", "text": "using MyRefinement" },
+        { "id": "c", "text": "include MyRefinement" },
+        { "id": "d", "text": "Refinements activate automatically everywhere" }
+      ],
+      "answer": "b",
+      "explanation": "using scopes a refinement's effect to the current file or module, unlike global monkey-patching.",
+      "tags": ["refinements", "design"]
+    },
+    {
+      "id": "ruby-q-21-refinements-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about refinements are true?",
+      "options": [
+        { "id": "a", "text": "They scope monkey-patch-like changes to a file or module" },
+        { "id": "b", "text": "They are activated with using" },
+        { "id": "c", "text": "They affect every object in the process globally, exactly like monkey-patching" },
+        { "id": "d", "text": "refine String do ... end defines refined methods for String" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Unlike monkey-patching, refinements only apply where explicitly activated with using.",
+      "tags": ["refinements", "design"]
+    },
+    {
+      "id": "ruby-q-21-refinements-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: after defining `refine String do ... end` inside module StringOps, this activates it in the current file.",
+      "template": "_____ StringOps",
+      "answer": "using",
+      "accept": ["using"],
+      "explanation": "using StringOps turns on the refinement for the remainder of the current file or scope.",
+      "tags": ["refinements", "design"]
+    },
+    {
+      "id": "ruby-q-22-immutability-mcq-1",
+      "type": "mcq",
+      "prompt": "What happens when you try to mutate a frozen string?",
+      "options": [
+        { "id": "a", "text": "It silently does nothing" },
+        { "id": "b", "text": "It raises FrozenError" },
+        { "id": "c", "text": "It automatically creates and returns a copy" },
+        { "id": "d", "text": "It unfreezes itself automatically" }
+      ],
+      "answer": "b",
+      "explanation": "Mutating a frozen object raises FrozenError instead of silently succeeding or copying.",
+      "tags": ["performance", "immutability"]
+    },
+    {
+      "id": "ruby-q-22-immutability-mcq-2",
+      "type": "mcq",
+      "prompt": "What's the key difference between dup and clone?",
+      "options": [
+        { "id": "a", "text": "They are identical in every way" },
+        { "id": "b", "text": "dup preserves frozen state, clone does not" },
+        { "id": "c", "text": "clone can preserve frozen state and singleton methods, dup does not" },
+        { "id": "d", "text": "Neither one actually copies the object" }
+      ],
+      "answer": "c",
+      "explanation": "clone is the more faithful copy, preserving frozen status and singleton methods; dup does not.",
+      "tags": ["performance", "immutability"]
+    },
+    {
+      "id": "ruby-q-22-immutability-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "msg = \"ahoy\"\nbegin\n  msg.freeze\n  msg << \"!\"\nrescue FrozenError => e\n  puts e.class\nend",
+      "language": "ruby",
+      "answer": "FrozenError",
+      "explanation": "Freezing the string makes the subsequent << mutation raise FrozenError, which is caught and its class printed.",
+      "tags": ["performance", "immutability"]
+    },
+    {
+      "id": "ruby-q-22-immutability-fill-1",
+      "type": "fill",
+      "prompt": "Fill in the blank: adding `# frozen_string_literal: true` at the top of a file freezes string _____ by default.",
+      "template": "freezes string _____ by default",
+      "answer": "literals",
+      "accept": ["literals", "literal"],
+      "explanation": "The magic comment freezes every string literal in the file automatically.",
+      "tags": ["performance", "immutability"]
+    },
+    {
+      "id": "ruby-q-23-concurrency-mcq-1",
+      "type": "mcq",
+      "prompt": "What does the GVL (Global VM Lock) in MRI Ruby prevent?",
+      "options": [
+        { "id": "a", "text": "Any use of threads whatsoever" },
+        { "id": "b", "text": "True parallel execution of CPU-bound Ruby code across threads" },
+        { "id": "c", "text": "IO from ever happening concurrently" },
+        { "id": "d", "text": "Fibers from being created" }
+      ],
+      "answer": "b",
+      "explanation": "The GVL serializes CPU-bound Ruby execution across threads, though threads still help with IO-bound work.",
+      "tags": ["concurrency", "threads"]
+    },
+    {
+      "id": "ruby-q-23-concurrency-mcq-2",
+      "type": "mcq",
+      "prompt": "What is the main use case for Ractors?",
+      "options": [
+        { "id": "a", "text": "Cooperative single-threaded IO scheduling" },
+        { "id": "b", "text": "Isolated-memory parallel CPU work via message passing" },
+        { "id": "c", "text": "Replacing all uses of Thread" },
+        { "id": "d", "text": "String formatting" }
+      ],
+      "answer": "b",
+      "explanation": "Ractors give true parallel CPU execution by isolating memory and communicating via message passing.",
+      "tags": ["concurrency", "threads"]
+    },
+    {
+      "id": "ruby-q-23-concurrency-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Ruby concurrency are true?",
+      "options": [
+        { "id": "a", "text": "Threads release the GVL during blocking IO, helping IO-bound concurrency" },
+        { "id": "b", "text": "Fibers are cooperative coroutines" },
+        { "id": "c", "text": "Ractors share all memory freely with no restrictions" },
+        { "id": "d", "text": "For multi-core CPU-bound work, processes or Ractors are options since threads are limited by the GVL" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Ractors deliberately restrict shared memory, requiring immutable or deep-copied data between them.",
+      "tags": ["concurrency", "threads"]
+    },
+    {
+      "id": "ruby-q-23-concurrency-output-1",
+      "type": "output",
+      "prompt": "What prints?",
+      "code": "threads = 3.times.map do |i|\n  Thread.new { \"worker-#{i}\" }\nend\nputs threads.map(&:value).sort.join(\", \")",
+      "language": "ruby",
+      "answer": "worker-0, worker-1, worker-2",
+      "explanation": "Thread#value waits for each thread and returns its block's result; sorting gives deterministic order.",
+      "tags": ["concurrency", "threads"]
+    },
+    {
+      "id": "ruby-q-24-yjit-profiling-mcq-1",
+      "type": "mcq",
+      "prompt": "What is YJIT?",
+      "options": [
+        { "id": "a", "text": "A unit testing framework" },
+        { "id": "b", "text": "Ruby's just-in-time compiler, which can reduce latency on real workloads" },
+        { "id": "c", "text": "A gem dependency manager" },
+        { "id": "d", "text": "A linter for style violations" }
+      ],
+      "answer": "b",
+      "explanation": "YJIT is Ruby's built-in JIT compiler, often improving throughput/latency on production apps.",
+      "tags": ["performance", "yjit"]
+    },
+    {
+      "id": "ruby-q-24-yjit-profiling-mcq-2",
+      "type": "mcq",
+      "prompt": "What should you do before optimizing 'slow' Ruby code?",
+      "options": [
+        { "id": "a", "text": "Immediately rewrite the hot path in C" },
+        { "id": "b", "text": "Profile and measure first, e.g. with benchmark, stackprof, or Vernier" },
+        { "id": "c", "text": "Add more threads to the code" },
+        { "id": "d", "text": "Assume the interpreter is always at fault" }
+      ],
+      "answer": "b",
+      "explanation": "Most 'slow Ruby' turns out to be IO, N+1 queries, or excess allocations, which profiling reveals.",
+      "tags": ["performance", "yjit"]
+    },
+    {
+      "id": "ruby-q-24-yjit-profiling-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about performance in Ruby are true?",
+      "options": [
+        { "id": "a", "text": "Most 'slow Ruby' turns out to be IO, N+1 queries, or excess allocations rather than missing micro-optimizations" },
+        { "id": "b", "text": "YJIT can be enabled with --yjit or RUBY_YJIT_ENABLE=1" },
+        { "id": "c", "text": "You should always optimize before measuring" },
+        { "id": "d", "text": "Lazy enumerators can help avoid building huge intermediate arrays in hot paths" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Measuring first avoids wasted effort optimizing code paths that aren't actually the bottleneck.",
+      "tags": ["performance", "yjit"]
+    },
+    {
+      "id": "ruby-q-24-yjit-profiling-coding-1",
+      "type": "coding",
+      "prompt": "Require 'benchmark', measure the realtime of an empty block, and print the class of the returned value.",
+      "starterCode": "require \"benchmark\"\n\nelapsed = nil # TODO: measure Benchmark.realtime of an empty block\nputs elapsed.class\n",
+      "language": "ruby",
+      "referenceSolution": "require \"benchmark\"\n\nelapsed = Benchmark.realtime {}\nputs elapsed.class\n",
+      "expectedOutput": "Float",
+      "explanation": "Benchmark.realtime always returns a Float number of seconds, regardless of how fast the block runs.",
+      "tags": ["performance", "yjit"]
+    }
+  ]
+}

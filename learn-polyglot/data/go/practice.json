@@ -1,0 +1,75 @@
+{
+  "language": "go",
+  "problems": [
+    {
+      "id": "go-practice-fizzbuzz",
+      "title": "FizzBuzz",
+      "prompt": "Print numbers 1..15, but print `Fizz` for multiples of 3, `Buzz` for multiples of 5, and `FizzBuzz` for multiples of both.",
+      "difficulty": "junior",
+      "hints": [
+        "Check divisibility by 15 first.",
+        "Use a switch with modulo cases."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  for i := 1; i <= 15; i++ {\n    // TODO\n    fmt.Println(i)\n  }\n}\n",
+      "solution": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  for i := 1; i <= 15; i++ {\n    switch {\n    case i%15 == 0:\n      fmt.Println(\"FizzBuzz\")\n    case i%3 == 0:\n      fmt.Println(\"Fizz\")\n    case i%5 == 0:\n      fmt.Println(\"Buzz\")\n    default:\n      fmt.Println(i)\n    }\n  }\n}\n",
+      "expectedOutput": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz"
+    },
+    {
+      "id": "go-practice-reverse",
+      "title": "Reverse a string",
+      "prompt": "Reverse a string by runes so multibyte characters stay intact. Print the reverse of `hello`.",
+      "difficulty": "junior",
+      "hints": [
+        "Convert to []rune before swapping.",
+        "Two-pointer swap from both ends."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc reverse(s string) string {\n  // TODO\n  return s\n}\n\nfunc main() {\n  fmt.Println(reverse(\"hello\"))\n}\n",
+      "solution": "package main\n\nimport \"fmt\"\n\nfunc reverse(s string) string {\n  r := []rune(s)\n  for i, j := 0, len(r)-1; i < j; i, j = i+1, j-1 {\n    r[i], r[j] = r[j], r[i]\n  }\n  return string(r)\n}\n\nfunc main() {\n  fmt.Println(reverse(\"hello\"))\n}\n",
+      "expectedOutput": "olleh"
+    },
+    {
+      "id": "go-practice-twosum",
+      "title": "Two Sum",
+      "prompt": "Given `nums` and a `target`, return the indices of the two numbers that add up to the target. For `[2, 7, 11, 15]` and target `9`, print the indices separated by a space.",
+      "difficulty": "mid",
+      "hints": [
+        "Store each value's index in a map as you scan.",
+        "For each n, look up target-n."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc twoSum(nums []int, target int) (int, int) {\n  // TODO\n  return -1, -1\n}\n\nfunc main() {\n  i, j := twoSum([]int{2, 7, 11, 15}, 9)\n  fmt.Printf(\"%d %d\\n\", i, j)\n}\n",
+      "solution": "package main\n\nimport \"fmt\"\n\nfunc twoSum(nums []int, target int) (int, int) {\n  seen := map[int]int{}\n  for i, n := range nums {\n    if j, ok := seen[target-n]; ok {\n      return j, i\n    }\n    seen[n] = i\n  }\n  return -1, -1\n}\n\nfunc main() {\n  i, j := twoSum([]int{2, 7, 11, 15}, 9)\n  fmt.Printf(\"%d %d\\n\", i, j)\n}\n",
+      "expectedOutput": "0 1"
+    },
+    {
+      "id": "go-practice-palindrome",
+      "title": "Palindrome check",
+      "prompt": "Return whether a string reads the same forwards and backwards. Print the result for `racecar`.",
+      "difficulty": "junior",
+      "hints": [
+        "Two-pointer comparison over []rune.",
+        "Return false on the first mismatch."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc isPalindrome(s string) bool {\n  // TODO\n  return false\n}\n\nfunc main() {\n  fmt.Println(isPalindrome(\"racecar\"))\n}\n",
+      "solution": "package main\n\nimport \"fmt\"\n\nfunc isPalindrome(s string) bool {\n  r := []rune(s)\n  for i, j := 0, len(r)-1; i < j; i, j = i+1, j-1 {\n    if r[i] != r[j] {\n      return false\n    }\n  }\n  return true\n}\n\nfunc main() {\n  fmt.Println(isPalindrome(\"racecar\"))\n}\n",
+      "expectedOutput": "true"
+    },
+    {
+      "id": "go-practice-freq",
+      "title": "Word frequency map",
+      "prompt": "Count word frequencies (split on spaces) and print words that appear more than once, sorted alphabetically as `word:count` lines.",
+      "difficulty": "mid",
+      "hints": [
+        "Use map[string]int.",
+        "Collect keys with count > 1, sort with slices.Sort, then print."
+      ],
+      "language": "go",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  text := \"go go java rust go java\"\n  // TODO\n  fmt.Println(text)\n}\n",
+      "solution": "package main\n\nimport (\n  \"fmt\"\n  \"slices\"\n  \"strings\"\n)\n\nfunc main() {\n  text := \"go go java rust go java\"\n  freq := map[string]int{}\n  for _, w := range strings.Fields(text) {\n    freq[w]++\n  }\n  var keys []string\n  for k, v := range freq {\n    if v > 1 {\n      keys = append(keys, k)\n    }\n  }\n  slices.Sort(keys)\n  for _, k := range keys {\n    fmt.Printf(\"%s:%d\\n\", k, freq[k])\n  }\n}\n",
+      "expectedOutput": "go:3\njava:2"
+    }
+  ]
+}

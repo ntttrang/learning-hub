@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-04-functions",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 4,
+  "title": "Functions, multiple returns, defer",
+  "minutes": 10,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Multiple returns\n\nGo functions commonly return `(value, error)`. This convention drives the whole error-handling model.\n\n## Named returns and defer\n\n`defer` schedules a call to run when the function returns — perfect for cleanup (closing files, unlocking). Deferred calls run LIFO.\n\n## First-class functions\n\nFunctions are values: pass them, return them, store them in structs. Closures capture surrounding variables."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "func read(path string) (string, error) {\n  f, err := os.Open(path)\n  if err != nil { return \"\", err }\n  defer f.Close()\n  b, err := io.ReadAll(f)\n  return string(b), err\n}"
+    }
+  ],
+  "docIds": [
+    "4",
+    "defer-panic-and-recover"
+  ]
+}

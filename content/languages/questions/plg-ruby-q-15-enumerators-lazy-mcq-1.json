@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-15-enumerators-lazy-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What does calling `.each` without a block return?",
+  "explanation": "Without a block, iterator methods return an Enumerator that can be chained or driven manually.",
+  "tags": [
+    "enumerable",
+    "lazy"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "nil"
+    },
+    {
+      "id": "b",
+      "text": "An Enumerator"
+    },
+    {
+      "id": "c",
+      "text": "An Array"
+    },
+    {
+      "id": "d",
+      "text": "A syntax error"
+    }
+  ],
+  "correct": "b"
+}

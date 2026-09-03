@@ -1,0 +1,34 @@
+{
+  "id": "plg-go-q-22-profiling-pprof-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements about profiling Go programs are true?",
+  "explanation": "The recommended approach is to measure first with a profiler rather than guess at hot paths.",
+  "tags": [
+    "go-22-profiling-pprof",
+    "performance"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "go tool pprof lets you inspect top, list, and flame graph views of a profile"
+    },
+    {
+      "id": "b",
+      "text": "sync.Pool can reduce allocations by reusing objects"
+    },
+    {
+      "id": "c",
+      "text": "go test -benchmem reports memory allocations per operation"
+    },
+    {
+      "id": "d",
+      "text": "Guessing at performance bottlenecks without measuring first is the recommended approach"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "plg-go-q-13-json-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements about JSON struct tags and streaming are true?",
+  "explanation": "Struct tags cannot make unexported fields visible to encoding/json; the other statements are correct.",
+  "tags": [
+    "go-13-json",
+    "struct-tags"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "json:\"-\" excludes a field from marshaling entirely"
+    },
+    {
+      "id": "b",
+      "text": "json:\"name,omitempty\" omits the field when it holds its zero value"
+    },
+    {
+      "id": "c",
+      "text": "json.Marshal can serialize unexported fields if tagged"
+    },
+    {
+      "id": "d",
+      "text": "json.Decoder can read incrementally from an io.Reader such as an HTTP body"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

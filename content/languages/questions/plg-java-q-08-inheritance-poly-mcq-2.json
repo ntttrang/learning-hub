@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-08-inheritance-poly-mcq-2",
+  "domainId": "plg-java",
+  "prompt": "Every Java class ultimately extends which class?",
+  "explanation": "java.lang.Object is the implicit root of every class hierarchy.",
+  "tags": [
+    "oop",
+    "inheritance"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Object"
+    },
+    {
+      "id": "b",
+      "text": "Class"
+    },
+    {
+      "id": "c",
+      "text": "Void"
+    },
+    {
+      "id": "d",
+      "text": "Base"
+    }
+  ],
+  "correct": "a"
+}

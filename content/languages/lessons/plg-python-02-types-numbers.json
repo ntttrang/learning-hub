@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-02-types-numbers",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 2,
+  "title": "Variables, numbers, and dynamic typing",
+  "minutes": 9,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Dynamic but strong\n\nVariables are names bound to objects; types live on the object, not the name. Python won't silently coerce `\"1\" + 1`.\n\n## Numbers\n\n`int` has arbitrary precision (no overflow). `float` is IEEE-754. Use `//` for floor division, `%` for remainder, `**` for power.\n\n## Truthiness\n\nEmpty containers, `0`, `\"\"`, and `None` are falsy; most other values are truthy."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "big = 2 ** 100          # arbitrary precision\nq, r = divmod(17, 5)     # (3, 2)\nprice = 19.99\nname = \"Corgi\""
+    }
+  ],
+  "docIds": [
+    "stdtypes",
+    "datamodel"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "plg-ruby-q-09-string-io-output-1",
+  "domainId": "plg-ruby",
+  "prompt": "What prints?",
+  "explanation": "%-8s left-justifies \"go\" in an 8-character field; %04d zero-pads 7 to four digits.",
+  "tags": [
+    "strings",
+    "io"
+  ],
+  "kind": "fill",
+  "template": "puts \"%-8s|%04d\" % [\"go\", 7]\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "go      |0007"
+    }
+  ]
+}

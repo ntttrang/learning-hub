@@ -1,0 +1,34 @@
+{
+  "id": "plg-ruby-q-01-objects-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which of the following are true about Ruby's object model?",
+  "explanation": "Ruby methods return their last expression without an explicit return, and classes stay open for reopening (use carefully).",
+  "tags": [
+    "basics",
+    "objects"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "You can call methods directly on numeric literals, e.g. 1.class"
+    },
+    {
+      "id": "b",
+      "text": "Methods implicitly return the value of their last expression"
+    },
+    {
+      "id": "c",
+      "text": "return is required at the end of every method"
+    },
+    {
+      "id": "d",
+      "text": "You can reopen and add methods to existing classes like String"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

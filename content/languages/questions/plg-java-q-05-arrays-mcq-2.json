@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-05-arrays-mcq-2",
+  "domainId": "plg-java",
+  "prompt": "Which utility class provides sort, fill, copyOf, equals, and toString for arrays?",
+  "explanation": "java.util.Arrays holds these static helper methods.",
+  "tags": [
+    "basics",
+    "arrays"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "java.util.Arrays"
+    },
+    {
+      "id": "b",
+      "text": "java.util.Collections"
+    },
+    {
+      "id": "c",
+      "text": "java.lang.Array"
+    },
+    {
+      "id": "d",
+      "text": "java.util.ArrayUtils"
+    }
+  ],
+  "correct": "a"
+}

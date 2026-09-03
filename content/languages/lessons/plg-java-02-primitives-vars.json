@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-02-primitives-vars",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 2,
+  "title": "Primitives, variables, and var",
+  "minutes": 9,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Eight primitives\n\n`byte`, `short`, `int`, `long`, `float`, `double`, `char`, `boolean`. They hold values directly (not references) and have fixed sizes.\n\n## Wrappers\n\nEach primitive has an object wrapper (`Integer`, `Long`, `Boolean`...). Autoboxing converts between them, but beware `NullPointerException` when unboxing a `null` wrapper.\n\n## Local type inference\n\n`var` (Java 10+) infers the type from the initializer for **local variables** only. It is still statically typed — not dynamic."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "int count = 42;\nlong big = 10_000_000_000L;\ndouble price = 19.99;\nvar name = \"Corgi\"; // inferred String\nboolean ready = true;"
+    }
+  ],
+  "docIds": [
+    "datatypes",
+    "286"
+  ]
+}

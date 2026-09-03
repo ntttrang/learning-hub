@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-11-dataclasses-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "What does `@dataclass` automatically generate for a class with annotated fields?",
+  "explanation": "`@dataclass` reduces boilerplate by generating `__init__`, `__repr__`, and `__eq__` from the annotated fields.",
+  "tags": [
+    "oop",
+    "dataclasses"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "__init__, __repr__, and __eq__"
+    },
+    {
+      "id": "b",
+      "text": "Only __init__"
+    },
+    {
+      "id": "c",
+      "text": "A full ORM mapping to a database table"
+    },
+    {
+      "id": "d",
+      "text": "Thread-safety guarantees"
+    }
+  ],
+  "correct": "a"
+}

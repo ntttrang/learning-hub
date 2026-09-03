@@ -1,0 +1,34 @@
+{
+  "id": "plg-python-q-03-strings-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which statements about Python strings are true?",
+  "explanation": "str is immutable Unicode text; bytes is raw data — you must encode/decode explicitly (UTF-8) at I/O boundaries.",
+  "tags": [
+    "basics",
+    "strings"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Strings are immutable"
+    },
+    {
+      "id": "b",
+      "text": "`s[1:4]` returns a slice of the string"
+    },
+    {
+      "id": "c",
+      "text": "`bytes` and `str` are interchangeable without encoding"
+    },
+    {
+      "id": "d",
+      "text": "`str.join(iterable)` concatenates strings with a separator"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}
