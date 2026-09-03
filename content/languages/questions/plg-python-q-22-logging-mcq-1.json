@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-22-logging-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "What is the correct ordering of logging levels from least to most severe?",
+  "explanation": "The standard `logging` severity order is DEBUG < INFO < WARNING < ERROR < CRITICAL.",
+  "tags": [
+    "logging",
+    "stdlib"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "INFO < DEBUG < WARNING < ERROR < CRITICAL"
+    },
+    {
+      "id": "b",
+      "text": "DEBUG < INFO < WARNING < ERROR < CRITICAL"
+    },
+    {
+      "id": "c",
+      "text": "DEBUG < WARNING < INFO < ERROR < CRITICAL"
+    },
+    {
+      "id": "d",
+      "text": "WARNING < DEBUG < INFO < CRITICAL < ERROR"
+    }
+  ],
+  "correct": "b"
+}

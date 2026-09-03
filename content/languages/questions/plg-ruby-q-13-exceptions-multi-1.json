@@ -1,0 +1,34 @@
+{
+  "id": "plg-ruby-q-13-exceptions-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which statements about Ruby exceptions are true?",
+  "explanation": "raise works with any Exception subclass; StandardError is the conventional base for domain errors.",
+  "tags": [
+    "exceptions",
+    "errors"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "ensure code always runs whether or not an exception was raised"
+    },
+    {
+      "id": "b",
+      "text": "Custom domain errors should generally subclass StandardError"
+    },
+    {
+      "id": "c",
+      "text": "retry re-enters the begin block"
+    },
+    {
+      "id": "d",
+      "text": "raise can only be used with the base Exception class"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

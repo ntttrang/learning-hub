@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-02-types-vars-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "Which variable declaration form is only valid inside a function body?",
+  "explanation": "The short variable declaration `:=` is only allowed inside function bodies, not at package scope.",
+  "tags": [
+    "go-02-types-vars",
+    "basics"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "var x int = 3"
+    },
+    {
+      "id": "b",
+      "text": "x := 3"
+    },
+    {
+      "id": "c",
+      "text": "const x = 3"
+    },
+    {
+      "id": "d",
+      "text": "type X int"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-16-testing-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "How does pytest discover tests by default?",
+  "explanation": "pytest's default discovery collects `test_*.py` files and `test_*` functions (and `Test*` classes), no registration needed.",
+  "tags": [
+    "testing",
+    "pytest"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Classes whose name ends in 'Test'"
+    },
+    {
+      "id": "b",
+      "text": "Files and functions named test_*.py / test_*"
+    },
+    {
+      "id": "c",
+      "text": "Only via a manifest file listing every test"
+    },
+    {
+      "id": "d",
+      "text": "Functions decorated with @test"
+    }
+  ],
+  "correct": "b"
+}

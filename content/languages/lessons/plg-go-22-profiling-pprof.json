@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-22-profiling-pprof",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 25,
+  "title": "Profiling and performance with pprof",
+  "minutes": 13,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Measure first\n\nGuessing at performance wastes time. `net/http/pprof` exposes CPU, heap, goroutine, and block profiles at `/debug/pprof/`.\n\n## Workflow\n\nCapture a profile, open it with `go tool pprof`, and inspect `top`, `list`, and flame graphs to find hot paths.\n\n## Allocations\n\nReduce garbage: reuse buffers with `sync.Pool`, preallocate slices with `make([]T, 0, n)`, and avoid needless pointer indirection. Benchmark with `-benchmem`."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "import _ \"net/http/pprof\"\n\ngo func() {\n  log.Println(http.ListenAndServe(\"localhost:6060\", nil))\n}()\n// go tool pprof http://localhost:6060/debug/pprof/profile"
+    }
+  ],
+  "docIds": [
+    "pprof",
+    "pprof-2"
+  ]
+}

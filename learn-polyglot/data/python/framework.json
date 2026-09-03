@@ -1,0 +1,134 @@
+{
+  "language": "python",
+  "framework": {
+    "name": "FastAPI",
+    "tagline": "Modern, type-hint-driven Python APIs with automatic docs.",
+    "overview": "FastAPI turns Python type hints into request parsing, validation (via Pydantic), and OpenAPI docs. Master it by defining path operations, typed params, validated request bodies, dependency injection, async endpoints with status codes, and clean error handling.",
+    "docs": [
+      { "title": "FastAPI documentation", "url": "https://fastapi.tiangolo.com/" },
+      { "title": "FastAPI tutorial", "url": "https://fastapi.tiangolo.com/tutorial/" }
+    ]
+  },
+  "challenges": [
+    {
+      "id": "python-fw-first-route",
+      "title": "1. First path operation",
+      "difficulty": "junior",
+      "concept": "A path operation is a function decorated with `@app.get(\"/path\")`. Whatever it returns is serialized to JSON automatically.",
+      "goal": "Serve GET / returning {\"message\": \"pong\"}.",
+      "steps": [
+        "Create app = FastAPI().",
+        "Decorate a function with @app.get(\"/\").",
+        "Return a dict."
+      ],
+      "hints": [
+        "The decorator binds method + path.",
+        "Dicts become JSON responses."
+      ],
+      "language": "python",
+      "starterCode": "from fastapi import FastAPI\n\napp = FastAPI()\n\n# TODO: GET / -> {\"message\": \"pong\"}\n",
+      "solution": "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef root():\n    return {\"message\": \"pong\"}\n",
+      "expectedOutput": "GET / -> {\"message\":\"pong\"}"
+    },
+    {
+      "id": "python-fw-params",
+      "title": "2. Typed path and query params",
+      "difficulty": "junior",
+      "concept": "Type-annotated function args become validated inputs: a `{id}` in the path is a path param, extra args are query params with defaults.",
+      "goal": "GET /users/{id}?verbose=false returns the parsed values, coercing types.",
+      "steps": [
+        "Declare @app.get(\"/users/{id}\").",
+        "Annotate id: int and verbose: bool = False.",
+        "Return both in a dict."
+      ],
+      "hints": [
+        "FastAPI coerces \"5\" -> int and \"false\" -> bool.",
+        "Args not in the path become query params."
+      ],
+      "language": "python",
+      "starterCode": "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/users/{id}\")\ndef get_user(id, verbose=False):\n    # TODO: use typed params\n    return {}\n",
+      "solution": "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/users/{id}\")\ndef get_user(id: int, verbose: bool = False):\n    return {\"id\": id, \"verbose\": verbose}\n",
+      "expectedOutput": "GET /users/42?verbose=true -> {\"id\":42,\"verbose\":true}"
+    },
+    {
+      "id": "python-fw-pydantic-body",
+      "title": "3. Validate a request body",
+      "difficulty": "mid",
+      "concept": "A Pydantic `BaseModel` typed as a parameter is parsed from the JSON body and validated. Constraint types like `EmailStr` enforce format.",
+      "goal": "POST /users validates {name, email} and echoes the model.",
+      "steps": [
+        "Define CreateUser(BaseModel) with name: str, email: EmailStr.",
+        "Add a min length on name with Field.",
+        "Accept it as a typed parameter and return it."
+      ],
+      "hints": [
+        "Field(min_length=1) rejects empty names.",
+        "Invalid bodies produce a 422 automatically."
+      ],
+      "language": "python",
+      "starterCode": "from fastapi import FastAPI\nfrom pydantic import BaseModel, EmailStr, Field\n\napp = FastAPI()\n\nclass CreateUser(BaseModel):\n    # TODO\n    pass\n\n# TODO: POST /users\n",
+      "solution": "from fastapi import FastAPI\nfrom pydantic import BaseModel, EmailStr, Field\n\napp = FastAPI()\n\nclass CreateUser(BaseModel):\n    name: str = Field(min_length=1)\n    email: EmailStr\n\n@app.post(\"/users\")\ndef create_user(body: CreateUser):\n    return body\n",
+      "expectedOutput": "POST /users {\"name\":\"\"} -> 422; valid body -> echoed model"
+    },
+    {
+      "id": "python-fw-dependency",
+      "title": "4. Dependency injection",
+      "difficulty": "mid",
+      "concept": "`Depends` wires reusable logic (auth, pagination, db sessions) into handlers. FastAPI resolves and injects the dependency's return value.",
+      "goal": "Inject pagination params via a dependency into GET /items.",
+      "steps": [
+        "Write a function returning {\"skip\": ..., \"limit\": ...}.",
+        "Add a handler param params: dict = Depends(pagination).",
+        "Return the params."
+      ],
+      "hints": [
+        "Depends(callable) runs the callable per request.",
+        "Dependencies can have their own query params."
+      ],
+      "language": "python",
+      "starterCode": "from fastapi import FastAPI, Depends\n\napp = FastAPI()\n\ndef pagination(skip: int = 0, limit: int = 10):\n    # TODO\n    return {}\n\n@app.get(\"/items\")\ndef list_items(params=Depends(pagination)):\n    return params\n",
+      "solution": "from fastapi import FastAPI, Depends\n\napp = FastAPI()\n\ndef pagination(skip: int = 0, limit: int = 10):\n    return {\"skip\": skip, \"limit\": limit}\n\n@app.get(\"/items\")\ndef list_items(params: dict = Depends(pagination)):\n    return params\n",
+      "expectedOutput": "GET /items?skip=5&limit=2 -> {\"skip\":5,\"limit\":2}"
+    },
+    {
+      "id": "python-fw-async-status",
+      "title": "5. Async endpoint with status code",
+      "difficulty": "mid",
+      "concept": "Use `async def` for IO-bound handlers so the event loop can serve other requests while awaiting. Set `status_code` on the decorator for creation semantics.",
+      "goal": "POST /notes returns 201 from an async handler.",
+      "steps": [
+        "Decorate with @app.post(\"/notes\", status_code=201).",
+        "Define an async def handler.",
+        "await a coroutine (simulate IO) then return the created note."
+      ],
+      "hints": [
+        "status.HTTP_201_CREATED is the readable constant.",
+        "await asyncio.sleep(0) stands in for real IO."
+      ],
+      "language": "python",
+      "starterCode": "import asyncio\nfrom fastapi import FastAPI, status\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Note(BaseModel):\n    text: str\n\n# TODO: async POST /notes returning 201\n",
+      "solution": "import asyncio\nfrom fastapi import FastAPI, status\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Note(BaseModel):\n    text: str\n\n@app.post(\"/notes\", status_code=status.HTTP_201_CREATED)\nasync def create_note(note: Note):\n    await asyncio.sleep(0)\n    return note\n",
+      "expectedOutput": "POST /notes {\"text\":\"hi\"} -> 201 {\"text\":\"hi\"}"
+    },
+    {
+      "id": "python-fw-error-handling",
+      "title": "6. Error handling",
+      "difficulty": "senior",
+      "concept": "Raise `HTTPException` for expected errors, or register an `@app.exception_handler` to map a custom exception to a consistent JSON response app-wide.",
+      "goal": "GET /users/{id} raises 404 for unknown ids via a custom handler.",
+      "steps": [
+        "Define a NotFound(Exception) carrying a message.",
+        "Register @app.exception_handler(NotFound) returning JSONResponse(404).",
+        "Raise NotFound from the handler when the id is missing."
+      ],
+      "hints": [
+        "Return JSONResponse(status_code=404, content={...}).",
+        "Handlers receive (request, exc)."
+      ],
+      "language": "python",
+      "starterCode": "from fastapi import FastAPI, Request\nfrom fastapi.responses import JSONResponse\n\napp = FastAPI()\nDB = {1: \"Ada\"}\n\nclass NotFound(Exception):\n    def __init__(self, message):\n        self.message = message\n\n# TODO: register handler and raise it\n",
+      "solution": "from fastapi import FastAPI, Request\nfrom fastapi.responses import JSONResponse\n\napp = FastAPI()\nDB = {1: \"Ada\"}\n\nclass NotFound(Exception):\n    def __init__(self, message):\n        self.message = message\n\n@app.exception_handler(NotFound)\ndef not_found_handler(request: Request, exc: NotFound):\n    return JSONResponse(status_code=404, content={\"error\": exc.message})\n\n@app.get(\"/users/{id}\")\ndef get_user(id: int):\n    if id not in DB:\n        raise NotFound(\"user not found\")\n    return {\"id\": id, \"name\": DB[id]}\n",
+      "expectedOutput": "GET /users/99 -> 404 {\"error\":\"user not found\"}"
+    }
+  ]
+}

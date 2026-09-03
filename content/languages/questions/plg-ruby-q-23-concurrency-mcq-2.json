@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-23-concurrency-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "What is the main use case for Ractors?",
+  "explanation": "Ractors give true parallel CPU execution by isolating memory and communicating via message passing.",
+  "tags": [
+    "concurrency",
+    "threads"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Cooperative single-threaded IO scheduling"
+    },
+    {
+      "id": "b",
+      "text": "Isolated-memory parallel CPU work via message passing"
+    },
+    {
+      "id": "c",
+      "text": "Replacing all uses of Thread"
+    },
+    {
+      "id": "d",
+      "text": "String formatting"
+    }
+  ],
+  "correct": "b"
+}

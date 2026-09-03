@@ -66,7 +66,7 @@ src/
     Compare.tsx Markdown.tsx Notes.tsx Bookmarks.tsx
   content/          # the packs — pure data
     registry.ts     # lists installed subjects
-    dp-800/  gh-200/  gh-900/  gh-600/
+    dp-800/  gh-200/  gh-900/  gh-600/  languages/  (fixture/)
   styles/tokens.css # verbatim copy of captain-corgi-hub-design/colors_and_type.css
 public/
   brand/            # mascots + star + wordmark (copied from the design skill)

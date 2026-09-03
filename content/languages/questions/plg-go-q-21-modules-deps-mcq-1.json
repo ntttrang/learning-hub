@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-21-modules-deps-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "What does `go mod tidy` do?",
+  "explanation": "go mod tidy reconciles go.mod/go.sum with what the code actually imports.",
+  "tags": [
+    "go-21-modules-deps",
+    "tooling"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Deletes go.mod entirely"
+    },
+    {
+      "id": "b",
+      "text": "Prunes unused dependencies from go.mod and adds any that are missing"
+    },
+    {
+      "id": "c",
+      "text": "Upgrades every dependency to its latest major version"
+    },
+    {
+      "id": "d",
+      "text": "Formats all .go source files"
+    }
+  ],
+  "correct": "b"
+}

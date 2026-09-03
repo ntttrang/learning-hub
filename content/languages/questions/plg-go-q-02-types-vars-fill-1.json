@@ -1,0 +1,20 @@
+{
+  "id": "plg-go-q-02-types-vars-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: inside a const block, _____ auto-increments starting at 0 for enum-like values.",
+  "explanation": "iota is the predeclared identifier that increments within const blocks.",
+  "tags": [
+    "go-02-types-vars",
+    "iota"
+  ],
+  "kind": "fill",
+  "template": "const (\n  Red = ___ // 0\n  Green      // 1\n)",
+  "blanks": [
+    {
+      "answer": "iota",
+      "alternatives": [
+        "iota"
+      ]
+    }
+  ]
+}

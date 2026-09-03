@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-15-streams",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 15,
+  "title": "The Streams API",
+  "minutes": 13,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Pipeline shape\n\nSource -> intermediate ops (`map`, `filter`, `sorted`) -> terminal op (`collect`, `reduce`, `forEach`). Intermediate ops are **lazy**; nothing runs until the terminal op.\n\n## Collectors\n\n`Collectors.toList`, `groupingBy`, `partitioningBy`, `joining` cover most needs. Java 16+ adds `Stream.toList()`.\n\n## Pitfalls\n\nDon't mutate shared state inside a stream. Avoid streams for trivial loops — clarity first. Parallel streams help only for large CPU-bound work."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "Map<Role, List<User>> byRole = users.stream()\n    .filter(u -> u.active())\n    .collect(Collectors.groupingBy(User::role));"
+    }
+  ],
+  "docIds": [
+    "package-summary-2",
+    "streams"
+  ]
+}

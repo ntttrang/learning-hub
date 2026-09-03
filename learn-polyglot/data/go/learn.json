@@ -1,0 +1,735 @@
+{
+  "language": "go",
+  "lessons": [
+    {
+      "id": "go-01-hello-modules",
+      "title": "Hello Go: modules and go run",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "modules",
+        "tooling"
+      ],
+      "estMinutes": 8,
+      "body": "## Setup\n\nA Go project starts with a **module**: `go mod init example.com/app` creates `go.mod`. Source lives in packages; `package main` with a `main()` func is an executable.\n\n## Run and build\n\n`go run .` compiles and runs in one step. `go build` produces a single static binary — no runtime needed on the target.\n\n## Formatting\n\n`gofmt` (or `go fmt`) is non-negotiable: one canonical style, zero debates.",
+      "codeSamples": [
+        {
+          "title": "First program",
+          "language": "go",
+          "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  fmt.Println(\"Ahoy, world!\")\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "How to Write Go Code",
+          "url": "https://go.dev/doc/code"
+        },
+        {
+          "title": "Modules Reference",
+          "url": "https://go.dev/ref/mod"
+        }
+      ]
+    },
+    {
+      "id": "go-02-types-vars",
+      "title": "Variables, types, and zero values",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "types"
+      ],
+      "estMinutes": 9,
+      "body": "## Declarations\n\n`var x int = 3`, or short form `x := 3` inside functions. Go is statically typed with inference.\n\n## Zero values\n\nEvery type has a zero value: `0`, `\"\"`, `false`, `nil`. There is no uninitialized memory — declared variables are always usable.\n\n## Constants and iota\n\n`const` values are compile-time. `iota` auto-increments for enum-like sets.",
+      "codeSamples": [
+        {
+          "title": "Short vars and iota",
+          "language": "go",
+          "code": "name := \"Corgi\"\ncount := 0\n\nconst (\n  Red = iota // 0\n  Green      // 1\n  Blue       // 2\n)"
+        }
+      ],
+      "docs": [
+        {
+          "title": "The Go Spec — Types",
+          "url": "https://go.dev/ref/spec#Types"
+        },
+        {
+          "title": "Tour: Basic Types",
+          "url": "https://go.dev/tour/basics/11"
+        }
+      ]
+    },
+    {
+      "id": "go-03-control-flow",
+      "title": "Control flow: if, for, switch",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "control-flow"
+      ],
+      "estMinutes": 9,
+      "body": "## One loop to rule them all\n\nGo has only `for` — it covers `while`, infinite loops, and classic counting loops.\n\n## if with init\n\n`if v, err := f(); err != nil { ... }` scopes the variable to the branch.\n\n## switch\n\nNo fallthrough by default; cases can be expressions or types. `switch` with no condition replaces long `if/else` chains.",
+      "codeSamples": [
+        {
+          "title": "for variants",
+          "language": "go",
+          "code": "for i := 0; i < 3; i++ { fmt.Println(i) }\nfor scanner.Scan() { line := scanner.Text() }\nfor { break } // infinite until break"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Tour: Flow Control",
+          "url": "https://go.dev/tour/flowcontrol/1"
+        },
+        {
+          "title": "Effective Go: Control Structures",
+          "url": "https://go.dev/doc/effective_go#control-structures"
+        }
+      ]
+    },
+    {
+      "id": "go-04-functions",
+      "title": "Functions, multiple returns, defer",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "functions"
+      ],
+      "estMinutes": 10,
+      "body": "## Multiple returns\n\nGo functions commonly return `(value, error)`. This convention drives the whole error-handling model.\n\n## Named returns and defer\n\n`defer` schedules a call to run when the function returns — perfect for cleanup (closing files, unlocking). Deferred calls run LIFO.\n\n## First-class functions\n\nFunctions are values: pass them, return them, store them in structs. Closures capture surrounding variables.",
+      "codeSamples": [
+        {
+          "title": "Return + defer",
+          "language": "go",
+          "code": "func read(path string) (string, error) {\n  f, err := os.Open(path)\n  if err != nil { return \"\", err }\n  defer f.Close()\n  b, err := io.ReadAll(f)\n  return string(b), err\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Tour: Functions",
+          "url": "https://go.dev/tour/basics/4"
+        },
+        {
+          "title": "Defer, Panic, and Recover",
+          "url": "https://go.dev/blog/defer-panic-and-recover"
+        }
+      ]
+    },
+    {
+      "id": "go-05-strings-runes",
+      "title": "Strings, runes, and bytes",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "strings"
+      ],
+      "estMinutes": 10,
+      "body": "## UTF-8 by default\n\nA Go `string` is an immutable sequence of **bytes**, usually UTF-8. Indexing gives a byte; ranging gives **runes** (Unicode code points).\n\n## Building strings\n\nUse `strings.Builder` in loops to avoid quadratic concatenation. The `strings` package has all the helpers (`Split`, `Contains`, `TrimSpace`).\n\n## Conversion\n\n`[]byte(s)` and `[]rune(s)` convert; `string(b)` converts back.",
+      "codeSamples": [
+        {
+          "title": "Builder + range",
+          "language": "go",
+          "code": "var b strings.Builder\nfor _, r := range \"héllo\" {\n  b.WriteRune(r)\n}\nfmt.Println(b.String())"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Strings, bytes, runes and characters",
+          "url": "https://go.dev/blog/strings"
+        },
+        {
+          "title": "strings package",
+          "url": "https://pkg.go.dev/strings"
+        }
+      ]
+    },
+    {
+      "id": "go-06-slices",
+      "title": "Slices: len, cap, and append",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "slices"
+      ],
+      "estMinutes": 12,
+      "body": "## Slice vs array\n\nArrays have fixed size; **slices** are dynamic views over a backing array with `len` and `cap`. Most code uses slices.\n\n## append\n\n`append` may allocate a new backing array when capacity is exceeded — always reassign: `s = append(s, x)`.\n\n## Gotcha\n\nSlices sharing a backing array can alias each other. `copy` or a full slice expression avoids surprising mutations.",
+      "codeSamples": [
+        {
+          "title": "Grow a slice",
+          "language": "go",
+          "code": "s := make([]int, 0, 4) // len 0, cap 4\nfor i := 0; i < 6; i++ {\n  s = append(s, i)\n}\nfmt.Println(len(s), cap(s))"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Go Slices: usage and internals",
+          "url": "https://go.dev/blog/slices-intro"
+        },
+        {
+          "title": "Slice Tricks (wiki)",
+          "url": "https://go.dev/wiki/SliceTricks"
+        }
+      ]
+    },
+    {
+      "id": "go-07-maps",
+      "title": "Maps and the comma-ok idiom",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "maps"
+      ],
+      "estMinutes": 9,
+      "body": "## Basics\n\n`make(map[K]V)` creates a map. Reading a missing key returns the zero value — use the **comma-ok** form to distinguish absent from zero.\n\n## Iteration order\n\nMap iteration order is **randomized** on purpose; never rely on it. Sort keys if you need order.\n\n## Nil maps\n\nReading a nil map is fine; writing panics. Always initialize before writing.",
+      "codeSamples": [
+        {
+          "title": "comma-ok",
+          "language": "go",
+          "code": "counts := map[string]int{}\ncounts[\"a\"]++\n\nif v, ok := counts[\"b\"]; ok {\n  fmt.Println(v)\n} else {\n  fmt.Println(\"missing\")\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Go maps in action",
+          "url": "https://go.dev/blog/maps"
+        },
+        {
+          "title": "Tour: Maps",
+          "url": "https://go.dev/tour/moretypes/19"
+        }
+      ]
+    },
+    {
+      "id": "go-08-structs",
+      "title": "Structs, methods, and embedding",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "structs"
+      ],
+      "estMinutes": 11,
+      "body": "## Structs\n\nGo's data type is the `struct`. Attach behavior via **methods** with a receiver. Use a pointer receiver to mutate or avoid copying large structs.\n\n## Embedding\n\nGo favors **composition**: embed a struct to promote its fields/methods — no inheritance, but similar reuse.\n\n## Constructors\n\nGo has no constructors; use a `New...` function returning the value or pointer.",
+      "codeSamples": [
+        {
+          "title": "Method + pointer receiver",
+          "language": "go",
+          "code": "type Counter struct{ n int }\n\nfunc (c *Counter) Inc() { c.n++ }\nfunc (c Counter) Value() int { return c.n }\n\nc := &Counter{}\nc.Inc()"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Tour: Structs",
+          "url": "https://go.dev/tour/moretypes/2"
+        },
+        {
+          "title": "Effective Go: Methods",
+          "url": "https://go.dev/doc/effective_go#methods"
+        }
+      ]
+    },
+    {
+      "id": "go-09-pointers",
+      "title": "Pointers and value semantics",
+      "level": "junior",
+      "tags": [
+        "basics",
+        "pointers"
+      ],
+      "estMinutes": 10,
+      "body": "## No pointer arithmetic\n\n`&x` takes an address, `*p` dereferences. Go pointers are safe — no arithmetic, no dangling (the GC keeps referenced memory alive).\n\n## When to use pointers\n\n- Mutate the caller's value.\n- Avoid copying large structs.\n- Signal optional/absent with `nil`.\n\n## Value semantics\n\nStructs are copied on assignment and function calls. Small value types are cheap and cache-friendly — don't reach for pointers reflexively.",
+      "codeSamples": [
+        {
+          "title": "Mutate via pointer",
+          "language": "go",
+          "code": "func double(n *int) { *n *= 2 }\n\nx := 21\ndouble(&x)\nfmt.Println(x) // 42"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Tour: Pointers",
+          "url": "https://go.dev/tour/moretypes/1"
+        }
+      ]
+    },
+    {
+      "id": "go-10-errors",
+      "title": "Errors: wrapping and sentinels",
+      "level": "junior",
+      "tags": [
+        "errors",
+        "basics"
+      ],
+      "estMinutes": 11,
+      "body": "## error is a value\n\nErrors are ordinary values implementing `error`. Check and return them explicitly — no exceptions.\n\n## Wrapping\n\nAdd context with `fmt.Errorf(\"...: %w\", err)`. Unwrap and inspect with `errors.Is` (sentinel match) and `errors.As` (type match).\n\n## Sentinels vs types\n\nExport sentinel errors (`var ErrNotFound = errors.New(...)`) for simple checks; custom error types when callers need extra fields.",
+      "codeSamples": [
+        {
+          "title": "Wrap and check",
+          "language": "go",
+          "code": "if err := save(u); err != nil {\n  return fmt.Errorf(\"saving user %d: %w\", u.ID, err)\n}\n\nif errors.Is(err, ErrNotFound) { /* handle */ }"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Working with Errors in Go 1.13",
+          "url": "https://go.dev/blog/go1.13-errors"
+        },
+        {
+          "title": "errors package",
+          "url": "https://pkg.go.dev/errors"
+        }
+      ]
+    },
+    {
+      "id": "go-11-packages",
+      "title": "Packages, visibility, and imports",
+      "level": "junior",
+      "tags": [
+        "packages",
+        "basics"
+      ],
+      "estMinutes": 9,
+      "body": "## Exported = Capitalized\n\nAn identifier is exported (public) if it starts with an uppercase letter; lowercase is package-private. That's the entire access-control system.\n\n## Package design\n\nOne directory = one package. Name packages after what they provide (`http`, `json`), not generic names like `utils`.\n\n## init\n\n`init()` runs once at package load — use sparingly (registration, not heavy work).",
+      "codeSamples": [
+        {
+          "title": "Exported vs private",
+          "language": "go",
+          "code": "package money\n\ntype Amount struct{ cents int64 } // private field\n\nfunc New(cents int64) Amount { return Amount{cents} } // exported"
+        }
+      ],
+      "docs": [
+        {
+          "title": "How to Write Go Code — Packages",
+          "url": "https://go.dev/doc/code#Organization"
+        },
+        {
+          "title": "Package names",
+          "url": "https://go.dev/blog/package-names"
+        }
+      ]
+    },
+    {
+      "id": "go-12-interfaces",
+      "title": "Interfaces and implicit satisfaction",
+      "level": "mid",
+      "tags": [
+        "interfaces",
+        "types"
+      ],
+      "estMinutes": 12,
+      "body": "## Structural typing\n\nA type satisfies an interface just by having the methods — no `implements` keyword. This enables loose coupling and easy testing.\n\n## Small interfaces\n\nGo favors tiny interfaces (`io.Reader`, `io.Writer`). Accept interfaces, return concrete types.\n\n## The empty interface / any\n\n`any` (alias for `interface{}`) holds anything. Use type assertions or type switches to recover the concrete type.",
+      "codeSamples": [
+        {
+          "title": "Type switch",
+          "language": "go",
+          "code": "func describe(v any) string {\n  switch x := v.(type) {\n  case int: return fmt.Sprintf(\"int %d\", x)\n  case string: return \"string \" + x\n  default: return \"unknown\"\n  }\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Tour: Interfaces",
+          "url": "https://go.dev/tour/methods/9"
+        },
+        {
+          "title": "Go Proverbs (Rob Pike)",
+          "url": "https://go-proverbs.github.io/"
+        }
+      ]
+    },
+    {
+      "id": "go-13-json",
+      "title": "JSON encoding and struct tags",
+      "level": "mid",
+      "tags": [
+        "json",
+        "stdlib"
+      ],
+      "estMinutes": 11,
+      "body": "## Marshal/Unmarshal\n\n`encoding/json` maps structs to JSON. **Exported** fields are (de)serialized; struct tags rename and control them.\n\n## Tags\n\n`json:\"name,omitempty\"` renames and drops zero values. Use `-` to skip a field.\n\n## Streaming\n\n`json.Decoder`/`Encoder` work over `io.Reader`/`Writer` for HTTP bodies and large payloads.",
+      "codeSamples": [
+        {
+          "title": "Struct tags",
+          "language": "go",
+          "code": "type User struct {\n  ID    int    `json:\"id\"`\n  Name  string `json:\"name\"`\n  Email string `json:\"email,omitempty\"`\n}\n\nb, _ := json.Marshal(User{ID: 1, Name: \"Ada\"})"
+        }
+      ],
+      "docs": [
+        {
+          "title": "encoding/json",
+          "url": "https://pkg.go.dev/encoding/json"
+        },
+        {
+          "title": "JSON and Go",
+          "url": "https://go.dev/blog/json"
+        }
+      ]
+    },
+    {
+      "id": "go-14-generics-intro",
+      "title": "Generics: type parameters and constraints",
+      "level": "mid",
+      "tags": [
+        "generics",
+        "types"
+      ],
+      "estMinutes": 12,
+      "body": "## Type parameters\n\nGo 1.18+ supports generics: `func Map[T, U any](s []T, f func(T) U) []U`. Constraints restrict allowed types.\n\n## Constraints\n\n`any`, `comparable`, and interfaces with type sets (`constraints.Ordered`). Define your own with unions like `~int | ~float64`.\n\n## When to use\n\nContainers and algorithm helpers benefit. Don't genericize everything — concrete code is often clearer.",
+      "codeSamples": [
+        {
+          "title": "Generic Map",
+          "language": "go",
+          "code": "func Map[T, U any](s []T, f func(T) U) []U {\n  out := make([]U, len(s))\n  for i, v := range s { out[i] = f(v) }\n  return out\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "An Introduction To Generics",
+          "url": "https://go.dev/blog/intro-generics"
+        },
+        {
+          "title": "Type Parameters Proposal",
+          "url": "https://go.dev/design/43651-type-parameters"
+        }
+      ]
+    },
+    {
+      "id": "go-15-stdlib-slices-maps",
+      "title": "slices and maps helper packages",
+      "level": "mid",
+      "tags": [
+        "stdlib",
+        "generics"
+      ],
+      "estMinutes": 9,
+      "body": "## Batteries included\n\nThe generic `slices` and `maps` packages remove hand-rolled loops: `slices.Contains`, `slices.Sort`, `slices.Index`, `maps.Keys`, `maps.Clone`.\n\n## Sorting\n\n`slices.SortFunc` takes a comparison returning -1/0/1; pair with `cmp.Compare`.\n\n## Iterators\n\nGo 1.23+ adds range-over-func iterators; `maps.Keys` now returns an iterator you can range over.",
+      "codeSamples": [
+        {
+          "title": "Sort with cmp",
+          "language": "go",
+          "code": "slices.SortFunc(users, func(a, b User) int {\n  return cmp.Compare(a.Name, b.Name)\n})"
+        }
+      ],
+      "docs": [
+        {
+          "title": "slices package",
+          "url": "https://pkg.go.dev/slices"
+        },
+        {
+          "title": "maps package",
+          "url": "https://pkg.go.dev/maps"
+        },
+        {
+          "title": "cmp package",
+          "url": "https://pkg.go.dev/cmp"
+        }
+      ]
+    },
+    {
+      "id": "go-16-goroutines-channels",
+      "title": "Goroutines and channels",
+      "level": "mid",
+      "tags": [
+        "concurrency",
+        "channels"
+      ],
+      "estMinutes": 13,
+      "body": "## Goroutines\n\n`go f()` starts a lightweight, scheduler-managed coroutine. Cheap to create — but you must control their lifetime.\n\n## Channels\n\nTyped conduits for communication. Unbuffered channels synchronize sender and receiver; buffered channels decouple up to capacity.\n\n## select\n\n`select` waits on multiple channel operations — the backbone of timeouts and cancellation.\n\nRemember: **don't communicate by sharing memory; share memory by communicating.**",
+      "codeSamples": [
+        {
+          "title": "select with timeout",
+          "language": "go",
+          "code": "select {\ncase v := <-ch:\n  fmt.Println(v)\ncase <-time.After(time.Second):\n  fmt.Println(\"timeout\")\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Tour: Concurrency",
+          "url": "https://go.dev/tour/concurrency/1"
+        },
+        {
+          "title": "Share Memory By Communicating",
+          "url": "https://go.dev/blog/codelab-share"
+        }
+      ]
+    },
+    {
+      "id": "go-17-sync",
+      "title": "sync: Mutex, WaitGroup, Once",
+      "level": "mid",
+      "tags": [
+        "concurrency",
+        "sync"
+      ],
+      "estMinutes": 11,
+      "body": "## When channels aren't the answer\n\nFor protecting shared in-memory state (caches, counters), a `sync.Mutex` is simpler than channels.\n\n## WaitGroup\n\nWait for a set of goroutines to finish. `Add` before starting, `Done` in a defer, `Wait` to join.\n\n## Once and RWMutex\n\n`sync.Once` guarantees one-time init. `sync.RWMutex` allows many readers or one writer. The `-race` detector finds data races.",
+      "codeSamples": [
+        {
+          "title": "WaitGroup",
+          "language": "go",
+          "code": "var wg sync.WaitGroup\nfor _, u := range urls {\n  wg.Add(1)\n  go func(u string) {\n    defer wg.Done()\n    fetch(u)\n  }(u)\n}\nwg.Wait()"
+        }
+      ],
+      "docs": [
+        {
+          "title": "sync package",
+          "url": "https://pkg.go.dev/sync"
+        },
+        {
+          "title": "Data Race Detector",
+          "url": "https://go.dev/doc/articles/race_detector"
+        }
+      ]
+    },
+    {
+      "id": "go-18-testing",
+      "title": "Testing and table-driven tests",
+      "level": "mid",
+      "tags": [
+        "testing",
+        "stdlib"
+      ],
+      "estMinutes": 12,
+      "body": "## Built-in testing\n\nFiles ending in `_test.go`, functions `TestXxx(t *testing.T)`. Run with `go test ./...`.\n\n## Table-driven\n\nThe idiomatic pattern: a slice of cases in a loop, often with `t.Run(name, ...)` subtests for clear failures.\n\n## Coverage and benchmarks\n\n`go test -cover` and `BenchmarkXxx(b *testing.B)` come free. Use `t.Parallel()` where safe.",
+      "codeSamples": [
+        {
+          "title": "Table-driven test",
+          "language": "go",
+          "code": "func TestParse(t *testing.T) {\n  tests := []struct{ in, want string }{\n    {\"a\", \"A\"},\n    {\"\", \"\"},\n  }\n  for _, tt := range tests {\n    if got := Parse(tt.in); got != tt.want {\n      t.Fatalf(\"Parse(%q)=%q want %q\", tt.in, got, tt.want)\n    }\n  }\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "testing package",
+          "url": "https://pkg.go.dev/testing"
+        },
+        {
+          "title": "Table Driven Tests",
+          "url": "https://go.dev/wiki/TableDrivenTests"
+        }
+      ]
+    },
+    {
+      "id": "go-19-http",
+      "title": "net/http servers and clients",
+      "level": "mid",
+      "tags": [
+        "http",
+        "stdlib"
+      ],
+      "estMinutes": 13,
+      "body": "## Server\n\nThe stdlib is production-grade. Go 1.22+ `http.ServeMux` supports method + path patterns (`GET /users/{id}`) with wildcards.\n\n## Handlers\n\nA handler is `func(w http.ResponseWriter, r *http.Request)`. Wrap handlers with middleware for logging/auth.\n\n## Client\n\nReuse a single `http.Client` with a timeout; always `defer resp.Body.Close()` and drain the body to reuse connections.",
+      "codeSamples": [
+        {
+          "title": "Routed handler",
+          "language": "go",
+          "code": "mux := http.NewServeMux()\nmux.HandleFunc(\"GET /users/{id}\", func(w http.ResponseWriter, r *http.Request) {\n  id := r.PathValue(\"id\")\n  fmt.Fprintf(w, \"user %s\", id)\n})\nhttp.ListenAndServe(\":8080\", mux)"
+        }
+      ],
+      "docs": [
+        {
+          "title": "net/http",
+          "url": "https://pkg.go.dev/net/http"
+        },
+        {
+          "title": "Routing Enhancements (Go 1.22)",
+          "url": "https://go.dev/blog/routing-enhancements"
+        }
+      ]
+    },
+    {
+      "id": "go-20-context-basics",
+      "title": "context for cancellation and deadlines",
+      "level": "mid",
+      "tags": [
+        "context",
+        "concurrency"
+      ],
+      "estMinutes": 11,
+      "body": "## Carry cancellation\n\n`context.Context` propagates deadlines, cancellation, and request-scoped values through call chains.\n\n## Usage\n\nTake `ctx` as the first parameter. Derive with `context.WithTimeout`/`WithCancel` and always `defer cancel()`.\n\n## Respect it\n\nCheck `ctx.Err()` or select on `ctx.Done()` in loops and blocking waits. Don't store context in structs.",
+      "codeSamples": [
+        {
+          "title": "Timeout context",
+          "language": "go",
+          "code": "ctx, cancel := context.WithTimeout(ctx, 2*time.Second)\ndefer cancel()\n\nreq, _ := http.NewRequestWithContext(ctx, \"GET\", url, nil)\nresp, err := http.DefaultClient.Do(req)"
+        }
+      ],
+      "docs": [
+        {
+          "title": "context package",
+          "url": "https://pkg.go.dev/context"
+        },
+        {
+          "title": "Go Concurrency Patterns: Context",
+          "url": "https://go.dev/blog/context"
+        }
+      ]
+    },
+    {
+      "id": "go-21-modules-deps",
+      "title": "Modules, versioning, and tooling",
+      "level": "mid",
+      "tags": [
+        "modules",
+        "tooling"
+      ],
+      "estMinutes": 10,
+      "body": "## Dependency management\n\n`go get` adds/updates deps in `go.mod`; `go.sum` locks checksums. `go mod tidy` prunes unused and adds missing.\n\n## Semantic import versioning\n\nMajor version v2+ appears in the import path (`.../v2`). Minimal Version Selection picks the lowest version that satisfies all requirements — reproducible builds.\n\n## Vet and vulncheck\n\n`go vet` catches suspicious code; `govulncheck` scans for known CVEs in your dependency graph.",
+      "codeSamples": [
+        {
+          "title": "Common commands",
+          "language": "bash",
+          "code": "go get example.com/pkg@v1.4.0\ngo mod tidy\ngo vet ./...\ngovulncheck ./..."
+        }
+      ],
+      "docs": [
+        {
+          "title": "Go Modules Reference",
+          "url": "https://go.dev/ref/mod"
+        },
+        {
+          "title": "govulncheck",
+          "url": "https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck"
+        }
+      ]
+    },
+    {
+      "id": "go-concurrency-lifecycle",
+      "title": "Goroutine lifecycles, context, and channels",
+      "level": "senior",
+      "tags": [
+        "concurrency",
+        "context",
+        "channels"
+      ],
+      "estMinutes": 14,
+      "body": "## Predictable concurrency\n\nStarting a goroutine is cheap; **owning** its lifetime is the senior skill. Every goroutine needs a purpose, a stop signal, and a way to report failure.\n\n## Context\n\nPass `context.Context` into anything that waits. Cancel on request abandonment, timeouts, and shutdown. Never store contexts in structs long-term as a rule of thumb — pass them as the first argument.\n\n## Channels vs mutexes\n\n- Channels: ownership transfer, pipelines, signaling.\n- Mutexes: protecting shared in-memory state (maps, caches).\n\nClose channels from the **producer**. Prefer `errgroup` for bounded fan-out with cancellation.",
+      "codeSamples": [
+        {
+          "title": "Bounded work with errgroup",
+          "language": "go",
+          "code": "g, ctx := errgroup.WithContext(ctx)\ng.SetLimit(8)\nfor _, u := range urls {\n  u := u\n  g.Go(func() error {\n    return fetch(ctx, u)\n  })\n}\nreturn g.Wait()"
+        }
+      ],
+      "docs": [
+        {
+          "title": "errgroup",
+          "url": "https://pkg.go.dev/golang.org/x/sync/errgroup"
+        },
+        {
+          "title": "Context package",
+          "url": "https://pkg.go.dev/context"
+        }
+      ]
+    },
+    {
+      "id": "go-idioms-layout",
+      "title": "Idiomatic Go: domains over layers",
+      "level": "senior",
+      "tags": [
+        "idioms",
+        "architecture"
+      ],
+      "estMinutes": 10,
+      "body": "## Stop writing Java in Go\n\nDeep `service/` / `repository/` / `pkg/` trees often fight Go's package model. Organize by **what the code does** (domain), keep packages small, and prefer the standard library.\n\n## Interfaces\n\nAccept interfaces, return concrete types. Define interfaces where they are **used**, not where they are implemented.\n\n## Testing\n\nTable-driven tests + simple stubs beat heavy mock frameworks for most services.\n\n## Observability\n\nUse `pprof`. Know the new **goroutine leak** profile for stuck blocked goroutines.",
+      "codeSamples": [
+        {
+          "title": "Table-driven test",
+          "language": "go",
+          "code": "func TestParse(t *testing.T) {\n  tests := []struct{\n    in, want string\n  }{\n    {\"a\", \"A\"},\n    {\"\", \"\"},\n  }\n  for _, tt := range tests {\n    if got := Parse(tt.in); got != tt.want {\n      t.Fatalf(\"Parse(%q)=%q want %q\", tt.in, got, tt.want)\n    }\n  }\n}"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Effective Go",
+          "url": "https://go.dev/doc/effective_go"
+        },
+        {
+          "title": "Go Code Review Comments",
+          "url": "https://go.dev/wiki/CodeReviewComments"
+        }
+      ]
+    },
+    {
+      "id": "go-generics-backpressure",
+      "title": "Generics, workers, and backpressure",
+      "level": "senior",
+      "tags": [
+        "generics",
+        "workers"
+      ],
+      "estMinutes": 12,
+      "body": "## Generics\n\nUse `slices` and `maps` helpers. Prefer package-level generic functions when clearer than methods. Go 1.27 adds **generic methods** on concrete types — great for chainable containers; they still cannot satisfy interfaces.\n\n## Worker pools\n\n- `errgroup.SetLimit(n)` for bounded tasks with cancel.\n- `semaphore.Weighted` when slots have different weights.\n- Bounded channel queues for explicit queue depth.\n\n## Backpressure\n\nBlock producers, drop+metric, or reject at the API (HTTP 429). Unbounded queues are how services OOM.",
+      "codeSamples": [
+        {
+          "title": "slices.SortFunc",
+          "language": "go",
+          "code": "slices.SortFunc(users, func(a, b User) int {\n  return cmp.Compare(a.Name, b.Name)\n})"
+        }
+      ],
+      "docs": [
+        {
+          "title": "errgroup.SetLimit",
+          "url": "https://pkg.go.dev/golang.org/x/sync/errgroup#Group.SetLimit"
+        },
+        {
+          "title": "semaphore",
+          "url": "https://pkg.go.dev/golang.org/x/sync/semaphore"
+        }
+      ]
+    },
+    {
+      "id": "go-22-profiling-pprof",
+      "title": "Profiling and performance with pprof",
+      "level": "senior",
+      "tags": [
+        "performance",
+        "pprof",
+        "observability"
+      ],
+      "estMinutes": 13,
+      "body": "## Measure first\n\nGuessing at performance wastes time. `net/http/pprof` exposes CPU, heap, goroutine, and block profiles at `/debug/pprof/`.\n\n## Workflow\n\nCapture a profile, open it with `go tool pprof`, and inspect `top`, `list`, and flame graphs to find hot paths.\n\n## Allocations\n\nReduce garbage: reuse buffers with `sync.Pool`, preallocate slices with `make([]T, 0, n)`, and avoid needless pointer indirection. Benchmark with `-benchmem`.",
+      "codeSamples": [
+        {
+          "title": "Enable pprof endpoints",
+          "language": "go",
+          "code": "import _ \"net/http/pprof\"\n\ngo func() {\n  log.Println(http.ListenAndServe(\"localhost:6060\", nil))\n}()\n// go tool pprof http://localhost:6060/debug/pprof/profile"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Profiling Go Programs",
+          "url": "https://go.dev/blog/pprof"
+        },
+        {
+          "title": "net/http/pprof",
+          "url": "https://pkg.go.dev/net/http/pprof"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "title": "Go Documentation",
+      "url": "https://go.dev/doc/",
+      "note": "Official docs hub"
+    },
+    {
+      "title": "A Tour of Go",
+      "url": "https://go.dev/tour/",
+      "note": "Interactive intro"
+    },
+    {
+      "title": "Effective Go",
+      "url": "https://go.dev/doc/effective_go",
+      "note": "Idioms & style"
+    },
+    {
+      "title": "Go by Example",
+      "url": "https://gobyexample.com/",
+      "note": "Annotated snippets"
+    },
+    {
+      "title": "Go Standard Library",
+      "url": "https://pkg.go.dev/std",
+      "note": "Package reference"
+    }
+  ]
+}

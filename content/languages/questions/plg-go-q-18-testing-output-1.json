@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-18-testing-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "parse(\"a\") uppercases to \"A\" and parse(\"\") returns \"\", matching both expected values in this table-driven-style check.",
+  "tags": [
+    "go-18-testing",
+    "table-driven"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport \"fmt\"\n\nfunc parse(s string) string {\n  if s == \"\" {\n    return \"\"\n  }\n  return string(s[0]-32) + s[1:]\n}\n\nfunc main() {\n  tests := []struct{ in, want string }{\n    {\"a\", \"A\"},\n    {\"\", \"\"},\n  }\n  for _, tt := range tests {\n    got := parse(tt.in)\n    fmt.Println(got == tt.want)\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "true\ntrue"
+    }
+  ]
+}

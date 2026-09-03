@@ -1,0 +1,20 @@
+{
+  "id": "plg-python-q-14-typing-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank: the PEP 604 syntax for \"int or None\" as a type hint.",
+  "explanation": "`X | None` is the modern union syntax, replacing `Optional[X]` / `Union[X, None]`.",
+  "tags": [
+    "typing",
+    "tooling"
+  ],
+  "kind": "fill",
+  "template": "def find(id: int) -> int ___ None: ...",
+  "blanks": [
+    {
+      "answer": "|",
+      "alternatives": [
+        "|"
+      ]
+    }
+  ]
+}

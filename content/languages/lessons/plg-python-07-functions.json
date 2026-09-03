@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-07-functions",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 7,
+  "title": "Functions, args, and defaults",
+  "minutes": 11,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Flexible signatures\n\nPositional, keyword, `*args`, and `**kwargs`. Keyword-only args come after `*`; positional-only before `/`.\n\n## Default gotcha\n\nNever use a mutable default (`def f(x=[])`) — it is created once and shared. Use `None` and create inside.\n\n## Docstrings\n\nThe first string in a function is its docstring, surfaced by `help()` and tools."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "def append_to(item, target=None):\n    if target is None:\n        target = []\n    target.append(item)\n    return target"
+    }
+  ],
+  "docIds": [
+    "controlflow-2",
+    "programming"
+  ]
+}

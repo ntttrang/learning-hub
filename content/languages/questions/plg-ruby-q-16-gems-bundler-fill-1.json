@@ -1,0 +1,20 @@
+{
+  "id": "plg-ruby-q-16-gems-bundler-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: this command ensures a tool runs with the exact gem versions from Gemfile.lock.",
+  "explanation": "bundle exec runs a command within the context of the bundled (locked) gem versions.",
+  "tags": [
+    "tooling",
+    "bundler"
+  ],
+  "kind": "fill",
+  "template": "___ exec rspec",
+  "blanks": [
+    {
+      "answer": "bundle",
+      "alternatives": [
+        "bundle"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-24-yjit-profiling-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What is YJIT?",
+  "explanation": "YJIT is Ruby's built-in JIT compiler, often improving throughput/latency on production apps.",
+  "tags": [
+    "performance",
+    "yjit"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A unit testing framework"
+    },
+    {
+      "id": "b",
+      "text": "Ruby's just-in-time compiler, which can reduce latency on real workloads"
+    },
+    {
+      "id": "c",
+      "text": "A gem dependency manager"
+    },
+    {
+      "id": "d",
+      "text": "A linter for style violations"
+    }
+  ],
+  "correct": "b"
+}

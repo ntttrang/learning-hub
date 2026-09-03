@@ -1,0 +1,34 @@
+{
+  "id": "plg-java-q-15-streams-multi-1",
+  "domainId": "plg-java",
+  "prompt": "Which Collectors are standard in java.util.stream.Collectors?",
+  "explanation": "toList, groupingBy, and partitioningBy are all real Collectors; sortInPlace doesn't exist.",
+  "tags": [
+    "streams",
+    "functional"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "toList"
+    },
+    {
+      "id": "b",
+      "text": "groupingBy"
+    },
+    {
+      "id": "c",
+      "text": "partitioningBy"
+    },
+    {
+      "id": "d",
+      "text": "sortInPlace"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

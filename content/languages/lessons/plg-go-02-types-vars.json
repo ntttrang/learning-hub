@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-02-types-vars",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 2,
+  "title": "Variables, types, and zero values",
+  "minutes": 9,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Declarations\n\n`var x int = 3`, or short form `x := 3` inside functions. Go is statically typed with inference.\n\n## Zero values\n\nEvery type has a zero value: `0`, `\"\"`, `false`, `nil`. There is no uninitialized memory — declared variables are always usable.\n\n## Constants and iota\n\n`const` values are compile-time. `iota` auto-increments for enum-like sets."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "name := \"Corgi\"\ncount := 0\n\nconst (\n  Red = iota // 0\n  Green      // 1\n  Blue       // 2\n)"
+    }
+  ],
+  "docIds": [
+    "spec",
+    "11"
+  ]
+}

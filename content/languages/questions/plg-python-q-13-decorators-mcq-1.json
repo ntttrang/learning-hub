@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-13-decorators-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "What does `functools.wraps` do when writing a decorator?",
+  "explanation": "Without `@functools.wraps(fn)`, the wrapper's `__name__`/`__doc__` would shadow the original function's.",
+  "tags": [
+    "decorators",
+    "functional"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Speeds up the wrapped function"
+    },
+    {
+      "id": "b",
+      "text": "Preserves the original function's metadata (name, docstring) on the wrapper"
+    },
+    {
+      "id": "c",
+      "text": "Automatically caches results"
+    },
+    {
+      "id": "d",
+      "text": "Converts the function into a generator"
+    }
+  ],
+  "correct": "b"
+}

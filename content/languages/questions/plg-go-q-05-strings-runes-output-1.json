@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-05-strings-runes-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "\"héllo\" has 5 runes but the é is 2 UTF-8 bytes, so len(s) counts 6 bytes while len([]rune(s)) counts 5 characters.",
+  "tags": [
+    "go-05-strings-runes",
+    "utf-8"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  s := \"héllo\"\n  fmt.Println(len(s))\n  fmt.Println(len([]rune(s)))\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "6\n5"
+    }
+  ]
+}

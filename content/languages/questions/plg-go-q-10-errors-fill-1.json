@@ -1,0 +1,20 @@
+{
+  "id": "plg-go-q-10-errors-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: errors._____(err, &target) checks whether an error in the chain can be assigned to target's concrete type.",
+  "explanation": "errors.As walks the error chain looking for a match assignable to *target.",
+  "tags": [
+    "go-10-errors",
+    "errors.As"
+  ],
+  "kind": "fill",
+  "template": "errors.___(err, &target)",
+  "blanks": [
+    {
+      "answer": "As",
+      "alternatives": [
+        "As"
+      ]
+    }
+  ]
+}

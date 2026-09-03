@@ -1,0 +1,25 @@
+{
+  "id": "plg-python-08-modules-venv",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 8,
+  "title": "Modules, packages, and virtualenvs",
+  "minutes": 10,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Imports\n\nA `.py` file is a module; a directory with modules is a package. Prefer explicit imports (`from pkg.mod import thing`).\n\n## Isolation\n\nUse a virtual environment per project so dependencies don't collide. `python -m venv .venv` then activate.\n\n## Modern tooling\n\n`uv` creates envs and installs deps at Rust speed, replacing much of pip/venv/pyenv friction."
+    },
+    {
+      "kind": "code",
+      "language": "bash",
+      "code": "python -m venv .venv\nsource .venv/bin/activate\npip install httpx\n# or: uv venv && uv pip install httpx"
+    }
+  ],
+  "docIds": [
+    "modules",
+    "venv",
+    "uv"
+  ]
+}

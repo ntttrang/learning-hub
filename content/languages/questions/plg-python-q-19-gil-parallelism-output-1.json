@@ -1,0 +1,18 @@
+{
+  "id": "plg-python-q-19-gil-parallelism-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "`pool.map` applies `double` to each item; `list()` materializes results in input order.",
+  "tags": [
+    "concurrency",
+    "gil",
+    "performance"
+  ],
+  "kind": "fill",
+  "template": "from concurrent.futures import ThreadPoolExecutor\n\ndef double(x):\n    return x * 2\n\nwith ThreadPoolExecutor() as pool:\n    results = list(pool.map(double, [1, 2, 3]))\nprint(results)\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "[2, 4, 6]"
+    }
+  ]
+}

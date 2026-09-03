@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-17-testing",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 17,
+  "title": "Testing with Minitest and RSpec",
+  "minutes": 11,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Minitest\n\nShips with Ruby. `assert_equal`, `assert_raises`, and parallel runs. Simple and fast for libraries.\n\n## RSpec\n\nExpressive DSL (`describe` / `it` / `expect`). Popular in apps; keep examples focused and avoid over-mocking.\n\n## What to test\n\nPrefer behavior at public boundaries. Table-driven examples and factories beat one giant fixture file."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "require \"minitest/autorun\"\n\nclass SumTest < Minitest::Test\n  def test_sum\n    assert_equal 6, [1, 2, 3].sum\n  end\nend"
+    }
+  ],
+  "docIds": [
+    "Minitest",
+    "rspec.info"
+  ]
+}

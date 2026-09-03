@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-15-streams-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "Intermediate stream operations like map/filter are:",
+  "explanation": "Nothing happens in a stream pipeline until a terminal operation (e.g. collect, forEach) triggers it.",
+  "tags": [
+    "streams",
+    "functional"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Lazy — they don't execute until a terminal operation runs"
+    },
+    {
+      "id": "b",
+      "text": "Eager, running immediately when called"
+    },
+    {
+      "id": "c",
+      "text": "Executed once eagerly then cached forever"
+    },
+    {
+      "id": "d",
+      "text": "Automatically run on a background thread"
+    }
+  ],
+  "correct": "a"
+}

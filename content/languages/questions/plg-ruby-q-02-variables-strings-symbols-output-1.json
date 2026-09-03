@@ -1,0 +1,18 @@
+{
+  "id": "plg-ruby-q-02-variables-strings-symbols-output-1",
+  "domainId": "plg-ruby",
+  "prompt": "What prints?",
+  "explanation": "Interpolation embeds the variable; symbols with the same name are always the same interned object.",
+  "tags": [
+    "basics",
+    "strings",
+    "symbols"
+  ],
+  "kind": "fill",
+  "template": "name = \"Corgi\"\nputs \"Ahoy, #{name}!\"\nputs :admin.object_id == :admin.object_id\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "Ahoy, Corgi!\ntrue"
+    }
+  ]
+}

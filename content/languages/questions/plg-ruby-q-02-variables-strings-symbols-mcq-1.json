@@ -1,0 +1,31 @@
+{
+  "id": "plg-ruby-q-02-variables-strings-symbols-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What is the key difference between a String and a Symbol in Ruby?",
+  "explanation": "Symbols are interned once and reused, making them cheap identifiers for fixed names like hash keys.",
+  "tags": [
+    "basics",
+    "strings",
+    "symbols"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Symbols are mutable, strings are immutable"
+    },
+    {
+      "id": "b",
+      "text": "Symbols are immutable and interned, so the same symbol is always the same object"
+    },
+    {
+      "id": "c",
+      "text": "Strings can be hash keys but symbols cannot"
+    },
+    {
+      "id": "d",
+      "text": "There is no difference; they are interchangeable"
+    }
+  ],
+  "correct": "b"
+}

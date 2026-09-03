@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-10-classes",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 10,
+  "title": "Classes, dunder methods, and properties",
+  "minutes": 12,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Objects\n\nDefine `__init__` for construction; `self` is the instance. Methods are functions with `self` first.\n\n## Dunder methods\n\nSpecial methods power syntax: `__repr__`, `__eq__`, `__len__`, `__iter__`. Implement `__repr__` for debuggable objects.\n\n## Properties\n\n`@property` exposes computed attributes without breaking the `obj.attr` interface — no Java-style getters."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "class Circle:\n    def __init__(self, r): self.r = r\n    @property\n    def area(self): return 3.14159 * self.r ** 2\n    def __repr__(self): return f\"Circle(r={self.r})\""
+    }
+  ],
+  "docIds": [
+    "classes",
+    "functions"
+  ]
+}

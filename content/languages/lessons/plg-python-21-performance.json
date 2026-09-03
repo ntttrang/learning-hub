@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-21-performance",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 25,
+  "title": "Profiling and performance",
+  "minutes": 12,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Measure, don't guess\n\nProfile with `cProfile`/`pstats` or `py-spy` (sampling, no code change). Find the real hot path before optimizing.\n\n## Common wins\n\nUse the right data structure (set for membership), avoid quadratic loops, cache with `functools.lru_cache`, and vectorize numeric work with NumPy.\n\n## Micro-benchmark\n\n`timeit` for small snippets. Beware premature optimization — readable code first, then optimize the measured bottleneck."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "import cProfile, pstats\ncProfile.run(\"main()\", \"out.prof\")\npstats.Stats(\"out.prof\").sort_stats(\"cumulative\").print_stats(10)"
+    }
+  ],
+  "docIds": [
+    "profile",
+    "timeit"
+  ]
+}

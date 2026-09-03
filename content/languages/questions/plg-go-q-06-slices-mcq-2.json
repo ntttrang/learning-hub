@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-06-slices-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "What can happen when two slices share the same backing array?",
+  "explanation": "Slicing does not copy the backing array, so overlapping slices can alias each other's data.",
+  "tags": [
+    "go-06-slices",
+    "aliasing"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "They are completely independent"
+    },
+    {
+      "id": "b",
+      "text": "A mutation through one slice can be visible through the other"
+    },
+    {
+      "id": "c",
+      "text": "They must always have the same length"
+    },
+    {
+      "id": "d",
+      "text": "Only one of them can be used at a time"
+    }
+  ],
+  "correct": "b"
+}

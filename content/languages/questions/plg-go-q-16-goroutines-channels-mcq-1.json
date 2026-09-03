@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-16-goroutines-channels-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "Which keyword starts a new goroutine?",
+  "explanation": "`go f()` launches f to run concurrently as a lightweight, scheduler-managed goroutine.",
+  "tags": [
+    "go-16-goroutines-channels",
+    "goroutines"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "async"
+    },
+    {
+      "id": "b",
+      "text": "go"
+    },
+    {
+      "id": "c",
+      "text": "spawn"
+    },
+    {
+      "id": "d",
+      "text": "thread"
+    }
+  ],
+  "correct": "b"
+}

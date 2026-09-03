@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-08-inheritance-poly",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 8,
+  "title": "Inheritance and polymorphism",
+  "minutes": 11,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## extends\n\nA subclass inherits fields/methods and can `@Override` behavior. Every class ultimately extends `Object`.\n\n## Polymorphism\n\nA variable of the parent type can hold a subclass instance; the actual method called is chosen at runtime (dynamic dispatch).\n\n## final and abstract\n\n`final` prevents overriding/subclassing. `abstract` classes cannot be instantiated and may declare methods without bodies.\n\nPrefer **composition over inheritance** when the relationship is not a true \"is-a\"."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "class Animal { String speak() { return \"...\"; } }\nclass Dog extends Animal { @Override String speak() { return \"woof\"; } }\n\nAnimal a = new Dog();\nSystem.out.println(a.speak()); // woof"
+    }
+  ],
+  "docIds": [
+    "subclasses",
+    "polymorphism"
+  ]
+}

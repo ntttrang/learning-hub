@@ -1,0 +1,19 @@
+{
+  "id": "plg-python-q-15-stdlib-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank to get the 3 most frequent words from a Counter.",
+  "explanation": "`most_common(n)` returns the n most frequent (item, count) pairs, sorted by count descending.",
+  "tags": [
+    "stdlib"
+  ],
+  "kind": "fill",
+  "template": "Counter(text.split()).___(3)",
+  "blanks": [
+    {
+      "answer": "most_common",
+      "alternatives": [
+        "most_common"
+      ]
+    }
+  ]
+}

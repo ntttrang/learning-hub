@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-20-packaging-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "Which file is the modern single source of truth for a Python package's metadata, dependencies, and build config?",
+  "explanation": "`pyproject.toml` is read by uv, hatch, and pip alike as the canonical project metadata/build file.",
+  "tags": [
+    "packaging",
+    "tooling"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "setup.py only"
+    },
+    {
+      "id": "b",
+      "text": "pyproject.toml"
+    },
+    {
+      "id": "c",
+      "text": "requirements.txt"
+    },
+    {
+      "id": "d",
+      "text": "Pipfile"
+    }
+  ],
+  "correct": "b"
+}

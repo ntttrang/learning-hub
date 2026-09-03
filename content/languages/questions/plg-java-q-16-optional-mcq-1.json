@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-16-optional-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "What is Optional<T> primarily intended for?",
+  "explanation": "Optional is designed for return types signaling \"maybe a value\", not for fields or parameters.",
+  "tags": [
+    "optional",
+    "null-safety"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Modeling a possibly-absent return value"
+    },
+    {
+      "id": "b",
+      "text": "Replacing all null checks everywhere, including fields"
+    },
+    {
+      "id": "c",
+      "text": "Method parameters that might be missing"
+    },
+    {
+      "id": "d",
+      "text": "Serializing data to JSON"
+    }
+  ],
+  "correct": "a"
+}

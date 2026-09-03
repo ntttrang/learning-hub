@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-15-stdlib-slices-maps-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "Which function checks whether a slice contains a value, using the generic `slices` package?",
+  "explanation": "slices.Contains(s, v) reports whether v is present in s.",
+  "tags": [
+    "go-15-stdlib-slices-maps",
+    "slices"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "slices.Has"
+    },
+    {
+      "id": "b",
+      "text": "slices.Contains"
+    },
+    {
+      "id": "c",
+      "text": "slices.Find"
+    },
+    {
+      "id": "d",
+      "text": "slices.In"
+    }
+  ],
+  "correct": "b"
+}

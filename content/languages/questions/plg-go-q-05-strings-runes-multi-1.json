@@ -1,0 +1,34 @@
+{
+  "id": "plg-go-q-05-strings-runes-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements about Go strings are true?",
+  "explanation": "s[i] returns a byte, not a rune; the other three statements are correct.",
+  "tags": [
+    "go-05-strings-runes",
+    "strings"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "A string is an immutable sequence of bytes"
+    },
+    {
+      "id": "b",
+      "text": "Indexing s[i] returns a rune"
+    },
+    {
+      "id": "c",
+      "text": "strings.Builder avoids quadratic-time concatenation in loops"
+    },
+    {
+      "id": "d",
+      "text": "[]rune(s) converts a string into its Unicode code points"
+    }
+  ],
+  "correct": [
+    "a",
+    "c",
+    "d"
+  ]
+}

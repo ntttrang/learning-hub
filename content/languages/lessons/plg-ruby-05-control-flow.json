@@ -1,0 +1,23 @@
+{
+  "id": "plg-ruby-05-control-flow",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 5,
+  "title": "Control flow and case",
+  "minutes": 10,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## if / unless / while\n\n`unless` is `if not`. Modifier forms (`return if done`) keep short guards readable. Prefer early returns over deep nesting.\n\n## case / when\n\n`case` uses `===` for matching — so ranges, classes, and regexes work as `when` arms. Great for multi-branch dispatch.\n\n## Looping\n\n`while`/`until` exist, but idiomatic Ruby leans on `each`, `times`, and Enumerable."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "n = 7\nlabel = case n\n        when 0 then \"zero\"\n        when 1..9 then \"single digit\"\n        when Integer then \"integer\"\n        else \"other\"\n        end\nputs label  # single digit"
+    }
+  ],
+  "docIds": [
+    "control_expressions_rdoc"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-18-io-nio-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "Which class represents a modern filesystem path in java.nio.file?",
+  "explanation": "java.nio.file.Path (used with java.nio.file.Files) is the modern replacement for java.io.File.",
+  "tags": [
+    "io",
+    "files"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Path"
+    },
+    {
+      "id": "b",
+      "text": "File"
+    },
+    {
+      "id": "c",
+      "text": "Directory"
+    },
+    {
+      "id": "d",
+      "text": "FilePath"
+    }
+  ],
+  "correct": "a"
+}

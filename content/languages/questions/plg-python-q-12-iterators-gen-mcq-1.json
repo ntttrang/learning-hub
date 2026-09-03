@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-12-iterators-gen-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "Which two dunder methods define the iterator protocol?",
+  "explanation": "`__iter__` returns an iterator; `__next__` produces values, raising `StopIteration` when exhausted.",
+  "tags": [
+    "iterators",
+    "generators"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "__get__ and __set__"
+    },
+    {
+      "id": "b",
+      "text": "__iter__ and __next__"
+    },
+    {
+      "id": "c",
+      "text": "__enter__ and __exit__"
+    },
+    {
+      "id": "d",
+      "text": "__call__ and __init__"
+    }
+  ],
+  "correct": "b"
+}

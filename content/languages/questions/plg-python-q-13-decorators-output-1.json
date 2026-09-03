@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-13-decorators-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "The `shout` decorator uppercases whatever the wrapped function returns.",
+  "tags": [
+    "decorators",
+    "functional"
+  ],
+  "kind": "fill",
+  "template": "import functools\n\ndef shout(fn):\n    @functools.wraps(fn)\n    def wrap(*a, **k):\n        return fn(*a, **k).upper()\n    return wrap\n\n@shout\ndef greet(name):\n    return f\"hi {name}\"\n\nprint(greet(\"ada\"))\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "HI ADA"
+    }
+  ]
+}

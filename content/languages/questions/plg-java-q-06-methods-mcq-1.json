@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-06-methods-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "When is method overloading resolved in Java?",
+  "explanation": "Overload resolution is a compile-time decision based on the static types of the arguments.",
+  "tags": [
+    "basics",
+    "methods"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "At compile time, based on argument types"
+    },
+    {
+      "id": "b",
+      "text": "At runtime, based on the actual object type"
+    },
+    {
+      "id": "c",
+      "text": "Never — Java disallows overloading"
+    },
+    {
+      "id": "d",
+      "text": "Only for static methods"
+    }
+  ],
+  "correct": "a"
+}

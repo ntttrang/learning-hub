@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-10-errors-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "%w wraps ErrNotFound, so errors.Is can find it in the chain.",
+  "tags": [
+    "go-10-errors",
+    "errors.Is"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport (\n  \"errors\"\n  \"fmt\"\n)\n\nvar ErrNotFound = errors.New(\"not found\")\n\nfunc find() error {\n  return fmt.Errorf(\"lookup failed: %w\", ErrNotFound)\n}\n\nfunc main() {\n  err := find()\n  fmt.Println(errors.Is(err, ErrNotFound))\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "true"
+    }
+  ]
+}

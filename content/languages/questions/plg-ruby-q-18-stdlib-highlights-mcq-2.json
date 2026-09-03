@@ -1,0 +1,29 @@
+{
+  "id": "plg-ruby-q-18-stdlib-highlights-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "What is the advantage of Data.define (Ruby 3.2+) over Struct.new?",
+  "explanation": "Data.define builds frozen, immutable value objects, preventing accidental mutation bugs.",
+  "tags": [
+    "stdlib"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It's mutable by default"
+    },
+    {
+      "id": "b",
+      "text": "It creates immutable value objects"
+    },
+    {
+      "id": "c",
+      "text": "It's always slower"
+    },
+    {
+      "id": "d",
+      "text": "It only supports symbol values"
+    }
+  ],
+  "correct": "b"
+}

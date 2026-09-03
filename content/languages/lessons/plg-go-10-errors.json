@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-10-errors",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 10,
+  "title": "Errors: wrapping and sentinels",
+  "minutes": 11,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## error is a value\n\nErrors are ordinary values implementing `error`. Check and return them explicitly — no exceptions.\n\n## Wrapping\n\nAdd context with `fmt.Errorf(\"...: %w\", err)`. Unwrap and inspect with `errors.Is` (sentinel match) and `errors.As` (type match).\n\n## Sentinels vs types\n\nExport sentinel errors (`var ErrNotFound = errors.New(...)`) for simple checks; custom error types when callers need extra fields."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "if err := save(u); err != nil {\n  return fmt.Errorf(\"saving user %d: %w\", u.ID, err)\n}\n\nif errors.Is(err, ErrNotFound) { /* handle */ }"
+    }
+  ],
+  "docIds": [
+    "go1.13-errors",
+    "errors"
+  ]
+}

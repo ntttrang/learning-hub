@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-17-sync-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "All five goroutines add 1 through 5 to total under the mutex; WaitGroup ensures main waits for all of them, giving 15.",
+  "tags": [
+    "go-17-sync",
+    "waitgroup"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport (\n  \"fmt\"\n  \"sync\"\n)\n\nfunc main() {\n  var wg sync.WaitGroup\n  var mu sync.Mutex\n  total := 0\n  for i := 1; i <= 5; i++ {\n    wg.Add(1)\n    go func(n int) {\n      defer wg.Done()\n      mu.Lock()\n      total += n\n      mu.Unlock()\n    }(i)\n  }\n  wg.Wait()\n  fmt.Println(total)\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "15"
+    }
+  ]
+}

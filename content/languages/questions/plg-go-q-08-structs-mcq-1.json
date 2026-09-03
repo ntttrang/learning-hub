@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-08-structs-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "Why would you give a method a pointer receiver instead of a value receiver?",
+  "explanation": "Pointer receivers let a method mutate the caller's value and avoid copying large structs on each call.",
+  "tags": [
+    "go-08-structs",
+    "methods"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "To mutate the receiver's fields or avoid copying a large struct"
+    },
+    {
+      "id": "b",
+      "text": "It is required for every method in Go"
+    },
+    {
+      "id": "c",
+      "text": "Pointer receivers are always faster for small structs"
+    },
+    {
+      "id": "d",
+      "text": "Only pointer receivers can satisfy interfaces"
+    }
+  ],
+  "correct": "a"
+}

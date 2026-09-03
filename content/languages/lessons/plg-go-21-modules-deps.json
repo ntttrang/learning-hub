@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-21-modules-deps",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 21,
+  "title": "Modules, versioning, and tooling",
+  "minutes": 10,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Dependency management\n\n`go get` adds/updates deps in `go.mod`; `go.sum` locks checksums. `go mod tidy` prunes unused and adds missing.\n\n## Semantic import versioning\n\nMajor version v2+ appears in the import path (`.../v2`). Minimal Version Selection picks the lowest version that satisfies all requirements — reproducible builds.\n\n## Vet and vulncheck\n\n`go vet` catches suspicious code; `govulncheck` scans for known CVEs in your dependency graph."
+    },
+    {
+      "kind": "code",
+      "language": "bash",
+      "code": "go get example.com/pkg@v1.4.0\ngo mod tidy\ngo vet ./...\ngovulncheck ./..."
+    }
+  ],
+  "docIds": [
+    "mod",
+    "govulncheck"
+  ]
+}

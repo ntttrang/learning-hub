@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-generics-backpressure-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "What is a real risk of an unbounded producer queue in a service?",
+  "explanation": "Unbounded queues let producers outpace consumers indefinitely, which is a classic cause of OOM in production services.",
+  "tags": [
+    "go-generics-backpressure",
+    "backpressure"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It always improves throughput with no downside"
+    },
+    {
+      "id": "b",
+      "text": "The service can run out of memory (OOM) under load"
+    },
+    {
+      "id": "c",
+      "text": "It automatically applies backpressure for you"
+    },
+    {
+      "id": "d",
+      "text": "It has no effect on resource usage"
+    }
+  ],
+  "correct": "b"
+}

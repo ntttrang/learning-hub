@@ -1,0 +1,34 @@
+{
+  "id": "plg-go-q-06-slices-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements about slices are correct?",
+  "explanation": "len and cap can differ; append may or may not reallocate, so the returned slice header must always be kept.",
+  "tags": [
+    "go-06-slices",
+    "make"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Arrays have a fixed size while slices are dynamic views over a backing array"
+    },
+    {
+      "id": "b",
+      "text": "You must reassign the result of append back to the slice variable"
+    },
+    {
+      "id": "c",
+      "text": "len and cap are always equal for a given slice"
+    },
+    {
+      "id": "d",
+      "text": "make([]int, 0, 4) creates a slice with length 0 and capacity 4"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

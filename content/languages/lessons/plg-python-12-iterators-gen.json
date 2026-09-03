@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-12-iterators-gen",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 12,
+  "title": "Iterators, generators, and yield",
+  "minutes": 12,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## The iterator protocol\n\nAnything with `__iter__`/`__next__` is iterable. `for` loops and comprehensions consume iterators.\n\n## yield\n\nA function with `yield` is a generator — it pauses and resumes, producing values lazily. Great for streams and pipelines.\n\n## itertools\n\n`chain`, `islice`, `groupby`, `count`, and `product` compose iterators efficiently without building intermediate lists."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "def read_lines(path):\n    with open(path) as f:\n        for line in f:\n            yield line.rstrip()\n\nfor line in read_lines(\"log.txt\"):\n    process(line)"
+    }
+  ],
+  "docIds": [
+    "classes-2",
+    "itertools"
+  ]
+}

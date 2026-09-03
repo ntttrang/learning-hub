@@ -1,0 +1,29 @@
+{
+  "id": "plg-ruby-q-17-testing-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which testing library ships with Ruby's standard library?",
+  "explanation": "Minitest is bundled with Ruby, while RSpec is a separate popular gem.",
+  "tags": [
+    "testing"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "RSpec"
+    },
+    {
+      "id": "b",
+      "text": "Minitest"
+    },
+    {
+      "id": "c",
+      "text": "Jasmine"
+    },
+    {
+      "id": "d",
+      "text": "Cucumber"
+    }
+  ],
+  "correct": "b"
+}

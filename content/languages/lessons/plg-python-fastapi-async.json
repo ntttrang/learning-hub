@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-fastapi-async",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 21,
+  "title": "FastAPI: async def vs def",
+  "minutes": 12,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## The production footgun\n\n`async def` is not automatically faster. Use `async def` when you **await** async I/O. If the body calls blocking libraries (`requests`, sync ORM, `time.sleep`), prefer plain `def` so FastAPI offloads to a thread pool — or you will block the event loop.\n\n## Stack\n\nFastAPI + Pydantic v2 + SQLAlchemy 2.0 async + asyncpg is the common 2026 API stack. Keep create/update/response schemas separate so secrets never leak.\n\n## Background work\n\n`BackgroundTasks` for quick follow-ups. Celery/Arq for heavy or retryable jobs."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "@app.get(\"/users/{id}\")\nasync def get_user(id: int, session: AsyncSession = Depends(get_session)):\n    return await session.get(User, id)\n\n@app.post(\"/report\")\ndef build_report():  # sync PDF lib — threadpool\n    return render_pdf()"
+    }
+  ],
+  "docIds": [
+    "async",
+    "dependencies"
+  ]
+}

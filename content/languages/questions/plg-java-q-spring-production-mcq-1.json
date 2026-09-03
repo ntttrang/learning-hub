@@ -1,0 +1,31 @@
+{
+  "id": "plg-java-q-spring-production-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "Why is constructor injection generally preferred in Spring?",
+  "explanation": "Constructor injection makes required dependencies explicit and lets you mark fields final, which keeps tests honest.",
+  "tags": [
+    "spring",
+    "transactions",
+    "hikaricp"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Dependencies are explicit and fields can be made final"
+    },
+    {
+      "id": "b",
+      "text": "It avoids needing any dependency configuration at all"
+    },
+    {
+      "id": "c",
+      "text": "It is the only injection style modern Spring supports"
+    },
+    {
+      "id": "d",
+      "text": "It disables the Spring application context"
+    }
+  ],
+  "correct": "a"
+}

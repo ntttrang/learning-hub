@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-idioms-layout-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "send accepts the Notifier interface; Logger satisfies it implicitly and its Notify prints the message.",
+  "tags": [
+    "go-idioms-layout",
+    "interfaces"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport \"fmt\"\n\ntype Notifier interface{ Notify(msg string) }\n\ntype Logger struct{}\n\nfunc (Logger) Notify(msg string) { fmt.Println(\"LOG:\", msg) }\n\nfunc send(n Notifier, msg string) { n.Notify(msg) }\n\nfunc main() {\n  send(Logger{}, \"deployed\")\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "LOG: deployed"
+    }
+  ]
+}

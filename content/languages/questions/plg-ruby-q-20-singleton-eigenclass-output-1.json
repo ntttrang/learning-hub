@@ -1,0 +1,17 @@
+{
+  "id": "plg-ruby-q-20-singleton-eigenclass-output-1",
+  "domainId": "plg-ruby",
+  "prompt": "What prints?",
+  "explanation": "class << self defines env/env= and load! as class methods on Config's singleton class.",
+  "tags": [
+    "oop",
+    "metaprogramming"
+  ],
+  "kind": "fill",
+  "template": "class Config\n  class << self\n    attr_accessor :env\n    def load! = @env = \"production\"\n  end\nend\n\nConfig.load!\nputs Config.env\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "production"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "plg-java-q-output",
+  "domainId": "plg-java",
+  "prompt": "What does this print (assuming no reordering surprises — think happens-before via join)?",
+  "explanation": "Thread.join() establishes happens-before with the joined thread's termination, so the write to x is visible.",
+  "kind": "fill",
+  "template": "class Demo {\n  static int x = 0;\n  public static void main(String[] args) throws Exception {\n    Thread t = new Thread(() -> x = 42);\n    t.start();\n    t.join();\n    System.out.println(x);\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "42"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-types-tooling-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "What is notable about Pydantic v2 compared to v1?",
+  "explanation": "Pydantic v2's validation core is written in Rust (pydantic-core), a large speed improvement over v1.",
+  "tags": [
+    "typing",
+    "tooling"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It's pure Python and slower"
+    },
+    {
+      "id": "b",
+      "text": "It has a Rust core, making it significantly faster"
+    },
+    {
+      "id": "c",
+      "text": "It removed data validation entirely"
+    },
+    {
+      "id": "d",
+      "text": "It only works inside FastAPI"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-asyncio-pools",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 22,
+  "title": "TaskGroup, pools, and connection math",
+  "minutes": 11,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## TaskGroup vs gather\n\n`asyncio.TaskGroup` cancels siblings on failure (structured concurrency). Prefer it for related tasks.\n\n## Connection pools\n\nOne async worker can multiplex thousands of requests. Size DB pools relative to workers × concurrent awaits, or you'll hit `too many connections`.\n\n## CPU-bound\n\nOffload to processes/queues — threads still contend on the GIL for pure Python CPU work."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "async with asyncio.TaskGroup() as tg:\n    tg.create_task(fetch(a))\n    tg.create_task(fetch(b))"
+    }
+  ],
+  "docIds": [
+    "asyncio-task-2",
+    "asyncio-task-2"
+  ]
+}

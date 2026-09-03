@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-10-enums-records-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "What does the `record` keyword automatically generate?",
+  "explanation": "record is a concise immutable data carrier: the compiler generates all of these for you.",
+  "tags": [
+    "oop",
+    "records"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Constructor, accessors, equals, hashCode, and toString"
+    },
+    {
+      "id": "b",
+      "text": "Only a constructor"
+    },
+    {
+      "id": "c",
+      "text": "A mutable builder class"
+    },
+    {
+      "id": "d",
+      "text": "Nothing beyond a regular class"
+    }
+  ],
+  "correct": "a"
+}

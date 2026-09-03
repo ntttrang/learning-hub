@@ -1,0 +1,20 @@
+{
+  "id": "plg-java-q-19-testing-fill-1",
+  "domainId": "plg-java",
+  "prompt": "JUnit 5 setup code that runs before each test method goes in a method annotated @_____.",
+  "explanation": "@BeforeEach marks per-test setup; @AfterEach marks per-test teardown.",
+  "tags": [
+    "testing",
+    "junit"
+  ],
+  "kind": "fill",
+  "template": "@___",
+  "blanks": [
+    {
+      "answer": "BeforeEach",
+      "alternatives": [
+        "BeforeEach"
+      ]
+    }
+  ]
+}

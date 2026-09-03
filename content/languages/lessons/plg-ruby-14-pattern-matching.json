@@ -1,0 +1,23 @@
+{
+  "id": "plg-ruby-14-pattern-matching",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 14,
+  "title": "Pattern matching (case / in)",
+  "minutes": 11,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## case / in\n\nRuby 3 pattern matching destructures arrays and hashes: `case payload; in { type: \"user\", id: } then ...`. Bind variables as you match.\n\n## find patterns and guards\n\n`in [*pre, Integer => n, *post]` and `if` guards refine matches. Use for JSON-shaped data and algebraic-style dispatch.\n\n## => vs =\n\nIn patterns, `=>` binds a matched value to a local. Prefer patterns at boundaries (parsers, message handlers), not everywhere."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "payload = { type: \"user\", id: 7, name: \"Ada\" }\n\ncase payload\nin { type: \"user\", id:, name: }\n  puts \"user ##{id}: #{name}\"\nin { type: \"ping\" }\n  puts \"pong\"\nelse\n  puts \"unknown\"\nend"
+    }
+  ],
+  "docIds": [
+    "pattern_matching_rdoc"
+  ]
+}

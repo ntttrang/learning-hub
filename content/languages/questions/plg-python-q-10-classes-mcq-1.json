@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-10-classes-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "Which dunder method controls what `repr(obj)` (and the interactive echo) displays?",
+  "explanation": "`repr()` calls `__repr__`; implementing it makes objects debuggable in logs and the REPL.",
+  "tags": [
+    "oop",
+    "classes"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "__str__"
+    },
+    {
+      "id": "b",
+      "text": "__repr__"
+    },
+    {
+      "id": "c",
+      "text": "__display__"
+    },
+    {
+      "id": "d",
+      "text": "__text__"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-12-collections",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 12,
+  "title": "Collections: List, Set, Map",
+  "minutes": 12,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## The core interfaces\n\n- `List` — ordered, indexed, allows duplicates (`ArrayList`, `LinkedList`).\n- `Set` — no duplicates (`HashSet`, `LinkedHashSet`, `TreeSet`).\n- `Map` — key/value (`HashMap`, `LinkedHashMap`, `TreeMap`).\n\n## Choosing\n\n`ArrayList` for random access; `ArrayDeque` for stack/queue. `HashMap` for O(1) lookup, `TreeMap` for sorted keys.\n\n## Factory methods\n\n`List.of`, `Set.of`, `Map.of` create **immutable** collections. Copy into a mutable one if you need to modify."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "Map<String, Integer> counts = new HashMap<>();\nfor (String w : words) {\n  counts.merge(w, 1, Integer::sum);\n}"
+    }
+  ],
+  "docIds": [
+    "collections",
+    "List"
+  ]
+}

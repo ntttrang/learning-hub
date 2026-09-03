@@ -1,0 +1,16 @@
+{
+  "id": "plg-java-q-fill",
+  "domainId": "plg-java",
+  "prompt": "Fill the blank: Spring enables virtual threads with spring.threads.virtual._____=true",
+  "explanation": "Property is spring.threads.virtual.enabled=true.",
+  "kind": "fill",
+  "template": "spring.threads.virtual.___=true",
+  "blanks": [
+    {
+      "answer": "enabled",
+      "alternatives": [
+        "enabled"
+      ]
+    }
+  ]
+}

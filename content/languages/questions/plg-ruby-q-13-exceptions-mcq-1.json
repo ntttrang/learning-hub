@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-13-exceptions-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What does a bare `rescue` (with no class specified) catch?",
+  "explanation": "A bare rescue defaults to StandardError, deliberately leaving truly fatal Exceptions uncaught.",
+  "tags": [
+    "exceptions",
+    "errors"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Every Exception, including fatal system ones"
+    },
+    {
+      "id": "b",
+      "text": "Only StandardError and its subclasses"
+    },
+    {
+      "id": "c",
+      "text": "Only custom error classes"
+    },
+    {
+      "id": "d",
+      "text": "Nothing; it's invalid syntax"
+    }
+  ],
+  "correct": "b"
+}

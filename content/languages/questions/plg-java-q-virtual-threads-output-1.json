@@ -1,0 +1,18 @@
+{
+  "id": "plg-java-q-virtual-threads-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "The submitted task runs on a virtual thread and returns \"done\", which get() retrieves.",
+  "tags": [
+    "loom",
+    "java21",
+    "concurrency"
+  ],
+  "kind": "fill",
+  "template": "import java.util.concurrent.*;\n\npublic class Demo {\n  public static void main(String[] args) throws Exception {\n    try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {\n      Future<String> f = executor.submit(() -> \"done\");\n      System.out.println(f.get());\n    }\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "done"
+    }
+  ]
+}

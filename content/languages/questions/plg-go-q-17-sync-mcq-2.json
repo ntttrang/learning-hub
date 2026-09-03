@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-17-sync-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "In the common WaitGroup pattern, where should wg.Done() typically be called?",
+  "explanation": "Deferring Done() ensures it runs even if the goroutine returns early or panics.",
+  "tags": [
+    "go-17-sync",
+    "waitgroup"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "At the very start of main, before any goroutines start"
+    },
+    {
+      "id": "b",
+      "text": "In a defer statement inside the goroutine"
+    },
+    {
+      "id": "c",
+      "text": "Only after wg.Wait() returns"
+    },
+    {
+      "id": "d",
+      "text": "It is not needed if wg.Add was called"
+    }
+  ],
+  "correct": "b"
+}

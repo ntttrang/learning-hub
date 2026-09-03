@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-07-blocks-procs-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "What is a key difference between a proc and a lambda?",
+  "explanation": "lambda enforces argument count and its `return` only exits the lambda itself, unlike proc.",
+  "tags": [
+    "blocks",
+    "procs"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "A lambda is strict about arity and returns only from itself; a proc is lenient and returns from the enclosing method"
+    },
+    {
+      "id": "b",
+      "text": "A proc cannot be called at all"
+    },
+    {
+      "id": "c",
+      "text": "A lambda cannot take arguments"
+    },
+    {
+      "id": "d",
+      "text": "They behave identically in every way"
+    }
+  ],
+  "correct": "a"
+}

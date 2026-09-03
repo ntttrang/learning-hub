@@ -1,0 +1,34 @@
+{
+  "id": "plg-ruby-q-04-collections-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which statements about Ruby Hash literals are true (Ruby 3.1+)?",
+  "explanation": "Ruby 3.1 added hash shorthand syntax; hash keys can be any object, not just symbols.",
+  "tags": [
+    "collections",
+    "basics"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "`{ name: \"Ada\" }` uses the symbol key :name"
+    },
+    {
+      "id": "b",
+      "text": "`{ name: }` is valid shorthand when a local variable `name` already exists"
+    },
+    {
+      "id": "c",
+      "text": "Hash keys must always be symbols"
+    },
+    {
+      "id": "d",
+      "text": "You can use strings as hash keys too"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

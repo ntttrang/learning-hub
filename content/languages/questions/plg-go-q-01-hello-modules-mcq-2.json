@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-01-hello-modules-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "What makes a Go source tree an executable program?",
+  "explanation": "Go looks for package main and a func main() as the program entry point.",
+  "tags": [
+    "go-01-hello-modules",
+    "basics"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "package main with a func main()"
+    },
+    {
+      "id": "b",
+      "text": "package app with a func Run()"
+    },
+    {
+      "id": "c",
+      "text": "Any package containing an init() function"
+    },
+    {
+      "id": "d",
+      "text": "package main with a func Start()"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "plg-ruby-q-02-variables-strings-symbols-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "Which of the following correctly interpolates a variable into a string?",
+  "explanation": "Double-quoted strings support #{} interpolation; single-quoted strings are mostly literal.",
+  "tags": [
+    "basics",
+    "strings",
+    "symbols"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "'Hello #{name}'"
+    },
+    {
+      "id": "b",
+      "text": "\"Hello #{name}\""
+    },
+    {
+      "id": "c",
+      "text": "\"Hello \" + #{name}"
+    },
+    {
+      "id": "d",
+      "text": "\"Hello $name\""
+    }
+  ],
+  "correct": "b"
+}

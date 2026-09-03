@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-11-dataclasses-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "The generated `__repr__` shows field names and values; `roles` defaults to an empty list.",
+  "tags": [
+    "oop",
+    "dataclasses"
+  ],
+  "kind": "fill",
+  "template": "from dataclasses import dataclass, field\n\n@dataclass\nclass User:\n    name: str\n    roles: list[str] = field(default_factory=list)\n\nu = User(\"Ada\")\nprint(u)\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "User(name='Ada', roles=[])"
+    }
+  ]
+}

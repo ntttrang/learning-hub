@@ -1,0 +1,34 @@
+{
+  "id": "plg-python-q-17-files-json-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which statements about JSON handling in Python are true?",
+  "explanation": "Custom objects aren't JSON-serializable by default; `default=` supplies a function to convert them.",
+  "tags": [
+    "io",
+    "json"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "json.loads parses a JSON string into Python objects"
+    },
+    {
+      "id": "b",
+      "text": "json.dumps serializes Python objects to a JSON string"
+    },
+    {
+      "id": "c",
+      "text": "json can natively serialize arbitrary custom classes without help"
+    },
+    {
+      "id": "d",
+      "text": "`default=` lets you provide a fallback serializer for custom types"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

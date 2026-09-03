@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-13-generics",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 13,
+  "title": "Generics and bounded wildcards",
+  "minutes": 13,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Why generics\n\nCompile-time type safety without casts. `List<String>` guarantees only strings go in and come out.\n\n## Type erasure\n\nGenerics are erased at runtime — you cannot do `new T[]` or `instanceof List<String>`. This is why reflection sees raw types.\n\n## PECS\n\n**Producer Extends, Consumer Super**: `? extends T` to read, `? super T` to write. Bounded wildcards make APIs flexible."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "static <T extends Comparable<T>> T max(List<? extends T> items) {\n  T best = items.get(0);\n  for (T t : items) if (t.compareTo(best) > 0) best = t;\n  return best;\n}"
+    }
+  ],
+  "docIds": [
+    "generics",
+    "wildcards"
+  ]
+}

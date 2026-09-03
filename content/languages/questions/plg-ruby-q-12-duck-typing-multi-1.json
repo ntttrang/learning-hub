@@ -1,0 +1,34 @@
+{
+  "id": "plg-ruby-q-12-duck-typing-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which of these objects respond to .size and could be passed to a duck-typed describe(collection) method?",
+  "explanation": "Array, Hash, and String all define size; nil does not, so calling nil.size raises NoMethodError.",
+  "tags": [
+    "oop",
+    "design"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "[1, 2, 3]"
+    },
+    {
+      "id": "b",
+      "text": "{ a: 1, b: 2 }"
+    },
+    {
+      "id": "c",
+      "text": "\"ahoy\""
+    },
+    {
+      "id": "d",
+      "text": "nil"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

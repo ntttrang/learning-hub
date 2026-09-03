@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-07-functions-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "What's wrong with `def f(x=[]):`?",
+  "explanation": "Mutable default arguments are evaluated once at definition time and shared between calls — a classic gotcha.",
+  "tags": [
+    "basics",
+    "functions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Nothing, it's idiomatic Python"
+    },
+    {
+      "id": "b",
+      "text": "The default list is created once and shared across all calls"
+    },
+    {
+      "id": "c",
+      "text": "Python forbids list literals as defaults"
+    },
+    {
+      "id": "d",
+      "text": "It raises a TypeError at call time"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "plg-java-07-classes-objects",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 7,
+  "title": "Classes, objects, and constructors",
+  "minutes": 11,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Blueprint vs instance\n\nA class defines fields (state) and methods (behavior). `new` creates an instance and runs a constructor.\n\n## Encapsulation\n\nMake fields `private` and expose behavior through methods. This keeps invariants safe.\n\n## this and constructors\n\n`this` refers to the current instance. Constructors can call one another with `this(...)`; a subclass calls the parent with `super(...)`."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "public class Account {\n  private long balanceCents;\n\n  public Account(long opening) { this.balanceCents = opening; }\n\n  public void deposit(long cents) { balanceCents += cents; }\n  public long balance() { return balanceCents; }\n}"
+    }
+  ],
+  "docIds": [
+    "javaOO"
+  ]
+}

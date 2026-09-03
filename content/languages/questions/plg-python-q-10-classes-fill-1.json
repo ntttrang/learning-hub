@@ -1,0 +1,20 @@
+{
+  "id": "plg-python-q-10-classes-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank: the conventional first parameter of an instance method, referring to the instance itself.",
+  "explanation": "`self` is the instance, passed automatically when calling `instance.method()`.",
+  "tags": [
+    "oop",
+    "classes"
+  ],
+  "kind": "fill",
+  "template": "def area(___): ...",
+  "blanks": [
+    {
+      "answer": "self",
+      "alternatives": [
+        "self"
+      ]
+    }
+  ]
+}

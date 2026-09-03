@@ -1,0 +1,23 @@
+{
+  "id": "plg-go-q-07-maps-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: range over a Go map iterates keys in _____ order, so sort keys explicitly if order matters.",
+  "explanation": "Go deliberately randomizes map iteration order to prevent code from relying on it.",
+  "tags": [
+    "go-07-maps",
+    "iteration"
+  ],
+  "kind": "fill",
+  "template": "for k := range m { ... } // ___ order",
+  "blanks": [
+    {
+      "answer": "random",
+      "alternatives": [
+        "random",
+        "randomized",
+        "unspecified",
+        "undefined"
+      ]
+    }
+  ]
+}

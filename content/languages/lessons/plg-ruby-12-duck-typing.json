@@ -1,0 +1,23 @@
+{
+  "id": "plg-ruby-12-duck-typing",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 12,
+  "title": "Duck typing and polymorphism",
+  "minutes": 10,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## If it quacks…\n\nRuby cares about *behavior*, not declared types. Pass any object that responds to the methods you call. Interfaces are cultural, not nominal.\n\n## respond_to? and explicit contracts\n\n`respond_to?(:each)` can guard optional behavior. For public APIs, document the expected protocol (or use a shared module) so callers know the contract.\n\n## Prefer polymorphism over case/when on class\n\nReplace `case obj; when String; when Array` with methods on each type when the set of types grows."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "def describe(collection)\n  \"#{collection.size} items\"\nend\n\nputs describe([1, 2, 3])\nputs describe({ a: 1, b: 2 })\nputs describe(\"ahoy\")"
+    }
+  ],
+  "docIds": [
+    "Object-2"
+  ]
+}

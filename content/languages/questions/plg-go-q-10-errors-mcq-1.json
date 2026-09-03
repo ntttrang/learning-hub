@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-10-errors-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "What does the %w verb do inside fmt.Errorf?",
+  "explanation": "%w wraps the error, preserving it in the chain for errors.Is and errors.As to inspect.",
+  "tags": [
+    "go-10-errors",
+    "wrapping"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Formats the error as a wide (UTF-16) string"
+    },
+    {
+      "id": "b",
+      "text": "Wraps the given error so it can later be unwrapped with errors.Is/As"
+    },
+    {
+      "id": "c",
+      "text": "Discards the original error's message"
+    },
+    {
+      "id": "d",
+      "text": "Converts the error into a plain string permanently"
+    }
+  ],
+  "correct": "b"
+}

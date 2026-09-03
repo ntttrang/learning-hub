@@ -1,0 +1,33 @@
+{
+  "id": "plg-ruby-q-19-metaprogramming-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which practices are recommended around metaprogramming in Ruby?",
+  "explanation": "send bypasses visibility and is dangerous with untrusted input; public_send respects encapsulation.",
+  "tags": [
+    "metaprogramming"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Pair method_missing with respond_to_missing?"
+    },
+    {
+      "id": "b",
+      "text": "Prefer define_method over building code with eval strings"
+    },
+    {
+      "id": "c",
+      "text": "Use send freely on unsanitized user input"
+    },
+    {
+      "id": "d",
+      "text": "Prefer public_send when the method name comes from user input"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "plg-go-q-idioms-layout-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements reflect idiomatic Go project layout advice?",
+  "explanation": "The guidance favors table-driven tests with simple stubs over heavy mocking frameworks for most services.",
+  "tags": [
+    "go-idioms-layout",
+    "architecture"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Deep service/repository/pkg layered trees often fight Go's package model"
+    },
+    {
+      "id": "b",
+      "text": "Organizing by domain (what the code does) is generally preferred over organizing by technical layer"
+    },
+    {
+      "id": "c",
+      "text": "Heavy mocking frameworks are preferred over table-driven tests with simple stubs"
+    },
+    {
+      "id": "d",
+      "text": "pprof can help identify stuck or leaked goroutines"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

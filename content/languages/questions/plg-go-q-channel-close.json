@@ -1,0 +1,29 @@
+{
+  "id": "plg-go-q-channel-close",
+  "domainId": "plg-go",
+  "prompt": "Which statements about channels are idiomatic?",
+  "explanation": "Producers close; ranging until close is common. Closing is not required for GC; non-blocking select with default is sometimes fine.",
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Close from the producer side"
+    },
+    {
+      "id": "b",
+      "text": "Closing is required for garbage collection of the channel"
+    },
+    {
+      "id": "c",
+      "text": "Range over a channel until it is closed"
+    },
+    {
+      "id": "d",
+      "text": "Never use select with default for non-blocking send"
+    }
+  ],
+  "correct": [
+    "a",
+    "c"
+  ]
+}

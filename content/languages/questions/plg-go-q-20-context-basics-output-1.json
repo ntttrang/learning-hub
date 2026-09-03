@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-20-context-basics-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "After the timeout elapses, ctx.Done() closes and ctx.Err() reports context.DeadlineExceeded.",
+  "tags": [
+    "go-20-context-basics",
+    "timeout"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport (\n  \"context\"\n  \"fmt\"\n  \"time\"\n)\n\nfunc main() {\n  ctx, cancel := context.WithTimeout(context.Background(), 10*time.Millisecond)\n  defer cancel()\n  <-ctx.Done()\n  fmt.Println(ctx.Err())\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "context deadline exceeded"
+    }
+  ]
+}

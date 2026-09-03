@@ -1,0 +1,34 @@
+{
+  "id": "plg-ruby-q-20-singleton-eigenclass-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which statements about singleton classes are true?",
+  "explanation": "Any object—not just main—can have a singleton class holding methods defined only on it.",
+  "tags": [
+    "oop",
+    "metaprogramming"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "def self.foo is an alternative to class << self for a single method"
+    },
+    {
+      "id": "b",
+      "text": "obj.singleton_class.ancestors shows the method lookup path"
+    },
+    {
+      "id": "c",
+      "text": "Every Ruby object can have its own singleton class"
+    },
+    {
+      "id": "d",
+      "text": "Singleton classes only exist for the top-level main object"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

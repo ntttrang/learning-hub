@@ -1,0 +1,23 @@
+{
+  "id": "plg-java-16-optional",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 16,
+  "title": "Optional and null-safety",
+  "minutes": 9,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Intent\n\n`Optional<T>` models \"maybe a value\" for **return types** — signaling absence without `null`.\n\n## Use it well\n\nChain with `map`, `filter`, `orElse`, `orElseThrow`. Avoid `Optional.get()` without a presence check.\n\n## Anti-patterns\n\nDon't use `Optional` for fields or method parameters, and never return `null` from a method declared to return `Optional`."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "return repo.findById(id)\n    .map(User::email)\n    .orElseThrow(() -> new NotFound(\"user \" + id));"
+    }
+  ],
+  "docIds": [
+    "Optional"
+  ]
+}

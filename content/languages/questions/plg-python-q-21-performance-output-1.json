@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-21-performance-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "`lru_cache` memoizes results; both calls with x=4 print 16 (the second is served from cache).",
+  "tags": [
+    "performance",
+    "profiling"
+  ],
+  "kind": "fill",
+  "template": "import functools\n\n@functools.lru_cache\ndef square(x):\n    return x * x\n\nprint(square(4), square(4))\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "16 16"
+    }
+  ]
+}

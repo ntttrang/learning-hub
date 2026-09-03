@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-12-interfaces",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 12,
+  "title": "Interfaces and implicit satisfaction",
+  "minutes": 12,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Structural typing\n\nA type satisfies an interface just by having the methods — no `implements` keyword. This enables loose coupling and easy testing.\n\n## Small interfaces\n\nGo favors tiny interfaces (`io.Reader`, `io.Writer`). Accept interfaces, return concrete types.\n\n## The empty interface / any\n\n`any` (alias for `interface{}`) holds anything. Use type assertions or type switches to recover the concrete type."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "func describe(v any) string {\n  switch x := v.(type) {\n  case int: return fmt.Sprintf(\"int %d\", x)\n  case string: return \"string \" + x\n  default: return \"unknown\"\n  }\n}"
+    }
+  ],
+  "docIds": [
+    "9",
+    "go-proverbs.github.io"
+  ]
+}

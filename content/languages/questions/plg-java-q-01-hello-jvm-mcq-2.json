@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-01-hello-jvm-mcq-2",
+  "domainId": "plg-java",
+  "prompt": "Which is the correct signature for a Java application's main entry point?",
+  "explanation": "The JVM looks for exactly `public static void main(String[] args)` to start an application.",
+  "tags": [
+    "basics",
+    "jvm"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "public static void main(String[] args)"
+    },
+    {
+      "id": "b",
+      "text": "public void main(String[] args)"
+    },
+    {
+      "id": "c",
+      "text": "static int main(String[] args)"
+    },
+    {
+      "id": "d",
+      "text": "private static void main(String[] args)"
+    }
+  ],
+  "correct": "a"
+}

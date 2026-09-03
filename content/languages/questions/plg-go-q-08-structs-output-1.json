@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-08-structs-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "Inc uses a pointer receiver so both calls mutate the same Counter, giving n=2.",
+  "tags": [
+    "go-08-structs",
+    "methods"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport \"fmt\"\n\ntype Counter struct{ n int }\n\nfunc (c *Counter) Inc() { c.n++ }\nfunc (c Counter) Value() int { return c.n }\n\nfunc main() {\n  c := &Counter{}\n  c.Inc()\n  c.Inc()\n  fmt.Println(c.Value())\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "2"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-15-stdlib-slices-maps-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "slices.Sort sorts in place ascending; 2 is present in the sorted slice.",
+  "tags": [
+    "go-15-stdlib-slices-maps",
+    "slices"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport (\n  \"fmt\"\n  \"slices\"\n)\n\nfunc main() {\n  s := []int{3, 1, 2}\n  slices.Sort(s)\n  fmt.Println(s)\n  fmt.Println(slices.Contains(s, 2))\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "[1 2 3]\ntrue"
+    }
+  ]
+}

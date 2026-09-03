@@ -1,0 +1,23 @@
+{
+  "id": "plg-ruby-21-refinements",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 21,
+  "title": "Refinements vs monkey-patching",
+  "minutes": 10,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Monkey patches are global\n\nReopening `String` affects the whole process. Convenient in a script; risky in a gem ecosystem.\n\n## Refinements\n\n`refine String do ... end` plus `using MyRefine` scopes patches to a file or module. Safer for library authors.\n\n## When to patch\n\nPrefer wrapper objects or modules. Use refinements for optional syntax sugar; avoid surprising core-class changes in shared code."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "module StringOps\n  refine String do\n    def shout = upcase + \"!\"\n  end\nend\n\nusing StringOps\nputs \"ahoy\".shout  # AHOY!"
+    }
+  ],
+  "docIds": [
+    "refinements_rdoc"
+  ]
+}

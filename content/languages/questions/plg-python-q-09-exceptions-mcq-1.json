@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-09-exceptions-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "What does the Python idiom \"EAFP\" stand for?",
+  "explanation": "EAFP means try the operation and handle failures with except, rather than pre-checking conditions.",
+  "tags": [
+    "errors",
+    "exceptions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Easier to Ask Forgiveness than Permission"
+    },
+    {
+      "id": "b",
+      "text": "Explicit Args, Flexible Params"
+    },
+    {
+      "id": "c",
+      "text": "Exceptions Are For Programmers"
+    },
+    {
+      "id": "d",
+      "text": "Early Abort, Fast Path"
+    }
+  ],
+  "correct": "a"
+}

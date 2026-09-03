@@ -1,0 +1,34 @@
+{
+  "id": "plg-ruby-q-10-classes-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which statements about self and visibility in Ruby classes are true?",
+  "explanation": "Ruby's private methods restrict explicit-receiver calls, with a carve-out for self.attr= setter syntax.",
+  "tags": [
+    "oop",
+    "classes"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Inside an instance method, self refers to the current instance"
+    },
+    {
+      "id": "b",
+      "text": "`def self.method` defines a class method"
+    },
+    {
+      "id": "c",
+      "text": "Private methods can always be called with an explicit receiver"
+    },
+    {
+      "id": "d",
+      "text": "Private methods generally cannot be called with an explicit receiver, except for self.foo= setters"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

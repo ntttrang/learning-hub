@@ -1,0 +1,22 @@
+{
+  "id": "plg-go-q-04-functions-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: a defer statement schedules a call to run when the surrounding function _____.",
+  "explanation": "defer delays execution until the enclosing function is about to return, useful for cleanup.",
+  "tags": [
+    "go-04-functions",
+    "defer"
+  ],
+  "kind": "fill",
+  "template": "defer f() // runs when the function ___",
+  "blanks": [
+    {
+      "answer": "returns",
+      "alternatives": [
+        "returns",
+        "exits",
+        "returns or exits"
+      ]
+    }
+  ]
+}

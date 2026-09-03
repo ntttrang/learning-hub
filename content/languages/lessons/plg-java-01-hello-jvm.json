@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-01-hello-jvm",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 1,
+  "title": "Hello, JVM: compile and run",
+  "minutes": 8,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## The pipeline\n\nJava source (`.java`) is compiled by `javac` into **bytecode** (`.class`), which the **JVM** runs. Write once, run anywhere — the JVM abstracts the OS/CPU.\n\n## Anatomy\n\n- Every app has an entry point: `public static void main(String[] args)`.\n- Class name must match the file name for public classes.\n\n## Modern shortcut\n\nSince Java 11 you can run a single file directly: `java Hello.java` (no explicit compile step). Java 21+ even allows unnamed classes and instance `main` in preview."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "public class Hello {\n  public static void main(String[] args) {\n    System.out.println(\"Ahoy, world!\");\n  }\n}"
+    }
+  ],
+  "docIds": [
+    "getting-started-java",
+    "javac"
+  ]
+}

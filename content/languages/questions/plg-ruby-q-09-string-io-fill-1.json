@@ -1,0 +1,20 @@
+{
+  "id": "plg-ruby-q-09-string-io-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: adding this magic comment at the top of a file makes string literals frozen by default.",
+  "explanation": "The frozen_string_literal magic comment freezes every string literal in the file, reducing allocations.",
+  "tags": [
+    "strings",
+    "io"
+  ],
+  "kind": "fill",
+  "template": "# frozen_string_literal: ___",
+  "blanks": [
+    {
+      "answer": "true",
+      "alternatives": [
+        "true"
+      ]
+    }
+  ]
+}

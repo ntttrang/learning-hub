@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-06-comprehensions-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "What is the main advantage of the generator expression `(x*x for x in range(10))` over the list comprehension `[x*x for x in range(10)]`?",
+  "explanation": "Generator expressions yield one item at a time instead of building the whole sequence in memory.",
+  "tags": [
+    "basics",
+    "comprehensions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It runs with better asymptotic time complexity"
+    },
+    {
+      "id": "b",
+      "text": "It's lazy and memory-friendly, not materializing all items at once"
+    },
+    {
+      "id": "c",
+      "text": "It supports item mutation"
+    },
+    {
+      "id": "d",
+      "text": "It's the only way to filter items with `if`"
+    }
+  ],
+  "correct": "b"
+}

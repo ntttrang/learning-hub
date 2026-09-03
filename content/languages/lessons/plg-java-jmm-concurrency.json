@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-jmm-concurrency",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 23,
+  "title": "JMM, volatile, and happens-before",
+  "minutes": 12,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Why this matters\n\nSenior Java interviews dig past `synchronized` into **visibility**, **atomicity**, and the **Java Memory Model (JMM)**. `volatile` guarantees visibility and ordering for a single field — not atomic compound updates.\n\n## Rules of thumb\n\n- Use `volatile` for a **flag** or **publication** of an immutable reference.\n- Use `AtomicInteger` / CAS for **read-modify-write**.\n- Prefer higher-level tools (`ConcurrentHashMap`, `CompletableFuture`, virtual threads) over hand-rolled locks.\n\n## Happens-before (practical)\n\nIf action A *happens-before* B, B sees A's writes. Unlock of a monitor happens-before a subsequent lock of the same monitor. A write to `volatile` happens-before a subsequent read of that same field.\n\n## Double-checked locking\n\nClassic singleton DCL is only correct when the instance field is `volatile`. In practice, prefer a static holder or `ConcurrentHashMap.computeIfAbsent`."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "class Worker implements Runnable {\n  private volatile boolean running = true;\n\n  public void stop() { running = false; }\n\n  public void run() {\n    while (running) {\n      // do work\n    }\n  }\n}"
+    }
+  ],
+  "docIds": [
+    "jls-17",
+    "package-summary-3"
+  ]
+}

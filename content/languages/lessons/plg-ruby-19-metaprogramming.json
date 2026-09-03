@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-19-metaprogramming",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 19,
+  "title": "Metaprogramming: define_method and method_missing",
+  "minutes": 13,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## define_method\n\nGenerate methods from data instead of copy-paste. Prefer this over `eval` strings.\n\n## method_missing\n\nIntercept unknown messages for DSLs and proxies. Always pair with `respond_to_missing?` so `respond_to?` stays honest.\n\n## send / public_send\n\n`send` bypasses visibility; prefer `public_send` for user-influenced method names. Never `send` unsanitized input."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "class Widget\n  %i[start stop reset].each do |action|\n    define_method(action) { \"#{action} ok\" }\n  end\nend\n\nw = Widget.new\nputs w.start\nputs w.public_send(:stop)"
+    }
+  ],
+  "docIds": [
+    "BasicObject",
+    "Module-3"
+  ]
+}

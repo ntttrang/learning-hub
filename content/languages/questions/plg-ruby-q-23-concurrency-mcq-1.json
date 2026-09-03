@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-23-concurrency-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What does the GVL (Global VM Lock) in MRI Ruby prevent?",
+  "explanation": "The GVL serializes CPU-bound Ruby execution across threads, though threads still help with IO-bound work.",
+  "tags": [
+    "concurrency",
+    "threads"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Any use of threads whatsoever"
+    },
+    {
+      "id": "b",
+      "text": "True parallel execution of CPU-bound Ruby code across threads"
+    },
+    {
+      "id": "c",
+      "text": "IO from ever happening concurrently"
+    },
+    {
+      "id": "d",
+      "text": "Fibers from being created"
+    }
+  ],
+  "correct": "b"
+}

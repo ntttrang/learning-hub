@@ -1,0 +1,34 @@
+{
+  "id": "plg-java-q-08-inheritance-poly-multi-1",
+  "domainId": "plg-java",
+  "prompt": "Which statements about polymorphism and dynamic dispatch are true?",
+  "explanation": "abstract classes cannot be instantiated directly; the other statements are correct.",
+  "tags": [
+    "oop",
+    "inheritance"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "The overriding method actually invoked is chosen at runtime"
+    },
+    {
+      "id": "b",
+      "text": "A parent-typed variable can reference a subclass instance"
+    },
+    {
+      "id": "c",
+      "text": "abstract classes can be instantiated directly"
+    },
+    {
+      "id": "d",
+      "text": "Composition is often preferable when the relationship isn't a true \"is-a\""
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

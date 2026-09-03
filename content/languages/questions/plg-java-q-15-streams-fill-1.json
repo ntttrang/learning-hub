@@ -1,0 +1,21 @@
+{
+  "id": "plg-java-q-15-streams-fill-1",
+  "domainId": "plg-java",
+  "prompt": "A stream pipeline can only be traversed _____; reusing it throws IllegalStateException.",
+  "explanation": "Streams are single-use: once a terminal operation consumes the stream, it cannot be reused.",
+  "tags": [
+    "streams",
+    "functional"
+  ],
+  "kind": "fill",
+  "template": "traversed ___",
+  "blanks": [
+    {
+      "answer": "once",
+      "alternatives": [
+        "once",
+        "one time"
+      ]
+    }
+  ]
+}

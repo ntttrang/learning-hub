@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-14-generics-intro-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "Which Go release introduced generics (type parameters)?",
+  "explanation": "Generics landed in Go 1.18 with type parameters and constraints.",
+  "tags": [
+    "go-14-generics-intro",
+    "history"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Go 1.16"
+    },
+    {
+      "id": "b",
+      "text": "Go 1.18"
+    },
+    {
+      "id": "c",
+      "text": "Go 1.20"
+    },
+    {
+      "id": "d",
+      "text": "Go 1.13"
+    }
+  ],
+  "correct": "b"
+}

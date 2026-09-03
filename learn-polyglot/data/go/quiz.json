@@ -1,0 +1,1294 @@
+{
+  "language": "go",
+  "questions": [
+    {
+      "id": "go-q-context",
+      "type": "mcq",
+      "prompt": "Where should context.Context usually appear in a Go API?",
+      "options": [
+        { "id": "a", "text": "As a global package variable" },
+        { "id": "b", "text": "As the first parameter of functions that may wait" },
+        { "id": "c", "text": "Only inside HTTP handlers, never passed down" },
+        { "id": "d", "text": "Stored permanently on every struct field" }
+      ],
+      "answer": "b",
+      "explanation": "Pass ctx as the first argument into blocking/IO work so cancellation propagates."
+    },
+    {
+      "id": "go-q-channel-close",
+      "type": "multi",
+      "prompt": "Which statements about channels are idiomatic?",
+      "options": [
+        { "id": "a", "text": "Close from the producer side" },
+        { "id": "b", "text": "Closing is required for garbage collection of the channel" },
+        { "id": "c", "text": "Range over a channel until it is closed" },
+        { "id": "d", "text": "Never use select with default for non-blocking send" }
+      ],
+      "answers": ["a", "c"],
+      "explanation": "Producers close; ranging until close is common. Closing is not required for GC; non-blocking select with default is sometimes fine."
+    },
+    {
+      "id": "go-q-output",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\nimport \"fmt\"\nfunc main() {\n  ch := make(chan int, 1)\n  ch <- 7\n  close(ch)\n  v, ok := <-ch\n  fmt.Println(v, ok)\n  v, ok = <-ch\n  fmt.Println(v, ok)\n}",
+      "language": "go",
+      "answer": "7 true\n0 false",
+      "explanation": "Buffered value is received with ok=true; subsequent receive on closed empty channel yields zero value and ok=false."
+    },
+    {
+      "id": "go-q-fill",
+      "type": "fill",
+      "prompt": "Fill the blank: g._____ (8) caps concurrent goroutines in an errgroup.",
+      "template": "g._____(8)",
+      "answer": "SetLimit",
+      "accept": ["SetLimit"],
+      "explanation": "errgroup.Group.SetLimit(n) bounds concurrency."
+    },
+    {
+      "id": "go-q-coding",
+      "type": "coding",
+      "prompt": "Implement Sum that adds ints in a slice and print Sum([]int{1,2,3,4}).",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc Sum(xs []int) int {\n  // TODO\n  return 0\n}\n\nfunc main() {\n  fmt.Println(Sum([]int{1, 2, 3, 4}))\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport \"fmt\"\n\nfunc Sum(xs []int) int {\n  s := 0\n  for _, v := range xs {\n    s += v\n  }\n  return s\n}\n\nfunc main() {\n  fmt.Println(Sum([]int{1, 2, 3, 4}))\n}\n",
+      "expectedOutput": "10",
+      "explanation": "Simple range sum."
+    },
+    {
+      "id": "go-q-01-hello-modules-mcq-1",
+      "type": "mcq",
+      "prompt": "Which command creates a new Go module and its go.mod file?",
+      "options": [
+        { "id": "a", "text": "go mod init example.com/app" },
+        { "id": "b", "text": "go build init" },
+        { "id": "c", "text": "go new module example.com/app" },
+        { "id": "d", "text": "go run init" }
+      ],
+      "answer": "a",
+      "explanation": "go mod init creates go.mod, declaring the module path for the project.",
+      "tags": ["go-01-hello-modules", "modules"]
+    },
+    {
+      "id": "go-q-01-hello-modules-mcq-2",
+      "type": "mcq",
+      "prompt": "What makes a Go source tree an executable program?",
+      "options": [
+        { "id": "a", "text": "package main with a func main()" },
+        { "id": "b", "text": "package app with a func Run()" },
+        { "id": "c", "text": "Any package containing an init() function" },
+        { "id": "d", "text": "package main with a func Start()" }
+      ],
+      "answer": "a",
+      "explanation": "Go looks for package main and a func main() as the program entry point.",
+      "tags": ["go-01-hello-modules", "basics"]
+    },
+    {
+      "id": "go-q-01-hello-modules-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about go run, go build, and gofmt are true?",
+      "options": [
+        { "id": "a", "text": "go run compiles and runs the program in one step" },
+        { "id": "b", "text": "go build produces a single static binary that needs no separate runtime" },
+        { "id": "c", "text": "go build requires the Go toolchain to be installed on the target machine to run the binary" },
+        { "id": "d", "text": "gofmt enforces one canonical formatting style" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "go build outputs a static binary runnable without Go installed; go run is compile+run in one step; gofmt is the single formatting standard.",
+      "tags": ["go-01-hello-modules", "tooling"]
+    },
+    {
+      "id": "go-q-01-hello-modules-coding-1",
+      "type": "coding",
+      "prompt": "Write a Go program in package main that prints \"Ahoy, world!\" using fmt.Println.",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  // TODO: print \"Ahoy, world!\"\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  fmt.Println(\"Ahoy, world!\")\n}\n",
+      "expectedOutput": "Ahoy, world!",
+      "explanation": "fmt.Println writes the string followed by a newline to stdout.",
+      "tags": ["go-01-hello-modules", "basics"]
+    },
+    {
+      "id": "go-q-02-types-vars-mcq-1",
+      "type": "mcq",
+      "prompt": "What is the zero value of a Go string variable?",
+      "options": [
+        { "id": "a", "text": "nil" },
+        { "id": "b", "text": "\"\" (empty string)" },
+        { "id": "c", "text": "\"null\"" },
+        { "id": "d", "text": "undefined" }
+      ],
+      "answer": "b",
+      "explanation": "Every type has a usable zero value; for string it is the empty string.",
+      "tags": ["go-02-types-vars", "types"]
+    },
+    {
+      "id": "go-q-02-types-vars-mcq-2",
+      "type": "mcq",
+      "prompt": "Which variable declaration form is only valid inside a function body?",
+      "options": [
+        { "id": "a", "text": "var x int = 3" },
+        { "id": "b", "text": "x := 3" },
+        { "id": "c", "text": "const x = 3" },
+        { "id": "d", "text": "type X int" }
+      ],
+      "answer": "b",
+      "explanation": "The short variable declaration `:=` is only allowed inside function bodies, not at package scope.",
+      "tags": ["go-02-types-vars", "basics"]
+    },
+    {
+      "id": "go-q-02-types-vars-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport \"fmt\"\n\nconst (\n  Red = iota\n  Green\n  Blue\n)\n\nfunc main() {\n  fmt.Println(Red, Green, Blue)\n}",
+      "language": "go",
+      "answer": "0 1 2",
+      "explanation": "iota starts at 0 within a const block and increments by 1 for each subsequent line.",
+      "tags": ["go-02-types-vars", "iota"]
+    },
+    {
+      "id": "go-q-02-types-vars-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: inside a const block, _____ auto-increments starting at 0 for enum-like values.",
+      "template": "const (\n  Red = _____ // 0\n  Green      // 1\n)",
+      "answer": "iota",
+      "accept": ["iota"],
+      "explanation": "iota is the predeclared identifier that increments within const blocks.",
+      "tags": ["go-02-types-vars", "iota"]
+    },
+    {
+      "id": "go-q-03-control-flow-mcq-1",
+      "type": "mcq",
+      "prompt": "Which single looping keyword does Go provide, covering while, infinite loops, and counting loops?",
+      "options": [
+        { "id": "a", "text": "for" },
+        { "id": "b", "text": "while" },
+        { "id": "c", "text": "do-while" },
+        { "id": "d", "text": "loop" }
+      ],
+      "answer": "a",
+      "explanation": "Go has only `for`; omitting parts of its clause covers while-loops and infinite loops.",
+      "tags": ["go-03-control-flow", "loops"]
+    },
+    {
+      "id": "go-q-03-control-flow-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Go's switch statement are true?",
+      "options": [
+        { "id": "a", "text": "Cases do not fall through to the next case by default" },
+        { "id": "b", "text": "A type switch can branch on the dynamic type of an interface value" },
+        { "id": "c", "text": "switch always requires a condition expression" },
+        { "id": "d", "text": "The fallthrough keyword forces execution into the next case" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Go switch has no implicit fallthrough, supports type switches, and can omit the condition entirely (switch { ... }).",
+      "tags": ["go-03-control-flow", "switch"]
+    },
+    {
+      "id": "go-q-03-control-flow-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  x := 5\n  switch {\n  case x < 3:\n    fmt.Println(\"small\")\n  case x < 10:\n    fmt.Println(\"medium\")\n  default:\n    fmt.Println(\"large\")\n  }\n}",
+      "language": "go",
+      "answer": "medium",
+      "explanation": "A condition-less switch evaluates each case as a boolean; x < 10 is the first true case.",
+      "tags": ["go-03-control-flow", "switch"]
+    },
+    {
+      "id": "go-q-03-control-flow-coding-1",
+      "type": "coding",
+      "prompt": "Implement Abs(n int) int that returns the absolute value of n using an if statement, and print Abs(-7).",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc Abs(n int) int {\n  // TODO\n  return 0\n}\n\nfunc main() {\n  fmt.Println(Abs(-7))\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport \"fmt\"\n\nfunc Abs(n int) int {\n  if n < 0 {\n    return -n\n  }\n  return n\n}\n\nfunc main() {\n  fmt.Println(Abs(-7))\n}\n",
+      "expectedOutput": "7",
+      "explanation": "A simple if branch negates n when it is negative.",
+      "tags": ["go-03-control-flow", "basics"]
+    },
+    {
+      "id": "go-q-04-functions-mcq-1",
+      "type": "mcq",
+      "prompt": "What is the idiomatic Go convention for a function that can fail?",
+      "options": [
+        { "id": "a", "text": "Return (value, error) and let the caller check err" },
+        { "id": "b", "text": "Throw an exception with panic and always recover in the caller" },
+        { "id": "c", "text": "Return nil to mean success" },
+        { "id": "d", "text": "Always panic on failure" }
+      ],
+      "answer": "a",
+      "explanation": "Go favors explicit multiple returns of (value, error) over exceptions.",
+      "tags": ["go-04-functions", "errors"]
+    },
+    {
+      "id": "go-q-04-functions-mcq-2",
+      "type": "mcq",
+      "prompt": "If a function has three defer statements, in what order do they execute when the function returns?",
+      "options": [
+        { "id": "a", "text": "First-in, first-out (FIFO)" },
+        { "id": "b", "text": "Last-in, first-out (LIFO)" },
+        { "id": "c", "text": "Random order" },
+        { "id": "d", "text": "Alphabetical by function name" }
+      ],
+      "answer": "b",
+      "explanation": "Deferred calls are pushed onto a stack and run in LIFO order.",
+      "tags": ["go-04-functions", "defer"]
+    },
+    {
+      "id": "go-q-04-functions-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: a defer statement schedules a call to run when the surrounding function _____.",
+      "template": "defer f() // runs when the function _____",
+      "answer": "returns",
+      "accept": ["returns", "exits", "returns or exits"],
+      "explanation": "defer delays execution until the enclosing function is about to return, useful for cleanup.",
+      "tags": ["go-04-functions", "defer"]
+    },
+    {
+      "id": "go-q-04-functions-coding-1",
+      "type": "coding",
+      "prompt": "Implement makeCounter() func() int, a closure that returns 1, 2, 3, ... on successive calls. Call it three times and print each result.",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc makeCounter() func() int {\n  // TODO: return a closure that starts at 1 and increments on each call\n  return nil\n}\n\nfunc main() {\n  next := makeCounter()\n  fmt.Println(next())\n  fmt.Println(next())\n  fmt.Println(next())\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport \"fmt\"\n\nfunc makeCounter() func() int {\n  n := 0\n  return func() int {\n    n++\n    return n\n  }\n}\n\nfunc main() {\n  next := makeCounter()\n  fmt.Println(next())\n  fmt.Println(next())\n  fmt.Println(next())\n}\n",
+      "expectedOutput": "1\n2\n3",
+      "explanation": "The returned function closes over n, retaining state between calls.",
+      "tags": ["go-04-functions", "closures"]
+    },
+    {
+      "id": "go-q-05-strings-runes-mcq-1",
+      "type": "mcq",
+      "prompt": "When you write `for i, v := range s` over a string s, what type is v?",
+      "options": [
+        { "id": "a", "text": "byte" },
+        { "id": "b", "text": "rune" },
+        { "id": "c", "text": "string" },
+        { "id": "d", "text": "uint8" }
+      ],
+      "answer": "b",
+      "explanation": "Ranging over a string decodes UTF-8 and yields runes (Unicode code points); indexing s[i] yields a byte instead.",
+      "tags": ["go-05-strings-runes", "strings"]
+    },
+    {
+      "id": "go-q-05-strings-runes-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Go strings are true?",
+      "options": [
+        { "id": "a", "text": "A string is an immutable sequence of bytes" },
+        { "id": "b", "text": "Indexing s[i] returns a rune" },
+        { "id": "c", "text": "strings.Builder avoids quadratic-time concatenation in loops" },
+        { "id": "d", "text": "[]rune(s) converts a string into its Unicode code points" }
+      ],
+      "answers": ["a", "c", "d"],
+      "explanation": "s[i] returns a byte, not a rune; the other three statements are correct.",
+      "tags": ["go-05-strings-runes", "strings"]
+    },
+    {
+      "id": "go-q-05-strings-runes-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  s := \"héllo\"\n  fmt.Println(len(s))\n  fmt.Println(len([]rune(s)))\n}",
+      "language": "go",
+      "answer": "6\n5",
+      "explanation": "\"héllo\" has 5 runes but the é is 2 UTF-8 bytes, so len(s) counts 6 bytes while len([]rune(s)) counts 5 characters.",
+      "tags": ["go-05-strings-runes", "utf-8"]
+    },
+    {
+      "id": "go-q-05-strings-runes-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: use strings._____ in loops to avoid quadratic-time string concatenation.",
+      "template": "var b strings._____",
+      "answer": "Builder",
+      "accept": ["Builder"],
+      "explanation": "strings.Builder accumulates writes efficiently, unlike repeated + concatenation.",
+      "tags": ["go-05-strings-runes", "strings"]
+    },
+    {
+      "id": "go-q-06-slices-mcq-1",
+      "type": "mcq",
+      "prompt": "What happens when append is called on a slice whose capacity is exceeded?",
+      "options": [
+        { "id": "a", "text": "It panics" },
+        { "id": "b", "text": "It allocates a new, larger backing array and copies the elements" },
+        { "id": "c", "text": "It silently drops the new elements" },
+        { "id": "d", "text": "It wraps around and overwrites the start" }
+      ],
+      "answer": "b",
+      "explanation": "append grows the backing array when needed, which is why the result must be reassigned.",
+      "tags": ["go-06-slices", "append"]
+    },
+    {
+      "id": "go-q-06-slices-mcq-2",
+      "type": "mcq",
+      "prompt": "What can happen when two slices share the same backing array?",
+      "options": [
+        { "id": "a", "text": "They are completely independent" },
+        { "id": "b", "text": "A mutation through one slice can be visible through the other" },
+        { "id": "c", "text": "They must always have the same length" },
+        { "id": "d", "text": "Only one of them can be used at a time" }
+      ],
+      "answer": "b",
+      "explanation": "Slicing does not copy the backing array, so overlapping slices can alias each other's data.",
+      "tags": ["go-06-slices", "aliasing"]
+    },
+    {
+      "id": "go-q-06-slices-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about slices are correct?",
+      "options": [
+        { "id": "a", "text": "Arrays have a fixed size while slices are dynamic views over a backing array" },
+        { "id": "b", "text": "You must reassign the result of append back to the slice variable" },
+        { "id": "c", "text": "len and cap are always equal for a given slice" },
+        { "id": "d", "text": "make([]int, 0, 4) creates a slice with length 0 and capacity 4" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "len and cap can differ; append may or may not reallocate, so the returned slice header must always be kept.",
+      "tags": ["go-06-slices", "make"]
+    },
+    {
+      "id": "go-q-06-slices-coding-1",
+      "type": "coding",
+      "prompt": "Implement Reverse(s []int) []int that reverses the slice in place and returns it. Print Reverse([]int{1,2,3,4,5}).",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc Reverse(s []int) []int {\n  // TODO\n  return s\n}\n\nfunc main() {\n  fmt.Println(Reverse([]int{1, 2, 3, 4, 5}))\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport \"fmt\"\n\nfunc Reverse(s []int) []int {\n  for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {\n    s[i], s[j] = s[j], s[i]\n  }\n  return s\n}\n\nfunc main() {\n  fmt.Println(Reverse([]int{1, 2, 3, 4, 5}))\n}\n",
+      "expectedOutput": "[5 4 3 2 1]",
+      "explanation": "Two pointers swap elements from both ends toward the middle.",
+      "tags": ["go-06-slices", "algorithms"]
+    },
+    {
+      "id": "go-q-07-maps-mcq-1",
+      "type": "mcq",
+      "prompt": "How do you distinguish a missing map key from a key whose value is the zero value?",
+      "options": [
+        { "id": "a", "text": "The comma-ok idiom: v, ok := m[k]" },
+        { "id": "b", "text": "Check len(m) before and after" },
+        { "id": "c", "text": "Compare v to nil" },
+        { "id": "d", "text": "It is not possible in Go" }
+      ],
+      "answer": "a",
+      "explanation": "The comma-ok form returns ok=false when the key is absent, regardless of the value's zero-ness.",
+      "tags": ["go-07-maps", "comma-ok"]
+    },
+    {
+      "id": "go-q-07-maps-mcq-2",
+      "type": "mcq",
+      "prompt": "What happens when you write to a nil map?",
+      "options": [
+        { "id": "a", "text": "It panics at runtime" },
+        { "id": "b", "text": "It silently does nothing" },
+        { "id": "c", "text": "The map auto-initializes on first write" },
+        { "id": "d", "text": "It returns an error value" }
+      ],
+      "answer": "a",
+      "explanation": "Reading a nil map is safe and returns zero values, but writing to it panics; always initialize with make or a literal first.",
+      "tags": ["go-07-maps", "nil"]
+    },
+    {
+      "id": "go-q-07-maps-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  m := map[string]int{}\n  m[\"a\"]++\n  v, ok := m[\"b\"]\n  fmt.Println(v, ok)\n}",
+      "language": "go",
+      "answer": "0 false",
+      "explanation": "\"b\" was never set, so the comma-ok read returns the zero value 0 and ok=false.",
+      "tags": ["go-07-maps", "comma-ok"]
+    },
+    {
+      "id": "go-q-07-maps-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: range over a Go map iterates keys in _____ order, so sort keys explicitly if order matters.",
+      "template": "for k := range m { ... } // _____ order",
+      "answer": "random",
+      "accept": ["random", "randomized", "unspecified", "undefined"],
+      "explanation": "Go deliberately randomizes map iteration order to prevent code from relying on it.",
+      "tags": ["go-07-maps", "iteration"]
+    },
+    {
+      "id": "go-q-08-structs-mcq-1",
+      "type": "mcq",
+      "prompt": "Why would you give a method a pointer receiver instead of a value receiver?",
+      "options": [
+        { "id": "a", "text": "To mutate the receiver's fields or avoid copying a large struct" },
+        { "id": "b", "text": "It is required for every method in Go" },
+        { "id": "c", "text": "Pointer receivers are always faster for small structs" },
+        { "id": "d", "text": "Only pointer receivers can satisfy interfaces" }
+      ],
+      "answer": "a",
+      "explanation": "Pointer receivers let a method mutate the caller's value and avoid copying large structs on each call.",
+      "tags": ["go-08-structs", "methods"]
+    },
+    {
+      "id": "go-q-08-structs-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about structs and embedding are true?",
+      "options": [
+        { "id": "a", "text": "Go supports embedding a struct to promote its fields and methods" },
+        { "id": "b", "text": "Go has class-based inheritance like Java" },
+        { "id": "c", "text": "A common pattern is a New... constructor function since Go has no constructors" },
+        { "id": "d", "text": "Pointer receivers are required just to read a struct's fields" }
+      ],
+      "answers": ["a", "c"],
+      "explanation": "Go uses composition via embedding, not inheritance, and idiomatically exposes New... functions instead of constructors.",
+      "tags": ["go-08-structs", "embedding"]
+    },
+    {
+      "id": "go-q-08-structs-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport \"fmt\"\n\ntype Counter struct{ n int }\n\nfunc (c *Counter) Inc() { c.n++ }\nfunc (c Counter) Value() int { return c.n }\n\nfunc main() {\n  c := &Counter{}\n  c.Inc()\n  c.Inc()\n  fmt.Println(c.Value())\n}",
+      "language": "go",
+      "answer": "2",
+      "explanation": "Inc uses a pointer receiver so both calls mutate the same Counter, giving n=2.",
+      "tags": ["go-08-structs", "methods"]
+    },
+    {
+      "id": "go-q-08-structs-coding-1",
+      "type": "coding",
+      "prompt": "Define type Rectangle struct{ W, H int } with a method Area() int, then print the area of Rectangle{W: 3, H: 4}.",
+      "starterCode": "package main\n\nimport \"fmt\"\n\ntype Rectangle struct {\n  W, H int\n}\n\nfunc (r Rectangle) Area() int {\n  // TODO\n  return 0\n}\n\nfunc main() {\n  r := Rectangle{W: 3, H: 4}\n  fmt.Println(r.Area())\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport \"fmt\"\n\ntype Rectangle struct {\n  W, H int\n}\n\nfunc (r Rectangle) Area() int {\n  return r.W * r.H\n}\n\nfunc main() {\n  r := Rectangle{W: 3, H: 4}\n  fmt.Println(r.Area())\n}\n",
+      "expectedOutput": "12",
+      "explanation": "A value receiver method reads W and H and returns their product.",
+      "tags": ["go-08-structs", "methods"]
+    },
+    {
+      "id": "go-q-09-pointers-mcq-1",
+      "type": "mcq",
+      "prompt": "What does the expression &x produce in Go?",
+      "options": [
+        { "id": "a", "text": "The value of x dereferenced" },
+        { "id": "b", "text": "The memory address of x, as a pointer" },
+        { "id": "c", "text": "A copy of x wrapped in an interface" },
+        { "id": "d", "text": "A compile error unless x is a pointer already" }
+      ],
+      "answer": "b",
+      "explanation": "& is the address-of operator, producing a pointer to x.",
+      "tags": ["go-09-pointers", "basics"]
+    },
+    {
+      "id": "go-q-09-pointers-mcq-2",
+      "type": "mcq",
+      "prompt": "Which statement correctly describes Go pointers?",
+      "options": [
+        { "id": "a", "text": "They support pointer arithmetic like C" },
+        { "id": "b", "text": "They are memory-safe: no arithmetic, and the GC keeps referenced memory alive" },
+        { "id": "c", "text": "They must be manually freed with a free() call" },
+        { "id": "d", "text": "Dereferencing a nil pointer silently returns the zero value" }
+      ],
+      "answer": "b",
+      "explanation": "Go disallows pointer arithmetic and its garbage collector prevents dangling pointers; dereferencing nil panics.",
+      "tags": ["go-09-pointers", "safety"]
+    },
+    {
+      "id": "go-q-09-pointers-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: *n _____ 2 multiplies the pointed-to value in place and stores it back through the pointer.",
+      "template": "func double(n *int) { *n _____ 2 }",
+      "answer": "*=",
+      "accept": ["*="],
+      "explanation": "*n *= 2 dereferences n, multiplies by 2, and assigns the result back through the pointer.",
+      "tags": ["go-09-pointers", "operators"]
+    },
+    {
+      "id": "go-q-09-pointers-coding-1",
+      "type": "coding",
+      "prompt": "Implement Swap(a, b *int) that swaps the values pointed to by a and b. Given x, y := 1, 2, call Swap(&x, &y) and print x, y.",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc Swap(a, b *int) {\n  // TODO\n}\n\nfunc main() {\n  x, y := 1, 2\n  Swap(&x, &y)\n  fmt.Println(x, y)\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport \"fmt\"\n\nfunc Swap(a, b *int) {\n  *a, *b = *b, *a\n}\n\nfunc main() {\n  x, y := 1, 2\n  Swap(&x, &y)\n  fmt.Println(x, y)\n}\n",
+      "expectedOutput": "2 1",
+      "explanation": "Dereferencing both pointers in a single assignment swaps the underlying values.",
+      "tags": ["go-09-pointers", "basics"]
+    },
+    {
+      "id": "go-q-10-errors-mcq-1",
+      "type": "mcq",
+      "prompt": "What does the %w verb do inside fmt.Errorf?",
+      "options": [
+        { "id": "a", "text": "Formats the error as a wide (UTF-16) string" },
+        { "id": "b", "text": "Wraps the given error so it can later be unwrapped with errors.Is/As" },
+        { "id": "c", "text": "Discards the original error's message" },
+        { "id": "d", "text": "Converts the error into a plain string permanently" }
+      ],
+      "answer": "b",
+      "explanation": "%w wraps the error, preserving it in the chain for errors.Is and errors.As to inspect.",
+      "tags": ["go-10-errors", "wrapping"]
+    },
+    {
+      "id": "go-q-10-errors-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Go error handling are correct?",
+      "options": [
+        { "id": "a", "text": "errors.Is checks for a sentinel error match through the wrap chain" },
+        { "id": "b", "text": "errors.As extracts a specific error type from the chain" },
+        { "id": "c", "text": "Go has try/catch exceptions dedicated to error handling" },
+        { "id": "d", "text": "Exported sentinel errors are commonly declared with errors.New" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Go has no exceptions for errors; errors.Is/As traverse wrapped chains, and sentinels are typically errors.New values.",
+      "tags": ["go-10-errors", "sentinels"]
+    },
+    {
+      "id": "go-q-10-errors-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport (\n  \"errors\"\n  \"fmt\"\n)\n\nvar ErrNotFound = errors.New(\"not found\")\n\nfunc find() error {\n  return fmt.Errorf(\"lookup failed: %w\", ErrNotFound)\n}\n\nfunc main() {\n  err := find()\n  fmt.Println(errors.Is(err, ErrNotFound))\n}",
+      "language": "go",
+      "answer": "true",
+      "explanation": "%w wraps ErrNotFound, so errors.Is can find it in the chain.",
+      "tags": ["go-10-errors", "errors.Is"]
+    },
+    {
+      "id": "go-q-10-errors-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: errors._____(err, &target) checks whether an error in the chain can be assigned to target's concrete type.",
+      "template": "errors._____(err, &target)",
+      "answer": "As",
+      "accept": ["As"],
+      "explanation": "errors.As walks the error chain looking for a match assignable to *target.",
+      "tags": ["go-10-errors", "errors.As"]
+    },
+    {
+      "id": "go-q-11-packages-mcq-1",
+      "type": "mcq",
+      "prompt": "What determines whether an identifier is exported from a Go package?",
+      "options": [
+        { "id": "a", "text": "An `export` keyword before it" },
+        { "id": "b", "text": "Whether its first letter is uppercase" },
+        { "id": "c", "text": "A doc comment tagged @public" },
+        { "id": "d", "text": "The file name it is declared in" }
+      ],
+      "answer": "b",
+      "explanation": "Capitalization is Go's entire access-control mechanism: uppercase-first is exported, lowercase-first is package-private.",
+      "tags": ["go-11-packages", "visibility"]
+    },
+    {
+      "id": "go-q-11-packages-mcq-2",
+      "type": "mcq",
+      "prompt": "When does a package's init() function run?",
+      "options": [
+        { "id": "a", "text": "Every time one of its functions is called" },
+        { "id": "b", "text": "Automatically, once, when the package is loaded" },
+        { "id": "c", "text": "Only when explicitly called from main" },
+        { "id": "d", "text": "Never automatically; it must be invoked manually" }
+      ],
+      "answer": "b",
+      "explanation": "init() runs once per package at program startup, before main, without being called explicitly.",
+      "tags": ["go-11-packages", "init"]
+    },
+    {
+      "id": "go-q-11-packages-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Go package design are true?",
+      "options": [
+        { "id": "a", "text": "One directory typically corresponds to one package" },
+        { "id": "b", "text": "Idiomatic package names should be generic, like \"utils\" or \"common\"" },
+        { "id": "c", "text": "Lowercase identifiers are package-private" },
+        { "id": "d", "text": "init() should generally avoid heavy work like network calls" }
+      ],
+      "answers": ["a", "c", "d"],
+      "explanation": "Go style discourages generic names like utils; packages should be named after what they provide.",
+      "tags": ["go-11-packages", "style"]
+    },
+    {
+      "id": "go-q-11-packages-coding-1",
+      "type": "coding",
+      "prompt": "Define an unexported field `cents` inside type Amount, an exported constructor New(cents int64) Amount, and an exported method Cents() int64. Print New(150).Cents().",
+      "starterCode": "package main\n\nimport \"fmt\"\n\ntype Amount struct {\n  cents int64\n}\n\nfunc New(cents int64) Amount {\n  // TODO\n  return Amount{}\n}\n\nfunc (a Amount) Cents() int64 {\n  return a.cents\n}\n\nfunc main() {\n  fmt.Println(New(150).Cents())\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport \"fmt\"\n\ntype Amount struct {\n  cents int64\n}\n\nfunc New(cents int64) Amount {\n  return Amount{cents: cents}\n}\n\nfunc (a Amount) Cents() int64 {\n  return a.cents\n}\n\nfunc main() {\n  fmt.Println(New(150).Cents())\n}\n",
+      "expectedOutput": "150",
+      "explanation": "The unexported field is only reachable through the exported constructor and accessor, encapsulating internal state.",
+      "tags": ["go-11-packages", "encapsulation"]
+    },
+    {
+      "id": "go-q-12-interfaces-mcq-1",
+      "type": "mcq",
+      "prompt": "How does a Go type satisfy an interface?",
+      "options": [
+        { "id": "a", "text": "By declaring `implements InterfaceName`" },
+        { "id": "b", "text": "Automatically, just by implementing the interface's methods" },
+        { "id": "c", "text": "By embedding the interface as a struct field only" },
+        { "id": "d", "text": "It cannot happen automatically; a cast is required" }
+      ],
+      "answer": "b",
+      "explanation": "Go uses structural typing: any type with the right method set satisfies an interface implicitly.",
+      "tags": ["go-12-interfaces", "structural-typing"]
+    },
+    {
+      "id": "go-q-12-interfaces-mcq-2",
+      "type": "mcq",
+      "prompt": "What is the idiomatic Go guidance regarding interfaces in function signatures?",
+      "options": [
+        { "id": "a", "text": "Accept concrete types, return interfaces" },
+        { "id": "b", "text": "Accept interfaces, return concrete types" },
+        { "id": "c", "text": "Avoid interfaces entirely" },
+        { "id": "d", "text": "Always return `any`" }
+      ],
+      "answer": "b",
+      "explanation": "Accepting interfaces maximizes caller flexibility, while returning concrete types keeps call sites simple.",
+      "tags": ["go-12-interfaces", "idioms"]
+    },
+    {
+      "id": "go-q-12-interfaces-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc describe(v any) string {\n  switch x := v.(type) {\n  case int:\n    return fmt.Sprintf(\"int %d\", x)\n  case string:\n    return \"string \" + x\n  default:\n    return \"unknown\"\n  }\n}\n\nfunc main() {\n  fmt.Println(describe(42))\n  fmt.Println(describe(\"hi\"))\n}",
+      "language": "go",
+      "answer": "int 42\nstring hi",
+      "explanation": "The type switch matches int for 42 and string for \"hi\", formatting each accordingly.",
+      "tags": ["go-12-interfaces", "type-switch"]
+    },
+    {
+      "id": "go-q-12-interfaces-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: the alias _____ (short for interface{}) can hold a value of any type.",
+      "template": "type _____ = interface{}",
+      "answer": "any",
+      "accept": ["any"],
+      "explanation": "any is a predeclared alias for the empty interface, introduced for readability.",
+      "tags": ["go-12-interfaces", "any"]
+    },
+    {
+      "id": "go-q-13-json-mcq-1",
+      "type": "mcq",
+      "prompt": "Which struct fields does encoding/json (de)serialize by default?",
+      "options": [
+        { "id": "a", "text": "All fields, including unexported ones" },
+        { "id": "b", "text": "Only exported (capitalized) fields" },
+        { "id": "c", "text": "Only fields that have a json tag" },
+        { "id": "d", "text": "None, unless a custom MarshalJSON is defined" }
+      ],
+      "answer": "b",
+      "explanation": "encoding/json can only see exported fields via reflection; struct tags customize, not enable, serialization.",
+      "tags": ["go-13-json", "encoding/json"]
+    },
+    {
+      "id": "go-q-13-json-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about JSON struct tags and streaming are true?",
+      "options": [
+        { "id": "a", "text": "json:\"-\" excludes a field from marshaling entirely" },
+        { "id": "b", "text": "json:\"name,omitempty\" omits the field when it holds its zero value" },
+        { "id": "c", "text": "json.Marshal can serialize unexported fields if tagged" },
+        { "id": "d", "text": "json.Decoder can read incrementally from an io.Reader such as an HTTP body" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Struct tags cannot make unexported fields visible to encoding/json; the other statements are correct.",
+      "tags": ["go-13-json", "struct-tags"]
+    },
+    {
+      "id": "go-q-13-json-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport (\n  \"encoding/json\"\n  \"fmt\"\n)\n\ntype User struct {\n  ID    int    `json:\"id\"`\n  Name  string `json:\"name\"`\n  Email string `json:\"email,omitempty\"`\n}\n\nfunc main() {\n  b, _ := json.Marshal(User{ID: 1, Name: \"Ada\"})\n  fmt.Println(string(b))\n}",
+      "language": "go",
+      "answer": "{\"id\":1,\"name\":\"Ada\"}",
+      "explanation": "Email is empty and tagged omitempty, so it is dropped from the output object.",
+      "tags": ["go-13-json", "omitempty"]
+    },
+    {
+      "id": "go-q-13-json-coding-1",
+      "type": "coding",
+      "prompt": "Define type Point struct with X, Y int tagged json:\"x\" and json:\"y\". Marshal Point{X: 2, Y: 3} and print the resulting JSON string.",
+      "starterCode": "package main\n\nimport (\n  \"encoding/json\"\n  \"fmt\"\n)\n\ntype Point struct {\n  X int `json:\"x\"`\n  Y int `json:\"y\"`\n}\n\nfunc main() {\n  // TODO: marshal Point{X: 2, Y: 3} and print it as a string\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport (\n  \"encoding/json\"\n  \"fmt\"\n)\n\ntype Point struct {\n  X int `json:\"x\"`\n  Y int `json:\"y\"`\n}\n\nfunc main() {\n  b, _ := json.Marshal(Point{X: 2, Y: 3})\n  fmt.Println(string(b))\n}\n",
+      "expectedOutput": "{\"x\":2,\"y\":3}",
+      "explanation": "json.Marshal walks the exported fields and applies the tag names x and y.",
+      "tags": ["go-13-json", "struct-tags"]
+    },
+    {
+      "id": "go-q-14-generics-intro-mcq-1",
+      "type": "mcq",
+      "prompt": "Which Go release introduced generics (type parameters)?",
+      "options": [
+        { "id": "a", "text": "Go 1.16" },
+        { "id": "b", "text": "Go 1.18" },
+        { "id": "c", "text": "Go 1.20" },
+        { "id": "d", "text": "Go 1.13" }
+      ],
+      "answer": "b",
+      "explanation": "Generics landed in Go 1.18 with type parameters and constraints.",
+      "tags": ["go-14-generics-intro", "history"]
+    },
+    {
+      "id": "go-q-14-generics-intro-mcq-2",
+      "type": "mcq",
+      "prompt": "What does the built-in `comparable` constraint allow?",
+      "options": [
+        { "id": "a", "text": "Types that support ordering with < and >" },
+        { "id": "b", "text": "Types that support == and != comparisons" },
+        { "id": "c", "text": "Only numeric types" },
+        { "id": "d", "text": "Any type, with no restriction" }
+      ],
+      "answer": "b",
+      "explanation": "comparable restricts type parameters to types usable with == and !=, such as for map keys.",
+      "tags": ["go-14-generics-intro", "constraints"]
+    },
+    {
+      "id": "go-q-14-generics-intro-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: func Map[T, U _____](s []T, f func(T) U) []U allows T and U to be any type.",
+      "template": "func Map[T, U _____](s []T, f func(T) U) []U",
+      "answer": "any",
+      "accept": ["any"],
+      "explanation": "The `any` constraint places no restriction on the type parameter.",
+      "tags": ["go-14-generics-intro", "type-parameters"]
+    },
+    {
+      "id": "go-q-14-generics-intro-coding-1",
+      "type": "coding",
+      "prompt": "Implement a generic function Map[T, U any](s []T, f func(T) U) []U. Use it to double each element of []int{1,2,3} and print the result.",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc Map[T, U any](s []T, f func(T) U) []U {\n  // TODO\n  return nil\n}\n\nfunc main() {\n  doubled := Map([]int{1, 2, 3}, func(n int) int { return n * 2 })\n  fmt.Println(doubled)\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport \"fmt\"\n\nfunc Map[T, U any](s []T, f func(T) U) []U {\n  out := make([]U, len(s))\n  for i, v := range s {\n    out[i] = f(v)\n  }\n  return out\n}\n\nfunc main() {\n  doubled := Map([]int{1, 2, 3}, func(n int) int { return n * 2 })\n  fmt.Println(doubled)\n}\n",
+      "expectedOutput": "[2 4 6]",
+      "explanation": "Map applies f to every element, building a new slice of the (possibly different) output type.",
+      "tags": ["go-14-generics-intro", "generics"]
+    },
+    {
+      "id": "go-q-15-stdlib-slices-maps-mcq-1",
+      "type": "mcq",
+      "prompt": "Which function checks whether a slice contains a value, using the generic `slices` package?",
+      "options": [
+        { "id": "a", "text": "slices.Has" },
+        { "id": "b", "text": "slices.Contains" },
+        { "id": "c", "text": "slices.Find" },
+        { "id": "d", "text": "slices.In" }
+      ],
+      "answer": "b",
+      "explanation": "slices.Contains(s, v) reports whether v is present in s.",
+      "tags": ["go-15-stdlib-slices-maps", "slices"]
+    },
+    {
+      "id": "go-q-15-stdlib-slices-maps-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about the slices, maps, and cmp packages are true?",
+      "options": [
+        { "id": "a", "text": "slices.SortFunc takes a comparison function returning -1, 0, or 1" },
+        { "id": "b", "text": "cmp.Compare pairs well with SortFunc for ordering values" },
+        { "id": "c", "text": "maps.Clone performs a deep copy of every value" },
+        { "id": "d", "text": "These packages exist to remove hand-rolled loops for common slice/map operations" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "maps.Clone is a shallow copy; reference-typed values are still shared with the original map.",
+      "tags": ["go-15-stdlib-slices-maps", "maps"]
+    },
+    {
+      "id": "go-q-15-stdlib-slices-maps-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport (\n  \"fmt\"\n  \"slices\"\n)\n\nfunc main() {\n  s := []int{3, 1, 2}\n  slices.Sort(s)\n  fmt.Println(s)\n  fmt.Println(slices.Contains(s, 2))\n}",
+      "language": "go",
+      "answer": "[1 2 3]\ntrue",
+      "explanation": "slices.Sort sorts in place ascending; 2 is present in the sorted slice.",
+      "tags": ["go-15-stdlib-slices-maps", "slices"]
+    },
+    {
+      "id": "go-q-15-stdlib-slices-maps-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: slices._____Func(users, cmp) sorts a slice using a custom comparison function returning -1/0/1.",
+      "template": "slices._____Func(users, cmp)",
+      "answer": "Sort",
+      "accept": ["Sort"],
+      "explanation": "slices.SortFunc sorts using a caller-provided comparator, often built with cmp.Compare.",
+      "tags": ["go-15-stdlib-slices-maps", "sorting"]
+    },
+    {
+      "id": "go-q-16-goroutines-channels-mcq-1",
+      "type": "mcq",
+      "prompt": "Which keyword starts a new goroutine?",
+      "options": [
+        { "id": "a", "text": "async" },
+        { "id": "b", "text": "go" },
+        { "id": "c", "text": "spawn" },
+        { "id": "d", "text": "thread" }
+      ],
+      "answer": "b",
+      "explanation": "`go f()` launches f to run concurrently as a lightweight, scheduler-managed goroutine.",
+      "tags": ["go-16-goroutines-channels", "goroutines"]
+    },
+    {
+      "id": "go-q-16-goroutines-channels-mcq-2",
+      "type": "mcq",
+      "prompt": "What happens when you send on an unbuffered channel?",
+      "options": [
+        { "id": "a", "text": "It returns immediately regardless of whether a receiver is ready" },
+        { "id": "b", "text": "It blocks until a receiver is ready to receive" },
+        { "id": "c", "text": "It always panics" },
+        { "id": "d", "text": "It silently drops the value" }
+      ],
+      "answer": "b",
+      "explanation": "Unbuffered channels synchronize sender and receiver: the send blocks until a matching receive occurs.",
+      "tags": ["go-16-goroutines-channels", "channels"]
+    },
+    {
+      "id": "go-q-16-goroutines-channels-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about channels and select are true?",
+      "options": [
+        { "id": "a", "text": "select can wait on multiple channel operations simultaneously" },
+        { "id": "b", "text": "A buffered channel decouples sender and receiver up to its capacity" },
+        { "id": "c", "text": "Channels can only carry numeric types" },
+        { "id": "d", "text": "\"Share memory by communicating\" is a core Go concurrency philosophy" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Channels are typed and can carry any type, including structs, interfaces, and other channels.",
+      "tags": ["go-16-goroutines-channels", "select"]
+    },
+    {
+      "id": "go-q-16-goroutines-channels-coding-1",
+      "type": "coding",
+      "prompt": "Using select, receive from an empty channel ch with a 10ms timeout via time.After. Since nothing is ever sent, print \"timeout\" when the timeout fires.",
+      "starterCode": "package main\n\nimport (\n  \"fmt\"\n  \"time\"\n)\n\nfunc main() {\n  ch := make(chan int)\n  // TODO: select on ch and a 10ms timeout; print \"timeout\" if the timeout fires first\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport (\n  \"fmt\"\n  \"time\"\n)\n\nfunc main() {\n  ch := make(chan int)\n  select {\n  case v := <-ch:\n    fmt.Println(v)\n  case <-time.After(10 * time.Millisecond):\n    fmt.Println(\"timeout\")\n  }\n}\n",
+      "expectedOutput": "timeout",
+      "explanation": "Since ch never receives a value, the time.After case is the only one ever ready.",
+      "tags": ["go-16-goroutines-channels", "select"]
+    },
+    {
+      "id": "go-q-17-sync-mcq-1",
+      "type": "mcq",
+      "prompt": "When is a sync.Mutex often simpler than using channels?",
+      "options": [
+        { "id": "a", "text": "For building pipelines between goroutines" },
+        { "id": "b", "text": "For protecting shared in-memory state like a cache or counter" },
+        { "id": "c", "text": "For goroutine cancellation" },
+        { "id": "d", "text": "It is never simpler than channels" }
+      ],
+      "answer": "b",
+      "explanation": "Mutexes are a natural fit for guarding shared mutable state accessed by multiple goroutines.",
+      "tags": ["go-17-sync", "mutex"]
+    },
+    {
+      "id": "go-q-17-sync-mcq-2",
+      "type": "mcq",
+      "prompt": "In the common WaitGroup pattern, where should wg.Done() typically be called?",
+      "options": [
+        { "id": "a", "text": "At the very start of main, before any goroutines start" },
+        { "id": "b", "text": "In a defer statement inside the goroutine" },
+        { "id": "c", "text": "Only after wg.Wait() returns" },
+        { "id": "d", "text": "It is not needed if wg.Add was called" }
+      ],
+      "answer": "b",
+      "explanation": "Deferring Done() ensures it runs even if the goroutine returns early or panics.",
+      "tags": ["go-17-sync", "waitgroup"]
+    },
+    {
+      "id": "go-q-17-sync-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport (\n  \"fmt\"\n  \"sync\"\n)\n\nfunc main() {\n  var wg sync.WaitGroup\n  var mu sync.Mutex\n  total := 0\n  for i := 1; i <= 5; i++ {\n    wg.Add(1)\n    go func(n int) {\n      defer wg.Done()\n      mu.Lock()\n      total += n\n      mu.Unlock()\n    }(i)\n  }\n  wg.Wait()\n  fmt.Println(total)\n}",
+      "language": "go",
+      "answer": "15",
+      "explanation": "All five goroutines add 1 through 5 to total under the mutex; WaitGroup ensures main waits for all of them, giving 15.",
+      "tags": ["go-17-sync", "waitgroup"]
+    },
+    {
+      "id": "go-q-17-sync-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: sync._____ guarantees a function runs exactly once even when called concurrently from many goroutines.",
+      "template": "var o sync._____",
+      "answer": "Once",
+      "accept": ["Once"],
+      "explanation": "sync.Once.Do(f) executes f a single time no matter how many goroutines call it.",
+      "tags": ["go-17-sync", "sync.Once"]
+    },
+    {
+      "id": "go-q-18-testing-mcq-1",
+      "type": "mcq",
+      "prompt": "What must a Go test function's name start with, in a *_test.go file?",
+      "options": [
+        { "id": "a", "text": "Check" },
+        { "id": "b", "text": "Test" },
+        { "id": "c", "text": "Verify" },
+        { "id": "d", "text": "Spec" }
+      ],
+      "answer": "b",
+      "explanation": "`go test` discovers functions named TestXxx(t *testing.T) in files ending with _test.go.",
+      "tags": ["go-18-testing", "basics"]
+    },
+    {
+      "id": "go-q-18-testing-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Go testing are true?",
+      "options": [
+        { "id": "a", "text": "go test -cover reports test coverage" },
+        { "id": "b", "text": "Benchmark functions are named BenchmarkXxx(b *testing.B)" },
+        { "id": "c", "text": "t.Run only works for benchmarks, not table-driven tests" },
+        { "id": "d", "text": "t.Parallel marks a test safe to run in parallel with other parallel tests" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "t.Run(name, fn) creates subtests and is the standard way to structure table-driven tests, not just benchmarks.",
+      "tags": ["go-18-testing", "table-driven"]
+    },
+    {
+      "id": "go-q-18-testing-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc parse(s string) string {\n  if s == \"\" {\n    return \"\"\n  }\n  return string(s[0]-32) + s[1:]\n}\n\nfunc main() {\n  tests := []struct{ in, want string }{\n    {\"a\", \"A\"},\n    {\"\", \"\"},\n  }\n  for _, tt := range tests {\n    got := parse(tt.in)\n    fmt.Println(got == tt.want)\n  }\n}",
+      "language": "go",
+      "answer": "true\ntrue",
+      "explanation": "parse(\"a\") uppercases to \"A\" and parse(\"\") returns \"\", matching both expected values in this table-driven-style check.",
+      "tags": ["go-18-testing", "table-driven"]
+    },
+    {
+      "id": "go-q-18-testing-coding-1",
+      "type": "coding",
+      "prompt": "Implement IsEven(n int) bool. Loop over []int{1, 2, 3, 4} and print IsEven(n) for each.",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc IsEven(n int) bool {\n  // TODO\n  return false\n}\n\nfunc main() {\n  for _, n := range []int{1, 2, 3, 4} {\n    fmt.Println(IsEven(n))\n  }\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport \"fmt\"\n\nfunc IsEven(n int) bool {\n  return n%2 == 0\n}\n\nfunc main() {\n  for _, n := range []int{1, 2, 3, 4} {\n    fmt.Println(IsEven(n))\n  }\n}\n",
+      "expectedOutput": "false\ntrue\nfalse\ntrue",
+      "explanation": "IsEven returns true exactly when n%2 == 0, alternating false/true for 1,2,3,4.",
+      "tags": ["go-18-testing", "basics"]
+    },
+    {
+      "id": "go-q-19-http-mcq-1",
+      "type": "mcq",
+      "prompt": "What is the correct signature for an http.HandlerFunc?",
+      "options": [
+        { "id": "a", "text": "func(r *http.Request) string" },
+        { "id": "b", "text": "func(w http.ResponseWriter, r *http.Request)" },
+        { "id": "c", "text": "func() error" },
+        { "id": "d", "text": "func(ctx context.Context) error" }
+      ],
+      "answer": "b",
+      "explanation": "HTTP handlers write the response through http.ResponseWriter and read the request from *http.Request.",
+      "tags": ["go-19-http", "handlers"]
+    },
+    {
+      "id": "go-q-19-http-mcq-2",
+      "type": "mcq",
+      "prompt": "Why should you always `defer resp.Body.Close()` after an http.Client request?",
+      "options": [
+        { "id": "a", "text": "It is optional and purely cosmetic" },
+        { "id": "b", "text": "To release the underlying connection so it can be reused, avoiding resource leaks" },
+        { "id": "c", "text": "It cancels the request" },
+        { "id": "d", "text": "It is required only for POST requests" }
+      ],
+      "answer": "b",
+      "explanation": "Closing (and typically draining) the response body lets the transport reuse the TCP connection and prevents leaks.",
+      "tags": ["go-19-http", "client"]
+    },
+    {
+      "id": "go-q-19-http-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: method+wildcard route patterns like \"GET /users/{id}\" in http.ServeMux require Go _____ or later.",
+      "template": "mux.HandleFunc(\"GET /users/{id}\", ...) // requires Go _____",
+      "answer": "1.22",
+      "accept": ["1.22", "go1.22", "Go 1.22"],
+      "explanation": "Go 1.22 added method and wildcard support directly to the standard library's ServeMux.",
+      "tags": ["go-19-http", "routing"]
+    },
+    {
+      "id": "go-q-19-http-coding-1",
+      "type": "coding",
+      "prompt": "Implement greet(w http.ResponseWriter, r *http.Request) that writes \"hello\" to w. Invoke it with an httptest.NewRecorder and httptest.NewRequest, then print the recorded body.",
+      "starterCode": "package main\n\nimport (\n  \"fmt\"\n  \"net/http\"\n  \"net/http/httptest\"\n)\n\nfunc greet(w http.ResponseWriter, r *http.Request) {\n  // TODO: write \"hello\" to w\n}\n\nfunc main() {\n  rec := httptest.NewRecorder()\n  req := httptest.NewRequest(\"GET\", \"/\", nil)\n  greet(rec, req)\n  fmt.Println(rec.Body.String())\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport (\n  \"fmt\"\n  \"net/http\"\n  \"net/http/httptest\"\n)\n\nfunc greet(w http.ResponseWriter, r *http.Request) {\n  fmt.Fprint(w, \"hello\")\n}\n\nfunc main() {\n  rec := httptest.NewRecorder()\n  req := httptest.NewRequest(\"GET\", \"/\", nil)\n  greet(rec, req)\n  fmt.Println(rec.Body.String())\n}\n",
+      "expectedOutput": "hello",
+      "explanation": "httptest.NewRecorder implements http.ResponseWriter in memory, letting handlers be tested without a real server.",
+      "tags": ["go-19-http", "httptest"]
+    },
+    {
+      "id": "go-q-20-context-basics-mcq-1",
+      "type": "mcq",
+      "prompt": "How should a context.Context typically be passed into a function?",
+      "options": [
+        { "id": "a", "text": "Stored as a struct field for later use" },
+        { "id": "b", "text": "Explicitly, as the first parameter of the function" },
+        { "id": "c", "text": "Through a package-level global variable" },
+        { "id": "d", "text": "Wrapped inside a channel" }
+      ],
+      "answer": "b",
+      "explanation": "Convention: `ctx` is the first argument to any function that can block or must respect cancellation.",
+      "tags": ["go-20-context-basics", "conventions"]
+    },
+    {
+      "id": "go-q-20-context-basics-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about context.Context are true?",
+      "options": [
+        { "id": "a", "text": "context.WithTimeout returns a context and a cancel function that should be deferred" },
+        { "id": "b", "text": "ctx.Done() returns a channel that closes when the context is cancelled or times out" },
+        { "id": "c", "text": "It is idiomatic to store context.Context as a field on a long-lived struct" },
+        { "id": "d", "text": "A context can carry request-scoped values" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "Storing context in structs is explicitly discouraged; it should be passed explicitly through call chains instead.",
+      "tags": ["go-20-context-basics", "cancellation"]
+    },
+    {
+      "id": "go-q-20-context-basics-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport (\n  \"context\"\n  \"fmt\"\n  \"time\"\n)\n\nfunc main() {\n  ctx, cancel := context.WithTimeout(context.Background(), 10*time.Millisecond)\n  defer cancel()\n  <-ctx.Done()\n  fmt.Println(ctx.Err())\n}",
+      "language": "go",
+      "answer": "context deadline exceeded",
+      "explanation": "After the timeout elapses, ctx.Done() closes and ctx.Err() reports context.DeadlineExceeded.",
+      "tags": ["go-20-context-basics", "timeout"]
+    },
+    {
+      "id": "go-q-20-context-basics-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: always defer _____() after creating a context with WithTimeout or WithCancel, to release its resources promptly.",
+      "template": "ctx, cancel := context.WithTimeout(ctx, d)\ndefer _____()",
+      "answer": "cancel",
+      "accept": ["cancel"],
+      "explanation": "Deferring cancel() releases resources associated with the context as soon as the enclosing function returns.",
+      "tags": ["go-20-context-basics", "cancellation"]
+    },
+    {
+      "id": "go-q-21-modules-deps-mcq-1",
+      "type": "mcq",
+      "prompt": "What does `go mod tidy` do?",
+      "options": [
+        { "id": "a", "text": "Deletes go.mod entirely" },
+        { "id": "b", "text": "Prunes unused dependencies from go.mod and adds any that are missing" },
+        { "id": "c", "text": "Upgrades every dependency to its latest major version" },
+        { "id": "d", "text": "Formats all .go source files" }
+      ],
+      "answer": "b",
+      "explanation": "go mod tidy reconciles go.mod/go.sum with what the code actually imports.",
+      "tags": ["go-21-modules-deps", "tooling"]
+    },
+    {
+      "id": "go-q-21-modules-deps-mcq-2",
+      "type": "mcq",
+      "prompt": "How does a Go module signal a major version of v2 or higher in its import path?",
+      "options": [
+        { "id": "a", "text": "The import path never changes across major versions" },
+        { "id": "b", "text": "By appending /v2 (or higher) to the module's import path" },
+        { "id": "c", "text": "Only go.mod records it; imports are unaffected" },
+        { "id": "d", "text": "By renaming the entire repository" }
+      ],
+      "answer": "b",
+      "explanation": "Semantic import versioning encodes major version >=2 directly in the import path, e.g. example.com/pkg/v2.",
+      "tags": ["go-21-modules-deps", "versioning"]
+    },
+    {
+      "id": "go-q-21-modules-deps-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about Go module tooling are true?",
+      "options": [
+        { "id": "a", "text": "go.sum records checksums of dependencies for reproducible builds" },
+        { "id": "b", "text": "go vet detects suspicious constructs, like mismatched Printf verbs" },
+        { "id": "c", "text": "govulncheck scans your dependency graph for known CVEs" },
+        { "id": "d", "text": "Minimal Version Selection always picks the newest version available for every dependency" }
+      ],
+      "answers": ["a", "b", "c"],
+      "explanation": "Minimal Version Selection picks the lowest version that satisfies all module requirements, not the newest.",
+      "tags": ["go-21-modules-deps", "mvs"]
+    },
+    {
+      "id": "go-q-21-modules-deps-coding-1",
+      "type": "coding",
+      "prompt": "Implement ModulePath() string returning \"example.com/app/v2\" and print it.",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc ModulePath() string {\n  // TODO\n  return \"\"\n}\n\nfunc main() {\n  fmt.Println(ModulePath())\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport \"fmt\"\n\nfunc ModulePath() string {\n  return \"example.com/app/v2\"\n}\n\nfunc main() {\n  fmt.Println(ModulePath())\n}\n",
+      "expectedOutput": "example.com/app/v2",
+      "explanation": "The /v2 suffix reflects semantic import versioning for major version 2 modules.",
+      "tags": ["go-21-modules-deps", "versioning"]
+    },
+    {
+      "id": "go-q-concurrency-lifecycle-mcq-1",
+      "type": "mcq",
+      "prompt": "Beyond just starting a goroutine, what is described as the \"senior skill\"?",
+      "options": [
+        { "id": "a", "text": "Making goroutines start as fast as possible" },
+        { "id": "b", "text": "Owning its lifetime: giving it a purpose, a stop signal, and a way to report failure" },
+        { "id": "c", "text": "Avoiding goroutines entirely in favor of global state" },
+        { "id": "d", "text": "Never using channels" }
+      ],
+      "answer": "b",
+      "explanation": "Starting a goroutine is cheap; managing its lifecycle and failure reporting is what separates robust concurrent code.",
+      "tags": ["go-concurrency-lifecycle", "goroutines"]
+    },
+    {
+      "id": "go-q-concurrency-lifecycle-mcq-2",
+      "type": "mcq",
+      "prompt": "Which side of a channel should typically close it?",
+      "options": [
+        { "id": "a", "text": "The consumer" },
+        { "id": "b", "text": "The producer" },
+        { "id": "c", "text": "Either side, chosen at random" },
+        { "id": "d", "text": "Channels never need to be closed" }
+      ],
+      "answer": "b",
+      "explanation": "Closing from the producer avoids sending on a closed channel, which would panic.",
+      "tags": ["go-concurrency-lifecycle", "channels"]
+    },
+    {
+      "id": "go-q-concurrency-lifecycle-output-1",
+      "type": "output",
+      "prompt": "What does this print? (assume golang.org/x/sync/errgroup is available)",
+      "code": "package main\n\nimport (\n  \"context\"\n  \"fmt\"\n\n  \"golang.org/x/sync/errgroup\"\n)\n\nfunc main() {\n  g, _ := errgroup.WithContext(context.Background())\n  results := make([]int, 3)\n  for i := 0; i < 3; i++ {\n    i := i\n    g.Go(func() error {\n      results[i] = i * i\n      return nil\n    })\n  }\n  if err := g.Wait(); err != nil {\n    fmt.Println(\"error:\", err)\n    return\n  }\n  fmt.Println(results)\n}",
+      "language": "go",
+      "answer": "[0 1 4]",
+      "explanation": "Each goroutine writes i*i into its own index; g.Wait() blocks until all three finish successfully.",
+      "tags": ["go-concurrency-lifecycle", "errgroup"]
+    },
+    {
+      "id": "go-q-concurrency-lifecycle-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: errgroup._____(ctx) returns a Group and a derived context that is cancelled as soon as any goroutine in the group returns an error.",
+      "template": "g, ctx := errgroup._____(ctx)",
+      "answer": "WithContext",
+      "accept": ["WithContext"],
+      "explanation": "errgroup.WithContext wires cancellation into the derived context so sibling goroutines can stop early on failure.",
+      "tags": ["go-concurrency-lifecycle", "errgroup"]
+    },
+    {
+      "id": "go-q-idioms-layout-mcq-1",
+      "type": "mcq",
+      "prompt": "According to idiomatic Go guidance, where should an interface typically be defined?",
+      "options": [
+        { "id": "a", "text": "In the package that implements it" },
+        { "id": "b", "text": "In the package that consumes/uses it" },
+        { "id": "c", "text": "In a central `interfaces` package" },
+        { "id": "d", "text": "Only in package main" }
+      ],
+      "answer": "b",
+      "explanation": "Defining interfaces at the point of use keeps them small and decoupled from implementation details.",
+      "tags": ["go-idioms-layout", "interfaces"]
+    },
+    {
+      "id": "go-q-idioms-layout-multi-1",
+      "type": "multi",
+      "prompt": "Which statements reflect idiomatic Go project layout advice?",
+      "options": [
+        { "id": "a", "text": "Deep service/repository/pkg layered trees often fight Go's package model" },
+        { "id": "b", "text": "Organizing by domain (what the code does) is generally preferred over organizing by technical layer" },
+        { "id": "c", "text": "Heavy mocking frameworks are preferred over table-driven tests with simple stubs" },
+        { "id": "d", "text": "pprof can help identify stuck or leaked goroutines" }
+      ],
+      "answers": ["a", "b", "d"],
+      "explanation": "The guidance favors table-driven tests with simple stubs over heavy mocking frameworks for most services.",
+      "tags": ["go-idioms-layout", "architecture"]
+    },
+    {
+      "id": "go-q-idioms-layout-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport \"fmt\"\n\ntype Notifier interface{ Notify(msg string) }\n\ntype Logger struct{}\n\nfunc (Logger) Notify(msg string) { fmt.Println(\"LOG:\", msg) }\n\nfunc send(n Notifier, msg string) { n.Notify(msg) }\n\nfunc main() {\n  send(Logger{}, \"deployed\")\n}",
+      "language": "go",
+      "answer": "LOG: deployed",
+      "explanation": "send accepts the Notifier interface; Logger satisfies it implicitly and its Notify prints the message.",
+      "tags": ["go-idioms-layout", "interfaces"]
+    },
+    {
+      "id": "go-q-idioms-layout-coding-1",
+      "type": "coding",
+      "prompt": "Implement Greet(name string) string returning \"Hello, \"+name+\"!\". Using a small table-driven loop with cases {\"Ada\",\"Hello, Ada!\"} and {\"\",\"Hello, !\"}, print PASS or FAIL for each case.",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc Greet(name string) string {\n  // TODO\n  return \"\"\n}\n\nfunc main() {\n  tests := []struct{ in, want string }{\n    {\"Ada\", \"Hello, Ada!\"},\n    {\"\", \"Hello, !\"},\n  }\n  for _, tt := range tests {\n    got := Greet(tt.in)\n    if got == tt.want {\n      fmt.Println(\"PASS\")\n    } else {\n      fmt.Println(\"FAIL\")\n    }\n  }\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport \"fmt\"\n\nfunc Greet(name string) string {\n  return \"Hello, \" + name + \"!\"\n}\n\nfunc main() {\n  tests := []struct{ in, want string }{\n    {\"Ada\", \"Hello, Ada!\"},\n    {\"\", \"Hello, !\"},\n  }\n  for _, tt := range tests {\n    got := Greet(tt.in)\n    if got == tt.want {\n      fmt.Println(\"PASS\")\n    } else {\n      fmt.Println(\"FAIL\")\n    }\n  }\n}\n",
+      "expectedOutput": "PASS\nPASS",
+      "explanation": "Both table cases match Greet's output, mirroring the idiomatic table-driven testing style.",
+      "tags": ["go-idioms-layout", "testing"]
+    },
+    {
+      "id": "go-q-generics-backpressure-mcq-1",
+      "type": "mcq",
+      "prompt": "What is a common way to bound concurrency for a worker pool built on errgroup?",
+      "options": [
+        { "id": "a", "text": "g.SetLimit(n)" },
+        { "id": "b", "text": "g.MaxWorkers(n)" },
+        { "id": "c", "text": "Closing the group after n goroutines" },
+        { "id": "d", "text": "Always using unbuffered channels instead" }
+      ],
+      "answer": "a",
+      "explanation": "errgroup.Group.SetLimit(n) caps the number of goroutines running concurrently via g.Go.",
+      "tags": ["go-generics-backpressure", "workers"]
+    },
+    {
+      "id": "go-q-generics-backpressure-mcq-2",
+      "type": "mcq",
+      "prompt": "What is a real risk of an unbounded producer queue in a service?",
+      "options": [
+        { "id": "a", "text": "It always improves throughput with no downside" },
+        { "id": "b", "text": "The service can run out of memory (OOM) under load" },
+        { "id": "c", "text": "It automatically applies backpressure for you" },
+        { "id": "d", "text": "It has no effect on resource usage" }
+      ],
+      "answer": "b",
+      "explanation": "Unbounded queues let producers outpace consumers indefinitely, which is a classic cause of OOM in production services.",
+      "tags": ["go-generics-backpressure", "backpressure"]
+    },
+    {
+      "id": "go-q-generics-backpressure-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: as of Go 1.27, generic methods on concrete types are supported but still cannot satisfy _____.",
+      "template": "generic methods still cannot satisfy _____",
+      "answer": "interfaces",
+      "accept": ["interfaces", "an interface", "interface"],
+      "explanation": "A method with its own type parameters cannot be part of a method set that satisfies an interface.",
+      "tags": ["go-generics-backpressure", "generics"]
+    },
+    {
+      "id": "go-q-generics-backpressure-coding-1",
+      "type": "coding",
+      "prompt": "Implement a generic function Filter[T any](s []T, pred func(T) bool) []T. Use it to keep only even numbers from []int{1,2,3,4,5,6} and print the result.",
+      "starterCode": "package main\n\nimport \"fmt\"\n\nfunc Filter[T any](s []T, pred func(T) bool) []T {\n  // TODO\n  return nil\n}\n\nfunc main() {\n  evens := Filter([]int{1, 2, 3, 4, 5, 6}, func(n int) bool { return n%2 == 0 })\n  fmt.Println(evens)\n}\n",
+      "language": "go",
+      "referenceSolution": "package main\n\nimport \"fmt\"\n\nfunc Filter[T any](s []T, pred func(T) bool) []T {\n  out := []T{}\n  for _, v := range s {\n    if pred(v) {\n      out = append(out, v)\n    }\n  }\n  return out\n}\n\nfunc main() {\n  evens := Filter([]int{1, 2, 3, 4, 5, 6}, func(n int) bool { return n%2 == 0 })\n  fmt.Println(evens)\n}\n",
+      "expectedOutput": "[2 4 6]",
+      "explanation": "Filter keeps elements for which pred returns true, here the even numbers 2, 4, and 6.",
+      "tags": ["go-generics-backpressure", "generics"]
+    },
+    {
+      "id": "go-q-22-profiling-pprof-mcq-1",
+      "type": "mcq",
+      "prompt": "Which import registers pprof's HTTP handlers purely for their side effect?",
+      "options": [
+        { "id": "a", "text": "\"runtime/pprof\"" },
+        { "id": "b", "text": "\"net/http/pprof\" (blank-imported)" },
+        { "id": "c", "text": "\"net/pprof\"" },
+        { "id": "d", "text": "\"debug/pprof\"" }
+      ],
+      "answer": "b",
+      "explanation": "Blank-importing net/http/pprof registers /debug/pprof/ handlers on the default HTTP mux.",
+      "tags": ["go-22-profiling-pprof", "pprof"]
+    },
+    {
+      "id": "go-q-22-profiling-pprof-multi-1",
+      "type": "multi",
+      "prompt": "Which statements about profiling Go programs are true?",
+      "options": [
+        { "id": "a", "text": "go tool pprof lets you inspect top, list, and flame graph views of a profile" },
+        { "id": "b", "text": "sync.Pool can reduce allocations by reusing objects" },
+        { "id": "c", "text": "go test -benchmem reports memory allocations per operation" },
+        { "id": "d", "text": "Guessing at performance bottlenecks without measuring first is the recommended approach" }
+      ],
+      "answers": ["a", "b", "c"],
+      "explanation": "The recommended approach is to measure first with a profiler rather than guess at hot paths.",
+      "tags": ["go-22-profiling-pprof", "performance"]
+    },
+    {
+      "id": "go-q-22-profiling-pprof-output-1",
+      "type": "output",
+      "prompt": "What does this print?",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  s := make([]int, 0, 3)\n  fmt.Println(len(s), cap(s))\n  s = append(s, 1, 2, 3, 4)\n  fmt.Println(len(s), cap(s) >= 4)\n}",
+      "language": "go",
+      "answer": "0 3\n4 true",
+      "explanation": "The slice starts at length 0, capacity 3; appending 4 elements exceeds capacity, forcing a reallocation to at least capacity 4.",
+      "tags": ["go-22-profiling-pprof", "slices"]
+    },
+    {
+      "id": "go-q-22-profiling-pprof-fill-1",
+      "type": "fill",
+      "prompt": "Fill the blank: net/http/pprof registers profiling handlers under the path _____.",
+      "template": "profiling endpoints are served under _____",
+      "answer": "/debug/pprof/",
+      "accept": ["/debug/pprof/", "/debug/pprof"],
+      "explanation": "Endpoints like /debug/pprof/profile and /debug/pprof/heap are exposed under this prefix.",
+      "tags": ["go-22-profiling-pprof", "pprof"]
+    }
+  ]
+}

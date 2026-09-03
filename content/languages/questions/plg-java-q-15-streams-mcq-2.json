@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-15-streams-mcq-2",
+  "domainId": "plg-java",
+  "prompt": "Which method, added in Java 16, converts a stream directly into an (unmodifiable) List?",
+  "explanation": "Stream.toList() is shorthand for .collect(Collectors.toUnmodifiableList()).",
+  "tags": [
+    "streams",
+    "functional"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Stream.toList()"
+    },
+    {
+      "id": "b",
+      "text": "Stream.collect(toArrayList())"
+    },
+    {
+      "id": "c",
+      "text": "Stream.asList()"
+    },
+    {
+      "id": "d",
+      "text": "Stream.list()"
+    }
+  ],
+  "correct": "a"
+}

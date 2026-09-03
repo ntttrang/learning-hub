@@ -1,0 +1,19 @@
+{
+  "id": "plg-ruby-q-19-metaprogramming-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: intercepting calls to undefined methods is done by overriding this hook, which should be paired with respond_to_missing?.",
+  "explanation": "method_missing is called when no matching method is found, enabling dynamic proxies and DSLs.",
+  "tags": [
+    "metaprogramming"
+  ],
+  "kind": "fill",
+  "template": "def ___(name, *args)",
+  "blanks": [
+    {
+      "answer": "method_missing",
+      "alternatives": [
+        "method_missing"
+      ]
+    }
+  ]
+}

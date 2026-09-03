@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-22-immutability-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What happens when you try to mutate a frozen string?",
+  "explanation": "Mutating a frozen object raises FrozenError instead of silently succeeding or copying.",
+  "tags": [
+    "performance",
+    "immutability"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It silently does nothing"
+    },
+    {
+      "id": "b",
+      "text": "It raises FrozenError"
+    },
+    {
+      "id": "c",
+      "text": "It automatically creates and returns a copy"
+    },
+    {
+      "id": "d",
+      "text": "It unfreezes itself automatically"
+    }
+  ],
+  "correct": "b"
+}

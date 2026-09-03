@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-06-comprehensions-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "Which syntax change turns a list comprehension into a generator expression?",
+  "explanation": "Swapping square brackets for parentheses produces a lazy generator expression instead of a list.",
+  "tags": [
+    "basics",
+    "comprehensions"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Replace [] with {}"
+    },
+    {
+      "id": "b",
+      "text": "Replace [] with ()"
+    },
+    {
+      "id": "c",
+      "text": "Add the `yield` keyword"
+    },
+    {
+      "id": "d",
+      "text": "Add the `lazy` keyword"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-22-logging-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "Which logger method automatically captures the current exception traceback when called inside an `except` block?",
+  "explanation": "`logger.exception(msg)` logs at ERROR level and appends the traceback of the currently handled exception.",
+  "tags": [
+    "logging",
+    "stdlib"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "logger.error"
+    },
+    {
+      "id": "b",
+      "text": "logger.warning"
+    },
+    {
+      "id": "c",
+      "text": "logger.exception"
+    },
+    {
+      "id": "d",
+      "text": "logger.critical"
+    }
+  ],
+  "correct": "c"
+}

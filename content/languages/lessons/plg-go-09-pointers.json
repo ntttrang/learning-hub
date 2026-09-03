@@ -1,0 +1,23 @@
+{
+  "id": "plg-go-09-pointers",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 9,
+  "title": "Pointers and value semantics",
+  "minutes": 10,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## No pointer arithmetic\n\n`&x` takes an address, `*p` dereferences. Go pointers are safe — no arithmetic, no dangling (the GC keeps referenced memory alive).\n\n## When to use pointers\n\n- Mutate the caller's value.\n- Avoid copying large structs.\n- Signal optional/absent with `nil`.\n\n## Value semantics\n\nStructs are copied on assignment and function calls. Small value types are cheap and cache-friendly — don't reach for pointers reflexively."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "func double(n *int) { *n *= 2 }\n\nx := 21\ndouble(&x)\nfmt.Println(x) // 42"
+    }
+  ],
+  "docIds": [
+    "1-2"
+  ]
+}

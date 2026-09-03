@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-03-control-flow-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "Which single looping keyword does Go provide, covering while, infinite loops, and counting loops?",
+  "explanation": "Go has only `for`; omitting parts of its clause covers while-loops and infinite loops.",
+  "tags": [
+    "go-03-control-flow",
+    "loops"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "for"
+    },
+    {
+      "id": "b",
+      "text": "while"
+    },
+    {
+      "id": "c",
+      "text": "do-while"
+    },
+    {
+      "id": "d",
+      "text": "loop"
+    }
+  ],
+  "correct": "a"
+}

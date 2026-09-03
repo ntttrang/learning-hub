@@ -1,0 +1,21 @@
+{
+  "id": "plg-go-q-22-profiling-pprof-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: net/http/pprof registers profiling handlers under the path _____.",
+  "explanation": "Endpoints like /debug/pprof/profile and /debug/pprof/heap are exposed under this prefix.",
+  "tags": [
+    "go-22-profiling-pprof",
+    "pprof"
+  ],
+  "kind": "fill",
+  "template": "profiling endpoints are served under ___",
+  "blanks": [
+    {
+      "answer": "/debug/pprof/",
+      "alternatives": [
+        "/debug/pprof/",
+        "/debug/pprof"
+      ]
+    }
+  ]
+}

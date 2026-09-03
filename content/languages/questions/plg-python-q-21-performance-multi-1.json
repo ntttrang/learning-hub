@@ -1,0 +1,34 @@
+{
+  "id": "plg-python-q-21-performance-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which are recommended performance practices from the lesson?",
+  "explanation": "\"Measure, don't guess\" — profile first; rewriting in C without measuring is premature optimization.",
+  "tags": [
+    "performance",
+    "profiling"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Profile before optimizing (cProfile/py-spy)"
+    },
+    {
+      "id": "b",
+      "text": "Cache expensive pure functions with functools.lru_cache"
+    },
+    {
+      "id": "c",
+      "text": "Always rewrite hot loops in C first, before measuring"
+    },
+    {
+      "id": "d",
+      "text": "Use timeit for small snippet benchmarks"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

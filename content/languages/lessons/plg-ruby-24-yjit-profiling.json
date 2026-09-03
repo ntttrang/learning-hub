@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-24-yjit-profiling",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 24,
+  "title": "YJIT and profiling",
+  "minutes": 11,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## YJIT\n\nYJIT (Ruby's JIT) often cuts latency significantly on real apps. Enable in production after checking memory budget (`--yjit` or `RUBY_YJIT_ENABLE=1`).\n\n## Measure first\n\nUse `benchmark`, stackprof, or Vernier before optimizing. Most \"slow Ruby\" is IO, N+1 queries, or allocations — not missing micro-optimizations.\n\n## Allocation awareness\n\nAvoid building huge intermediate arrays in hot paths; prefer `lazy`, streaming, or in-place updates when profiling shows pressure."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "require \"benchmark\"\n\nn = 100_000\nputs Benchmark.realtime {\n  n.times { \"ahoy\".upcase }\n}.round(4)"
+    }
+  ],
+  "docIds": [
+    "yjit_md",
+    "Benchmark"
+  ]
+}

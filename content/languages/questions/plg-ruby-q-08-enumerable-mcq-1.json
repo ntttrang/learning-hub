@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-08-enumerable-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What must a class implement to gain access to Enumerable methods like map and select via `include Enumerable`?",
+  "explanation": "Enumerable derives all of its methods from a single `each` implementation.",
+  "tags": [
+    "enumerable",
+    "collections"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "to_a"
+    },
+    {
+      "id": "b",
+      "text": "each"
+    },
+    {
+      "id": "c",
+      "text": "size"
+    },
+    {
+      "id": "d",
+      "text": "<=>"
+    }
+  ],
+  "correct": "b"
+}

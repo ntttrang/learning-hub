@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-stack",
+  "domainId": "plg-python",
+  "prompt": "Common pieces of a modern Python API stack:",
+  "explanation": "Spring Data is Java. FastAPI + Pydantic v2 + async SQLAlchemy is the usual combo.",
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "FastAPI"
+    },
+    {
+      "id": "b",
+      "text": "Pydantic v2"
+    },
+    {
+      "id": "c",
+      "text": "Spring Data JPA"
+    },
+    {
+      "id": "d",
+      "text": "SQLAlchemy 2.0 async"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "plg-go-q-generics-backpressure-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: as of Go 1.27, generic methods on concrete types are supported but still cannot satisfy _____.",
+  "explanation": "A method with its own type parameters cannot be part of a method set that satisfies an interface.",
+  "tags": [
+    "go-generics-backpressure",
+    "generics"
+  ],
+  "kind": "fill",
+  "template": "generic methods still cannot satisfy ___",
+  "blanks": [
+    {
+      "answer": "interfaces",
+      "alternatives": [
+        "interfaces",
+        "an interface",
+        "interface"
+      ]
+    }
+  ]
+}

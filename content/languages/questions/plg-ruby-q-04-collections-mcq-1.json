@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-04-collections-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "Given `nums = [1, 2, 3, 4]`, what does `nums[1..2]` return?",
+  "explanation": "Range slicing is inclusive: index 1 through index 2 gives elements 2 and 3.",
+  "tags": [
+    "collections",
+    "basics"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "[2, 3]"
+    },
+    {
+      "id": "b",
+      "text": "[1, 2]"
+    },
+    {
+      "id": "c",
+      "text": "[2, 3, 4]"
+    },
+    {
+      "id": "d",
+      "text": "[1, 2, 3]"
+    }
+  ],
+  "correct": "a"
+}

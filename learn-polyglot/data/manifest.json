@@ -1,0 +1,72 @@
+{
+  "title": "Polyglot Revision Hub",
+  "subtitle": "Senior-engineer revision for Java, Go, Python, and Ruby — learn, lab, practice, and check what sticks.",
+  "languages": [
+    {
+      "id": "java",
+      "label": "Java",
+      "accent": "var(--captain-red)",
+      "blurb": "JVM, concurrency, virtual threads, Spring Boot production pitfalls.",
+      "monaco": "java"
+    },
+    {
+      "id": "go",
+      "label": "Go",
+      "accent": "var(--sky-cyan)",
+      "blurb": "Idiomatic concurrency, context, errgroup, and stdlib-first design.",
+      "monaco": "go"
+    },
+    {
+      "id": "python",
+      "label": "Python",
+      "accent": "var(--star-yellow)",
+      "blurb": "FastAPI, Pydantic v2, asyncio pitfalls, and modern tooling.",
+      "monaco": "python"
+    },
+    {
+      "id": "ruby",
+      "label": "Ruby",
+      "accent": "var(--hub-coral)",
+      "blurb": "Objects all the way down, blocks, metaprogramming, and idiomatic Ruby 3.x — with Rails as the framework.",
+      "monaco": "ruby"
+    }
+  ],
+  "sections": [
+    {
+      "id": "learn",
+      "label": "Learn",
+      "path": "/learn",
+      "blurb": "Focused lessons with senior-level depth."
+    },
+    {
+      "id": "lab",
+      "label": "Lab",
+      "path": "/lab",
+      "blurb": "Guided labs with starter code and solutions."
+    },
+    {
+      "id": "practice",
+      "label": "Practice",
+      "path": "/practice",
+      "blurb": "Open-ended problems with hints and reference solutions."
+    },
+    {
+      "id": "framework",
+      "label": "Framework",
+      "path": "/framework",
+      "blurb": "Master one popular framework per language, step by step."
+    },
+    {
+      "id": "quiz",
+      "label": "Knowledge check",
+      "path": "/quiz",
+      "blurb": "MCQ, output prediction, fill-in, and coding questions."
+    },
+    {
+      "id": "compare",
+      "label": "Compare",
+      "path": "/compare",
+      "blurb": "Side-by-side mental models across all four stacks."
+    }
+  ]
+}

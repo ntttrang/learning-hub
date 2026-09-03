@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-06-methods-args-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "In `def connect(host:, port: 443, **opts)`, what kind of parameter is `host:`?",
+  "explanation": "A keyword parameter with no default (`host:`) is required; omitting it raises ArgumentError.",
+  "tags": [
+    "methods",
+    "basics"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "An optional keyword argument with a default"
+    },
+    {
+      "id": "b",
+      "text": "A required keyword argument"
+    },
+    {
+      "id": "c",
+      "text": "A positional argument"
+    },
+    {
+      "id": "d",
+      "text": "A splat argument"
+    }
+  ],
+  "correct": "b"
+}

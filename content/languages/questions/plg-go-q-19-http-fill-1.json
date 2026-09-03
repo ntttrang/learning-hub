@@ -1,0 +1,22 @@
+{
+  "id": "plg-go-q-19-http-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: method+wildcard route patterns like \"GET /users/{id}\" in http.ServeMux require Go _____ or later.",
+  "explanation": "Go 1.22 added method and wildcard support directly to the standard library's ServeMux.",
+  "tags": [
+    "go-19-http",
+    "routing"
+  ],
+  "kind": "fill",
+  "template": "mux.HandleFunc(\"GET /users/{id}\", ...) // requires Go ___",
+  "blanks": [
+    {
+      "answer": "1.22",
+      "alternatives": [
+        "1.22",
+        "go1.22",
+        "Go 1.22"
+      ]
+    }
+  ]
+}

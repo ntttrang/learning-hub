@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-22-immutability-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "What's the key difference between dup and clone?",
+  "explanation": "clone is the more faithful copy, preserving frozen status and singleton methods; dup does not.",
+  "tags": [
+    "performance",
+    "immutability"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "They are identical in every way"
+    },
+    {
+      "id": "b",
+      "text": "dup preserves frozen state, clone does not"
+    },
+    {
+      "id": "c",
+      "text": "clone can preserve frozen state and singleton methods, dup does not"
+    },
+    {
+      "id": "d",
+      "text": "Neither one actually copies the object"
+    }
+  ],
+  "correct": "c"
+}

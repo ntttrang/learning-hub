@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-03-numbers-nil-truth-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "Which of these values is falsy in Ruby?",
+  "explanation": "Only false and nil are falsy in Ruby; 0, empty strings, and empty arrays are all truthy.",
+  "tags": [
+    "basics",
+    "truthiness"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "0"
+    },
+    {
+      "id": "b",
+      "text": "\"\""
+    },
+    {
+      "id": "c",
+      "text": "[]"
+    },
+    {
+      "id": "d",
+      "text": "nil"
+    }
+  ],
+  "correct": "d"
+}

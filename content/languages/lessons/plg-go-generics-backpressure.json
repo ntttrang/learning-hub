@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-generics-backpressure",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 24,
+  "title": "Generics, workers, and backpressure",
+  "minutes": 12,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Generics\n\nUse `slices` and `maps` helpers. Prefer package-level generic functions when clearer than methods. Go 1.27 adds **generic methods** on concrete types — great for chainable containers; they still cannot satisfy interfaces.\n\n## Worker pools\n\n- `errgroup.SetLimit(n)` for bounded tasks with cancel.\n- `semaphore.Weighted` when slots have different weights.\n- Bounded channel queues for explicit queue depth.\n\n## Backpressure\n\nBlock producers, drop+metric, or reject at the API (HTTP 429). Unbounded queues are how services OOM."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "slices.SortFunc(users, func(a, b User) int {\n  return cmp.Compare(a.Name, b.Name)\n})"
+    }
+  ],
+  "docIds": [
+    "errgroup-2",
+    "semaphore"
+  ]
+}

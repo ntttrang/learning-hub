@@ -1,0 +1,20 @@
+{
+  "id": "plg-python-q-06-comprehensions-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank in a dict comprehension that maps each user's id to the user object.",
+  "explanation": "The expression before `for` becomes the dict key; `u.id` is evaluated for each user `u`.",
+  "tags": [
+    "basics",
+    "comprehensions"
+  ],
+  "kind": "fill",
+  "template": "by_id = {___: u for u in users}",
+  "blanks": [
+    {
+      "answer": "u.id",
+      "alternatives": [
+        "u.id"
+      ]
+    }
+  ]
+}

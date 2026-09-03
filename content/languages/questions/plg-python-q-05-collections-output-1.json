@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-05-collections-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "'a' is seen twice, 'b' once; insertion order (first seen) is preserved in the dict's repr.",
+  "tags": [
+    "basics",
+    "collections"
+  ],
+  "kind": "fill",
+  "template": "counts = {}\nfor w in [\"a\", \"b\", \"a\"]:\n    counts[w] = counts.get(w, 0) + 1\nprint(counts)\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "{'a': 2, 'b': 1}"
+    }
+  ]
+}

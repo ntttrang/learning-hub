@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-02-variables-strings-symbols",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 2,
+  "title": "Variables, strings, and symbols",
+  "minutes": 10,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Naming\n\nLocal vars are `snake_case`. Constants start with an uppercase letter (`PI`, `HttpClient`). Instance vars use `@`, class vars `@@` (prefer class instance vars), globals `$` (avoid).\n\n## Strings vs symbols\n\n`\"name\"` is a mutable string (by default). `:name` is an immutable, interned identifier — cheaper as hash keys and option labels when the set of names is fixed.\n\n## Interpolation\n\nDouble-quoted strings interpolate `#{}`. Single-quoted strings are mostly literal (only `\\\\` and `\\'`)."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "name = \"Corgi\"\nputs \"Ahoy, #{name}!\"\nopts = { role: :admin, active: true }\nputs opts[:role]  # :admin\nputs :admin.object_id == :admin.object_id"
+    }
+  ],
+  "docIds": [
+    "String",
+    "Symbol"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "plg-ruby-q-21-refinements-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which statements about refinements are true?",
+  "explanation": "Unlike monkey-patching, refinements only apply where explicitly activated with using.",
+  "tags": [
+    "refinements",
+    "design"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "They scope monkey-patch-like changes to a file or module"
+    },
+    {
+      "id": "b",
+      "text": "They are activated with using"
+    },
+    {
+      "id": "c",
+      "text": "They affect every object in the process globally, exactly like monkey-patching"
+    },
+    {
+      "id": "d",
+      "text": "refine String do ... end defines refined methods for String"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

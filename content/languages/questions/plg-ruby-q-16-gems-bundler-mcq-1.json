@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-16-gems-bundler-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What file does `bundle install` generate to lock exact dependency versions?",
+  "explanation": "Gemfile.lock records the exact resolved versions and should be committed for applications.",
+  "tags": [
+    "tooling",
+    "bundler"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Gemfile"
+    },
+    {
+      "id": "b",
+      "text": "Gemfile.lock"
+    },
+    {
+      "id": "c",
+      "text": "bundle.json"
+    },
+    {
+      "id": "d",
+      "text": "package-lock.json"
+    }
+  ],
+  "correct": "b"
+}

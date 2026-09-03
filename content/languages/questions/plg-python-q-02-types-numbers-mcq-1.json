@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-02-types-numbers-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "What happens when you evaluate `\"1\" + 1` in Python?",
+  "explanation": "Python is strongly typed and won't silently coerce str + int; it raises a TypeError.",
+  "tags": [
+    "basics",
+    "types"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Raises TypeError"
+    },
+    {
+      "id": "b",
+      "text": "Returns \"11\""
+    },
+    {
+      "id": "c",
+      "text": "Returns 2"
+    },
+    {
+      "id": "d",
+      "text": "Returns 1.0"
+    }
+  ],
+  "correct": "a"
+}

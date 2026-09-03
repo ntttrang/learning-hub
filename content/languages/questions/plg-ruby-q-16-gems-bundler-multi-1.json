@@ -1,0 +1,34 @@
+{
+  "id": "plg-ruby-q-16-gems-bundler-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which practices are recommended when managing gem dependencies?",
+  "explanation": "Floating unconstrained dependencies risks unexpected breakage; pinning plus a lockfile is safer.",
+  "tags": [
+    "tooling",
+    "bundler"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Commit Gemfile.lock for applications"
+    },
+    {
+      "id": "b",
+      "text": "Run tools with bundle exec to use the locked versions"
+    },
+    {
+      "id": "c",
+      "text": "Always float dependencies to the latest version with no constraints"
+    },
+    {
+      "id": "d",
+      "text": "Use pessimistic version constraints like ~>"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

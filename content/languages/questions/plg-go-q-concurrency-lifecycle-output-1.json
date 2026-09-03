@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-concurrency-lifecycle-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print? (assume golang.org/x/sync/errgroup is available)",
+  "explanation": "Each goroutine writes i*i into its own index; g.Wait() blocks until all three finish successfully.",
+  "tags": [
+    "go-concurrency-lifecycle",
+    "errgroup"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport (\n  \"context\"\n  \"fmt\"\n\n  \"golang.org/x/sync/errgroup\"\n)\n\nfunc main() {\n  g, _ := errgroup.WithContext(context.Background())\n  results := make([]int, 3)\n  for i := 0; i < 3; i++ {\n    i := i\n    g.Go(func() error {\n      results[i] = i * i\n      return nil\n    })\n  }\n  if err := g.Wait(); err != nil {\n    fmt.Println(\"error:\", err)\n    return\n  }\n  fmt.Println(results)\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "[0 1 4]"
+    }
+  ]
+}

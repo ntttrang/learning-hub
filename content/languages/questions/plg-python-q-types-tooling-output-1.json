@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-types-tooling-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "Type hints (`list[int]`, `-> int`) are documentation only; the function simply returns the first item.",
+  "tags": [
+    "typing",
+    "tooling"
+  ],
+  "kind": "fill",
+  "template": "def first(xs: list[int]) -> int:\n    return xs[0]\n\nprint(first([10, 20, 30]))\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "10"
+    }
+  ]
+}

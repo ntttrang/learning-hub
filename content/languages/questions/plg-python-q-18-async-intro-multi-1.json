@@ -1,0 +1,34 @@
+{
+  "id": "plg-python-q-18-async-intro-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which statements about async/await in Python are true?",
+  "explanation": "`time.sleep()` blocks the whole event loop; use `await asyncio.sleep()` instead for non-blocking waits.",
+  "tags": [
+    "asyncio",
+    "async"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "`await` can only be used inside an `async def` function"
+    },
+    {
+      "id": "b",
+      "text": "A single thread can juggle thousands of awaiting coroutines"
+    },
+    {
+      "id": "c",
+      "text": "Calling `time.sleep()` inside a coroutine is non-blocking"
+    },
+    {
+      "id": "d",
+      "text": "`async def` defines a coroutine function"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

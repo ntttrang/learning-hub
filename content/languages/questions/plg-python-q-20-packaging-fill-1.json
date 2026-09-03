@@ -1,0 +1,21 @@
+{
+  "id": "plg-python-q-20-packaging-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank: applications should lock dependencies precisely, while libraries should keep their version constraints _____.",
+  "explanation": "Loose constraints in libraries avoid version conflicts for consumers; apps pin exact versions for reproducibility.",
+  "tags": [
+    "packaging",
+    "tooling"
+  ],
+  "kind": "fill",
+  "template": "Apps: pin exact versions. Libraries: keep constraints ___.",
+  "blanks": [
+    {
+      "answer": "loose",
+      "alternatives": [
+        "loose",
+        "flexible"
+      ]
+    }
+  ]
+}

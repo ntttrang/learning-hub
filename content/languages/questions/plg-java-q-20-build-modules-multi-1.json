@@ -1,0 +1,35 @@
+{
+  "id": "plg-java-q-20-build-modules-multi-1",
+  "domainId": "plg-java",
+  "prompt": "Which are true about Maven/Gradle dependency management?",
+  "explanation": "Pinning versions is actually recommended for reproducible builds.",
+  "tags": [
+    "maven",
+    "gradle",
+    "tooling"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Both resolve transitive dependencies from repositories"
+    },
+    {
+      "id": "b",
+      "text": "A BOM helps align versions across a family of libraries"
+    },
+    {
+      "id": "c",
+      "text": "Version conflicts can be inspected with dependency-tree tooling"
+    },
+    {
+      "id": "d",
+      "text": "Pinning dependency versions is generally discouraged"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-17-files-json-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "Which `json.dumps` parameter produces human-readable, indented output?",
+  "explanation": "`indent=2` (or any int) pretty-prints nested JSON with that many spaces per level.",
+  "tags": [
+    "io",
+    "json"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "sort_keys"
+    },
+    {
+      "id": "b",
+      "text": "indent"
+    },
+    {
+      "id": "c",
+      "text": "separators"
+    },
+    {
+      "id": "d",
+      "text": "default"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "plg-python-types-tooling",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 18,
+  "title": "Types, Pydantic v2, uv, and Ruff",
+  "minutes": 10,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Types\n\nPEP 695 type params, `Protocol`, and strict type checkers (pyright/mypy) are expected on serious teams.\n\n## Pydantic v2\n\nRust core — much faster. Prefer `Annotated` constraints and settings via `pydantic-settings`.\n\n## Tooling\n\n`uv` replaces a lot of pip/poetry/pyenv friction. `Ruff` covers lint + format at Rust speed.\n\n## GIL note\n\nFree-threading is experimental in recent CPython — know what it means, don't assume production readiness everywhere."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "from pydantic import BaseModel, Field, EmailStr\n\nclass UserCreate(BaseModel):\n    email: EmailStr\n    name: str = Field(min_length=1, max_length=80)"
+    }
+  ],
+  "docIds": [
+    "latest",
+    "ruff",
+    "uv"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-12-duck-typing-mcq-1",
+  "domainId": "plg-ruby",
+  "prompt": "What is \"duck typing\" in Ruby?",
+  "explanation": "Ruby favors behavior over declared type: if an object responds to the right methods, it can be used.",
+  "tags": [
+    "oop",
+    "design"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Checking an object's declared class before calling any method"
+    },
+    {
+      "id": "b",
+      "text": "Caring about whether an object responds to the needed methods, not its declared type"
+    },
+    {
+      "id": "c",
+      "text": "A static type-checking tool bundled with Ruby"
+    },
+    {
+      "id": "d",
+      "text": "A design pattern that only applies to arrays"
+    }
+  ],
+  "correct": "b"
+}

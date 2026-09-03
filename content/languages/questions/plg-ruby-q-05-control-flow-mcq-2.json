@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-05-control-flow-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "In a `case`/`when` statement, which operator does Ruby use to test each `when` clause against the case value?",
+  "explanation": "case/when calls `when_value === case_value`, which is why ranges, classes, and regexes work as when arms.",
+  "tags": [
+    "control-flow",
+    "basics"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "=="
+    },
+    {
+      "id": "b",
+      "text": "==="
+    },
+    {
+      "id": "c",
+      "text": "eql?"
+    },
+    {
+      "id": "d",
+      "text": "equal?"
+    }
+  ],
+  "correct": "b"
+}

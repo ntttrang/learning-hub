@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-13-json-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "Which struct fields does encoding/json (de)serialize by default?",
+  "explanation": "encoding/json can only see exported fields via reflection; struct tags customize, not enable, serialization.",
+  "tags": [
+    "go-13-json",
+    "encoding/json"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "All fields, including unexported ones"
+    },
+    {
+      "id": "b",
+      "text": "Only exported (capitalized) fields"
+    },
+    {
+      "id": "c",
+      "text": "Only fields that have a json tag"
+    },
+    {
+      "id": "d",
+      "text": "None, unless a custom MarshalJSON is defined"
+    }
+  ],
+  "correct": "b"
+}

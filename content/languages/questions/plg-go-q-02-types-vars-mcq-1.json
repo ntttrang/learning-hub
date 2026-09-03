@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-02-types-vars-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "What is the zero value of a Go string variable?",
+  "explanation": "Every type has a usable zero value; for string it is the empty string.",
+  "tags": [
+    "go-02-types-vars",
+    "types"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "nil"
+    },
+    {
+      "id": "b",
+      "text": "\"\" (empty string)"
+    },
+    {
+      "id": "c",
+      "text": "\"null\""
+    },
+    {
+      "id": "d",
+      "text": "undefined"
+    }
+  ],
+  "correct": "b"
+}

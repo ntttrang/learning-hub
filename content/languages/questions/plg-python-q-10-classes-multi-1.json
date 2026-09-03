@@ -1,0 +1,34 @@
+{
+  "id": "plg-python-q-10-classes-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which statements about the `@property` decorator are true?",
+  "explanation": "Properties are accessed as `obj.attr` (no parentheses); an optional `@x.setter` allows assignment.",
+  "tags": [
+    "oop",
+    "classes"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Lets you expose computed attributes accessed like plain attributes"
+    },
+    {
+      "id": "b",
+      "text": "Requires callers to invoke it with parentheses like a method"
+    },
+    {
+      "id": "c",
+      "text": "Avoids Java-style getter/setter boilerplate"
+    },
+    {
+      "id": "d",
+      "text": "Can be paired with a matching `@x.setter` for write access"
+    }
+  ],
+  "correct": [
+    "a",
+    "c",
+    "d"
+  ]
+}

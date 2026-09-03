@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-01-hello-modules",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 1,
+  "title": "Hello Go: modules and go run",
+  "minutes": 8,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Setup\n\nA Go project starts with a **module**: `go mod init example.com/app` creates `go.mod`. Source lives in packages; `package main` with a `main()` func is an executable.\n\n## Run and build\n\n`go run .` compiles and runs in one step. `go build` produces a single static binary — no runtime needed on the target.\n\n## Formatting\n\n`gofmt` (or `go fmt`) is non-negotiable: one canonical style, zero debates."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  fmt.Println(\"Ahoy, world!\")\n}"
+    }
+  ],
+  "docIds": [
+    "code",
+    "mod"
+  ]
+}

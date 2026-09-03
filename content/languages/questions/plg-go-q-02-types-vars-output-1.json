@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-02-types-vars-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "iota starts at 0 within a const block and increments by 1 for each subsequent line.",
+  "tags": [
+    "go-02-types-vars",
+    "iota"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport \"fmt\"\n\nconst (\n  Red = iota\n  Green\n  Blue\n)\n\nfunc main() {\n  fmt.Println(Red, Green, Blue)\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "0 1 2"
+    }
+  ]
+}

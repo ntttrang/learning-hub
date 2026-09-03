@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-19-http-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "What is the correct signature for an http.HandlerFunc?",
+  "explanation": "HTTP handlers write the response through http.ResponseWriter and read the request from *http.Request.",
+  "tags": [
+    "go-19-http",
+    "handlers"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "func(r *http.Request) string"
+    },
+    {
+      "id": "b",
+      "text": "func(w http.ResponseWriter, r *http.Request)"
+    },
+    {
+      "id": "c",
+      "text": "func() error"
+    },
+    {
+      "id": "d",
+      "text": "func(ctx context.Context) error"
+    }
+  ],
+  "correct": "b"
+}

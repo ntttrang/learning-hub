@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-idioms-layout-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "According to idiomatic Go guidance, where should an interface typically be defined?",
+  "explanation": "Defining interfaces at the point of use keeps them small and decoupled from implementation details.",
+  "tags": [
+    "go-idioms-layout",
+    "interfaces"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "In the package that implements it"
+    },
+    {
+      "id": "b",
+      "text": "In the package that consumes/uses it"
+    },
+    {
+      "id": "c",
+      "text": "In a central `interfaces` package"
+    },
+    {
+      "id": "d",
+      "text": "Only in package main"
+    }
+  ],
+  "correct": "b"
+}

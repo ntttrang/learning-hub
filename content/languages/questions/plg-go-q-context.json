@@ -1,0 +1,26 @@
+{
+  "id": "plg-go-q-context",
+  "domainId": "plg-go",
+  "prompt": "Where should context.Context usually appear in a Go API?",
+  "explanation": "Pass ctx as the first argument into blocking/IO work so cancellation propagates.",
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "As a global package variable"
+    },
+    {
+      "id": "b",
+      "text": "As the first parameter of functions that may wait"
+    },
+    {
+      "id": "c",
+      "text": "Only inside HTTP handlers, never passed down"
+    },
+    {
+      "id": "d",
+      "text": "Stored permanently on every struct field"
+    }
+  ],
+  "correct": "b"
+}

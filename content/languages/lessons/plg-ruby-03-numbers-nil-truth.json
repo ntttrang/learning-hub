@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-03-numbers-nil-truth",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 3,
+  "title": "Numbers, nil, and truthiness",
+  "minutes": 9,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Numeric hierarchy\n\n`Integer` and `Float` sit under `Numeric`. Integer division of two integers stays integer (`5 / 2 == 2`); use `5.0 / 2` or `5 / 2.0` for floats, or `Rational`.\n\n## Only two falsy values\n\n`false` and `nil` are falsy. Everything else — including `0`, `\"\"`, and `[]` — is truthy. That surprises people coming from Python or JS.\n\n## Safe navigation\n\n`user&.name` returns `nil` if `user` is `nil`, instead of raising `NoMethodError`."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "puts !!0          # true\nputs !!\"\"         # true\nputs !!nil        # false\nputs 5 / 2        # 2\nputs 5 / 2.0      # 2.5\nuser = nil\nputs user&.name.inspect  # nil"
+    }
+  ],
+  "docIds": [
+    "Numeric",
+    "NilClass"
+  ]
+}

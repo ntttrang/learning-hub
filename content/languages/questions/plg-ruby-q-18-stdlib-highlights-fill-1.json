@@ -1,0 +1,19 @@
+{
+  "id": "plg-ruby-q-18-stdlib-highlights-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: this Struct option allows constructing instances with named arguments like Point.new(x: 1, y: 2).",
+  "explanation": "keyword_init: true makes the generated Struct's constructor accept keyword arguments.",
+  "tags": [
+    "stdlib"
+  ],
+  "kind": "fill",
+  "template": "Struct.new(:x, :y, ___: true)",
+  "blanks": [
+    {
+      "answer": "keyword_init",
+      "alternatives": [
+        "keyword_init"
+      ]
+    }
+  ]
+}

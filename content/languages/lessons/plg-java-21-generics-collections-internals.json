@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-21-generics-collections-internals",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 21,
+  "title": "HashMap internals and performance",
+  "minutes": 12,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Buckets\n\n`HashMap` stores entries in buckets indexed by `hash(key)`. Collisions form a linked list; past a threshold (8 entries) a bucket **treeifies** into a red-black tree for O(log n) lookup.\n\n## Resizing\n\nAt load factor 0.75 the table doubles and rehashes — pre-size with `new HashMap<>(expectedSize)` for known large maps to avoid churn.\n\n## Keys\n\nGood, immutable `hashCode`s spread entries evenly. Mutable keys that change after insertion get lost."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "// avoid repeated resizes for a known count\nvar map = new HashMap<String, Integer>(1024);"
+    }
+  ],
+  "docIds": [
+    "HashMap",
+    "ConcurrentHashMap"
+  ]
+}

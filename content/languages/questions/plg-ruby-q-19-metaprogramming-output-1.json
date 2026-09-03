@@ -1,0 +1,16 @@
+{
+  "id": "plg-ruby-q-19-metaprogramming-output-1",
+  "domainId": "plg-ruby",
+  "prompt": "What prints?",
+  "explanation": "define_method generated start, stop, and reset methods, each returning a string built from its action name.",
+  "tags": [
+    "metaprogramming"
+  ],
+  "kind": "fill",
+  "template": "class Widget\n  %i[start stop reset].each do |action|\n    define_method(action) { \"#{action} ok\" }\n  end\nend\n\nw = Widget.new\nputs w.start\nputs w.public_send(:stop)\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "start ok\nstop ok"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "plg-java-q-18-io-nio-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "StandardCharsets.UTF_8.name() returns the canonical charset name \"UTF-8\".",
+  "tags": [
+    "io",
+    "files"
+  ],
+  "kind": "fill",
+  "template": "import java.nio.charset.StandardCharsets;\n\npublic class Demo {\n  public static void main(String[] args) {\n    System.out.println(StandardCharsets.UTF_8.name());\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "UTF-8"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "plg-python-q-07-functions-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which statements about function docstrings are true?",
+  "explanation": "Docstrings are optional but conventionally the first statement, exposed via `help()` and documentation tools.",
+  "tags": [
+    "basics",
+    "functions"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "It's the first string literal in the function body"
+    },
+    {
+      "id": "b",
+      "text": "It's surfaced by `help()`"
+    },
+    {
+      "id": "c",
+      "text": "The interpreter requires every function to have one"
+    },
+    {
+      "id": "d",
+      "text": "Many tools use it for documentation generation"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-24-yjit-profiling-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "What should you do before optimizing 'slow' Ruby code?",
+  "explanation": "Most 'slow Ruby' turns out to be IO, N+1 queries, or excess allocations, which profiling reveals.",
+  "tags": [
+    "performance",
+    "yjit"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Immediately rewrite the hot path in C"
+    },
+    {
+      "id": "b",
+      "text": "Profile and measure first, e.g. with benchmark, stackprof, or Vernier"
+    },
+    {
+      "id": "c",
+      "text": "Add more threads to the code"
+    },
+    {
+      "id": "d",
+      "text": "Assume the interpreter is always at fault"
+    }
+  ],
+  "correct": "b"
+}

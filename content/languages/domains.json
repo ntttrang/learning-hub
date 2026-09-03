@@ -1,0 +1,30 @@
+[
+  {
+    "id": "plg-java",
+    "order": 1,
+    "code": "JAVA",
+    "title": "Java",
+    "summary": "JVM, concurrency, virtual threads, Spring Boot production pitfalls."
+  },
+  {
+    "id": "plg-go",
+    "order": 2,
+    "code": "GO",
+    "title": "Go",
+    "summary": "Idiomatic concurrency, context, errgroup, and stdlib-first design."
+  },
+  {
+    "id": "plg-python",
+    "order": 3,
+    "code": "PYTHON",
+    "title": "Python",
+    "summary": "FastAPI, Pydantic v2, asyncio pitfalls, and modern tooling."
+  },
+  {
+    "id": "plg-ruby",
+    "order": 4,
+    "code": "RUBY",
+    "title": "Ruby",
+    "summary": "Objects all the way down, blocks, metaprogramming, and idiomatic Ruby 3.x — with Rails as the framework."
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-14-pattern-matching-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "In `case payload; in { type: \"user\", id: } ... end`, what does the bare `id:` do?",
+  "explanation": "Shorthand hash pattern keys both match the key's presence and bind its value to a local variable.",
+  "tags": [
+    "pattern-matching",
+    "ruby3"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Requires the key id to equal true"
+    },
+    {
+      "id": "b",
+      "text": "Matches the value at key :id and binds it to a local variable id"
+    },
+    {
+      "id": "c",
+      "text": "Ignores the id key entirely"
+    },
+    {
+      "id": "d",
+      "text": "Raises a syntax error"
+    }
+  ],
+  "correct": "b"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-19-http-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "Why should you always `defer resp.Body.Close()` after an http.Client request?",
+  "explanation": "Closing (and typically draining) the response body lets the transport reuse the TCP connection and prevents leaks.",
+  "tags": [
+    "go-19-http",
+    "client"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "It is optional and purely cosmetic"
+    },
+    {
+      "id": "b",
+      "text": "To release the underlying connection so it can be reused, avoiding resource leaks"
+    },
+    {
+      "id": "c",
+      "text": "It cancels the request"
+    },
+    {
+      "id": "d",
+      "text": "It is required only for POST requests"
+    }
+  ],
+  "correct": "b"
+}

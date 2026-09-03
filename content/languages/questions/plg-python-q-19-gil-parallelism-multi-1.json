@@ -1,0 +1,35 @@
+{
+  "id": "plg-python-q-19-gil-parallelism-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which statements about the GIL are true?",
+  "explanation": "The GIL hurts CPU-bound multithreading (only one thread runs bytecode at a time) but not I/O-bound threading.",
+  "tags": [
+    "concurrency",
+    "gil",
+    "performance"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "It allows only one thread to execute Python bytecode at a time"
+    },
+    {
+      "id": "b",
+      "text": "Threads release the GIL while waiting on I/O, so threading still helps I/O-bound work"
+    },
+    {
+      "id": "c",
+      "text": "It has no impact on CPU-bound multithreaded performance"
+    },
+    {
+      "id": "d",
+      "text": "Python 3.13+ has an experimental free-threaded (no-GIL) build"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

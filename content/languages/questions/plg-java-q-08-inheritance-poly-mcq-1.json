@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-08-inheritance-poly-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "What does `final` prevent when applied to a class?",
+  "explanation": "A final class cannot be extended (subclassed).",
+  "tags": [
+    "oop",
+    "inheritance"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Instantiation"
+    },
+    {
+      "id": "b",
+      "text": "Subclassing"
+    },
+    {
+      "id": "c",
+      "text": "Serialization"
+    },
+    {
+      "id": "d",
+      "text": "Garbage collection"
+    }
+  ],
+  "correct": "b"
+}

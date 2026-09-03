@@ -1,0 +1,13 @@
+{
+  "id": "plg-ruby-q-output",
+  "domainId": "plg-ruby",
+  "prompt": "What prints?",
+  "explanation": "map doubles each element; join inserts commas.",
+  "kind": "fill",
+  "template": "puts [1, 2, 3].map { |n| n * 2 }.join(\",\")\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "2,4,6"
+    }
+  ]
+}

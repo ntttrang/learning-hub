@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <defs>
+    
+    <radialGradient id="clayY" cx="36%" cy="32%" r="74%">
+      <stop offset="0%" stop-color="#FFE391"></stop>
+      <stop offset="42%" stop-color="#FBC00A"></stop>
+      <stop offset="100%" stop-color="#D9A209"></stop>
+    </radialGradient>
+    
+    <filter id="claySh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="1.8" flood-color="#7A4A00" flood-opacity="0.22"></feDropShadow>
+    </filter>
+  </defs>
+  
+  <g filter="url(#claySh)" transform="translate(40 40) rotate(-6) translate(-40 -40)">
+    <path d="M40 8&#xA;             Q42.4 9.6 44.8 17.6&#xA;             L47.6 26.8&#xA;             Q48.4 28.8 50.4 29.2&#xA;             L60 30.4&#xA;             Q67.6 31.2 69.2 34&#xA;             Q70 36 64.4 41.2&#xA;             L57.6 47.6&#xA;             Q56 49.2 56.4 51.2&#xA;             L58.4 60.8&#xA;             Q59.6 67.2 57.2 68.8&#xA;             Q54.4 70.4 48.4 67.2&#xA;             L41.6 63.2&#xA;             Q40 62.4 38.4 63.2&#xA;             L31.6 67.2&#xA;             Q25.6 70.4 22.8 68.8&#xA;             Q20.4 67.2 21.6 60.8&#xA;             L23.6 51.2&#xA;             Q24 49.2 22.4 47.6&#xA;             L15.6 41.2&#xA;             Q10 36 10.8 34&#xA;             Q12.4 31.2 20 30.4&#xA;             L29.6 29.2&#xA;             Q31.6 28.8 32.4 26.8&#xA;             L35.2 17.6&#xA;             Q37.6 9.6 40 8 Z" fill="url(#clayY)"></path>
+    
+    <path d="M30 26 Q35 18 38 12" stroke="rgba(255,255,255,0.65)" stroke-width="2.2" stroke-linecap="round" fill="none"></path>
+    <path d="M22 32 Q26 30 30 30" stroke="rgba(255,255,255,0.45)" stroke-width="1.8" stroke-linecap="round" fill="none"></path>
+    
+    <path d="M58 50 Q60 56 56 64" stroke="rgba(122,74,0,0.22)" stroke-width="1.6" stroke-linecap="round" fill="none"></path>
+  </g>
+</svg>

@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-08-modules-venv-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "Which command creates a Python virtual environment using only the standard library?",
+  "explanation": "`python -m venv .venv` creates an isolated environment; activate it, then install dependencies.",
+  "tags": [
+    "modules",
+    "tooling"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "python -m venv .venv"
+    },
+    {
+      "id": "b",
+      "text": "pip install venv"
+    },
+    {
+      "id": "c",
+      "text": "python venv create"
+    },
+    {
+      "id": "d",
+      "text": "python -m pip venv"
+    }
+  ],
+  "correct": "a"
+}

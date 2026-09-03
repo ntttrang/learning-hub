@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-01-hello-repl-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "The file is executed directly, so `__name__ == \"__main__\"` is True and `main()` runs.",
+  "tags": [
+    "basics",
+    "tooling"
+  ],
+  "kind": "fill",
+  "template": "def main():\n    print(\"Ahoy, world!\")\n\nif __name__ == \"__main__\":\n    main()\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "Ahoy, world!"
+    }
+  ]
+}

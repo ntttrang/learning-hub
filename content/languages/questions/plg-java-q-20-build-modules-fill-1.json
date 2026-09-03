@@ -1,0 +1,27 @@
+{
+  "id": "plg-java-q-20-build-modules-fill-1",
+  "domainId": "plg-java",
+  "prompt": "In a Maven dependency for a test-only library like JUnit, the _____ element is set to \"test\".",
+  "explanation": "<scope>test</scope> restricts a dependency to the test classpath only.",
+  "tags": [
+    "maven",
+    "gradle",
+    "tooling"
+  ],
+  "kind": "fill",
+  "template": "<___>test</___>",
+  "blanks": [
+    {
+      "answer": "scope",
+      "alternatives": [
+        "scope"
+      ]
+    },
+    {
+      "answer": "scope",
+      "alternatives": [
+        "scope"
+      ]
+    }
+  ]
+}

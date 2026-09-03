@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-21-refinements-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "How do you activate a refinement in the current file or scope?",
+  "explanation": "using scopes a refinement's effect to the current file or module, unlike global monkey-patching.",
+  "tags": [
+    "refinements",
+    "design"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "require it like a normal file"
+    },
+    {
+      "id": "b",
+      "text": "using MyRefinement"
+    },
+    {
+      "id": "c",
+      "text": "include MyRefinement"
+    },
+    {
+      "id": "d",
+      "text": "Refinements activate automatically everywhere"
+    }
+  ],
+  "correct": "b"
+}

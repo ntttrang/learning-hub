@@ -1,0 +1,31 @@
+{
+  "id": "plg-java-q-23-gc-jvm-tuning-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "Which garbage collector is the default, balanced collector in modern JVMs?",
+  "explanation": "G1 (Garbage-First) is the default collector, balancing throughput and pause times for most applications.",
+  "tags": [
+    "gc",
+    "jvm",
+    "performance"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "G1"
+    },
+    {
+      "id": "b",
+      "text": "ZGC"
+    },
+    {
+      "id": "c",
+      "text": "Shenandoah"
+    },
+    {
+      "id": "d",
+      "text": "Serial"
+    }
+  ],
+  "correct": "a"
+}

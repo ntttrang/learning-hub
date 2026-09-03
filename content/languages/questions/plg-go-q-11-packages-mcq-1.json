@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-11-packages-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "What determines whether an identifier is exported from a Go package?",
+  "explanation": "Capitalization is Go's entire access-control mechanism: uppercase-first is exported, lowercase-first is package-private.",
+  "tags": [
+    "go-11-packages",
+    "visibility"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "An `export` keyword before it"
+    },
+    {
+      "id": "b",
+      "text": "Whether its first letter is uppercase"
+    },
+    {
+      "id": "c",
+      "text": "A doc comment tagged @public"
+    },
+    {
+      "id": "d",
+      "text": "The file name it is declared in"
+    }
+  ],
+  "correct": "b"
+}

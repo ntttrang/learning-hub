@@ -1,0 +1,34 @@
+{
+  "id": "plg-ruby-q-24-yjit-profiling-multi-1",
+  "domainId": "plg-ruby",
+  "prompt": "Which statements about performance in Ruby are true?",
+  "explanation": "Measuring first avoids wasted effort optimizing code paths that aren't actually the bottleneck.",
+  "tags": [
+    "performance",
+    "yjit"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Most 'slow Ruby' turns out to be IO, N+1 queries, or excess allocations rather than missing micro-optimizations"
+    },
+    {
+      "id": "b",
+      "text": "YJIT can be enabled with --yjit or RUBY_YJIT_ENABLE=1"
+    },
+    {
+      "id": "c",
+      "text": "You should always optimize before measuring"
+    },
+    {
+      "id": "d",
+      "text": "Lazy enumerators can help avoid building huge intermediate arrays in hot paths"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

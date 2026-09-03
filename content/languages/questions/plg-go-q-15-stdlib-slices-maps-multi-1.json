@@ -1,0 +1,34 @@
+{
+  "id": "plg-go-q-15-stdlib-slices-maps-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements about the slices, maps, and cmp packages are true?",
+  "explanation": "maps.Clone is a shallow copy; reference-typed values are still shared with the original map.",
+  "tags": [
+    "go-15-stdlib-slices-maps",
+    "maps"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "slices.SortFunc takes a comparison function returning -1, 0, or 1"
+    },
+    {
+      "id": "b",
+      "text": "cmp.Compare pairs well with SortFunc for ordering values"
+    },
+    {
+      "id": "c",
+      "text": "maps.Clone performs a deep copy of every value"
+    },
+    {
+      "id": "d",
+      "text": "These packages exist to remove hand-rolled loops for common slice/map operations"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

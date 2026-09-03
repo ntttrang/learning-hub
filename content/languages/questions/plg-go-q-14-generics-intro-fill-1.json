@@ -1,0 +1,20 @@
+{
+  "id": "plg-go-q-14-generics-intro-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: func Map[T, U _____](s []T, f func(T) U) []U allows T and U to be any type.",
+  "explanation": "The `any` constraint places no restriction on the type parameter.",
+  "tags": [
+    "go-14-generics-intro",
+    "type-parameters"
+  ],
+  "kind": "fill",
+  "template": "func Map[T, U ___](s []T, f func(T) U) []U",
+  "blanks": [
+    {
+      "answer": "any",
+      "alternatives": [
+        "any"
+      ]
+    }
+  ]
+}

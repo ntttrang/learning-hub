@@ -1,0 +1,31 @@
+{
+  "id": "plg-java-q-spring-production-mcq-2",
+  "domainId": "plg-java",
+  "prompt": "Why does calling another @Transactional method on `this` from within the same class often silently skip the transaction?",
+  "explanation": "Spring's declarative transactions are implemented via a proxy; calling through `this` skips that proxy entirely.",
+  "tags": [
+    "spring",
+    "transactions",
+    "hikaricp"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "The call bypasses the Spring AOP proxy"
+    },
+    {
+      "id": "b",
+      "text": "@Transactional only works on interfaces"
+    },
+    {
+      "id": "c",
+      "text": "Self-invocation is blocked by the JVM"
+    },
+    {
+      "id": "d",
+      "text": "Transactions cannot be nested in Spring"
+    }
+  ],
+  "correct": "a"
+}

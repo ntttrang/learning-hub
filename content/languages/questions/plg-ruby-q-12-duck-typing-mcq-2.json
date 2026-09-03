@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-12-duck-typing-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "Which method lets you check if an object supports a specific method before calling it?",
+  "explanation": "respond_to?(:method_name) checks behavior directly, independent of the object's class.",
+  "tags": [
+    "oop",
+    "design"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "is_a?"
+    },
+    {
+      "id": "b",
+      "text": "respond_to?"
+    },
+    {
+      "id": "c",
+      "text": "kind_of?"
+    },
+    {
+      "id": "d",
+      "text": "class =="
+    }
+  ],
+  "correct": "b"
+}

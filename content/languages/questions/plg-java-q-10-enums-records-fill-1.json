@@ -1,0 +1,20 @@
+{
+  "id": "plg-java-q-10-enums-records-fill-1",
+  "domainId": "plg-java",
+  "prompt": "record User(String name, Role role) generates an accessor for the name field called u._____() (not getName()).",
+  "explanation": "Record accessors are named after the component, not with a get- prefix.",
+  "tags": [
+    "oop",
+    "records"
+  ],
+  "kind": "fill",
+  "template": "u.___()",
+  "blanks": [
+    {
+      "answer": "name",
+      "alternatives": [
+        "name"
+      ]
+    }
+  ]
+}

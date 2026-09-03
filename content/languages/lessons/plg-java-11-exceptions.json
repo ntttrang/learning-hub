@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-11-exceptions",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 11,
+  "title": "Exceptions and try-with-resources",
+  "minutes": 11,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Checked vs unchecked\n\n**Checked** exceptions (`IOException`) must be declared or caught. **Unchecked** (`RuntimeException` subclasses like `NullPointerException`) need not be.\n\n## try/catch/finally\n\n`finally` always runs — for cleanup. Prefer **try-with-resources** for anything `AutoCloseable`; it closes resources automatically, even on exceptions.\n\n## Good hygiene\n\nCatch specific types, never swallow exceptions silently, and add context to messages."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "try (var reader = Files.newBufferedReader(path)) {\n  return reader.readLine();\n} catch (IOException e) {\n  throw new UncheckedIOException(\"reading \" + path, e);\n}"
+    }
+  ],
+  "docIds": [
+    "exceptions",
+    "tryResourceClose"
+  ]
+}

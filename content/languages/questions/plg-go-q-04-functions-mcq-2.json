@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-04-functions-mcq-2",
+  "domainId": "plg-go",
+  "prompt": "If a function has three defer statements, in what order do they execute when the function returns?",
+  "explanation": "Deferred calls are pushed onto a stack and run in LIFO order.",
+  "tags": [
+    "go-04-functions",
+    "defer"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "First-in, first-out (FIFO)"
+    },
+    {
+      "id": "b",
+      "text": "Last-in, first-out (LIFO)"
+    },
+    {
+      "id": "c",
+      "text": "Random order"
+    },
+    {
+      "id": "d",
+      "text": "Alphabetical by function name"
+    }
+  ],
+  "correct": "b"
+}

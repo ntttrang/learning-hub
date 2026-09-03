@@ -1,0 +1,17 @@
+{
+  "id": "plg-go-q-22-profiling-pprof-output-1",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "The slice starts at length 0, capacity 3; appending 4 elements exceeds capacity, forcing a reallocation to at least capacity 4.",
+  "tags": [
+    "go-22-profiling-pprof",
+    "slices"
+  ],
+  "kind": "fill",
+  "template": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  s := make([]int, 0, 3)\n  fmt.Println(len(s), cap(s))\n  s = append(s, 1, 2, 3, 4)\n  fmt.Println(len(s), cap(s) >= 4)\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "0 3\n4 true"
+    }
+  ]
+}

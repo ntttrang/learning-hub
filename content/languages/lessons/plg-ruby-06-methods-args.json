@@ -1,0 +1,24 @@
+{
+  "id": "plg-ruby-06-methods-args",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 6,
+  "title": "Methods and argument styles",
+  "minutes": 11,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Parameters\n\nPositional, optional defaults, keyword args (`name:`), splat (`*args`), double-splat (`**opts`), and a trailing block (`&blk`).\n\n## Keyword args\n\nPrefer keywords for clarity at call sites. Required keywords raise if omitted. Ruby 3 separated keywords from last-hash positional args more strictly.\n\n## Predicate and bang methods\n\nConvention: `empty?` returns boolean; `sort!` mutates in place. Not enforced by the language — enforced by culture."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "def connect(host:, port: 443, **opts)\n  \"#{host}:#{port} opts=#{opts}\"\nend\n\nputs connect(host: \"api.example\", timeout: 5)\n\ndef sum(*nums) = nums.sum\nputs sum(1, 2, 3)"
+    }
+  ],
+  "docIds": [
+    "calling_methods_rdoc",
+    "methods_rdoc"
+  ]
+}

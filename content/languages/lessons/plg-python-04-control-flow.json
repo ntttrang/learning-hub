@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-04-control-flow",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 4,
+  "title": "Control flow and match",
+  "minutes": 9,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## if/elif/else\n\nClean conditionals with no parentheses required. Chained comparisons work: `0 < x < 10`.\n\n## Loops\n\n`for x in iterable` and `while`. Use `enumerate` for indices and `zip` to iterate in parallel. `break`, `continue`, and the rarely-used loop `else`.\n\n## Structural pattern matching\n\n`match/case` (Python 3.10+) destructures values and shapes — more than a switch."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "match command.split():\n    case [\"go\", direction]:\n        move(direction)\n    case [\"quit\"]:\n        stop()\n    case _:\n        print(\"unknown\")"
+    }
+  ],
+  "docIds": [
+    "controlflow",
+    "pep-0634"
+  ]
+}

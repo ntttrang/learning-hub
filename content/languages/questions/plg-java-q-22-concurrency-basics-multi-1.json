@@ -1,0 +1,34 @@
+{
+  "id": "plg-java-q-22-concurrency-basics-multi-1",
+  "domainId": "plg-java",
+  "prompt": "Which provide thread-safe coordination for shared mutable state?",
+  "explanation": "A plain HashMap is not thread-safe and needs external synchronization or a concurrent alternative.",
+  "tags": [
+    "concurrency",
+    "executors"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "synchronized"
+    },
+    {
+      "id": "b",
+      "text": "ReentrantLock"
+    },
+    {
+      "id": "c",
+      "text": "ConcurrentHashMap"
+    },
+    {
+      "id": "d",
+      "text": "A plain HashMap with no locking"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

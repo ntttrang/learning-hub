@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-08-modules-venv-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "`import math` brings the stdlib module into scope; `math.floor(3.7)` rounds down to 3.",
+  "tags": [
+    "modules",
+    "tooling"
+  ],
+  "kind": "fill",
+  "template": "import math\nprint(math.floor(3.7))\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "3"
+    }
+  ]
+}

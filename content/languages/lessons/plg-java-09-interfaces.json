@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-09-interfaces",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 9,
+  "title": "Interfaces and default methods",
+  "minutes": 10,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Contracts\n\nAn interface declares behavior without state. A class `implements` one or many interfaces — Java's answer to multiple inheritance.\n\n## Default and static methods\n\nInterfaces can carry `default` method bodies (added in Java 8) and `static` helpers. Use defaults to evolve APIs without breaking implementers.\n\n## Functional interfaces\n\nAn interface with a single abstract method (SAM) can be implemented with a lambda. `@FunctionalInterface` documents that intent."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "@FunctionalInterface\ninterface Greeter { String greet(String name); }\n\nGreeter g = n -> \"Hi \" + n;\nSystem.out.println(g.greet(\"Corgi\"));"
+    }
+  ],
+  "docIds": [
+    "createinterface",
+    "defaultmethods"
+  ]
+}

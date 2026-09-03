@@ -1,0 +1,34 @@
+{
+  "id": "plg-python-q-asyncio-pools-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which statements about async connection pools and concurrency are true per the lesson?",
+  "explanation": "Undersized pools relative to worker×concurrency lead to 'too many connections'; CPU work still contends on the GIL under threads.",
+  "tags": [
+    "asyncio",
+    "db"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "One async worker can multiplex thousands of requests"
+    },
+    {
+      "id": "b",
+      "text": "DB pool size should relate to workers × concurrent awaits"
+    },
+    {
+      "id": "c",
+      "text": "CPU-bound work should be offloaded to processes/queues"
+    },
+    {
+      "id": "d",
+      "text": "Threads have no GIL contention for pure Python CPU work"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

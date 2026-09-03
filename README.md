@@ -14,6 +14,7 @@ single learning platform.
 | [`learn-dp-800/`](learn-dp-800/) | Microsoft DP-800 — SQL AI Developer Associate | Next.js 15 + React 19 + Tailwind v4 | `npm install && npm run dev` |
 | [`learn-gh-200/`](learn-gh-200/) | GH-200 — GitHub Actions | Vite + React 19 + TypeScript (Node 20+) | `npm install && npm run dev` |
 | [`learn-gh-600/`](learn-gh-600/) | GH-600 — Agentic AI Developer study companion | Static HTML | `make run` → http://localhost:8080 |
+| [`learn-polyglot/`](learn-polyglot/) | Polyglot Revision Hub donor (Java/Go/Python/Ruby) — vendored build input for the Languages pack, not a runnable app | Vite + TypeScript | none — source for `npm run content:extract-polyglot` (donor `fa0019e`) |
 | [`mockups/`](mockups/) | Design mockups for the unified hub | Static HTML | open in a browser |
 | [`docs/`](docs/) | Plans and decisions | Markdown | — |
 | [`plans/`](plans/) | Execution plans and reports | Markdown | — |
@@ -36,7 +37,9 @@ pack enables: lessons with knowledge checks and notes, labs, shuffled practice,
 timed exams with reviews and per-domain breakdowns, comparisons, and a
 notes/bookmarks tab. Progress, attempts, notes, and bookmarks persist locally
 per subject. Installed packs: GH-900 (GitHub Foundations), GH-200 (GitHub
-Actions), GH-600 (Agentic AI Developer), DP-800 (SQL AI Developer), and the
+Actions), GH-600 (Agentic AI Developer), DP-800 (SQL AI Developer), Languages
+(Java/Go/Python/Ruby, moved from the donor Polyglot Revision Hub —
+`ntttrang/polyglot-hub`, archived on ship), and the
 `content/fixture/` pack that exercises the whole schema (`npm test`, `npm run
 content:check`). Adding a subject needs no core-code edits:
 `npm run content:new -- --id <kebab-id> --code <CODE> --title <t> --accent

@@ -1,0 +1,34 @@
+{
+  "id": "plg-go-q-21-modules-deps-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements about Go module tooling are true?",
+  "explanation": "Minimal Version Selection picks the lowest version that satisfies all module requirements, not the newest.",
+  "tags": [
+    "go-21-modules-deps",
+    "mvs"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "go.sum records checksums of dependencies for reproducible builds"
+    },
+    {
+      "id": "b",
+      "text": "go vet detects suspicious constructs, like mismatched Printf verbs"
+    },
+    {
+      "id": "c",
+      "text": "govulncheck scans your dependency graph for known CVEs"
+    },
+    {
+      "id": "d",
+      "text": "Minimal Version Selection always picks the newest version available for every dependency"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

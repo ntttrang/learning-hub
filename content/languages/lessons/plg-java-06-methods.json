@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-06-methods",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 6,
+  "title": "Methods, overloading, and varargs",
+  "minutes": 9,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Signatures\n\nA method has a return type, name, and parameter list. `void` returns nothing.\n\n## Overloading\n\nSame name, different parameter types/counts. Resolved at **compile time** by argument types.\n\n## Varargs\n\n`Type... args` accepts zero or more arguments as an array. Only one varargs parameter allowed, and it must be last."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "static int sum(int... xs) {\n  int total = 0;\n  for (int x : xs) total += x;\n  return total;\n}\n// sum(1, 2, 3) -> 6"
+    }
+  ],
+  "docIds": [
+    "methods",
+    "varargs"
+  ]
+}

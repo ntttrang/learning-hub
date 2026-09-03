@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-13-decorators",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 13,
+  "title": "Decorators and closures",
+  "minutes": 12,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Functions are objects\n\nYou can pass, return, and nest functions. A **closure** captures variables from its enclosing scope.\n\n## Decorators\n\nA decorator wraps a function to add behavior (logging, caching, timing). Use `functools.wraps` to preserve metadata.\n\n## Handy stdlib decorators\n\n`@functools.cache`/`lru_cache` memoize, `@property`, `@staticmethod`, and `@dataclass` are all decorators."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "import functools, time\n\ndef timed(fn):\n    @functools.wraps(fn)\n    def wrap(*a, **k):\n        t = time.perf_counter()\n        try: return fn(*a, **k)\n        finally: print(fn.__name__, time.perf_counter() - t)\n    return wrap"
+    }
+  ],
+  "docIds": [
+    "compound_stmts",
+    "functools"
+  ]
+}

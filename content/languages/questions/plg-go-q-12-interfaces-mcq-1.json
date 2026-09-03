@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-12-interfaces-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "How does a Go type satisfy an interface?",
+  "explanation": "Go uses structural typing: any type with the right method set satisfies an interface implicitly.",
+  "tags": [
+    "go-12-interfaces",
+    "structural-typing"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "By declaring `implements InterfaceName`"
+    },
+    {
+      "id": "b",
+      "text": "Automatically, just by implementing the interface's methods"
+    },
+    {
+      "id": "c",
+      "text": "By embedding the interface as a struct field only"
+    },
+    {
+      "id": "d",
+      "text": "It cannot happen automatically; a cast is required"
+    }
+  ],
+  "correct": "b"
+}

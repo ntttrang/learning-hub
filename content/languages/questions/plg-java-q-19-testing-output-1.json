@@ -1,0 +1,17 @@
+{
+  "id": "plg-java-q-19-testing-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "add(2, 3) evaluates to 5, and 5 == 5 is true.",
+  "tags": [
+    "testing",
+    "junit"
+  ],
+  "kind": "fill",
+  "template": "public class Demo {\n  static int add(int a, int b) { return a + b; }\n\n  public static void main(String[] args) {\n    System.out.println(add(2, 3) == 5);\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "true"
+    }
+  ]
+}

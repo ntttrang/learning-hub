@@ -1,0 +1,30 @@
+{
+  "id": "plg-ruby-q-11-modules-mixins-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "What must a class implement to get comparison operators like < and between? from Comparable?",
+  "explanation": "Comparable derives <, >, ==, and between? from a single <=> (spaceship) implementation.",
+  "tags": [
+    "modules",
+    "mixins"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "each"
+    },
+    {
+      "id": "b",
+      "text": "<=>"
+    },
+    {
+      "id": "c",
+      "text": "to_s"
+    },
+    {
+      "id": "d",
+      "text": "== only"
+    }
+  ],
+  "correct": "b"
+}

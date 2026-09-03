@@ -1,0 +1,13 @@
+{
+  "id": "plg-go-q-output",
+  "domainId": "plg-go",
+  "prompt": "What does this print?",
+  "explanation": "Buffered value is received with ok=true; subsequent receive on closed empty channel yields zero value and ok=false.",
+  "kind": "fill",
+  "template": "package main\nimport \"fmt\"\nfunc main() {\n  ch := make(chan int, 1)\n  ch <- 7\n  close(ch)\n  v, ok := <-ch\n  fmt.Println(v, ok)\n  v, ok = <-ch\n  fmt.Println(v, ok)\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "7 true\n0 false"
+    }
+  ]
+}

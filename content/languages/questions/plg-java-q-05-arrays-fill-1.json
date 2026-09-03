@@ -1,0 +1,20 @@
+{
+  "id": "plg-java-q-05-arrays-fill-1",
+  "domainId": "plg-java",
+  "prompt": "Use Arrays._____(nums) for a readable String of an array's contents instead of printing it directly.",
+  "explanation": "Printing an array directly shows its hash-based identity string; Arrays.toString formats the elements.",
+  "tags": [
+    "basics",
+    "arrays"
+  ],
+  "kind": "fill",
+  "template": "Arrays.___(nums)",
+  "blanks": [
+    {
+      "answer": "toString",
+      "alternatives": [
+        "toString"
+      ]
+    }
+  ]
+}

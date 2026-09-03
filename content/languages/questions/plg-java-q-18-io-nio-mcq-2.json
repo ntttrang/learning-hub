@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-18-io-nio-mcq-2",
+  "domainId": "plg-java",
+  "prompt": "What is recommended for reading or writing large amounts of data?",
+  "explanation": "Buffering (or NIO channels) reduces the number of costly I/O syscalls compared to unbuffered byte-by-byte access.",
+  "tags": [
+    "io",
+    "files"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Buffered readers/writers or channels"
+    },
+    {
+      "id": "b",
+      "text": "Reading one byte at a time with a raw FileInputStream"
+    },
+    {
+      "id": "c",
+      "text": "Always loading the whole file with Scanner"
+    },
+    {
+      "id": "d",
+      "text": "Avoiding try-with-resources for performance"
+    }
+  ],
+  "correct": "a"
+}

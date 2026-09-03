@@ -1,0 +1,20 @@
+{
+  "id": "plg-ruby-q-07-blocks-procs-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: inside a method, this predicate checks whether a block was passed before calling yield.",
+  "explanation": "block_given? returns true if the current method was called with a block.",
+  "tags": [
+    "blocks",
+    "procs"
+  ],
+  "kind": "fill",
+  "template": "___ ? yield : nil",
+  "blanks": [
+    {
+      "answer": "block_given?",
+      "alternatives": [
+        "block_given?"
+      ]
+    }
+  ]
+}

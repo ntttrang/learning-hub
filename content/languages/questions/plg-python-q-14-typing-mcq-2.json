@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-14-typing-mcq-2",
+  "domainId": "plg-python",
+  "prompt": "What does `typing.Protocol` enable?",
+  "explanation": "A `Protocol` describes required methods/attributes; anything matching that shape satisfies it, without explicit inheritance.",
+  "tags": [
+    "typing",
+    "tooling"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Runtime type coercion"
+    },
+    {
+      "id": "b",
+      "text": "Structural (duck) typing that a static checker can verify"
+    },
+    {
+      "id": "c",
+      "text": "Automatic JSON serialization"
+    },
+    {
+      "id": "d",
+      "text": "Multiple inheritance restrictions"
+    }
+  ],
+  "correct": "b"
+}

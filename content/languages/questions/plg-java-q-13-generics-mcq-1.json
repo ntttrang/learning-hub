@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-13-generics-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "What is type erasure in Java generics?",
+  "explanation": "The compiler inserts casts and removes generic type parameters, so `new T[]` and `instanceof List<String>` aren't allowed.",
+  "tags": [
+    "generics",
+    "types"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Generic type information is removed at runtime, replaced with raw types and casts"
+    },
+    {
+      "id": "b",
+      "text": "Generics are erased at compile time causing a compile error"
+    },
+    {
+      "id": "c",
+      "text": "Generic classes cannot be compiled"
+    },
+    {
+      "id": "d",
+      "text": "Wildcards erase method bodies"
+    }
+  ],
+  "correct": "a"
+}

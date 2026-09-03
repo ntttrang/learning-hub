@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-23-gc-jvm-tuning",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 26,
+  "title": "Garbage collection and JVM tuning",
+  "minutes": 14,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Generational heap\n\nMost objects die young. The GC collects the **young generation** cheaply and promotes survivors to the **old generation**.\n\n## Collectors\n\n**G1** is the default balanced collector. **ZGC** and **Shenandoah** target sub-millisecond pauses for large heaps. Pick based on latency vs throughput goals.\n\n## Practical tuning\n\nSet `-Xms`/`-Xmx` equal in containers, size against the container memory limit, and measure with GC logs (`-Xlog:gc`), JFR, and heap dumps before tweaking flags."
+    },
+    {
+      "kind": "code",
+      "language": "bash",
+      "code": "java -XX:+UseG1GC -Xms512m -Xmx512m \\\n  -Xlog:gc*:file=gc.log -jar app.jar"
+    }
+  ],
+  "docIds": [
+    "gctuning",
+    "zgc"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "plg-java-q-08-inheritance-poly-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "Even though `a` is declared as Animal, dynamic dispatch calls Dog's overridden speak() at runtime.",
+  "tags": [
+    "oop",
+    "inheritance"
+  ],
+  "kind": "fill",
+  "template": "class Animal { String speak() { return \"...\"; } }\nclass Dog extends Animal { @Override String speak() { return \"woof\"; } }\n\npublic class Demo {\n  public static void main(String[] args) {\n    Animal a = new Dog();\n    System.out.println(a.speak());\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "woof"
+    }
+  ]
+}

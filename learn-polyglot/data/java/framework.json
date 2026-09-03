@@ -1,0 +1,136 @@
+{
+  "language": "java",
+  "framework": {
+    "name": "Spring Boot",
+    "tagline": "The de-facto standard for production Java services.",
+    "overview": "Spring Boot builds on the Spring ecosystem with opinionated auto-configuration, embedded servers, and starter dependencies so you can ship REST APIs fast. Master it by climbing this ladder: expose an endpoint, inject collaborators, validate input, persist with JPA, handle errors globally, and lock behavior down with slice tests.",
+    "docs": [
+      { "title": "Spring Boot reference", "url": "https://docs.spring.io/spring-boot/index.html" },
+      { "title": "Building a RESTful service", "url": "https://spring.io/guides/gs/rest-service" }
+    ]
+  },
+  "challenges": [
+    {
+      "id": "java-fw-rest-controller",
+      "title": "1. First REST controller",
+      "difficulty": "junior",
+      "concept": "A `@RestController` maps HTTP requests to methods. `@GetMapping` binds a path, and the returned object is serialized to JSON automatically by Jackson.",
+      "goal": "Expose GET /hello?name=Corgi returning {\"message\":\"Hello, Corgi\"}.",
+      "steps": [
+        "Annotate the class with @RestController.",
+        "Add a @GetMapping(\"/hello\") method.",
+        "Read the name via @RequestParam with a default.",
+        "Return a record; Spring serializes it to JSON."
+      ],
+      "hints": [
+        "@RequestParam(defaultValue = \"world\") String name.",
+        "A Java record makes a tidy response body."
+      ],
+      "language": "java",
+      "starterCode": "import org.springframework.web.bind.annotation.*;\n\n@RestController\npublic class HelloController {\n  // TODO: GET /hello?name=...\n}\n",
+      "solution": "import org.springframework.web.bind.annotation.*;\n\n@RestController\npublic class HelloController {\n  public record Greeting(String message) {}\n\n  @GetMapping(\"/hello\")\n  public Greeting hello(@RequestParam(defaultValue = \"world\") String name) {\n    return new Greeting(\"Hello, \" + name);\n  }\n}\n",
+      "expectedOutput": "GET /hello?name=Corgi -> {\"message\":\"Hello, Corgi\"}"
+    },
+    {
+      "id": "java-fw-service-di",
+      "title": "2. Dependency injection & service layer",
+      "difficulty": "junior",
+      "concept": "Keep controllers thin. Business logic lives in a `@Service` bean that Spring injects via constructor. Constructor injection keeps dependencies final and testable.",
+      "goal": "Move greeting logic into a GreetingService and inject it into the controller.",
+      "steps": [
+        "Create a @Service with a greet(name) method.",
+        "Declare it as a final field in the controller.",
+        "Inject it through the constructor.",
+        "Delegate from the endpoint to the service."
+      ],
+      "hints": [
+        "A single constructor is auto-wired; no @Autowired needed.",
+        "Return the service result directly."
+      ],
+      "language": "java",
+      "starterCode": "import org.springframework.stereotype.Service;\nimport org.springframework.web.bind.annotation.*;\n\n@Service\nclass GreetingService {\n  // TODO\n}\n\n@RestController\nclass GreetingController {\n  // TODO: inject GreetingService\n}\n",
+      "solution": "import org.springframework.stereotype.Service;\nimport org.springframework.web.bind.annotation.*;\n\n@Service\nclass GreetingService {\n  String greet(String name) {\n    return \"Hello, \" + name;\n  }\n}\n\n@RestController\nclass GreetingController {\n  private final GreetingService service;\n\n  GreetingController(GreetingService service) {\n    this.service = service;\n  }\n\n  @GetMapping(\"/hello\")\n  String hello(@RequestParam(defaultValue = \"world\") String name) {\n    return service.greet(name);\n  }\n}\n",
+      "expectedOutput": "GET /hello?name=Corgi -> Hello, Corgi"
+    },
+    {
+      "id": "java-fw-validation",
+      "title": "3. Validate request bodies",
+      "difficulty": "mid",
+      "concept": "Use Bean Validation (`jakarta.validation`) with `@Valid` on the body. Invalid requests short-circuit with a 400 before your handler runs.",
+      "goal": "Accept POST /users with a validated body {name, email}.",
+      "steps": [
+        "Define a record with @NotBlank and @Email constraints.",
+        "Annotate the @RequestBody parameter with @Valid.",
+        "Return the created representation."
+      ],
+      "hints": [
+        "@Email on the email field, @NotBlank on name.",
+        "@Valid triggers MethodArgumentNotValidException on failure."
+      ],
+      "language": "java",
+      "starterCode": "import jakarta.validation.constraints.*;\nimport org.springframework.web.bind.annotation.*;\n\n@RestController\nclass UserController {\n  record CreateUser(/* TODO constraints */ String name, String email) {}\n\n  // TODO: POST /users with @Valid\n}\n",
+      "solution": "import jakarta.validation.Valid;\nimport jakarta.validation.constraints.*;\nimport org.springframework.web.bind.annotation.*;\n\n@RestController\nclass UserController {\n  record CreateUser(@NotBlank String name, @Email String email) {}\n\n  @PostMapping(\"/users\")\n  CreateUser create(@Valid @RequestBody CreateUser body) {\n    return body;\n  }\n}\n",
+      "expectedOutput": "POST /users with a blank name -> 400 Bad Request"
+    },
+    {
+      "id": "java-fw-jpa-repository",
+      "title": "4. Persist with Spring Data JPA",
+      "difficulty": "mid",
+      "concept": "An `@Entity` maps to a table; a `JpaRepository` gives you CRUD plus derived query methods (like `findByEmail`) with zero SQL.",
+      "goal": "Model a User entity and a repository with a findByEmail lookup.",
+      "steps": [
+        "Annotate the class with @Entity and add an @Id @GeneratedValue field.",
+        "Declare interface extending JpaRepository<User, Long>.",
+        "Add a derived query method Optional<User> findByEmail(String email)."
+      ],
+      "hints": [
+        "Spring implements the repository at runtime.",
+        "Method name maps to the WHERE clause."
+      ],
+      "language": "java",
+      "starterCode": "import jakarta.persistence.*;\nimport org.springframework.data.jpa.repository.JpaRepository;\nimport java.util.Optional;\n\n@Entity\nclass User {\n  // TODO: id, name, email\n}\n\ninterface UserRepository /* TODO */ {\n}\n",
+      "solution": "import jakarta.persistence.*;\nimport org.springframework.data.jpa.repository.JpaRepository;\nimport java.util.Optional;\n\n@Entity\nclass User {\n  @Id\n  @GeneratedValue(strategy = GenerationType.IDENTITY)\n  Long id;\n  String name;\n  String email;\n}\n\ninterface UserRepository extends JpaRepository<User, Long> {\n  Optional<User> findByEmail(String email);\n}\n",
+      "expectedOutput": "userRepository.findByEmail(\"a@b.com\") -> Optional<User>"
+    },
+    {
+      "id": "java-fw-exception-handler",
+      "title": "5. Global exception handling",
+      "difficulty": "mid",
+      "concept": "A `@RestControllerAdvice` centralizes error mapping. `@ExceptionHandler` methods translate exceptions into consistent JSON + status codes across every controller.",
+      "goal": "Return 404 with a JSON body when a NotFoundException is thrown.",
+      "steps": [
+        "Create a NotFoundException extends RuntimeException.",
+        "Add a @RestControllerAdvice class.",
+        "Map it with @ExceptionHandler + @ResponseStatus(NOT_FOUND)."
+      ],
+      "hints": [
+        "Return a small record { error }.",
+        "@ResponseStatus sets the HTTP code."
+      ],
+      "language": "java",
+      "starterCode": "import org.springframework.http.HttpStatus;\nimport org.springframework.web.bind.annotation.*;\n\nclass NotFoundException extends RuntimeException {\n  NotFoundException(String m) { super(m); }\n}\n\n// TODO: @RestControllerAdvice mapping NotFoundException -> 404\n",
+      "solution": "import org.springframework.http.HttpStatus;\nimport org.springframework.web.bind.annotation.*;\n\nclass NotFoundException extends RuntimeException {\n  NotFoundException(String m) { super(m); }\n}\n\n@RestControllerAdvice\nclass ApiExceptionHandler {\n  record ApiError(String error) {}\n\n  @ExceptionHandler(NotFoundException.class)\n  @ResponseStatus(HttpStatus.NOT_FOUND)\n  ApiError handle(NotFoundException ex) {\n    return new ApiError(ex.getMessage());\n  }\n}\n",
+      "expectedOutput": "throw new NotFoundException(\"missing\") -> 404 {\"error\":\"missing\"}"
+    },
+    {
+      "id": "java-fw-mockmvc-test",
+      "title": "6. Slice test with MockMvc",
+      "difficulty": "senior",
+      "concept": "`@WebMvcTest` loads only the web layer and gives you a `MockMvc` to drive requests without a running server. Collaborators are supplied as mocks so tests stay fast and focused.",
+      "goal": "Assert GET /hello?name=Corgi returns 200 and the expected body.",
+      "steps": [
+        "Annotate the test with @WebMvcTest(GreetingController.class).",
+        "Autowire MockMvc.",
+        "perform(get(...)) and assert status + content."
+      ],
+      "hints": [
+        "Use static imports from MockMvcRequestBuilders and MockMvcResultMatchers.",
+        "andExpect(status().isOk())."
+      ],
+      "language": "java",
+      "starterCode": "import org.junit.jupiter.api.Test;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;\nimport org.springframework.test.web.servlet.MockMvc;\n\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;\n\n@WebMvcTest(GreetingController.class)\nclass GreetingControllerTest {\n  @Autowired MockMvc mvc;\n\n  @Test\n  void greets() throws Exception {\n    // TODO\n  }\n}\n",
+      "solution": "import org.junit.jupiter.api.Test;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;\nimport org.springframework.test.web.servlet.MockMvc;\n\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;\n\n@WebMvcTest(GreetingController.class)\nclass GreetingControllerTest {\n  @Autowired MockMvc mvc;\n\n  @Test\n  void greets() throws Exception {\n    mvc.perform(get(\"/hello\").param(\"name\", \"Corgi\"))\n       .andExpect(status().isOk())\n       .andExpect(content().string(\"Hello, Corgi\"));\n  }\n}\n",
+      "expectedOutput": "Test passes: 200 OK, body \"Hello, Corgi\""
+    }
+  ]
+}

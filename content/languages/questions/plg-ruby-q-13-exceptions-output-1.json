@@ -1,0 +1,17 @@
+{
+  "id": "plg-ruby-q-13-exceptions-output-1",
+  "domainId": "plg-ruby",
+  "prompt": "What prints?",
+  "explanation": "id is nil so it interpolates to an empty string, giving message \"id=\"; ensure always runs afterward.",
+  "tags": [
+    "exceptions",
+    "errors"
+  ],
+  "kind": "fill",
+  "template": "class NotFound < StandardError; end\n\ndef find(id)\n  raise NotFound, \"id=#{id}\" if id.nil?\n  { id: id }\nend\n\nbegin\n  find(nil)\nrescue NotFound => e\n  puts \"handled: #{e.message}\"\nensure\n  puts \"cleanup\"\nend\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "handled: id=\ncleanup"
+    }
+  ]
+}

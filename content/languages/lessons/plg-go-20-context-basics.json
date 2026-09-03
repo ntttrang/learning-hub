@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-20-context-basics",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 20,
+  "title": "context for cancellation and deadlines",
+  "minutes": 11,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Carry cancellation\n\n`context.Context` propagates deadlines, cancellation, and request-scoped values through call chains.\n\n## Usage\n\nTake `ctx` as the first parameter. Derive with `context.WithTimeout`/`WithCancel` and always `defer cancel()`.\n\n## Respect it\n\nCheck `ctx.Err()` or select on `ctx.Done()` in loops and blocking waits. Don't store context in structs."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "ctx, cancel := context.WithTimeout(ctx, 2*time.Second)\ndefer cancel()\n\nreq, _ := http.NewRequestWithContext(ctx, \"GET\", url, nil)\nresp, err := http.DefaultClient.Do(req)"
+    }
+  ],
+  "docIds": [
+    "context",
+    "context-2"
+  ]
+}

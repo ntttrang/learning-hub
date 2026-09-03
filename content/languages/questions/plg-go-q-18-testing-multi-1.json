@@ -1,0 +1,34 @@
+{
+  "id": "plg-go-q-18-testing-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements about Go testing are true?",
+  "explanation": "t.Run(name, fn) creates subtests and is the standard way to structure table-driven tests, not just benchmarks.",
+  "tags": [
+    "go-18-testing",
+    "table-driven"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "go test -cover reports test coverage"
+    },
+    {
+      "id": "b",
+      "text": "Benchmark functions are named BenchmarkXxx(b *testing.B)"
+    },
+    {
+      "id": "c",
+      "text": "t.Run only works for benchmarks, not table-driven tests"
+    },
+    {
+      "id": "d",
+      "text": "t.Parallel marks a test safe to run in parallel with other parallel tests"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

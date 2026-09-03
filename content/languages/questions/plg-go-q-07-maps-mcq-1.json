@@ -1,0 +1,30 @@
+{
+  "id": "plg-go-q-07-maps-mcq-1",
+  "domainId": "plg-go",
+  "prompt": "How do you distinguish a missing map key from a key whose value is the zero value?",
+  "explanation": "The comma-ok form returns ok=false when the key is absent, regardless of the value's zero-ness.",
+  "tags": [
+    "go-07-maps",
+    "comma-ok"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "The comma-ok idiom: v, ok := m[k]"
+    },
+    {
+      "id": "b",
+      "text": "Check len(m) before and after"
+    },
+    {
+      "id": "c",
+      "text": "Compare v to nil"
+    },
+    {
+      "id": "d",
+      "text": "It is not possible in Go"
+    }
+  ],
+  "correct": "a"
+}

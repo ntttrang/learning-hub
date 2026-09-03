@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-03-strings",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 3,
+  "title": "Strings and f-strings",
+  "minutes": 10,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Immutable text\n\nStrings are immutable sequences of Unicode. Slicing (`s[1:4]`), `split`, `join`, `strip`, and `replace` cover most work.\n\n## f-strings\n\nThe modern way to format: `f\"Hi {name}, total {total:.2f}\"`. They also support `=` for debugging: `f\"{x=}\"`.\n\n## Bytes vs str\n\n`str` is text; `bytes` is raw data. Encode/decode explicitly with UTF-8 at I/O boundaries."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "name, total = \"Ada\", 19.5\nprint(f\"Hi {name}, total ${total:.2f}\")\nprint(f\"{total=}\")  # total=19.5"
+    }
+  ],
+  "docIds": [
+    "stdtypes-2",
+    "pep-0498"
+  ]
+}

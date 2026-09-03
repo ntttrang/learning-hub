@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-04-strings",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 4,
+  "title": "Strings, text blocks, and formatting",
+  "minutes": 10,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Immutability\n\n`String` is immutable — every modification creates a new object. Use `StringBuilder` for loops that build text.\n\n## Comparison\n\nUse `.equals()` for value equality; `==` compares references. `.equalsIgnoreCase()` for case-insensitive checks.\n\n## Text blocks\n\nTriple-quoted `\"\"\"` blocks (Java 15+) preserve multi-line formatting. Use `String.format` or `formatted` for interpolation-like output."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "var sb = new StringBuilder();\nfor (var w : words) sb.append(w).append(' ');\n\nString json = \"\"\"\n  { \"name\": \"%s\" }\n  \"\"\".formatted(name);"
+    }
+  ],
+  "docIds": [
+    "strings",
+    "378"
+  ]
+}

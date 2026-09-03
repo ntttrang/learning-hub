@@ -1,0 +1,17 @@
+{
+  "id": "plg-java-q-06-methods-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "The varargs call packs 1,2,3 into an int[], and sum totals them.",
+  "tags": [
+    "basics",
+    "methods"
+  ],
+  "kind": "fill",
+  "template": "public class Demo {\n  static int sum(int... xs) {\n    int total = 0;\n    for (int x : xs) total += x;\n    return total;\n  }\n  public static void main(String[] args) {\n    System.out.println(sum(1, 2, 3));\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "6"
+    }
+  ]
+}

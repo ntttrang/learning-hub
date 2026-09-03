@@ -1,0 +1,30 @@
+{
+  "id": "plg-python-q-asyncio-pools-mcq-1",
+  "domainId": "plg-python",
+  "prompt": "What does `asyncio.TaskGroup` do differently from `asyncio.gather` when one task fails?",
+  "explanation": "`TaskGroup` implements structured concurrency: a failing task cancels its siblings and propagates the error.",
+  "tags": [
+    "asyncio",
+    "db"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "Nothing different — they behave identically"
+    },
+    {
+      "id": "b",
+      "text": "It cancels sibling tasks (structured concurrency)"
+    },
+    {
+      "id": "c",
+      "text": "It automatically retries the failed task"
+    },
+    {
+      "id": "d",
+      "text": "It silently ignores the failure"
+    }
+  ],
+  "correct": "b"
+}

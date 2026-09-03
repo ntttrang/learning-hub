@@ -1,0 +1,20 @@
+{
+  "id": "plg-go-q-15-stdlib-slices-maps-fill-1",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: slices._____Func(users, cmp) sorts a slice using a custom comparison function returning -1/0/1.",
+  "explanation": "slices.SortFunc sorts using a caller-provided comparator, often built with cmp.Compare.",
+  "tags": [
+    "go-15-stdlib-slices-maps",
+    "sorting"
+  ],
+  "kind": "fill",
+  "template": "slices.___Func(users, cmp)",
+  "blanks": [
+    {
+      "answer": "Sort",
+      "alternatives": [
+        "Sort"
+      ]
+    }
+  ]
+}

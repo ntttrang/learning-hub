@@ -1,0 +1,30 @@
+{
+  "id": "plg-java-q-03-operators-control-mcq-1",
+  "domainId": "plg-java",
+  "prompt": "Which operators short-circuit evaluation in Java?",
+  "explanation": "&& and || skip evaluating the right operand when the result is already determined; & and | always evaluate both sides.",
+  "tags": [
+    "basics",
+    "control-flow"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "&& and ||"
+    },
+    {
+      "id": "b",
+      "text": "& and |"
+    },
+    {
+      "id": "c",
+      "text": "== and !="
+    },
+    {
+      "id": "d",
+      "text": "+ and -"
+    }
+  ],
+  "correct": "a"
+}

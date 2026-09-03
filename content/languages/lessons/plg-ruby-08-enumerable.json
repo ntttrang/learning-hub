@@ -1,0 +1,23 @@
+{
+  "id": "plg-ruby-08-enumerable",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 8,
+  "title": "Enumerable: map, select, reduce",
+  "minutes": 12,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Mixin power\n\nInclude `Enumerable` and implement `each` — you get `map`, `select`, `find`, `any?`, `group_by`, and dozens more.\n\n## Chain, don't nest\n\nPrefer `users.select(&:active?).map(&:name).sort` over nested loops. Symbol-to-proc (`&:name`) is the short form of `{ |u| u.name }`.\n\n## each_with_object\n\nBuild a hash or array accumulator without the awkward `reduce` seed when the intent is \"collect into\"."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "users = [\n  { name: \"Ada\", active: true },\n  { name: \"Bob\", active: false },\n  { name: \"Cam\", active: true },\n]\nnames = users.select { |u| u[:active] }.map { |u| u[:name] }.sort\nputs names.join(\", \")\n\ntotal = [1, 2, 3].reduce(0) { |sum, n| sum + n }\nputs total"
+    }
+  ],
+  "docIds": [
+    "Enumerable"
+  ]
+}

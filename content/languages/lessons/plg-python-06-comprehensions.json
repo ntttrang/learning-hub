@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-06-comprehensions",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 6,
+  "title": "Comprehensions and generators",
+  "minutes": 10,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Comprehensions\n\nBuild lists/sets/dicts concisely: `[x*x for x in nums if x % 2 == 0]`. Readable and fast.\n\n## Generator expressions\n\nSwap `[]` for `()` to get a **lazy** generator that yields items one at a time — memory-friendly for large data.\n\n## Don't overdo it\n\nNested, side-effecting comprehensions hurt readability. A plain loop is sometimes clearer."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "squares = [x * x for x in range(10)]\nby_id = {u.id: u for u in users}\ntotal = sum(x * x for x in range(1_000_000))  # lazy"
+    }
+  ],
+  "docIds": [
+    "datastructures-2",
+    "expressions"
+  ]
+}

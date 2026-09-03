@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-20-build-modules",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 20,
+  "title": "Build tools and dependency management",
+  "minutes": 10,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Maven vs Gradle\n\n**Maven** uses declarative `pom.xml`; **Gradle** uses a Groovy/Kotlin DSL and incremental builds. Both resolve transitive dependencies from repositories.\n\n## Semantic versioning\n\nPin versions; use a BOM (bill of materials) to align a family of libraries (e.g. Spring). Watch for version conflicts (`dependency:tree`).\n\n## Modules\n\nThe Java Platform Module System (`module-info.java`) enforces strong encapsulation; many apps still run on the classpath."
+    },
+    {
+      "kind": "code",
+      "language": "xml",
+      "code": "<dependency>\n  <groupId>org.junit.jupiter</groupId>\n  <artifactId>junit-jupiter</artifactId>\n  <version>5.11.0</version>\n  <scope>test</scope>\n</dependency>"
+    }
+  ],
+  "docIds": [
+    "getting-started",
+    "userguide"
+  ]
+}

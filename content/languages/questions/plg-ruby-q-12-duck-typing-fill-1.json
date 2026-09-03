@@ -1,0 +1,21 @@
+{
+  "id": "plg-ruby-q-12-duck-typing-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: `def describe(collection); \"#{collection._____} items\"; end` works for Array, Hash, and String because they all respond to it.",
+  "explanation": "Array, Hash, and String all implement size (and length), so duck typing lets one method work across types.",
+  "tags": [
+    "oop",
+    "design"
+  ],
+  "kind": "fill",
+  "template": "collection.___",
+  "blanks": [
+    {
+      "answer": "size",
+      "alternatives": [
+        "size",
+        "length"
+      ]
+    }
+  ]
+}

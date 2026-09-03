@@ -1,0 +1,16 @@
+{
+  "id": "plg-go-q-fill",
+  "domainId": "plg-go",
+  "prompt": "Fill the blank: g._____ (8) caps concurrent goroutines in an errgroup.",
+  "explanation": "errgroup.Group.SetLimit(n) bounds concurrency.",
+  "kind": "fill",
+  "template": "g.___(8)",
+  "blanks": [
+    {
+      "answer": "SetLimit",
+      "alternatives": [
+        "SetLimit"
+      ]
+    }
+  ]
+}

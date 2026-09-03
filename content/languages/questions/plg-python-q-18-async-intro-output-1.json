@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-18-async-intro-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "`await greet()` resumes once the coroutine returns \"hi\", which is then printed.",
+  "tags": [
+    "asyncio",
+    "async"
+  ],
+  "kind": "fill",
+  "template": "import asyncio\n\nasync def greet():\n    return \"hi\"\n\nasync def main():\n    result = await greet()\n    print(result)\n\nasyncio.run(main())\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "hi"
+    }
+  ]
+}

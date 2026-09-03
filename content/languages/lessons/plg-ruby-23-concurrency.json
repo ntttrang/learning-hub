@@ -1,0 +1,25 @@
+{
+  "id": "plg-ruby-23-concurrency",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 23,
+  "title": "Concurrency: Threads, GVL, Ractors, Fibers",
+  "minutes": 14,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Threads and the GVL\n\nMRI Ruby has a Global VM Lock — CPU-bound threads don't run truly in parallel. Threads still help for IO-bound work (releases GVL on blocking IO).\n\n## Fibers and Async\n\nFibers are cooperative coroutines. The `async` gem builds structured concurrency on fibers for high-concurrency IO.\n\n## Ractors\n\nRactors isolate memory for parallel CPU work with message passing. API is stricter; share only immutable/deep-copied data. For multi-core CPU, also consider multiple processes."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "threads = 3.times.map do |i|\n  Thread.new do\n    sleep 0.05\n    \"worker-#{i}\"\n  end\nend\nputs threads.map(&:value).sort.join(\", \")"
+    }
+  ],
+  "docIds": [
+    "Thread",
+    "Ractor",
+    "Fiber"
+  ]
+}

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { importLegacyDp800Progress } from './engines/migrate-dp800-progress';
 import { importGh600Progress } from './engines/migrate-gh600-progress';
 import { importLegacyGhProgress } from './engines/migrate-gh-progress';
+import { importPolyglotProgress } from './engines/migrate-polyglot-progress';
 import { useSubjectDataStore } from './engines/subject-store';
 import AppShell from './shell/AppShell';
 import HubHome from './shell/HubHome';
@@ -27,6 +28,7 @@ export default function App() {
       importLegacyGhProgress();
       importGh600Progress();
       importLegacyDp800Progress();
+      importPolyglotProgress();
     };
     if (useSubjectDataStore.persist.hasHydrated()) {
       run();

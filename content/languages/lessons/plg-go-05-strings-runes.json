@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-05-strings-runes",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 5,
+  "title": "Strings, runes, and bytes",
+  "minutes": 10,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## UTF-8 by default\n\nA Go `string` is an immutable sequence of **bytes**, usually UTF-8. Indexing gives a byte; ranging gives **runes** (Unicode code points).\n\n## Building strings\n\nUse `strings.Builder` in loops to avoid quadratic concatenation. The `strings` package has all the helpers (`Split`, `Contains`, `TrimSpace`).\n\n## Conversion\n\n`[]byte(s)` and `[]rune(s)` convert; `string(b)` converts back."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "var b strings.Builder\nfor _, r := range \"héllo\" {\n  b.WriteRune(r)\n}\nfmt.Println(b.String())"
+    }
+  ],
+  "docIds": [
+    "strings-2",
+    "strings-3"
+  ]
+}

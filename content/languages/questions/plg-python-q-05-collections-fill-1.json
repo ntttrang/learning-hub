@@ -1,0 +1,20 @@
+{
+  "id": "plg-python-q-05-collections-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank to increment a word counter safely without KeyError.",
+  "explanation": "`get(w, 0)` defaults missing words to 0 before adding 1.",
+  "tags": [
+    "basics",
+    "collections"
+  ],
+  "kind": "fill",
+  "template": "counts[w] = counts.get(w, 0) + ___",
+  "blanks": [
+    {
+      "answer": "1",
+      "alternatives": [
+        "1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "plg-java-q-12-collections-fill-1",
+  "domainId": "plg-java",
+  "prompt": "counts.merge(word, 1, Integer::_____) increments a counter for word, defaulting to 1 if absent.",
+  "explanation": "Map.merge combines the existing value and 1 using Integer::sum when the key is already present.",
+  "tags": [
+    "collections",
+    "stdlib"
+  ],
+  "kind": "fill",
+  "template": "Integer::___",
+  "blanks": [
+    {
+      "answer": "sum",
+      "alternatives": [
+        "sum"
+      ]
+    }
+  ]
+}

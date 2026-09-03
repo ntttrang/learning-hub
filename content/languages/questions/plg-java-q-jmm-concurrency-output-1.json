@@ -1,0 +1,17 @@
+{
+  "id": "plg-java-q-jmm-concurrency-output-1",
+  "domainId": "plg-java",
+  "prompt": "What does this program print?",
+  "explanation": "Two calls to incrementAndGet() atomically bump the counter from 0 to 2.",
+  "tags": [
+    "jmm",
+    "concurrency"
+  ],
+  "kind": "fill",
+  "template": "import java.util.concurrent.atomic.AtomicInteger;\n\npublic class Demo {\n  public static void main(String[] args) {\n    AtomicInteger counter = new AtomicInteger(0);\n    counter.incrementAndGet();\n    counter.incrementAndGet();\n    System.out.println(counter.get());\n  }\n}\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "2"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "plg-ruby-q-17-testing-mcq-2",
+  "domainId": "plg-ruby",
+  "prompt": "In RSpec, which method sets an expectation on a value?",
+  "explanation": "RSpec's expressive DSL uses expect(value).to matcher for assertions.",
+  "tags": [
+    "testing"
+  ],
+  "kind": "single",
+  "options": [
+    {
+      "id": "a",
+      "text": "assert"
+    },
+    {
+      "id": "b",
+      "text": "expect"
+    },
+    {
+      "id": "c",
+      "text": "should_be"
+    },
+    {
+      "id": "d",
+      "text": "verify"
+    }
+  ],
+  "correct": "b"
+}

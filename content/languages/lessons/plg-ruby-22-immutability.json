@@ -1,0 +1,23 @@
+{
+  "id": "plg-ruby-22-immutability",
+  "domainId": "plg-ruby",
+  "moduleId": "plg-ruby-core",
+  "order": 22,
+  "title": "Frozen strings and immutability",
+  "minutes": 10,
+  "difficulty": "advanced",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## freeze\n\n`obj.freeze` makes mutation raise. Frozen string literals (`# frozen_string_literal: true`) reduce allocations and catch accidental mutation.\n\n## Share safely\n\nFrozen objects are safer to share across threads. Prefer `Data.define` / frozen Structs for value objects.\n\n## dup vs clone\n\n`dup` copies without freezing or singleton methods; `clone` can preserve freeze and eigenclass methods. Know which you need."
+    },
+    {
+      "kind": "code",
+      "language": "ruby",
+      "code": "# frozen_string_literal: true\n\nmsg = \"ahoy\"\nbegin\n  msg << \"!\"\nrescue FrozenError => e\n  puts e.class\nend\n\nputs \"ahoy\".freeze.equal?(\"ahoy\".freeze)"
+    }
+  ],
+  "docIds": [
+    "Object-3"
+  ]
+}

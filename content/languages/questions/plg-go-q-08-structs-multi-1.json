@@ -1,0 +1,33 @@
+{
+  "id": "plg-go-q-08-structs-multi-1",
+  "domainId": "plg-go",
+  "prompt": "Which statements about structs and embedding are true?",
+  "explanation": "Go uses composition via embedding, not inheritance, and idiomatically exposes New... functions instead of constructors.",
+  "tags": [
+    "go-08-structs",
+    "embedding"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "Go supports embedding a struct to promote its fields and methods"
+    },
+    {
+      "id": "b",
+      "text": "Go has class-based inheritance like Java"
+    },
+    {
+      "id": "c",
+      "text": "A common pattern is a New... constructor function since Go has no constructors"
+    },
+    {
+      "id": "d",
+      "text": "Pointer receivers are required just to read a struct's fields"
+    }
+  ],
+  "correct": [
+    "a",
+    "c"
+  ]
+}

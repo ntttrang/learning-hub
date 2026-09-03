@@ -1,0 +1,17 @@
+{
+  "id": "plg-ruby-q-22-immutability-output-1",
+  "domainId": "plg-ruby",
+  "prompt": "What prints?",
+  "explanation": "Freezing the string makes the subsequent << mutation raise FrozenError, which is caught and its class printed.",
+  "tags": [
+    "performance",
+    "immutability"
+  ],
+  "kind": "fill",
+  "template": "msg = \"ahoy\"\nbegin\n  msg.freeze\n  msg << \"!\"\nrescue FrozenError => e\n  puts e.class\nend\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "FrozenError"
+    }
+  ]
+}

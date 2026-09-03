@@ -1,0 +1,17 @@
+{
+  "id": "plg-python-q-fastapi-async-output-1",
+  "domainId": "plg-python",
+  "prompt": "What prints?",
+  "explanation": "This mirrors a sync route handler body: it simply returns its computed result.",
+  "tags": [
+    "fastapi",
+    "asyncio"
+  ],
+  "kind": "fill",
+  "template": "def build_report():  # sync PDF lib — belongs in a threadpool route\n    return \"PDF bytes\"\n\nprint(build_report())\n\nPredicted output: ___",
+  "blanks": [
+    {
+      "answer": "PDF bytes"
+    }
+  ]
+}

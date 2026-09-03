@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-11-packages",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 11,
+  "title": "Packages, visibility, and imports",
+  "minutes": 9,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Exported = Capitalized\n\nAn identifier is exported (public) if it starts with an uppercase letter; lowercase is package-private. That's the entire access-control system.\n\n## Package design\n\nOne directory = one package. Name packages after what they provide (`http`, `json`), not generic names like `utils`.\n\n## init\n\n`init()` runs once at package load — use sparingly (registration, not heavy work)."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "package money\n\ntype Amount struct{ cents int64 } // private field\n\nfunc New(cents int64) Amount { return Amount{cents} } // exported"
+    }
+  ],
+  "docIds": [
+    "code-2",
+    "package-names"
+  ]
+}

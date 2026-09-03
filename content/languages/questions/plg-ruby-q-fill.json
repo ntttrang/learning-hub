@@ -1,0 +1,17 @@
+{
+  "id": "plg-ruby-q-fill",
+  "domainId": "plg-ruby",
+  "prompt": "Fill the blank: include Comparable and implement _____ so `<`, `>`, and `between?` work.",
+  "explanation": "Comparable builds ordering methods from spaceship <=>.",
+  "kind": "fill",
+  "template": "def ___(other)",
+  "blanks": [
+    {
+      "answer": "<=>",
+      "alternatives": [
+        "<=>",
+        "<=> "
+      ]
+    }
+  ]
+}

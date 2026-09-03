@@ -1,0 +1,34 @@
+{
+  "id": "plg-python-q-12-iterators-gen-multi-1",
+  "domainId": "plg-python",
+  "prompt": "Which are `itertools` functions used to compose iterators efficiently?",
+  "explanation": "`chain`, `islice`, and `groupby` live in `itertools`; `sorted` is a builtin, not part of itertools.",
+  "tags": [
+    "iterators",
+    "generators"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "chain"
+    },
+    {
+      "id": "b",
+      "text": "islice"
+    },
+    {
+      "id": "c",
+      "text": "groupby"
+    },
+    {
+      "id": "d",
+      "text": "sorted"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-13-json",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 13,
+  "title": "JSON encoding and struct tags",
+  "minutes": 11,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Marshal/Unmarshal\n\n`encoding/json` maps structs to JSON. **Exported** fields are (de)serialized; struct tags rename and control them.\n\n## Tags\n\n`json:\"name,omitempty\"` renames and drops zero values. Use `-` to skip a field.\n\n## Streaming\n\n`json.Decoder`/`Encoder` work over `io.Reader`/`Writer` for HTTP bodies and large payloads."
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "type User struct {\n  ID    int    `json:\"id\"`\n  Name  string `json:\"name\"`\n  Email string `json:\"email,omitempty\"`\n}\n\nb, _ := json.Marshal(User{ID: 1, Name: \"Ada\"})"
+    }
+  ],
+  "docIds": [
+    "json",
+    "json-2"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "plg-python-q-04-control-flow-fill-1",
+  "domainId": "plg-python",
+  "prompt": "Fill the blank: this builtin yields (index, value) pairs while looping.",
+  "explanation": "`enumerate(items)` produces (index, value) tuples, avoiding manual index counters.",
+  "tags": [
+    "basics",
+    "control-flow"
+  ],
+  "kind": "fill",
+  "template": "for i, val in ___(items):",
+  "blanks": [
+    {
+      "answer": "enumerate",
+      "alternatives": [
+        "enumerate"
+      ]
+    }
+  ]
+}

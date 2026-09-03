@@ -1,0 +1,79 @@
+{
+  "language": "python",
+  "labs": [
+    {
+      "id": "python-lab-fastapi",
+      "title": "FastAPI endpoint (+ TestClient)",
+      "goal": "Build a typed POST endpoint with a Pydantic body and test it in-process with TestClient — the modern production stack for Python APIs.",
+      "steps": [
+        "Declare an Item model (name: str, price: float).",
+        "Add POST /items/{item_id} that stores and echoes the item.",
+        "Drive it with TestClient (no server, no network).",
+        "Print status code + JSON to prove request validation + response shape."
+      ],
+      "language": "python",
+      "starterCode": "from fastapi import FastAPI\nfrom fastapi.testclient import TestClient\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\n# TODO: POST /items/{item_id}\n\nclient = TestClient(app)\n# TODO: post and print status + json\nprint(\"\")\n",
+      "solution": "from fastapi import FastAPI\nfrom fastapi.testclient import TestClient\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\nitems: dict[int, Item] = {}\n\n@app.post(\"/items/{item_id}\")\ndef create_item(item_id: int, item: Item):\n    items[item_id] = item\n    return {\"id\": item_id, \"name\": item.name, \"price\": item.price}\n\nclient = TestClient(app)\nresp = client.post(\"/items/1\", json={\"name\": \"book\", \"price\": 9.5})\nprint(resp.status_code, resp.json())\n",
+      "expectedOutput": "200 {'id': 1, 'name': 'book', 'price': 9.5}",
+      "docs": [
+        { "title": "FastAPI", "url": "https://fastapi.tiangolo.com/", "note": "Typed routing + Pydantic bodies" },
+        { "title": "FastAPI: Testing", "url": "https://fastapi.tiangolo.com/tutorial/testing/", "note": "TestClient (Starlette/httpx based)" }
+      ]
+    },
+    {
+      "id": "python-lab-asyncio",
+      "title": "Concurrent I/O with asyncio.gather",
+      "goal": "Run independent async tasks concurrently and collect results in order — the pattern behind concurrent DB/API calls in async services.",
+      "steps": [
+        "Write an async fetch(name, delay) coroutine.",
+        "await asyncio.gather(...) three fetches with different delays.",
+        "Note that gather preserves argument order, not completion order.",
+        "Join and print the results."
+      ],
+      "language": "python",
+      "starterCode": "import asyncio\n\nasync def fetch(name: str, delay: float) -> str:\n    # TODO: sleep then return name.upper()\n    return name\n\nasync def main() -> None:\n    # TODO: gather three fetches, print joined by comma\n    print(\"\")\n\nasyncio.run(main())\n",
+      "solution": "import asyncio\n\nasync def fetch(name: str, delay: float) -> str:\n    await asyncio.sleep(delay)\n    return name.upper()\n\nasync def main() -> None:\n    results = await asyncio.gather(\n        fetch(\"a\", 0.03),\n        fetch(\"b\", 0.01),\n        fetch(\"c\", 0.02),\n    )\n    print(\",\".join(results))\n\nasyncio.run(main())\n",
+      "expectedOutput": "A,B,C",
+      "docs": [
+        { "title": "asyncio.gather", "url": "https://docs.python.org/3/library/asyncio-task.html#asyncio.gather", "note": "Run awaitables concurrently, ordered results" },
+        { "title": "asyncio.run", "url": "https://docs.python.org/3/library/asyncio-runner.html#asyncio.run", "note": "Entry point for async programs" }
+      ]
+    },
+    {
+      "id": "python-lab-retry",
+      "title": "Retry decorator with backoff",
+      "goal": "Wrap a flaky call with a reusable retry decorator — a production staple for transient network/DB failures.",
+      "steps": [
+        "Write retry(times, delay) returning a decorator.",
+        "Preserve metadata with functools.wraps.",
+        "Retry on exception, re-raise the last error if all attempts fail.",
+        "Prove it recovers after transient failures."
+      ],
+      "language": "python",
+      "starterCode": "import functools\nimport time\n\ndef retry(times: int, delay: float = 0):\n    # TODO: return a decorator that retries on exception\n    def deco(fn):\n        return fn\n    return deco\n\ncalls = {\"n\": 0}\n\n@retry(times=3)\ndef flaky() -> str:\n    calls[\"n\"] += 1\n    if calls[\"n\"] < 3:\n        raise ValueError(\"boom\")\n    return \"ok\"\n\nprint(flaky(), \"after\", calls[\"n\"], \"attempts\")\n",
+      "solution": "import functools\nimport time\n\ndef retry(times: int, delay: float = 0):\n    def deco(fn):\n        @functools.wraps(fn)\n        def wrapper(*args, **kwargs):\n            last: Exception | None = None\n            for attempt in range(1, times + 1):\n                try:\n                    return fn(*args, **kwargs)\n                except Exception as e:\n                    last = e\n                    if attempt < times:\n                        time.sleep(delay)\n            raise last\n        return wrapper\n    return deco\n\ncalls = {\"n\": 0}\n\n@retry(times=3)\ndef flaky() -> str:\n    calls[\"n\"] += 1\n    if calls[\"n\"] < 3:\n        raise ValueError(\"boom\")\n    return \"ok\"\n\nprint(flaky(), \"after\", calls[\"n\"], \"attempts\")\n",
+      "expectedOutput": "ok after 3 attempts",
+      "docs": [
+        { "title": "functools.wraps", "url": "https://docs.python.org/3/library/functools.html#functools.wraps", "note": "Keep wrapped function metadata" },
+        { "title": "tenacity", "url": "https://tenacity.readthedocs.io/", "note": "Battle-tested retry library for real projects" }
+      ]
+    },
+    {
+      "id": "python-lab-pydantic",
+      "title": "Validate with Pydantic",
+      "goal": "Define a Pydantic model and parse a dict; print the email field.",
+      "steps": [
+        "Create UserIn with email: str and age: int >= 0.",
+        "Parse {\"email\": \"a@b.com\", \"age\": 3}.",
+        "Print model.email."
+      ],
+      "language": "python",
+      "starterCode": "from pydantic import BaseModel, Field\n\n# TODO: UserIn model\n\ndata = {\"email\": \"a@b.com\", \"age\": 3}\n# print email\nprint(\"\")\n",
+      "solution": "from pydantic import BaseModel, Field\n\nclass UserIn(BaseModel):\n    email: str\n    age: int = Field(ge=0)\n\ndata = {\"email\": \"a@b.com\", \"age\": 3}\nprint(UserIn.model_validate(data).email)\n",
+      "expectedOutput": "a@b.com",
+      "docs": [
+        { "title": "Pydantic", "url": "https://docs.pydantic.dev/latest/", "note": "Data validation & settings" }
+      ]
+    }
+  ]
+}

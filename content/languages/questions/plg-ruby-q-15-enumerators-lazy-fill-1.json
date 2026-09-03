@@ -1,0 +1,21 @@
+{
+  "id": "plg-ruby-q-15-enumerators-lazy-fill-1",
+  "domainId": "plg-ruby",
+  "prompt": "Fill in the blank: this method call on a lazy enumerator triggers evaluation and returns a real array.",
+  "explanation": "force (or to_a) pulls values through the lazy pipeline and materializes them into an Array.",
+  "tags": [
+    "enumerable",
+    "lazy"
+  ],
+  "kind": "fill",
+  "template": "(1..).lazy.select(&:odd?).map { |n| n * n }.take(3).___",
+  "blanks": [
+    {
+      "answer": "force",
+      "alternatives": [
+        "force",
+        "to_a"
+      ]
+    }
+  ]
+}

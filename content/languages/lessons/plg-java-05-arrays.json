@@ -1,0 +1,24 @@
+{
+  "id": "plg-java-05-arrays",
+  "domainId": "plg-java",
+  "moduleId": "plg-java-core",
+  "order": 5,
+  "title": "Arrays and the Arrays utility",
+  "minutes": 8,
+  "difficulty": "beginner",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Fixed size\n\nArrays have a fixed length set at creation (`new int[5]`). Access is zero-based; out-of-range throws `ArrayIndexOutOfBoundsException`.\n\n## Helpers\n\n`java.util.Arrays` gives `sort`, `fill`, `copyOf`, `equals`, and `toString` (use it instead of printing an array directly).\n\n## 2D arrays\n\nJava uses arrays-of-arrays, so rows can have different lengths (jagged)."
+    },
+    {
+      "kind": "code",
+      "language": "java",
+      "code": "int[] nums = {5, 2, 9, 1};\nArrays.sort(nums);\nSystem.out.println(Arrays.toString(nums)); // [1, 2, 5, 9]"
+    }
+  ],
+  "docIds": [
+    "arrays",
+    "Arrays"
+  ]
+}

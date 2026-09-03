@@ -1,0 +1,33 @@
+{
+  "id": "plg-java-q-jmm-concurrency-multi-1",
+  "domainId": "plg-java",
+  "prompt": "Which are appropriate uses of a `volatile` field?",
+  "explanation": "Compound operations like counter++ are not atomic even on a volatile field; use AtomicInteger instead.",
+  "tags": [
+    "jmm",
+    "concurrency"
+  ],
+  "kind": "multi",
+  "options": [
+    {
+      "id": "a",
+      "text": "A boolean shutdown/running flag checked by multiple threads"
+    },
+    {
+      "id": "b",
+      "text": "Publishing an immutable reference after construction"
+    },
+    {
+      "id": "c",
+      "text": "Implementing a thread-safe counter with counter++"
+    },
+    {
+      "id": "d",
+      "text": "Coordinating a read-modify-write operation with no other synchronization"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

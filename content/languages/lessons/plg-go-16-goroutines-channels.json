@@ -1,0 +1,24 @@
+{
+  "id": "plg-go-16-goroutines-channels",
+  "domainId": "plg-go",
+  "moduleId": "plg-go-core",
+  "order": 16,
+  "title": "Goroutines and channels",
+  "minutes": 13,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## Goroutines\n\n`go f()` starts a lightweight, scheduler-managed coroutine. Cheap to create — but you must control their lifetime.\n\n## Channels\n\nTyped conduits for communication. Unbuffered channels synchronize sender and receiver; buffered channels decouple up to capacity.\n\n## select\n\n`select` waits on multiple channel operations — the backbone of timeouts and cancellation.\n\nRemember: **don't communicate by sharing memory; share memory by communicating.**"
+    },
+    {
+      "kind": "code",
+      "language": "go",
+      "code": "select {\ncase v := <-ch:\n  fmt.Println(v)\ncase <-time.After(time.Second):\n  fmt.Println(\"timeout\")\n}"
+    }
+  ],
+  "docIds": [
+    "1-3",
+    "codelab-share"
+  ]
+}

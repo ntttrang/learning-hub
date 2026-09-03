@@ -1,0 +1,24 @@
+{
+  "id": "plg-python-17-files-json",
+  "domainId": "plg-python",
+  "moduleId": "plg-python-core",
+  "order": 17,
+  "title": "Files, JSON, and serialization",
+  "minutes": 10,
+  "difficulty": "intermediate",
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "## pathlib first\n\n`Path.read_text` / `write_text` handle small files. For large data, iterate line by line to bound memory.\n\n## JSON\n\n`json.loads`/`dumps` round-trip Python dicts. Use `default=` for custom types and `indent=` for readable output.\n\n## Encoding discipline\n\nAlways pass `encoding=\"utf-8\"`; never rely on the platform default, which differs across OSes."
+    },
+    {
+      "kind": "code",
+      "language": "python",
+      "code": "import json\nfrom pathlib import Path\n\ndata = json.loads(Path(\"in.json\").read_text(encoding=\"utf-8\"))\nPath(\"out.json\").write_text(json.dumps(data, indent=2), encoding=\"utf-8\")"
+    }
+  ],
+  "docIds": [
+    "inputoutput",
+    "json-3"
+  ]
+}
