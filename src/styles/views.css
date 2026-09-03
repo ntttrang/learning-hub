@@ -328,6 +328,10 @@
   text-decoration: none;
   transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
+.cc-body a.btn,
+.cc-body a.btn:hover {
+  text-decoration: none;
+}
 .btn-primary {
   background: var(--accent);
   color: var(--accent-fg);
@@ -979,6 +983,10 @@
 .practice-card:hover {
   border-color: var(--accent);
 }
+.cc-body a.practice-card,
+.cc-body a.practice-card:hover {
+  text-decoration: none;
+}
 .practice-card-head {
   display: flex;
   align-items: center;
@@ -1115,6 +1123,10 @@
 .learn-row:hover {
   background: var(--bg-sunken);
   border-color: var(--border);
+}
+.cc-body a.learn-row,
+.cc-body a.learn-row:hover {
+  text-decoration: none;
 }
 .learn-tick {
   flex: none;
@@ -1366,6 +1378,10 @@
 }
 .lab-lesson-link:hover {
   color: var(--link-hover);
+}
+.cc-body a.lab-lesson-link,
+.cc-body a.lab-lesson-link:hover {
+  text-decoration: none;
 }
 
 .lab {
@@ -1756,6 +1772,10 @@
 }
 .exam-start:hover {
   box-shadow: var(--shadow-2);
+}
+.cc-body a.exam-start,
+.cc-body a.exam-start:hover {
+  text-decoration: none;
 }
 .exam-start:active {
   transform: scale(0.97);

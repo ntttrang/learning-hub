@@ -92,6 +92,10 @@ button {
 .navi:hover {
   background: var(--bg-sunken);
 }
+.cc-body a.navi,
+.cc-body a.navi:hover {
+  text-decoration: none;
+}
 .navi.on {
   background: color-mix(in srgb, var(--accent) 14%, transparent);
   color: var(--fg);
@@ -524,6 +528,10 @@ a.stat:hover {
   border-color: var(--border-strong);
   box-shadow: var(--shadow-2);
 }
+.cc-body a.stat,
+.cc-body a.stat:hover {
+  text-decoration: none;
+}
 .stat .n {
   font-family: var(--font-display);
   font-size: 30px;
@@ -555,6 +563,10 @@ a.stat:hover {
   color: inherit;
   text-decoration: none;
 }
+.cc-body a.card-link,
+.cc-body a.card-link:hover {
+  text-decoration: none;
+}
 .due-chip {
   position: absolute;
   top: 16px;
@@ -571,6 +583,10 @@ a.stat:hover {
 .due-chip:hover {
   background: var(--danger);
   color: var(--danger-fg);
+}
+.cc-body a.due-chip,
+.cc-body a.due-chip:hover {
+  text-decoration: none;
 }
 .card-progress {
   display: flex;
