@@ -127,10 +127,22 @@ export default function HubHome() {
                 <div className="top">
                   <div
                     className="badge"
-                    style={subject.id === 'gh-200' ? undefined : { background: accentVar(subject.accent) }}
+                    style={subject.id === 'gh-200' || subject.id === 'dp-800' || subject.id === 'gh-600' || subject.id === 'gh-900'
+                      ? undefined
+                      : { background: accentVar(subject.accent) }}
                   >
-                    {subject.id === 'gh-200' ? (
-                      <img className="badge-image" src="/github-actions.svg" alt="" />
+                    {subject.id === 'gh-200' || subject.id === 'dp-800' || subject.id === 'gh-600' || subject.id === 'gh-900' ? (
+                      <img
+                        className="badge-image"
+                        src={subject.id === 'dp-800'
+                          ? '/sql-ai-developer.jpeg'
+                          : subject.id === 'gh-600'
+                            ? '/github-agentic.png'
+                            : subject.id === 'gh-900'
+                              ? '/github-foundations.svg'
+                            : '/github-actions.svg'}
+                        alt=""
+                      />
                     ) : (
                       subject.code
                     )}

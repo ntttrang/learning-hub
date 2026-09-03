@@ -28,6 +28,9 @@ describe('hub views', () => {
     for (const code of ['FX-100', 'DP-800', 'GH-200', 'GH-900', 'GH-600']) {
       expect(screen.getByRole('heading', { name: code, level: 3 })).toBeInTheDocument();
     }
+    expect(document.querySelector('img[src="/github-agentic.png"]')).toBeInTheDocument();
+    expect(document.querySelector('img[src="/github-foundations.svg"]')).toBeInTheDocument();
+    expect(document.querySelector('img[src="/sql-ai-developer.jpeg"]')).toBeInTheDocument();
   });
 
   it('reports installed packs and placeholders honestly', () => {
