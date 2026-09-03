@@ -19,8 +19,8 @@ created: 2026-09-03
 challenges, 424 quiz questions (109/105/105/105 per language), 9 cross-language compare topics) lives in the
 unified hub as **one subject pack**, `content/languages/`, reachable at
 `#/subject/languages`, with one-time import of any progress the standalone
-polyglot app left in the browser. The source repo is archived after the pack
-ships. No core-code changes: the hub's pack model is designed so a new subject
+polyglot app left in the browser. The source repo is retired after the pack ships
+(archive → amended to delete, 2026-09-03). No core-code changes: the hub's pack model is designed so a new subject
 is data only.
 
 **Why one pack, not four:** the user asked for "a Languages subject"
@@ -52,7 +52,7 @@ way; the new pack inherits whatever styles are live when it lands.
 | 6 | `output` quiz questions → `fill` questions (plain unfenced code text + one blank — the hub renders fill templates inside `<pre>`, no markdown); `fill` maps via `accept` → `alternatives` | Hub `fill` is the only free-text-answer kind; polyglot graded output as trim-exact free text |
 | 7 | One sampled mixed exam (10 questions per language domain, fixed seed, 60 min) — no fabricated exam content | gh-200/gh-900 precedent: engine-sampled exam over the real question pool (gh-600 exams are `fixed`, not the precedent); `sampled` selection exists for exactly this |
 | 8 | One-time progress import from polyglot's `prh-progress` localStorage key, following the dp-800 engine's full pattern: sibling guard key (donor key never deleted), pack-installed gate, size bounds, referential-integrity filter, persisted read-back before arming the guard | README documents this pattern for the three retired donors; "move" implies continuity without risking the only copy of donor progress |
-| 9 | Archive `ntttrang/polyglot-hub` after the pack is verified live on the hub's Pages deploy (observable signal, not the old site) — user decision, 2026-09-03 | Donors are retired once absorbed; reversible (unarchive). Archived repos' Pages sites stay live frozen with no visitor notice, so the old site cannot serve as a verification signal |
+| 9 | Retire `ntttrang/polyglot-hub` after the pack is verified live on the hub's Pages deploy — originally "archive", **amended to "delete" by user decision 2026-09-03** (deletion is permanent; the vendored `learn-polyglot/` copy at recorded SHA `fa0019e` becomes the only surviving source) | Donors are retired once absorbed; the live-deploy verification gate ran before any retirement action. Deleted repos' Pages sites stop serving entirely — cleaner than the frozen-site boundary the archive path had |
 | 10 | Difficulty map: `junior→beginner`, `mid→intermediate`, `senior→advanced` | Closest tiers in the hub's `DifficultyTier`; `challenge` reserved, unused |
 | 11 | Donor lesson `tags` and `DocLink.note` strings are dropped as marked extractor derivations (hub `LessonSchema`/`ReferenceSchema` are strict and have no such fields); each drop carries a parity count assertion; lab-doc notes additionally stay visible inlined in lab step instructions | Fidelity constraint is satisfied honestly: losses are named, counted, and tested — never silent |
 
@@ -75,7 +75,7 @@ Dependencies: 2 needs 1; 3 needs 2; 4 needs 2 (id map); 5 needs 3 + 4.
 - [ ] Known remaps and drops are lossless in meaning, not just count: `output`→`fill` keeps code + accepted answer in a plain-text template; `_____` markers collapse to `___`; `fill` keeps `accept` as alternatives; coding/practice/framework-challenge land as labs with starter, solution, expected output; dropped lesson `tags` and doc `note` strings are counted in parity assertions, never silent
 - [ ] Old polyglot progress imports once from `prh-progress` with the dp-800 hardening: referential filter vs the installed pack (coding-quiz results land in `completedLabs`, not orphan SRS cards), size bounds, sibling guard key — the donor key is never deleted; silent when the key is absent; idempotent
 - [ ] Full local gate green: `npm run lint && npm test && npm run content:check && npm run build`; CI green on the PR; entry-chunk size delta recorded; pack verified live on the hub's Pages deploy after merge
-- [ ] README layout/unified-platform sections and `docs/unified-learning-hub-plan.md` inventory updated; `ntttrang/polyglot-hub` archived
+- [ ] README layout/unified-platform sections and `docs/unified-learning-hub-plan.md` inventory updated; `ntttrang/polyglot-hub` retired upstream (user deletes after ship)
 
 ## Risks & Mitigations
 
