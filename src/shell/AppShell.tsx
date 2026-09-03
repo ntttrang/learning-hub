@@ -83,7 +83,6 @@ export default function AppShell({ route, children }: AppShellProps) {
     <div className={navOpen ? 'app nav-open' : 'app'}>
       <aside className="rail" aria-label="Hub navigation">
         <a className="brand" href="#/">
-          <img className="star" src="brand/icons/star.svg" alt="" width="34" height="34" />
           <BrandWordmark className="wordmark" />
         </a>
 

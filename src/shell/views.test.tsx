@@ -58,6 +58,13 @@ describe('hub views', () => {
     expect(screen.queryByText('This pack is not in the hub yet')).not.toBeInTheDocument();
   });
 
+  it('uses the GH-600 badge artwork in its workspace header', () => {
+    window.location.hash = '#/subject/gh-600';
+    render(<App />);
+    expect(screen.getByRole('heading', { name: 'GH-600 study hub' })).toBeInTheDocument();
+    expect(document.querySelector('.subject-head img[src="github-agentic.png"]')).toBeInTheDocument();
+  });
+
   it('renders the installed GH-900 workspace with its six content modes', () => {
     window.location.hash = '#/subject/gh-900';
     render(<App />);

@@ -59,7 +59,7 @@ button {
   flex: none;
 }
 .brand .wordmark {
-  height: 30px;
+  height: 48px;
   width: auto;
   color: var(--fg);
 }

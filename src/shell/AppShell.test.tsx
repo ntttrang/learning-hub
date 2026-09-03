@@ -20,8 +20,8 @@ describe('AppShell', () => {
         <p>view</p>
       </AppShell>,
     );
-    expect(screen.getByRole('img', { name: 'Captain Corgi Hub' })).toBeInTheDocument();
-    expect(document.querySelector('img[src="brand/icons/star.svg"]')).not.toBeNull();
+    expect(screen.getByRole('img', { name: 'Captain Corgi Learning Hub' })).toBeInTheDocument();
+    expect(document.querySelector('.brand .wordmark')).not.toBeNull();
   });
 
   it('shows the hub-crew avatar in the rail footer', () => {

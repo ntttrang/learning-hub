@@ -95,20 +95,22 @@ export default function SubjectWorkspace({ subjectId, mode, id, rest }: Workspac
         {subject && (
           <div
             className="badge badge-lg"
-            style={subject.id === 'gh-200' || subject.id === 'dp-800' || subject.id === 'gh-900'
+            style={subject.id === 'gh-200' || subject.id === 'dp-800' || subject.id === 'gh-600' || subject.id === 'gh-900'
               ? undefined
               : { background: accentVar(subject.accent) }}
           >
-            {subject.id === 'gh-200' || subject.id === 'dp-800' || subject.id === 'gh-900' ? (
+            {subject.id === 'gh-200' || subject.id === 'dp-800' || subject.id === 'gh-600' || subject.id === 'gh-900' ? (
               // Relative paths — root-absolute ones 404 under the
               // GitHub Pages /learning-hub/ sub-path.
               <img
                 className="badge-image"
                 src={subject.id === 'dp-800'
                   ? 'sql-ai-developer.jpeg'
-                  : subject.id === 'gh-900'
-                    ? 'github-foundations.svg'
-                    : 'github-actions.svg'}
+                  : subject.id === 'gh-600'
+                    ? 'github-agentic.png'
+                    : subject.id === 'gh-900'
+                      ? 'github-foundations.svg'
+                      : 'github-actions.svg'}
                 alt=""
               />
             ) : (
