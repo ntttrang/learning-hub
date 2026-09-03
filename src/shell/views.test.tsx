@@ -111,7 +111,7 @@ describe('hub views', () => {
 
   it('clicking a subject card navigates to its workspace', async () => {
     render(<App />);
-    fireEvent.click(screen.getByRole('link', { name: 'GH-900' }));
+    fireEvent.click(screen.getByRole('link', { name: 'GH-900, 0% complete' }));
     await waitFor(() =>
       expect(screen.getByRole('heading', { name: 'GH-900 study hub' })).toBeInTheDocument(),
     );

@@ -5,7 +5,9 @@ import ThemeToggle from './ThemeToggle';
 import TopbarSearch from './TopbarSearch';
 import { accentVar, listSubjectCards } from './subjects';
 import { countDueCards } from '../engines/review-queue';
+import { buildSubjectStats } from '../engines/hub-stats';
 import { useSubjectDataStore } from '../engines/subject-store';
+import { loadSubjectWithIndex } from '../content/registry';
 import type { HubRoute } from './router';
 
 interface AppShellProps {
@@ -32,6 +34,25 @@ export default function AppShell({ route, children }: AppShellProps) {
     () => countDueCards(subjectsData, new Date().toISOString()),
     [subjectsData],
   );
+  const subjectProgress = useMemo(() => {
+    const progress = new Map<string, number>();
+    for (const subject of listSubjectCards()) {
+      if (!subject.installed) {
+        progress.set(subject.id, 0);
+        continue;
+      }
+      const stats = buildSubjectStats(
+        loadSubjectWithIndex(subject.id).content,
+        subjectsData[subject.id],
+        new Date().toISOString(),
+      );
+      progress.set(
+        subject.id,
+        stats.lessonsTotal ? Math.round((stats.lessonsDone / stats.lessonsTotal) * 100) : 0,
+      );
+    }
+    return progress;
+  }, [subjectsData]);
 
   // Any navigation closes the mobile drawer.
   useEffect(() => {
@@ -99,9 +120,13 @@ export default function AppShell({ route, children }: AppShellProps) {
               className={active ? 'navi on' : 'navi'}
               href={`#/subject/${subject.id}`}
               aria-current={active ? 'page' : undefined}
+              aria-label={`${subject.code}, ${subjectProgress.get(subject.id) ?? 0}% complete`}
             >
               <span className="pip" style={{ background: accentVar(subject.accent) }} />
               {subject.code}
+              <span className="navi-progress" aria-hidden="true">
+                {subjectProgress.get(subject.id) ?? 0}%
+              </span>
             </a>
           );
         })}

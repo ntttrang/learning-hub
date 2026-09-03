@@ -41,10 +41,21 @@ describe('AppShell', () => {
         <p>view</p>
       </AppShell>,
     );
-    const active = screen.getByRole('link', { name: 'GH-900' });
+    const active = screen.getByRole('link', { name: /GH-900/ });
     expect(active).toHaveClass('on');
     expect(active).toHaveAttribute('aria-current', 'page');
-    expect(screen.getByRole('link', { name: 'DP-800' })).not.toHaveClass('on');
+    expect(screen.getByRole('link', { name: /DP-800/ })).not.toHaveClass('on');
+  });
+
+  it('shows completion percentages on every subject link', () => {
+    render(
+      <AppShell route={{ view: 'home' }}>
+        <p>view</p>
+      </AppShell>,
+    );
+    const subjects = screen.getAllByRole('link', { name: /complete$/ });
+    expect(subjects.length).toBeGreaterThan(0);
+    expect(screen.getByRole('link', { name: /DP-800, 0% complete/ })).toBeInTheDocument();
   });
 
   it('toggles the mobile navigation drawer', () => {
