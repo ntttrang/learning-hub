@@ -127,9 +127,13 @@ export default function HubHome() {
                 <div className="top">
                   <div
                     className="badge"
-                    style={{ background: accentVar(subject.accent) }}
+                    style={subject.id === 'gh-200' ? undefined : { background: accentVar(subject.accent) }}
                   >
-                    {subject.code}
+                    {subject.id === 'gh-200' ? (
+                      <img className="badge-image" src="/github-actions.svg" alt="" />
+                    ) : (
+                      subject.code
+                    )}
                   </div>
                   <div>
                     <h3>{subject.code}</h3>

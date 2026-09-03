@@ -95,9 +95,13 @@ export default function SubjectWorkspace({ subjectId, mode, id, rest }: Workspac
         {subject && (
           <div
             className="badge badge-lg"
-            style={{ background: accentVar(subject.accent) }}
+            style={subject.id === 'gh-200' ? undefined : { background: accentVar(subject.accent) }}
           >
-            {subject.code}
+            {subject.id === 'gh-200' ? (
+              <img className="badge-image" src="/github-actions.svg" alt="" />
+            ) : (
+              subject.code
+            )}
           </div>
         )}
         <div className="head-text">

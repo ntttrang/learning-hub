@@ -1343,12 +1343,18 @@
 }
 .lab-card-head {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-2);
   color: var(--accent);
 }
+.lab-card-head > svg {
+  flex: 0 0 18px;
+  margin-top: 2px;
+}
 .lab-card-title {
+  min-width: 0;
   font-size: 16px;
+  line-height: 1.35;
   font-weight: 800;
   margin: 0;
 }
