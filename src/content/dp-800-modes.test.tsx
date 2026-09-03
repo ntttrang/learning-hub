@@ -170,7 +170,10 @@ describe('dp-800 exam mode', () => {
     }
   }
 
-  it('mock-1 serves its fixed 50-question paper and mounts the case study', () => {
+  // Walks 45 full ExamEngine re-renders — the suite's heaviest test. The
+  // languages pack's eager content glob grew the module graph, which pushed
+  // this past vitest's 5s default on CI hardware; give it explicit headroom.
+  it('mock-1 serves its fixed 50-question paper and mounts the case study', { timeout: 20_000 }, () => {
     render(<ExamEngine subjectId="dp-800" content={content} index={index} examId="mock-1" />);
     // The intro gate: start untimed so no wall-clock deadline arms.
     expect(screen.getByText('Before you begin')).toBeInTheDocument();
