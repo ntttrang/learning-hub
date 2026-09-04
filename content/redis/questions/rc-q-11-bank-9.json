@@ -1,0 +1,35 @@
+{
+  "id": "rc-q-11-bank-9",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "difficulty": "advanced",
+  "kind": "codeReading",
+  "prompt": "An operator runs the availability check below against a database whose status field reads recovery. What comes back?",
+  "explanation": "A database in recovery status is not available: recovery mode means the cluster is still rebuilding it from persistence files, so its primary shards are not serving. The availability probe answers with an error status code plus a JSON body carrying error_code and description. Availability also does not guarantee data availability — serving traffic and trusting the data are different questions.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "availability",
+    "recovery"
+  ],
+  "code": "# bdb:1 status: recovery\n\ncurl -k -u admin@cluster.local:***** \\\n  https://cluster.local:9443/v1/bdbs/1/availability",
+  "options": [
+    {
+      "id": "a",
+      "text": "An error status code with a JSON body containing error_code and description"
+    },
+    {
+      "id": "b",
+      "text": "200 OK, because the endpoint's listener port is still bound"
+    },
+    {
+      "id": "c",
+      "text": "404, because databases in recovery have no REST API object"
+    },
+    {
+      "id": "d",
+      "text": "200 OK with a warning field, because recovery pauses writes but keeps reads serving"
+    }
+  ],
+  "correct": "a"
+}

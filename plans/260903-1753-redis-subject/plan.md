@@ -32,7 +32,7 @@ user decisions: [brainstorm report](../reports/brainstorm-260903-1731-redis-subj
 | # | Phase | Status |
 |---|-------|--------|
 | 1 | [Scaffold + Core + Developer Java Track](./phase-01-start.md) | Done |
-| 2 | [Software Operator Track](./phase-02-software-operator-track.md) | Pending |
+| 2 | [Software Operator Track](./phase-02-software-operator-track.md) | Done |
 | 3 | [Cloud Operator Track + Polish](./phase-03-cloud-operator-track-polish.md) | Pending |
 
 ## Cross-Plan Dependencies

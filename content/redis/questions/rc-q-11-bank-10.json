@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-11-bank-10",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "difficulty": "beginner",
+  "kind": "matching",
+  "prompt": "Match each operator surface to the monitoring or troubleshooting job it belongs to.",
+  "explanation": "The Cluster Manager UI splits the work: alert thresholds are managed under Cluster > Alert Settings, the audit-style event stream lives under Cluster > Logs, and the Support entry in the navigation menu generates the support package. On the node itself, rlcheck runs the node health-check suite, and Cluster > Security > Certificates is where expiring certificates get rotated.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "troubleshooting",
+    "cluster-manager"
+  ],
+  "pairs": [
+    {
+      "left": "Cluster > Alert Settings",
+      "right": "Enable and tune cluster and node alert thresholds"
+    },
+    {
+      "left": "Cluster > Logs",
+      "right": "Review system and user events, including alerts"
+    },
+    {
+      "left": "Support (navigation menu)",
+      "right": "Generate a support package for Redis support"
+    },
+    {
+      "left": "rlcheck",
+      "right": "Run the health-check suite on a node"
+    },
+    {
+      "left": "Cluster > Security > Certificates",
+      "right": "Rotate cluster certificates before they expire"
+    }
+  ]
+}

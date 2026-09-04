@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-09-bank-12",
+  "domainId": "rc-swops-install",
+  "moduleId": "m-swops-install",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "On an Ubuntu host with its default configuration, `./install.sh` aborts before installing anything. Which conflict is the documented cause of this failure?",
+  "explanation": "Redis Software needs UDP port 53 for its DNS/mDNS discovery traffic, and the installation fails when that port is already taken — exactly what Ubuntu's default `systemd-resolved` stub listener (or a local dnsmasq) does, so the stub must be disabled before installing. Port 8443 in use is a UI access problem, not a documented installer failure, mDNS on 5353 is not the documented conflict, and while the ephemeral port range is recommended to start at 30000, a low range is an avoided collision, not the failure called out in the docs.",
+  "tags": [
+    "redis",
+    "install",
+    "ports"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "systemd-resolved's DNS stub listener occupies UDP port 53"
+    },
+    {
+      "id": "b",
+      "text": "Another web application already binds TCP 8443"
+    },
+    {
+      "id": "c",
+      "text": "The OS ephemeral port range starts below 30000"
+    },
+    {
+      "id": "d",
+      "text": "mDNS traffic conflicts on UDP port 5353"
+    }
+  ],
+  "correct": "a"
+}

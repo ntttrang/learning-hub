@@ -1,0 +1,22 @@
+{
+  "id": "rc-q-10-bank-11",
+  "domainId": "rc-swops-cluster",
+  "moduleId": "m-swops-cluster",
+  "difficulty": "intermediate",
+  "kind": "bug",
+  "prompt": "A team planned this cutover runbook for migrating a busy application from a legacy cluster to a new Redis Software cluster using live migration. Which line is the mistake?",
+  "explanation": "Dual-writing during cutover is explicitly not allowed: writes hitting both databases cause them to diverge, and the destination database must never be written to directly while the Replica Of connection is active anyway. The safe cutover is to stop writes to the source, disable the Replica Of connection first, and then redirect clients through the load balancer once — which is what the remaining lines describe.",
+  "tags": [
+    "redis",
+    "live-migration",
+    "replica-of"
+  ],
+  "codeLines": [
+    "# Cutover weekend: move the app from the legacy cluster to the new cluster",
+    "Create the empty database on the new cluster and add the source as its Replica Of source",
+    "Watch the sync status until it reports Synced with a small lag",
+    "Dual-write to both clusters during cutover so no accepted write can be lost",
+    "Disable Replica Of, then redirect clients through the load balancer and remove the source link"
+  ],
+  "buggyLineIndex": 3
+}

@@ -1,0 +1,22 @@
+{
+  "id": "rc-q-11-bank-12",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "difficulty": "advanced",
+  "kind": "bug",
+  "prompt": "The cluster license has expired and an operator follows this runbook. Which line is wrong?",
+  "explanation": "An expired license blocks database changes and the creation of new databases, so line 3 cannot succeed until a valid license is applied. Everything else in the runbook stays legal while expired: you can still sign in and view settings and metrics, change cluster settings — including uploading the new license key — and the cluster keeps serving existing databases.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "troubleshooting",
+    "license"
+  ],
+  "codeLines": [
+    "1. Confirm the expiry with GET /v1/license",
+    "2. Update the key under Cluster > Configuration > General > License",
+    "3. While the license is expired, add a replacement database to absorb failover shards",
+    "4. Save the new key and confirm cluster status looks healthy again"
+  ],
+  "buggyLineIndex": 2
+}

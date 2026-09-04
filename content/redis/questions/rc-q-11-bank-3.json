@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-11-bank-3",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "Clients report connection failures to a database, but its configuration looks intact. Which REST request tells you whether the database can actually serve reads and writes right now?",
+  "explanation": "GET /v1/bdbs/<database_id>/availability performs a real availability probe: the database reports available only if its primary shards are reachable and the endpoint's listener port is bound, and it returns HTTP 200 OK in that case. An error status with error_code and description means something is genuinely broken. The other requests return configuration or change data — they never test the serving path.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "availability",
+    "troubleshooting"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "GET /v1/bdbs/1/availability"
+    },
+    {
+      "id": "b",
+      "text": "GET /v1/bdbs/1"
+    },
+    {
+      "id": "c",
+      "text": "GET /v1/bdbs/1?fields=endpoint"
+    },
+    {
+      "id": "d",
+      "text": "POST /v1/bdbs/1/actions/restart"
+    }
+  ],
+  "correct": "a"
+}

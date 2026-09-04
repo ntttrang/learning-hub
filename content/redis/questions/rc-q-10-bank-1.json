@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-10-bank-1",
+  "domainId": "rc-swops-cluster",
+  "moduleId": "m-swops-cluster",
+  "difficulty": "beginner",
+  "kind": "codeReading",
+  "prompt": "You ran `rladmin status endpoints` and got the output above. Which statement is correct?",
+  "explanation": "Each row of the endpoints table carries an SSL column, and only the sessions endpoint shows Yes, meaning TLS is enabled for it; cart runs unencrypted. The ROLE column is the proxy policy, not TLS, and both databases are clearly listed, so the output is sufficient to answer.",
+  "tags": [
+    "redis",
+    "rladmin",
+    "endpoints"
+  ],
+  "code": "ENDPOINTS:\nDB:ID   NAME        ID             NODE     ROLE     SSL\ndb:2    cart        endpoint:2:1   node:1   single   No\ndb:5    sessions    endpoint:5:1   node:3   single   Yes",
+  "options": [
+    {
+      "id": "a",
+      "text": "The sessions database endpoint has TLS enabled; the cart endpoint does not"
+    },
+    {
+      "id": "b",
+      "text": "Both endpoints have TLS enabled"
+    },
+    {
+      "id": "c",
+      "text": "Neither endpoint has TLS enabled"
+    },
+    {
+      "id": "d",
+      "text": "TLS state cannot be determined from this output"
+    }
+  ],
+  "correct": "a"
+}

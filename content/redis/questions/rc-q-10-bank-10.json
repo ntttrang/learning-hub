@@ -1,0 +1,41 @@
+{
+  "id": "rc-q-10-bank-10",
+  "domainId": "rc-swops-cluster",
+  "moduleId": "m-swops-cluster",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "You are provisioning a new database on a running Redis Software cluster. Which settings can you set per database at creation time?",
+  "explanation": "Each database gets its own memory limit (`memory_size`), its own endpoint port drawn from the 10000-19999 range (or an auto-assigned one if left blank), and its own proxy policy (single, all-master-shards, or all-nodes). The cluster FQDN is a cluster-wide setting that cannot even be changed after cluster creation, and the 20000-29999 shard traffic range is fixed cluster-wide and never per database.",
+  "tags": [
+    "redis",
+    "provisioning",
+    "database-limits"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "The database's memory limit (memory_size)"
+    },
+    {
+      "id": "b",
+      "text": "The database's endpoint port, within the 10000-19999 range"
+    },
+    {
+      "id": "c",
+      "text": "The database's proxy policy (single, all-master-shards, or all-nodes)"
+    },
+    {
+      "id": "d",
+      "text": "The cluster FQDN"
+    },
+    {
+      "id": "e",
+      "text": "The internal shard traffic port range 20000-29999"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

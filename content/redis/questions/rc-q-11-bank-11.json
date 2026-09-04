@@ -1,0 +1,44 @@
+{
+  "id": "rc-q-11-bank-11",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "difficulty": "intermediate",
+  "kind": "order",
+  "prompt": "You are bootstrapping a trial Redis Software cluster in Docker. Arrange the steps in the order you perform them.",
+  "explanation": "The container image starts Redis Software but the cluster does not exist yet: the software runs, you open Cluster Manager on port 8443 and accept the self-signed certificate, create the cluster with admin credentials, name the cluster with an FQDN such as cluster.local, and only then does the node finish setup. The cluster name cannot change after creation.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "troubleshooting",
+    "bootstrap"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "In a browser, open https://localhost:8443 and accept the self-signed certificate warning"
+    },
+    {
+      "id": "b",
+      "text": "Select Create new cluster and enter an email and password for the admin account"
+    },
+    {
+      "id": "c",
+      "text": "Run docker run -d --cap-add sys_resource --name RE -p 8443:8443 -p 9443:9443 -p 12000:12000 redislabs/redis"
+    },
+    {
+      "id": "d",
+      "text": "Enter a cluster FQDN such as cluster.local"
+    },
+    {
+      "id": "e",
+      "text": "Select Create cluster, then OK to acknowledge the HTTPS certificate replacement"
+    }
+  ],
+  "correct": [
+    "c",
+    "a",
+    "b",
+    "d",
+    "e"
+  ]
+}

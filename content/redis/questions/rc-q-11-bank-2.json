@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-11-bank-2",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Which cluster alert fires when two nodes of a six-node cluster are simultaneously unavailable?",
+  "explanation": "The cluster_multiple_nodes_down alert is raised when more than one node is down, because losing several nodes can orphan replica shards and may cause data loss. A single failed node is expected to be handled by replica failover without a data-loss warning, and the even-node-count alert is about cluster topology, not availability.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "alerts",
+    "node-failure"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "multiple_nodes_down — multiple cluster nodes are down and this might cause data loss"
+    },
+    {
+      "id": "b",
+      "text": "even_node_count — true high availability requires an odd number of nodes"
+    },
+    {
+      "id": "c",
+      "text": "too_few_nodes_for_replication — database replication requires at least two nodes"
+    },
+    {
+      "id": "d",
+      "text": "node_failed — a node has failed health checks"
+    }
+  ],
+  "correct": "a"
+}

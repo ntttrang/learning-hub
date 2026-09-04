@@ -1,7 +1,7 @@
 ---
 phase: 2
 title: "Software Operator Track"
-status: todo
+status: done
 priority: "P1"
 effort: "1d"
 dependencies: [1]
@@ -60,16 +60,16 @@ monitoring/troubleshooting), ~3 lessons, ~45 questions, 2-3 labs, and the
 
 ## Todo
 
-- [ ] Verify outline (if deferred) + extend domains/docs/lessons
-- [ ] ~45 swops questions
-- [ ] 2-3 labs
-- [ ] Software Operator mock exam (60q/60min/700)
-- [ ] Gates green + click-through + commit
+- [x] Verify outline (if deferred) + extend domains/docs/lessons
+- [x] ~45 swops questions
+- [x] 2-3 labs
+- [x] Software Operator mock exam (60q/60min/700)
+- [x] Gates green + click-through + commit (commit pending)
 
 ## Success Criteria
 
-- [ ] Gates green; 10 domains total; swops exam samples 60q across core+swops
-- [ ] Content original; Redis Enterprise specifics cited via docs.json links
+- [x] Gates green; 10 domains total (11 delivered: 8 + 3 swops); swops exam samples 60q across core+swops
+- [x] Content original; Redis Enterprise specifics cited via docs.json links
 
 ## Risk Assessment
 
@@ -82,3 +82,51 @@ monitoring/troubleshooting), ~3 lessons, ~45 questions, 2-3 labs, and the
 ## Security Considerations
 
 - No secrets; public docs links only.
+
+## Progress note — 2026-09-04 (phase 2 complete, commit pending)
+
+Structure decision: user chose 3 modules + 3 lessons (1:1 per domain, phase-1
+convention) over the plan's literal "2 modules/domain" — 6-module variants
+either left empty Learn-UI modules or exceeded "~3 lessons".
+
+Authoring delegated to three parallel subagents with per-write jq validation
+(phase-1 output-corruption defense); zero corruption events reached disk.
+Primary-session hand-edits (exam domainPlan, review fixes) were each
+jq-validated immediately.
+
+Delivered on `feat/redis-pack` (uncommitted): domains.json +3 (D9
+rc-swops-install 20-35%, D10 rc-swops-cluster 30-45%, D11 rc-swops-ops 25-40% —
+weights provisional, beta exam weights unpublished), modules.json +3 (codes
+09-11), docs.json created (8-entry docId registry, every URL WebFetch-verified
+on redis.io), 3 flagship JSON lessons, 45 questions (15/domain; kind mix 6
+single/2 multi/2 fill/2 codeReading/1 matching/1 order/1 bug each), labs.json
++3 (bootstrap, backup-restore, alert-triage), exam redis-swops-mock-1
+(60q/60min/700, seed 20260904).
+
+Exam domainPlan fix: the split authored in the primary session (13/16/16)
+exceeded the 15-question swops pools (content:check exam-infeasible); corrected
+to 15/15/15 + core 15 (types 3, keys 1, model 1, perf 2, cluster 3, persist 2,
+security 3) = 60, every count ≤ its pool.
+
+Review: code-reviewer PASS_WITH_MINORS
+([report](../reports/code-reviewer-260904-0854-swops-track.md)); both minors
+fixed post-review — 7 duplicated inline reference entries removed from the 3
+lessons (docIds chips canonical per success criteria; rc-l-09 references now
+[], rc-l-10 keeps create-db + recover, rc-l-11 keeps
+logging/support-package/test-client), and rc-q-09-bank-7's stem now carries
+"starting with the master node" with option b reworded.
+
+Gates after fixes: content:check 5/5 · vitest 613/613 · oxlint clean · build
+(tsc+vite) OK. Six-mode click-through passed on localhost:5173 (Learn lesson +
+graded KC, Labs walkthrough, Practice run, 60q swops exam live with timer,
+Notes/Revision match existing platform behavior). Reviewer info notes (no
+action): 15/15/15 + fixed seed = identical paper every sitting (by design,
+consistent with exam 1); rc-q-11-bank-5's "32,000-user" figure is
+version-coupled.
+
+Agent reports: [manifests/lessons/exam](../reports/agent-260904-0854-swops-manifests-lessons.md)
+· [questions D9-D10](../reports/agent-260904-0854-swops-questions-09-10.md) ·
+[questions D11 + labs](../reports/agent-260904-0854-swops-questions-11-labs.md).
+
+Docs impact: none — content-only addition; README "Installed packs" row is
+Phase 3 scope per plan.

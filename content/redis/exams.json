@@ -19,5 +19,28 @@
       },
       "seed": 20260903
     }
+  },
+  {
+    "id": "redis-swops-mock-1",
+    "title": "Redis Certified Software Operator — Mock Exam 1",
+    "description": "Mirrors the associate Software Operator exam scale — 60 questions, 60 minutes, 70% to pass (scaled 700) — sampling the three operator domains plus a core trimmed toward persistence, HA, and security for an operations focus.",
+    "durationMinutes": 60,
+    "passingScore": 700,
+    "selection": {
+      "kind": "sampled",
+      "domainPlan": {
+        "rc-swops-install": 15,
+        "rc-swops-cluster": 15,
+        "rc-swops-ops": 15,
+        "rc-core-types": 3,
+        "rc-core-keys": 1,
+        "rc-core-model": 1,
+        "rc-core-perf": 2,
+        "rc-core-cluster": 3,
+        "rc-core-persist": 2,
+        "rc-core-security": 3
+      },
+      "seed": 20260904
+    }
   }
 ]

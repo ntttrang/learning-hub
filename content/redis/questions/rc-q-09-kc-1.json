@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-09-kc-1",
+  "domainId": "rc-swops-install",
+  "moduleId": "m-swops-install",
+  "lessonId": "rc-l-09-install-upgrade",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Which port serves the secure REST API of a Redis Software cluster by default?",
+  "explanation": "The REST API listens on port 9443 over HTTPS by default, with 8080 as the optional unencrypted port — both configurable. Port 8443 is the Cluster Manager UI and 8001 is the discovery service, so neither serves the REST API.",
+  "tags": [
+    "redis",
+    "install",
+    "ports"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "9443"
+    },
+    {
+      "id": "b",
+      "text": "8443"
+    },
+    {
+      "id": "c",
+      "text": "8080"
+    },
+    {
+      "id": "d",
+      "text": "8001"
+    }
+  ],
+  "correct": "a"
+}

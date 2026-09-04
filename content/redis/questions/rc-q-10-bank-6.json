@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-10-bank-6",
+  "domainId": "rc-swops-cluster",
+  "moduleId": "m-swops-cluster",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each rladmin command to its effect on a Redis Software cluster.",
+  "explanation": "`status shards` is the read-only view of where every shard lives and what role it plays. `migrate shard ... target_node` relocates one shard, `bind ... policy all-nodes` re-binds the database's endpoint to a proxy on every node, `node 3 remove` retires a node once the cluster has migrated its resources, and `tune db ... repl_backlog` controls the Replica Of replication backlog size.",
+  "tags": [
+    "redis",
+    "rladmin",
+    "cluster-ops"
+  ],
+  "pairs": [
+    {
+      "left": "rladmin status shards",
+      "right": "Show each shard's node, role, and status"
+    },
+    {
+      "left": "rladmin migrate shard 13 target_node 1",
+      "right": "Relocate one shard to another node"
+    },
+    {
+      "left": "rladmin bind db db:1 endpoint 1:1 policy all-nodes",
+      "right": "Re-bind the endpoint to proxies on all nodes"
+    },
+    {
+      "left": "rladmin node 3 remove",
+      "right": "Remove a node after its resources migrate away"
+    },
+    {
+      "left": "rladmin tune db db:1 repl_backlog auto",
+      "right": "Size the Replica Of replication backlog"
+    }
+  ]
+}

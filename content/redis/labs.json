@@ -166,5 +166,153 @@
       "Run TTL product:42 and confirm the countdown started between 300 and 359, proving the jitter from step 5 is live.",
       "Stop the app and confirm pool.close() ran cleanly — redis-cli PING still works, and no connections are left open from your app."
     ]
+  },
+  {
+    "id": "lab-swops-bootstrap",
+    "domainId": "rc-swops-install",
+    "lessonId": "rc-l-09-install-upgrade",
+    "title": "Install Redis Software and bootstrap a trial cluster",
+    "minutes": 40,
+    "difficulty": "beginner",
+    "summary": "Take a Redis Software install from nothing to a signed-in cluster: plan the requirements, run the Docker container, bootstrap a single-node cluster through Cluster Manager, then verify cluster and license state with rladmin and the REST API.",
+    "steps": [
+      {
+        "title": "Plan the install and check the requirements",
+        "instructions": "Redis Software in Docker is supported for development and test only — production containerized deployments run on Kubernetes. Before you install, decide the three things every Redis Software install needs:\n\n1. A host with enough memory — the Docker engine itself needs at least 4 GB allocated.\n2. A management surface: Cluster Manager listens on **8443** (HTTPS) and the REST API on **9443**.\n3. A port plan for database endpoints — production installs draw endpoint ports from 10000-19999.\n\nWrite down which ports you will map before starting the container, so the bootstrap and the client test in later steps both work first time.",
+        "expectedOutput": "A short plan naming the host, the management ports (8443, 9443), and one database endpoint port (this lab uses 12000)."
+      },
+      {
+        "title": "Run the Redis Software container",
+        "instructions": "Download and start the container exactly as the official Docker quickstart does:\n\n```bash\ndocker run -d --cap-add sys_resource --name RE \\\n  -p 8443:8443 -p 9443:9443 -p 12000:12000 \\\n  redislabs/redis\n```\n\n`--cap-add sys_resource` is required by the install. The three `-p` flags publish what you planned in step 1: 8443 for Cluster Manager, 9443 for the REST API, and 12000 for the database you will create. Confirm the container is up with `docker ps` — if it restarts in a loop, check that Docker has at least 4 GB of memory.",
+        "expectedOutput": "`docker ps` shows the RE container running with the three port mappings listed in its PORTS column."
+      },
+      {
+        "title": "Bootstrap the cluster in Cluster Manager",
+        "instructions": "In a browser, open **https://localhost:8443**. The node presents a self-signed certificate, so accept the warning. If the sign-in screen does not appear yet, give the container a few minutes to finish first boot.\n\n1. Select **Create new cluster** (not Sign in — no cluster exists yet).\n2. Enter an email and password for the admin account. The same credentials also work for the REST API later.\n3. Leave the license key empty — a trial license is generated for you.\n4. In the configuration step, enter a cluster FQDN such as `cluster.local`, then select **Next**. The FQDN cannot be changed after creation, and `cluster.local` skips DNS configuration.\n5. On the node setup screen, accept the defaults and select **Create cluster**, then **OK** to acknowledge the HTTPS certificate replacement.\n\nWhen the Databases screen appears, the single-node cluster is bootstrapped and you are signed in to Cluster Manager.",
+        "expectedOutput": "The Cluster Manager Databases screen renders with no cluster warnings, and the status icon in the header is healthy.",
+        "hint": "Signed in but everything looks read-only? Check whether you landed on the sign-in screen instead of Create new cluster — a cluster that was never bootstrapped has no users to sign in with."
+      },
+      {
+        "title": "Verify cluster and node health with rladmin",
+        "instructions": "Every Redis Software install ships the command-line tools in `/opt/redislabs/bin`. Open a shell inside the container and look at the cluster from the operator's side:\n\n```bash\ndocker exec -it RE bash\nrladmin status\n```\n\n`rladmin status` prints the cluster name, the node table (one node, roles `master`), and the databases table — empty for now. Two more quick checks round out the picture:\n\n```bash\nrladmin status nodes\nrlcheck\n```\n\n`status nodes` narrows the view to node health, and `rlcheck` runs the node health-check suite and reports any issues it finds. Both should come back clean on a fresh single-node cluster.",
+        "expectedOutput": "A status table listing node 1 with role master and the cluster FQDN you chose, followed by rlcheck's list of passed checks.",
+        "hint": "If bash says `rladmin: command not found`, run `/opt/redislabs/bin/rladmin status` — the bin directory is not always on PATH for non-login shells."
+      },
+      {
+        "title": "Confirm the license state and finish with a database",
+        "instructions": "Finish by reading the license the cluster generated for itself, from the REST API on port 9443:\n\n```bash\nexit\ncurl -k -u \"admin@cluster.local:<your-password>\" \\\n  https://localhost:9443/v1/license | jq\n```\n\nThe response shows the trial license: it expires 30 days after bootstrap and allows 4 shards. Note the expiry date — watching license expiry is a real operator task, and Cluster Manager raises a license-expiration alert 7 days before the date by default.\n\nTo leave the lab with something serving traffic, create a database: in Cluster Manager select **Quick database**, enter **12000** for the port, and select **Create**. Wait for **Database active**, then from the host:\n\n```bash\nredis-cli -h localhost -p 12000 PING\n```\n\nYou should get PONG — install, bootstrap, and first database all verified.",
+        "expectedOutput": "A license JSON with an expiration_date about 30 days out and shard_limit 4, followed by PONG from the database on port 12000.",
+        "hint": "If database activation fails on memory, Docker's 4 GB minimum is usually the cause — check Docker's memory allocation."
+      }
+    ],
+    "outcomes": [
+      "You can plan a Redis Software install (ports 8443, 9443, and a 10000-19999 endpoint port), run it in Docker, and bootstrap a single-node cluster through Cluster Manager, choosing admin credentials and a cluster FQDN you know are permanent.",
+      "You can verify a fresh cluster from the operator's toolset: rladmin status for topology, rlcheck for node health, and GET /v1/license for the trial license's 30-day and 4-shard limits."
+    ],
+    "checks": [
+      "Recreate the cluster's bootstrap summary from memory: which ports serve Cluster Manager and the REST API, and why can the cluster FQDN not be changed later?",
+      "Run rladmin status again after creating the quick database and confirm the databases table now lists one database on port 12000 with status OK.",
+      "Explain to a colleague what changes on day 31 of the trial: which alert fires, and which two actions the expired license blocks?"
+    ]
+  },
+  {
+    "id": "lab-swops-backup-restore",
+    "domainId": "rc-swops-cluster",
+    "lessonId": "rc-l-10-cluster-db-ops",
+    "title": "Back up and restore a Redis Software database",
+    "minutes": 40,
+    "difficulty": "intermediate",
+    "summary": "Prove the durability story on your own cluster: create a database with real durability settings, export an on-demand backup, restore it through import and verify the data survived, then schedule periodic backups and check them from the CLI.",
+    "steps": [
+      {
+        "title": "Create a database with durability settings",
+        "instructions": "In Cluster Manager, create a **Quick database** on port 12000 (reusing the lab cluster from lab-swops-bootstrap, or your own install). Once it is active, open the database and select **Configuration**, then **Edit**, and expand the **Durability** section.\n\nSet **Persistence** to `Append-only file (AOF) - fsync every 1 sec` and select **Save**. You have six persistence options: none, AOF with fsync every write or every second, and snapshots every 1, 6, or 12 hours — AOF every second is the classic balance of durability and performance, risking roughly one second of writes on failure.\n\nAlso notice **Replication** in the same section: on this single-node trial cluster you cannot enable it — database replication requires at least two nodes, and the cluster warns you to that effect. With AOF plus replication on a production cluster, the replica handles persistence so the fsync cost lands off the primary.",
+        "expectedOutput": "The database Configuration screen shows persistence `AOF - every 1 second`, and replication stays off with a note that at least two nodes are required.",
+        "hint": "Changing persistence is dynamic, but the switch can take time on a database that already holds data — empty lab databases switch instantly."
+      },
+      {
+        "title": "Load baseline data you can later verify",
+        "instructions": "Put a small, countable dataset into the database from redis-cli inside the container:\n\n```bash\ndocker exec -it RE redis-cli -p 12000\n```\n\n```redis\nSET restore:marker \"backup-lab-2024\"\nMSET user:1 ada user:2 grace user:3 alan\nDBSIZE\n```\n\nNote the DBSIZE value and the marker value — they are your proof of a successful restore later. Leave redis-cli with `exit` or `quit` when done.",
+        "expectedOutput": "OK / OK replies from the SET and MSET, and an integer DBSIZE of at least 4."
+      },
+      {
+        "title": "Export an on-demand backup",
+        "instructions": "The on-demand copy of a database is an **Export**. First prepare a storage location the `redislabs` user can write to — on the container node, a plain directory acts as the local mount point:\n\n```bash\ndocker exec -it RE bash -c \"mkdir -p /mnt/backups && chown redislabs:redislabs /mnt/backups\"\n```\n\nBack in Cluster Manager: select the database, open **Configuration**, click the additional-actions menu (the vertical dots), and choose **Export**. Select the **Local mount point** tab, enter `/mnt/backups` as the path, and select **Export**.\n\nExport is a two-step copy: it first writes a temporary copy on the node's local storage, then transfers it to the destination — and it fails if there is not enough space for either step. When it completes, confirm the file exists:\n\n```bash\ndocker exec -it RE ls -lh /mnt/backups\n```\n\nYou should see a compressed `.rdb.gz` file named after the database.",
+        "expectedOutput": "The Export action reports success, and /mnt/backups contains a .rdb.gz backup file."
+      },
+      {
+        "title": "Restore the database from the backup",
+        "instructions": "Simulate data loss, then put the backup back. First destroy the dataset:\n\n```redis\nFLUSHDB\nDBSIZE\n```\n\nNow import the backup: select the database, open **Configuration**, click the additional-actions menu, and choose **Import**. Select the **Local mount point** tab, enter the path of your exported file — `/mnt/backups/<database-filename>.rdb.gz` — and select **Import**.\n\nRead the confirmation carefully before accepting: importing erases all existing content in the database, which is exactly why you ran FLUSHDB first. When the import finishes, reconnect with redis-cli and verify:\n\n```redis\nGET restore:marker\nMGET user:1 user:2 user:3\nDBSIZE\n```\n\nThe marker and all three users are back, and DBSIZE matches the baseline from step 2 — the backup round-trip is proven.",
+        "expectedOutput": "GET returns \"backup-lab-2024\", the MGET returns all three names, and DBSIZE matches the value you recorded before the flush.",
+        "hint": "Importing a clustered database's backup takes one file per shard — the UI accepts multiple paths for exactly this case."
+      },
+      {
+        "title": "Schedule a periodic backup",
+        "instructions": "On-demand exports do not repeat; recurring backups are the **Scheduled backup** in the same Durability section you used in step 1. Select **Edit**, expand **Durability**, and under **Scheduled backup** click **Add backup path**. Choose the **Local mount point** tab and enter `/mnt/backups`, then set the **Interval** — the supported values are every 24 hours, 12 hours, 4 hours, or every hour — and **Save**.\n\nAccess to the storage location is verified when you save, so a bad path or missing permissions fails here rather than silently at backup time. If you do not set a start time for 24- or 12-hour backups, the cluster picks a staggered random offset in UTC; a trigger process checks every five minutes and starts the backup when the scheduled time has passed, retrying after failures.\n\nEach periodic backup writes a fresh timestamped `.rdb.gz` into `/mnt/backups` — earlier backups are never overwritten. Periodic backups are full copies, not incrementals; between them, continuous durability comes from the AOF persistence you configured in step 1.",
+        "expectedOutput": "The Scheduled backup section shows the path /mnt/backups with your chosen interval, and the configuration saves without a storage-verification error."
+      },
+      {
+        "title": "Check backup status from the CLI",
+        "instructions": "Operators do not live in the UI. From inside the container (`docker exec -it RE bash`), check the backup state of every database at once:\n\n```bash\nrladmin status extra backups\n```\n\nThe databases table now includes backup columns showing when each database last backed up. Then look at where durability actually lives on disk:\n\n```bash\nls -lh /var/opt/redislabs/persist\n```\n\n`/var/opt/redislabs` is the default home for cluster data — persistence files, logs, and backups — and `/var/opt/redislabs/persist` holds the database's AOF and snapshot files. If a backup ever falls behind, the database raises the backup_delayed alert; if a backup fails outright, a backup_failed event lands in the log under Cluster > Logs.",
+        "expectedOutput": "rladmin status extra backups lists your database with a recent backup timestamp, and the persist directory shows the AOF file growing as you write.",
+        "hint": "Watching the AOF file? Run a few SETs in redis-cli and re-run ls -lh — the append-only file grows immediately, which is the fsync-every-second policy doing its job."
+      }
+    ],
+    "outcomes": [
+      "You can create a Redis Software database with a deliberate durability posture — AOF fsync policy, snapshot interval, and replication (when the node count allows it) — and explain what each choice costs.",
+      "You can take an on-demand export, restore it through import with full knowledge that import erases the database, verify the restored data, and then schedule and monitor periodic backups from both the UI and rladmin."
+    ],
+    "checks": [
+      "Restore verification: your GET restore:marker after import returns the exact baseline value, and DBSIZE matches step 2 — write down both numbers.",
+      "Run rladmin status extra backups and read the backup columns aloud: database name, last backup time, and status.",
+      "Explain the difference between what protected you in the first minute after FLUSHDB (nothing — the import restored it) and what AOF persistence would have protected against."
+    ]
+  },
+  {
+    "id": "lab-swops-alert-triage",
+    "domainId": "rc-swops-ops",
+    "lessonId": "rc-l-11-monitoring-troubleshooting",
+    "title": "Alert triage on a Redis Software cluster",
+    "minutes": 35,
+    "difficulty": "intermediate",
+    "summary": "Work the monitoring loop end to end: find the metrics in Cluster Manager and over the Prometheus endpoint, switch on alerts, read a node's logs, generate a support bundle, then walk the memory-pressure playbook from alert to remediation.",
+    "steps": [
+      {
+        "title": "Find the metrics surfaces",
+        "instructions": "Keep using the lab cluster from the previous labs. Two surfaces show you metrics:\n\n**Cluster Manager.** Select a database and open its **Overview** — live throughput, memory, and latency at a glance; the cluster screens under **Cluster** show the same at node level. This is the built-in view.\n\n**Prometheus.** Every node runs a metrics exporter on port 8070. From inside the container:\n\n```bash\ndocker exec -it RE bash\ncurl -sk https://localhost:8070/v2 | head -n 10\n```\n\nThe v2 endpoint (the metrics stream engine) is cluster-wide: it aggregates every node's metrics, which is why a Prometheus deployment points at a single target. Metrics come back at cluster, node, database, shard, and proxy levels, in Prometheus exposition format. If the response asks for credentials, repeat the curl with `-u \"<admin-email>:<password>\"`.",
+        "expectedOutput": "A stream of Prometheus-style metric lines such as node and database gauges from the :8070/v2 endpoint, plus live graphs on the database Overview screen.",
+        "hint": "The deprecated v1 endpoint answered on the same port at / — if you meet an old scraping config in the wild, that is what it targets."
+      },
+      {
+        "title": "Turn on alerts",
+        "instructions": "Alerts are opt-in. In Cluster Manager go to **Cluster > Alert Settings**, click **Edit**, and enable the node memory alert along with the persistent-storage alert, then **Save**. Configured alerts surface three ways: a notification on the status icon, an entry in the log, and email — if you configure the email server settings on the same screen.\n\nPer-database alerts live on the database: open its **Configuration**, click **Edit**, expand the **Alerts** section, and enable the dataset-size alert, which fires when the dataset reaches a threshold percentage of the database's memory limit.\n\nNote what was already on: a fresh cluster enables cluster_license_about_to_expire by default (7 days before expiry) and the user-count alert at 90% of the user limit. Capacity and node-health alerts like the ones you just enabled start disabled.",
+        "expectedOutput": "Cluster > Alert Settings shows node memory and persistent storage enabled, and the database's Alerts section shows the dataset-size alert enabled."
+      },
+      {
+        "title": "Read the logs",
+        "instructions": "When an alert fires, the log is your first stop. In Cluster Manager, **Cluster > Logs** shows system and user events — alerts, notifications, and configuration actions with who did what and when. Filter for the events you just generated.\n\nThen read the same stream from the server side:\n\n```bash\ndocker exec -it RE bash\ntail -n 20 /var/opt/redislabs/log/event_log.log\n```\n\nServer logs live under `/var/opt/redislabs/log/` by default, and `event_log.log` is the file operators open most: it records the configuration actions and events happening inside the cluster. Make a trivial change in the UI (edit and re-save the database's description), re-run the tail, and find the matching event — that closed loop is what makes the log readable when something real breaks.",
+        "expectedOutput": "The Cluster > Logs screen lists your recent actions, and tail shows the same events arriving in event_log.log."
+      },
+      {
+        "title": "Generate a support bundle",
+        "instructions": "Before you ever open a support case, you will be asked for a support package. From the Cluster Manager navigation menu, select **Support**, click **Proceed**, and in the **Generate support package** dialog pick **Full package including all nodes and databases**, then **Generate package**. The cluster gathers configuration and logs — it takes several minutes and adds load, which is why you do not do this casually — and your browser downloads the result as `debuginfo.tar.gz`.\n\nThe UI is not always reachable, so learn the CLI fallback on any node:\n\n```bash\nrladmin cluster debug_info\n```\n\nThe path to the finished archive prints in the command output. (If it fails for lack of space in /tmp, move the storage location with `rladmin cluster config debuginfo_path <path>` and retry.) Inside a package you find per-node `node_<uid>.rladmin` status snapshots, system info, logs, and per-database INFO output — the full state support needs, without you touching anything else.",
+        "expectedOutput": "A debuginfo.tar.gz downloaded by the browser, and the CLI run printing the path to its own archive."
+      },
+      {
+        "title": "Walk the memory-pressure playbook",
+        "instructions": "Now connect alert to action. Scenario: the node memory alert fires — \"Node memory has reached <threshold>% of its capacity\". Work the checks in order:\n\n1. **Scope it.** `rladmin status` and the cluster screens in Cluster Manager: is memory concentrated on one node? Is the cluster close to its RAM overcommit limit — capacity committed to databases larger than the cluster's actual RAM?\n2. **Find the database.** Which database grew? Its dataset-size alert reads \"Dataset size has reached <threshold>% of the memory limit\", and the Overview screen shows the growth curve.\n3. **Check the policy.** Open the database's Configuration: what is the eviction policy? `volatile-lru` is the default and evicts only keys that have a TTL, so a dataset of permanent keys never shrinks; `noeviction` rejects new writes at the limit instead — clients see errors, memory stays flat.\n4. **Decide the remediation.** For a cache: keys without TTLs are the bug — add expirations, or switch the policy to an allkeys variant if every key is evictable. For a system of record: raise the database's memory limit, and if the cluster cannot fund it, that is a capacity decision, not a database tweak.\n\nWrite the four answers (scope, database, policy, decision) into your runbook notes — this exact sequence is the memory-pressure playbook.",
+        "expectedOutput": "A short written triage note with the four playbook answers, based on your lab database's real values.",
+        "hint": "To see eviction choose violence safely, point a scratch cache database at a small memory limit with allkeys-lru, fill it with SETs, and watch the key count plateau while writes keep succeeding."
+      }
+    ],
+    "outcomes": [
+      "You can find a Redis Software cluster's metrics in both first-party surfaces — the Cluster Manager screens and the cluster-wide :8070/v2 Prometheus endpoint — and say which alerts are on by default versus which you enabled.",
+      "You can run the monitoring-to-remediation loop: read events from Cluster > Logs and event_log.log, produce a support package from the UI and rladmin, and walk a memory-pressure alert through scope, locate, policy-check, and remediate."
+    ],
+    "checks": [
+      "Point to the evidence: which screen and which log line show the configuration change you made in step 3?",
+      "Name the two alerts that a fresh cluster enables by default and their default thresholds — then explain why the node memory alert was not among them.",
+      "Your support package exists twice: once as debuginfo.tar.gz from the UI and once from rladmin cluster debug_info. List two things you would expect to find inside node_<uid>.rladmin."
+    ]
   }
 ]

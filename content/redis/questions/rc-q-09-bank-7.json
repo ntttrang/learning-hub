@@ -1,0 +1,43 @@
+{
+  "id": "rc-q-09-bank-7",
+  "domainId": "rc-swops-install",
+  "moduleId": "m-swops-install",
+  "difficulty": "advanced",
+  "kind": "order",
+  "prompt": "Arrange the steps of an in-place Redis Software cluster upgrade performed one node at a time, starting with the master node.",
+  "explanation": "Every node gets a pre-check (rlcheck plus rladmin status extra all), then the new package is extracted and `sudo ./install.sh` re-run — the script detects the existing installation and upgrades in place. The node is re-verified before moving on, and the cluster's master node is upgraded first. Upgrading all nodes at once, or skipping the per-node health checks, is what the upgrade procedure is designed to prevent.",
+  "tags": [
+    "redis",
+    "upgrade",
+    "in-place"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Run rlcheck and rladmin status extra all; do not proceed while anything is not OK"
+    },
+    {
+      "id": "b",
+      "text": "Repeat for every remaining node, one at a time"
+    },
+    {
+      "id": "c",
+      "text": "Re-verify the node with rlcheck and rladmin status extra all"
+    },
+    {
+      "id": "d",
+      "text": "Extract the downloaded installation package with tar vxf"
+    },
+    {
+      "id": "e",
+      "text": "Run sudo ./install.sh, which detects the existing installation and upgrades it"
+    }
+  ],
+  "correct": [
+    "a",
+    "d",
+    "e",
+    "c",
+    "b"
+  ]
+}

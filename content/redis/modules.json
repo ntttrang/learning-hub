@@ -6,5 +6,8 @@
 {"id":"m-clustering-ha","domainId":"rc-core-cluster","order":5,"code":"05","title":"Replication, HA & clustering","summary":"REPLICAOF, Sentinel, hash slots, hash tags, MOVED/ASK redirects, resharding."},
 {"id":"m-persistence","domainId":"rc-core-persist","order":6,"code":"06","title":"Persistence & durability","summary":"RDB, AOF, rewrite, hybrid, restart behavior."},
 {"id":"m-security-config","domainId":"rc-core-security","order":7,"code":"07","title":"Security & configuration","summary":"ACL, TLS, exposure, maxmemory + eviction, lazy freeing."},
-{"id":"m-java-clients","domainId":"rc-dev-java","order":8,"code":"08","title":"Java clients & app patterns","summary":"Jedis/Lettuce/Redisson, pooling, pipelines, cache-aside, streams."}
+{"id":"m-java-clients","domainId":"rc-dev-java","order":8,"code":"08","title":"Java clients & app patterns","summary":"Jedis/Lettuce/Redisson, pooling, pipelines, cache-aside, streams."},
+{"id":"m-swops-install","domainId":"rc-swops-install","order":9,"code":"09","title":"Redis Software install & upgrade","summary":"Plan, bootstrap, license, certificate, upgrade, and patch a Redis Software cluster."},
+{"id":"m-swops-cluster","domainId":"rc-swops-cluster","order":10,"code":"10","title":"Cluster & database operations","summary":"Operate nodes, racks, DMC, databases, endpoints, backups, and migrations day to day."},
+{"id":"m-swops-ops","domainId":"rc-swops-ops","order":11,"code":"11","title":"Monitoring & troubleshooting","summary":"Watch metrics and alerts, read logs, drive the job scheduler, and run failure playbooks."}
 ]

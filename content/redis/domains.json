@@ -62,5 +62,29 @@
     "title": "Java clients & application patterns",
     "weight": { "min": 8, "max": 14 },
     "summary": "Jedis, Lettuce and Redisson trade-offs, connection pooling, serialization, pipelines and transactions from Java, plus cache-aside, sessions, rate limiting and streams in services."
+  },
+  {
+    "id": "rc-swops-install",
+    "order": 9,
+    "code": "D9",
+    "title": "Redis Software install & upgrade",
+    "weight": { "min": 20, "max": 35 },
+    "summary": "Redis Software (Enterprise) requirements, cluster bootstrap, licenses, certificates, rolling upgrades and software security patches."
+  },
+  {
+    "id": "rc-swops-cluster",
+    "order": 10,
+    "code": "D10",
+    "title": "Cluster & database operations",
+    "weight": { "min": 30, "max": 45 },
+    "summary": "Cluster lifecycle with the Cluster Manager and rladmin — node add/remove, rack awareness, DMC/proxy, database provisioning and limits, endpoints, backup/restore, and live migration."
+  },
+  {
+    "id": "rc-swops-ops",
+    "order": 11,
+    "code": "D11",
+    "title": "Monitoring & troubleshooting",
+    "weight": { "min": 25, "max": 40 },
+    "summary": "Metrics and alerts, logs, the job scheduler, support bundles, and the common failure playbooks an operator runs day to day."
   }
 ]

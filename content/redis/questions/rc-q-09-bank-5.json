@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-09-bank-5",
+  "domainId": "rc-swops-install",
+  "moduleId": "m-swops-install",
+  "difficulty": "intermediate",
+  "kind": "codeReading",
+  "prompt": "You run `rladmin status nodes` on one node of a three-node cluster and see the output above. Which statement is correct?",
+  "explanation": "In `rladmin status` output the asterisk marks the node you are connected to, so the session is on node:2, and the ROLE column shows it is a secondary (slave) node. node:1 holds the master role but the asterisk sits on node:2, node:3 is fine with zero shards (a node can simply host no shards), and nothing in the output indicates maintenance mode — a node in maintenance shows a 0/0 shards value.",
+  "tags": [
+    "redis",
+    "rladmin",
+    "status"
+  ],
+  "code": "CLUSTER NODES:\nNODE:ID   ROLE     ADDRESS       HOSTNAME      SHARDS   STATUS\nnode:1    master   172.17.0.2    rp1_node1     2/100    OK\n*node:2   slave    172.17.0.4    rp2_node1     2/100    OK\nnode:3    slave    172.17.0.3    rp3_node1     0/100    OK",
+  "options": [
+    {
+      "id": "a",
+      "text": "You are connected to node:2, which is currently a secondary (slave) node"
+    },
+    {
+      "id": "b",
+      "text": "You are connected to node:1, the cluster master"
+    },
+    {
+      "id": "c",
+      "text": "node:3 is unhealthy because it hosts no shards"
+    },
+    {
+      "id": "d",
+      "text": "node:1 has been placed in maintenance mode"
+    }
+  ],
+  "correct": "a"
+}

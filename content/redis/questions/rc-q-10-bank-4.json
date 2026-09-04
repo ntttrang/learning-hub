@@ -1,0 +1,43 @@
+{
+  "id": "rc-q-10-bank-4",
+  "domainId": "rc-swops-cluster",
+  "moduleId": "m-swops-cluster",
+  "difficulty": "advanced",
+  "kind": "order",
+  "prompt": "You are replacing a healthy node 2 with a larger replacement. Arrange the operational steps in the right order.",
+  "explanation": "The documented replace-a-healthy-node flow is: add the new node first, migrate the old node's shards to it, confirm the new placement, remove the old node, and finally verify cluster health. Removing the node before its resources are relocated, or skipping the post-change verification, breaks the high-availability guarantee the sequence is built to preserve.",
+  "tags": [
+    "redis",
+    "node-ops",
+    "rladmin"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Migrate the shards off the old node to the replacement"
+    },
+    {
+      "id": "b",
+      "text": "Verify the cluster afterwards with rlcheck and rladmin status"
+    },
+    {
+      "id": "c",
+      "text": "Add the replacement node with rladmin cluster join"
+    },
+    {
+      "id": "d",
+      "text": "Remove the old node with rladmin node 2 remove"
+    },
+    {
+      "id": "e",
+      "text": "Confirm the new placement with rladmin status shards"
+    }
+  ],
+  "correct": [
+    "c",
+    "a",
+    "e",
+    "d",
+    "b"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-09-bank-10",
+  "domainId": "rc-swops-install",
+  "moduleId": "m-swops-install",
+  "difficulty": "advanced",
+  "kind": "single",
+  "prompt": "The cluster software is fully upgraded to a newer Redis Software release, but `rladmin status` still reports each database's previous Redis version. Which command upgrades database db:1 itself?",
+  "explanation": "The cluster upgrade only replaces the platform binaries; each database keeps running its old Redis version until you upgrade it explicitly with `rladmin upgrade db db:1` (optionally pinning a version with `redis_version`). Tuning `redis_upgrade_policy` only changes which version new or upgraded databases get by default, `restart` just bounces the database processes on the same version, and re-running the install script upgrades the node's software, not the databases.",
+  "tags": [
+    "redis",
+    "upgrade",
+    "rladmin"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "rladmin upgrade db db:1"
+    },
+    {
+      "id": "b",
+      "text": "rladmin tune cluster redis_upgrade_policy latest"
+    },
+    {
+      "id": "c",
+      "text": "rladmin restart db db:1"
+    },
+    {
+      "id": "d",
+      "text": "sudo ./install.sh -y"
+    }
+  ],
+  "correct": "a"
+}

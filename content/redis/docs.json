@@ -1,0 +1,34 @@
+{
+  "rs-install": {
+    "title": "Plan Redis Software deployment",
+    "url": "https://redis.io/docs/latest/operate/rs/installing-upgrading/install/plan-deployment/"
+  },
+  "rs-bootstrap": {
+    "title": "Set up a new cluster",
+    "url": "https://redis.io/docs/latest/operate/rs/clusters/new-cluster-setup/"
+  },
+  "rs-licenses": {
+    "title": "Cluster license keys",
+    "url": "https://redis.io/docs/latest/operate/rs/clusters/configure/license-keys/"
+  },
+  "rs-certificates": {
+    "title": "Certificates",
+    "url": "https://redis.io/docs/latest/operate/rs/security/certificates/"
+  },
+  "rs-upgrades": {
+    "title": "Upgrade a Redis Software cluster",
+    "url": "https://redis.io/docs/latest/operate/rs/installing-upgrading/upgrading/upgrade-cluster/"
+  },
+  "rs-rladmin": {
+    "title": "rladmin",
+    "url": "https://redis.io/docs/latest/operate/rs/references/cli-utilities/rladmin/"
+  },
+  "rs-backup-restore": {
+    "title": "Schedule periodic backups",
+    "url": "https://redis.io/docs/latest/operate/rs/databases/import-export/schedule-backups/"
+  },
+  "rs-monitoring-alerts": {
+    "title": "Monitoring with metrics and alerts",
+    "url": "https://redis.io/docs/latest/operate/rs/monitoring/"
+  }
+}

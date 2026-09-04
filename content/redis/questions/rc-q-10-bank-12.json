@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-10-bank-12",
+  "domainId": "rc-swops-cluster",
+  "moduleId": "m-swops-cluster",
+  "difficulty": "advanced",
+  "kind": "single",
+  "prompt": "A live migration has reached the cutover point: the destination database on the new cluster reports Synced with minimal lag. Before you direct production write traffic to the destination, what must you do with the Replica Of connection?",
+  "explanation": "The connection must be disabled or removed before clients are pointed at the destination — failing over to a destination with Replica Of still active risks a full sync that flushes the destination and overwrites your data with a fresh copy from the source. Leaving it running to 'catch up late writes' is exactly the hazard, reversing the replication direction is a rollback consideration rather than a cutover prerequisite, and the cluster never stops the sync on its own at cutover.",
+  "tags": [
+    "redis",
+    "live-migration",
+    "replica-of"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Disable or remove the Replica Of connection first"
+    },
+    {
+      "id": "b",
+      "text": "Leave it running so any writes accepted after the cutover sync across"
+    },
+    {
+      "id": "c",
+      "text": "Reverse it, making the old source a replica of the destination, before cutover"
+    },
+    {
+      "id": "d",
+      "text": "Nothing — the cluster automatically ends synchronization when clients move"
+    }
+  ],
+  "correct": "a"
+}

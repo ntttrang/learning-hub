@@ -1,0 +1,20 @@
+{
+  "id": "rc-q-10-bank-7",
+  "domainId": "rc-swops-cluster",
+  "moduleId": "m-swops-cluster",
+  "difficulty": "intermediate",
+  "kind": "fill",
+  "prompt": "Complete the command that changes a database endpoint's proxy policy.",
+  "explanation": "`rladmin bind db db:1 endpoint 1:1 policy all-nodes` binds the endpoint to the proxies on all nodes, spreading incoming traffic across the cluster. `migrate` moves shards or endpoints between nodes, `tune` adjusts numeric or policy parameters, and `placement` sets the shard placement policy — none of them change which proxies are bound to an endpoint.",
+  "tags": [
+    "redis",
+    "proxy-policy",
+    "rladmin"
+  ],
+  "template": "To put an active proxy on every node for the sessions database, run: rladmin ___ db db:1 endpoint 1:1 policy all-nodes",
+  "blanks": [
+    {
+      "answer": "bind"
+    }
+  ]
+}

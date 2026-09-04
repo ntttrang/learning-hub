@@ -1,0 +1,21 @@
+{
+  "id": "rc-q-11-bank-7",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "difficulty": "intermediate",
+  "kind": "fill",
+  "prompt": "Complete the rladmin command that lists every task currently running on the cluster, such as an in-progress backup or shard migration.",
+  "explanation": "rladmin cluster running_actions lists all active tasks, which is the quickest way to see what the cluster's background work — the kind of work the job scheduler kicks off — is doing right now before you schedule maintenance or wonder why a backup is still pending.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "troubleshooting",
+    "rladmin"
+  ],
+  "template": "rladmin cluster ___",
+  "blanks": [
+    {
+      "answer": "running_actions"
+    }
+  ]
+}

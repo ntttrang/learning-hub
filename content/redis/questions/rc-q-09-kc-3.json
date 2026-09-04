@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-09-kc-3",
+  "domainId": "rc-swops-install",
+  "moduleId": "m-swops-install",
+  "lessonId": "rc-l-09-install-upgrade",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "Before starting a Redis Software cluster upgrade, which check should pass with no issues on every node?",
+  "explanation": "The upgrade prerequisites call for running `rlcheck` on each node and confirming there are no issues, alongside checking that no node sits in maintenance mode and that the databases run a version supported by the target. `rladmin status` complements rlcheck but the per-node verification utility is rlcheck, `verify` reports on cluster settings such as rack collisions rather than upgrade readiness, and `supervisorctl restart cnm_exec` is an action, not a check.",
+  "tags": [
+    "redis",
+    "upgrade",
+    "rlcheck"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "rlcheck"
+    },
+    {
+      "id": "b",
+      "text": "rladmin status modules"
+    },
+    {
+      "id": "c",
+      "text": "rladmin verify"
+    },
+    {
+      "id": "d",
+      "text": "supervisorctl restart cnm_exec"
+    }
+  ],
+  "correct": "a"
+}
