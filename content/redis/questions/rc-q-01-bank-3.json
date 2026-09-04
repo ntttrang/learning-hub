@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-01-bank-3",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "difficulty": "advanced",
+  "kind": "single",
+  "prompt": "leaderboard maps players to scores. On Redis 6.2 or newer, which call returns the ten highest-scoring players, best first?",
+  "explanation": "ZRANGE with the REV option walks the sorted set from highest score to lowest, so ranks 0 through 9 are the ten best players. Without REV the range starts at the lowest score, and ZRANGEBYSCORE filters by score value rather than by rank. ZREVRANGE is the pre-6.2 spelling of the same reversed read.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "sorted-sets"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "ZRANGE leaderboard 0 9 REV"
+    },
+    {
+      "id": "b",
+      "text": "ZRANGE leaderboard 0 9"
+    },
+    {
+      "id": "c",
+      "text": "ZRANGEBYSCORE leaderboard 0 9"
+    },
+    {
+      "id": "d",
+      "text": "ZRANGEBYSCORE leaderboard +inf REV"
+    }
+  ],
+  "correct": "a"
+}

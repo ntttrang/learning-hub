@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-04-bank-4",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which commands are O(N) and can stall a busy server when the collection or keyspace is large?",
+  "explanation": "Everything that walks a whole collection or the whole keyspace is O(N): KEYS scans the keyspace, SMEMBERS serialises every member, and HGETALL serialises every field. GET reads one value and stays O(1) no matter how big the keyspace is.",
+  "tags": [
+    "redis",
+    "performance",
+    "complexity"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "KEYS pattern"
+    },
+    {
+      "id": "b",
+      "text": "SMEMBERS on a set with one million members"
+    },
+    {
+      "id": "c",
+      "text": "GET on a single large string value"
+    },
+    {
+      "id": "d",
+      "text": "HGETALL on a hash with five hundred thousand fields"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

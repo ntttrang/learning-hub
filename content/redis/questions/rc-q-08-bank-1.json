@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-08-bank-1",
+  "domainId": "rc-dev-java",
+  "moduleId": "m-java-clients",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "A Java service limits each user to 60 requests per minute using two Redis commands. Which pairing implements the counter correctly?",
+  "explanation": "INCR creates and bumps a per-minute counter atomically, and EXPIRE attached only when INCR returns 1 (the first hit of the window) makes the whole window lapse after sixty seconds. Expiring on every increment would keep pushing the window forward and starve the user.",
+  "tags": [
+    "redis",
+    "java",
+    "rate-limiting"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "INCR ratelimit:user:42, then EXPIRE ratelimit:user:42 60 only when INCR returns 1"
+    },
+    {
+      "id": "b",
+      "text": "EXPIRE ratelimit:user:42 60 after every INCR, so the key never outlives activity"
+    },
+    {
+      "id": "c",
+      "text": "GET ratelimit:user:42, compare to 60, then INCR if the value is smaller"
+    },
+    {
+      "id": "d",
+      "text": "INCR without any expiry, resetting the key manually once a minute from a scheduler"
+    }
+  ],
+  "correct": "a"
+}

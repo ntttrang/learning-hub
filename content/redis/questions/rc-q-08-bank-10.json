@@ -1,0 +1,21 @@
+{
+  "id": "rc-q-08-bank-10",
+  "domainId": "rc-dev-java",
+  "moduleId": "m-java-clients",
+  "difficulty": "advanced",
+  "kind": "bug",
+  "prompt": "Under load, threads block forever in pool.getResource() and the pool is exhausted. Which line is the root cause?",
+  "explanation": "The instance acquired on that line is never guaranteed to return to the pool: without try-with-resources or a finally close(), any exception between getResource() and a manual close leaks the connection. Enough leaks and the pool empties, so every later getResource() blocks.",
+  "tags": [
+    "redis",
+    "java",
+    "jedis"
+  ],
+  "codeLines": [
+    "public Order load(String id) {",
+    "    Jedis jedis = pool.getResource();   // no try-with-resources, no finally",
+    "    return jedis.get(\"order:\" + id);",
+    "}"
+  ],
+  "buggyLineIndex": 1
+}

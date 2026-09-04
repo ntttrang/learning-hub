@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-01-kc-2",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "lessonId": "rc-l-01-data-structures",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "You model a user profile whose name, email, and age are updated independently. Which structure fits best?",
+  "explanation": "A hash stores field-value pairs, so HSET and HGET touch one field at a time without rewriting the whole object. A concatenated string would force a read-modify-write of the entire value for every field update.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "hashes"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "A hash with one field per attribute"
+    },
+    {
+      "id": "b",
+      "text": "One string key per user holding all attributes concatenated"
+    },
+    {
+      "id": "c",
+      "text": "A set containing the attribute names"
+    },
+    {
+      "id": "d",
+      "text": "A list holding the attribute values in order"
+    }
+  ],
+  "correct": "a"
+}

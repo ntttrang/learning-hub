@@ -1,0 +1,21 @@
+{
+  "id": "rc-q-08-bank-9",
+  "domainId": "rc-dev-java",
+  "moduleId": "m-java-clients",
+  "difficulty": "intermediate",
+  "kind": "bug",
+  "prompt": "Fifty threads write different keys, but the service intermittently throws strange protocol errors. Which line creates the thread-safety bug?",
+  "explanation": "One Jedis instance is not thread-safe: concurrent writes on a shared instance interleave their protocol bytes and corrupt the connection state. Each thread must borrow its own instance from a JedisPool instead.",
+  "tags": [
+    "redis",
+    "java",
+    "jedis"
+  ],
+  "codeLines": [
+    "Jedis shared = new Jedis(\"localhost\");   // one instance for everything",
+    "for (int i = 0; i < 50; i++) {",
+    "    new Thread(() -> shared.set(\"key:\" + Thread.currentThread().getName(), \"v\")).start();",
+    "}"
+  ],
+  "buggyLineIndex": 0
+}

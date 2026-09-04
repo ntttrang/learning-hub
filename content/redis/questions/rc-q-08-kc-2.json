@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-08-kc-2",
+  "domainId": "rc-dev-java",
+  "moduleId": "m-java-clients",
+  "lessonId": "rc-l-08-java-clients",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "What is a defining trait of the Lettuce client compared with Jedis?",
+  "explanation": "Lettuce is built on Netty: its RedisConnection is thread-safe and can be shared across threads, and it exposes synchronous, asynchronous (CompletableFuture), and reactive APIs. Jedis uses a blocking per-connection model and has no reactive API.",
+  "tags": [
+    "redis",
+    "java",
+    "lettuce"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Its connection is thread-safe and shareable, with sync, async, and reactive APIs"
+    },
+    {
+      "id": "b",
+      "text": "It talks a different wire protocol than every other Redis client"
+    },
+    {
+      "id": "c",
+      "text": "It only supports string values and cannot pipeline commands"
+    },
+    {
+      "id": "d",
+      "text": "It requires one dedicated connection per thread, like Jedis"
+    }
+  ],
+  "correct": "a"
+}

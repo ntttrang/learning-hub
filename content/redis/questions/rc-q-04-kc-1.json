@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-04-kc-1",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "lessonId": "rc-l-04-perf-debugging",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "One client issues KEYS * against an instance with ten million keys, and every other client stops making progress. Why?",
+  "explanation": "Command execution is single-threaded: the main thread runs commands one at a time, so a single O(N) command such as KEYS holds the entire event loop for the duration of the scan and every other client simply queues behind it.",
+  "tags": [
+    "redis",
+    "performance",
+    "event-loop"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Command execution is single-threaded, so one O(N) command delays every other client until it finishes"
+    },
+    {
+      "id": "b",
+      "text": "KEYS acquires a global write lock that other clients must wait for"
+    },
+    {
+      "id": "c",
+      "text": "The operating system throttles the network stack while KEYS runs"
+    },
+    {
+      "id": "d",
+      "text": "KEYS automatically suspends replication while it runs"
+    }
+  ],
+  "correct": "a"
+}

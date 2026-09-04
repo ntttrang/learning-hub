@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-04-bank-7",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each tool to what it reports.",
+  "explanation": "The slow log records the slowest individual commands; commandstats aggregates per-command calls and CPU; the latency monitor records spike events; MONITOR streams every command live at a heavy cost; and bigkeys samples the keyspace for the largest keys per type.",
+  "tags": [
+    "redis",
+    "performance",
+    "tooling"
+  ],
+  "pairs": [
+    {
+      "left": "SLOWLOG GET",
+      "right": "The slowest recently executed commands with their durations"
+    },
+    {
+      "left": "INFO commandstats",
+      "right": "Per-command call counts and cumulative CPU time"
+    },
+    {
+      "left": "LATENCY HISTORY event",
+      "right": "Recorded latency spike events, newest first"
+    },
+    {
+      "left": "MONITOR",
+      "right": "A live stream of every command processed, at a heavy overhead"
+    },
+    {
+      "left": "redis-cli --bigkeys",
+      "right": "Largest keys per type, found by sampled scanning"
+    }
+  ]
+}

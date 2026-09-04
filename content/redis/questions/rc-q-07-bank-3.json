@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-07-bank-3",
+  "domainId": "rc-core-security",
+  "moduleId": "m-security-config",
+  "difficulty": "intermediate",
+  "kind": "codeReading",
+  "prompt": "Based on this ACL GETUSER output, what can the user app do?",
+  "explanation": "The flags show the account is on; +@read grants the read command category; -@dangerous then removes dangerous commands even if a category included them; and the key pattern ~session:* restricts access to session keys. So app may run read commands, minus dangerous ones, against session:* keys only.",
+  "tags": [
+    "redis",
+    "security",
+    "acl"
+  ],
+  "code": "ACL GETUSER app\n1) \"flags\"\n2) 1) \"on\"\n3) \"passwords\"\n4) 1) \"8d0c... hashed\"\n5) \"commands\"\n6) \"+@read -@dangerous\"\n7) \"keys\"\n8) 1) \"~session:*\"",
+  "options": [
+    {
+      "id": "a",
+      "text": "Run read-category commands except dangerous ones, only on keys matching session:*"
+    },
+    {
+      "id": "b",
+      "text": "Run any command on session:* keys, because +@read implies write access there"
+    },
+    {
+      "id": "c",
+      "text": "Run read commands on all keys, with session:* limiting only writes"
+    },
+    {
+      "id": "d",
+      "text": "Nothing \u2014 the password hash must be shown in clear text before the user works"
+    }
+  ],
+  "correct": "a"
+}

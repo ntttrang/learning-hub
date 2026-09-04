@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-01-bank-6",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which operations complete in O(1) time regardless of how many elements the structure holds?",
+  "explanation": "LPUSH prepends one node at the head of a linked-list-backed structure and HGET addresses one hash field directly, so both are constant time however large the value is. SMEMBERS must serialise every member of the set, and ZADD re-inserts into the sorted ordering, which costs O(log N) per member.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "complexity"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "LPUSH recent:orders onto a list holding two million entries"
+    },
+    {
+      "id": "b",
+      "text": "HGET user:1:profile on a hash with fifty fields"
+    },
+    {
+      "id": "c",
+      "text": "SMEMBERS tags:redis on a set holding one million members"
+    },
+    {
+      "id": "d",
+      "text": "ZADD leaderboard on a sorted set holding one hundred thousand members"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

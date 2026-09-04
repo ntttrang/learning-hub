@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-05-bank-1",
+  "domainId": "rc-core-cluster",
+  "moduleId": "m-clustering-ha",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "A client sends GET user:42 to node 7000, which answers MOVED 4813 127.0.0.1:7001. What should a well-behaved client do?",
+  "explanation": "MOVED says the slot 4813 now belongs permanently to the node at 127.0.0.1:7001. Smart clients resend the command there and remember the slot-to-node mapping so later keys in that slot go straight to the right node.",
+  "tags": [
+    "redis",
+    "cluster",
+    "redirects"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Resend the command to 127.0.0.1:7001 and remember that slot 4813 lives there"
+    },
+    {
+      "id": "b",
+      "text": "Retry the same node after a short delay, since MOVED is a transient error"
+    },
+    {
+      "id": "c",
+      "text": "Send ASKING to node 7000 and retry there"
+    },
+    {
+      "id": "d",
+      "text": "Drop the key and recreate it on the node the client thinks owns the slot"
+    }
+  ],
+  "correct": "a"
+}

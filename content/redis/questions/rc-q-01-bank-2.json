@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-01-bank-2",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "tags:post:1 and tags:post:2 hold the tags each of two blog posts carries. Which command returns the tags that appear on both posts?",
+  "explanation": "SINTER computes the intersection: members present in every set listed. SUNION returns members in any set, SDIFF returns members in the first set but none of the others, and SMEMBERS ignores the second set entirely.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "sets"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "SINTER tags:post:1 tags:post:2"
+    },
+    {
+      "id": "b",
+      "text": "SUNION tags:post:1 tags:post:2"
+    },
+    {
+      "id": "c",
+      "text": "SDIFF tags:post:1 tags:post:2"
+    },
+    {
+      "id": "d",
+      "text": "SMEMBERS tags:post:1"
+    }
+  ],
+  "correct": "a"
+}

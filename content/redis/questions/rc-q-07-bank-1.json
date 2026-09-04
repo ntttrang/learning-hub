@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-07-bank-1",
+  "domainId": "rc-core-security",
+  "moduleId": "m-security-config",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each maxmemory eviction policy to its behavior under memory pressure.",
+  "explanation": "noeviction protects data by rejecting writes; allkeys-* choose victims across every key regardless of TTL; volatile-* only evict among keys that carry an expiry; and lfu variants track access frequency instead of recency.",
+  "tags": [
+    "redis",
+    "security",
+    "eviction"
+  ],
+  "pairs": [
+    {
+      "left": "noeviction",
+      "right": "Rejects write commands once memory reaches maxmemory"
+    },
+    {
+      "left": "allkeys-lru",
+      "right": "Evicts the least recently used key among all keys"
+    },
+    {
+      "left": "volatile-lru",
+      "right": "Evicts the least recently used key among keys with a TTL"
+    },
+    {
+      "left": "allkeys-lfu",
+      "right": "Evicts the least frequently used key among all keys"
+    },
+    {
+      "left": "volatile-ttl",
+      "right": "Evicts, among keys with a TTL, those closest to expiry first"
+    }
+  ]
+}

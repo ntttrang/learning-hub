@@ -1,0 +1,29 @@
+{
+  "id": "rc-q-08-bank-7",
+  "domainId": "rc-dev-java",
+  "moduleId": "m-java-clients",
+  "difficulty": "advanced",
+  "kind": "fill",
+  "prompt": "Complete the sentence about running Lua from a Java client.",
+  "explanation": "EVAL ships the script text on every call, while EVALSHA runs a script the server already cached by its SHA1 digest \u2014 the usual choice from Java, with a fallback to EVAL when the server reports NOSCRIPT.",
+  "tags": [
+    "redis",
+    "java",
+    "lua"
+  ],
+  "template": "From Java, run a rate-limit script atomically with ___ the first time and with ___ on later calls, using the cached SHA1 digest.",
+  "blanks": [
+    {
+      "answer": "EVAL",
+      "alternatives": [
+        "eval"
+      ]
+    },
+    {
+      "answer": "EVALSHA",
+      "alternatives": [
+        "evalsha"
+      ]
+    }
+  ]
+}

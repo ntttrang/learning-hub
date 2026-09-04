@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-04-bank-1",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "A session hash has grown to two million fields and the application calls HGETALL on every request. What is the appropriate fix?",
+  "explanation": "HGETALL is O(N) over the hash's fields, so at this size it stalls the server on every call. Fetch exactly the fields the request needs with HMGET or HGET, or walk the hash in bounded chunks with HSCAN.",
+  "tags": [
+    "redis",
+    "performance",
+    "hashes"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Fetch only the fields needed with HMGET or HGET, or iterate in bounded chunks with HSCAN"
+    },
+    {
+      "id": "b",
+      "text": "Keep HGETALL but wrap it in a pipeline so it completes faster"
+    },
+    {
+      "id": "c",
+      "text": "Run HGETALL against a replica so the master stays responsive"
+    },
+    {
+      "id": "d",
+      "text": "Call SMEMBERS on the hash to read it in one cheaper pass"
+    }
+  ],
+  "correct": "a"
+}

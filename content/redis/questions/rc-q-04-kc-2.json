@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-04-kc-2",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "lessonId": "rc-l-04-perf-debugging",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Which command shows the slowest recently executed commands recorded on the server?",
+  "explanation": "SLOWLOG GET reads the slow log: entries for commands whose execution exceeded slowlog-log-slower-than. SLOWLOG LEN counts the entries and SLOWLOG RESET empties the log.",
+  "tags": [
+    "redis",
+    "performance",
+    "slowlog"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "SLOWLOG GET"
+    },
+    {
+      "id": "b",
+      "text": "INFO slowlog"
+    },
+    {
+      "id": "c",
+      "text": "LATENCY GET"
+    },
+    {
+      "id": "d",
+      "text": "CLIENT LIST"
+    }
+  ],
+  "correct": "a"
+}

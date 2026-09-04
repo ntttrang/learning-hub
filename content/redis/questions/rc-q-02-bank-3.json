@@ -1,0 +1,40 @@
+{
+  "id": "rc-q-02-bank-3",
+  "domainId": "rc-core-keys",
+  "moduleId": "m-keys",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each keyspace command to its effect.",
+  "explanation": "EXPIRE and PEXPIRE attach timeouts in seconds and milliseconds; PERSIST detaches the timeout; SET with EX writes value and timeout atomically; TTL and PTTL read the remaining time; and DEL differs from UNLINK in who does the freeing work.",
+  "tags": [
+    "redis",
+    "keys",
+    "keyspace"
+  ],
+  "pairs": [
+    {
+      "left": "EXPIRE session:42 30",
+      "right": "Gives the existing key a 30-second timeout"
+    },
+    {
+      "left": "SET session:42 json EX 30",
+      "right": "Writes the value and its timeout in one atomic call"
+    },
+    {
+      "left": "PERSIST session:42",
+      "right": "Removes the timeout, keeping the value"
+    },
+    {
+      "left": "PTTL session:42",
+      "right": "Remaining time to live in milliseconds"
+    },
+    {
+      "left": "UNLINK big:key",
+      "right": "Removes the key at once, reclaims memory in a background thread"
+    },
+    {
+      "left": "DEL big:key",
+      "right": "Removes the key and reclaims the memory in the calling thread"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-03-bank-1",
+  "domainId": "rc-core-model",
+  "moduleId": "m-data-modeling",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "Why model a mutable object as a hash instead of one string holding serialized JSON?",
+  "explanation": "A hash lets the application update or read single fields (HSET/HGET) without shipping the whole object, while a JSON string forces a read-modify-write of the entire value for every field change. Hashes do not support per-field TTLs, are not always smaller than JSON, and strings can hold any serialized bytes \u2014 those claims are all false.",
+  "tags": [
+    "redis",
+    "data-modeling",
+    "hash-vs-string"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Individual fields can be read and updated without read-modify-write of the whole value"
+    },
+    {
+      "id": "b",
+      "text": "Hash fields can each carry their own TTL"
+    },
+    {
+      "id": "c",
+      "text": "Hashes are always smaller in memory than an equivalent JSON string"
+    },
+    {
+      "id": "d",
+      "text": "Strings cannot hold serialized JSON, so a hash is the only option"
+    }
+  ],
+  "correct": "a"
+}

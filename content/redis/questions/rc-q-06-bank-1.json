@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-06-bank-1",
+  "domainId": "rc-core-persist",
+  "moduleId": "m-persistence",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which statements about AOF rewrite are correct?",
+  "explanation": "BGREWRITEAOF generates a minimal command sequence that reproduces the current dataset, so repeated overwrites and expired keys vanish from the log; the work happens in a background child while the parent keeps serving writes. Redis never blocks write commands for the whole rewrite.",
+  "tags": [
+    "redis",
+    "persistence",
+    "aof-rewrite"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "The rewrite produces a minimal command sequence reproducing the current dataset"
+    },
+    {
+      "id": "b",
+      "text": "The rewrite runs in a background child process while writes continue"
+    },
+    {
+      "id": "c",
+      "text": "Write commands are blocked until the rewrite completes"
+    },
+    {
+      "id": "d",
+      "text": "The rewrite can shrink the file even when no key has ever expired"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

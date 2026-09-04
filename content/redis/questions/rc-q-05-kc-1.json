@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-05-kc-1",
+  "domainId": "rc-core-cluster",
+  "moduleId": "m-clustering-ha",
+  "lessonId": "rc-l-05-clustering-ha",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "How many hash slots does a Redis Cluster manage in total?",
+  "explanation": "The cluster's keyspace is divided into 16384 hash slots, and every key belongs to exactly one slot, which in turn belongs to exactly one master node at any time.",
+  "tags": [
+    "redis",
+    "cluster",
+    "slots"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "16384"
+    },
+    {
+      "id": "b",
+      "text": "1024"
+    },
+    {
+      "id": "c",
+      "text": "65536"
+    },
+    {
+      "id": "d",
+      "text": "It depends on the number of master nodes"
+    }
+  ],
+  "correct": "a"
+}

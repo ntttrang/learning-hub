@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-04-bank-3",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "The application WATCHes a key, reads it, modifies state, then sends MULTI, its commands, and EXEC. Another client changes the watched key in between. What happens?",
+  "explanation": "WATCH implements check-and-set: if any watched key changed between WATCH and EXEC, the transaction is considered dirty and EXEC returns nil instead of running the queued commands. The application then retries from the start.",
+  "tags": [
+    "redis",
+    "performance",
+    "transactions"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "EXEC returns nil without running the queued commands; the application retries"
+    },
+    {
+      "id": "b",
+      "text": "EXEC runs the commands and the last write wins"
+    },
+    {
+      "id": "c",
+      "text": "Redis serializes the transaction after the conflicting write instead"
+    },
+    {
+      "id": "d",
+      "text": "The watched key is locked so the competing client gets an error"
+    }
+  ],
+  "correct": "a"
+}

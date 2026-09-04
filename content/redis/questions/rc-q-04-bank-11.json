@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-04-bank-11",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "difficulty": "advanced",
+  "kind": "codeReading",
+  "prompt": "The transcript below runs against a fresh server where counter does not exist yet. What is the value of k1 after EXEC?",
+  "explanation": "The SET queues and executes fine, but INCR fails at run time with WRONGTYPE because k1 now holds the string a. Redis transactions do not roll back: the SET's result stands and k1 remains a, so the application must read the per-command results of EXEC to notice that one command failed.",
+  "tags": [
+    "redis",
+    "performance",
+    "transactions"
+  ],
+  "code": "MULTI\nSET k1 a\nINCR k1\nEXEC\n1) OK\n2) (error) WRONGTYPE Operation against a key holding the wrong kind of value",
+  "options": [
+    {
+      "id": "a",
+      "text": "a \u2014 the SET applied and the runtime error did not roll it back"
+    },
+    {
+      "id": "b",
+      "text": "The key does not exist \u2014 the whole transaction was rolled back"
+    },
+    {
+      "id": "c",
+      "text": "1 \u2014 INCR overwrote the value despite the error"
+    },
+    {
+      "id": "d",
+      "text": "The EXEC itself returned an error and nothing executed"
+    }
+  ],
+  "correct": "a"
+}

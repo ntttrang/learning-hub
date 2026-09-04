@@ -1,0 +1,23 @@
+[
+  {
+    "id": "redis-dev-mock-1",
+    "title": "Redis Certified Developer — Mock Exam 1",
+    "description": "Mirrors the associate developer exam scale — 65 questions, 90 minutes, 70% to pass — and samples all eight pack domains in proportion to their exam weights.",
+    "durationMinutes": 90,
+    "passingScore": 700,
+    "selection": {
+      "kind": "sampled",
+      "domainPlan": {
+        "rc-core-types": 12,
+        "rc-core-keys": 6,
+        "rc-core-model": 9,
+        "rc-core-perf": 11,
+        "rc-core-cluster": 8,
+        "rc-core-persist": 5,
+        "rc-core-security": 4,
+        "rc-dev-java": 10
+      },
+      "seed": 20260903
+    }
+  }
+]

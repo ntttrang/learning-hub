@@ -1,0 +1,10 @@
+[
+{"id":"m-data-structures","domainId":"rc-core-types","order":1,"code":"01","title":"Redis data structures","summary":"Core structures, command groups, time complexities."},
+{"id":"m-keys","domainId":"rc-core-keys","order":2,"code":"02","title":"Keys, keyspace & expiry","summary":"Keyspace commands, expiry, SCAN, key hygiene."},
+{"id":"m-data-modeling","domainId":"rc-core-model","order":3,"code":"03","title":"Data modeling","summary":"Entity-to-structure mapping, indexes, structure choice."},
+{"id":"m-perf-debugging","domainId":"rc-core-perf","order":4,"code":"04","title":"Performance & debugging","summary":"Event loop, Big-O selection, latency tooling, pipelines, transactions."},
+{"id":"m-clustering-ha","domainId":"rc-core-cluster","order":5,"code":"05","title":"Replication, HA & clustering","summary":"REPLICAOF, Sentinel, hash slots, hash tags, MOVED/ASK redirects, resharding."},
+{"id":"m-persistence","domainId":"rc-core-persist","order":6,"code":"06","title":"Persistence & durability","summary":"RDB, AOF, rewrite, hybrid, restart behavior."},
+{"id":"m-security-config","domainId":"rc-core-security","order":7,"code":"07","title":"Security & configuration","summary":"ACL, TLS, exposure, maxmemory + eviction, lazy freeing."},
+{"id":"m-java-clients","domainId":"rc-dev-java","order":8,"code":"08","title":"Java clients & app patterns","summary":"Jedis/Lettuce/Redisson, pooling, pipelines, cache-aside, streams."}
+]

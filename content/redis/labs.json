@@ -1,0 +1,170 @@
+[
+  {
+    "id": "lab-redis-cli-tour",
+    "domainId": "rc-core-types",
+    "lessonId": "rc-l-01-data-structures",
+    "title": "redis-cli data structures tour",
+    "minutes": 25,
+    "difficulty": "beginner",
+    "summary": "Walk through all six core Redis structures in one redis-cli session — strings, lists, hashes, sets, sorted sets, and streams — and learn the reply shape of each command family.",
+    "steps": [
+      {
+        "title": "Connect and clear a working namespace",
+        "instructions": "Start `redis-server` locally if it is not already running, then connect with `redis-cli`. Confirm the connection and remove any leftovers from a previous run so your output matches this walkthrough:\n\n```\nredis-cli\n127.0.0.1:6379> PING\n127.0.0.1:6379> DEL tour:string tour:hits tour:list tour:hash tour:set tour:zset tour:stream\n```\n\nEverything in this lab uses the `tour:` prefix. Redis has no schemas — namespaces are purely a key-naming convention, which is why the first DEL is safe: it only touches keys this lab created.",
+        "expectedOutput": "PONG\n(integer) 0",
+        "hint": "If redis-server is not installed, `brew install redis` on macOS or `apt install redis-server` on Debian/Ubuntu gets you both the server and redis-cli."
+      },
+      {
+        "title": "STRING: the catch-all scalar",
+        "instructions": "Strings hold bytes — text, counters, serialized blobs — and are the only structure the other four build on. Run:\n\n```\nSET tour:string \"hello\"\nGET tour:string\nSET tour:hits 0\nINCR tour:hits\nINCR tour:hits\nAPPEND tour:string \" world\"\nGET tour:string\n```\n\nINCR works because the stored bytes parse as an integer, and it is atomic — two clients incrementing concurrently never lose a count. APPEND returns the new length, not the value; you have to GET to see it.",
+        "expectedOutput": "OK\n\"hello\"\nOK\n(integer) 1\n(integer) 2\n(integer) 11\n\"hello world\""
+      },
+      {
+        "title": "LIST: a sequence with cheap ends",
+        "instructions": "Lists are sequences of strings with O(1) push and pop at both ends. Build a FIFO queue by pushing on the left and popping from the right:\n\n```\nLPUSH tour:list \"job-c\"\nLPUSH tour:list \"job-b\"\nLPUSH tour:list \"job-a\"\nLRANGE tour:list 0 -1\nLLEN tour:list\nRPOP tour:list\nLRANGE tour:list 0 -1\n```\n\nEach LPUSH puts the new element at the head, so LRANGE reads newest-first. RPOP takes from the tail — the oldest element — which is exactly first-in, first-out. Index access via LINDEX or LRANGE is O(N) in the middle of the list, which is why lists suit queues and feeds, not random access by position.",
+        "expectedOutput": "(integer) 1\n(integer) 2\n(integer) 3\n1) \"job-a\"\n2) \"job-b\"\n3) \"job-c\"\n(integer) 3\n\"job-c\"\n1) \"job-a\"\n2) \"job-b\""
+      },
+      {
+        "title": "HASH: a field-value map per key",
+        "instructions": "Hashes map field names to string values — one object per key, with per-field reads and writes:\n\n```\nHSET tour:hash name \"Ada\" email \"ada@example.com\" score \"99\"\nHGET tour:hash name\nHGET tour:hash score\nHGETALL tour:hash\n```\n\nHSET returns the number of fields that were newly created. HGETALL replies with fields and values interleaved in one flat array; on wide hashes prefer HMGET or HGET for the specific fields you need instead of pulling everything.",
+        "expectedOutput": "(integer) 3\n\"Ada\"\n\"99\"\n1) \"name\"\n2) \"Ada\"\n3) \"email\"\n4) \"ada@example.com\"\n5) \"score\"\n6) \"99\""
+      },
+      {
+        "title": "SET: unordered unique members",
+        "instructions": "Sets store unique, unordered strings and answer membership questions in O(1):\n\n```\nSADD tour:set redis database cache\nSADD tour:set redis\nSISMEMBER tour:set redis\nSISMEMBER tour:set mysql\nSCARD tour:set\nSMEMBERS tour:set\n```\n\nThe second SADD returns 0 because `redis` is already a member — sets deduplicate silently. SMEMBERS order is unspecified, so never rely on it. Set algebra (SINTER, SUNION, SDIFF) runs server-side, which is what makes tags and permissions cheap.",
+        "expectedOutput": "(integer) 3\n(integer) 0\n(integer) 1\n(integer) 0\n(integer) 3\n1) \"redis\"\n2) \"database\"\n3) \"cache\""
+      },
+      {
+        "title": "SORTED SET: members ranked by score",
+        "instructions": "Sorted sets keep unique members ordered by an associated double score — leaderboards, rate limiters, time-ordered indexes:\n\n```\nZADD tour:zset 100 alice 85 bob 92 carol\nZRANGE tour:zset 0 -1 WITHSCORES\nZRANGEBYSCORE tour:zset 90 100 WITHSCORES\nZRANGE tour:zset 0 0\n```\n\nZRANGE walks the range in ascending score order by default. ZRANGEBYSCORE filters a score window. Both run in O(log(N)+M) for N members in the set and M returned, so a leaderboard page fetch stays fast even with millions of rows.",
+        "expectedOutput": "(integer) 3\n1) \"bob\"\n2) \"85\"\n3) \"carol\"\n4) \"92\"\n5) \"alice\"\n6) \"100\"\n1) \"carol\"\n2) \"92\"\n3) \"alice\"\n4) \"100\"\n1) \"bob\""
+      },
+      {
+        "title": "STREAM: an append-only log with entry IDs",
+        "instructions": "Streams are append-only logs of field-value entries; every entry receives a monotonic ID of `<milliseconds>-<sequence>`:\n\n```\nXADD tour:stream * sensor 42 temperature 21.4\nXADD tour:stream * sensor 43 temperature 22.1\nXLEN tour:stream\nXRANGE tour:stream - +\n```\n\nThe `*` asks the server to generate the ID from its clock, which is what you will usually want. XRANGE reads oldest to newest between two IDs, with `-` and `+` as open ends. Consumer groups (XGROUP with XREADGROUP) fan entries out to competing workers with per-consumer delivery tracking — that is the step beyond a plain list-based queue.",
+        "expectedOutput": "\"1712345678901-0\"\n\"1712345678902-0\"\n(integer) 2\n1) 1) \"1712345678901-0\"\n   2) 1) \"sensor\"\n      2) \"42\"\n      3) \"temperature\"\n      4) \"21.4\"\n2) 1) \"1712345678902-0\"\n   2) 1) \"sensor\"\n      2) \"43\"\n      3) \"temperature\"\n      4) \"22.1\""
+      }
+    ],
+    "outcomes": [
+      "You can create, read, and update all six core structures from redis-cli and predict each command's reply shape: simple string, integer, array, or interleaved field/value pairs.",
+      "You can match a workload — counter, queue, object, tag list, leaderboard, event log — to the structure that fits, with the time complexity of the commands involved."
+    ],
+    "checks": [
+      "Run TYPE against each of the seven tour:* keys and confirm the reported structure name matches what you stored (string, list, hash, set, zset, stream).",
+      "Re-run INCR tour:hits several times and confirm the count never repeats, then GET tour:hits to see the same value as a raw string.",
+      "Clean up with DEL tour:string tour:hits tour:list tour:hash tour:set tour:zset tour:stream and confirm each DEL returns 1."
+    ]
+  },
+  {
+    "id": "lab-ttl-eviction",
+    "domainId": "rc-core-keys",
+    "lessonId": "rc-l-02-keys-expiry",
+    "title": "Expiry and eviction behavior",
+    "minutes": 20,
+    "difficulty": "beginner",
+    "summary": "Trace key expiry end to end — TTL's sentinel values, EXPIRE, PERSIST, and the plain-SET pitfall — then put a disposable instance under memory pressure and watch allkeys-lru evict.",
+    "steps": [
+      {
+        "title": "Read TTL's two sentinel values",
+        "instructions": "TTL reports remaining seconds and uses two sentinels: -1 means the key exists with no expiry, -2 means the key does not exist at all.\n\n```\nSET tour:no-expiry \"still here\"\nTTL tour:no-expiry\nTTL tour:never-existed\nEXISTS tour:no-expiry\n```\n\nEvery plain SET creates a key with no expiry. Expiry is opt-in per key: it is never inherited and never applied by default.",
+        "expectedOutput": "OK\n(integer) -1\n(integer) -2\n(integer) 1"
+      },
+      {
+        "title": "Attach a countdown with EXPIRE",
+        "instructions": "EXPIRE attaches a relative timeout to an existing key and returns 1 when a timeout was actually set (0 would mean the key was missing):\n\n```\nSET tour:session \"user-42\"\nEXPIRE tour:session 120\nTTL tour:session\nPTTL tour:session\n```\n\nTTL now counts down — 120 or 119 depending on timing — and PTTL shows the same countdown in milliseconds. When it reaches zero the key is deleted: lazily on access, and proactively by the server's active expiry cycle, so an untouched key still disappears.",
+        "expectedOutput": "OK\n(integer) 1\n(integer) 120\n(integer) 119996",
+        "hint": "SET key value EX 120 sets the value and its timeout atomically in one round trip — no window where the key exists without an expiry."
+      },
+      {
+        "title": "Remove an expiry with PERSIST",
+        "instructions": "PERSIST strips the timeout and makes the key permanent again:\n\n```\nEXPIRE tour:session 120\nPERSIST tour:session\nTTL tour:session\nEXISTS tour:session\n```\n\nPERSIST returns 1 when it removed a live expiry, 0 when the key was missing or already persistent. TTL flipping back to -1 while EXISTS stays 1 is the signature of a key that survived its countdown.",
+        "expectedOutput": "(integer) 1\n(integer) 1\n(integer) -1\n(integer) 1"
+      },
+      {
+        "title": "Overwrite the value and watch the TTL vanish",
+        "instructions": "A plain SET on an existing key replaces the value AND clears its timeout — the key survives, now with no expiry:\n\n```\nSET tour:session \"user-42\"\nEXPIRE tour:session 120\nSET tour:session \"user-42-refreshed\"\nTTL tour:session\nGET tour:session\n```\n\nThis is the classic expiry bug: a refresh path that SETs without a timeout turns expiring session keys into permanent ones that accumulate forever. Use SET key value KEEPTTL when you want to overwrite the value but preserve the countdown, or include EX/PX/EXAT in the SET when you want to (re)state the timeout.",
+        "expectedOutput": "OK\n(integer) 1\nOK\n(integer) -1\n\"user-42-refreshed\""
+      },
+      {
+        "title": "Launch a disposable instance under a memory cap",
+        "instructions": "Eviction needs memory pressure, so run a throwaway server instead of your daily one. In a new terminal:\n\n```\nredis-server --port 6399 --save \"\" --appendonly no --maxmemory 50mb --maxmemory-policy allkeys-lru\n```\n\nThen connect a second redis-cli to it and verify the configuration took:\n\n```\nredis-cli -p 6399\nCONFIG GET maxmemory\nCONFIG GET maxmemory-policy\n```\n\nmaxmemory caps the dataset (50mb = 52428800 bytes here). allkeys-lru evicts the least-recently-used key from the entire keyspace once the cap is hit. The `--save \"\"` and `--appendonly no` flags keep the scratch instance from writing anything to disk.",
+        "expectedOutput": "1) \"maxmemory\"\n2) \"52428800\"\n1) \"maxmemory-policy\"\n2) \"allkeys-lru\"",
+        "hint": "You can also change a running server at runtime with CONFIG SET maxmemory 50mb and CONFIG SET maxmemory-policy allkeys-lru — no restart needed."
+      },
+      {
+        "title": "Fill past the cap and watch evictions",
+        "instructions": "DEBUG POPULATE generates keys fast — 200,000 keys of roughly 1 KB each is about 200 MB, four times the cap:\n\n```\nDBSIZE\nDEBUG POPULATE 200000 bulk 1024\nDBSIZE\nINFO stats\n```\n\nIt creates keys named `bulk:<n>`. After the fill, the keyspace has been trimmed to fit the cap: DBSIZE plateaus near 50mb of data (about 45,000-50,000 keys of this size), and INFO stats shows evicted_keys counting every key the server deleted to stay under maxmemory — DBSIZE + evicted_keys should add up to roughly the 200,000 you created. Confirm the survivors with SCAN 0 COUNT 20 and note the bulk:<n> names. If your environment disables DEBUG (some managed services do), fill with any scripted loop of SET bulk:$i <1KB value> instead. When finished, run SHUTDOWN NOSAVE on the scratch instance — it holds nothing you need.",
+        "expectedOutput": "(integer) 0\nOK\n(integer) 47351\n# Stats\ntotal_connections_received:2\ntotal_commands_processed:200121\ntotal_net_in_bytes: ...\ntotal_net_out_bytes: ...\nexpired_keys:0\nevicted_keys:152649\nkeyspace_hits:0\nkeyspace_misses:0\n...\n(your DBSIZE and evicted_keys counts will differ; they should sum to about 200000)"
+      }
+    ],
+    "outcomes": [
+      "You can state what TTL -1 and -2 mean and predict the TTL/PTTL replies after SET, EXPIRE, PERSIST, and a plain SET overwrite.",
+      "You have seen a keyspace under real memory pressure: evicted_keys climbing in INFO stats while DBSIZE plateaus under allkeys-lru."
+    ],
+    "checks": [
+      "Explain in one sentence why TTL returned -1 after the plain SET in step 4, and what KEEPTTL would have done differently.",
+      "Run CONFIG GET maxmemory-policy on your daily instance and confirm its default (noeviction) before you ever change it.",
+      "After SHUTDOWN NOSAVE, confirm the scratch server is gone: redis-cli -p 6399 PING now fails to connect."
+    ]
+  },
+  {
+    "id": "lab-jedis-cache-aside",
+    "domainId": "rc-dev-java",
+    "lessonId": "rc-l-08-java-clients",
+    "title": "Jedis cache-aside walkthrough",
+    "minutes": 30,
+    "difficulty": "intermediate",
+    "summary": "Build the canonical cache-aside pattern with Jedis: a pooled client, a get-miss-load-setex read path, update-then-invalidate writes, JSON values, a deliberate TTL — then watch the traffic from redis-cli and discuss stampede mitigation.",
+    "steps": [
+      {
+        "title": "Wire up the project and a JedisPool",
+        "instructions": "Add Jedis to `pom.xml`:\n\n```xml\n<dependency>\n  <groupId>redis.clients</groupId>\n  <artifactId>jedis</artifactId>\n  <version>5.1.0</version>\n</dependency>\n```\n\nStart `redis-server` locally so there is something to connect to. Create one `JedisPool` per application — it is thread-safe and expensive to build — and borrow a connection per operation:\n\n```java\nimport redis.clients.jedis.Jedis;\nimport redis.clients.jedis.JedisPool;\n\npublic class ProductCache {\n    private final JedisPool pool = new JedisPool(\"localhost\", 6379);\n\n    public static void main(String[] args) {\n        ProductCache app = new ProductCache();\n        try (Jedis jedis = app.pool.getResource()) {\n            System.out.println(jedis.ping());\n        }\n    }\n}\n```\n\nYou should see PONG. Call `pool.close()` on shutdown; every later step borrows a `Jedis` from this pool.",
+        "expectedOutput": "PONG",
+        "hint": "The try-with-resources block is what returns the connection to the pool — never keep a Jedis instance in a field of a shared object."
+      },
+      {
+        "title": "The read path: get, miss, load, setex",
+        "instructions": "Cache-aside puts the application in charge of both stores. Every read checks Redis first; on a miss it loads the source of truth and backfills the cache with a TTL:\n\n```java\nimport com.fasterxml.jackson.databind.ObjectMapper;\n\npublic record Product(long id, String name, double price) {}\n\nprivate static final int CACHE_TTL_SECONDS = 300;\nprivate final ObjectMapper mapper = new ObjectMapper();\n\nString getProductJson(long id) {\n    String key = \"product:\" + id;\n    try (Jedis jedis = pool.getResource()) {\n        String cached = jedis.get(key);                // 1. read the cache\n        if (cached != null) {\n            return cached;                             // 2. hit: Redis served it\n        }\n        Product product = loadFromDatabase(id);        // 3. miss: read source of truth\n        String json = mapper.writeValueAsString(product);\n        jedis.setex(key, CACHE_TTL_SECONDS, json);     // 4. backfill, always with a TTL\n        return json;\n    }\n}\n\n// stand-in for your real data layer\nProduct loadFromDatabase(long id) {\n    return new Product(id, \"Widget\", 9.99);\n}\n```\n\n`jedis.get` returns null on a miss — that null is the miss signal, no separate EXISTS call needed. The TTL is what makes this a cache instead of a second database: a key nobody refreshes ages out on its own.",
+        "expectedOutput": "The first call for product:42 runs the miss path (database load, then SETEX); the second call returns the cached string without touching loadFromDatabase. You will prove this with MONITOR in step 6.",
+        "solution": "Mapper exceptions are checked, so the method signature becomes `String getProductJson(long id) throws JsonProcessingException` — or wrap the read in try/catch and fall through to the database on serialization trouble. The order matters: load from the database first, backfill second; never return before the SETEX if you want the cache warm."
+      },
+      {
+        "title": "The write path: update the database, then invalidate",
+        "instructions": "On writes, change the source of truth first, then drop the stale cache entry. The next read repopulates it:\n\n```java\nvoid updateProduct(Product updated) {\n    saveToDatabase(updated);                    // 1. source of truth first\n    try (Jedis jedis = pool.getResource()) {\n        jedis.del(\"product:\" + updated.id());   // 2. invalidate, do not update\n    }\n}\n```\n\nWhy delete instead of overwrite the cache? A concurrent miss-backfill can interleave with a direct cache write and repopulate stale data that then lives until the TTL. Deletion makes the next read rebuild from the database — and the TTL from step 2 bounds any stale window that slips through anyway.",
+        "expectedOutput": "redis-cli GET product:42 immediately after updateProduct returns nil; the next getProductJson call misses, reloads from the database, and SETEXes a fresh copy."
+      },
+      {
+        "title": "Serialize objects as JSON, not Java blobs",
+        "instructions": "Redis values are bytes, so choose serialization deliberately. Java's built-in serialization couples cache entries to your class files — recompile and every cached value is unreadable. JSON stays inspectable and language-neutral. Jackson needs one more dependency:\n\n```xml\n<dependency>\n  <groupId>com.fasterxml.jackson.core</groupId>\n  <artifactId>jackson-databind</artifactId>\n  <version>2.17.1</version>\n</dependency>\n```\n\nThe record from step 2 serializes with no annotations:\n\n```java\nProduct p = mapper.readValue(cached, Product.class);   // on a hit\nString json = mapper.writeValueAsString(p);            // on a backfill\n```\n\nSanity-check from the outside: `redis-cli GET product:42` should print readable JSON you can inspect while debugging.",
+        "expectedOutput": "One readable JSON document per key, for example {\"id\":42,\"name\":\"Widget\",\"price\":9.99} — not a Java serialization blob of binary bytes."
+      },
+      {
+        "title": "Choose the TTL deliberately",
+        "instructions": "CACHE_TTL_SECONDS is a trade between freshness and database load, not a magic number. Short TTLs (30-300s) keep data fresher but cost more misses; long TTLs (hours) protect the database but let stale entries live longer. Because step 3 invalidates on every write, the TTL only has to act as a backstop for missed invalidations and cold keys — it does not carry freshness alone. Add jitter so keys backfilled in a batch do not all expire in the same instant:\n\n```java\nimport java.util.concurrent.ThreadLocalRandom;\n\nint ttl = CACHE_TTL_SECONDS + ThreadLocalRandom.current().nextInt(60);\njedis.setex(key, ttl, json);   // each key lands between 300 and 359 seconds\n```\n\nAdopt the jittered version in your read path, keep 300 as the base for this lab, and note the number — the next step watches it live.",
+        "expectedOutput": "After caching several products, redis-cli TTL product:<n> shows a different countdown for each key, all in the 300-359 range."
+      },
+      {
+        "title": "Watch the traffic from redis-cli",
+        "instructions": "Exercise both Java paths while a second terminal watches the wire:\n\n```\nredis-cli MONITOR\n```\n\nEvery command prints with a timestamp and its exact arguments: GET product:42 on reads, SETEX product:42 on backfills, DEL product:42 when you call updateProduct. Then inspect state directly:\n\n```\nTTL product:42\nEXISTS product:42\n```\n\nMONITOR streams every command the server processes and costs throughput while attached — it is a debugging tool, never something to leave running in production.",
+        "expectedOutput": "1693821101.123456 [0 127.0.0.1:52118] \"GET\" \"product:42\"\n1693821101.190224 [0 127.0.0.1:52118] \"SETEX\" \"product:42\" \"300\" \"{\\\"id\\\":42,\\\"name\\\":\\\"Widget\\\",\\\"price\\\":9.99}\"\n1693821103.554901 [0 127.0.0.1:52118] \"DEL\" \"product:42\"",
+        "hint": "If MONITOR stays silent, confirm the Java app connects to the same host, port, and logical DB (0) as redis-cli."
+      },
+      {
+        "title": "Discussion: surviving a hot-key expiry",
+        "instructions": "Cache stampede: a hot key expires while N requests are in flight — all N miss, all hit the database, all backfill the same value. Two standard mitigations:\n\n1. Single-flight lock — only one worker rebuilds while the others retry the cache:\n\n```java\nimport redis.clients.jedis.params.SetParams;\n\nString winner = jedis.set(key + \":lock\", \"1\",\n    SetParams.setParams().nx().ex(10));   // NX: one caller wins; EX: 10s lease\nif (winner != null) {\n    String fresh = mapper.writeValueAsString(loadFromDatabase(id));\n    jedis.setex(key, CACHE_TTL_SECONDS, fresh);\n    jedis.del(key + \":lock\");\n}  // losers: sleep briefly, then re-read the key\n```\n\n2. TTL jitter (step 5) — defuses the bulk variant where thousands of keys written in the same batch expire in the same instant.\n\nAdd a short comment to your code naming which mitigation fits your workload's write rate, then release resources with `pool.close()`. For the exam, know the vocabulary: single-flight locking with NX+EX, TTL jitter, and stale-while-revalidate patterns. For production, add lock leases short enough to self-heal a crashed holder.",
+        "expectedOutput": "No new output to produce — this step is design discussion. The takeaway: jitter is nearly free and fixes bulk expiry; a single-flight lock protects a genuinely hot key but adds complexity, and the NX+EX pairing exists precisely so a crashed worker's lock disappears on its own."
+      }
+    ],
+    "outcomes": [
+      "A runnable cache-aside service: reads check Redis first, misses backfill with SETEX, writes update the database and then invalidate.",
+      "You can prove which path served a request from MONITOR and TTL output instead of guessing.",
+      "You can name the stampede mitigations — single-flight lock with NX+EX and TTL jitter — and when each one applies."
+    ],
+    "checks": [
+      "Call getProductJson(42) twice and confirm MONITOR shows exactly one SETEX total — the second call produced no database load.",
+      "Call updateProduct and confirm the following read appears in MONITOR as GET then a fresh SETEX, with a DEL between the write and the read.",
+      "Run TTL product:42 and confirm the countdown started between 300 and 359, proving the jitter from step 5 is live.",
+      "Stop the app and confirm pool.close() ran cleanly — redis-cli PING still works, and no connections are left open from your app."
+    ]
+  }
+]

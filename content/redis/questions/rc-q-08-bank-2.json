@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-08-bank-2",
+  "domainId": "rc-dev-java",
+  "moduleId": "m-java-clients",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which statements about Jedis are correct?",
+  "explanation": "Jedis instances are not thread-safe, so real services pool them; try-with-resources (or a finally block) returns the instance to the pool even when an exception flies; and pipelining is available through jedis.pipelined() followed by sync(). Jedis has no reactive API \u2014 that is Lettuce's feature.",
+  "tags": [
+    "redis",
+    "java",
+    "jedis"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "A Jedis instance is not thread-safe and must not be shared across threads"
+    },
+    {
+      "id": "b",
+      "text": "try-with-resources returns a borrowed Jedis to its pool even on exception"
+    },
+    {
+      "id": "c",
+      "text": "Jedis exposes a reactive API on top of its blocking commands"
+    },
+    {
+      "id": "d",
+      "text": "Batched commands can be sent through jedis.pipelined() and flushed with sync()"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-08-bank-8",
+  "domainId": "rc-dev-java",
+  "moduleId": "m-java-clients",
+  "difficulty": "advanced",
+  "kind": "codeReading",
+  "prompt": "What does this Java snippet print?",
+  "explanation": "The commands run in order on one connection: SET stock:42 10, then INCR stock:42 bumps the stored value to 11, and GET returns the string 11, which is printed. Each call waits for its reply, so the sequence is straightforward.",
+  "tags": [
+    "redis",
+    "java",
+    "jedis"
+  ],
+  "code": "try (Jedis jedis = pool.getResource()) {\n    jedis.set(\"stock:42\", \"10\");\n    jedis.incr(\"stock:42\");\n    System.out.println(jedis.get(\"stock:42\"));\n}",
+  "options": [
+    {
+      "id": "a",
+      "text": "11"
+    },
+    {
+      "id": "b",
+      "text": "10"
+    },
+    {
+      "id": "c",
+      "text": "10incr"
+    },
+    {
+      "id": "d",
+      "text": "A JedisDataException, because INCR cannot run after SET"
+    }
+  ],
+  "correct": "a"
+}

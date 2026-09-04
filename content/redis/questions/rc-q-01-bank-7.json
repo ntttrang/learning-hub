@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-01-bank-7",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "difficulty": "beginner",
+  "kind": "multi",
+  "prompt": "Which statements about Redis structures are correct?",
+  "explanation": "Sets hold unique, unordered members; sorted sets order members by an associated score; and every stream entry carries an ID of the form milliseconds-sequence. Lists preserve insertion order only \u2014 they never sort members by value.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "overview"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Set members are unique and unordered"
+    },
+    {
+      "id": "b",
+      "text": "Sorted sets order members by an associated numeric score"
+    },
+    {
+      "id": "c",
+      "text": "Lists keep members sorted by value automatically"
+    },
+    {
+      "id": "d",
+      "text": "Every stream entry carries an ID of the form milliseconds-sequence"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

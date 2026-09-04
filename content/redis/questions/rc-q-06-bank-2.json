@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-06-bank-2",
+  "domainId": "rc-core-persist",
+  "moduleId": "m-persistence",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each persistence setting or command to its durability effect.",
+  "explanation": "The fsync policy sets the per-crash loss window for the AOF; save points drive RDB snapshot frequency; and BGREWRITEAOF compacts the log. Riskier policies are faster: no lets the OS decide, everysec risks about one second, and always risks nothing but costs the most latency.",
+  "tags": [
+    "redis",
+    "persistence",
+    "durability"
+  ],
+  "pairs": [
+    {
+      "left": "appendfsync always",
+      "right": "Fsyncs after every write: strongest durability, highest latency"
+    },
+    {
+      "left": "appendfsync everysec",
+      "right": "Fsyncs about once per second: roughly one second of writes at risk"
+    },
+    {
+      "left": "appendfsync no",
+      "right": "The OS decides when to flush: fastest, least predictable loss window"
+    },
+    {
+      "left": "save \"900 1\"",
+      "right": "RDB snapshot after 900 seconds if at least one key changed"
+    },
+    {
+      "left": "BGREWRITEAOF",
+      "right": "Compacts the AOF into a minimal equivalent log in the background"
+    }
+  ]
+}

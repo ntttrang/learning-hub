@@ -1,0 +1,20 @@
+{
+  "id": "rc-q-01-bank-15",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "difficulty": "advanced",
+  "kind": "bug",
+  "prompt": "A developer wants the top scorer of the leaderboard but the script prints bob. Which line is wrong?",
+  "explanation": "ZRANGE without REV walks the sorted set from the lowest score upward, so index 0 is bob with 90 points. Reading the top of the ranking needs the reversed direction: ZRANGE leaderboard 0 0 REV, or ZREVRANGE on older Redis versions.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "sorted-sets"
+  ],
+  "codeLines": [
+    "ZADD leaderboard 100 alice",
+    "ZADD leaderboard 90 bob",
+    "ZRANGE leaderboard 0 0   # expected alice, printed bob"
+  ],
+  "buggyLineIndex": 2
+}

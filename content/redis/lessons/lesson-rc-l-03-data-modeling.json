@@ -1,0 +1,40 @@
+{
+  "id": "rc-l-03-data-modeling",
+  "domainId": "rc-core-model",
+  "moduleId": "m-data-modeling",
+  "order": 1,
+  "slug": "data-modeling",
+  "title": "Data modeling in Redis",
+  "summary": "Mapping domain entities to structures — hash versus serialized object, relationship sets and zsets, live aggregates, hand-built secondary indexes, and hash tags as cluster locality hints.",
+  "minutes": 16,
+  "difficulty": "intermediate",
+  "references": [
+    {
+      "title": "Hashes",
+      "url": "https://redis.io/docs/latest/develop/data-types/hashes/"
+    },
+    {
+      "title": "Sorted sets",
+      "url": "https://redis.io/docs/latest/develop/data-types/sorted-sets/"
+    },
+    {
+      "title": "Redis streams",
+      "url": "https://redis.io/docs/latest/develop/data-types/streams/"
+    },
+    {
+      "title": "Cluster specification",
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/"
+    }
+  ],
+  "questionIds": [
+    "rc-q-03-kc-1",
+    "rc-q-03-kc-2",
+    "rc-q-03-kc-3"
+  ],
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "Modeling in Redis inverts the relational habit: you design around **access\npatterns**, not around entity classes. The exam hands you a scenario — \"store\nsessions with a 30-minute timeout\", \"leaderboard with live ranks\", \"find all\nadmins\" — and expects you to pick the structure whose strengths match the query.\n\n## The modeling litmus test\n\nAnswer three questions before choosing a structure:\n\n1. What is the dominant access path — point lookup, range, membership, or\n   top-N?\n2. Does anything need to expire (sessions, tokens, rate windows)?\n3. Who maintains derived data — the app, on every write, or nobody?\n\nThe answers usually leave one structure standing. The sections below walk the\nstandard mappings the exam draws from.\n\n## Entities: hash per object versus serialized string\n\nThe first fork in the road: store each object as a hash of fields, or as one\nserialized string (JSON, protobuf, whatever your service speaks).\n\n**Hash per object** — `HSET user:42 name \"Ada\" role \"admin\" logins 7`:\n\n- Field-level updates without read-modify-write: `HINCRBY user:42 logins 1` is\n  atomic and touches one field.\n- Partial reads: `HMGET user:42 name role` fetches two fields, not the object.\n- Compact `listpack` encoding for small hashes — very cheap memory.\n- The TTL story is simple: expiry applies to the whole key.\n- Cost: you own field-name governance, and cross-object queries (\"all admins\")\n  need a separate index structure.\n\n**Serialized string** — `SET user:42 \"{...json...}\"`:\n\n- One `GET` returns the whole object; one `SET` replaces it.\n- Plays well with typed codecs in application code.\n- Updates become read-modify-write cycles: concurrent `GET` then `SET` loses\n  updates unless you add a lock or optimistic concurrency (`WATCH`).\n- No atomic field-level counters — every increment is a full-object round trip.\n- Bonus: a JSON string can hold structure a flat hash cannot (nested objects,\n  arrays) without a stack module.\n\nExam heuristic: **hash when the app updates fields independently; string when\nthe app always reads and writes the whole object** — and note the lost-update\nrisk as the string's hidden cost.\n\n## One-to-many: children plus an index\n\nA parent with many children (user → sessions, author → posts) models as child\nkeys plus an index of ids:\n\n```redis\nHSET post:801 author 42 title \"...\"   the child object\nSADD user:42:posts 801 802            the index (unordered)\nRPUSH user:42:timeline 801            ordered but O(N) in middle access\nZADD user:42:feed 1789000000 801      ordered, score = timestamp\n```\n\nRules the exam likes:\n\n- Key each child by its own id (`post:801`), not nested inside the parent, so\n  children stay independently addressable, expirable, and lock-free.\n- Keep the id list in a set (unordered, unique), list (ordered, allow\n  duplicates), or zset (ordered, score = time/rank).\n- Never grow a hash without bound: `user:42` should not grow one field per\n  friend — move unbounded data into its own structure.\n\n## Many-to-many: sets in both directions\n\nRelationships map to sets keyed on both endpoints:\n\n```redis\nSADD followers:42 7 9         who follows 42\nSADD following:7 42           whom 7 follows\nSISMEMBER followers:42 7      O(1) — does 7 follow 42\nSINTER followers:42 followers:9   mutual followers\n```\n\nThe membership test is the win: \"does X follow Y\" is O(1) with no index to\nconsult. Set algebra (`SINTER`, `SUNION`, `SDIFF`) then answers compound\nquestions without a query engine.\n\n## Relationships with rank: zsets\n\nWhen a relationship carries an order or weight, a zset replaces the set:\nscore = timestamp (newest-first feeds), rating, or running total.\n\n```redis\nZADD user:42:likes 1789000000 post:801    liked at time T\nZINCRBY post:tally 1 post:801             live like-counter per post\nZRANGE post:tally 0 9 REV WITHSCORES      top ten posts\n```\n\nBumping scores with `ZINCRBY` builds **live aggregation** in a zset: each event\nis one atomic O(log N) increment, and the ranking is maintained for you. A\nleaderboard is a zset whose score is the metric; a time-window leaderboard is\none zset per window (`leaderboard:2026-09-03`), with TTLs on the old windows.\n\n## Hand-built secondary indexes\n\nRedis has no query engine, so an index is just another key the app maintains.\nThe canonical pattern is a set per field value:\n\n```redis\nSADD users:role:admin 42        members = ids of users with role admin\nSADD users:status:active 42 7\nSISMEMBER users:role:admin 42\nSINTER users:role:admin users:status:active   multi-field AND\n```\n\n- The index is maintained by application code on every relevant write — there\n  are no triggers, so a missed write silently corrupts the index.\n- Multi-field queries compose with set algebra; that is the whole query\n  language.\n- Equality on high-cardinality fields (email) uses a set keyed by the exact\n  value; **range** queries need a zset with the numeric or time value as the\n  score, sliced with `ZRANGEBYSCORE`.\n- The trade-off is real: every index doubles the write path and the memory.\n  Index what you query, not everything you store.\n\nThe relational habit of \"index everything\" becomes, in Redis, \"index exactly\nthe access paths you serve\" — memory versus query flexibility is an explicit\ndial, not an afterthought.\n\n## Hash tags: a cluster hint, not a modeling tool\n\nWhen clustering is on, a key's placement is `CRC16(hash-tag) mod 16384`, where\nthe hash tag is the text between the first `{` and the first `}`. Only the tag\nis hashed — the rest of the key name is ignored for placement.\n\n```text\nuser:42:followers      slot from CRC16(\"user:42:followers\")\n{user:42}:followers    slot from CRC16(\"user:42\")\n{user:42}:posts        same slot as {user:42}:followers\n```\n\nModeling-wise this is **only a locality hint**: it exists so multi-key\noperations (`MGET`, `SINTER`, transactions, Lua) that must touch several keys\ncan find them in the same slot. It does not make those keys one entity, does\nnot balance load — a hot tag piles keys onto one shard — and is invisible to a\nnon-clustered deployment. Reach for hash tags when multi-key atomicity demands\nco-location, and otherwise model keys as if placement did not exist.\n\n## Exam takeaways\n\n- Design for the access pattern; the structure choice *is* the query plan.\n- Hash per object for field-level atomic updates; serialized string for\n  whole-object transfer, with read-modify-write lost-update risk.\n- Children get their own keys; the parent holds an index — set, list, or\n  zset depending on ordering needs.\n- Sets give O(1) membership and set algebra; zsets add rank and range, and\n  `ZINCRBY` turns them into live aggregates.\n- Secondary indexes are app-maintained keys: sets for equality and AND\n  composition, zsets for ranges; every index costs memory on every write.\n- Hash tags influence slot placement only — they buy multi-key locality at\n  the price of load balance, nothing more."
+    }
+  ]
+}

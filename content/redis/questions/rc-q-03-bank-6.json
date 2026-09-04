@@ -1,0 +1,32 @@
+{
+  "id": "rc-q-03-bank-6",
+  "domainId": "rc-core-model",
+  "moduleId": "m-data-modeling",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each query to the Redis-side pattern that answers it efficiently.",
+  "explanation": "Attribute sets answer single-value filters with SMEMBERS, and SINTER combines them for AND filters. Ranked queries read rank ranges of the score-ordered zset, and full-text-style term lookups read the term's inverted-index set directly.",
+  "tags": [
+    "redis",
+    "data-modeling",
+    "indexes"
+  ],
+  "pairs": [
+    {
+      "left": "Products where color=red",
+      "right": "SMEMBERS idx:color:red"
+    },
+    {
+      "left": "Products where color=red AND size=m",
+      "right": "SINTER idx:color:red idx:size:m"
+    },
+    {
+      "left": "Top 10 players by points",
+      "right": "ZREVRANGE players 0 9 WITHSCORES"
+    },
+    {
+      "left": "Articles containing the term streams",
+      "right": "SMEMBERS idx:term:streams"
+    }
+  ]
+}

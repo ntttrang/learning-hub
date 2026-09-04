@@ -1,0 +1,66 @@
+[
+  {
+    "id": "rc-core-types",
+    "order": 1,
+    "code": "D1",
+    "title": "Data structures & commands",
+    "weight": { "min": 15, "max": 25 },
+    "summary": "Strings, lists, hashes, sets, sorted sets, streams, bitmaps, hyperloglog and geospatial — the command surface and time complexity of each structure."
+  },
+  {
+    "id": "rc-core-keys",
+    "order": 2,
+    "code": "D2",
+    "title": "Keys, keyspace & expiry",
+    "weight": { "min": 5, "max": 12 },
+    "summary": "Key naming and format, generic key commands, active vs lazy expiry, TTL semantics, SCAN vs KEYS, and big-key hazards."
+  },
+  {
+    "id": "rc-core-model",
+    "order": 3,
+    "code": "D3",
+    "title": "Data modeling",
+    "weight": { "min": 8, "max": 15 },
+    "summary": "Mapping domain entities to Redis structures, one-to-many and many-to-many patterns, aggregation and secondary-index strategies, and choosing between structures."
+  },
+  {
+    "id": "rc-core-perf",
+    "order": 4,
+    "code": "D4",
+    "title": "Performance & debugging",
+    "weight": { "min": 8, "max": 16 },
+    "summary": "The single-threaded event loop, Big-O command selection, O(N) hazards, latency tooling (SLOWLOG, LATENCY, INFO, MONITOR), pipelines, and transactions."
+  },
+  {
+    "id": "rc-core-cluster",
+    "order": 5,
+    "code": "D5",
+    "title": "Replication, HA & clustering",
+    "weight": { "min": 6, "max": 14 },
+    "summary": "Replication topologies, Sentinel-managed failover, cluster topology with 16384 hash slots, hash tags, MOVED/ASK redirects, resharding and failover."
+  },
+  {
+    "id": "rc-core-persist",
+    "order": 6,
+    "code": "D6",
+    "title": "Persistence & durability",
+    "weight": { "min": 4, "max": 10 },
+    "summary": "RDB snapshots, AOF with fsync policies, rewrite, hybrid persistence, and what survives a restart under each configuration."
+  },
+  {
+    "id": "rc-core-security",
+    "order": 7,
+    "code": "D7",
+    "title": "Security & configuration",
+    "weight": { "min": 3, "max": 8 },
+    "summary": "ACL users and permissions, TLS, network exposure (bind, protected-mode), maxmemory and eviction policies, and lazy freeing."
+  },
+  {
+    "id": "rc-dev-java",
+    "order": 8,
+    "code": "D8",
+    "title": "Java clients & application patterns",
+    "weight": { "min": 8, "max": 14 },
+    "summary": "Jedis, Lettuce and Redisson trade-offs, connection pooling, serialization, pipelines and transactions from Java, plus cache-aside, sessions, rate limiting and streams in services."
+  }
+]

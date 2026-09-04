@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-03-bank-8",
+  "domainId": "rc-core-model",
+  "moduleId": "m-data-modeling",
+  "difficulty": "advanced",
+  "kind": "codeReading",
+  "prompt": "Products 1, 2, 3 are red; products 2, 3, 4 are size m. What does the final command return?",
+  "explanation": "SINTER returns ids present in both attribute sets: 2 and 3 are red and size m, while 1 lacks size m and 4 lacks red. This is the AND of the two secondary indexes.",
+  "tags": [
+    "redis",
+    "data-modeling",
+    "secondary-indexes"
+  ],
+  "code": "SADD idx:color:red 1 2 3\nSADD idx:size:m 2 3 4\nSINTER idx:color:red idx:size:m",
+  "options": [
+    {
+      "id": "a",
+      "text": "1) \"2\"\n2) \"3\""
+    },
+    {
+      "id": "b",
+      "text": "1) \"1\"\n2) \"2\"\n3) \"3\"\n4) \"4\""
+    },
+    {
+      "id": "c",
+      "text": "1) \"2\"\n2) \"3\"\n3) \"4\""
+    },
+    {
+      "id": "d",
+      "text": "(empty list or set)"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "rc-q-07-kc-3",
+  "domainId": "rc-core-security",
+  "moduleId": "m-security-config",
+  "lessonId": "rc-l-07-security-config",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "maxmemory is configured and the dataset reaches the limit. Which outcomes are possible, depending on the eviction policy?",
+  "explanation": "The policy decides what happens at the ceiling: noeviction rejects write commands with an out-of-memory error, allkeys-lru evicts the least recently used keys to make room, and volatile-ttl evicts keys with a TTL that are closest to expiry. Redis never simply ignores the limit and keeps growing.",
+  "tags": [
+    "redis",
+    "security",
+    "eviction"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Under noeviction, write commands fail with an out-of-memory error"
+    },
+    {
+      "id": "b",
+      "text": "Under allkeys-lru, least recently used keys are evicted to make room"
+    },
+    {
+      "id": "c",
+      "text": "Redis accepts the write and keeps growing past maxmemory regardless of policy"
+    },
+    {
+      "id": "d",
+      "text": "Under volatile-ttl, keys carrying a TTL and closest to expiry are evicted first"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "rc-q-08-bank-4",
+  "domainId": "rc-dev-java",
+  "moduleId": "m-java-clients",
+  "difficulty": "intermediate",
+  "kind": "order",
+  "prompt": "Arrange the steps of a cache-aside read for key user:42.",
+  "explanation": "Cache-aside always starts on the cache side with GET; a miss sends the service to the database; the loaded record is written back with SET plus a TTL; and only then does the caller receive the value, so the next read hits the cache.",
+  "tags": [
+    "redis",
+    "java",
+    "cache-aside"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "GET user:42 in Redis"
+    },
+    {
+      "id": "b",
+      "text": "On a miss, load the record from the database"
+    },
+    {
+      "id": "c",
+      "text": "SET user:42 with the loaded record and an expiry"
+    },
+    {
+      "id": "d",
+      "text": "Return the record to the caller"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c",
+    "d"
+  ]
+}

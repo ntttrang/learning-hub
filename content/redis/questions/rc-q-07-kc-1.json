@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-07-kc-1",
+  "domainId": "rc-core-security",
+  "moduleId": "m-security-config",
+  "lessonId": "rc-l-07-security-config",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "A freshly installed Redis with default configuration answers only on the loopback interface. Which mechanism causes this?",
+  "explanation": "Protected mode makes an unconfigured server (no bind directive and no password/ACL set) accept connections only from 127.0.0.1 ::1, so a default install is not exposed to the network until an operator explicitly binds interfaces or sets up authentication.",
+  "tags": [
+    "redis",
+    "security",
+    "protected-mode"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Protected mode, which limits an unconfigured server to loopback connections"
+    },
+    {
+      "id": "b",
+      "text": "The default ACL denies all remote users until ACL SETUSER grants access"
+    },
+    {
+      "id": "c",
+      "text": "TLS is required for any non-loopback connection by default"
+    },
+    {
+      "id": "d",
+      "text": "Redis only opens a network socket once a password is configured"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "rc-q-07-bank-2",
+  "domainId": "rc-core-security",
+  "moduleId": "m-security-config",
+  "difficulty": "advanced",
+  "kind": "fill",
+  "prompt": "Complete the CONFIG command that makes DEL release memory asynchronously.",
+  "explanation": "lazyfree-lazy-user-del yes makes plain DEL behave like UNLINK: the key leaves the keyspace immediately while the value's memory is reclaimed in a background thread, useful when deleting very large values on the main thread would stall clients.",
+  "tags": [
+    "redis",
+    "security",
+    "lazy-freeing"
+  ],
+  "template": "CONFIG SET ___ yes makes DEL behave like UNLINK, freeing the value in a background thread.",
+  "blanks": [
+    {
+      "answer": "lazyfree-lazy-user-del",
+      "alternatives": [
+        "lazyfree-lazy-user_del"
+      ]
+    }
+  ]
+}

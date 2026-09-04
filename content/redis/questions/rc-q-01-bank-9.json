@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-01-bank-9",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each Redis structure to its canonical use case.",
+  "explanation": "Each structure has a shape that fits one family of workloads: sequences suit feeds, field-value maps suit per-entity records, membership collections suit tags and uniqueness, score-ordered collections suit rankings, and append-only logs with IDs suit events.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "use-cases"
+  ],
+  "pairs": [
+    {
+      "left": "List",
+      "right": "Activity feed where newest entries land at the head"
+    },
+    {
+      "left": "Hash",
+      "right": "User profile whose fields are updated one at a time"
+    },
+    {
+      "left": "Set",
+      "right": "The unique tags a blog post carries"
+    },
+    {
+      "left": "Sorted set",
+      "right": "Leaderboard ordered by score"
+    },
+    {
+      "left": "Stream",
+      "right": "Append-only event log read by consumer groups"
+    }
+  ]
+}

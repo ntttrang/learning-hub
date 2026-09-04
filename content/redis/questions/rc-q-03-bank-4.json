@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-03-bank-4",
+  "domainId": "rc-core-model",
+  "moduleId": "m-data-modeling",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which statements about data modeling in Redis are correct?",
+  "explanation": "Redis data modeling is query-first and denormalized on purpose: the same fact is often duplicated into several structures to serve different queries, and keys are designed around access patterns because the server offers no joins and no automatic indexing of hash field values.",
+  "tags": [
+    "redis",
+    "data-modeling",
+    "principles"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Duplicating the same fact into several structures to serve different queries is a normal, intentional pattern"
+    },
+    {
+      "id": "b",
+      "text": "The server can join data spread across keys with a single command"
+    },
+    {
+      "id": "c",
+      "text": "Keys should be designed around the application's query patterns, not only around entities"
+    },
+    {
+      "id": "d",
+      "text": "Hash field values are indexed automatically for lookups by value"
+    }
+  ],
+  "correct": [
+    "a",
+    "c"
+  ]
+}

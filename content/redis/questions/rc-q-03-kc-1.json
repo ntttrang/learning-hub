@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-03-kc-1",
+  "domainId": "rc-core-model",
+  "moduleId": "m-data-modeling",
+  "lessonId": "rc-l-03-data-modeling",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Each user's post ids must be readable newest-first, and new posts arrive at any moment. Which structure stores the feed?",
+  "explanation": "A list fits naturally: LPUSH puts each new post id at the head, and LRANGE 0 9 reads the ten newest without any sorting step. A set loses order, a hash has no sequence, and a sorted set would only be needed if posts had scores to rank by.",
+  "tags": [
+    "redis",
+    "data-modeling",
+    "lists"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "A list per user, prepending each new post id with LPUSH"
+    },
+    {
+      "id": "b",
+      "text": "A set per user, adding each post id with SADD"
+    },
+    {
+      "id": "c",
+      "text": "A hash per user, one field per post"
+    },
+    {
+      "id": "d",
+      "text": "A HyperLogLog per user counting the posts"
+    }
+  ],
+  "correct": "a"
+}

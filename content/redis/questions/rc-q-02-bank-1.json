@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-02-bank-1",
+  "domainId": "rc-core-keys",
+  "moduleId": "m-keys",
+  "difficulty": "advanced",
+  "kind": "single",
+  "prompt": "session:42 carries a 60-second TTL. The application then runs SET session:42 <new-json> with no expiry options. What TTL does the key have afterwards?",
+  "explanation": "A plain SET replaces the value and clears any existing timeout \u2014 TTLs do not survive overwrites unless the command includes the KEEPTTL option. The refreshed value now has no expiry at all, a classic cause of sessions that never expire.",
+  "tags": [
+    "redis",
+    "keys",
+    "ttl"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "No TTL \u2014 a plain SET clears the previous timeout unless KEEPTTL is used"
+    },
+    {
+      "id": "b",
+      "text": "60 seconds \u2014 an existing TTL survives value overwrites"
+    },
+    {
+      "id": "c",
+      "text": "60 seconds, counted again from the moment of the overwrite"
+    },
+    {
+      "id": "d",
+      "text": "The SET is rejected until the current TTL runs out"
+    }
+  ],
+  "correct": "a"
+}

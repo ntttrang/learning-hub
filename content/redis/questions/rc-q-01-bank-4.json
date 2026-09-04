@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-01-bank-4",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "Restaurant locations are stored with GEOADD. Which command returns the five restaurants nearest to a coordinate, nearest first?",
+  "explanation": "GEOSEARCH queries an area (radius or box) around a point, and ASC orders the results from nearest to farthest; COUNT limits how many are returned. GEODIST, GEOPOS, and GEOHASH only report distances, positions, and geohash strings for members that already exist.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "geospatial"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "GEOSEARCH places FROMLONLAT -73.98 40.75 BYRADIUS 2 km ASC COUNT 5"
+    },
+    {
+      "id": "b",
+      "text": "GEODIST places member1 member2 km"
+    },
+    {
+      "id": "c",
+      "text": "GEOPOS places member1"
+    },
+    {
+      "id": "d",
+      "text": "GEOHASH places member1"
+    }
+  ],
+  "correct": "a"
+}

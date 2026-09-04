@@ -1,0 +1,32 @@
+{
+  "id": "rc-q-08-bank-5",
+  "domainId": "rc-dev-java",
+  "moduleId": "m-java-clients",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each Java client to its defining trait.",
+  "explanation": "Jedis is the simple blocking client best used through a pool; Lettuce is the Netty client with shared connections and async or reactive APIs; Redisson adds distributed objects and services; and Spring Data Redis is an abstraction layer that can drive Lettuce or Jedis underneath.",
+  "tags": [
+    "redis",
+    "java",
+    "clients"
+  ],
+  "pairs": [
+    {
+      "left": "Jedis",
+      "right": "Blocking API; instances are not thread-safe and belong in a pool"
+    },
+    {
+      "left": "Lettuce",
+      "right": "Netty-based; thread-safe shared connection with sync, async, and reactive APIs"
+    },
+    {
+      "left": "Redisson",
+      "right": "Distributed objects and services such as RLock, RMap, and executors"
+    },
+    {
+      "left": "Spring Data Redis",
+      "right": "Abstraction over Lettuce or Jedis with template and repository APIs"
+    }
+  ]
+}

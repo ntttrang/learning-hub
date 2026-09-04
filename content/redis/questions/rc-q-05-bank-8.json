@@ -1,0 +1,43 @@
+{
+  "id": "rc-q-05-bank-8",
+  "domainId": "rc-core-cluster",
+  "moduleId": "m-clustering-ha",
+  "difficulty": "advanced",
+  "kind": "order",
+  "prompt": "Arrange the phases of a Sentinel-managed failover in order.",
+  "explanation": "One Sentinel stops receiving replies within down-after-milliseconds and marks the master subjectively down; when enough Sentinels agree (the quorum), the master is objectively down; the Sentinels then elect a leader among themselves via majority agreement; the leader selects the most up-to-date replica and promotes it; finally clients discover the new master by querying Sentinel.",
+  "tags": [
+    "redis",
+    "sentinel",
+    "failover"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "A Sentinel marks the master down after missing replies for down-after-milliseconds"
+    },
+    {
+      "id": "b",
+      "text": "Enough Sentinels agree, making the failure objective at the configured quorum"
+    },
+    {
+      "id": "c",
+      "text": "The Sentinels elect a leader among themselves by majority"
+    },
+    {
+      "id": "d",
+      "text": "The elected leader promotes the most up-to-date replica to master"
+    },
+    {
+      "id": "e",
+      "text": "Clients requery Sentinel and reconnect to the new master"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e"
+  ]
+}

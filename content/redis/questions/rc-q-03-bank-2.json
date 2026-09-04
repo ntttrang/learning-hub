@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-03-bank-2",
+  "domainId": "rc-core-model",
+  "moduleId": "m-data-modeling",
+  "difficulty": "advanced",
+  "kind": "single",
+  "prompt": "Product hashes carry a color field, and the application maintains the idx:color:red index set by hand. What must the application remember about that index?",
+  "explanation": "Redis maintains no secondary indexes itself: every write that changes a product's color must also update the affected idx:color:* sets, and it must remove the id from the old set as well as add it to the new one. Keeping both updates consistent usually means wrapping them in MULTI/EXEC or a Lua script so they apply together.",
+  "tags": [
+    "redis",
+    "data-modeling",
+    "secondary-indexes"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Every write that changes a product's color must update the old and new index sets too, usually inside MULTI/EXEC or a Lua script"
+    },
+    {
+      "id": "b",
+      "text": "The server updates the index sets automatically whenever the hash field changes"
+    },
+    {
+      "id": "c",
+      "text": "The index sets rebuild themselves from the RDB snapshot at startup"
+    },
+    {
+      "id": "d",
+      "text": "Stale members in the index set are harmless because SINTER revalidates them"
+    }
+  ],
+  "correct": "a"
+}
