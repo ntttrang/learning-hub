@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-16-kc-1",
+  "domainId": "rc-cloud-networking",
+  "moduleId": "m-cloud-networking",
+  "lessonId": "rc-l-16-cloud-networking",
+  "difficulty": "beginner",
+  "kind": "codeReading",
+  "prompt": "A developer runs this from a laptop on a home network against a database with TLS disabled and no CIDR allow list. What is the result?",
+  "explanation": "The hostname is a static public endpoint, which is reachable from anywhere on the public internet — no peering or private connectivity is needed. The -a flag authenticates with the Default user password, so PING is answered with PONG.",
+  "tags": [
+    "redis",
+    "cloud-networking",
+    "public-endpoint",
+    "redis-cli"
+  ],
+  "code": "redis-cli -h redis-12345.c12345.us-east-1-mz.ec2.cloud.rlrcp.com -p 12345 \\\n  -a '<default-user-password>' PING",
+  "options": [
+    {
+      "id": "a",
+      "text": "PONG — the public endpoint answers from anywhere on the internet"
+    },
+    {
+      "id": "b",
+      "text": "Connection refused — public endpoints answer only from peered VPCs"
+    },
+    {
+      "id": "c",
+      "text": "PONG, but only after TLS is enabled on the database"
+    },
+    {
+      "id": "d",
+      "text": "NOAUTH error — the -a flag cannot authenticate against cloud endpoints"
+    }
+  ],
+  "correct": "a"
+}

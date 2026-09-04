@@ -1,0 +1,46 @@
+{
+  "id": "rc-l-17-cloud-monitoring",
+  "moduleId": "m-cloud-monitoring",
+  "domainId": "rc-cloud-monitoring",
+  "order": 1,
+  "slug": "cloud-monitoring",
+  "title": "Redis Cloud monitoring and alerts",
+  "summary": "Console metric graphs and intervals, per-plan alert thresholds with email delivery to the account team, the Pro Prometheus endpoint and its private-connectivity prerequisite, Datadog and New Relic integrations, and audit trail via system logs.",
+  "minutes": 15,
+  "difficulty": "intermediate",
+  "references": [
+    {
+      "title": "Monitor database performance",
+      "url": "https://redis.io/docs/latest/operate/rc/databases/monitor-performance"
+    },
+    {
+      "title": "Prometheus and Grafana with Redis Cloud",
+      "url": "https://redis.io/docs/latest/integrate/prometheus-with-redis-cloud/"
+    },
+    {
+      "title": "Datadog with Redis Cloud",
+      "url": "https://redis.io/docs/latest/integrate/datadog-with-redis-cloud/"
+    },
+    {
+      "title": "System logs",
+      "url": "https://redis.io/docs/latest/operate/rc/logs-reports/system-logs/"
+    }
+  ],
+  "docIds": [
+    "rc-monitoring",
+    "rc-maintenance",
+    "rc-networking",
+    "rc-active-active"
+  ],
+  "questionIds": [
+    "rc-q-17-kc-1",
+    "rc-q-17-kc-2",
+    "rc-q-17-kc-3"
+  ],
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "Redis Cloud watches the infrastructure; you watch the workload. The monitoring domain tests whether you know where performance data lives, which alerts fire on which plans, how metrics reach an external observability stack, and how account activity is audited.\n\n## Console metrics\n\nThe **Metrics** tab of a database shows performance graphs. An interval scrollbar selects the window: 5 or 15 minutes at 30-second resolution, an hour at 1 minute, a day at 5 minutes, a week at 30 minutes, a month at 4 hours, and 3 months at 12 hours. Two graphs sit in primary positions; hover any smaller graph to see its minimum, average, maximum, and latest value, and promote it into a primary slot.\n\nThe metric set covers the numbers an operator actually tunes against: ops/sec overall with reads/sec, writes/sec, and other commands/sec; latency per operation in milliseconds; used memory; total keys; connections; evicted objects/sec; expired objects/sec; hit ratio; and network ingress/egress bytes per second. Redis Insight is the recommended tool for deeper per-key analysis alongside these graphs.\n\n## Alert settings differ by plan\n\nWhere you configure alerts already depends on the plan: **Essentials** databases have an **Alerts** tab on the database screen; **Pro** databases configure alerts in the **Alerts** section of the **Configuration** tab. Alert settings are specific to each database, so configure every database that matters.\n\nThe threshold types and their defaults are exam material:\n\n| Alert | Default | Available on |\n|---|---|---|\n| Dataset size has reached (% of memory limit) | 80% | Pro |\n| Total size of datasets under this plan (% of plan limit) | 80% | Essentials |\n| Throughput higher than (ops/sec) | 1000 | Paid Essentials or Pro |\n| Throughput lower than (ops/sec) | 10 | Paid Essentials or Pro |\n| Latency higher than (msec) | 10 | Paid Essentials or Pro |\n| Number of connections (% of plan limit) | 80% | Essentials |\n| Sync-failure and lag alerts for replica-based geo-distribution | 1 sec sync failure; 600 sec lag | Pro |\n\nThe last row covers the replica-sync alert pair from the docs — the sync-failed and sync-lag alarms behind **Active-Passive** databases on Pro. Alert delivery is by **email to account team members**; you choose recipients under **Access Management > Team**. Redis Cloud has no native webhook alert channel — teams that need incident-tool routing (PagerDuty, Slack, webhooks) wire it through their observability platform instead, for example Prometheus Alertmanager rules or Datadog monitors on top of the scraped metrics.\n\n## Prometheus and Grafana (Pro)\n\nRedis Cloud exposes metrics through a **Prometheus endpoint** for Redis Cloud Pro databases — this is the documented way to feed Grafana and other metric platforms. Three facts carry the exam weight:\n\n- **It is Pro only.** You cannot use Prometheus and Grafana with Redis Cloud Essentials, and the endpoint sits on the internal network, so it requires one of the private connectivity methods: VPC peering, Private Service Connect, AWS Transit Gateway, or AWS PrivateLink — all Pro features. (Networking lesson: the same plumbing serves clients.)\n- **One endpoint covers the whole subscription.** Metrics span all databases in the subscription; databases added or removed are reflected automatically. Copy it from the Metrics tab via **Connect to Prometheus > Copy Prometheus endpoint**, or read `prometheusEndpoint` from `GET /subscriptions/{subscriptionId}` in the REST API.\n- **Scrape mechanics.** The Prometheus server scrapes over HTTPS on **port 8070** (metrics path `/`, or `/v2` for v2), and the scraping instance must live in one of the RFC-1918 internal ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16), which is the whitelist the endpoint enforces.\n\nRedis publishes preconfigured Grafana dashboards: a subscription status dashboard, a database status dashboard (latency, memory, ops/sec, key count; needs the Infinity data source plugin), and an Active-Active dashboard in the Redis field-engineering observability repository on GitHub.\n\n## Other observability integrations\n\nFor platforms beyond Grafana, the documented integrations are **Datadog** and **New Relic** — each offers a Redis Cloud integration with predefined dashboards for monitoring your deployment. Note what is absent: there is no native Amazon CloudWatch integration. Redis Cloud does not push metrics into CloudWatch; AWS-native teams typically scrape the Prometheus endpoint with Prometheus-compatible tooling, while CloudWatch monitors their own application tier. If an exam question offers CloudWatch as the built-in metrics sink for Redis Cloud, it is a distractor.\n\n## System logs: the audit trail\n\nThe console **Logs** page collects events, alerts, and activity from your account, subscriptions, and databases. You can sort by time, originator, database name, API key name, or activity; search across those fields; refresh; and **export everything as a CSV** for other systems. The same data is available programmatically with `GET /logs` in the REST API.\n\nThe audit value is concrete: each API request records the **API key name** that authenticated it, and Redis Cloud explicitly recommends naming user keys per person or app so system logs can answer who changed what. This is the observability counterpart to the automation lesson — named keys plus the Logs page is the documented audit loop.\n\n## What to watch for capacity and latency\n\nA practical watchlist, mapped to the alert set:\n\n- **Memory pressure**: dataset size against the memory limit (Pro alert default 80%) and used memory graphs; watch evicted objects/sec — sustained eviction means the limit is doing its job, but your hit ratio is paying for it.\n- **Latency**: latency higher-than alerts (default 10 ms) and the latency graphs per operation class.\n- **Throughput anomalies in both directions**: higher-than catches overload; lower-than (default 10 ops/sec) catches a silently dead producer or a broken pipeline.\n- **Connections**: Essentials alerts at a percentage of plan limit; connection growth often precedes a pool misconfiguration.\n- **Geo-distribution health**: sync failure (default 1 second) and sync lag (default 600 seconds) on Pro replica-based Active-Passive setups.\n\n## Exam takeaways\n\n- Alert configuration location differs by plan: Essentials has an Alerts tab; Pro puts alerts in the Configuration tab. Alert settings are per database.\n- Memorize the defaults: dataset size 80% (Pro), plan dataset total 80% (Essentials), throughput higher 1000 / lower 10 ops/sec, latency higher 10 ms, connections 80% of plan limit (Essentials); sync-failure and lag alerts are Pro.\n- Alerts are delivered as email to account team members selected in Access Management > Team; there is no native webhook channel — route to incident tools via Prometheus Alertmanager or platform monitors.\n- The Prometheus endpoint is Pro only, internal-network only (needs VPC peering, PSC, Transit Gateway, or PrivateLink), scraped on port 8070 from an RFC-1918 instance, and covers every database in the subscription automatically.\n- Datadog and New Relic have documented Redis Cloud integrations with predefined dashboards; there is no native CloudWatch push. The console Logs page (and GET /logs) is the audit trail, sortable and CSV-exportable, recording the API key behind each request."
+    }
+  ]
+}

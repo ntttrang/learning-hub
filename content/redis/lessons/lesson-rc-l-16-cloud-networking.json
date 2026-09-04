@@ -1,0 +1,46 @@
+{
+  "id": "rc-l-16-cloud-networking",
+  "moduleId": "m-cloud-networking",
+  "domainId": "rc-cloud-networking",
+  "order": 1,
+  "slug": "cloud-networking",
+  "title": "Redis Cloud networking",
+  "summary": "Public and private endpoints, CIDR allow lists, VPC peering setup and limits on AWS and Google Cloud, Private Service Connect as the overlapping-CIDR alternative, and how clients reach a database over each path.",
+  "minutes": 15,
+  "difficulty": "intermediate",
+  "references": [
+    {
+      "title": "Enable VPC peering",
+      "url": "https://redis.io/docs/latest/operate/rc/security/vpc-peering/"
+    },
+    {
+      "title": "Enable Google Cloud Private Service Connect",
+      "url": "https://redis.io/docs/latest/operate/rc/security/private-service-connect/"
+    },
+    {
+      "title": "Network security",
+      "url": "https://redis.io/docs/latest/operate/rc/security/database-security/network-security/"
+    },
+    {
+      "title": "Connect to a Redis Cloud database",
+      "url": "https://redis.io/docs/latest/operate/rc/databases/connect/"
+    }
+  ],
+  "docIds": [
+    "rc-networking",
+    "rc-security",
+    "rc-create-database",
+    "rc-monitoring"
+  ],
+  "questionIds": [
+    "rc-q-16-kc-1",
+    "rc-q-16-kc-2",
+    "rc-q-16-kc-3"
+  ],
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "Networking is the widest Redis Cloud exam domain for a reason: connectivity is where most real outages and most exam scenario questions live. Every database is published through an endpoint, and the operator's job is to know which endpoint exists, who can reach it, and what must be configured on both sides of the wire before the first command flows.\n\n## Endpoints: public and private\n\nEvery Redis Cloud database — on Free and Paid Redis Cloud Essentials and on Redis Cloud Pro — gets a **public endpoint** reachable from the internet. Redis Cloud Pro databases additionally get a **private endpoint**, reachable only after you set up a private connectivity method: VPC peering, Google Cloud Private Service Connect, or (on AWS) Transit Gateway or PrivateLink. Pro subscriptions can also **block the public endpoint** entirely for a database, making private connectivity the only way in.\n\nEndpoint hostnames encode the port, and Redis Cloud database ports are not 6379. Two formats exist:\n\n- **Static endpoints** start with `redis-<port>.c<number>` — for example `redis-12345.c12345.us-east-1-mz.ec2.cloud.rlrcp.com`. The private endpoint variant inserts `internal`: `redis-<port>.internal.c<number>...`. Static endpoints cannot be redirected to a different database.\n- **Dynamic endpoints** always contain three words and a number and end in `.db.redis.io`, for example `horse-battery-staple-12345.db.redis.io`. You can redirect a dynamic endpoint to a different database at any time, which is why the docs recommend dynamic endpoints in application connection strings — you can later swap the database behind them with no code change.\n\nYou find the endpoints in the database's **Configuration** tab: the **Access** section for Essentials databases, the **General** section for Pro databases. For Active-Active databases you pick a region first, then read the endpoint for that instance.\n\n## CIDR allow lists\n\nA public endpoint does not have to mean public access. Redis Cloud supports **database-level** and **VPC-wide** CIDR allow lists (the docs also call this IP restrictions) that accept connections only from listed source IP addresses and subnets — roughly `iptables` for your database. Support varies by provider: on AWS and Google Cloud, allow lists are available on Paid Redis Cloud Essentials and Redis Cloud Pro; on Azure, on Redis Cloud Pro. One trap the exam likes: if you enable a CIDR allow list and later peer your VPC, you must add the peered private IP addresses to the allow list or private-endpoint connections will be refused.\n\n## VPC peering (Pro only)\n\nVPC peering routes traffic between your application VPC and the Redis Cloud VPC over private IP addresses. It is available **only with Redis Cloud Pro** — never Essentials — and grants unrestricted network access between the two VPCs. Setup always has two sides: initiate from Redis Cloud, then accept in your cloud.\n\nOn **AWS**:\n\n1. In the console, open **Subscriptions**, select the subscription, then **Connectivity > VPC Peering > Add peering**.\n2. Enter the consumer details: AWS account ID, region, VPC ID, and the consumer VPC CIDRs — up to five, and they **must not overlap** the Redis producer VPC CIDR. Note the **Peering ID**.\n3. Accept the peering request in the AWS console. Once the connection is **active**, select **Modify my route tables now** in the Redis Cloud console.\n4. Update your route tables: add a route whose destination is the Redis Cloud VPC CIDR (shown when you accepted) and whose target is the peering connection ID. Route tables are per-subnet, so pick the ones attached to the VPC you registered.\n5. Switch the application to the private endpoint, and add the peered IPs to the CIDR allow list if one is enabled.\n\nOn **Google Cloud** you supply only the Project ID and network name; the console gives you a `gcloud` command to run in your project to accept the peering. Redis Cloud enables **import custom routes** on its side by default, so to reach Redis Cloud from networks beyond the peered application VPC you must enable **export custom routes** on your VPC — a classic connectivity-after-peering gotcha.\n\nOn **Azure**, the model differs: Redis Cloud Annual subscriptions deploy databases into your own Azure VPC, so there is no Redis-side peering step.\n\n## Private Service Connect (Google Cloud)\n\nPrivate Service Connect (PSC) is the GCP alternative for Redis Cloud Pro — and it solves the constraint VPC peering cannot: **producer and consumer CIDR ranges may overlap**, because PSC exposes only a single private endpoint instead of routing the whole VPC. The trade-off is slightly higher network latency than peering (load-balancing overhead), most noticeable on larger clusters. You can run PSC and peering in parallel — useful while migrating between them, or when different applications need different latency or security postures for the same database.\n\nSetup: create the connection under **Connectivity > Private Service Connect** (project, VPC, subnet, and an endpoint name prefix), accept the latency and cost notice, and copy the generated `gcloud` script. Enable Cloud DNS in your project, wait about ten minutes for DNS to become active, then run the script **unchanged** — it creates the PSC endpoint and a DNS response policy in your VPC. Back in the Redis Cloud console, select **Accept** on the pending connection. Once active, you must use the PSC endpoint to connect over PSC; existing public or private endpoint connections have to be migrated.\n\nTwo PSC limitations to remember: you cannot use the Cluster API (OSS clustering access mode) on a subscription with PSC enabled, and the pre-handoff behavior of Smart client handoffs is unsupported — relaxed timeouts are available and enabled by default instead.\n\n## Choosing a path\n\nStart from exposure and constraints. A public endpoint with TLS enabled and a CIDR allow list is the fastest safe start for paid plans. When the workload demands private networking, VPC peering is the default on AWS and GCP — provided your CIDR plan has no overlap. Overlapping networks, or a requirement to expose only one endpoint, push you to AWS PrivateLink or Transit Gateway, or to Private Service Connect on GCP. Private connectivity is also a prerequisite that reaches beyond clients: the Pro Prometheus monitoring endpoint is published on the internal network, so observability rides the same plumbing you build here.\n\n## Exam takeaways\n\n- Public endpoint: every Redis Cloud database. Private endpoint: Redis Cloud Pro only, and only after VPC peering, Private Service Connect, or AWS Transit Gateway/PrivateLink; Pro can block the public endpoint.\n- Static endpoints look like `redis-<port>.c<number>...` (private adds `internal`) and cannot be redirected; dynamic endpoints end in `.db.redis.io` and can be redirected to another database without code changes.\n- VPC peering is Pro only, never Essentials; consumer CIDRs (up to five) must not overlap the Redis producer CIDR; on AWS, accept the request, then modify route tables; on GCP, run the provided `gcloud` command and remember import/export custom routes behavior.\n- Private Service Connect is Pro on Google Cloud: exposes a single endpoint, allows overlapping CIDRs, adds slight latency; Cluster API and Smart client handoff pre-handoff are unsupported with PSC.\n- CIDR allow lists restrict source IPs at database or VPC level (Paid Essentials and Pro on AWS/GCP; Pro on Azure); after peering, peered IPs must be added to the allow list."
+    }
+  ]
+}

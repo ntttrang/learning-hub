@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-13-bank-1",
+  "domainId": "rc-cloud-subscription",
+  "moduleId": "m-cloud-subscription",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "A platform team runs Redis Cloud Pro across several cloud providers and regions. They want committed spending, significant savings, and Premium support. Which subscription should they choose?",
+  "explanation": "Redis Cloud Pro annual plans support the same features as pay-as-you-go Pro but at significant savings, include Premium support, and apply a single commitment across multiple providers and regions. Pay-as-you-go Pro offers the same feature set but with no committed term and standard support, while Essentials plans are shared-infrastructure plans without Premium support.",
+  "tags": [
+    "redis",
+    "subscription-administration",
+    "pro-plans"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Redis Cloud Pro annual plan"
+    },
+    {
+      "id": "b",
+      "text": "Redis Cloud Pro pay-as-you-go"
+    },
+    {
+      "id": "c",
+      "text": "Two Redis Cloud Essentials subscriptions, one per region"
+    },
+    {
+      "id": "d",
+      "text": "Essentials with Redis Flex"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-16-bank-3",
+  "domainId": "rc-cloud-networking",
+  "moduleId": "m-cloud-networking",
+  "difficulty": "advanced",
+  "kind": "single",
+  "prompt": "A Redis Cloud Pro subscription runs on AWS. The application VPC uses 10.0.0.0/16, which overlaps the Redis Cloud VPC CIDR, so VPC peering is not possible. Which options can still provide private connectivity?",
+  "explanation": "VPC peering requires non-overlapping ranges — the consumer VPC CIDRs entered in the Redis Cloud console must not overlap the Redis producer VPC CIDR, and you can list up to five consumer CIDRs. When ranges overlap, AWS Transit Gateway and AWS PrivateLink are the documented AWS alternatives. On Google Cloud, Private Service Connect also tolerates overlapping ranges, but it is a Google Cloud option, not an AWS one. Essentials offers no private connectivity at all.",
+  "tags": [
+    "redis",
+    "cloud-networking",
+    "vpc-peering",
+    "private-connectivity"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "AWS Transit Gateway or AWS PrivateLink"
+    },
+    {
+      "id": "b",
+      "text": "AWS VPC peering, with the overlapping routes configured manually"
+    },
+    {
+      "id": "c",
+      "text": "Google Cloud Private Service Connect"
+    },
+    {
+      "id": "d",
+      "text": "Re-creating the database on Essentials, which has no CIDR overlap constraint"
+    }
+  ],
+  "correct": "a"
+}

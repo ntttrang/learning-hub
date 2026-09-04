@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-14-bank-1",
+  "domainId": "rc-cloud-db-admin",
+  "moduleId": "m-cloud-db-admin",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "A new Redis Cloud database is created without anyone touching the data eviction policy setting. Which policy is in effect?",
+  "explanation": "volatile-lru is the default data eviction policy on Redis Cloud databases: it removes the least recently used keys among those that have an expire field set. allkeys-lru evicts across every key regardless of TTL, noeviction makes writes fail once the limit is reached instead of removing anything, and volatile-ttl evicts the keys with the shortest remaining TTL, so those are all deliberate changes rather than the out-of-the-box setting.",
+  "tags": [
+    "redis",
+    "db-administration",
+    "eviction"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "volatile-lru"
+    },
+    {
+      "id": "b",
+      "text": "allkeys-lru"
+    },
+    {
+      "id": "c",
+      "text": "noeviction"
+    },
+    {
+      "id": "d",
+      "text": "volatile-ttl"
+    }
+  ],
+  "correct": "a"
+}

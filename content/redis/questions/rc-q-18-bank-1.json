@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-18-bank-1",
+  "domainId": "rc-cloud-automation",
+  "moduleId": "m-cloud-automation",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Which base URL do requests to the Redis Cloud REST API use?",
+  "explanation": "All Redis Cloud REST API calls go to https://api.redislabs.com/v1: the API host followed by the version segment. cloud.redis.io is the console URL for browser access, and the other hosts are not Redis Cloud API endpoints.",
+  "tags": [
+    "redis",
+    "automation",
+    "rest-api"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "https://api.redislabs.com/v1"
+    },
+    {
+      "id": "b",
+      "text": "https://cloud.redis.io/api/v1"
+    },
+    {
+      "id": "c",
+      "text": "https://api.redis.io"
+    },
+    {
+      "id": "d",
+      "text": "https://api.redislabs.com"
+    }
+  ],
+  "correct": "a"
+}

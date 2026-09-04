@@ -1,0 +1,41 @@
+{
+  "id": "rc-q-12-bank-3",
+  "domainId": "rc-cloud-arch",
+  "moduleId": "m-cloud-arch",
+  "difficulty": "advanced",
+  "kind": "multi",
+  "prompt": "Which capabilities are available only on Redis Cloud Pro and on no Essentials plan?",
+  "explanation": "The Redis Cloud plan comparison reserves encryption at rest and private connectivity for Redis Cloud Pro, and Active-Active geo-distribution is also Pro only. TLS encryption in transit and password-protected role-based access are available on every plan, including Free Redis Cloud Essentials, and Redis Flex is offered on both Essentials (as Essentials with Redis Flex) and Pro.",
+  "tags": [
+    "redis",
+    "cloud-architecture",
+    "plan-capabilities"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Encryption at rest"
+    },
+    {
+      "id": "b",
+      "text": "Private connectivity"
+    },
+    {
+      "id": "c",
+      "text": "Active-Active geo-distribution"
+    },
+    {
+      "id": "d",
+      "text": "TLS encryption of data in transit"
+    },
+    {
+      "id": "e",
+      "text": "Redis Flex tiered RAM-plus-SSD storage"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

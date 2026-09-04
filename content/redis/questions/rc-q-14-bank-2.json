@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-14-bank-2",
+  "domainId": "rc-cloud-db-admin",
+  "moduleId": "m-cloud-db-admin",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "A team creates a 1 GB paid Redis Cloud Essentials plan with replication enabled. How much of that plan can the dataset itself use?",
+  "explanation": "On Redis Cloud Essentials the plan size includes replication: replication requires a memory limit that is double the dataset size, so a 1 GB plan allocates 512 MB to the dataset and 512 MB to the replica. Pro databases work the other way around: you select the dataset size and Redis Cloud calculates the memory limit from your replication settings.",
+  "tags": [
+    "redis",
+    "db-administration",
+    "sizing"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "512 MB"
+    },
+    {
+      "id": "b",
+      "text": "1 GB, because replication memory comes from spare capacity outside the plan"
+    },
+    {
+      "id": "c",
+      "text": "About 750 MB, because replication needs roughly a quarter of the plan"
+    },
+    {
+      "id": "d",
+      "text": "2 GB, because enabling replication doubles the usable dataset space"
+    }
+  ],
+  "correct": "a"
+}

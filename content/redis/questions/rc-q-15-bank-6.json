@@ -1,0 +1,42 @@
+{
+  "id": "rc-q-15-bank-6",
+  "domainId": "rc-cloud-security",
+  "moduleId": "m-cloud-security",
+  "difficulty": "advanced",
+  "kind": "multi",
+  "prompt": "Which statements about the Default user and Redis Cloud role-based access control are true? Select all that apply.",
+  "explanation": "Every new database is protected by a Default user whose username is default, with a randomly generated Default user password. Once RBAC provides named, least-privilege users, Redis recommends turning the Default user off. Redis Cloud manages database users in the console — ACL SETUSER and several other ACL subcommands are not supported — while MULTI, EXEC, and DISCARD are always permitted (the commands inside a transaction are still checked against RBAC permissions). Passwordless authentication is a Pro-only option that requires the public endpoint to be blocked, not a password rotation on the Free plan.",
+  "tags": [
+    "redis",
+    "cloud-security",
+    "rbac",
+    "default-user"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Every new Redis Cloud database is protected by a Default user whose username is default"
+    },
+    {
+      "id": "b",
+      "text": "After enabling RBAC, Redis recommends turning off the Default user"
+    },
+    {
+      "id": "c",
+      "text": "ACL SETUSER is not supported in Redis Cloud; users, roles, and ACLs are managed in the console"
+    },
+    {
+      "id": "d",
+      "text": "MULTI and EXEC are denied unless a Redis ACL explicitly grants them to the user"
+    },
+    {
+      "id": "e",
+      "text": "Clearing the Default user's password is the supported way to disable password authentication on a Free plan"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

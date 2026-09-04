@@ -314,5 +314,161 @@
       "Name the two alerts that a fresh cluster enables by default and their default thresholds — then explain why the node memory alert was not among them.",
       "Your support package exists twice: once as debuginfo.tar.gz from the UI and once from rladmin cluster debug_info. List two things you would expect to find inside node_<uid>.rladmin."
     ]
+  },
+  {
+    "id": "lab-cloud-subscription-db",
+    "domainId": "rc-cloud-subscription",
+    "lessonId": "rc-l-13-cloud-subscription",
+    "title": "Create a Free subscription and database in the Redis Cloud console",
+    "minutes": 30,
+    "difficulty": "beginner",
+    "summary": "Create a free Redis Cloud Essentials database in the console, read its endpoint and Default user password, connect from redis-cli, then tour the paid Essentials and Pro wizards to see exactly where Essentials-versus-Pro capability differences appear in the UI.",
+    "steps": [
+      {
+        "title": "Create the free database",
+        "instructions": "Sign in to the [Redis Cloud console](https://cloud.redis.io) and select the **New database** button to open the **Create database** screen. Select **Try 30 MB for free** — a Free plan is a type of Essentials plan sized for learning and prototypes.\n\nRedis generates a database name for you; change it in the **Database name** field if you like. Pick the **Database version**, then choose a **Cloud vendor** (AWS, Google Cloud, or Azure) and a **Region**. Select **Create database**, wait through the brief provisioning pause, and the **Database details** page appears.\n\nTwo plan facts worth writing down: an account gets exactly one free database, and a free database that sees no read or write activity for about 14 days is automatically deleted.",
+        "expectedOutput": "The Database details page renders and the database status becomes active."
+      },
+      {
+        "title": "Read the endpoint, port, and Default user password",
+        "instructions": "On the database's **Configuration** tab, Essentials databases list their endpoints in the **Access** section (Pro databases put the same fields in the **General** section — remember that split). The public endpoint follows the static pattern `redis-<port>.c<number>...`: the port Redis assigned at creation sits right in the hostname.\n\nScroll to the **Security** section, select **Default user > Configure**, and use the eye icon to reveal the **Default user password**. The username is always `default` on a new database. Selecting the **Connect** button opens the connection wizard with ready-made snippets for Redis Insight, redis-cli, and your preferred client language.",
+        "expectedOutput": "The public endpoint with its embedded port, and the revealed Default user password, ready to paste into redis-cli."
+      },
+      {
+        "title": "Connect and verify from redis-cli",
+        "instructions": "From a terminal, paste the redis-cli command from the connection wizard — it looks like this:\n\n```bash\nredis-cli -h redis-12345.c12345.us-east-1-mz.ec2.cloud.rlrcp.com -p 12345 \\\n  -a '<default-user-password>'\n```\n\nThen prove the round trip:\n\n```redis\nPING\nSET lab:marker \"subscription-lab\"\nGET lab:marker\nDBSIZE\n```\n\nPING returns PONG, the SET and GET confirm reads and writes work, and DBSIZE shows your key counted. No TLS flags were needed: TLS is off by default and, on the Free plan, not available at all.",
+        "expectedOutput": "PONG, then OK, then \"subscription-lab\", then an integer of at least 1.",
+        "hint": "If redis-cli hangs instead of connecting, a CIDR allow list would be the usual suspect — but Free plans do not support the allow list, so check your local network or VPN instead."
+      },
+      {
+        "title": "Note where the Free plan ends",
+        "instructions": "Back on the **Configuration** tab, audit the **Security** section against the paid feature list:\n\n1. **TLS** — there is no TLS toggle to find: TLS is not available on Free Redis Cloud Essentials. Paid Essentials and Pro databases show a **Transport layer security (TLS)** toggle in this section.\n2. **CIDR allow list** — also absent on Free. Paid Essentials and Pro databases get a **CIDR allow list** toggle here (Essentials plans allow 4–32 entries, Pro up to 32).\n3. **Data access control** — check whether your console menu shows the **Data Access Control** screen and record what you find; availability varies.\n4. **Alerts** — note that Essentials databases configure alerts on a dedicated **Alerts** tab of the database screen.\n\nWrite the four rows into your notes: control, visible on your plan (yes/no), and where it lives in the UI.",
+        "expectedOutput": "A four-row table of security and operations controls showing which are absent on the Free plan."
+      },
+      {
+        "title": "Tour the paid wizards without paying",
+        "instructions": "Select **New database** again, twice — reading only, no purchase:\n\n**Essentials.** After picking a paid plan you would also choose **RAM** or **RAM + SSD (Flex)**, **High availability** (None, Single-Zone, or Multi-Zone), and **Data persistence** (Append-Only File updated every second, or snapshots every 1, 6, or 12 hours). Stop before payment.\n\n**Pro.** Choose **Easy create** first to see the short form (dataset size, throughput, high availability), then **Switch to custom settings** to walk the **Setup**, **Sizing**, and **Review & Create** tabs. On the Setup tab, expand **Advanced options**: **Multi-AZ**, **Deployment CIDR**, **Public endpoint access** (block public endpoints), and **Maintenance windows** all live here — none of them exist in the Essentials wizard. Back out without confirming.",
+        "expectedOutput": "Notes from both wizards: the Essentials capability choices, and the Pro Advanced options that have no Essentials equivalent.",
+        "hint": "Pro custom setup also exposes the private connectivity story: private endpoints and options like VPC peering belong to Pro subscriptions only, which is why the wizard has no Essentials counterpart for them."
+      },
+      {
+        "title": "Map the Essentials-versus-Pro line in the UI",
+        "instructions": "Finish by collecting where the tier split is visible on screen, from what you saw plus the docs:\n\n1. Endpoints sit in **Access** (Essentials) versus **General** (Pro) on the Configuration tab — and only Pro databases list a private endpoint.\n2. Alerts: a dedicated **Alerts** tab on Essentials databases, an **Alerts** section inside Configuration for Pro.\n3. Redis Insight: Essentials databases can launch a browser-based Redis Insight from the connection wizard; for other databases you install it locally.\n4. Prometheus: the Metrics tab shows **Connect to Prometheus** only for Pro databases.\n5. Subscription-level connectivity: VPC peering and Google Cloud Private Service Connect appear under a Pro subscription's **Connectivity** tab — Essentials subscriptions have no private connectivity options.\n\nKeep this list; it is the fastest way to answer any Essentials-versus-Pro question the exam asks.",
+        "expectedOutput": "A five-point cheat sheet of exact UI locations where Essentials and Pro capabilities differ."
+      }
+    ],
+    "outcomes": [
+      "You can create a Free Redis Cloud Essentials database in the console and read its public endpoint, assigned port, and Default user password from the Configuration tab.",
+      "You can point to the exact screens where Essentials and Pro diverge — endpoint placement, alert configuration, TLS and CIDR availability, and the Pro-only connectivity options under a subscription's Connectivity tab."
+    ],
+    "checks": [
+      "From memory: which Configuration-tab section holds the public endpoint on an Essentials database, and where does the same field sit on a Pro database?",
+      "State the two free-plan facts this lab showed — what happens to a free database with no reads or writes for about 14 days, and one paid-Essentials wizard capability the Free plan never offers (TLS, CIDR allow list, persistence, or backups).",
+      "In the Pro custom wizard, name the Advanced option that blocks public endpoints and the prerequisite it imposes (a private connectivity method must be set up first)."
+    ]
+  },
+  {
+    "id": "lab-cloud-security-config",
+    "domainId": "rc-cloud-security",
+    "lessonId": "rc-l-15-cloud-security",
+    "title": "Lock down a Redis Cloud database and break it on purpose",
+    "minutes": 40,
+    "difficulty": "intermediate",
+    "summary": "Configure the security controls of a Redis Cloud database — Default user password, RBAC users with scoped ACL permissions, TLS, and a CIDR allow list — then connect with each control deliberately misconfigured so you learn the exact failure each one produces.",
+    "steps": [
+      {
+        "title": "Audit the Security section",
+        "instructions": "Open your database's **Configuration** tab and read the **Security** section before touching anything. Inventory what is there:\n\n- The **Default user** with its masked **Default user password** (username `default` on every new database).\n- A **Transport layer security (TLS)** toggle — present on Paid Essentials and Pro, absent on Free.\n- A **CIDR allow list** toggle — present on Paid Essentials and Pro, absent on Free.\n\nSelect **Edit database** once just to see which of those controls are editable on your plan, then cancel. Write a four-row table: control, supported on my plan (yes/no), console location. That table decides which of the later steps you can exercise and which you walk through against the docs.",
+        "expectedOutput": "A four-row inventory of the Security section marked up with your plan's capabilities."
+      },
+      {
+        "title": "Break authentication first",
+        "instructions": "The cheapest failure to study is a bad password. From a terminal:\n\n```bash\nredis-cli -h redis-12345.c12345.us-east-1-mz.ec2.cloud.rlrcp.com -p 12345 \\\n  -a 'definitely-not-the-password' PING\n```\n\nThe server rejects the attempt — expect a WRONGPASS or NOAUTH authentication error rather than PONG. Now connect with the real password (revealed under **Default user > Configure** for Essentials, or in the Security section for Pro) and confirm PONG.\n\nNote the shape of this failure: the TCP connection succeeded, authentication did not. A timeout means network filtering; an auth error means the network path is fine and the credentials are not.",
+        "expectedOutput": "An authentication error with the wrong password, then PONG with the correct one.",
+        "hint": "redis-cli prints a security warning whenever you pass -a on the command line — safe in a lab, but prefer a config file or ACL-less environment variable in real deployments."
+      },
+      {
+        "title": "Create a scoped user with RBAC",
+        "instructions": "From the console menu open **Data Access Control** — three tabs: **Redis ACLs**, **Roles**, **Users**, in that dependency order.\n\n1. In the **Redis ACLs** tab, define a named permission set, for example `session-rw`: commands GET, SET, DEL, EXPIRE, and key patterns `session:*`.\n2. In the **Roles** tab, create a role `session-admin` that binds the `session-rw` ACL to your database.\n3. In the **Users** tab, add user `session-svc`, assign the `session-admin` role, and generate a password — copy it now.\n\nThen connect as the new user:\n\n```redis\nSET session:42 \"alive\"\nGET session:42\nACL WHOAMI\nSET other:key \"nope\"\n```\n\nThe first three succeed — ACL WHOAMI reports session-svc — but the out-of-scope write fails with a NOPERM error. That error is the RBAC system working as designed.",
+        "expectedOutput": "SET and GET succeed on session:*, ACL WHOAMI returns session-svc, and the out-of-scope write returns NOPERM.",
+        "hint": "ACL SETUSER is not supported in Redis Cloud — users, roles, and ACLs are console objects. MULTI/EXEC/DISCARD are always permitted; the commands inside a transaction are what get checked."
+      },
+      {
+        "title": "Turn off the shared front door",
+        "instructions": "Only after a named user connects successfully should the Default user be switched off — otherwise you lock out every existing client at once.\n\nFor Essentials, go to **Configuration > Security**, select **Default user > Configure**, and turn off the **Default user** switch, then OK. For Pro, select **Edit database**, flip the **Default User** switch in the Security section, and **Save database**.\n\nVerify from redis-cli: the old default-user command from step 2 now fails with an authentication error, while `--user session-svc -a '<password>'` still works.\n\nThe console itself still reaches the database — console access is account-level and not affected by the Default user — so recovery is always possible from the UI.",
+        "expectedOutput": "The old default-user connection fails with an auth error; the named user session-svc still gets PONG and its scoped commands.",
+        "hint": "If the named user was never tested before this step, test it now before celebrating — turning off the Default user is exactly how a typo in a role assignment becomes an outage."
+      },
+      {
+        "title": "Enforce TLS and feel the difference",
+        "instructions": "Paid plans only — on Free, walk this against the [TLS docs](https://redis.io/docs/latest/operate/rc/security/database-security/tls-ssl/) instead. Select **Edit database** on the Configuration tab, turn on the **Transport layer security (TLS)** toggle in the Security section, and select **Download server certificate** to save `redis_ca.pem` before saving the database.\n\nFirst show the break: a plaintext client now has its connection rejected as soon as TLS is enforced.\n\nThen connect properly:\n\n```bash\nredis-cli -h redis-12345.c12345.us-east-1-mz.ec2.cloud.rlrcp.com -p 12345 \\\n  --tls --cacert redis_ca.pem --user session-svc -a '<password>' PING\n```\n\nAlso notice the **Mutual TLS (require client authentication)** checkbox: ticking it demands a client certificate from every connection, and certificates generated in the console can be downloaded only at creation time.",
+        "expectedOutput": "A plaintext connection is dropped once TLS is enforced, and the --tls --cacert connection returns PONG.",
+        "hint": "TLS changes apply to new connections only — existing connections keep working until they reconnect, which is why enforcement looks like nothing happened until clients cycle."
+      },
+      {
+        "title": "Add a CIDR allow list and watch it block",
+        "instructions": "Paid plans only — on Free, walk this against the [CIDR allow list docs](https://redis.io/docs/latest/operate/rc/security/cidr-whitelist/). First discover your egress IP (for example `curl -s https://checkip.amazonaws.com`). Then select **Edit database**, turn on the **CIDR allow list** toggle in the Security section, enter `<your-ip>/32`, and commit it with the check mark. Use **Add CIDR** for further entries; **Save database** applies the list.\n\nConfirm redis-cli still connects — your IP is listed. Now edit the list, replace your entry with `203.0.113.10/32` (a documentation-range address you do not own), save, and reconnect: the connection times out. Restore your own entry before moving on.\n\nConnect the failures to their causes one last time: WRONGPASS/NOAUTH for credentials, NOPERM for permissions, connection reset for TLS enforcement, timeout for the allow list. And remember the exam-worthy detail — the list filters the private endpoint too, so VPC peering source ranges must be added here.",
+        "expectedOutput": "PONG while your IP is listed, a connection timeout once it is not, and a restored entry at the end.",
+        "hint": "Essentials plans allow 4–32 allow-list entries depending on the plan, Pro up to 32 — enough for distinct office egress ranges, but plan the ranges before you fill the quota."
+      }
+    ],
+    "outcomes": [
+      "You can configure the security controls of a Redis Cloud database — Default user password, RBAC roles built from Redis ACLs, TLS, and a CIDR allow list — and say which console screen owns each one.",
+      "You can name the failure signature of each control: auth errors for bad credentials, NOPERM for out-of-scope commands, connection resets for TLS enforcement, and timeouts for allow-list filtering."
+    ],
+    "checks": [
+      "Rebuild the RBAC chain from memory — Redis ACLs tab, Roles tab, Users tab — and explain why the Default user is switched off last, not first.",
+      "You saw four failure modes in this lab. For each, state one sentence of evidence a teammate could use to tell them apart from a console session.",
+      "On the Free plan, name the two controls that are unavailable (TLS, CIDR allow list) and record whether the Data Access Control screen exists on your account — verify empirically rather than assuming."
+    ]
+  },
+  {
+    "id": "lab-cloud-monitoring-alerts",
+    "domainId": "rc-cloud-monitoring",
+    "lessonId": "rc-l-17-cloud-monitoring",
+    "title": "Metrics, alerts, and the audit trail in the Redis Cloud console",
+    "minutes": 35,
+    "difficulty": "intermediate",
+    "summary": "Watch a Redis Cloud database's metrics graphs while you generate load, configure a throughput alert with a threshold and email delivery, then trace both your console changes and the fired alert in the Logs page.",
+    "steps": [
+      {
+        "title": "Open the metrics surface",
+        "instructions": "Select your database and open its **Metrics** tab. Two primary graphs lead the screen — **Ops/sec** and **Latency** — with smaller graphs below: Reads/sec, Writes/sec, Used memory, Total keys, Connections, Hit ratio, Evicted objects/sec, and network in/out.\n\nUse the **interval scrollbar** to pick **5 minutes** — the finest window, at 30-second resolution — and note how coarser windows (hour, day, week, month, 3 months) trade resolution for range.\n\nHover any small graph to see its summary panel with minimum, average, maximum, and most-recent values, plus two promotion icons. Promote **Used memory** to a primary position and note its values at idle.",
+        "expectedOutput": "Used memory promoted to a primary graph, with the 5-minute interval selected and idle baselines noted for Ops/sec and Used memory.",
+        "hint": "The summary panel's numbers are also the fastest sanity check after this lab's load test — you will compare min/avg/max against what redis-benchmark reports."
+      },
+      {
+        "title": "Generate load you can see",
+        "instructions": "From a terminal, run a short benchmark against the database (add `--tls --cacert redis_ca.pem` if TLS is enforced on your plan):\n\n```bash\nredis-benchmark -h redis-12345.c12345.us-east-1-mz.ec2.cloud.rlrcp.com -p 12345 \\\n  -a '<default-user-password>' -t set,get -n 20000 -d 100 -q\n```\n\nThe `-q` flag keeps output to the per-second summary. Note the reported ops/sec for SET and GET. Immediately refresh the Metrics tab and read the same window you just filled: Reads/sec and Writes/sec spike above their idle baselines, Ops/sec shows the sum, and Latency shows per-operation milliseconds.\n\nRecord the peak Ops/sec you produced — the next step turns that number into an alert threshold.",
+        "expectedOutput": "A visible spike in Ops/sec, Reads/sec, and Writes/sec during the benchmark window, and a written peak Ops/sec figure.",
+        "hint": "Running this lab also keeps your free database alive — free databases with no reads or writes for about 14 days are automatically deleted."
+      },
+      {
+        "title": "Configure an alert",
+        "instructions": "Where alerts live depends on the plan: Essentials databases configure them on the database's **Alerts** tab; Pro databases use the **Alerts** section inside the **Configuration** tab.\n\nOn your database, enable **Throughput is higher than** and set the threshold just under the peak you recorded — if the benchmark reported roughly 20,000 ops/sec, set 15,000. While you are there, note the other alerts and their defaults: **Total size of datasets under this plan reached** (Essentials, 80% of the plan limit), **Dataset size has reached** (Pro, 80% of the memory limit), **Latency is higher than** (10 ms), and **Number of connections** (Essentials, 80% of the plan limit).\n\nAlert settings are per database — saving here does nothing for your other databases.",
+        "expectedOutput": "The Throughput is higher than alert enabled with a threshold derived from your measured load, and the list of other available alerts with their default values."
+      },
+      {
+        "title": "Wire the delivery",
+        "instructions": "Alert emails go to the team members who opt in. From the console menu select **Access Management**, open the **Team** tab, edit your own user, enable **Alert emails**, and save. (The same dialog controls Operational and Billing emails.)\n\nNow re-run the benchmark from step 2 to cross the threshold, and wait — alert evaluation is periodic, so the email is not instant. While it travels, open the **Logs** page: alert events appear there too, which is the reliable way to confirm the alert fired even if email is slow or misconfigured.",
+        "expectedOutput": "Alert emails enabled for your user, and either the alert email or the alert event in Logs confirming the threshold was crossed.",
+        "hint": "No email after several minutes? Check spam first, then confirm the Alert emails toggle saved — an enabled alert with no opted-in recipient fires silently."
+      },
+      {
+        "title": "Find yourself in the audit trail",
+        "instructions": "Select **Logs** from the console main menu. The page lists events, alerts, and activity across your subscriptions and databases, with sortable columns: **Time**, **Originator**, **Database name**, **API key name**, and **Activity**.\n\nSort by Time descending and find two entries: the configuration change from step 3 (your alert edit) and the alert event from step 4. Use the search bar — it covers Originator, Database name, API key name, Activity, and Description — then select **Export all** and open the CSV to see the same rows in spreadsheet form.\n\nThe same list is available programmatically as `GET /logs` on the Redis Cloud REST API, which is how audit pipelines collect it without the console.",
+        "expectedOutput": "Log rows for both your alert change and the fired alert, plus a CSV export containing them.",
+        "hint": "Entries made with an API key carry the key's name in the API key name column — one more way to answer who did what when something changes unexpectedly."
+      }
+    ],
+    "outcomes": [
+      "You can read a Redis Cloud database's metrics graphs — interval selection, primary versus promoted graphs, and the min/avg/max summary panel — while correlating them with load you generated yourself.",
+      "You can configure an alert end to end: a threshold on the right screen for your plan, email delivery through the team's Alert emails setting, and confirmation in the Logs page audit trail."
+    ],
+    "checks": [
+      "Read the Ops/sec graph for your load window and state its minimum, average, and maximum from the summary panel — then say which interval you were viewing and its resolution.",
+      "Name where alerts are configured for Essentials versus Pro databases, and where the recipients are managed (Access Management, Team tab, Alert emails).",
+      "Point to the exact Logs entries for your alert change and the fired alert, and name the REST API endpoint that returns the same list (GET /logs)."
+    ]
   }
 ]

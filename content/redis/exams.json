@@ -42,5 +42,26 @@
       },
       "seed": 20260904
     }
+  },
+  {
+    "id": "redis-cloud-mock-1",
+    "title": "Redis Certified Cloud Operator — Mock Exam 1",
+    "description": "Mirrors the associate Cloud Operator exam scale — 65 questions, 90 minutes, 70% to pass (scaled 700) — sampling all eight official domains in proportion to their published weights.",
+    "durationMinutes": 90,
+    "passingScore": 700,
+    "selection": {
+      "kind": "sampled",
+      "domainPlan": {
+        "rc-cloud-arch": 6,
+        "rc-cloud-subscription": 7,
+        "rc-cloud-db-admin": 11,
+        "rc-cloud-security": 10,
+        "rc-cloud-networking": 9,
+        "rc-cloud-monitoring": 7,
+        "rc-cloud-automation": 7,
+        "rc-cloud-data-access": 8
+      },
+      "seed": 20260905
+    }
   }
 ]

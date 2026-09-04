@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-15-kc-1",
+  "domainId": "rc-cloud-security",
+  "moduleId": "m-cloud-security",
+  "lessonId": "rc-l-15-cloud-security",
+  "difficulty": "beginner",
+  "kind": "codeReading",
+  "prompt": "A teammate runs this command against a Redis Cloud database that has TLS enabled and no client authentication. What happens?",
+  "explanation": "The --tls flag turns on TLS and --cacert points at redis_ca.pem, the Redis Cloud certificate bundle downloaded from the console that holds the CAs signing Redis Cloud server certificates. Client certificates are required only when mutual TLS (client authentication) is enabled, so PING succeeds and returns PONG.",
+  "tags": [
+    "redis",
+    "cloud-security",
+    "tls",
+    "redis-cli"
+  ],
+  "code": "redis-cli -h redis-12345.c12345.us-east-1-mz.ec2.cloud.rlrcp.com -p 12345 \\\n  --tls --cacert redis_ca.pem -a '<password>' PING",
+  "options": [
+    {
+      "id": "a",
+      "text": "PONG — the CA bundle verifies the server certificate and PING succeeds"
+    },
+    {
+      "id": "b",
+      "text": "A failure, because a client certificate must be supplied whenever TLS is enabled"
+    },
+    {
+      "id": "c",
+      "text": "A failure, because redis_ca.pem is used only for mutual TLS"
+    },
+    {
+      "id": "d",
+      "text": "PONG, but only after TLS is disabled first"
+    }
+  ],
+  "correct": "a"
+}

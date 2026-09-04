@@ -1,0 +1,41 @@
+{
+  "id": "rc-q-19-bank-3",
+  "domainId": "rc-cloud-data-access",
+  "moduleId": "m-cloud-data-access",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which statements are true about the default user of a Redis Cloud database? (Select three.)",
+  "explanation": "Every database is protected by a default user whose username is default and whose password is stored masked but can be revealed in the console, through Default user > Configure for Essentials databases or the Security section for Pro databases. Once role-based access control is enabled, you can turn the default user off and connect with the username and password of a data access role instead. There is no admin username, and the masked password remains viewable in the console rather than being permanently hidden.",
+  "tags": [
+    "redis",
+    "data-access",
+    "rbac"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Its username is default"
+    },
+    {
+      "id": "b",
+      "text": "Its password is masked and can be revealed in the console"
+    },
+    {
+      "id": "c",
+      "text": "Its username is admin and cannot be changed"
+    },
+    {
+      "id": "d",
+      "text": "Once the password is set, it can never be viewed again"
+    },
+    {
+      "id": "e",
+      "text": "With role-based access control enabled, you can turn the default user off and connect with a data access role's user instead"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "e"
+  ]
+}

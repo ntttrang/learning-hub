@@ -1,0 +1,40 @@
+{
+  "id": "rc-q-15-kc-3",
+  "domainId": "rc-cloud-security",
+  "moduleId": "m-cloud-security",
+  "lessonId": "rc-l-15-cloud-security",
+  "difficulty": "intermediate",
+  "kind": "order",
+  "prompt": "You are replacing shared Default-user access with named, least-privilege users. Arrange the Redis Cloud console steps in the order you perform them.",
+  "explanation": "Permissions come first: define a named permission set in the Redis ACLs tab, then bundle it into a role that is bound to the database in the Roles tab, then create the user in the Users tab. Only once the named user is proven to connect does switching off the Default user make sense — otherwise every existing client is locked out at once.",
+  "tags": [
+    "redis",
+    "cloud-security",
+    "rbac",
+    "default-user"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Define a named permission set in the Redis ACLs tab of Data Access Control"
+    },
+    {
+      "id": "b",
+      "text": "Create a role that bundles the ACL permissions for the database"
+    },
+    {
+      "id": "c",
+      "text": "Create a database user and assign the role"
+    },
+    {
+      "id": "d",
+      "text": "Turn off the Default user in the database's Security section"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c",
+    "d"
+  ]
+}

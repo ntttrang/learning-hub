@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-18-bank-4",
+  "domainId": "rc-cloud-automation",
+  "moduleId": "m-cloud-automation",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each Redis Cloud Terraform object to what it does.",
+  "explanation": "The Redis-developed Terraform provider (source RedisLabs/rediscloud) represents API actions as data sources, which are read-only, and resources, which create and manage infrastructure; separate resource types exist for Pro, Essentials, and Active-Active subscriptions and databases, plus rediscloud_acl_rule, rediscloud_acl_role, and rediscloud_acl_user resources for database access control. The provider authenticates with the API account key and user key, supplied through the REDISCLOUD_ACCESS_KEY and REDISCLOUD_SECRET_KEY environment variables.",
+  "tags": [
+    "redis",
+    "automation",
+    "terraform"
+  ],
+  "pairs": [
+    {
+      "left": "data \"rediscloud_payment_method\"",
+      "right": "Read-only data source, for example to look up a payment method ID"
+    },
+    {
+      "left": "resource \"rediscloud_subscription\"",
+      "right": "Creates and manages a Redis Cloud Pro subscription"
+    },
+    {
+      "left": "resource \"rediscloud_subscription_database\"",
+      "right": "Creates a database within a Pro subscription"
+    },
+    {
+      "left": "resource \"rediscloud_essentials_database\"",
+      "right": "Creates a database within an Essentials subscription"
+    },
+    {
+      "left": "resource \"rediscloud_active_active_subscription_database\"",
+      "right": "Creates a database in an Active-Active subscription"
+    }
+  ]
+}

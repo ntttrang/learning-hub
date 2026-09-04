@@ -1,0 +1,38 @@
+{
+  "id": "rc-q-19-bank-5",
+  "domainId": "rc-cloud-data-access",
+  "moduleId": "m-cloud-data-access",
+  "difficulty": "intermediate",
+  "kind": "order",
+  "prompt": "Arrange the role-based access control setup steps for a Redis Cloud database in the intended order.",
+  "explanation": "The Data Access Control screen builds access bottom-up: the Redis ACLs tab defines named permissions for specific Redis commands, keys, and pub/sub channels; the Roles tab bundles those permissions into roles scoped to one or more databases; and the Users tab creates database access users and assigns each a role. Database access users are separate from account access users, who are managed under Access Management.",
+  "tags": [
+    "redis",
+    "data-access",
+    "rbac"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Define named ACL permissions for specific Redis commands, keys, and pub/sub channels"
+    },
+    {
+      "id": "b",
+      "text": "Create roles that bundle permissions for one or more databases"
+    },
+    {
+      "id": "c",
+      "text": "Create database access users"
+    },
+    {
+      "id": "d",
+      "text": "Assign each user a role"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c",
+    "d"
+  ]
+}

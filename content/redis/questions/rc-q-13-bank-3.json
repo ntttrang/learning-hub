@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-13-bank-3",
+  "domainId": "rc-cloud-subscription",
+  "moduleId": "m-cloud-subscription",
+  "difficulty": "advanced",
+  "kind": "single",
+  "prompt": "A user key used by the nightly CI pipeline is restricted with a CIDR allow list that contains only the office egress IP address. The pipeline runs from CI runners in a different address range and calls the Redis Cloud REST API with the correct account key and user key. What happens?",
+  "explanation": "An API request authenticates only when the account key and user key are both valid and belong to the same account AND the request originates from an address allowed by the CIDR allow list defined for the user key. Requests from outside those ranges are rejected even when both keys are otherwise correct, so the pipeline must run from an allowed range or the key's allow list must be updated.",
+  "tags": [
+    "redis",
+    "subscription-administration",
+    "api-keys"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "The request fails authentication, because it does not originate from an address in the user key's CIDR allow list"
+    },
+    {
+      "id": "b",
+      "text": "The request succeeds, because the CIDR allow list applies only to the account key"
+    },
+    {
+      "id": "c",
+      "text": "The request succeeds read-only, because a valid account key grants read access from anywhere"
+    },
+    {
+      "id": "d",
+      "text": "The request fails because the account key is invalid, regardless of the source address"
+    }
+  ],
+  "correct": "a"
+}

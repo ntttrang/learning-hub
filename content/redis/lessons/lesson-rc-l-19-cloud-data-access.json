@@ -1,0 +1,46 @@
+{
+  "id": "rc-l-19-cloud-data-access",
+  "moduleId": "m-cloud-data-access",
+  "domainId": "rc-cloud-data-access",
+  "order": 1,
+  "slug": "cloud-data-access",
+  "title": "Connecting clients to Redis Cloud",
+  "summary": "Public and private endpoints and ports, TLS certificate handling and SNI, database users with RBAC and ACLs, standard versus OSS Cluster API access modes and RESP behavior, and timeout, retry, and connection-pool guidance.",
+  "minutes": 15,
+  "difficulty": "intermediate",
+  "references": [
+    {
+      "title": "Connect to a Redis Cloud database",
+      "url": "https://redis.io/docs/latest/operate/rc/databases/connect/"
+    },
+    {
+      "title": "Transport Layer Security (TLS)",
+      "url": "https://redis.io/docs/latest/operate/rc/security/database-security/tls-ssl"
+    },
+    {
+      "title": "Enable Role-based access control",
+      "url": "https://redis.io/docs/latest/operate/rc/security/access-control/data-access-control/role-based-access-control"
+    },
+    {
+      "title": "redis-py production usage",
+      "url": "https://redis.io/docs/latest/develop/clients/redis-py/produsage/"
+    }
+  ],
+  "docIds": [
+    "rc-create-database",
+    "rc-security",
+    "rc-networking",
+    "rc-active-active"
+  ],
+  "questionIds": [
+    "rc-q-19-kc-1",
+    "rc-q-19-kc-2",
+    "rc-q-19-kc-3"
+  ],
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "Data access is the client-facing half of the exam: given an endpoint, a credential, and a client, what makes the first command succeed and keeps the connection healthy in production? The answers live in four areas — endpoints, TLS, identity, and client behavior.\n\n## Endpoints and ports\n\nEvery Redis Cloud database publishes a **public endpoint**; Redis Cloud Pro databases also publish a **private endpoint** (usable once private connectivity exists — VPC peering, Private Service Connect, AWS Transit Gateway or PrivateLink). Endpoints live in the database Configuration tab: the **Access** section for Essentials databases, the **General** section for Pro. The port is embedded in the hostname — `redis-<port>.c<number>...` — and Redis Cloud ports are not 6379. **Dynamic endpoints** (three words plus a number, ending `.db.redis.io`) can be redirected to another database, so prefer them in application connection strings. Pro databases can block the public endpoint. For **Active-Active** databases you connect to a specific regional instance: choose the region, then read that instance's endpoint.\n\n## TLS and SNI\n\nTLS is not available on Free Redis Cloud Essentials, is **not enabled by default**, and — the load-bearing fact — **once enabled, all client connections must use TLS**; unencrypted connections are refused. Toggling TLS affects **new connections only**, so existing clients must reconnect to pick it up. Mutual TLS is optional: require client authentication and add client certificates (brought as X.509/PEM or generated in the console; generated key pairs are downloadable only at creation time).\n\nClients need a CA bundle: download `redis_ca.pem` from the console and import **all** certificates in it — the legacy self-signed Essentials and Pro CAs plus the publicly trusted GlobalSign Root CA. Redis Cloud presents short-lived GlobalSign leaf certificates (about three months, rotated automatically), which is why the bundle ships the public CA: a client trusting GlobalSign validates them seamlessly. Because certificates are served per hostname, connect using the exact endpoint hostname; modern clients send it in the TLS handshake via Server Name Indication (SNI), and clients that skip SNI (for example, connecting by bare IP) can fail the handshake.\n\nFor `redis-cli`, the TLS recipe is explicit:\n\n```sh\nredis-cli -h <endpoint> -p <port> --tls --cacert redis_ca.pem\n```\n\nWith mutual TLS, add `--cert redis_user.crt --key redis_user_private.key`.\n\n## Database users, ACLs, and RBAC\n\nBy default a database has the **Default user** with username `default` and a randomly generated password (view it with the eye icon in the console; you can turn the default user off). For anything beyond one application, use **role-based access control**: the Data Access Control screen has three tabs — **Redis ACLs** (named permission sets over commands, key patterns, and pub/sub channels), **Roles** (ACL permissions applied to one or more databases), and **Users** (database users, each assigned roles and a password). This implements least privilege — for example a read-only role for a display service. Database access users are separate from console account users.\n\nRedis Cloud manages ACLs through the console, so the `ACL` command surface is reduced: read-oriented subcommands like `ACL LIST`, `ACL GETUSER`, `ACL CAT`, and `ACL WHOAMI` work, but `ACL SETUSER` and `ACL DELUSER` are not supported. Transactions are always permitted — `MULTI`, `EXEC`, and `DISCARD` need no explicit grants — though commands inside a transaction still respect RBAC permissions. Active-Active databases have their own role assignments per region.\n\nClients authenticate like standard Redis: username and password, over RESP, with TLS when enabled.\n\n## Access modes: standard and OSS Cluster API\n\nIn the **standard** access mode, a database is fronted by a proxy exposing one endpoint; any RESP-compatible client works, and failovers happen behind the proxy. The **OSS Cluster API** mode (Pro) instead lets cluster-aware clients fetch the topology and connect **directly to shards**, with RESP3-style cluster semantics — but a standard client pointed at it will fail; it requires cluster-aware clients. Note the PSC interaction from the networking lesson: Cluster API is not usable with Private Service Connect enabled. Related: **Smart client handoffs** let Redis Cloud notify compliant clients shortly before planned maintenance so they can drain gracefully; with PSC, the pre-handoff behavior is unsupported (relaxed timeouts are enabled by default instead).\n\n## Timeouts, retries, and pools\n\nClient-side hygiene separates a resilient deployment from pager calls. Using redis-py's documented production defaults as the reference point:\n\n- **Timeouts** default to 10 seconds for both connections and commands; tune with `socket_connect_timeout` and `socket_timeout`. Too short: you retry commands that would have succeeded. Too long: the app hangs on responses that will never arrive. Pick from your observed latency plus margin.\n- **Retries**: redis-py (6.0+) retries a failed command **3 times** with exponential backoff and jitter; the default retryable errors are `ConnectionError` and `TimeoutError` (cluster clients use a fixed list that also includes `ClusterDownError`). Retry logic suits idempotent reads; retrying non-idempotent writes can double-apply them.\n- **Health checks**: `health_check_interval` issues a `PING` when a pooled connection has been idle longer than the interval, catching dead connections before your command does.\n- **Pools**: clients manage a **connection pool**; size it to your workload's concurrency and remember the database's connection limit sits behind it. Pools mask TCP churn — reuse connections rather than opening per request.\n\n## Exam takeaways\n\n- Public endpoint on every database; private endpoint on Pro only. Essentials shows endpoints in the Access section, Pro in the General section; ports are embedded in hostnames and are not 6379; dynamic endpoints end in `.db.redis.io` and are redirectable.\n- TLS: unavailable on Free plan, off by default, mandatory for all connections once enabled, toggle affects new connections only; optional mutual TLS; import the entire `redis_ca.pem` bundle (legacy CAs plus GlobalSign) — short-lived GlobalSign leaf certificates rotate automatically; connect by exact hostname (SNI).\n- Default user is `default` with a random password, can be disabled; RBAC layers Redis ACLs into roles assigned to database users; `ACL SETUSER`/`ACL DELUSER` unsupported; MULTI/EXEC always permitted while commands inside stay permission-checked.\n- Standard mode serves any RESP client through a single proxied endpoint; OSS Cluster API (Pro) requires cluster-aware clients connecting directly to shards and is incompatible with PSC; Smart client handoffs warn clients of planned maintenance.\n- Defaults to know: 10-second connect and command timeouts, 3 retries with exponential backoff and jitter (ConnectionError, TimeoutError; cluster adds ClusterDownError), health-check PINGs on idle pooled connections, and pools sized to workload concurrency."
+    }
+  ]
+}

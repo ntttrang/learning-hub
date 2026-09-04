@@ -86,5 +86,69 @@
     "title": "Monitoring & troubleshooting",
     "weight": { "min": 25, "max": 40 },
     "summary": "Metrics and alerts, logs, the job scheduler, support bundles, and the common failure playbooks an operator runs day to day."
+  },
+  {
+    "id": "rc-cloud-arch",
+    "order": 12,
+    "code": "D12",
+    "title": "Cloud architecture",
+    "weight": { "min": 7, "max": 12 },
+    "summary": "How Redis Cloud is put together — subscriptions, tiers (Essentials, Essentials with Redis Flex, Pro), regions, availability, and what each capability costs where."
+  },
+  {
+    "id": "rc-cloud-subscription",
+    "order": 13,
+    "code": "D13",
+    "title": "Subscription administration",
+    "weight": { "min": 9, "max": 14 },
+    "summary": "Account and subscription lifecycle — plans and pricing structure, payment, subscription settings, cloud-account/marketplace billing, and administrative access control."
+  },
+  {
+    "id": "rc-cloud-db-admin",
+    "order": 14,
+    "code": "D14",
+    "title": "Database administration",
+    "weight": { "min": 14, "max": 20 },
+    "summary": "Creating and managing Redis Cloud databases — capabilities and limits per tier, sizing, modules, versioning/cloning, configuration changes, and deletion/recovery."
+  },
+  {
+    "id": "rc-cloud-security",
+    "order": 15,
+    "code": "D15",
+    "title": "Security",
+    "weight": { "min": 12, "max": 18 },
+    "summary": "CIDR allowlists, VPC peering, TLS enforcement, ACLs and role-based access, and the shared-responsibility split owned by the operator."
+  },
+  {
+    "id": "rc-cloud-networking",
+    "order": 16,
+    "code": "D16",
+    "title": "Networking",
+    "weight": { "min": 11, "max": 17 },
+    "summary": "Private endpoints, VPC peering, Private Service Connect, prefix/DNS handling, and port/protocol realities of client connectivity."
+  },
+  {
+    "id": "rc-cloud-monitoring",
+    "order": 17,
+    "code": "D17",
+    "title": "Monitoring",
+    "weight": { "min": 8, "max": 14 },
+    "summary": "Metrics and alerting in Redis Cloud — standard vs advanced monitoring, alert thresholds and delivery, integrations (Prometheus/DataDog/New Relic/CloudWatch), and audit logs."
+  },
+  {
+    "id": "rc-cloud-automation",
+    "order": 18,
+    "code": "D18",
+    "title": "Automation",
+    "weight": { "min": 8, "max": 14 },
+    "summary": "The Redis Cloud REST API — account/subscription/database endpoints, API keys and account keys, ci/cd-friendly flows, Terraform provider basics."
+  },
+  {
+    "id": "rc-cloud-data-access",
+    "order": 19,
+    "code": "D19",
+    "title": "Data access",
+    "weight": { "min": 9, "max": 15 },
+    "summary": "Connecting clients — endpoints and ports, TLS/SNI, users and ACLs on databases, and the client-side facts (timeouts, cluster-mode/RESP handling) operators must support."
   }
 ]

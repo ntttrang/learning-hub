@@ -1,0 +1,26 @@
+{
+  "id": "rc-q-18-kc-3",
+  "domainId": "rc-cloud-automation",
+  "moduleId": "m-cloud-automation",
+  "lessonId": "rc-l-18-cloud-automation",
+  "difficulty": "advanced",
+  "kind": "bug",
+  "prompt": "A DevOps engineer wrote this script to create a database through the Redis Cloud REST API. Every request fails authentication. Which line is the mistake?",
+  "explanation": "Authentication always requires two different secrets: the account-level account key in x-api-key and a personal user key in x-api-secret-key. The flagged line reuses the account key value as the user key, so authentication fails even though both headers are present. The fix is to pass the owning user's personal key, for example from a secrets store, in x-api-secret-key.",
+  "tags": [
+    "redis",
+    "automation",
+    "api-keys"
+  ],
+  "codeLines": [
+    "# Create a database in an existing Pro subscription",
+    "API=\"https://api.redislabs.com/v1\"",
+    "curl -s -X POST \"$API/subscriptions/$SUB_ID/databases\" \\",
+    "  -H \"accept: application/json\" \\",
+    "  -H \"x-api-key: $ACCOUNT_KEY\" \\",
+    "  -H \"x-api-secret-key: $ACCOUNT_KEY\" \\",
+    "  -H \"content-type: application/json\" \\",
+    "  -d '{\"name\":\"sessions\",\"datasetSizeInGb\":10}'"
+  ],
+  "buggyLineIndex": 5
+}

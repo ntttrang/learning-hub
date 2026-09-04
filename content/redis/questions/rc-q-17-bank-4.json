@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-17-bank-4",
+  "domainId": "rc-cloud-monitoring",
+  "moduleId": "m-cloud-monitoring",
+  "difficulty": "advanced",
+  "kind": "codeReading",
+  "prompt": "Prometheus scrapes this Redis Cloud endpoint from a VM in the on-premises data center, but every scrape times out and no metrics arrive. The VM has normal internet access but no private connection to the subscription. What is the most likely cause?",
+  "explanation": "The Redis Cloud Prometheus endpoint is exposed on Redis Cloud's internal network, not on the public internet, so scrapes only succeed from a network connected privately to the subscription: via VPC peering, Google Cloud Private Service Connect, AWS Transit Gateway, or AWS PrivateLink (all Pro capabilities). A VM with only public internet access cannot reach port 8070 even with a correct target, scheme, and scrape interval. The fix is private connectivity, not a protocol change; the scraping instance must also sit in one of the RFC 1918 ranges the endpoint whitelists.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "prometheus"
+  ],
+  "code": "# prometheus.yml on a VM in the on-premises data center\nscrape_configs:\n  - job_name: redis-cloud\n    scrape_interval: 30s\n    metrics_path: /\n    scheme: https\n    static_configs:\n      - targets: [\"metrics-4261.c18.us-east1-mz.ec2.cloud.rlrcp.com:8070\"]",
+  "options": [
+    {
+      "id": "a",
+      "text": "The Prometheus endpoint lives on Redis Cloud's internal network, so the VM needs private connectivity such as VPC peering"
+    },
+    {
+      "id": "b",
+      "text": "The scheme must be http, because port 8070 does not support TLS"
+    },
+    {
+      "id": "c",
+      "text": "The target port is wrong, because Redis Cloud exposes metrics on port 9090"
+    },
+    {
+      "id": "d",
+      "text": "The 30s scrape interval exceeds the endpoint timeout, so scrapes are dropped"
+    }
+  ],
+  "correct": "a"
+}

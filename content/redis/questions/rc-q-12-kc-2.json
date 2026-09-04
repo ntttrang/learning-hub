@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-12-kc-2",
+  "domainId": "rc-cloud-arch",
+  "moduleId": "m-cloud-arch",
+  "lessonId": "rc-l-12-cloud-architecture",
+  "difficulty": "beginner",
+  "kind": "matching",
+  "prompt": "Match each Redis Cloud plan to its memory range.",
+  "explanation": "Free Redis Cloud Essentials databases are capped at 30 MB. Paid Redis Cloud Essentials plans run from 250 MB up to 12 GB, Essentials with Redis Flex spans 1 GB to 100 GB by tiering data between RAM and SSD, and Redis Cloud Pro scales to 50 TB on dedicated infrastructure.",
+  "tags": [
+    "redis",
+    "cloud-architecture",
+    "plans"
+  ],
+  "pairs": [
+    {
+      "left": "Free Redis Cloud Essentials",
+      "right": "30 MB"
+    },
+    {
+      "left": "Paid Redis Cloud Essentials",
+      "right": "250 MB to 12 GB"
+    },
+    {
+      "left": "Essentials with Redis Flex",
+      "right": "1 GB to 100 GB"
+    },
+    {
+      "left": "Redis Cloud Pro",
+      "right": "Up to 50 TB"
+    }
+  ]
+}

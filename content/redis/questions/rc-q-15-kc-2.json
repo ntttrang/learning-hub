@@ -1,0 +1,39 @@
+{
+  "id": "rc-q-15-kc-2",
+  "domainId": "rc-cloud-security",
+  "moduleId": "m-cloud-security",
+  "lessonId": "rc-l-15-cloud-security",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each Redis Cloud security feature to what it controls.",
+  "explanation": "Each feature defends a different layer: the allow list filters who can reach the database at the network layer, TLS encrypts the connection in transit, mutual TLS also verifies the client's certificate, RBAC scopes which commands and keys each database user can use, and encryption at rest protects the data Redis writes to disk.",
+  "tags": [
+    "redis",
+    "cloud-security",
+    "tls",
+    "rbac",
+    "cidr-allow-list"
+  ],
+  "pairs": [
+    {
+      "left": "CIDR allow list",
+      "right": "Which source IP addresses or subnets may connect"
+    },
+    {
+      "left": "TLS",
+      "right": "Encrypts the client-to-database connection in transit"
+    },
+    {
+      "left": "Mutual TLS",
+      "right": "Requires clients to present a certificate the database trusts"
+    },
+    {
+      "left": "RBAC",
+      "right": "Which commands and keys each database user may use"
+    },
+    {
+      "left": "Encryption at rest",
+      "right": "Protects data as it is written to disk"
+    }
+  ]
+}

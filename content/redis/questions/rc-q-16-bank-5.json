@@ -1,0 +1,38 @@
+{
+  "id": "rc-q-16-bank-5",
+  "domainId": "rc-cloud-networking",
+  "moduleId": "m-cloud-networking",
+  "difficulty": "advanced",
+  "kind": "multi",
+  "prompt": "After VPC peering was accepted on AWS, applications in the peer VPC time out against the database's private endpoint, while the same database answers requests on its public endpoint. Which causes fit these symptoms? Select all that apply.",
+  "explanation": "Success on the public endpoint proves the database itself is healthy, so the failure is in the private path. Two documented causes fit: the application VPC's route tables have no route to the Redis Cloud VPC CIDR (the update-route-tables step after acceptance), or the peered source IP ranges are missing from the database's CIDR allow list, which applies to the private endpoint as well as the public one. TLS enforcement would drop plaintext connections with a reset rather than a timeout, and rotating the Default user password produces an authentication error after connecting, not a timeout before it.",
+  "tags": [
+    "redis",
+    "cloud-networking",
+    "troubleshooting",
+    "vpc-peering",
+    "cidr-allow-list"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "The application VPC's route tables have no route for the Redis Cloud VPC CIDR"
+    },
+    {
+      "id": "b",
+      "text": "The peered source IP ranges are missing from the database's CIDR allow list"
+    },
+    {
+      "id": "c",
+      "text": "TLS is disabled on the database, and private endpoints refuse plaintext connections"
+    },
+    {
+      "id": "d",
+      "text": "The Default user password was rotated after the peering was accepted"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

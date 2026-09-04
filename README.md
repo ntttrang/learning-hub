@@ -39,7 +39,8 @@ notes/bookmarks tab. Progress, attempts, notes, and bookmarks persist locally
 per subject. Installed packs: GH-900 (GitHub Foundations), GH-200 (GitHub
 Actions), GH-600 (Agentic AI Developer), DP-800 (SQL AI Developer), Languages
 (Java/Go/Python/Ruby, moved from the donor Polyglot Revision Hub —
-`ntttrang/polyglot-hub`, archived on ship), and the
+`ntttrang/polyglot-hub`, archived on ship), Redis (Developer, Software
+Operator, and Cloud Operator tracks), and the
 `content/fixture/` pack that exercises the whole schema (`npm test`, `npm run
 content:check`). Adding a subject needs no core-code edits:
 `npm run content:new -- --id <kebab-id> --code <CODE> --title <t> --accent

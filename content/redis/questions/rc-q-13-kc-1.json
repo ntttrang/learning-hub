@@ -1,0 +1,30 @@
+{
+  "id": "rc-q-13-kc-1",
+  "domainId": "rc-cloud-subscription",
+  "moduleId": "m-cloud-subscription",
+  "lessonId": "rc-l-13-cloud-subscription",
+  "difficulty": "beginner",
+  "kind": "fill",
+  "prompt": "Complete the sentence about when Redis Cloud Essentials maintenance runs.",
+  "explanation": "Redis Cloud Essentials databases have a fixed daily maintenance window from 12 AM to 6 AM in the region's local time zone. Redis uses at most one maintenance window per week unless urgent maintenance is required, and no maintenance that introduces breaking changes is performed in these windows. Setting manual windows is a Redis Cloud Pro capability.",
+  "tags": [
+    "redis",
+    "subscription-administration",
+    "maintenance"
+  ],
+  "template": "Redis Cloud Essentials maintenance runs daily from ___ to 6 AM in the region's local time zone.",
+  "blanks": [
+    {
+      "answer": "12 AM",
+      "alternatives": [
+        "12AM",
+        "12 am",
+        "12am",
+        "midnight",
+        "Midnight",
+        "0:00",
+        "00:00"
+      ]
+    }
+  ]
+}

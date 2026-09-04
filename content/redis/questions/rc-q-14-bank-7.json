@@ -1,0 +1,43 @@
+{
+  "id": "rc-q-14-bank-7",
+  "domainId": "rc-cloud-db-admin",
+  "moduleId": "m-cloud-db-admin",
+  "difficulty": "intermediate",
+  "kind": "order",
+  "prompt": "Arrange the steps of migrating a database with Active-Passive syncing.",
+  "explanation": "The documented Active-Passive migration sequence is: copy the source database's public endpoint, activate the target as an Active-Passive replica of that source, stop all writes to the source and wait for the sync, turn Active-Passive off on the target, then switch apps and connections to the target. Writing to the target while Active-Passive is enabled causes data inconsistency and can break replication, and the target must be a Redis Cloud Pro database.",
+  "tags": [
+    "redis",
+    "db-administration",
+    "active-passive"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Get the source database's public endpoint from its Configuration tab"
+    },
+    {
+      "id": "b",
+      "text": "Activate the target database as an Active-Passive replica of the source"
+    },
+    {
+      "id": "c",
+      "text": "Stop all writes to the source and wait for the data to sync"
+    },
+    {
+      "id": "d",
+      "text": "Turn off Active-Passive for the target database"
+    },
+    {
+      "id": "e",
+      "text": "Switch apps and connections to the target database"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e"
+  ]
+}

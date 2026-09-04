@@ -1,7 +1,7 @@
 ---
 title: "Redis Subject Pack"
 description: "One content/redis pack preparing all three Redis Associate certifications (Developer Java, Software Operator, Cloud Operator), built in three exam-ready phases."
-status: pending
+status: done
 priority: P1
 effort: "3.5d"
 tags: [content, feature, redis]
@@ -33,7 +33,7 @@ user decisions: [brainstorm report](../reports/brainstorm-260903-1731-redis-subj
 |---|-------|--------|
 | 1 | [Scaffold + Core + Developer Java Track](./phase-01-start.md) | Done |
 | 2 | [Software Operator Track](./phase-02-software-operator-track.md) | Done |
-| 3 | [Cloud Operator Track + Polish](./phase-03-cloud-operator-track-polish.md) | Pending |
+| 3 | [Cloud Operator Track + Polish](./phase-03-cloud-operator-track-polish.md) | Done |
 
 ## Cross-Plan Dependencies
 
@@ -43,12 +43,13 @@ here); `260903-1450-polyglot-languages-subject` owns `content/languages`+scripts
 
 ## Success Criteria
 
-- [ ] `npm run content:check` + `npm test` + `npm run build` green at every phase end
-- [ ] Redis subject on home rail; `learn, labs, practice, exams, notes, revision` all work
-- [ ] One mock exam per certification (65q/90min dev; 60q/60min operators, 70% pass =
-      scaled 700) whose domainPlan mirrors that exam's domain structure
-- [ ] Shared core domains sampled by all three mock exams; all content original with
+- [x] `npm run content:check` + `npm test` + `npm run build` green at every phase end
+- [x] Redis subject on home rail; `learn, labs, practice, exams, notes, revision` all work
+- [x] One mock exam per certification (65q/90min dev; 60q/60min operators, 70% pass =
+      scaled 700) whose domainPlan mirrors that exam's domain structure (cloud
+      corrected by research to its real 65q/90min official format)
+- [x] Shared core domains sampled by all three mock exams; all content original with
       Redis Ltd. trademark disclaimer
-- [ ] README "Installed packs" row added (Phase 3)
+- [x] README "Installed packs" row added (Phase 3)
 
 <!-- slug: redis-subject -->

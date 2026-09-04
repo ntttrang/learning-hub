@@ -1,0 +1,22 @@
+{
+  "id": "rc-q-16-bank-6",
+  "domainId": "rc-cloud-networking",
+  "moduleId": "m-cloud-networking",
+  "difficulty": "intermediate",
+  "kind": "fill",
+  "prompt": "Complete the segment that distinguishes a Redis Cloud Pro database's private endpoint hostname from its public one.",
+  "explanation": "Static endpoints start with redis-<port>.c<number>; the private endpoint of the same database inserts the segment internal right after the port — redis-<port>.internal.c<number> — and resolves only inside the private network path set up by VPC peering, Private Service Connect, Transit Gateway, or PrivateLink.",
+  "tags": [
+    "redis",
+    "cloud-networking",
+    "endpoints",
+    "private-endpoint"
+  ],
+  "template": "A database's static public endpoint looks like redis-12345.c12345.us-east-1-mz.ec2.cloud.rlrcp.com. The private endpoint of the same Pro database follows the pattern redis-12345.___ .c12345.us-east-1-mz.ec2.cloud.rlrcp.com.",
+  "blanks": [
+    {
+      "answer": "internal",
+      "alternatives": []
+    }
+  ]
+}

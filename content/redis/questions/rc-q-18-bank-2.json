@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-18-bank-2",
+  "domainId": "rc-cloud-automation",
+  "moduleId": "m-cloud-automation",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "An operator has enabled the REST API and generated an account key and a user key. Which header pair authenticates every Redis Cloud API request?",
+  "explanation": "Every request must carry both keys as HTTP headers: the account-level account key in x-api-key and the personal user key in x-api-secret-key. The user key belongs to a single user and can be restricted to certain IP ranges with a CIDR allow list. The other header names are not used by the Redis Cloud API, and a bearer token replaces neither key.",
+  "tags": [
+    "redis",
+    "automation",
+    "api-keys"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "x-api-key and x-api-secret-key"
+    },
+    {
+      "id": "b",
+      "text": "Authorization: Bearer and x-account-key"
+    },
+    {
+      "id": "c",
+      "text": "x-account-key and x-user-key"
+    },
+    {
+      "id": "d",
+      "text": "x-api-key alone, with the user key passed in the request body"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-12-bank-2",
+  "domainId": "rc-cloud-arch",
+  "moduleId": "m-cloud-arch",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "An operator enables the OSS Cluster API on a Redis Cloud Pro database. What changes for client applications?",
+  "explanation": "With OSS Cluster API, clients first connect to get the cluster topology and then connect directly to the Redis proxy on each node that hosts a master shard, which requires a cluster-aware client library. It is available only on Redis Cloud Pro databases. In the default standard access mode the database is reached through one endpoint that routes operations transparently, so no cluster-aware client is needed there. OSS Cluster API requires the standard hashing policy, not the custom one.",
+  "tags": [
+    "redis",
+    "cloud-architecture",
+    "oss-cluster-api"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Clients must use a cluster-aware client: they learn the topology and then connect directly to each node hosting a master shard"
+    },
+    {
+      "id": "b",
+      "text": "Nothing changes for clients, because every operation still travels through the single routing endpoint"
+    },
+    {
+      "id": "c",
+      "text": "Redis Cloud Essentials databases also support OSS Cluster API, so the same client code works everywhere"
+    },
+    {
+      "id": "d",
+      "text": "The database must first be switched to the custom hashing policy before clients can connect"
+    }
+  ],
+  "correct": "a"
+}

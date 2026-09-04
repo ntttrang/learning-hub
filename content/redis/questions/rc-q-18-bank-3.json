@@ -1,0 +1,41 @@
+{
+  "id": "rc-q-18-bank-3",
+  "domainId": "rc-cloud-automation",
+  "moduleId": "m-cloud-automation",
+  "difficulty": "advanced",
+  "kind": "multi",
+  "prompt": "Which statements about Redis Cloud REST API user keys are correct? (Select three.)",
+  "explanation": "A user key is a personal secret that belongs to exactly one user, though one user may hold several keys; it is issued to users with the Owner, Viewer, Billing admin, or Logs viewer role, and it can be restricted to defined source IP ranges with a CIDR allow list. The full key value is shown only during creation, so capture it at generation time. Keys are not shared account-wide, and the account key is always required alongside the user key for every request.",
+  "tags": [
+    "redis",
+    "automation",
+    "api-keys"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "A user key belongs to exactly one user, although a user may hold several keys"
+    },
+    {
+      "id": "b",
+      "text": "User keys are issued to users holding the Owner, Viewer, Billing admin, or Logs viewer role"
+    },
+    {
+      "id": "c",
+      "text": "One shared user key is assigned to all users of the account"
+    },
+    {
+      "id": "d",
+      "text": "A user key can be limited to requests from defined IP ranges with a CIDR allow list"
+    },
+    {
+      "id": "e",
+      "text": "Requests authenticate with the user key alone when the account key is omitted"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "rc-q-14-bank-8",
+  "domainId": "rc-cloud-db-admin",
+  "moduleId": "m-cloud-db-admin",
+  "difficulty": "advanced",
+  "kind": "bug",
+  "prompt": "A team is creating a Pro database that must hold a 10 GB dataset with replication enabled. A sizing reviewer flags one line of the request definition. Which line is wrong?",
+  "explanation": "Replication requires a memory limit that is double the dataset size, so a 10 GB replicated dataset needs a memory limit of at least 20 GB; with 10 GB the database is undersized and will run out of memory. The dataset size itself is stated correctly, and replication is the team's actual intent, so the memoryLimit line is the defect. On Pro you state the dataset size and Redis Cloud calculates the memory limit from the replication settings.",
+  "tags": [
+    "redis",
+    "db-administration",
+    "sizing"
+  ],
+  "codeLines": [
+    "const databaseRequest = {",
+    "  subscription: \"redis-cloud-pro\",",
+    "  name: \"orders-cache\",",
+    "  datasetSize: \"10 GB\",",
+    "  replication: true,",
+    "  memoryLimit: \"10 GB\"   // expected to hold the full 10 GB dataset",
+    "};"
+  ],
+  "buggyLineIndex": 5
+}

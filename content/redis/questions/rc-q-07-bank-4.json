@@ -1,15 +1,15 @@
 {
-  "id": "rc-q-01-bank-12",
-  "domainId": "rc-core-types",
-  "moduleId": "m-data-structures",
+  "id": "rc-q-07-bank-4",
+  "domainId": "rc-core-security",
+  "moduleId": "m-security-config",
   "difficulty": "intermediate",
   "kind": "fill",
   "prompt": "Complete the CONFIG command that caps the dataset at two gigabytes.",
   "explanation": "maxmemory sets the ceiling on dataset memory. Once the limit is reached, Redis applies the configured eviction policy \u2014 or rejects writes if the policy is noeviction.",
   "tags": [
     "redis",
-    "data-structures",
-    "configuration"
+    "configuration",
+    "memory"
   ],
   "template": "CONFIG SET ___ 2gb",
   "blanks": [

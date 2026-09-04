@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-17-kc-3",
+  "domainId": "rc-cloud-monitoring",
+  "moduleId": "m-cloud-monitoring",
+  "lessonId": "rc-l-17-cloud-monitoring",
+  "difficulty": "advanced",
+  "kind": "matching",
+  "prompt": "Match each database alert to the subscription plans where it can be enabled.",
+  "explanation": "Alert eligibility follows each plan's capabilities: the dataset-size alert measures the percentage of the memory limit on Pro databases, while the plan-total and connection-count alerts exist only on Essentials plans, and the throughput and latency alerts require a paid plan. Defaults are 80% for the size and connection alerts, 1000 ops/sec for high throughput, and 10 msec for high latency. Alerts are configured per database, and alert emails go to account team members managed under Access Management.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "alerts"
+  ],
+  "pairs": [
+    {
+      "left": "Dataset size has reached",
+      "right": "Pro only"
+    },
+    {
+      "left": "Total size of datasets under this plan reached",
+      "right": "Essentials only"
+    },
+    {
+      "left": "Throughput is higher than",
+      "right": "Paid Essentials or Pro"
+    },
+    {
+      "left": "Latency is higher than",
+      "right": "Paid Essentials or Pro"
+    },
+    {
+      "left": "Number of connections",
+      "right": "Essentials only"
+    }
+  ]
+}

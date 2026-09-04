@@ -1,0 +1,45 @@
+{
+  "id": "rc-l-14-cloud-db-admin",
+  "moduleId": "m-cloud-db-admin",
+  "domainId": "rc-cloud-db-admin",
+  "order": 1,
+  "slug": "cloud-database-administration",
+  "title": "Cloud database administration",
+  "summary": "The create-database flow per tier, sizing and memory-limit math, modules and versioning, editable versus immutable settings, backup/restore mechanics, and safe deletion.",
+  "minutes": 15,
+  "difficulty": "intermediate",
+  "references": [
+    {
+      "title": "Create a database",
+      "url": "https://redis.io/docs/latest/operate/rc/databases/create-database/"
+    },
+    {
+      "title": "Size a Redis Cloud database",
+      "url": "https://redis.io/docs/latest/operate/rc/databases/configuration/sizing/"
+    },
+    {
+      "title": "Back up and export a database",
+      "url": "https://redis.io/docs/latest/operate/rc/databases/back-up-data/"
+    },
+    {
+      "title": "View and edit databases",
+      "url": "https://redis.io/docs/latest/operate/rc/databases/view-edit-database/"
+    }
+  ],
+  "docIds": [
+    "rc-create-database",
+    "rc-backups",
+    "rc-maintenance"
+  ],
+  "questionIds": [
+    "rc-q-14-kc-1",
+    "rc-q-14-kc-2",
+    "rc-q-14-kc-3"
+  ],
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "Database administration is the heaviest domain on the Cloud Operator exam (17%), and it is the domain where facts are most testable: memory math, per-tier capabilities, which settings can change after creation, and how backups and upgrades actually behave. This lesson walks the database lifecycle — create, size, operate, version, back up, and retire.\n\n## Creating a database on each plan\n\nEvery create flow starts the same way: **New database**, pick the subscription type, then name (Redis generates one for you), Redis version, and cloud vendor (AWS, Google Cloud, or Azure) and region. From there the plans diverge:\n\n- **Essentials (paid)**: choose the plan (which *is* the size), RAM-only or **RAM + SSD (Flex)**, **High availability** (None / Single-Zone / Multi-Zone), and **data persistence** (AOF written every second, or snapshots every 1, 6, or 12 hours), then **Confirm & pay**. The database list shows it once provisioning completes.\n- **Free**: 30 MB, one per account, same vendor/region/version choices; delete or upgrade the existing free database before making another.\n- **Pro**: pick an existing subscription or create one, then define **dataset size** and **throughput** (ops/sec), high availability, clustering/hashing policy, and optional advanced capabilities; provisioning deploys into the subscription's dedicated VPC.\n\nAdvanced capabilities (Search and query, JSON, time series, probabilistic) are selected at creation or later from the database screen; a database's **Type** (Redis vs Memcached) is fixed at creation and shows as non-editable afterward.\n\n## Sizing: the memory math the exam loves\n\nSizing questions are memory-accounting questions. The **memory limit** is the ceiling on everything — data, keys, module data, and feature overhead — not just your dataset:\n\n- Essentials plans quote the **full memory limit**; the console shows both the limit and the expected dataset size.\n- **Replication doubles memory consumption**: 512 MB of data needs a 1 GB limit when replication is on, on every plan.\n- **Active-Active doubles it again, cumulatively** — up to **4x the data size** — and Active-Active instances start evicting at **80% of the memory limit**, reserving replication backlogs (1% of database size each by default).\n- Advanced capabilities add memory: search databases must budget for index size.\n- Pro throughput is a target you set in ops/sec; requests under ~3 KB often beat it, larger payloads need headroom, and TLS costs some throughput.\n\nEviction policy interacts with sizing: when the database reaches its memory limit, the configured **data eviction policy** decides what happens (evict by LFU/LRU/random, or reject writes). Watch the dataset-size alerts (default 80%) as the operational signal.\n\n## Editing, limits, and what cannot change\n\nThe database screen separates editable from immutable. Essentials edits flow through **Review changes -> Confirm / Confirm & pay**; Pro uses **Edit -> Save database**. Editable on both: name, Redis version (Essentials), high availability, data persistence, remote backup, eviction policy, default user and password, CIDR allow list, TLS. Pro adds dataset size, throughput, hashing policy, OSS Cluster API (which disables custom hashing policies), tags, and Active-Passive linking.\n\nNon-editable is the exam's favorite half: database ID, creation date, cloud vendor, region, type (Redis/Memcached), and on Pro the per-database Redis version, public/private endpoints, and Active-Active membership. **Certain fields cannot be updated because they might lead to data loss; to change them, create a new database and migrate.** That sentence — new database plus migration — is the documented recovery path for any immutable setting you outgrow. Essentials shows its **Architecture** (RAM vs Flex) as read-only once created.\n\n## Versioning and maintenance touchpoints\n\nDatabases pick a Redis version at creation. Essentials databases can change version from the database screen (the Version field is editable there). On Pro, the per-database Redis version field is not editable; the subscription-level Redis major version is controlled on the subscription page and applies to upgrades — and **major upgrades are opt-in**, never automatic. Routine maintenance (upgrades Redis schedules, cluster optimization, node work, security patches) runs in maintenance windows: Essentials daily 12 AM-6 AM region-local at most weekly; Pro automatic or in windows you set, skippable, with urgent security maintenance always able to override. Expect brief disconnects during maintenance; DNS-refreshing clients recover automatically.\n\n## Backups, restore, and deletion\n\nBackup capability splits by plan: **free plans cannot back up or export through the console**; paid Essentials back up on demand and every 24 hours; Pro backs up on demand on intervals you choose — 24, 12, 6, 4, 2, or 1 hour — with an optional fixed backup hour in UTC. Backups are **RDB files, one per shard**, written to storage you pre-provision: **AWS S3, Google Cloud Storage, Azure Blob Storage, or FTP/FTPS**, with the subscription granted write access (bucket policies or IAM grants). Limits to remember: at most **4 backups run simultaneously per subscription** by default, the **Backup now** button only appears after backups are enabled, and restore uses **import from the RDB file** — including into a new database when you need a clone or point-in-time recovery. The danger zone holds the permanent actions: **Delete** (requires the database to be active) and, for Active-Active databases only, **Flush**; the documented best practice is to back up before touching it.\n\n## Exam takeaways\n\n- Create flow: subscription type -> name/version/vendor/region, then per-plan settings; Essentials = plan + Flex choice + HA + persistence + Confirm & pay; Pro = subscription + dataset size + throughput.\n- Memory math: replication doubles; Active-Active doubles again (up to 4x) and evicts at 80% with 1% backlogs; Essentials plans quote the full limit; search indexes consume memory.\n- Persistence: AOF every second or snapshots at 1/6/12 hours; eviction policy decides behavior at the memory limit.\n- Immutable after creation: vendor, region, type, database ID; Pro adds per-database version and endpoints — the fix is a new database plus data migration.\n- Backups: free none, Essentials every 24h, Pro 1-24h selectable with a set hour; RDB per shard to S3/GCS/Azure Blob/FTP(S); 4 concurrent backups; restore via RDB import; back up before delete/flush."
+    }
+  ]
+}
