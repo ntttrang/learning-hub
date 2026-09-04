@@ -116,11 +116,15 @@ describe('hub views', () => {
     expect(screen.getByText('One hub for every subject you study')).toBeInTheDocument();
   });
 
-  it('clicking a subject card navigates to its workspace', async () => {
+  // The card click loads the full pack registry before the workspace mounts;
+  // the redis pack's 201 questions pushed this past waitFor's 1s default on
+  // CI hardware. Same headroom rationale as the dp-800 exam-walk fix.
+  it('clicking a subject card navigates to its workspace', { timeout: 20_000 }, async () => {
     render(<App />);
     fireEvent.click(screen.getByRole('link', { name: 'GH-900, 0% complete' }));
-    await waitFor(() =>
-      expect(screen.getByRole('heading', { name: 'GH-900 study hub' })).toBeInTheDocument(),
+    await waitFor(
+      () => expect(screen.getByRole('heading', { name: 'GH-900 study hub' })).toBeInTheDocument(),
+      { timeout: 15_000 },
     );
   });
 
