@@ -3,7 +3,7 @@
  * hand-rolled localStorage payload (`prh-progress`,
  * learn-polyglot/src/lib/progress.ts, donor SHA fa0019eb) becomes hub user
  * data under `subjects['languages']` of `cc-subject-data`. One-way and
- * one-shot; the donor repo is archived after the pack ships, so the key is
+ * one-shot; the donor repo is removed upstream after the pack ships, so the key is
  * never consumed — the sibling guard key is the only one-time marker.
  *
  * Donor shape: `{lessons, labs, practice, framework, quiz, lastLang}` where
@@ -40,7 +40,8 @@ export const LEGACY_POLYGLOT_KEY = 'prh-progress';
  * Sibling guard key marking the import done. Lives outside `cc-subject-data`
  * on purpose: the persist merge whitelist would strip an in-store flag on
  * every reload. The donor key is never deleted — after the donor repo is
- * archived it is the only remaining copy of this progress.
+ * archived it is the only remaining copy of this progress — a fact that only
+ * hardens once the donor repo is removed upstream.
  */
 export const POLYGLOT_MIGRATED_KEY = 'cc-polyglot-progress-migrated';
 

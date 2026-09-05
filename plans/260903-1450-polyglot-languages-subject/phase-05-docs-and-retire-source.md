@@ -37,37 +37,42 @@ inside `learn-polyglot/`.
 ## Implementation Steps
 
 1. README layout table: `learn-polyglot/` donor row (subject "Polyglot Revision Hub donor", run "none — vendored build input").
-2. README unified-platform section: pack inventory 5→6 with Languages + provenance ("moved from the donor Polyglot Revision Hub; source repo archived 2026-09").
-3. `docs/unified-learning-hub-plan.md`: add Languages to the installed-pack inventory; note the donor is vendored + archived.
+2. README unified-platform section: pack inventory 5→6 with Languages + provenance ("moved from the donor Polyglot Revision Hub; source repo removed upstream after ship — the vendored copy is the surviving source").
+3. `docs/unified-learning-hub-plan.md`: add Languages to the installed-pack inventory; note the donor is vendored.
 4. Verify all links/claims against the tree (docs rule: verify after edit).
-5. **Production import smoke (observable archive gate):** on the live
-   <https://ntttrang.github.io/learning-hub/> site, seed `prh-progress` in
-   devtools, reload, confirm the import fires once (learn progress + lab
-   completions appear, `cc-polyglot-progress-migrated` appears, the donor key
-   survives), then clear the seeded keys.
-6. **Archive the source repo** — only after the Phase 3 Pages verification
-   and the step-5 import smoke both passed:
+5. **Production verification (observable retirement gate):** confirm the hub's
+   Pages deploy verifiably serves the Languages pack (deploy job success on the
+   push-to-main run + `plg-java` content present in the served bundle — done
+   2026-09-03, run 33743588207). The personal one-time import fires by itself
+   the first time the owner opens the live hub in the browser that holds
+   `prh-progress`; no devtools seeding needed.
+6. **Retire the source repo — user action, amended to DELETE** (was archive;
+   user decision 2026-09-03, after the live verification above passed):
    ```bash
-   gh repo edit ntttrang/polyglot-hub --archive
+   gh repo delete ntttrang/polyglot-hub --yes   # requires delete_repo scope
    ```
-7. Post-archive note (finding 8): the old standalone site stays publicly
-   reachable, frozen, with no visitor-facing notice — expected archived-repo
-   Pages behavior, not a failure signal; record the hub deploy SHA that
-   carried the verification in the plan journal.
+   Deletion is permanent; `learn-polyglot/` at recorded SHA `fa0019e` is the
+   only surviving source. With deletion, the old Pages site stops serving
+   entirely (unlike the frozen-site behavior of the archive path).
+7. Post-retirement note: record the hub deploy SHA that carried the
+   verification in the plan journal (db8f094 lineage; live bundle
+   `index-BtzM8NcI.js`).
 
 
 ## Success Criteria
 
-- [ ] README + unified-plan doc updated, links verified
-- [ ] Production import smoke passed on the live hub site before archiving
-- [ ] `ntttrang/polyglot-hub` archived via gh after the hub's Pages deploy verifiably serves the Languages pack
-- [ ] Old standalone site no longer presented as a live surface anywhere in hub docs
+- [x] README + unified-plan doc updated, links verified
+- [x] Live hub Pages deploy verifiably serves the Languages pack (deploy success, bundle content confirmed)
+- [ ] `ntttrang/polyglot-hub` deleted upstream by the user (their explicit action; irreversible)
+- [x] Old standalone site no longer presented as a live surface anywhere in hub docs
 
 ## Risk Assessment
 
-Risk: archiving before the pack is verifiably live would leave the user with no
-working polyglot study surface — and the old site can't serve as a signal
-because archived repos' Pages sites stay live frozen with no notice (finding 8).
-**Signal:** Phase 3's Pages verification or the step-5 import smoke failed or
-was skipped. **Sequence guard:** archive only after both passed; if either
-can't be confirmed, do not archive — report and wait for the user.
+Risk: retiring the repo before the pack is verifiably live would leave the user
+with no working polyglot study surface — and deletion additionally destroys the
+only upstream copy of the source. **Mitigations in place:** the live-deploy
+verification gate passed first (finding 8's observable-signal fix); the vendored
+`learn-polyglot/` copy at recorded SHA `fa0019e` preserves the source verbatim,
+and the extractor regenerates the pack from it byte-identically. **Sequence
+guard held:** verification passed before any retirement; the deletion itself is
+the user's explicitly-stated action.
