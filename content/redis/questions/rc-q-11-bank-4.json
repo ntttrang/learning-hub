@@ -1,0 +1,38 @@
+{
+  "id": "rc-q-11-bank-4",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "An operator reviews how a Redis Software database behaves under memory pressure. Which statements are correct?",
+  "explanation": "volatile-lru is the default eviction policy for most Redis Software databases, and with noeviction new values are not saved once the memory limit is reached. In clustered databases each shard tracks its own memory usage and evicts on its own limit, so an unevenly filled database can start evicting on one shard while overall utilization is still below the configured limit.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "memory",
+    "eviction"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "volatile-lru is the default eviction policy for most databases"
+    },
+    {
+      "id": "b",
+      "text": "With noeviction, new values are not saved once the memory limit is reached"
+    },
+    {
+      "id": "c",
+      "text": "A clustered database only evicts when the sum of all shards exceeds the database memory limit"
+    },
+    {
+      "id": "d",
+      "text": "allkeys-lfu keeps frequently used keys and removes the least frequently used ones"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

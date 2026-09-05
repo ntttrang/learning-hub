@@ -1,0 +1,29 @@
+{
+  "id": "rc-q-12-kc-1",
+  "domainId": "rc-cloud-arch",
+  "moduleId": "m-cloud-arch",
+  "lessonId": "rc-l-12-cloud-architecture",
+  "difficulty": "beginner",
+  "kind": "fill",
+  "prompt": "Complete the sentence about where Redis Cloud places replicas across zones.",
+  "explanation": "Multi-zone replication stores a database's primary and its replicas in different availability zones, so the database stays online even when an entire zone fails. It requires a region with at least three availability zones. With single-zone replication the primary and its replica live in the same zone, which still survives a primary failure but not the loss of the whole zone.",
+  "tags": [
+    "redis",
+    "cloud-architecture",
+    "high-availability"
+  ],
+  "template": "___ replication stores a database's primary and its replicas in different availability zones.",
+  "blanks": [
+    {
+      "answer": "Multi-zone",
+      "alternatives": [
+        "multi-zone",
+        "Multi-Zone",
+        "multi zone",
+        "Multi-AZ",
+        "multi-az",
+        "Multi-AZ"
+      ]
+    }
+  ]
+}

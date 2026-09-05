@@ -1,0 +1,25 @@
+{
+  "id": "rc-q-14-kc-1",
+  "domainId": "rc-cloud-db-admin",
+  "moduleId": "m-cloud-db-admin",
+  "lessonId": "rc-l-14-cloud-db-admin",
+  "difficulty": "beginner",
+  "kind": "fill",
+  "prompt": "Complete the sentence about where Redis Cloud performs persistence when replication is enabled.",
+  "explanation": "When replication is enabled for a database, Redis Cloud performs persistence against the replicas to reduce the performance impact on the primary. The data is still copied to persistent storage attached to the underlying cloud instances; the setting only changes which copy of the data does the disk work.",
+  "tags": [
+    "redis",
+    "db-administration",
+    "persistence"
+  ],
+  "template": "When replication is enabled, Redis Cloud performs persistence against the ___ to reduce the impact on the primary.",
+  "blanks": [
+    {
+      "answer": "replicas",
+      "alternatives": [
+        "replica",
+        "replica shards"
+      ]
+    }
+  ]
+}

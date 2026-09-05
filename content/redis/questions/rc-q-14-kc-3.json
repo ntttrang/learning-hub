@@ -1,0 +1,35 @@
+{
+  "id": "rc-q-14-kc-3",
+  "domainId": "rc-cloud-db-admin",
+  "moduleId": "m-cloud-db-admin",
+  "lessonId": "rc-l-14-cloud-db-admin",
+  "difficulty": "intermediate",
+  "kind": "codeReading",
+  "prompt": "An 8 GB Redis Cloud Essentials source database without replication is synced with Active-Passive to a Pro target that has replication enabled. Per Redis Cloud guidance, what minimum target memory limit avoids data loss?",
+  "explanation": "Active-Passive sync needs roughly 25 percent extra memory on top of the target's normal requirements. Replication already requires a memory limit that is double the dataset size, so 8 GB of data means 16 GB, and adding the sync overhead brings the minimum to about 20 GB. The docs use the same arithmetic: a 1 GB source without replication maps to a 2.5 GB minimum target with replication.",
+  "tags": [
+    "redis",
+    "db-administration",
+    "active-passive"
+  ],
+  "code": "source: Essentials \"orders\"    dataset 8 GB, replication off\ntarget: Pro \"orders-copy\"       replication on\nplan:   sync with Active-Passive\nask:    minimum target memory limit to avoid data loss?",
+  "options": [
+    {
+      "id": "a",
+      "text": "20 GB"
+    },
+    {
+      "id": "b",
+      "text": "16 GB"
+    },
+    {
+      "id": "c",
+      "text": "10 GB"
+    },
+    {
+      "id": "d",
+      "text": "8 GB"
+    }
+  ],
+  "correct": "a"
+}

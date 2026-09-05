@@ -1,0 +1,35 @@
+{
+  "id": "rc-q-11-bank-8",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "difficulty": "intermediate",
+  "kind": "codeReading",
+  "prompt": "Redis Software runs in a Docker container started with the command below. A client on the host machine tries to connect to localhost:12000 and the connection fails. Why?",
+  "explanation": "The container only exposes the ports you publish with -p. This command maps 8443 (Cluster Manager) and 9443 (REST API) but not 12000, so the database endpoint inside the container is unreachable from the host even though the database itself is healthy. Republishing the port with -p 12000:12000, or restarting the container with --network host, fixes it.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "troubleshooting",
+    "docker"
+  ],
+  "code": "docker run -d --cap-add sys_resource --name RE \\\n  -p 8443:8443 -p 9443:9443 \\\n  redislabs/redis\n\n# on the host:\nredis-cli -h localhost -p 12000 PING",
+  "options": [
+    {
+      "id": "a",
+      "text": "Port 12000 was never published to the host, so the endpoint is unreachable from outside the container"
+    },
+    {
+      "id": "b",
+      "text": "The database must be created first — the endpoint refuses connections until a database exists on port 12000"
+    },
+    {
+      "id": "c",
+      "text": "Docker containers cannot host database endpoints, so clients must always connect through the REST API"
+    },
+    {
+      "id": "d",
+      "text": "The container is unhealthy because --cap-add sys_resource blocked startup"
+    }
+  ],
+  "correct": "a"
+}

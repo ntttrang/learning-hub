@@ -1,0 +1,45 @@
+{
+  "id": "rc-l-15-cloud-security",
+  "moduleId": "m-cloud-security",
+  "domainId": "rc-cloud-security",
+  "order": 1,
+  "slug": "cloud-security",
+  "title": "Cloud security",
+  "summary": "The shared-responsibility split, CIDR allowlists and VPC peering at the network layer, TLS enforcement, default user versus RBAC on the data plane, and console roles with MFA and SSO.",
+  "minutes": 15,
+  "difficulty": "intermediate",
+  "references": [
+    {
+      "title": "Cloud database security",
+      "url": "https://redis.io/docs/latest/operate/rc/security/database-security/"
+    },
+    {
+      "title": "Network security",
+      "url": "https://redis.io/docs/latest/operate/rc/security/database-security/network-security/"
+    },
+    {
+      "title": "Data access control",
+      "url": "https://redis.io/docs/latest/operate/rc/security/access-control/data-access-control/"
+    },
+    {
+      "title": "Access management",
+      "url": "https://redis.io/docs/latest/operate/rc/security/access-control/access-management/"
+    }
+  ],
+  "docIds": [
+    "rc-security",
+    "rc-networking",
+    "rc-create-database"
+  ],
+  "questionIds": [
+    "rc-q-15-kc-1",
+    "rc-q-15-kc-2",
+    "rc-q-15-kc-3"
+  ],
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "Security questions on the Cloud Operator exam test one skill: knowing exactly which control belongs to which layer — the account, the network, or the data — and which of them Redis owns versus which you do. This lesson sorts the controls into their layers and pins down the settings the exam quotes.\n\n## Shared responsibility: the layer map\n\nRedis operates and secures the managed service — the underlying compute, storage, and the disk encryption beneath your databases. You, the operator, own everything above the service boundary: **who can reach the database** (network security), **who can sign in to what** (authentication and RBAC), **how data crosses the wire** (TLS), and **your data and its access patterns**. The exam's shared-responsibility questions usually hide a layer confusion: patching the service is Redis's job, choosing whether your database accepts connections from the open internet is yours.\n\n## Network layer: CIDR allowlists and VPC peering\n\nRedis Cloud offers two network security mechanisms, and the docs recommend at least one always:\n\n**CIDR allowlists (IP restrictions)** restrict database access to configured source IP addresses or subnets — roughly the managed equivalent of iptables rules on the endpoint. Availability splits by vendor and plan: paid Essentials and Pro on AWS and Google Cloud; **Pro only on Azure**. A database-level allowlist works even on public endpoints, so it is the baseline control on every paid tier.\n\n**VPC peering** connects your application VPC to the dedicated VPC where Pro databases live, granting unrestricted network access between the two. Peering is a Pro capability on every vendor; on Google Cloud it is *required* to reach Pro databases, on AWS it is optional (public endpoints plus CIDR allowlists remain an alternative), and an Azure annual deployment instead places databases in your own Azure VPC. Peering has a routing-shaped limitation: the VPCs' CIDR blocks must not overlap, and after acceptance the route tables must be configured to actually carry the traffic. Where peering does not fit — overlapping ranges or service-scoped access — AWS offers PrivateLink and Transit Gateway and Google Cloud offers Private Service Connect as alternates.\n\nPro subscriptions can additionally **block the public endpoint** entirely, forcing private connectivity only — which also unlocks passwordless default-user authentication for clients inside the trusted network.\n\n## Transport layer: TLS\n\nRedis Cloud supports **TLS** (still often called SSL) for client-to-database connections, and strongly recommends enabling it whenever sensitive data crosses the network. Enforcement is a database setting: once required, non-TLS connections are refused. With client certificate authentication activated, TLS additionally ensures only clients presenting an authorized key can connect — mutual TLS. Two side facts complete the picture: Active-Active databases always use TLS to synchronize between regions, and TLS costs some throughput, which is a sizing consideration, not a security caveat.\n\n## Data layer: default user and RBAC\n\nEvery Redis Cloud database is created with a **default user** — access with the username `default` and a **randomly generated password** shown in the console. You can change that password or **turn the default user off** entirely once named users exist.\n\nThe recommended model is **role-based access control (RBAC)**, which layers three Redis-native concepts on managed infrastructure:\n\n- **ACL rules** — permission strings in classic Redis ACL syntax: command categories (`+@read`, `-@dangerous`), specific commands, key patterns, and channels.\n- **Roles** — named bundles of ACL rules.\n- **Users** — named database accounts with their own passwords, each assigned one or more roles.\n\nA user authenticates with its own credentials (AUTH or, for Redis 6+ clients, AUTH username/password) and gets exactly the union of its roles' permissions. Active-Active databases have their own roles variant, since permissions must replicate across regions. The console's data access control screen is where ACLs, roles, and users are managed; this is database-level RBAC, distinct from the console team roles in the next section.\n\n## Account layer: console roles, MFA, SSO\n\nThe console itself is guarded by **Access management**: six team roles (Owner, Billing Admin, Manager, Member, Viewer, Logs Viewer) with a precise capability matrix, per-user **multi-factor authentication**, and **SAML SSO** for organization-managed identity. API keys that authenticate REST API automation are also managed here. The split to keep straight: team roles govern the *console and API*; database users and roles govern the *data plane*.\n\n## Encryption at rest\n\nDisk encryption protects data stored under Redis Cloud databases — a service-owned control that is **available on Redis Cloud Pro** plans as listed in the plan comparison, alongside private connectivity. Combined with in-transit TLS, it closes the encryption story: at rest by the service, in transit by your database setting.\n\n## Exam takeaways\n\n- Shared responsibility: Redis owns service infrastructure and disk encryption; you own network exposure, TLS enforcement, credentials, and data-level access.\n- CIDR allowlists (IP restrictions): paid Essentials and Pro on AWS/GCP, Pro only on Azure; recommend CIDR allowlist or VPC peering on every production database.\n- VPC peering: Pro; required on Google Cloud, optional on AWS; non-overlapping CIDRs and post-acceptance route-table configuration; PrivateLink/Transit Gateway/Private Service Connect cover peering-unsuitable cases.\n- TLS is strongly recommended and enforceable; client-cert auth adds mutual TLS; Active-Active region sync always uses TLS.\n- Data plane: default user with a random password can be changed or disabled; RBAC = ACL rules -> roles -> users, with an Active-Active roles variant.\n- Account plane: six console team roles plus MFA and SAML SSO; encryption at rest is on Pro plans."
+    }
+  ]
+}

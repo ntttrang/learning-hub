@@ -1,0 +1,46 @@
+{
+  "id": "rc-l-18-cloud-automation",
+  "moduleId": "m-cloud-automation",
+  "domainId": "rc-cloud-automation",
+  "order": 1,
+  "slug": "cloud-automation",
+  "title": "Automating Redis Cloud: REST API and Terraform",
+  "summary": "REST API authentication with account and user keys, endpoints and rate limits, provisioning-scaling-backup flows with task polling, the Redis Cloud Terraform provider, and safe automation practices.",
+  "minutes": 15,
+  "difficulty": "intermediate",
+  "references": [
+    {
+      "title": "Get started with the Redis Cloud REST API",
+      "url": "https://redis.io/docs/latest/operate/rc/api/get-started"
+    },
+    {
+      "title": "Use the REST API",
+      "url": "https://redis.io/docs/latest/operate/rc/api/get-started/use-rest-api"
+    },
+    {
+      "title": "Manage API keys",
+      "url": "https://redis.io/docs/latest/operate/rc/api/get-started/manage-api-keys"
+    },
+    {
+      "title": "Get started with Terraform",
+      "url": "https://redis.io/docs/latest/integrate/terraform-provider-for-redis-cloud/get-started/"
+    }
+  ],
+  "docIds": [
+    "rc-subscriptions",
+    "rc-create-database",
+    "rc-backups",
+    "rc-security"
+  ],
+  "questionIds": [
+    "rc-q-18-kc-1",
+    "rc-q-18-kc-2",
+    "rc-q-18-kc-3"
+  ],
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "Everything you can click in the Redis Cloud console, you can automate. The official surfaces are the REST API, the Terraform provider (with a Pulumi equivalent), and the `redisctl` CLI that wraps both the Redis Cloud and Redis Software APIs. The exam expects fluency in the API's authentication model and its asynchronous rhythm — plus the judgment to automate safely.\n\n## Enable and authenticate the REST API\n\nThe API is **disabled by default** on every account; you enable it in the console before any request works. Authentication is a two-key scheme sent as HTTP headers:\n\n- **Account key** — header `x-api-key`. An account-level key shared by all users of the account. You create it once when enabling API access; changing or deleting it requires contacting support.\n- **User key** — header `x-api-secret-key`. A personal key belonging to one user with the Owner, Viewer, Billing admin, or Logs viewer role. A user may hold multiple keys, and each key can be scoped with its own CIDR allow list.\n\nA request authenticates only when both keys are valid, they belong to the same account, and the request originates from an IP allowed by the user key's CIDR allow list (when one is defined). Key values are shown **only during creation** — copy them then; name each key for its person or app, because that name is what the system log records for auditing.\n\nThe API endpoint is `https://api.redislabs.com/v1`. You can explore it in the Swagger UI at `api.redislabs.com/v1/swagger-ui.html` (authorize with the two keys) or call it with curl:\n\n```sh\ncurl -s -X GET \"https://api.redislabs.com/v1/logs\" \\\n  -H \"accept: application/json\" \\\n  -H \"x-api-key: $ACCOUNT_KEY\" \\\n  -H \"x-api-secret-key: $SECRET_KEY\"\n```\n\nThere is a rate limit of **400 requests per minute per account key**; exceeding it fails requests.\n\n## Core flows: provision, read, scale, back up\n\nLong-running operations are asynchronous. Creating a subscription or a database returns a **taskId**, and you poll `GET /tasks/{taskId}` until it reports success (or an error) — the exam guide calls out exactly this task-polling pattern. A provisioning script therefore looks like: POST the subscription, poll the task, POST the database into the subscription, poll again.\n\nReading state is synchronous: `GET /subscriptions` lists subscriptions, `GET /subscriptions/{subscriptionId}` returns one in detail — including the `prometheusEndpoint` used for monitoring — and `GET /logs` returns system logs for auditing. Scaling is the same async pattern as provisioning: submit the change (for example a larger memory limit or throughput setting for a database) and poll the task; the database stays available while Redis Cloud applies the change. Backups follow it too: the backup operation for a database runs as a task you can track the same way, with the backup delivered to your configured S3, Azure Blob, GCS, or FTP target.\n\n## The Terraform provider\n\nFor declarative, version-controlled infrastructure, Redis maintains the **RedisLabs/rediscloud** provider on the Terraform Registry. It authenticates with the same API keys, read from environment variables: `REDISCLOUD_ACCESS_KEY` (account key) and `REDISCLOUD_SECRET_KEY` (user key).\n\nThe provisioning workflow maps naturally:\n\n- A `rediscloud_payment_method` **data source** resolves the payment method ID.\n- A `rediscloud_subscription` **resource** creates the subscription — cloud provider and region with its `networking_deployment_cidr`, plus a `creation_plan` describing memory, quantity, replication, and throughput.\n- A `rediscloud_subscription_database` **resource** creates a database in that subscription — persistence mode, replication, throughput, even alert blocks (for example `alert { name = \"dataset-size\" value = 40 }`).\n\nThen the standard Terraform rhythm: `terraform init` to install the provider, `terraform plan` to preview exactly what would be created, changed, or destroyed — without touching anything — and `terraform apply` to execute, confirming with `yes`. The apply runs the same asynchronous provisioning underneath and reports progress until resources are created; `terraform destroy` tears them down. The same provider is wrapped for Pulumi if you prefer general-purpose languages.\n\n## Safe automation practices\n\nAutomation multiplies whatever credentials it runs with, so the safety rules follow from the key design:\n\n- **Enable the API deliberately** — it is off by default for a reason; treat enabling it as a production change.\n- **One account key, personal user keys.** Never share the account key beyond the account; issue a user key per human or service, named for its purpose so system-log audits attribute every change.\n- **Scope keys down.** Prefer a Viewer-role user key for read-only integrations (inventory, monitoring, dashboards) and reserve Owner-capable keys for provisioning pipelines. Apply CIDR allow lists so keys only work from your CI runners or management network.\n- **Protect the secrets.** Keys display only at creation — store them in a vault or CI secret store, never in code, plans, or state files.\n- **Respect the limit and the rhythm.** 400 requests per minute per account key; design loops to poll tasks rather than hammer list endpoints.\n- **Preview before you commit.** With Terraform, read the plan; with the API, verify `GET` responses after each task completes.\n\n## Exam takeaways\n\n- The API is disabled by default; authentication needs both the account key (`x-api-key`) and a user key (`x-api-secret-key`) from the same account, and the source IP must satisfy the user key's CIDR allow list.\n- Endpoint `https://api.redislabs.com/v1`; rate limit 400 requests per minute per account key; key values are visible only at creation.\n- Account key: created once when enabling the API, changed only via support. User key: personal, for Owner, Viewer, Billing admin, or Logs viewer roles, multiple keys per user, CIDR-restrictable, name-keyed for audits in system logs.\n- Provisioning, scaling, and backup changes are asynchronous: capture the returned taskId and poll `GET /tasks/{taskId}`; reads like `GET /subscriptions/{subscriptionId}` (including `prometheusEndpoint`) are synchronous.\n- Terraform provider `RedisLabs/rediscloud` uses `REDISCLOUD_ACCESS_KEY` (account key) and `REDISCLOUD_SECRET_KEY` (user key); core resources are `rediscloud_subscription` and `rediscloud_subscription_database`; `terraform plan` previews without applying."
+    }
+  ]
+}

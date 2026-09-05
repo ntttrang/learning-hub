@@ -1,0 +1,39 @@
+{
+  "id": "rc-q-12-kc-3",
+  "domainId": "rc-cloud-arch",
+  "moduleId": "m-cloud-arch",
+  "lessonId": "rc-l-12-cloud-architecture",
+  "difficulty": "intermediate",
+  "kind": "order",
+  "prompt": "Arrange the events of an automatic failover in a replicated Redis Cloud database.",
+  "explanation": "Replication keeps a synchronized copy of the primary, so when the primary stops responding after a hardware or zone failure, the replica is promoted and becomes the new primary. Clients reconnect to the same single endpoint, which automatically routes them to the promoted primary, so no application reconfiguration is needed.",
+  "tags": [
+    "redis",
+    "cloud-architecture",
+    "failover"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "The primary shard stops responding after a hardware or zone failure"
+    },
+    {
+      "id": "b",
+      "text": "The replica is promoted and becomes the new primary"
+    },
+    {
+      "id": "c",
+      "text": "Clients reconnect to the same single endpoint, which automatically routes to the promoted primary"
+    },
+    {
+      "id": "d",
+      "text": "Replication is enabled, keeping a synchronized replica of the primary"
+    }
+  ],
+  "correct": [
+    "d",
+    "a",
+    "b",
+    "c"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "rc-q-16-bank-4",
+  "domainId": "rc-cloud-networking",
+  "moduleId": "m-cloud-networking",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "VPC peering is active between an application VPC and a Redis Cloud Pro subscription on AWS. Which follow-up steps are still required or recommended before applications connect? Select all that apply.",
+  "explanation": "Accepting the peering is not the finish line: the application VPC's route tables need a destination route for the Redis Cloud VPC CIDR pointed at the peering connection, Redis recommends switching the application's connection string to the private endpoint, and if the database's CIDR allow list is enabled, the peered source IP ranges must be added because the list applies to the private endpoint as well. Peering carries plaintext happily — TLS is a separate choice — and the database stays in the Redis Cloud VPC.",
+  "tags": [
+    "redis",
+    "cloud-networking",
+    "vpc-peering"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Update the application VPC's route table with a route to the Redis Cloud VPC CIDR"
+    },
+    {
+      "id": "b",
+      "text": "Switch the application's connection string to the database's private endpoint"
+    },
+    {
+      "id": "c",
+      "text": "Add the peered source IP ranges to the database's CIDR allow list, if one is enabled"
+    },
+    {
+      "id": "d",
+      "text": "Re-create the database inside the application VPC so it shares the CIDR"
+    },
+    {
+      "id": "e",
+      "text": "Enable TLS on the database, because peering only carries encrypted traffic"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

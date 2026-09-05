@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-04-bank-2",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "In a MULTI/EXEC block, the second command fails at runtime with WRONGTYPE. What does Redis do?",
+  "explanation": "Redis transactions have no rollback: commands queued successfully all execute when EXEC arrives, and a runtime error in one command affects only that command. Earlier results stand and later commands still run \u2014 the application must interpret the per-command results.",
+  "tags": [
+    "redis",
+    "performance",
+    "transactions"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "EXEC still runs every queued command; the failing one reports an error and the rest apply normally"
+    },
+    {
+      "id": "b",
+      "text": "EXEC aborts and undoes the commands that already ran"
+    },
+    {
+      "id": "c",
+      "text": "Redis skips the failing command and silently rolls the others back"
+    },
+    {
+      "id": "d",
+      "text": "The transaction enters a retry loop until every command succeeds"
+    }
+  ],
+  "correct": "a"
+}

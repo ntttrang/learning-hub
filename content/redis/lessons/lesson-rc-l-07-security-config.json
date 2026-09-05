@@ -1,0 +1,40 @@
+{
+  "id": "rc-l-07-security-config",
+  "domainId": "rc-core-security",
+  "moduleId": "m-security-config",
+  "order": 1,
+  "slug": "security-config",
+  "title": "Security and configuration",
+  "summary": "ACL users with categories, key patterns and selectors, TLS setup, bind and protected-mode network exposure, the legacy rename-command note, and maxmemory with eviction and lazy-freeing policies.",
+  "minutes": 15,
+  "difficulty": "intermediate",
+  "references": [
+    {
+      "title": "Redis ACL",
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/security/acl/"
+    },
+    {
+      "title": "TLS",
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/security/encryption/"
+    },
+    {
+      "title": "Key eviction reference",
+      "url": "https://redis.io/docs/latest/develop/reference/eviction/"
+    },
+    {
+      "title": "CONFIG SET command reference",
+      "url": "https://redis.io/docs/latest/commands/config-set/"
+    }
+  ],
+  "questionIds": [
+    "rc-q-07-kc-1",
+    "rc-q-07-kc-2",
+    "rc-q-07-kc-3"
+  ],
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "Security in Redis has two halves the exam tests separately: **who may do what**\n(authentication plus the ACL system), and **how the instance behaves under\npressure** (memory limits, eviction, and lazy freeing). Network exposure sits\nbetween them.\n\n## Network exposure: bind and protected-mode\n\n- `bind 127.0.0.1 -::1` — the default: Redis listens only on loopback. Expose\n  it by adding interface addresses to `bind`, and prefer a private network.\n- `protected-mode yes` — the default: when enabled and **no** password or ACL\n  restricts the default user, Redis refuses external connections outright. It\n  is a guardrail against an unauthenticated open instance, not an auth\n  mechanism — leave auth configured even when disabling it deliberately.\n- `port 0` disables the plaintext listener entirely — the standard pairing\n  when serving TLS only.\n\n## Users, categories, key patterns, passwords\n\nThe ACL system (Redis 6+) replaces the single global password with named\nusers. The `default` user maps to the legacy `requirepass` behavior.\n\n```redis\nACL SETUSER app-user on >s3cret ~app:* +@read +@write -@dangerous\nACL GETUSER app-user\nACL LIST                 # all users, as rule strings\nACL CAT                  # list command categories\nACL LOG                  # rejected-command events\nACL DELUSER guest\n```\n\nReading that rule string left to right: `on` enables the user, `>s3cret` adds\na password (stored hashed; `-s3cret` would remove it, `#<hash>` sets a\npre-hashed one, `resetpass` clears all passwords), `~app:*` is a **key\npattern** — this user touches only keys starting `app:` — and the command\nrules grant whole **categories**: `+@read +@write`, minus `-@dangerous`\n(which holds `FLUSHALL`, `KEYS`, `SHUTDOWN` and friends). `nopass` removes\npassword requirements; `reset` returns the user to its off/defaults state.\n\nFine-grained notes the exam probes:\n\n- `%R~app:*` grants read-only key access, `%W~app:*` write-only — a key\n  pattern can be direction-aware.\n- Pub/sub channels have their own patterns: `&channel:*`.\n- **Selectors** (Redis 7+) are parenthesized rule sets evaluated after the\n  user's base permissions, in definition order — the mechanism behind \"may\n  read everything, may write only these keys\":\n  `(~app:cache:* +@read -@write)`.\n- `aclfile /path/users.acl` externalizes user definitions from redis.conf;\n  `ACL LOAD` applies changes at runtime.\n\n## rename-command is legacy\n\nOlder hardening guides suggested `rename-command FLUSHALL \"\"` to hide\ndangerous commands behind unknown names. It is a **legacy** practice: it breaks\ntooling and drivers that expect standard names, it is obfuscation rather than\nauthorization, and the ACL system supersedes it. Recognize it in exam answers\nas \"deprecated approach — use ACL categories instead\".\n\n## TLS\n\nRedis 6+ speaks TLS when built with `BUILD_TLS=yes`:\n\n```text\nport 0                     # disable plaintext\ntls-port 6379\ntls-cert-file /etc/redis/redis.crt\ntls-key-file  /etc/redis/redis.key\ntls-ca-cert-file /etc/redis/ca.crt\n```\n\n- By default TLS is **mutual**: clients must present a certificate signed by\n  the trusted CA; `tls-auth-clients no` relaxes that.\n- `tls-replication yes` puts replica connections on TLS; `tls-cluster yes`\n  covers the cluster bus.\n- TLS costs throughput (encryption and integrity checks per connection) — a\n  legitimate answer to \"why is TLS Redis slower?\".\n\n## maxmemory and eviction policies\n\n`maxmemory` caps the dataset. Its default, `0`, means unbounded — Redis keeps\nallocating until the OS starts swapping, which is precisely the failure mode\nperformance tuning exists to avoid. Set it below available RAM.\n\nWhen the limit is hit, `maxmemory-policy` decides what happens:\n\n| Policy | Evicts from |\n| --- | --- |\n| `noeviction` (default) | nothing — memory-growing writes error (OOM), reads/deletes still work |\n| `allkeys-lru` | any key, least recently used first |\n| `volatile-lru` | least recently used among keys *with a TTL* |\n| `allkeys-lfu` | any key, least frequently used first |\n| `volatile-lfu` | least frequent among TTL keys |\n| `allkeys-random` / `volatile-random` | random from the whole set / TTL keys |\n| `volatile-ttl` | TTL keys nearest expiry first |\n\nTwo behaviors the exam checks:\n\n- The `volatile-*` policies degrade to `noeviction` when **no** keys have a\n  TTL — a cache configured `volatile-lru` with no expiries evicts nothing and\n  starts erroring.\n- `allkeys-lru` suits power-law popularity (a hot subset serves most\n  requests); `allkeys-lfu` suits cyclic or long-tailed access; `volatile-ttl`\n  when expiry already encodes business priority.\n\n### Approximation: maxmemory-samples\n\nRedis's LRU and LFU are **approximations**, not per-key linked lists: eviction\npicks candidates by sampling `maxmemory-samples` keys (default 5) and evicts\nthe \"best\" among them. Higher samples approximate true LRU more closely at\nhigher CPU cost; lower samples are cheaper but sloppier. This is why Redis\ndocuments its LRU as \"approximated LRU\".\n\n## Lazy freeing\n\nFreeing memory can be moved off the main thread, same idea as `UNLINK` versus\n`DEL`:\n\n```text\nlazyfree-lazy-eviction yes     # evictions free memory in the background\nlazyfree-lazy-expire yes       # so do expirations\nlazyfree-lazy-server-del yes   # implicit deletes (RENAME overwrite, etc.)\nlazyfree-lazy-user-del yes     # DEL behaves like UNLINK\nlazyfree-lazy-user-flush yes   # FLUSHALL/FLUSHDB run asynchronously\n```\n\nThese apply to big values, where synchronous reclamation of a multi-gigabyte\nstructure would stall the event loop. For small values the trade is not worth\nit — which is why they are opt-in.\n\n## Exam takeaways\n\n- `protected-mode` blocks external clients only while the default user has no\n  auth configured; `bind` chooses interfaces; `port 0` plus `tls-port` is the\n  TLS-only shape.\n- ACL rules read as one line: user state, passwords (`>`/`-`/`#`/`resetpass`),\n  key patterns (`~`, `%R~`, `%W~`), categories (`+@read -@dangerous`),\n  channel patterns (`&`), and Redis 7 selectors for conditional grants.\n- `rename-command` is legacy obfuscation; ACL categories are the modern answer.\n- Know the full `maxmemory-policy` table, that `volatile-*` with no TTL keys\n  degenerates to `noeviction`, and that LRU/LFU eviction samples\n  `maxmemory-samples` keys — it is approximate by design.\n- `lazyfree-*` flags move reclamation of large values off the main thread."
+    }
+  ]
+}

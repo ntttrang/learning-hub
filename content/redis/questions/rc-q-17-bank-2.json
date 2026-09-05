@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-17-bank-2",
+  "domainId": "rc-cloud-monitoring",
+  "moduleId": "m-cloud-monitoring",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "In the Redis Cloud console, an operator opens a database's Metrics tab and drags the interval scrollbar to the shortest display window available. Which interval and resolution pair do they get?",
+  "explanation": "The interval scrollbar starts at a 5 minutes interval rendered with a 30-second resolution; longer windows include 15 minutes at 30 seconds, an hour at 1 minute, a day at 5 minutes, a week at 30 minutes, a month at 4 hours, and 3 months at 12 hours. The other pairings misstate the documented resolution or invent a shorter window.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "metrics"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "5 minutes with 30-second resolution"
+    },
+    {
+      "id": "b",
+      "text": "5 minutes with 1-minute resolution"
+    },
+    {
+      "id": "c",
+      "text": "1 hour with 30-second resolution"
+    },
+    {
+      "id": "d",
+      "text": "1 day with 30-second resolution"
+    }
+  ],
+  "correct": "a"
+}

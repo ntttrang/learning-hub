@@ -1,0 +1,40 @@
+{
+  "id": "rc-l-05-clustering-ha",
+  "domainId": "rc-core-cluster",
+  "moduleId": "m-clustering-ha",
+  "order": 1,
+  "slug": "clustering-ha",
+  "title": "Replication, HA and clustering",
+  "summary": "Async replication with backlog and partial resync, Sentinel quorum and failover, 16384 hash slots with CRC16 placement, MOVED vs ASK redirects, resharding, and replica promotion.",
+  "minutes": 17,
+  "difficulty": "advanced",
+  "references": [
+    {
+      "title": "Cluster specification",
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/"
+    },
+    {
+      "title": "Scale with Redis Cluster",
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/scaling/"
+    },
+    {
+      "title": "High availability with Redis Sentinel",
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/"
+    },
+    {
+      "title": "REPLICAOF command reference",
+      "url": "https://redis.io/docs/latest/commands/replicaof/"
+    }
+  ],
+  "questionIds": [
+    "rc-q-05-kc-1",
+    "rc-q-05-kc-2",
+    "rc-q-05-kc-3"
+  ],
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "Redis scales out along two axes with three tools: **replication** copies data to\nstandbys, **Sentinel** manages failover for a replication topology, and\n**cluster** shards keys across nodes *and* brings its own replication and\nfailover. The exam tests which layer answers which availability question.\n\n## Replication: async copies with a write backlog\n\nAny instance becomes a standby with one command:\n\n```redis\nREPLICAOF 10.0.0.1 6379      # follow this primary\nREPLICAOF NO ONE             # promote to standalone primary\n```\n\nMechanics the exam expects:\n\n- Replication is **asynchronous** (and `WAIT` can confirm a replica received a\n  write). The primary acknowledges client writes immediately and ships them\n  after the fact — so a primary failure can lose the last writes. That risk\n  window is the price of keeping writes fast.\n- Every replication stream byte counts toward an offset; `INFO replication`\n  shows the primary's offset and each replica's lag.\n- `repl-backlog-size` (default 1 MB) is a circular buffer of the recent\n  replication stream. A replica that drops and reconnects sends its offset; if\n  the offset is still in the backlog, only the gap is shipped — a **partial\n  resync**. If not, the primary runs a full sync: `bgsave`, ship the RDB, then\n  stream the backlog from the disconnect point.\n- A newly added replica always performs a full sync first.\n- Diskless replication (`repl-diskless-sync`) streams the RDB straight over the\n  socket — less disk churn, one replica at a time by default.\n- Guardrails: `min-replicas-to-write` + `min-replicas-max-lag` refuse writes\n  when too few replicas are fresh enough — a knob for trading availability\n  against consistency.\n\n## Sentinel: failover management for replication topologies\n\nSentinel adds a management plane on top of plain replication: health checking,\nnotification, service discovery, and automatic failover. Sentinels run as\nseparate processes — **at least three, on independent hosts** (an odd number,\nbecause decisions are majority votes).\n\nKey mechanics:\n\n- **SDOWN** is one Sentinel's opinion: it did not hear from the master for\n  `down-after-milliseconds`.\n- **ODOWN** is the group's opinion: when `quorum` Sentinels agree the master is\n  down, the master is objectively down and failover may begin.\n- Sentinels elect a leader (Raft-like) among themselves to run the failover;\n  a **majority** of all Sentinels must authorize it — quorum triggers the vote,\n  majority authorizes the act.\n- Replica selection for promotion: lowest `replica-priority` wins; ties break\n  by replication offset, then run id. `replica-priority 0` marks a replica as\n  never-to-promote (for backup replicas in another data center).\n- Clients ask Sentinel for discovery: \"which node is the current master for\n  shard X?\" — names in a Sentinel config, resolved at runtime.\n\nSentinel does not shard. If you need sharding plus failover, that is cluster.\n\n## Cluster: 16384 hash slots\n\nCluster shards the keyspace into **16384 hash slots**. Every master owns a\nrange of slots, and a key lives in exactly one:\n\n```text\nslot(key) = CRC16(key) mod 16384\n```\n\n`CLUSTER KEYSLOT user:42` computes placement; `CLUSTER SHARDS` (or the older\n`CLUSTER SLOTS` / `CLUSTER NODES`) maps slots to nodes. The slot count is fixed\n— you scale by moving slots between nodes, not by renumbering them.\n\nBecause placement is per-key, **multi-key operations, transactions, and Lua\nscripts only work when every key hashes to the same slot**. `MGET a b` spanning\ntwo slots is a `CROSSSLOT` error. Hash tags solve this: the slot is computed\nfrom the text between the first `{` and the first `}`:\n\n```text\n{user:42}:followers and {user:42}:posts   same tag, same slot\n```\n\nUse tags surgically: a tag shared by many hot keys concentrates them on one\nshard — the price of locality is load balance.\n\n## MOVED versus ASK\n\nWhen a client sends a key to the wrong node:\n\n- **MOVED slot host:port** — the slot has been reassigned for good: the client\n  should update its slot map and go straight to the new owner from now on.\n- **ASK slot host:port** — a temporary redirect during slot migration: the slot\n  is mid-move and this key may already live on the target, so follow the\n  redirect **for this one request**, after sending `ASKING` to the target. The\n  client must not update its slot map.\n\nSmart clients keep a slot-to-node map, compute `CRC16 mod 16384` locally, route\ndirectly, and treat MOVED as \"refresh the map\" and ASK as \"detour once\".\n\n## Resharding and replica promotion\n\nResharding moves slots to a new or existing node:\n\n1. `redis-cli --cluster add-node new-host:6379 existing:6379` joins a node.\n2. `redis-cli --cluster reshard` plans a slot count and target, then migrates\n   slots batch by batch: the source sets `MIGRATING`, the target `IMPORTING`,\n   keys move via `CLUSTER GETKEYSINSLOT` + `MIGRATE`, and\n   `CLUSTER SETSLOT ... NODE` finalizes ownership on both sides and broadcasts\n   the change.\n3. Keys keep serving throughout; requests touching in-flight keys get ASK.\n\nCluster heals master failure by **promoting a replica**: replicas campaign\nfor the failed master's slots, a majority of masters elects one, and its\nslots transfer. Manual promotion is\n`CLUSTER FAILOVER [TAKEOVER|FORCE]` — used for planned maintenance (fail over,\ndrain, then remove the node). With `cluster-require-full-coverage yes` (the\ndefault), the cluster refuses writes once any slot range has no owner; set it\nto `no` to keep serving the surviving slots.\n\n## Exam takeaways\n\n- Replication is asynchronous; the backlog enables partial resync, and a\n  backlog overrun forces a full RDB resync.\n- Sentinel needs 3+ processes on separate hosts; quorum triggers, majority\n  authorizes; promotion prefers priority, then offset.\n- Cluster places every key via `CRC16(key) mod 16384`; hash tags move the hash\n  point to the `{...}` span for multi-key co-location.\n- MOVED means \"update your map\", ASK means \"one-off detour, send ASKING\";\n  multi-key ops across slots fail with CROSSSLOT.\n- Resharding moves slots batch-wise through MIGRATING/IMPORTING states; a\n  failed master is healed by promoting one of its replicas."
+    }
+  ]
+}

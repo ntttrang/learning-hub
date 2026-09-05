@@ -1,0 +1,474 @@
+[
+  {
+    "id": "lab-redis-cli-tour",
+    "domainId": "rc-core-types",
+    "lessonId": "rc-l-01-data-structures",
+    "title": "redis-cli data structures tour",
+    "minutes": 25,
+    "difficulty": "beginner",
+    "summary": "Walk through all six core Redis structures in one redis-cli session — strings, lists, hashes, sets, sorted sets, and streams — and learn the reply shape of each command family.",
+    "steps": [
+      {
+        "title": "Connect and clear a working namespace",
+        "instructions": "Start `redis-server` locally if it is not already running, then connect with `redis-cli`. Confirm the connection and remove any leftovers from a previous run so your output matches this walkthrough:\n\n```\nredis-cli\n127.0.0.1:6379> PING\n127.0.0.1:6379> DEL tour:string tour:hits tour:list tour:hash tour:set tour:zset tour:stream\n```\n\nEverything in this lab uses the `tour:` prefix. Redis has no schemas — namespaces are purely a key-naming convention, which is why the first DEL is safe: it only touches keys this lab created.",
+        "expectedOutput": "PONG\n(integer) 0",
+        "hint": "If redis-server is not installed, `brew install redis` on macOS or `apt install redis-server` on Debian/Ubuntu gets you both the server and redis-cli."
+      },
+      {
+        "title": "STRING: the catch-all scalar",
+        "instructions": "Strings hold bytes — text, counters, serialized blobs — and are the only structure the other four build on. Run:\n\n```\nSET tour:string \"hello\"\nGET tour:string\nSET tour:hits 0\nINCR tour:hits\nINCR tour:hits\nAPPEND tour:string \" world\"\nGET tour:string\n```\n\nINCR works because the stored bytes parse as an integer, and it is atomic — two clients incrementing concurrently never lose a count. APPEND returns the new length, not the value; you have to GET to see it.",
+        "expectedOutput": "OK\n\"hello\"\nOK\n(integer) 1\n(integer) 2\n(integer) 11\n\"hello world\""
+      },
+      {
+        "title": "LIST: a sequence with cheap ends",
+        "instructions": "Lists are sequences of strings with O(1) push and pop at both ends. Build a FIFO queue by pushing on the left and popping from the right:\n\n```\nLPUSH tour:list \"job-c\"\nLPUSH tour:list \"job-b\"\nLPUSH tour:list \"job-a\"\nLRANGE tour:list 0 -1\nLLEN tour:list\nRPOP tour:list\nLRANGE tour:list 0 -1\n```\n\nEach LPUSH puts the new element at the head, so LRANGE reads newest-first. RPOP takes from the tail — the oldest element — which is exactly first-in, first-out. Index access via LINDEX or LRANGE is O(N) in the middle of the list, which is why lists suit queues and feeds, not random access by position.",
+        "expectedOutput": "(integer) 1\n(integer) 2\n(integer) 3\n1) \"job-a\"\n2) \"job-b\"\n3) \"job-c\"\n(integer) 3\n\"job-c\"\n1) \"job-a\"\n2) \"job-b\""
+      },
+      {
+        "title": "HASH: a field-value map per key",
+        "instructions": "Hashes map field names to string values — one object per key, with per-field reads and writes:\n\n```\nHSET tour:hash name \"Ada\" email \"ada@example.com\" score \"99\"\nHGET tour:hash name\nHGET tour:hash score\nHGETALL tour:hash\n```\n\nHSET returns the number of fields that were newly created. HGETALL replies with fields and values interleaved in one flat array; on wide hashes prefer HMGET or HGET for the specific fields you need instead of pulling everything.",
+        "expectedOutput": "(integer) 3\n\"Ada\"\n\"99\"\n1) \"name\"\n2) \"Ada\"\n3) \"email\"\n4) \"ada@example.com\"\n5) \"score\"\n6) \"99\""
+      },
+      {
+        "title": "SET: unordered unique members",
+        "instructions": "Sets store unique, unordered strings and answer membership questions in O(1):\n\n```\nSADD tour:set redis database cache\nSADD tour:set redis\nSISMEMBER tour:set redis\nSISMEMBER tour:set mysql\nSCARD tour:set\nSMEMBERS tour:set\n```\n\nThe second SADD returns 0 because `redis` is already a member — sets deduplicate silently. SMEMBERS order is unspecified, so never rely on it. Set algebra (SINTER, SUNION, SDIFF) runs server-side, which is what makes tags and permissions cheap.",
+        "expectedOutput": "(integer) 3\n(integer) 0\n(integer) 1\n(integer) 0\n(integer) 3\n1) \"redis\"\n2) \"database\"\n3) \"cache\""
+      },
+      {
+        "title": "SORTED SET: members ranked by score",
+        "instructions": "Sorted sets keep unique members ordered by an associated double score — leaderboards, rate limiters, time-ordered indexes:\n\n```\nZADD tour:zset 100 alice 85 bob 92 carol\nZRANGE tour:zset 0 -1 WITHSCORES\nZRANGEBYSCORE tour:zset 90 100 WITHSCORES\nZRANGE tour:zset 0 0\n```\n\nZRANGE walks the range in ascending score order by default. ZRANGEBYSCORE filters a score window. Both run in O(log(N)+M) for N members in the set and M returned, so a leaderboard page fetch stays fast even with millions of rows.",
+        "expectedOutput": "(integer) 3\n1) \"bob\"\n2) \"85\"\n3) \"carol\"\n4) \"92\"\n5) \"alice\"\n6) \"100\"\n1) \"carol\"\n2) \"92\"\n3) \"alice\"\n4) \"100\"\n1) \"bob\""
+      },
+      {
+        "title": "STREAM: an append-only log with entry IDs",
+        "instructions": "Streams are append-only logs of field-value entries; every entry receives a monotonic ID of `<milliseconds>-<sequence>`:\n\n```\nXADD tour:stream * sensor 42 temperature 21.4\nXADD tour:stream * sensor 43 temperature 22.1\nXLEN tour:stream\nXRANGE tour:stream - +\n```\n\nThe `*` asks the server to generate the ID from its clock, which is what you will usually want. XRANGE reads oldest to newest between two IDs, with `-` and `+` as open ends. Consumer groups (XGROUP with XREADGROUP) fan entries out to competing workers with per-consumer delivery tracking — that is the step beyond a plain list-based queue.",
+        "expectedOutput": "\"1712345678901-0\"\n\"1712345678902-0\"\n(integer) 2\n1) 1) \"1712345678901-0\"\n   2) 1) \"sensor\"\n      2) \"42\"\n      3) \"temperature\"\n      4) \"21.4\"\n2) 1) \"1712345678902-0\"\n   2) 1) \"sensor\"\n      2) \"43\"\n      3) \"temperature\"\n      4) \"22.1\""
+      }
+    ],
+    "outcomes": [
+      "You can create, read, and update all six core structures from redis-cli and predict each command's reply shape: simple string, integer, array, or interleaved field/value pairs.",
+      "You can match a workload — counter, queue, object, tag list, leaderboard, event log — to the structure that fits, with the time complexity of the commands involved."
+    ],
+    "checks": [
+      "Run TYPE against each of the seven tour:* keys and confirm the reported structure name matches what you stored (string, list, hash, set, zset, stream).",
+      "Re-run INCR tour:hits several times and confirm the count never repeats, then GET tour:hits to see the same value as a raw string.",
+      "Clean up with DEL tour:string tour:hits tour:list tour:hash tour:set tour:zset tour:stream and confirm each DEL returns 1."
+    ]
+  },
+  {
+    "id": "lab-ttl-eviction",
+    "domainId": "rc-core-keys",
+    "lessonId": "rc-l-02-keys-expiry",
+    "title": "Expiry and eviction behavior",
+    "minutes": 20,
+    "difficulty": "beginner",
+    "summary": "Trace key expiry end to end — TTL's sentinel values, EXPIRE, PERSIST, and the plain-SET pitfall — then put a disposable instance under memory pressure and watch allkeys-lru evict.",
+    "steps": [
+      {
+        "title": "Read TTL's two sentinel values",
+        "instructions": "TTL reports remaining seconds and uses two sentinels: -1 means the key exists with no expiry, -2 means the key does not exist at all.\n\n```\nSET tour:no-expiry \"still here\"\nTTL tour:no-expiry\nTTL tour:never-existed\nEXISTS tour:no-expiry\n```\n\nEvery plain SET creates a key with no expiry. Expiry is opt-in per key: it is never inherited and never applied by default.",
+        "expectedOutput": "OK\n(integer) -1\n(integer) -2\n(integer) 1"
+      },
+      {
+        "title": "Attach a countdown with EXPIRE",
+        "instructions": "EXPIRE attaches a relative timeout to an existing key and returns 1 when a timeout was actually set (0 would mean the key was missing):\n\n```\nSET tour:session \"user-42\"\nEXPIRE tour:session 120\nTTL tour:session\nPTTL tour:session\n```\n\nTTL now counts down — 120 or 119 depending on timing — and PTTL shows the same countdown in milliseconds. When it reaches zero the key is deleted: lazily on access, and proactively by the server's active expiry cycle, so an untouched key still disappears.",
+        "expectedOutput": "OK\n(integer) 1\n(integer) 120\n(integer) 119996",
+        "hint": "SET key value EX 120 sets the value and its timeout atomically in one round trip — no window where the key exists without an expiry."
+      },
+      {
+        "title": "Remove an expiry with PERSIST",
+        "instructions": "PERSIST strips the timeout and makes the key permanent again:\n\n```\nEXPIRE tour:session 120\nPERSIST tour:session\nTTL tour:session\nEXISTS tour:session\n```\n\nPERSIST returns 1 when it removed a live expiry, 0 when the key was missing or already persistent. TTL flipping back to -1 while EXISTS stays 1 is the signature of a key that survived its countdown.",
+        "expectedOutput": "(integer) 1\n(integer) 1\n(integer) -1\n(integer) 1"
+      },
+      {
+        "title": "Overwrite the value and watch the TTL vanish",
+        "instructions": "A plain SET on an existing key replaces the value AND clears its timeout — the key survives, now with no expiry:\n\n```\nSET tour:session \"user-42\"\nEXPIRE tour:session 120\nSET tour:session \"user-42-refreshed\"\nTTL tour:session\nGET tour:session\n```\n\nThis is the classic expiry bug: a refresh path that SETs without a timeout turns expiring session keys into permanent ones that accumulate forever. Use SET key value KEEPTTL when you want to overwrite the value but preserve the countdown, or include EX/PX/EXAT in the SET when you want to (re)state the timeout.",
+        "expectedOutput": "OK\n(integer) 1\nOK\n(integer) -1\n\"user-42-refreshed\""
+      },
+      {
+        "title": "Launch a disposable instance under a memory cap",
+        "instructions": "Eviction needs memory pressure, so run a throwaway server instead of your daily one. In a new terminal:\n\n```\nredis-server --port 6399 --save \"\" --appendonly no --maxmemory 50mb --maxmemory-policy allkeys-lru\n```\n\nThen connect a second redis-cli to it and verify the configuration took:\n\n```\nredis-cli -p 6399\nCONFIG GET maxmemory\nCONFIG GET maxmemory-policy\n```\n\nmaxmemory caps the dataset (50mb = 52428800 bytes here). allkeys-lru evicts the least-recently-used key from the entire keyspace once the cap is hit. The `--save \"\"` and `--appendonly no` flags keep the scratch instance from writing anything to disk.",
+        "expectedOutput": "1) \"maxmemory\"\n2) \"52428800\"\n1) \"maxmemory-policy\"\n2) \"allkeys-lru\"",
+        "hint": "You can also change a running server at runtime with CONFIG SET maxmemory 50mb and CONFIG SET maxmemory-policy allkeys-lru — no restart needed."
+      },
+      {
+        "title": "Fill past the cap and watch evictions",
+        "instructions": "DEBUG POPULATE generates keys fast — 200,000 keys of roughly 1 KB each is about 200 MB, four times the cap:\n\n```\nDBSIZE\nDEBUG POPULATE 200000 bulk 1024\nDBSIZE\nINFO stats\n```\n\nIt creates keys named `bulk:<n>`. After the fill, the keyspace has been trimmed to fit the cap: DBSIZE plateaus near 50mb of data (about 45,000-50,000 keys of this size), and INFO stats shows evicted_keys counting every key the server deleted to stay under maxmemory — DBSIZE + evicted_keys should add up to roughly the 200,000 you created. Confirm the survivors with SCAN 0 COUNT 20 and note the bulk:<n> names. If your environment disables DEBUG (some managed services do), fill with any scripted loop of SET bulk:$i <1KB value> instead. When finished, run SHUTDOWN NOSAVE on the scratch instance — it holds nothing you need.",
+        "expectedOutput": "(integer) 0\nOK\n(integer) 47351\n# Stats\ntotal_connections_received:2\ntotal_commands_processed:200121\ntotal_net_in_bytes: ...\ntotal_net_out_bytes: ...\nexpired_keys:0\nevicted_keys:152649\nkeyspace_hits:0\nkeyspace_misses:0\n...\n(your DBSIZE and evicted_keys counts will differ; they should sum to about 200000)"
+      }
+    ],
+    "outcomes": [
+      "You can state what TTL -1 and -2 mean and predict the TTL/PTTL replies after SET, EXPIRE, PERSIST, and a plain SET overwrite.",
+      "You have seen a keyspace under real memory pressure: evicted_keys climbing in INFO stats while DBSIZE plateaus under allkeys-lru."
+    ],
+    "checks": [
+      "Explain in one sentence why TTL returned -1 after the plain SET in step 4, and what KEEPTTL would have done differently.",
+      "Run CONFIG GET maxmemory-policy on your daily instance and confirm its default (noeviction) before you ever change it.",
+      "After SHUTDOWN NOSAVE, confirm the scratch server is gone: redis-cli -p 6399 PING now fails to connect."
+    ]
+  },
+  {
+    "id": "lab-jedis-cache-aside",
+    "domainId": "rc-dev-java",
+    "lessonId": "rc-l-08-java-clients",
+    "title": "Jedis cache-aside walkthrough",
+    "minutes": 30,
+    "difficulty": "intermediate",
+    "summary": "Build the canonical cache-aside pattern with Jedis: a pooled client, a get-miss-load-setex read path, update-then-invalidate writes, JSON values, a deliberate TTL — then watch the traffic from redis-cli and discuss stampede mitigation.",
+    "steps": [
+      {
+        "title": "Wire up the project and a JedisPool",
+        "instructions": "Add Jedis to `pom.xml`:\n\n```xml\n<dependency>\n  <groupId>redis.clients</groupId>\n  <artifactId>jedis</artifactId>\n  <version>5.1.0</version>\n</dependency>\n```\n\nStart `redis-server` locally so there is something to connect to. Create one `JedisPool` per application — it is thread-safe and expensive to build — and borrow a connection per operation:\n\n```java\nimport redis.clients.jedis.Jedis;\nimport redis.clients.jedis.JedisPool;\n\npublic class ProductCache {\n    private final JedisPool pool = new JedisPool(\"localhost\", 6379);\n\n    public static void main(String[] args) {\n        ProductCache app = new ProductCache();\n        try (Jedis jedis = app.pool.getResource()) {\n            System.out.println(jedis.ping());\n        }\n    }\n}\n```\n\nYou should see PONG. Call `pool.close()` on shutdown; every later step borrows a `Jedis` from this pool.",
+        "expectedOutput": "PONG",
+        "hint": "The try-with-resources block is what returns the connection to the pool — never keep a Jedis instance in a field of a shared object."
+      },
+      {
+        "title": "The read path: get, miss, load, setex",
+        "instructions": "Cache-aside puts the application in charge of both stores. Every read checks Redis first; on a miss it loads the source of truth and backfills the cache with a TTL:\n\n```java\nimport com.fasterxml.jackson.databind.ObjectMapper;\n\npublic record Product(long id, String name, double price) {}\n\nprivate static final int CACHE_TTL_SECONDS = 300;\nprivate final ObjectMapper mapper = new ObjectMapper();\n\nString getProductJson(long id) {\n    String key = \"product:\" + id;\n    try (Jedis jedis = pool.getResource()) {\n        String cached = jedis.get(key);                // 1. read the cache\n        if (cached != null) {\n            return cached;                             // 2. hit: Redis served it\n        }\n        Product product = loadFromDatabase(id);        // 3. miss: read source of truth\n        String json = mapper.writeValueAsString(product);\n        jedis.setex(key, CACHE_TTL_SECONDS, json);     // 4. backfill, always with a TTL\n        return json;\n    }\n}\n\n// stand-in for your real data layer\nProduct loadFromDatabase(long id) {\n    return new Product(id, \"Widget\", 9.99);\n}\n```\n\n`jedis.get` returns null on a miss — that null is the miss signal, no separate EXISTS call needed. The TTL is what makes this a cache instead of a second database: a key nobody refreshes ages out on its own.",
+        "expectedOutput": "The first call for product:42 runs the miss path (database load, then SETEX); the second call returns the cached string without touching loadFromDatabase. You will prove this with MONITOR in step 6.",
+        "solution": "Mapper exceptions are checked, so the method signature becomes `String getProductJson(long id) throws JsonProcessingException` — or wrap the read in try/catch and fall through to the database on serialization trouble. The order matters: load from the database first, backfill second; never return before the SETEX if you want the cache warm."
+      },
+      {
+        "title": "The write path: update the database, then invalidate",
+        "instructions": "On writes, change the source of truth first, then drop the stale cache entry. The next read repopulates it:\n\n```java\nvoid updateProduct(Product updated) {\n    saveToDatabase(updated);                    // 1. source of truth first\n    try (Jedis jedis = pool.getResource()) {\n        jedis.del(\"product:\" + updated.id());   // 2. invalidate, do not update\n    }\n}\n```\n\nWhy delete instead of overwrite the cache? A concurrent miss-backfill can interleave with a direct cache write and repopulate stale data that then lives until the TTL. Deletion makes the next read rebuild from the database — and the TTL from step 2 bounds any stale window that slips through anyway.",
+        "expectedOutput": "redis-cli GET product:42 immediately after updateProduct returns nil; the next getProductJson call misses, reloads from the database, and SETEXes a fresh copy."
+      },
+      {
+        "title": "Serialize objects as JSON, not Java blobs",
+        "instructions": "Redis values are bytes, so choose serialization deliberately. Java's built-in serialization couples cache entries to your class files — recompile and every cached value is unreadable. JSON stays inspectable and language-neutral. Jackson needs one more dependency:\n\n```xml\n<dependency>\n  <groupId>com.fasterxml.jackson.core</groupId>\n  <artifactId>jackson-databind</artifactId>\n  <version>2.17.1</version>\n</dependency>\n```\n\nThe record from step 2 serializes with no annotations:\n\n```java\nProduct p = mapper.readValue(cached, Product.class);   // on a hit\nString json = mapper.writeValueAsString(p);            // on a backfill\n```\n\nSanity-check from the outside: `redis-cli GET product:42` should print readable JSON you can inspect while debugging.",
+        "expectedOutput": "One readable JSON document per key, for example {\"id\":42,\"name\":\"Widget\",\"price\":9.99} — not a Java serialization blob of binary bytes."
+      },
+      {
+        "title": "Choose the TTL deliberately",
+        "instructions": "CACHE_TTL_SECONDS is a trade between freshness and database load, not a magic number. Short TTLs (30-300s) keep data fresher but cost more misses; long TTLs (hours) protect the database but let stale entries live longer. Because step 3 invalidates on every write, the TTL only has to act as a backstop for missed invalidations and cold keys — it does not carry freshness alone. Add jitter so keys backfilled in a batch do not all expire in the same instant:\n\n```java\nimport java.util.concurrent.ThreadLocalRandom;\n\nint ttl = CACHE_TTL_SECONDS + ThreadLocalRandom.current().nextInt(60);\njedis.setex(key, ttl, json);   // each key lands between 300 and 359 seconds\n```\n\nAdopt the jittered version in your read path, keep 300 as the base for this lab, and note the number — the next step watches it live.",
+        "expectedOutput": "After caching several products, redis-cli TTL product:<n> shows a different countdown for each key, all in the 300-359 range."
+      },
+      {
+        "title": "Watch the traffic from redis-cli",
+        "instructions": "Exercise both Java paths while a second terminal watches the wire:\n\n```\nredis-cli MONITOR\n```\n\nEvery command prints with a timestamp and its exact arguments: GET product:42 on reads, SETEX product:42 on backfills, DEL product:42 when you call updateProduct. Then inspect state directly:\n\n```\nTTL product:42\nEXISTS product:42\n```\n\nMONITOR streams every command the server processes and costs throughput while attached — it is a debugging tool, never something to leave running in production.",
+        "expectedOutput": "1693821101.123456 [0 127.0.0.1:52118] \"GET\" \"product:42\"\n1693821101.190224 [0 127.0.0.1:52118] \"SETEX\" \"product:42\" \"300\" \"{\\\"id\\\":42,\\\"name\\\":\\\"Widget\\\",\\\"price\\\":9.99}\"\n1693821103.554901 [0 127.0.0.1:52118] \"DEL\" \"product:42\"",
+        "hint": "If MONITOR stays silent, confirm the Java app connects to the same host, port, and logical DB (0) as redis-cli."
+      },
+      {
+        "title": "Discussion: surviving a hot-key expiry",
+        "instructions": "Cache stampede: a hot key expires while N requests are in flight — all N miss, all hit the database, all backfill the same value. Two standard mitigations:\n\n1. Single-flight lock — only one worker rebuilds while the others retry the cache:\n\n```java\nimport redis.clients.jedis.params.SetParams;\n\nString winner = jedis.set(key + \":lock\", \"1\",\n    SetParams.setParams().nx().ex(10));   // NX: one caller wins; EX: 10s lease\nif (winner != null) {\n    String fresh = mapper.writeValueAsString(loadFromDatabase(id));\n    jedis.setex(key, CACHE_TTL_SECONDS, fresh);\n    jedis.del(key + \":lock\");\n}  // losers: sleep briefly, then re-read the key\n```\n\n2. TTL jitter (step 5) — defuses the bulk variant where thousands of keys written in the same batch expire in the same instant.\n\nAdd a short comment to your code naming which mitigation fits your workload's write rate, then release resources with `pool.close()`. For the exam, know the vocabulary: single-flight locking with NX+EX, TTL jitter, and stale-while-revalidate patterns. For production, add lock leases short enough to self-heal a crashed holder.",
+        "expectedOutput": "No new output to produce — this step is design discussion. The takeaway: jitter is nearly free and fixes bulk expiry; a single-flight lock protects a genuinely hot key but adds complexity, and the NX+EX pairing exists precisely so a crashed worker's lock disappears on its own."
+      }
+    ],
+    "outcomes": [
+      "A runnable cache-aside service: reads check Redis first, misses backfill with SETEX, writes update the database and then invalidate.",
+      "You can prove which path served a request from MONITOR and TTL output instead of guessing.",
+      "You can name the stampede mitigations — single-flight lock with NX+EX and TTL jitter — and when each one applies."
+    ],
+    "checks": [
+      "Call getProductJson(42) twice and confirm MONITOR shows exactly one SETEX total — the second call produced no database load.",
+      "Call updateProduct and confirm the following read appears in MONITOR as GET then a fresh SETEX, with a DEL between the write and the read.",
+      "Run TTL product:42 and confirm the countdown started between 300 and 359, proving the jitter from step 5 is live.",
+      "Stop the app and confirm pool.close() ran cleanly — redis-cli PING still works, and no connections are left open from your app."
+    ]
+  },
+  {
+    "id": "lab-swops-bootstrap",
+    "domainId": "rc-swops-install",
+    "lessonId": "rc-l-09-install-upgrade",
+    "title": "Install Redis Software and bootstrap a trial cluster",
+    "minutes": 40,
+    "difficulty": "beginner",
+    "summary": "Take a Redis Software install from nothing to a signed-in cluster: plan the requirements, run the Docker container, bootstrap a single-node cluster through Cluster Manager, then verify cluster and license state with rladmin and the REST API.",
+    "steps": [
+      {
+        "title": "Plan the install and check the requirements",
+        "instructions": "Redis Software in Docker is supported for development and test only — production containerized deployments run on Kubernetes. Before you install, decide the three things every Redis Software install needs:\n\n1. A host with enough memory — the Docker engine itself needs at least 4 GB allocated.\n2. A management surface: Cluster Manager listens on **8443** (HTTPS) and the REST API on **9443**.\n3. A port plan for database endpoints — production installs draw endpoint ports from 10000-19999.\n\nWrite down which ports you will map before starting the container, so the bootstrap and the client test in later steps both work first time.",
+        "expectedOutput": "A short plan naming the host, the management ports (8443, 9443), and one database endpoint port (this lab uses 12000)."
+      },
+      {
+        "title": "Run the Redis Software container",
+        "instructions": "Download and start the container exactly as the official Docker quickstart does:\n\n```bash\ndocker run -d --cap-add sys_resource --name RE \\\n  -p 8443:8443 -p 9443:9443 -p 12000:12000 \\\n  redislabs/redis\n```\n\n`--cap-add sys_resource` is required by the install. The three `-p` flags publish what you planned in step 1: 8443 for Cluster Manager, 9443 for the REST API, and 12000 for the database you will create. Confirm the container is up with `docker ps` — if it restarts in a loop, check that Docker has at least 4 GB of memory.",
+        "expectedOutput": "`docker ps` shows the RE container running with the three port mappings listed in its PORTS column."
+      },
+      {
+        "title": "Bootstrap the cluster in Cluster Manager",
+        "instructions": "In a browser, open **https://localhost:8443**. The node presents a self-signed certificate, so accept the warning. If the sign-in screen does not appear yet, give the container a few minutes to finish first boot.\n\n1. Select **Create new cluster** (not Sign in — no cluster exists yet).\n2. Enter an email and password for the admin account. The same credentials also work for the REST API later.\n3. Leave the license key empty — a trial license is generated for you.\n4. In the configuration step, enter a cluster FQDN such as `cluster.local`, then select **Next**. The FQDN cannot be changed after creation, and `cluster.local` skips DNS configuration.\n5. On the node setup screen, accept the defaults and select **Create cluster**, then **OK** to acknowledge the HTTPS certificate replacement.\n\nWhen the Databases screen appears, the single-node cluster is bootstrapped and you are signed in to Cluster Manager.",
+        "expectedOutput": "The Cluster Manager Databases screen renders with no cluster warnings, and the status icon in the header is healthy.",
+        "hint": "Signed in but everything looks read-only? Check whether you landed on the sign-in screen instead of Create new cluster — a cluster that was never bootstrapped has no users to sign in with."
+      },
+      {
+        "title": "Verify cluster and node health with rladmin",
+        "instructions": "Every Redis Software install ships the command-line tools in `/opt/redislabs/bin`. Open a shell inside the container and look at the cluster from the operator's side:\n\n```bash\ndocker exec -it RE bash\nrladmin status\n```\n\n`rladmin status` prints the cluster name, the node table (one node, roles `master`), and the databases table — empty for now. Two more quick checks round out the picture:\n\n```bash\nrladmin status nodes\nrlcheck\n```\n\n`status nodes` narrows the view to node health, and `rlcheck` runs the node health-check suite and reports any issues it finds. Both should come back clean on a fresh single-node cluster.",
+        "expectedOutput": "A status table listing node 1 with role master and the cluster FQDN you chose, followed by rlcheck's list of passed checks.",
+        "hint": "If bash says `rladmin: command not found`, run `/opt/redislabs/bin/rladmin status` — the bin directory is not always on PATH for non-login shells."
+      },
+      {
+        "title": "Confirm the license state and finish with a database",
+        "instructions": "Finish by reading the license the cluster generated for itself, from the REST API on port 9443:\n\n```bash\nexit\ncurl -k -u \"admin@cluster.local:<your-password>\" \\\n  https://localhost:9443/v1/license | jq\n```\n\nThe response shows the trial license: it expires 30 days after bootstrap and allows 4 shards. Note the expiry date — watching license expiry is a real operator task, and Cluster Manager raises a license-expiration alert 7 days before the date by default.\n\nTo leave the lab with something serving traffic, create a database: in Cluster Manager select **Quick database**, enter **12000** for the port, and select **Create**. Wait for **Database active**, then from the host:\n\n```bash\nredis-cli -h localhost -p 12000 PING\n```\n\nYou should get PONG — install, bootstrap, and first database all verified.",
+        "expectedOutput": "A license JSON with an expiration_date about 30 days out and shard_limit 4, followed by PONG from the database on port 12000.",
+        "hint": "If database activation fails on memory, Docker's 4 GB minimum is usually the cause — check Docker's memory allocation."
+      }
+    ],
+    "outcomes": [
+      "You can plan a Redis Software install (ports 8443, 9443, and a 10000-19999 endpoint port), run it in Docker, and bootstrap a single-node cluster through Cluster Manager, choosing admin credentials and a cluster FQDN you know are permanent.",
+      "You can verify a fresh cluster from the operator's toolset: rladmin status for topology, rlcheck for node health, and GET /v1/license for the trial license's 30-day and 4-shard limits."
+    ],
+    "checks": [
+      "Recreate the cluster's bootstrap summary from memory: which ports serve Cluster Manager and the REST API, and why can the cluster FQDN not be changed later?",
+      "Run rladmin status again after creating the quick database and confirm the databases table now lists one database on port 12000 with status OK.",
+      "Explain to a colleague what changes on day 31 of the trial: which alert fires, and which two actions the expired license blocks?"
+    ]
+  },
+  {
+    "id": "lab-swops-backup-restore",
+    "domainId": "rc-swops-cluster",
+    "lessonId": "rc-l-10-cluster-db-ops",
+    "title": "Back up and restore a Redis Software database",
+    "minutes": 40,
+    "difficulty": "intermediate",
+    "summary": "Prove the durability story on your own cluster: create a database with real durability settings, export an on-demand backup, restore it through import and verify the data survived, then schedule periodic backups and check them from the CLI.",
+    "steps": [
+      {
+        "title": "Create a database with durability settings",
+        "instructions": "In Cluster Manager, create a **Quick database** on port 12000 (reusing the lab cluster from lab-swops-bootstrap, or your own install). Once it is active, open the database and select **Configuration**, then **Edit**, and expand the **Durability** section.\n\nSet **Persistence** to `Append-only file (AOF) - fsync every 1 sec` and select **Save**. You have six persistence options: none, AOF with fsync every write or every second, and snapshots every 1, 6, or 12 hours — AOF every second is the classic balance of durability and performance, risking roughly one second of writes on failure.\n\nAlso notice **Replication** in the same section: on this single-node trial cluster you cannot enable it — database replication requires at least two nodes, and the cluster warns you to that effect. With AOF plus replication on a production cluster, the replica handles persistence so the fsync cost lands off the primary.",
+        "expectedOutput": "The database Configuration screen shows persistence `AOF - every 1 second`, and replication stays off with a note that at least two nodes are required.",
+        "hint": "Changing persistence is dynamic, but the switch can take time on a database that already holds data — empty lab databases switch instantly."
+      },
+      {
+        "title": "Load baseline data you can later verify",
+        "instructions": "Put a small, countable dataset into the database from redis-cli inside the container:\n\n```bash\ndocker exec -it RE redis-cli -p 12000\n```\n\n```redis\nSET restore:marker \"backup-lab-2024\"\nMSET user:1 ada user:2 grace user:3 alan\nDBSIZE\n```\n\nNote the DBSIZE value and the marker value — they are your proof of a successful restore later. Leave redis-cli with `exit` or `quit` when done.",
+        "expectedOutput": "OK / OK replies from the SET and MSET, and an integer DBSIZE of at least 4."
+      },
+      {
+        "title": "Export an on-demand backup",
+        "instructions": "The on-demand copy of a database is an **Export**. First prepare a storage location the `redislabs` user can write to — on the container node, a plain directory acts as the local mount point:\n\n```bash\ndocker exec -it RE bash -c \"mkdir -p /mnt/backups && chown redislabs:redislabs /mnt/backups\"\n```\n\nBack in Cluster Manager: select the database, open **Configuration**, click the additional-actions menu (the vertical dots), and choose **Export**. Select the **Local mount point** tab, enter `/mnt/backups` as the path, and select **Export**.\n\nExport is a two-step copy: it first writes a temporary copy on the node's local storage, then transfers it to the destination — and it fails if there is not enough space for either step. When it completes, confirm the file exists:\n\n```bash\ndocker exec -it RE ls -lh /mnt/backups\n```\n\nYou should see a compressed `.rdb.gz` file named after the database.",
+        "expectedOutput": "The Export action reports success, and /mnt/backups contains a .rdb.gz backup file."
+      },
+      {
+        "title": "Restore the database from the backup",
+        "instructions": "Simulate data loss, then put the backup back. First destroy the dataset:\n\n```redis\nFLUSHDB\nDBSIZE\n```\n\nNow import the backup: select the database, open **Configuration**, click the additional-actions menu, and choose **Import**. Select the **Local mount point** tab, enter the path of your exported file — `/mnt/backups/<database-filename>.rdb.gz` — and select **Import**.\n\nRead the confirmation carefully before accepting: importing erases all existing content in the database, which is exactly why you ran FLUSHDB first. When the import finishes, reconnect with redis-cli and verify:\n\n```redis\nGET restore:marker\nMGET user:1 user:2 user:3\nDBSIZE\n```\n\nThe marker and all three users are back, and DBSIZE matches the baseline from step 2 — the backup round-trip is proven.",
+        "expectedOutput": "GET returns \"backup-lab-2024\", the MGET returns all three names, and DBSIZE matches the value you recorded before the flush.",
+        "hint": "Importing a clustered database's backup takes one file per shard — the UI accepts multiple paths for exactly this case."
+      },
+      {
+        "title": "Schedule a periodic backup",
+        "instructions": "On-demand exports do not repeat; recurring backups are the **Scheduled backup** in the same Durability section you used in step 1. Select **Edit**, expand **Durability**, and under **Scheduled backup** click **Add backup path**. Choose the **Local mount point** tab and enter `/mnt/backups`, then set the **Interval** — the supported values are every 24 hours, 12 hours, 4 hours, or every hour — and **Save**.\n\nAccess to the storage location is verified when you save, so a bad path or missing permissions fails here rather than silently at backup time. If you do not set a start time for 24- or 12-hour backups, the cluster picks a staggered random offset in UTC; a trigger process checks every five minutes and starts the backup when the scheduled time has passed, retrying after failures.\n\nEach periodic backup writes a fresh timestamped `.rdb.gz` into `/mnt/backups` — earlier backups are never overwritten. Periodic backups are full copies, not incrementals; between them, continuous durability comes from the AOF persistence you configured in step 1.",
+        "expectedOutput": "The Scheduled backup section shows the path /mnt/backups with your chosen interval, and the configuration saves without a storage-verification error."
+      },
+      {
+        "title": "Check backup status from the CLI",
+        "instructions": "Operators do not live in the UI. From inside the container (`docker exec -it RE bash`), check the backup state of every database at once:\n\n```bash\nrladmin status extra backups\n```\n\nThe databases table now includes backup columns showing when each database last backed up. Then look at where durability actually lives on disk:\n\n```bash\nls -lh /var/opt/redislabs/persist\n```\n\n`/var/opt/redislabs` is the default home for cluster data — persistence files, logs, and backups — and `/var/opt/redislabs/persist` holds the database's AOF and snapshot files. If a backup ever falls behind, the database raises the backup_delayed alert; if a backup fails outright, a backup_failed event lands in the log under Cluster > Logs.",
+        "expectedOutput": "rladmin status extra backups lists your database with a recent backup timestamp, and the persist directory shows the AOF file growing as you write.",
+        "hint": "Watching the AOF file? Run a few SETs in redis-cli and re-run ls -lh — the append-only file grows immediately, which is the fsync-every-second policy doing its job."
+      }
+    ],
+    "outcomes": [
+      "You can create a Redis Software database with a deliberate durability posture — AOF fsync policy, snapshot interval, and replication (when the node count allows it) — and explain what each choice costs.",
+      "You can take an on-demand export, restore it through import with full knowledge that import erases the database, verify the restored data, and then schedule and monitor periodic backups from both the UI and rladmin."
+    ],
+    "checks": [
+      "Restore verification: your GET restore:marker after import returns the exact baseline value, and DBSIZE matches step 2 — write down both numbers.",
+      "Run rladmin status extra backups and read the backup columns aloud: database name, last backup time, and status.",
+      "Explain the difference between what protected you in the first minute after FLUSHDB (nothing — the import restored it) and what AOF persistence would have protected against."
+    ]
+  },
+  {
+    "id": "lab-swops-alert-triage",
+    "domainId": "rc-swops-ops",
+    "lessonId": "rc-l-11-monitoring-troubleshooting",
+    "title": "Alert triage on a Redis Software cluster",
+    "minutes": 35,
+    "difficulty": "intermediate",
+    "summary": "Work the monitoring loop end to end: find the metrics in Cluster Manager and over the Prometheus endpoint, switch on alerts, read a node's logs, generate a support bundle, then walk the memory-pressure playbook from alert to remediation.",
+    "steps": [
+      {
+        "title": "Find the metrics surfaces",
+        "instructions": "Keep using the lab cluster from the previous labs. Two surfaces show you metrics:\n\n**Cluster Manager.** Select a database and open its **Overview** — live throughput, memory, and latency at a glance; the cluster screens under **Cluster** show the same at node level. This is the built-in view.\n\n**Prometheus.** Every node runs a metrics exporter on port 8070. From inside the container:\n\n```bash\ndocker exec -it RE bash\ncurl -sk https://localhost:8070/v2 | head -n 10\n```\n\nThe v2 endpoint (the metrics stream engine) is cluster-wide: it aggregates every node's metrics, which is why a Prometheus deployment points at a single target. Metrics come back at cluster, node, database, shard, and proxy levels, in Prometheus exposition format. If the response asks for credentials, repeat the curl with `-u \"<admin-email>:<password>\"`.",
+        "expectedOutput": "A stream of Prometheus-style metric lines such as node and database gauges from the :8070/v2 endpoint, plus live graphs on the database Overview screen.",
+        "hint": "The deprecated v1 endpoint answered on the same port at / — if you meet an old scraping config in the wild, that is what it targets."
+      },
+      {
+        "title": "Turn on alerts",
+        "instructions": "Alerts are opt-in. In Cluster Manager go to **Cluster > Alert Settings**, click **Edit**, and enable the node memory alert along with the persistent-storage alert, then **Save**. Configured alerts surface three ways: a notification on the status icon, an entry in the log, and email — if you configure the email server settings on the same screen.\n\nPer-database alerts live on the database: open its **Configuration**, click **Edit**, expand the **Alerts** section, and enable the dataset-size alert, which fires when the dataset reaches a threshold percentage of the database's memory limit.\n\nNote what was already on: a fresh cluster enables cluster_license_about_to_expire by default (7 days before expiry) and the user-count alert at 90% of the user limit. Capacity and node-health alerts like the ones you just enabled start disabled.",
+        "expectedOutput": "Cluster > Alert Settings shows node memory and persistent storage enabled, and the database's Alerts section shows the dataset-size alert enabled."
+      },
+      {
+        "title": "Read the logs",
+        "instructions": "When an alert fires, the log is your first stop. In Cluster Manager, **Cluster > Logs** shows system and user events — alerts, notifications, and configuration actions with who did what and when. Filter for the events you just generated.\n\nThen read the same stream from the server side:\n\n```bash\ndocker exec -it RE bash\ntail -n 20 /var/opt/redislabs/log/event_log.log\n```\n\nServer logs live under `/var/opt/redislabs/log/` by default, and `event_log.log` is the file operators open most: it records the configuration actions and events happening inside the cluster. Make a trivial change in the UI (edit and re-save the database's description), re-run the tail, and find the matching event — that closed loop is what makes the log readable when something real breaks.",
+        "expectedOutput": "The Cluster > Logs screen lists your recent actions, and tail shows the same events arriving in event_log.log."
+      },
+      {
+        "title": "Generate a support bundle",
+        "instructions": "Before you ever open a support case, you will be asked for a support package. From the Cluster Manager navigation menu, select **Support**, click **Proceed**, and in the **Generate support package** dialog pick **Full package including all nodes and databases**, then **Generate package**. The cluster gathers configuration and logs — it takes several minutes and adds load, which is why you do not do this casually — and your browser downloads the result as `debuginfo.tar.gz`.\n\nThe UI is not always reachable, so learn the CLI fallback on any node:\n\n```bash\nrladmin cluster debug_info\n```\n\nThe path to the finished archive prints in the command output. (If it fails for lack of space in /tmp, move the storage location with `rladmin cluster config debuginfo_path <path>` and retry.) Inside a package you find per-node `node_<uid>.rladmin` status snapshots, system info, logs, and per-database INFO output — the full state support needs, without you touching anything else.",
+        "expectedOutput": "A debuginfo.tar.gz downloaded by the browser, and the CLI run printing the path to its own archive."
+      },
+      {
+        "title": "Walk the memory-pressure playbook",
+        "instructions": "Now connect alert to action. Scenario: the node memory alert fires — \"Node memory has reached <threshold>% of its capacity\". Work the checks in order:\n\n1. **Scope it.** `rladmin status` and the cluster screens in Cluster Manager: is memory concentrated on one node? Is the cluster close to its RAM overcommit limit — capacity committed to databases larger than the cluster's actual RAM?\n2. **Find the database.** Which database grew? Its dataset-size alert reads \"Dataset size has reached <threshold>% of the memory limit\", and the Overview screen shows the growth curve.\n3. **Check the policy.** Open the database's Configuration: what is the eviction policy? `volatile-lru` is the default and evicts only keys that have a TTL, so a dataset of permanent keys never shrinks; `noeviction` rejects new writes at the limit instead — clients see errors, memory stays flat.\n4. **Decide the remediation.** For a cache: keys without TTLs are the bug — add expirations, or switch the policy to an allkeys variant if every key is evictable. For a system of record: raise the database's memory limit, and if the cluster cannot fund it, that is a capacity decision, not a database tweak.\n\nWrite the four answers (scope, database, policy, decision) into your runbook notes — this exact sequence is the memory-pressure playbook.",
+        "expectedOutput": "A short written triage note with the four playbook answers, based on your lab database's real values.",
+        "hint": "To see eviction choose violence safely, point a scratch cache database at a small memory limit with allkeys-lru, fill it with SETs, and watch the key count plateau while writes keep succeeding."
+      }
+    ],
+    "outcomes": [
+      "You can find a Redis Software cluster's metrics in both first-party surfaces — the Cluster Manager screens and the cluster-wide :8070/v2 Prometheus endpoint — and say which alerts are on by default versus which you enabled.",
+      "You can run the monitoring-to-remediation loop: read events from Cluster > Logs and event_log.log, produce a support package from the UI and rladmin, and walk a memory-pressure alert through scope, locate, policy-check, and remediate."
+    ],
+    "checks": [
+      "Point to the evidence: which screen and which log line show the configuration change you made in step 3?",
+      "Name the two alerts that a fresh cluster enables by default and their default thresholds — then explain why the node memory alert was not among them.",
+      "Your support package exists twice: once as debuginfo.tar.gz from the UI and once from rladmin cluster debug_info. List two things you would expect to find inside node_<uid>.rladmin."
+    ]
+  },
+  {
+    "id": "lab-cloud-subscription-db",
+    "domainId": "rc-cloud-subscription",
+    "lessonId": "rc-l-13-cloud-subscription",
+    "title": "Create a Free subscription and database in the Redis Cloud console",
+    "minutes": 30,
+    "difficulty": "beginner",
+    "summary": "Create a free Redis Cloud Essentials database in the console, read its endpoint and Default user password, connect from redis-cli, then tour the paid Essentials and Pro wizards to see exactly where Essentials-versus-Pro capability differences appear in the UI.",
+    "steps": [
+      {
+        "title": "Create the free database",
+        "instructions": "Sign in to the [Redis Cloud console](https://cloud.redis.io) and select the **New database** button to open the **Create database** screen. Select **Try 30 MB for free** — a Free plan is a type of Essentials plan sized for learning and prototypes.\n\nRedis generates a database name for you; change it in the **Database name** field if you like. Pick the **Database version**, then choose a **Cloud vendor** (AWS, Google Cloud, or Azure) and a **Region**. Select **Create database**, wait through the brief provisioning pause, and the **Database details** page appears.\n\nTwo plan facts worth writing down: an account gets exactly one free database, and a free database that sees no read or write activity for about 14 days is automatically deleted.",
+        "expectedOutput": "The Database details page renders and the database status becomes active."
+      },
+      {
+        "title": "Read the endpoint, port, and Default user password",
+        "instructions": "On the database's **Configuration** tab, Essentials databases list their endpoints in the **Access** section (Pro databases put the same fields in the **General** section — remember that split). The public endpoint follows the static pattern `redis-<port>.c<number>...`: the port Redis assigned at creation sits right in the hostname.\n\nScroll to the **Security** section, select **Default user > Configure**, and use the eye icon to reveal the **Default user password**. The username is always `default` on a new database. Selecting the **Connect** button opens the connection wizard with ready-made snippets for Redis Insight, redis-cli, and your preferred client language.",
+        "expectedOutput": "The public endpoint with its embedded port, and the revealed Default user password, ready to paste into redis-cli."
+      },
+      {
+        "title": "Connect and verify from redis-cli",
+        "instructions": "From a terminal, paste the redis-cli command from the connection wizard — it looks like this:\n\n```bash\nredis-cli -h redis-12345.c12345.us-east-1-mz.ec2.cloud.rlrcp.com -p 12345 \\\n  -a '<default-user-password>'\n```\n\nThen prove the round trip:\n\n```redis\nPING\nSET lab:marker \"subscription-lab\"\nGET lab:marker\nDBSIZE\n```\n\nPING returns PONG, the SET and GET confirm reads and writes work, and DBSIZE shows your key counted. No TLS flags were needed: TLS is off by default and, on the Free plan, not available at all.",
+        "expectedOutput": "PONG, then OK, then \"subscription-lab\", then an integer of at least 1.",
+        "hint": "If redis-cli hangs instead of connecting, a CIDR allow list would be the usual suspect — but Free plans do not support the allow list, so check your local network or VPN instead."
+      },
+      {
+        "title": "Note where the Free plan ends",
+        "instructions": "Back on the **Configuration** tab, audit the **Security** section against the paid feature list:\n\n1. **TLS** — there is no TLS toggle to find: TLS is not available on Free Redis Cloud Essentials. Paid Essentials and Pro databases show a **Transport layer security (TLS)** toggle in this section.\n2. **CIDR allow list** — also absent on Free. Paid Essentials and Pro databases get a **CIDR allow list** toggle here (Essentials plans allow 4–32 entries, Pro up to 32).\n3. **Data access control** — check whether your console menu shows the **Data Access Control** screen and record what you find; availability varies.\n4. **Alerts** — note that Essentials databases configure alerts on a dedicated **Alerts** tab of the database screen.\n\nWrite the four rows into your notes: control, visible on your plan (yes/no), and where it lives in the UI.",
+        "expectedOutput": "A four-row table of security and operations controls showing which are absent on the Free plan."
+      },
+      {
+        "title": "Tour the paid wizards without paying",
+        "instructions": "Select **New database** again, twice — reading only, no purchase:\n\n**Essentials.** After picking a paid plan you would also choose **RAM** or **RAM + SSD (Flex)**, **High availability** (None, Single-Zone, or Multi-Zone), and **Data persistence** (Append-Only File updated every second, or snapshots every 1, 6, or 12 hours). Stop before payment.\n\n**Pro.** Choose **Easy create** first to see the short form (dataset size, throughput, high availability), then **Switch to custom settings** to walk the **Setup**, **Sizing**, and **Review & Create** tabs. On the Setup tab, expand **Advanced options**: **Multi-AZ**, **Deployment CIDR**, **Public endpoint access** (block public endpoints), and **Maintenance windows** all live here — none of them exist in the Essentials wizard. Back out without confirming.",
+        "expectedOutput": "Notes from both wizards: the Essentials capability choices, and the Pro Advanced options that have no Essentials equivalent.",
+        "hint": "Pro custom setup also exposes the private connectivity story: private endpoints and options like VPC peering belong to Pro subscriptions only, which is why the wizard has no Essentials counterpart for them."
+      },
+      {
+        "title": "Map the Essentials-versus-Pro line in the UI",
+        "instructions": "Finish by collecting where the tier split is visible on screen, from what you saw plus the docs:\n\n1. Endpoints sit in **Access** (Essentials) versus **General** (Pro) on the Configuration tab — and only Pro databases list a private endpoint.\n2. Alerts: a dedicated **Alerts** tab on Essentials databases, an **Alerts** section inside Configuration for Pro.\n3. Redis Insight: Essentials databases can launch a browser-based Redis Insight from the connection wizard; for other databases you install it locally.\n4. Prometheus: the Metrics tab shows **Connect to Prometheus** only for Pro databases.\n5. Subscription-level connectivity: VPC peering and Google Cloud Private Service Connect appear under a Pro subscription's **Connectivity** tab — Essentials subscriptions have no private connectivity options.\n\nKeep this list; it is the fastest way to answer any Essentials-versus-Pro question the exam asks.",
+        "expectedOutput": "A five-point cheat sheet of exact UI locations where Essentials and Pro capabilities differ."
+      }
+    ],
+    "outcomes": [
+      "You can create a Free Redis Cloud Essentials database in the console and read its public endpoint, assigned port, and Default user password from the Configuration tab.",
+      "You can point to the exact screens where Essentials and Pro diverge — endpoint placement, alert configuration, TLS and CIDR availability, and the Pro-only connectivity options under a subscription's Connectivity tab."
+    ],
+    "checks": [
+      "From memory: which Configuration-tab section holds the public endpoint on an Essentials database, and where does the same field sit on a Pro database?",
+      "State the two free-plan facts this lab showed — what happens to a free database with no reads or writes for about 14 days, and one paid-Essentials wizard capability the Free plan never offers (TLS, CIDR allow list, persistence, or backups).",
+      "In the Pro custom wizard, name the Advanced option that blocks public endpoints and the prerequisite it imposes (a private connectivity method must be set up first)."
+    ]
+  },
+  {
+    "id": "lab-cloud-security-config",
+    "domainId": "rc-cloud-security",
+    "lessonId": "rc-l-15-cloud-security",
+    "title": "Lock down a Redis Cloud database and break it on purpose",
+    "minutes": 40,
+    "difficulty": "intermediate",
+    "summary": "Configure the security controls of a Redis Cloud database — Default user password, RBAC users with scoped ACL permissions, TLS, and a CIDR allow list — then connect with each control deliberately misconfigured so you learn the exact failure each one produces.",
+    "steps": [
+      {
+        "title": "Audit the Security section",
+        "instructions": "Open your database's **Configuration** tab and read the **Security** section before touching anything. Inventory what is there:\n\n- The **Default user** with its masked **Default user password** (username `default` on every new database).\n- A **Transport layer security (TLS)** toggle — present on Paid Essentials and Pro, absent on Free.\n- A **CIDR allow list** toggle — present on Paid Essentials and Pro, absent on Free.\n\nSelect **Edit database** once just to see which of those controls are editable on your plan, then cancel. Write a four-row table: control, supported on my plan (yes/no), console location. That table decides which of the later steps you can exercise and which you walk through against the docs.",
+        "expectedOutput": "A four-row inventory of the Security section marked up with your plan's capabilities."
+      },
+      {
+        "title": "Break authentication first",
+        "instructions": "The cheapest failure to study is a bad password. From a terminal:\n\n```bash\nredis-cli -h redis-12345.c12345.us-east-1-mz.ec2.cloud.rlrcp.com -p 12345 \\\n  -a 'definitely-not-the-password' PING\n```\n\nThe server rejects the attempt — expect a WRONGPASS or NOAUTH authentication error rather than PONG. Now connect with the real password (revealed under **Default user > Configure** for Essentials, or in the Security section for Pro) and confirm PONG.\n\nNote the shape of this failure: the TCP connection succeeded, authentication did not. A timeout means network filtering; an auth error means the network path is fine and the credentials are not.",
+        "expectedOutput": "An authentication error with the wrong password, then PONG with the correct one.",
+        "hint": "redis-cli prints a security warning whenever you pass -a on the command line — safe in a lab, but prefer a config file or ACL-less environment variable in real deployments."
+      },
+      {
+        "title": "Create a scoped user with RBAC",
+        "instructions": "From the console menu open **Data Access Control** — three tabs: **Redis ACLs**, **Roles**, **Users**, in that dependency order.\n\n1. In the **Redis ACLs** tab, define a named permission set, for example `session-rw`: commands GET, SET, DEL, EXPIRE, and key patterns `session:*`.\n2. In the **Roles** tab, create a role `session-admin` that binds the `session-rw` ACL to your database.\n3. In the **Users** tab, add user `session-svc`, assign the `session-admin` role, and generate a password — copy it now.\n\nThen connect as the new user:\n\n```redis\nSET session:42 \"alive\"\nGET session:42\nACL WHOAMI\nSET other:key \"nope\"\n```\n\nThe first three succeed — ACL WHOAMI reports session-svc — but the out-of-scope write fails with a NOPERM error. That error is the RBAC system working as designed.",
+        "expectedOutput": "SET and GET succeed on session:*, ACL WHOAMI returns session-svc, and the out-of-scope write returns NOPERM.",
+        "hint": "ACL SETUSER is not supported in Redis Cloud — users, roles, and ACLs are console objects. MULTI/EXEC/DISCARD are always permitted; the commands inside a transaction are what get checked."
+      },
+      {
+        "title": "Turn off the shared front door",
+        "instructions": "Only after a named user connects successfully should the Default user be switched off — otherwise you lock out every existing client at once.\n\nFor Essentials, go to **Configuration > Security**, select **Default user > Configure**, and turn off the **Default user** switch, then OK. For Pro, select **Edit database**, flip the **Default User** switch in the Security section, and **Save database**.\n\nVerify from redis-cli: the old default-user command from step 2 now fails with an authentication error, while `--user session-svc -a '<password>'` still works.\n\nThe console itself still reaches the database — console access is account-level and not affected by the Default user — so recovery is always possible from the UI.",
+        "expectedOutput": "The old default-user connection fails with an auth error; the named user session-svc still gets PONG and its scoped commands.",
+        "hint": "If the named user was never tested before this step, test it now before celebrating — turning off the Default user is exactly how a typo in a role assignment becomes an outage."
+      },
+      {
+        "title": "Enforce TLS and feel the difference",
+        "instructions": "Paid plans only — on Free, walk this against the [TLS docs](https://redis.io/docs/latest/operate/rc/security/database-security/tls-ssl/) instead. Select **Edit database** on the Configuration tab, turn on the **Transport layer security (TLS)** toggle in the Security section, and select **Download server certificate** to save `redis_ca.pem` before saving the database.\n\nFirst show the break: a plaintext client now has its connection rejected as soon as TLS is enforced.\n\nThen connect properly:\n\n```bash\nredis-cli -h redis-12345.c12345.us-east-1-mz.ec2.cloud.rlrcp.com -p 12345 \\\n  --tls --cacert redis_ca.pem --user session-svc -a '<password>' PING\n```\n\nAlso notice the **Mutual TLS (require client authentication)** checkbox: ticking it demands a client certificate from every connection, and certificates generated in the console can be downloaded only at creation time.",
+        "expectedOutput": "A plaintext connection is dropped once TLS is enforced, and the --tls --cacert connection returns PONG.",
+        "hint": "TLS changes apply to new connections only — existing connections keep working until they reconnect, which is why enforcement looks like nothing happened until clients cycle."
+      },
+      {
+        "title": "Add a CIDR allow list and watch it block",
+        "instructions": "Paid plans only — on Free, walk this against the [CIDR allow list docs](https://redis.io/docs/latest/operate/rc/security/cidr-whitelist/). First discover your egress IP (for example `curl -s https://checkip.amazonaws.com`). Then select **Edit database**, turn on the **CIDR allow list** toggle in the Security section, enter `<your-ip>/32`, and commit it with the check mark. Use **Add CIDR** for further entries; **Save database** applies the list.\n\nConfirm redis-cli still connects — your IP is listed. Now edit the list, replace your entry with `203.0.113.10/32` (a documentation-range address you do not own), save, and reconnect: the connection times out. Restore your own entry before moving on.\n\nConnect the failures to their causes one last time: WRONGPASS/NOAUTH for credentials, NOPERM for permissions, connection reset for TLS enforcement, timeout for the allow list. And remember the exam-worthy detail — the list filters the private endpoint too, so VPC peering source ranges must be added here.",
+        "expectedOutput": "PONG while your IP is listed, a connection timeout once it is not, and a restored entry at the end.",
+        "hint": "Essentials plans allow 4–32 allow-list entries depending on the plan, Pro up to 32 — enough for distinct office egress ranges, but plan the ranges before you fill the quota."
+      }
+    ],
+    "outcomes": [
+      "You can configure the security controls of a Redis Cloud database — Default user password, RBAC roles built from Redis ACLs, TLS, and a CIDR allow list — and say which console screen owns each one.",
+      "You can name the failure signature of each control: auth errors for bad credentials, NOPERM for out-of-scope commands, connection resets for TLS enforcement, and timeouts for allow-list filtering."
+    ],
+    "checks": [
+      "Rebuild the RBAC chain from memory — Redis ACLs tab, Roles tab, Users tab — and explain why the Default user is switched off last, not first.",
+      "You saw four failure modes in this lab. For each, state one sentence of evidence a teammate could use to tell them apart from a console session.",
+      "On the Free plan, name the two controls that are unavailable (TLS, CIDR allow list) and record whether the Data Access Control screen exists on your account — verify empirically rather than assuming."
+    ]
+  },
+  {
+    "id": "lab-cloud-monitoring-alerts",
+    "domainId": "rc-cloud-monitoring",
+    "lessonId": "rc-l-17-cloud-monitoring",
+    "title": "Metrics, alerts, and the audit trail in the Redis Cloud console",
+    "minutes": 35,
+    "difficulty": "intermediate",
+    "summary": "Watch a Redis Cloud database's metrics graphs while you generate load, configure a throughput alert with a threshold and email delivery, then trace both your console changes and the fired alert in the Logs page.",
+    "steps": [
+      {
+        "title": "Open the metrics surface",
+        "instructions": "Select your database and open its **Metrics** tab. Two primary graphs lead the screen — **Ops/sec** and **Latency** — with smaller graphs below: Reads/sec, Writes/sec, Used memory, Total keys, Connections, Hit ratio, Evicted objects/sec, and network in/out.\n\nUse the **interval scrollbar** to pick **5 minutes** — the finest window, at 30-second resolution — and note how coarser windows (hour, day, week, month, 3 months) trade resolution for range.\n\nHover any small graph to see its summary panel with minimum, average, maximum, and most-recent values, plus two promotion icons. Promote **Used memory** to a primary position and note its values at idle.",
+        "expectedOutput": "Used memory promoted to a primary graph, with the 5-minute interval selected and idle baselines noted for Ops/sec and Used memory.",
+        "hint": "The summary panel's numbers are also the fastest sanity check after this lab's load test — you will compare min/avg/max against what redis-benchmark reports."
+      },
+      {
+        "title": "Generate load you can see",
+        "instructions": "From a terminal, run a short benchmark against the database (add `--tls --cacert redis_ca.pem` if TLS is enforced on your plan):\n\n```bash\nredis-benchmark -h redis-12345.c12345.us-east-1-mz.ec2.cloud.rlrcp.com -p 12345 \\\n  -a '<default-user-password>' -t set,get -n 20000 -d 100 -q\n```\n\nThe `-q` flag keeps output to the per-second summary. Note the reported ops/sec for SET and GET. Immediately refresh the Metrics tab and read the same window you just filled: Reads/sec and Writes/sec spike above their idle baselines, Ops/sec shows the sum, and Latency shows per-operation milliseconds.\n\nRecord the peak Ops/sec you produced — the next step turns that number into an alert threshold.",
+        "expectedOutput": "A visible spike in Ops/sec, Reads/sec, and Writes/sec during the benchmark window, and a written peak Ops/sec figure.",
+        "hint": "Running this lab also keeps your free database alive — free databases with no reads or writes for about 14 days are automatically deleted."
+      },
+      {
+        "title": "Configure an alert",
+        "instructions": "Where alerts live depends on the plan: Essentials databases configure them on the database's **Alerts** tab; Pro databases use the **Alerts** section inside the **Configuration** tab.\n\nOn your database, enable **Throughput is higher than** and set the threshold just under the peak you recorded — if the benchmark reported roughly 20,000 ops/sec, set 15,000. While you are there, note the other alerts and their defaults: **Total size of datasets under this plan reached** (Essentials, 80% of the plan limit), **Dataset size has reached** (Pro, 80% of the memory limit), **Latency is higher than** (10 ms), and **Number of connections** (Essentials, 80% of the plan limit).\n\nAlert settings are per database — saving here does nothing for your other databases.",
+        "expectedOutput": "The Throughput is higher than alert enabled with a threshold derived from your measured load, and the list of other available alerts with their default values."
+      },
+      {
+        "title": "Wire the delivery",
+        "instructions": "Alert emails go to the team members who opt in. From the console menu select **Access Management**, open the **Team** tab, edit your own user, enable **Alert emails**, and save. (The same dialog controls Operational and Billing emails.)\n\nNow re-run the benchmark from step 2 to cross the threshold, and wait — alert evaluation is periodic, so the email is not instant. While it travels, open the **Logs** page: alert events appear there too, which is the reliable way to confirm the alert fired even if email is slow or misconfigured.",
+        "expectedOutput": "Alert emails enabled for your user, and either the alert email or the alert event in Logs confirming the threshold was crossed.",
+        "hint": "No email after several minutes? Check spam first, then confirm the Alert emails toggle saved — an enabled alert with no opted-in recipient fires silently."
+      },
+      {
+        "title": "Find yourself in the audit trail",
+        "instructions": "Select **Logs** from the console main menu. The page lists events, alerts, and activity across your subscriptions and databases, with sortable columns: **Time**, **Originator**, **Database name**, **API key name**, and **Activity**.\n\nSort by Time descending and find two entries: the configuration change from step 3 (your alert edit) and the alert event from step 4. Use the search bar — it covers Originator, Database name, API key name, Activity, and Description — then select **Export all** and open the CSV to see the same rows in spreadsheet form.\n\nThe same list is available programmatically as `GET /logs` on the Redis Cloud REST API, which is how audit pipelines collect it without the console.",
+        "expectedOutput": "Log rows for both your alert change and the fired alert, plus a CSV export containing them.",
+        "hint": "Entries made with an API key carry the key's name in the API key name column — one more way to answer who did what when something changes unexpectedly."
+      }
+    ],
+    "outcomes": [
+      "You can read a Redis Cloud database's metrics graphs — interval selection, primary versus promoted graphs, and the min/avg/max summary panel — while correlating them with load you generated yourself.",
+      "You can configure an alert end to end: a threshold on the right screen for your plan, email delivery through the team's Alert emails setting, and confirmation in the Logs page audit trail."
+    ],
+    "checks": [
+      "Read the Ops/sec graph for your load window and state its minimum, average, and maximum from the summary panel — then say which interval you were viewing and its resolution.",
+      "Name where alerts are configured for Essentials versus Pro databases, and where the recipients are managed (Access Management, Team tab, Alert emails).",
+      "Point to the exact Logs entries for your alert change and the fired alert, and name the REST API endpoint that returns the same list (GET /logs)."
+    ]
+  }
+]

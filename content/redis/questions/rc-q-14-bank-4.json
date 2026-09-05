@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-14-bank-4",
+  "domainId": "rc-cloud-db-admin",
+  "moduleId": "m-cloud-db-admin",
+  "difficulty": "advanced",
+  "kind": "single",
+  "prompt": "After importing an RDB snapshot into an existing Redis Cloud database, the operator counts fewer keys than the source had and notices some previously present keys are gone. Which statement explains both observations?",
+  "explanation": "Data imported into an existing Redis Cloud database overwrites whatever was there before, and expired keys are not imported, so the destination key count can legitimately differ from the source after the import completes. Import never merges with existing data, it does not filter by TTL presence, and it imports into the selected target database rather than creating a fresh one.",
+  "tags": [
+    "redis",
+    "db-administration",
+    "import"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Import overwrites existing data and expired keys are not imported"
+    },
+    {
+      "id": "b",
+      "text": "Import merges with existing keys, keeping the ones already in the database"
+    },
+    {
+      "id": "c",
+      "text": "Import copies only keys that have a TTL set"
+    },
+    {
+      "id": "d",
+      "text": "Import always creates a brand-new database instead of touching the existing one"
+    }
+  ],
+  "correct": "a"
+}

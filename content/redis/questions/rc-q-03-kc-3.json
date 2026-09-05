@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-03-kc-3",
+  "domainId": "rc-core-model",
+  "moduleId": "m-data-modeling",
+  "lessonId": "rc-l-03-data-modeling",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "Products live in individual hashes, and the catalog must answer: which products have color=red? Which modeling approach delivers that query?",
+  "explanation": "Redis has no query engine, so secondary indexes are modeled explicitly: one set per attribute value, such as idx:color:red, holds the ids of every product carrying that value. SMEMBERS reads the matches and SINTER intersects several attribute sets for AND queries.",
+  "tags": [
+    "redis",
+    "data-modeling",
+    "secondary-indexes"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Keep one set per attribute value, for example SADD idx:color:red 1 2 3, holding the product ids that carry the value"
+    },
+    {
+      "id": "b",
+      "text": "Scan every product hash at query time and filter for the color field"
+    },
+    {
+      "id": "c",
+      "text": "Store all products in one list and filter client-side"
+    },
+    {
+      "id": "d",
+      "text": "Use a sorted set of product ids scored by product id"
+    }
+  ],
+  "correct": "a"
+}

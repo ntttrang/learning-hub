@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-17-bank-1",
+  "domainId": "rc-cloud-monitoring",
+  "moduleId": "m-cloud-monitoring",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "A team runs one database on a Paid Redis Cloud Essentials plan and one on a Redis Cloud Pro subscription. On which of them can they scrape metrics with Prometheus and Grafana?",
+  "explanation": "Redis Cloud exposes its Prometheus endpoint on port 8070 on Redis Cloud's internal network, so Prometheus must reach it through private connectivity such as VPC peering, Google Cloud Private Service Connect, AWS Transit Gateway, or AWS PrivateLink. Private connectivity is available only with Redis Cloud Pro, so Prometheus and Grafana cannot be used with Redis Cloud Essentials at all. The endpoint automatically covers every database in the Pro subscription.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "prometheus"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Only the database on the Redis Cloud Pro subscription"
+    },
+    {
+      "id": "b",
+      "text": "Only the Essentials database, because its metrics are exposed publicly"
+    },
+    {
+      "id": "c",
+      "text": "Both, because every Redis Cloud database exposes a public Prometheus endpoint"
+    },
+    {
+      "id": "d",
+      "text": "Neither, because Redis Cloud does not expose a Prometheus endpoint"
+    }
+  ],
+  "correct": "a"
+}

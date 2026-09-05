@@ -1,0 +1,23 @@
+{
+  "id": "rc-q-04-bank-8",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "difficulty": "intermediate",
+  "kind": "fill",
+  "prompt": "Complete the sentence about the slow log's default threshold.",
+  "explanation": "slowlog-log-slower-than defaults to 10000, meaning ten milliseconds expressed in microseconds; anything slower is recorded into the log until SLOWLOG RESET or the log length cap evicts it.",
+  "tags": [
+    "redis",
+    "performance",
+    "slowlog"
+  ],
+  "template": "By default the slow log records commands whose execution took longer than ___ microseconds (CONFIG GET slowlog-log-slower-than).",
+  "blanks": [
+    {
+      "answer": "10000",
+      "alternatives": [
+        "10,000"
+      ]
+    }
+  ]
+}

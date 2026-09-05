@@ -1,0 +1,23 @@
+{
+  "id": "rc-q-08-bank-6",
+  "domainId": "rc-dev-java",
+  "moduleId": "m-java-clients",
+  "difficulty": "intermediate",
+  "kind": "fill",
+  "prompt": "Complete the sentence about returning pooled Jedis connections.",
+  "explanation": "try-with-resources closes the borrowed Jedis at the end of the block \u2014 for pooled resources that close returns the instance to the pool \u2014 so the connection is released even when the body throws.",
+  "tags": [
+    "redis",
+    "java",
+    "jedis"
+  ],
+  "template": "Wrap each borrowed Jedis in ___ so the connection returns to the pool even when the block throws.",
+  "blanks": [
+    {
+      "answer": "try-with-resources",
+      "alternatives": [
+        "try with resources"
+      ]
+    }
+  ]
+}

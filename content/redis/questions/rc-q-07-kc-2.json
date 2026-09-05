@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-07-kc-2",
+  "domainId": "rc-core-security",
+  "moduleId": "m-security-config",
+  "lessonId": "rc-l-07-security-config",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "An operator needs per-team accounts, each limited to its own key prefix and to read commands. Which Redis subsystem provides this?",
+  "explanation": "ACLs define named users with passwords, key patterns, and command categories or individual commands, giving per-user authorization far beyond the single global password.",
+  "tags": [
+    "redis",
+    "security",
+    "acl"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "ACL users with key patterns and command categories"
+    },
+    {
+      "id": "b",
+      "text": "Databases 0-15 selected with SELECT"
+    },
+    {
+      "id": "c",
+      "text": "Client name tracking via CLIENT SETNAME"
+    },
+    {
+      "id": "d",
+      "text": "Lua sandboxing of command results"
+    }
+  ],
+  "correct": "a"
+}

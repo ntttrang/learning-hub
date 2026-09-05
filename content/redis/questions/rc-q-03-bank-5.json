@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-03-bank-5",
+  "domainId": "rc-core-model",
+  "moduleId": "m-data-modeling",
+  "difficulty": "beginner",
+  "kind": "matching",
+  "prompt": "Match each domain need to the structure that fits it best.",
+  "explanation": "Carts are field-value maps; approximate unique counting is HyperLogLog's specialty; leaderboards need score ordering; bounded recent-item feeds are lists; and currently-online membership is a set.",
+  "tags": [
+    "redis",
+    "data-modeling",
+    "structure-choice"
+  ],
+  "pairs": [
+    {
+      "left": "Shopping cart of product ids and quantities",
+      "right": "Hash"
+    },
+    {
+      "left": "Approximate unique page views per day",
+      "right": "HyperLogLog"
+    },
+    {
+      "left": "Live leaderboard ranked by points",
+      "right": "Sorted set"
+    },
+    {
+      "left": "Last 100 notifications per user, newest first",
+      "right": "List"
+    },
+    {
+      "left": "Users currently online",
+      "right": "Set"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-01-kc-1",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "lessonId": "rc-l-01-data-structures",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Which command adds a member with an associated score to a sorted set?",
+  "explanation": "ZADD stores each member together with a double-precision score, and the sorted set keeps members ordered by that score. SADD, HSET, and LPUSH belong to other structures and cannot attach an ordering value to a member.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "sorted-sets"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "ZADD leaderboard 120 alice"
+    },
+    {
+      "id": "b",
+      "text": "SADD leaderboard alice"
+    },
+    {
+      "id": "c",
+      "text": "HSET leaderboard alice 120"
+    },
+    {
+      "id": "d",
+      "text": "LPUSH leaderboard alice"
+    }
+  ],
+  "correct": "a"
+}

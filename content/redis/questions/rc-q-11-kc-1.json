@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-11-kc-1",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "lessonId": "rc-l-11-monitoring-troubleshooting",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Where do Redis Software's server log files live by default on a node?",
+  "explanation": "Server logs are written under /var/opt/redislabs/log/ — event_log.log is the one you will open most often, because it records the configuration actions and events happening inside the cluster. The Cluster Manager UI shows the same stream under Cluster > Logs.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "logs"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "/var/opt/redislabs/log/"
+    },
+    {
+      "id": "b",
+      "text": "/var/log/redislabs/"
+    },
+    {
+      "id": "c",
+      "text": "/etc/opt/redislabs/log/"
+    },
+    {
+      "id": "d",
+      "text": "/opt/redislabs/log/"
+    }
+  ],
+  "correct": "a"
+}

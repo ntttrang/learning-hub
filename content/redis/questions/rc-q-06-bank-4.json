@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-06-bank-4",
+  "domainId": "rc-core-persist",
+  "moduleId": "m-persistence",
+  "difficulty": "advanced",
+  "kind": "codeReading",
+  "prompt": "Reading this INFO persistence section, what does rdb_changes_since_last_save: 152 tell the operator?",
+  "explanation": "The counter reports how many dataset changes happened since the last successful RDB snapshot. Those 152 changes are exactly what a crash would lose on the RDB side if the server died now; with AOF enabled they may still be recoverable from the AOF within its fsync window.",
+  "tags": [
+    "redis",
+    "persistence",
+    "info"
+  ],
+  "code": "# Persistence\nloading:0\nrdb_changes_since_last_save:152\nrdb_bgsave_in_progress:0\nrdb_last_save_time:1712340000\nrdb_last_bgsave_status:ok\naof_enabled:1\naof_last_bgrewrite_status:ok\naof_current_size:1048576",
+  "options": [
+    {
+      "id": "a",
+      "text": "152 dataset changes have occurred since the last successful RDB snapshot"
+    },
+    {
+      "id": "b",
+      "text": "152 RDB snapshots have completed since the server started"
+    },
+    {
+      "id": "c",
+      "text": "152 keys currently carry an RDB save point"
+    },
+    {
+      "id": "d",
+      "text": "The next BGSAVE is scheduled in 152 seconds"
+    }
+  ],
+  "correct": "a"
+}

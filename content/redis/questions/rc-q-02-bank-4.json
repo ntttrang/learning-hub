@@ -1,0 +1,29 @@
+{
+  "id": "rc-q-02-bank-4",
+  "domainId": "rc-core-keys",
+  "moduleId": "m-keys",
+  "difficulty": "intermediate",
+  "kind": "fill",
+  "prompt": "Complete the sentence about how Redis removes expired keys.",
+  "explanation": "Expiry is both lazy and active: a key past its TTL is deleted when something touches it, and the active expiry cycle repeatedly samples random keys with timeouts in the background, deleting those that have already expired.",
+  "tags": [
+    "redis",
+    "keys",
+    "expiry"
+  ],
+  "template": "Redis removes an expired key with ___ expiry when a client tries to read it after the TTL, and with ___ expiry, a background cycle that samples keys with timeouts and deletes the ones already past due.",
+  "blanks": [
+    {
+      "answer": "lazy",
+      "alternatives": [
+        "lazily"
+      ]
+    },
+    {
+      "answer": "active",
+      "alternatives": [
+        "actively"
+      ]
+    }
+  ]
+}

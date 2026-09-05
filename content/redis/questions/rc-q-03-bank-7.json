@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-03-bank-7",
+  "domainId": "rc-core-model",
+  "moduleId": "m-data-modeling",
+  "difficulty": "intermediate",
+  "kind": "codeReading",
+  "prompt": "What does the final command return?",
+  "explanation": "ZINCRBY adds to the member's current score, creating it at 0 if needed: 0 + 5 = 5, then 5 + 2 = 7. ZREVRANGE 0 0 WITHSCORES reads the highest-ranked member together with its score, which is candidate:42 with 7.",
+  "tags": [
+    "redis",
+    "data-modeling",
+    "sorted-sets"
+  ],
+  "code": "ZINCRBY votes 5 candidate:42\nZINCRBY votes 2 candidate:42\nZREVRANGE votes 0 0 WITHSCORES",
+  "options": [
+    {
+      "id": "a",
+      "text": "candidate:42 with score 7"
+    },
+    {
+      "id": "b",
+      "text": "candidate:42 with score 5"
+    },
+    {
+      "id": "c",
+      "text": "candidate:42 with score 2"
+    },
+    {
+      "id": "d",
+      "text": "An error, because ZINCRBY cannot create a member"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "rc-q-17-kc-2",
+  "domainId": "rc-cloud-monitoring",
+  "moduleId": "m-cloud-monitoring",
+  "lessonId": "rc-l-17-cloud-monitoring",
+  "difficulty": "intermediate",
+  "kind": "fill",
+  "prompt": "Complete the sentence about the Redis Cloud Prometheus endpoint.",
+  "explanation": "The Redis Cloud Prometheus endpoint listens on port 8070. Port 9090 is Prometheus's own default port and 3000 is Grafana's, which is why those numbers appear in the quick-start setup but not in the scrape target.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "prometheus"
+  ],
+  "template": "Configure your Prometheus server to scrape the Redis Cloud subscription's metrics from the Prometheus endpoint on port ___.",
+  "blanks": [
+    {
+      "answer": "8070"
+    }
+  ]
+}

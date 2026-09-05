@@ -1,0 +1,21 @@
+[
+{"id":"m-data-structures","domainId":"rc-core-types","order":1,"code":"01","title":"Redis data structures","summary":"Core structures, command groups, time complexities."},
+{"id":"m-keys","domainId":"rc-core-keys","order":2,"code":"02","title":"Keys, keyspace & expiry","summary":"Keyspace commands, expiry, SCAN, key hygiene."},
+{"id":"m-data-modeling","domainId":"rc-core-model","order":3,"code":"03","title":"Data modeling","summary":"Entity-to-structure mapping, indexes, structure choice."},
+{"id":"m-perf-debugging","domainId":"rc-core-perf","order":4,"code":"04","title":"Performance & debugging","summary":"Event loop, Big-O selection, latency tooling, pipelines, transactions."},
+{"id":"m-clustering-ha","domainId":"rc-core-cluster","order":5,"code":"05","title":"Replication, HA & clustering","summary":"REPLICAOF, Sentinel, hash slots, hash tags, MOVED/ASK redirects, resharding."},
+{"id":"m-persistence","domainId":"rc-core-persist","order":6,"code":"06","title":"Persistence & durability","summary":"RDB, AOF, rewrite, hybrid, restart behavior."},
+{"id":"m-security-config","domainId":"rc-core-security","order":7,"code":"07","title":"Security & configuration","summary":"ACL, TLS, exposure, maxmemory + eviction, lazy freeing."},
+{"id":"m-java-clients","domainId":"rc-dev-java","order":8,"code":"08","title":"Java clients & app patterns","summary":"Jedis/Lettuce/Redisson, pooling, pipelines, cache-aside, streams."},
+{"id":"m-swops-install","domainId":"rc-swops-install","order":9,"code":"09","title":"Redis Software install & upgrade","summary":"Plan, bootstrap, license, certificate, upgrade, and patch a Redis Software cluster."},
+{"id":"m-swops-cluster","domainId":"rc-swops-cluster","order":10,"code":"10","title":"Cluster & database operations","summary":"Operate nodes, racks, DMC, databases, endpoints, backups, and migrations day to day."},
+{"id":"m-swops-ops","domainId":"rc-swops-ops","order":11,"code":"11","title":"Monitoring & troubleshooting","summary":"Watch metrics and alerts, read logs, drive the job scheduler, and run failure playbooks."},
+{"id":"m-cloud-arch","domainId":"rc-cloud-arch","order":12,"code":"12","title":"Cloud architecture","summary":"Subscriptions, Essentials/Flex/Pro tiers, regions and availability posture."},
+{"id":"m-cloud-subscription","domainId":"rc-cloud-subscription","order":13,"code":"13","title":"Cloud subscription administration","summary":"Plans, billing and marketplaces, cloud-account wiring, maintenance windows, console roles."},
+{"id":"m-cloud-db-admin","domainId":"rc-cloud-db-admin","order":14,"code":"14","title":"Cloud database administration","summary":"Create, size, upgrade, back up, and retire databases per tier."},
+{"id":"m-cloud-security","domainId":"rc-cloud-security","order":15,"code":"15","title":"Cloud security","summary":"CIDR allowlists, VPC peering, TLS, RBAC/ACLs, and shared responsibility."},
+{"id":"m-cloud-networking","domainId":"rc-cloud-networking","order":16,"code":"16","title":"Cloud networking","summary":"Public and private endpoints, peering and PSC, CIDR planning, client connectivity."},
+{"id":"m-cloud-monitoring","domainId":"rc-cloud-monitoring","order":17,"code":"17","title":"Cloud monitoring","summary":"Metrics, alert thresholds, Prometheus endpoint, and operational email routing."},
+{"id":"m-cloud-automation","domainId":"rc-cloud-automation","order":18,"code":"18","title":"Cloud automation","summary":"REST API keys, task polling, and infrastructure-as-code with Terraform."},
+{"id":"m-cloud-data-access","domainId":"rc-cloud-data-access","order":19,"code":"19","title":"Cloud data access","summary":"Endpoints, TLS, users and ACLs, and client behavior for resilient connectivity."}
+]

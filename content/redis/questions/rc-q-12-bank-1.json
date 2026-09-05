@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-12-bank-1",
+  "domainId": "rc-cloud-arch",
+  "moduleId": "m-cloud-arch",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "A team sizes a new Redis Cloud Pro database for 40 GB of data and 30,000 ops/sec. What will Redis Cloud do when the database is created?",
+  "explanation": "Redis Cloud recommends multiple shards for databases that grow beyond 25 GB (50 GB for Auto Tiering) or 25,000 ops/sec, and it calculates the number of shards automatically from the database memory limit and required throughput. The 50 GB figure is the Auto Tiering threshold, not the general one, shards are provisioned automatically rather than through support, and clustering works with the standard single-endpoint access mode, so OSS Cluster API is not a prerequisite.",
+  "tags": [
+    "redis",
+    "cloud-architecture",
+    "sharding"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "It automatically distributes the database over multiple shards, because the sizing passes both the 25 GB and the 25,000 ops/sec clustering guidelines"
+    },
+    {
+      "id": "b",
+      "text": "It keeps the database on a single shard, because clustering only starts at 50 GB"
+    },
+    {
+      "id": "c",
+      "text": "It creates a single-shard database and adds shards later only when Redis support is contacted"
+    },
+    {
+      "id": "d",
+      "text": "It refuses the request, because sharding requires enabling the OSS Cluster API first"
+    }
+  ],
+  "correct": "a"
+}

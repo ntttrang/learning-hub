@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-14-bank-6",
+  "domainId": "rc-cloud-db-admin",
+  "moduleId": "m-cloud-db-admin",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "A Pro subscription was created with multi-zone replication. Which changes can the team NOT make to the running subscription?",
+  "explanation": "Zone settings are locked at Pro subscription creation: you cannot convert a multi-zone subscription to single-zone or vice versa, and the availability-zone selection cannot be changed once the subscription is active. Using different zone settings requires a new subscription plus data migration. Per-database replication can be toggled on or off for each database at any time, and database sizing (such as memory limit) is editable, so those are not locked.",
+  "tags": [
+    "redis",
+    "db-administration",
+    "high-availability"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Convert the subscription from multi-zone to single-zone"
+    },
+    {
+      "id": "b",
+      "text": "Select different availability zones for the subscription's clusters"
+    },
+    {
+      "id": "c",
+      "text": "Turn replication on or off for an individual database in the subscription"
+    },
+    {
+      "id": "d",
+      "text": "Increase a database's memory limit"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

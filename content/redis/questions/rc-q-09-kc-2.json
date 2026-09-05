@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-09-kc-2",
+  "domainId": "rc-swops-install",
+  "moduleId": "m-swops-install",
+  "lessonId": "rc-l-09-install-upgrade",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "You installed the software on the first host of a new deployment. Which command creates the cluster on that node from the CLI?",
+  "explanation": "`rladmin cluster create` bootstraps the cluster on the node where it runs, taking a cluster name plus the admin username and password. `cluster join` attaches a node to an existing cluster, the install script only lays down the software, and `cluster recover` restores a cluster from a backup file — none of them create a new cluster.",
+  "tags": [
+    "redis",
+    "bootstrap",
+    "rladmin"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "rladmin cluster create name cluster.local username admin@example.com password admin-password"
+    },
+    {
+      "id": "b",
+      "text": "rladmin cluster join nodes 10.0.0.1 username admin@example.com password admin-password"
+    },
+    {
+      "id": "c",
+      "text": "sudo ./install.sh -y"
+    },
+    {
+      "id": "d",
+      "text": "rladmin cluster recover"
+    }
+  ],
+  "correct": "a"
+}

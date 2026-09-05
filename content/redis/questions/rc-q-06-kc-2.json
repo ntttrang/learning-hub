@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-06-kc-2",
+  "domainId": "rc-core-persist",
+  "moduleId": "m-persistence",
+  "lessonId": "rc-l-06-persistence",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "A deployment needs AOF persistence with the standard trade-off between durability and speed. Which fsync policy is the default?",
+  "explanation": "appendfsync everysec is the default: the AOF is fsynced about once per second, giving fast writes with at most roughly one second of acknowledged writes at risk after a crash. always fsyncs every command (slow, safest), and no leaves the timing to the operating system (fastest, least predictable).",
+  "tags": [
+    "redis",
+    "persistence",
+    "aof"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "everysec"
+    },
+    {
+      "id": "b",
+      "text": "always"
+    },
+    {
+      "id": "c",
+      "text": "no"
+    },
+    {
+      "id": "d",
+      "text": "on-write"
+    }
+  ],
+  "correct": "a"
+}

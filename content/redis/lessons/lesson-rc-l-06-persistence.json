@@ -1,0 +1,40 @@
+{
+  "id": "rc-l-06-persistence",
+  "domainId": "rc-core-persist",
+  "moduleId": "m-persistence",
+  "order": 1,
+  "slug": "persistence",
+  "title": "Persistence and durability",
+  "summary": "RDB snapshots with fork and copy-on-write, AOF logging with its three fsync policies, rewrite and the hybrid preamble format, and exactly what survives a restart under each configuration.",
+  "minutes": 15,
+  "difficulty": "intermediate",
+  "references": [
+    {
+      "title": "Redis persistence",
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/"
+    },
+    {
+      "title": "BGSAVE command reference",
+      "url": "https://redis.io/docs/latest/commands/bgsave/"
+    },
+    {
+      "title": "BGREWRITEAOF command reference",
+      "url": "https://redis.io/docs/latest/commands/bgrewriteaof/"
+    },
+    {
+      "title": "INFO command reference",
+      "url": "https://redis.io/docs/latest/commands/info/"
+    }
+  ],
+  "questionIds": [
+    "rc-q-06-kc-1",
+    "rc-q-06-kc-2",
+    "rc-q-06-kc-3"
+  ],
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "Redis holds data in memory, but it offers two complementary persistence\nmechanisms: **RDB** writes point-in-time binary snapshots, and **AOF** logs\nevery write command so the dataset can be replayed. You can run either, both,\nor neither (a pure cache needs no persistence). The exam's core question: for a\ngiven configuration, *how many seconds of writes can a crash lose?*\n\n## RDB: point-in-time snapshots\n\nRDB produces a compact binary file (`dump.rdb`) representing the dataset at one\nmoment. Snapshots happen on a schedule of **save points**:\n\n```text\nsave 3600 1          # 1 change in 1 hour\nsave 300 100         # 100 changes in 5 minutes\nsave 60 10000        # 10000 changes in 1 minute\nsave \"\"              # disables RDB entirely\n```\n\nAny one save point triggering is enough: whichever fires first starts a save.\nMore save points mean fresher snapshots under load, at the cost of more fork\nand disk work.\n\n### How BGSAVE works: fork plus copy-on-write\n\n`BGSAVE` forks the server process:\n\n- The child writes the snapshot to a temp file and atomically renames it over\n  the old RDB; the parent keeps serving clients uninterrupted.\n- Fork is cheap because the child shares the parent's memory pages via\n  **copy-on-write** — until one of them writes to a page, both read the same\n  physical copy. The snapshot therefore captures the dataset as it was at fork\n  time.\n- The cost concentrates in two places: the **fork itself** stalls the main\n  thread (watch `latest_fork_usec` in `INFO persistence` — it grows with memory\n  pressure), and under heavy writes the COW copies can **spike memory** while\n  the save runs.\n- The synchronous `SAVE` command also exists — it blocks everything and is\n  effectively only for debugging.\n\nRDB strengths: compact file, fast restarts, exactly one point-in-time artifact\nper save. RDB weakness: everything after the last completed snapshot vanishes\non failure — minutes of writes, gone.\n\n## AOF: the append-only log\n\nWith `appendonly yes`, every write command is appended to the AOF as it\nexecutes. Recovery replays the log. Durability is a dial called `appendfsync`:\n\n| Policy | Behavior | Crash window |\n| --- | --- | --- |\n| `always` | fsync after every write | worst case: the in-flight command |\n| `everysec` (default) | background thread fsyncs once per second | about 1–2 seconds |\n| `no` | the OS decides when to flush | unbounded, server-dependent |\n\n`always` is the safest and the slowest — every write waits on disk. `everysec`\nis the pragmatic default: a compromise that guarantees at most ~1 second of\nloss in exchange for nearly unperturbed write speed. `no` hands durability to\nthe OS page cache: never lose *more* than the cache holds, but never know\nexactly how much either.\n\nIf the AOF is truncated by a crash mid-write, `redis-check-aof` can repair the\ntail; if a write command arrived while the disk was full, the server is\nconfigured to keep answering reads but reject writes (write commands fail\nwith a `MISCONF` error until the AOF is repaired) rather than silently\ndiverge from the log.\n\n## AOF rewrite: compacting the log\n\nReplay time grows with log length, so the AOF is periodically **rewritten**:\n`BGREWRITEAOF` forks (same COW mechanics as `BGSAVE`) and walks the *current*\ndataset, emitting the minimal set of commands that recreates it — a thousand\n`INCR`s against one key become one `SET`. The original keeps receiving writes\nwhile the child works; the new log then replays far faster.\n\nRewrites trigger automatically when the log outgrows its baseline:\n\n```text\nauto-aof-rewrite-percentage 100   # when AOF is 100% bigger than last rewrite\nauto-aof-rewrite-min-size 64mb    # ...and at least this big\n```\n\n### The hybrid preamble\n\nSince Redis 5, `aof-use-rdb-preamble yes` (the default) makes every rewrite\nwrite a full **RDB snapshot as the preamble** of the AOF, followed by the\nincremental commands since the rewrite. You get RDB's fast load speed for the\nbulk of the data and AOF's fine-grained durability for the tail — the \"hybrid\"\npersistence the exam expects you to recognize.\n\n## What loads at restart\n\nThe load rules are short and absolute:\n\n- **AOF enabled** → Redis loads the AOF and ignores the RDB file. AOF wins\n  because it is the more durable record.\n- **AOF disabled** → Redis loads `dump.rdb`.\n- With hybrid AOF, the load is the RDB preamble plus the AOF tail.\n\n## Risk windows, config by config\n\n- RDB only: lose everything since the last *successful* save — with the\n  defaults above, potentially an hour or more on a quiet dataset, and a save\n  that failed (full disk) silently extends the window.\n- AOF `everysec`: lose roughly the last second — the standard choice.\n- AOF `always`: lose at most the command in flight.\n- RDB + AOF: the AOF window applies; the RDB is a fast-restart and backup\n  artifact, not the durability source.\n- No persistence: everything after restart is gone — correct for a cache,\n  catastrophic for a system of record.\n\nReplication is a separate durability axis: a replica holds a copy, but async\nreplication has its own loss window, and a `FLUSHALL` propagates — persistence\nand replication complement, never replace, each other.\n\n## Exam takeaways\n\n- RDB = compact point-in-time snapshots via `BGSAVE`: fork + copy-on-write;\n  the fork stall (`latest_fork_usec`) and COW memory spike are the costs.\n- Save points are \"N changes within M seconds\" thresholds; `save \"\"` disables\n  RDB; the snapshot covers only the moment of the fork.\n- `appendfsync always` / `everysec` / `no` trade durability against write\n  latency; `everysec` is the default with a ~1–2 second window.\n- `BGREWRITEAOF` compacts the log to the minimal replay of the current state,\n  and `aof-use-rdb-preamble` makes the rewrite an RDB body — hybrid persistence.\n- At restart, AOF (if enabled) always beats the RDB file."
+    }
+  ]
+}

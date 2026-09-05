@@ -1,0 +1,24 @@
+{
+  "id": "rc-q-15-bank-7",
+  "domainId": "rc-cloud-security",
+  "moduleId": "m-cloud-security",
+  "difficulty": "intermediate",
+  "kind": "fill",
+  "prompt": "Complete the console step that makes clients prove their identity with a certificate.",
+  "explanation": "Enabling client authentication (mutual TLS) requires every connecting client to present a certificate that the database trusts. After ticking the checkbox, you add each client certificate — an X.509 certificate or chain in PEM format, or one generated in the console — before saving the database.",
+  "tags": [
+    "redis",
+    "cloud-security",
+    "tls",
+    "mutual-tls"
+  ],
+  "template": "In the database's Security section, turn on the Transport layer security (TLS) toggle, then tick the ___ TLS (require client authentication) checkbox and add a client certificate before saving.",
+  "blanks": [
+    {
+      "answer": "Mutual",
+      "alternatives": [
+        "mutual"
+      ]
+    }
+  ]
+}

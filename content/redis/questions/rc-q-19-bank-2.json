@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-19-bank-2",
+  "domainId": "rc-cloud-data-access",
+  "moduleId": "m-cloud-data-access",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "A team plans to point its application at a different Redis Cloud database in the future without changing application code. Which endpoint should the application use today?",
+  "explanation": "Dynamic endpoints, which contain three words and a random number and end in db.redis.io, can be redirected to a different database at any time, so applications keep working across database migrations with no code changes. Static endpoints, which start with redis-<port>.c<number>, cannot be redirected. The private endpoint is a network path, not a redirectable alias, and the console URL is for management only.",
+  "tags": [
+    "redis",
+    "data-access",
+    "endpoints"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "A dynamic endpoint ending in db.redis.io"
+    },
+    {
+      "id": "b",
+      "text": "A static endpoint such as redis-12345.c18.us-east1-mz.ec2.cloud.rlrcp.com"
+    },
+    {
+      "id": "c",
+      "text": "The private endpoint, because it can be redirected to another database"
+    },
+    {
+      "id": "d",
+      "text": "The database's console URL"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "rc-q-03-bank-9",
+  "domainId": "rc-core-model",
+  "moduleId": "m-data-modeling",
+  "difficulty": "advanced",
+  "kind": "fill",
+  "prompt": "Complete the command that reads a score-tied leaderboard range in lexicographic member order.",
+  "explanation": "When every member shares one score, ordering by score carries no information, so BYLEX switches ZRANGE to lexicographic member order \u2014 useful for alphabetical listings such as autocomplete dictionaries over equal-score members.",
+  "tags": [
+    "redis",
+    "data-modeling",
+    "sorted-sets"
+  ],
+  "template": "All members of board share the score 0. ZRANGE board 0 -1 ___ returns them in lexicographic member order.",
+  "blanks": [
+    {
+      "answer": "BYLEX",
+      "alternatives": [
+        "bylex"
+      ]
+    }
+  ]
+}

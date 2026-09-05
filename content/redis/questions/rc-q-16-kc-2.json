@@ -1,0 +1,38 @@
+{
+  "id": "rc-q-16-kc-2",
+  "domainId": "rc-cloud-networking",
+  "moduleId": "m-cloud-networking",
+  "lessonId": "rc-l-16-cloud-networking",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each connectivity option to its defining property.",
+  "explanation": "Each option solves a different problem: VPC peering opens unrestricted private access between two VPCs but needs non-overlapping CIDRs on AWS; Private Service Connect is the Google Cloud alternative that tolerates overlapping CIDRs; Transit Gateway is the AWS routing alternative for the same problem; the CIDR allow list filters source IPs on both endpoint types; and dynamic endpoints are the redirectable three-word hostnames ending in db.redis.io.",
+  "tags": [
+    "redis",
+    "cloud-networking",
+    "private-connectivity",
+    "cidr-allow-list"
+  ],
+  "pairs": [
+    {
+      "left": "VPC peering",
+      "right": "Unrestricted private access between two VPCs; AWS consumer CIDRs must not overlap"
+    },
+    {
+      "left": "Private Service Connect",
+      "right": "Google Cloud option that still works when CIDR ranges overlap"
+    },
+    {
+      "left": "AWS Transit Gateway",
+      "right": "AWS routing alternative when CIDR ranges overlap"
+    },
+    {
+      "left": "CIDR allow list",
+      "right": "Filters source IPs on both the public and the private endpoint"
+    },
+    {
+      "left": "Dynamic endpoint",
+      "right": "Three-word hostname ending in db.redis.io that can be redirected"
+    }
+  ]
+}

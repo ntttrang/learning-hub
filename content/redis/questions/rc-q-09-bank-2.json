@@ -1,0 +1,41 @@
+{
+  "id": "rc-q-09-bank-2",
+  "domainId": "rc-swops-install",
+  "moduleId": "m-swops-install",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which statements about the install.sh command-line options of Redis Software are correct?",
+  "explanation": "The installer's documented options include `-y` (answer yes to every prompt with the defaults), `-c` (point at an answer file that responds to the install questions), and `--os-user` (the OS account for the install, defaulting to `redislabs`). Option D is the classic trap: `-c` takes an answer file and has nothing to do with creating a cluster — that is `rladmin cluster create` or the setup UI after installation. The install-location options such as `--install-dir` are marked new-installs-only, so they cannot be applied during an upgrade.",
+  "tags": [
+    "redis",
+    "install",
+    "install-script"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "-y automatically answers yes to all install prompts, accepting the default values"
+    },
+    {
+      "id": "b",
+      "text": "-c specifies an answer file used to respond to the install prompts"
+    },
+    {
+      "id": "c",
+      "text": "--os-user sets the OS user account associated with the install, defaulting to redislabs"
+    },
+    {
+      "id": "d",
+      "text": "-c creates and configures a new cluster once installation finishes"
+    },
+    {
+      "id": "e",
+      "text": "--install-dir can be used to move the installation directory during an upgrade"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

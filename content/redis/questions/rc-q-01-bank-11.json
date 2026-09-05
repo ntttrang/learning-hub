@@ -1,0 +1,23 @@
+{
+  "id": "rc-q-01-bank-11",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "difficulty": "beginner",
+  "kind": "fill",
+  "prompt": "Complete the redis-cli command that seeds a leaderboard.",
+  "explanation": "ZADD is the write command that pairs a member with a numeric score, creating the sorted set if it does not exist yet.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "sorted-sets"
+  ],
+  "template": "___ leaderboard alice 120",
+  "blanks": [
+    {
+      "answer": "ZADD",
+      "alternatives": [
+        "zadd"
+      ]
+    }
+  ]
+}

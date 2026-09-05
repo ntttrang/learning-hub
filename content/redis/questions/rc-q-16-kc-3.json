@@ -1,0 +1,39 @@
+{
+  "id": "rc-q-16-kc-3",
+  "domainId": "rc-cloud-networking",
+  "moduleId": "m-cloud-networking",
+  "lessonId": "rc-l-16-cloud-networking",
+  "difficulty": "intermediate",
+  "kind": "order",
+  "prompt": "Arrange the AWS VPC peering setup steps for a Redis Cloud Pro subscription in the order an operator performs them.",
+  "explanation": "Peering starts on the Redis side: initiate it from the subscription's Connectivity > VPC Peering screen, then approve the request in the AWS console. The private path is only finished by updating route tables — a destination route for the Redis Cloud VPC CIDR targeting the peering connection — after which Redis recommends pointing the application at the private endpoint. If a CIDR allow list is enabled, the peered source IPs must be added to it before applications connect.",
+  "tags": [
+    "redis",
+    "cloud-networking",
+    "vpc-peering"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Initiate peering from the subscription's Connectivity > VPC Peering screen in the Redis Cloud console"
+    },
+    {
+      "id": "b",
+      "text": "Accept the peering request in the AWS console for the application VPC"
+    },
+    {
+      "id": "c",
+      "text": "Add a route to the Redis Cloud VPC CIDR in the application VPC's route table, targeting the peering connection"
+    },
+    {
+      "id": "d",
+      "text": "Point the application's connection string at the database's private endpoint"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c",
+    "d"
+  ]
+}

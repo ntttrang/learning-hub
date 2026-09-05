@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-05-kc-2",
+  "domainId": "rc-core-cluster",
+  "moduleId": "m-clustering-ha",
+  "lessonId": "rc-l-05-clustering-ha",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Which command turns the server you are connected to into a replica of the master at 10.0.0.5:6379?",
+  "explanation": "REPLICAOF points the local server at a master and starts syncing from it; REPLICAOF NO ONE is the opposite and promotes the server back to being a master of its own data.",
+  "tags": [
+    "redis",
+    "replication"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "REPLICAOF 10.0.0.5 6379"
+    },
+    {
+      "id": "b",
+      "text": "SLAVEOF NO ONE 10.0.0.5"
+    },
+    {
+      "id": "c",
+      "text": "CLUSTER REPLICATE 10.0.0.5:6379"
+    },
+    {
+      "id": "d",
+      "text": "SYNC 10.0.0.5 6379"
+    }
+  ],
+  "correct": "a"
+}

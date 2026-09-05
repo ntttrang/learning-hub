@@ -1,0 +1,38 @@
+{
+  "id": "rc-q-04-bank-6",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "difficulty": "advanced",
+  "kind": "order",
+  "prompt": "Latency spiked for an hour last night. Arrange a sane debugging sequence using the server's own tooling.",
+  "explanation": "Start from the slow log to see exactly which commands were slow, cross-check aggregate behavior with INFO commandstats (how often each suspect runs), then fix the hot O(N) pattern with an incremental alternative, and finally reset the log and re-measure under the same load.",
+  "tags": [
+    "redis",
+    "performance",
+    "workflow"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Run SLOWLOG GET to identify the slowest recent commands"
+    },
+    {
+      "id": "b",
+      "text": "Check INFO commandstats to see how often each suspect command runs"
+    },
+    {
+      "id": "c",
+      "text": "Replace the hot O(N) command with an incremental alternative, such as SCAN instead of KEYS"
+    },
+    {
+      "id": "d",
+      "text": "Run SLOWLOG RESET and re-measure latency under the same workload"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c",
+    "d"
+  ]
+}

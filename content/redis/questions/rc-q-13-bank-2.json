@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-13-bank-2",
+  "domainId": "rc-cloud-subscription",
+  "moduleId": "m-cloud-subscription",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "A developer on a free account wants to automate database creation through the Redis Cloud REST API, but every request fails before reaching any endpoint. What is the most likely cause?",
+  "explanation": "Free Redis Cloud Essentials plans do not include the REST API; it becomes available on Paid Redis Cloud Essentials, Essentials with Redis Flex, and Redis Cloud Pro. The other claims are wrong in verifiable ways: account keys are created by the account owner when enabling the API (support is involved only to change or delete an account key), and paid Essentials plans can use the REST API just like Pro.",
+  "tags": [
+    "redis",
+    "subscription-administration",
+    "rest-api"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Free Redis Cloud Essentials plans do not include the Redis Cloud REST API"
+    },
+    {
+      "id": "b",
+      "text": "The REST API requires a Redis Cloud Pro annual plan"
+    },
+    {
+      "id": "c",
+      "text": "Account keys can only be created by Redis support"
+    },
+    {
+      "id": "d",
+      "text": "Paid Essentials plans cannot call the API; only Pro accounts can automate anything"
+    }
+  ],
+  "correct": "a"
+}

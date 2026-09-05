@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-01-bank-1",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "The string key hits:counter holds the value 10. Which command increases its current value by 5?",
+  "explanation": "INCRBY treats the string as a 64-bit signed integer and adds the increment atomically, so 10 becomes 15. APPEND would concatenate bytes and produce 105, SET would blindly overwrite the value, and GETRANGE only reads a substring.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "strings"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "INCRBY hits:counter 5"
+    },
+    {
+      "id": "b",
+      "text": "APPEND hits:counter 5"
+    },
+    {
+      "id": "c",
+      "text": "SET hits:counter 5"
+    },
+    {
+      "id": "d",
+      "text": "GETRANGE hits:counter 0 4"
+    }
+  ],
+  "correct": "a"
+}

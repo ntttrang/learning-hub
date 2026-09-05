@@ -1,0 +1,67 @@
+[
+  {
+    "id": "redis-dev-mock-1",
+    "title": "Redis Certified Developer — Mock Exam 1",
+    "description": "Mirrors the associate developer exam scale — 65 questions, 90 minutes, 70% to pass — and samples all eight pack domains in proportion to their exam weights.",
+    "durationMinutes": 90,
+    "passingScore": 700,
+    "selection": {
+      "kind": "sampled",
+      "domainPlan": {
+        "rc-core-types": 12,
+        "rc-core-keys": 6,
+        "rc-core-model": 9,
+        "rc-core-perf": 11,
+        "rc-core-cluster": 8,
+        "rc-core-persist": 5,
+        "rc-core-security": 4,
+        "rc-dev-java": 10
+      },
+      "seed": 20260903
+    }
+  },
+  {
+    "id": "redis-swops-mock-1",
+    "title": "Redis Certified Software Operator — Mock Exam 1",
+    "description": "Mirrors the associate Software Operator exam scale — 60 questions, 60 minutes, 70% to pass (scaled 700) — sampling the three operator domains plus a core trimmed toward persistence, HA, and security for an operations focus.",
+    "durationMinutes": 60,
+    "passingScore": 700,
+    "selection": {
+      "kind": "sampled",
+      "domainPlan": {
+        "rc-swops-install": 15,
+        "rc-swops-cluster": 15,
+        "rc-swops-ops": 15,
+        "rc-core-types": 3,
+        "rc-core-keys": 1,
+        "rc-core-model": 1,
+        "rc-core-perf": 2,
+        "rc-core-cluster": 3,
+        "rc-core-persist": 2,
+        "rc-core-security": 3
+      },
+      "seed": 20260904
+    }
+  },
+  {
+    "id": "redis-cloud-mock-1",
+    "title": "Redis Certified Cloud Operator — Mock Exam 1",
+    "description": "Mirrors the associate Cloud Operator exam scale — 65 questions, 90 minutes, 70% to pass (scaled 700) — sampling all eight official domains in proportion to their published weights.",
+    "durationMinutes": 90,
+    "passingScore": 700,
+    "selection": {
+      "kind": "sampled",
+      "domainPlan": {
+        "rc-cloud-arch": 6,
+        "rc-cloud-subscription": 7,
+        "rc-cloud-db-admin": 11,
+        "rc-cloud-security": 10,
+        "rc-cloud-networking": 9,
+        "rc-cloud-monitoring": 7,
+        "rc-cloud-automation": 7,
+        "rc-cloud-data-access": 8
+      },
+      "seed": 20260905
+    }
+  }
+]

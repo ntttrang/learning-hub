@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-06-kc-1",
+  "domainId": "rc-core-persist",
+  "moduleId": "m-persistence",
+  "lessonId": "rc-l-06-persistence",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "What does BGSAVE do?",
+  "explanation": "BGSAVE forks a child process that writes a point-in-time snapshot of the dataset to the RDB file while the parent keeps serving clients; copy-on-write keeps the child's view stable without duplicating the whole dataset.",
+  "tags": [
+    "redis",
+    "persistence",
+    "rdb"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Forks a child process that writes a point-in-time snapshot to the RDB file"
+    },
+    {
+      "id": "b",
+      "text": "Backs up the AOF file to disk without pausing writes"
+    },
+    {
+      "id": "c",
+      "text": "Copies the dataset to a replica over the replication link"
+    },
+    {
+      "id": "d",
+      "text": "Flushes the operating system page cache for dump.rdb"
+    }
+  ],
+  "correct": "a"
+}

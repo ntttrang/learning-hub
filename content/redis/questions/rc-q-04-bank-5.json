@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-04-bank-5",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which statements about pipelines are correct?",
+  "explanation": "Pipelines batch many commands into fewer round trips, which is their entire purpose. They are not transactions: the server may interleave commands from other clients between pipelined commands, and atomicity needs MULTI/EXEC or Lua instead.",
+  "options": [
+    {
+      "id": "a",
+      "text": "A pipeline reduces network round trips by batching many commands into one request"
+    },
+    {
+      "id": "b",
+      "text": "Commands in one pipeline execute atomically as a group"
+    },
+    {
+      "id": "c",
+      "text": "The server may interleave commands from other clients between a pipeline's commands"
+    },
+    {
+      "id": "d",
+      "text": "A pipeline only works when wrapped in MULTI/EXEC"
+    }
+  ],
+  "correct": [
+    "a",
+    "c"
+  ],
+  "tags": [
+    "redis",
+    "performance",
+    "pipelining"
+  ]
+}

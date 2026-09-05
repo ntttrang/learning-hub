@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-04-bank-10",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "difficulty": "intermediate",
+  "kind": "codeReading",
+  "prompt": "In the SLOWLOG GET output below, what does the number 245123 mean?",
+  "explanation": "Slow log entries list the entry id, the unix timestamp, the duration, and the command with its arguments. The duration is expressed in microseconds, so 245123 is roughly 245 milliseconds of execution time.",
+  "tags": [
+    "redis",
+    "performance",
+    "slowlog"
+  ],
+  "code": "SLOWLOG GET 1\n1) 1) (integer) 14\n   2) (integer) 1712345678\n   3) (integer) 245123\n   4) 1) \"KEYS\"\n      2) \"session:*\"",
+  "options": [
+    {
+      "id": "a",
+      "text": "The command's duration in microseconds, about 245 ms"
+    },
+    {
+      "id": "b",
+      "text": "The command's duration in milliseconds"
+    },
+    {
+      "id": "c",
+      "text": "The number of keys the command matched"
+    },
+    {
+      "id": "d",
+      "text": "The unix timestamp of the entry"
+    }
+  ],
+  "correct": "a"
+}

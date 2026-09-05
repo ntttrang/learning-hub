@@ -1,0 +1,66 @@
+{
+  "rs-install": {
+    "title": "Plan Redis Software deployment",
+    "url": "https://redis.io/docs/latest/operate/rs/installing-upgrading/install/plan-deployment/"
+  },
+  "rs-bootstrap": {
+    "title": "Set up a new cluster",
+    "url": "https://redis.io/docs/latest/operate/rs/clusters/new-cluster-setup/"
+  },
+  "rs-licenses": {
+    "title": "Cluster license keys",
+    "url": "https://redis.io/docs/latest/operate/rs/clusters/configure/license-keys/"
+  },
+  "rs-certificates": {
+    "title": "Certificates",
+    "url": "https://redis.io/docs/latest/operate/rs/security/certificates/"
+  },
+  "rs-upgrades": {
+    "title": "Upgrade a Redis Software cluster",
+    "url": "https://redis.io/docs/latest/operate/rs/installing-upgrading/upgrading/upgrade-cluster/"
+  },
+  "rs-rladmin": {
+    "title": "rladmin",
+    "url": "https://redis.io/docs/latest/operate/rs/references/cli-utilities/rladmin/"
+  },
+  "rs-backup-restore": {
+    "title": "Schedule periodic backups",
+    "url": "https://redis.io/docs/latest/operate/rs/databases/import-export/schedule-backups/"
+  },
+  "rs-monitoring-alerts": {
+    "title": "Monitoring with metrics and alerts",
+    "url": "https://redis.io/docs/latest/operate/rs/monitoring/"
+  },
+  "rc-subscriptions": {
+    "title": "Manage subscriptions",
+    "url": "https://redis.io/docs/latest/operate/rc/subscriptions/"
+  },
+  "rc-create-database": {
+    "title": "Create a database",
+    "url": "https://redis.io/docs/latest/operate/rc/databases/create-database/"
+  },
+  "rc-security": {
+    "title": "Cloud database security",
+    "url": "https://redis.io/docs/latest/operate/rc/security/database-security/"
+  },
+  "rc-networking": {
+    "title": "Network security",
+    "url": "https://redis.io/docs/latest/operate/rc/security/database-security/network-security/"
+  },
+  "rc-monitoring": {
+    "title": "Monitor database performance",
+    "url": "https://redis.io/docs/latest/operate/rc/databases/monitor-performance/"
+  },
+  "rc-backups": {
+    "title": "Back up and export a database",
+    "url": "https://redis.io/docs/latest/operate/rc/databases/back-up-data/"
+  },
+  "rc-maintenance": {
+    "title": "Subscription and database maintenance",
+    "url": "https://redis.io/docs/latest/operate/rc/subscriptions/maintenance/"
+  },
+  "rc-active-active": {
+    "title": "Active-Active Redis",
+    "url": "https://redis.io/docs/latest/operate/rc/databases/active-active/"
+  }
+}

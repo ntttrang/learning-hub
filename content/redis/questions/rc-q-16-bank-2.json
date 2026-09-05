@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-16-bank-2",
+  "domainId": "rc-cloud-networking",
+  "moduleId": "m-cloud-networking",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Which hostname follows the Redis Cloud static endpoint pattern of redis-<port>.c<number> followed by the region and cloud domain?",
+  "explanation": "Static endpoints begin with redis-<port>.c<number> — the database's assigned port is right there in the name. Hostnames of three random words ending in db.redis.io are dynamic endpoints, which can be redirected to a different database, and the other two options are not Redis Cloud endpoint formats at all.",
+  "tags": [
+    "redis",
+    "cloud-networking",
+    "endpoints",
+    "dns"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "redis-12345.c12345.us-east-1-mz.ec2.cloud.rlrcp.com"
+    },
+    {
+      "id": "b",
+      "text": "horse-battery-staple-12345.db.redis.io"
+    },
+    {
+      "id": "c",
+      "text": "cache.mycompany.internal:6379"
+    },
+    {
+      "id": "d",
+      "text": "redis://default:password@my-db.redis.cloud:16379"
+    }
+  ],
+  "correct": "a"
+}

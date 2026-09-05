@@ -1,0 +1,20 @@
+{
+  "id": "rc-q-04-bank-12",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "difficulty": "advanced",
+  "kind": "bug",
+  "prompt": "An engineer hunts for nightly latency spikes by piping MONITOR through grep and leaving it running in production. Which line is the mistake?",
+  "explanation": "MONITOR streams every command the server processes and its overhead can measurably slow or even destabilize a busy instance \u2014 it is a debugging tool for short, supervised windows, not something left running. Use the slow log, LATENCY, and commandstats, which sample or aggregate instead of copying every command.",
+  "tags": [
+    "redis",
+    "performance",
+    "monitor"
+  ],
+  "codeLines": [
+    "# p99 latency spikes nightly at 02:00",
+    "redis-cli CONFIG SET slowlog-log-slower-than 0",
+    "redis-cli MONITOR | grep GET   # left running in production"
+  ],
+  "buggyLineIndex": 2
+}

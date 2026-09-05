@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-19-bank-1",
+  "domainId": "rc-cloud-data-access",
+  "moduleId": "m-cloud-data-access",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Which network endpoints does a Redis Cloud Essentials database provide?",
+  "explanation": "Both Redis Cloud Essentials and Redis Cloud Pro databases get a public endpoint reachable from the internet. Private endpoints require a private connectivity method, such as VPC peering, Google Cloud Private Service Connect, or AWS Transit Gateway or PrivateLink, and those methods are Pro capabilities, so an Essentials database provides only the public endpoint.",
+  "tags": [
+    "redis",
+    "data-access",
+    "endpoints"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "A public endpoint only"
+    },
+    {
+      "id": "b",
+      "text": "A private endpoint only"
+    },
+    {
+      "id": "c",
+      "text": "Both a public and a private endpoint"
+    },
+    {
+      "id": "d",
+      "text": "No network endpoints, because Essentials databases are reached through the console"
+    }
+  ],
+  "correct": "a"
+}

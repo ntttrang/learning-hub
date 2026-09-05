@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-10-bank-5",
+  "domainId": "rc-swops-cluster",
+  "moduleId": "m-swops-cluster",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "Rack-zone awareness is enabled on the cluster and for a replicated database. Where does the cluster place that database's replica shards?",
+  "explanation": "With rack-zone awareness the cluster maps each node to a rack-zone ID and places primaries, their corresponding replicas, and the associated endpoints on nodes in different racks or zones, so a rack failure leaves replicas in surviving racks to promote. Colocating a replica with its primary on one node is never done for HA, there is no special master-node placement rule for replicas, and keeping replicas in the same rack would defeat the whole feature.",
+  "tags": [
+    "redis",
+    "rack-awareness",
+    "high-availability"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "On nodes in a different rack or zone from the corresponding primary shards"
+    },
+    {
+      "id": "b",
+      "text": "On any node with free capacity, including the same node as the primary"
+    },
+    {
+      "id": "c",
+      "text": "Only on the cluster's master node, where replication is coordinated"
+    },
+    {
+      "id": "d",
+      "text": "On nodes in the same rack to keep replication traffic local"
+    }
+  ],
+  "correct": "a"
+}

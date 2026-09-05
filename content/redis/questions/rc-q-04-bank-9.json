@@ -1,0 +1,30 @@
+{
+  "id": "rc-q-04-bank-9",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "difficulty": "intermediate",
+  "kind": "fill",
+  "prompt": "Complete the sentence contrasting atomicity and batching.",
+  "explanation": "MULTI/EXEC gives all-or-nothing queueing and serial execution, which is what atomicity requires here; a pipeline batches transport but lets other clients' commands interleave, so it saves round trips without adding atomicity.",
+  "tags": [
+    "redis",
+    "performance",
+    "pipelining"
+  ],
+  "template": "Use ___ to run a group of commands atomically, and a ___ to batch many independent commands into fewer round trips.",
+  "blanks": [
+    {
+      "answer": "MULTI",
+      "alternatives": [
+        "MULTI/EXEC",
+        "a transaction"
+      ]
+    },
+    {
+      "answer": "pipeline",
+      "alternatives": [
+        "pipelining"
+      ]
+    }
+  ]
+}

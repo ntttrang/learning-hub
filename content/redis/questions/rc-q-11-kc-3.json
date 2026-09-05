@@ -1,0 +1,35 @@
+{
+  "id": "rc-q-11-kc-3",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "lessonId": "rc-l-11-monitoring-troubleshooting",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "Another team needs a one-off copy of a database without scheduling recurring backups. Which action produces an on-demand copy you can later import elsewhere?",
+  "explanation": "Export writes a copy of the database to storage on demand: it first saves a temporary copy on the node's local storage, then transfers it to the destination you pick (FTP, SFTP, S3, Azure Blob, Google Cloud Storage, or a local mount point), and fails if there is not enough space for either step. Recurring backups are a separate feature, configured under the database's Durability settings.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "backup",
+    "export"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Export, from the database's additional actions menu"
+    },
+    {
+      "id": "b",
+      "text": "Enable periodic backups with an hourly interval"
+    },
+    {
+      "id": "c",
+      "text": "Generate a support package, which already contains the dataset"
+      },
+    {
+      "id": "d",
+      "text": "Run rladmin cluster debug_info and extract the data from the archive"
+    }
+  ],
+  "correct": "a"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "rc-q-18-kc-2",
+  "domainId": "rc-cloud-automation",
+  "moduleId": "m-cloud-automation",
+  "lessonId": "rc-l-18-cloud-automation",
+  "difficulty": "beginner",
+  "kind": "fill",
+  "prompt": "Complete the sentence about enabling the Redis Cloud REST API.",
+  "explanation": "The API is disabled on all accounts by default. You must enable it and create the account key and user keys before any request can authenticate.",
+  "tags": [
+    "redis",
+    "automation",
+    "rest-api"
+  ],
+  "template": "The Redis Cloud REST API is disabled by ___ on all accounts, so you must enable it before your API keys will authenticate.",
+  "blanks": [
+    {
+      "answer": "default"
+    }
+  ]
+}

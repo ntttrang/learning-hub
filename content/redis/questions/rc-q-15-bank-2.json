@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-15-bank-2",
+  "domainId": "rc-cloud-security",
+  "moduleId": "m-cloud-security",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "A team wants to encrypt client connections to a database that runs on a Free Redis Cloud Essentials plan. What should they do?",
+  "explanation": "TLS is available on Paid Redis Cloud Essentials plans and on Redis Cloud Pro, but it is not available for Free Redis Cloud Essentials — so upgrading is the only way to add it. Toggling TLS, adding certificates, and rotating the Default user password are paid-plan actions or unrelated to TLS entirely.",
+  "tags": [
+    "redis",
+    "cloud-security",
+    "tls",
+    "essentials"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Upgrade to a paid Essentials plan or Redis Cloud Pro, because TLS is not available on the Free plan"
+    },
+    {
+      "id": "b",
+      "text": "Enable the TLS toggle in the database's Security section, which is free on every plan"
+    },
+    {
+      "id": "c",
+      "text": "Add the Redis Cloud certificate authority bundle to the subscription to unlock TLS"
+    },
+    {
+      "id": "d",
+      "text": "Rotate the Default user password, which automatically turns on TLS"
+    }
+  ],
+  "correct": "a"
+}

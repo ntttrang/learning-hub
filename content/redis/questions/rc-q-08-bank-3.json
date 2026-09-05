@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-08-bank-3",
+  "domainId": "rc-dev-java",
+  "moduleId": "m-java-clients",
+  "difficulty": "advanced",
+  "kind": "multi",
+  "prompt": "Which statements about Lettuce and Redisson are correct?",
+  "explanation": "Lettuce is Netty-based: its shared connection is thread-safe and its async API returns CompletableFuture. Redisson sits a level higher, offering distributed objects and services such as RLock and RMap rather than raw command access. Both support pipelines; Redisson is not a thin wrapper.",
+  "tags": [
+    "redis",
+    "java",
+    "lettuce"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Lettuce is built on Netty, and one connection can be shared safely between threads"
+    },
+    {
+      "id": "b",
+      "text": "Lettuce async calls return CompletableFuture objects"
+    },
+    {
+      "id": "c",
+      "text": "Redisson is a thin wrapper over raw commands with no higher-level abstractions"
+    },
+    {
+      "id": "d",
+      "text": "Redisson provides distributed objects such as RLock and RMap"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

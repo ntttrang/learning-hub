@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-14-bank-3",
+  "domainId": "rc-cloud-db-admin",
+  "moduleId": "m-cloud-db-admin",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "Which persistence settings can a paid Redis Cloud Essentials database use?",
+  "explanation": "Paid Redis Cloud Essentials plans support AOF every 1 second plus all snapshot intervals (1, 6, or 12 hours). AOF every write is reserved for Redis Cloud Pro, and Free Redis Cloud Essentials plans do not support data persistence at all — the setting is disabled entirely. When replication is enabled, persistence is performed against the replicas to reduce the impact on the primary.",
+  "tags": [
+    "redis",
+    "db-administration",
+    "persistence"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "AOF every 1 second and snapshots every 1, 6, or 12 hours"
+    },
+    {
+      "id": "b",
+      "text": "AOF every write, AOF every 1 second, and snapshots"
+    },
+    {
+      "id": "c",
+      "text": "Snapshots only, because Essentials databases cannot use AOF"
+    },
+    {
+      "id": "d",
+      "text": "None — persistence is unavailable on every Essentials plan"
+    }
+  ],
+  "correct": "a"
+}

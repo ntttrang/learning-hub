@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-17-kc-1",
+  "domainId": "rc-cloud-monitoring",
+  "moduleId": "m-cloud-monitoring",
+  "lessonId": "rc-l-17-cloud-monitoring",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Where in the Redis Cloud console do you view graphs of a database's performance data?",
+  "explanation": "Performance graphs live on the Metrics tab of the database screen. The Configuration tab holds database settings such as endpoints and security, Access Management manages the account team, and the Logs page shows system log events rather than performance graphs.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "metrics"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "The Metrics tab of the database screen"
+    },
+    {
+      "id": "b",
+      "text": "The Configuration tab of the subscription"
+    },
+    {
+      "id": "c",
+      "text": "The Logs page of the account menu"
+    },
+    {
+      "id": "d",
+      "text": "The Access Management Team tab"
+    }
+  ],
+  "correct": "a"
+}

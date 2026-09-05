@@ -1,0 +1,22 @@
+{
+  "id": "rc-q-09-bank-8",
+  "domainId": "rc-swops-install",
+  "moduleId": "m-swops-install",
+  "difficulty": "advanced",
+  "kind": "bug",
+  "prompt": "An operator wrote this runbook to patch the operating system on node 3 and return it to service. Which line is the mistake?",
+  "explanation": "Maintenance mode is designed exactly for OS patching: entering it migrates the shards out, records a snapshot of the node's shard and endpoint configuration, and marks the node so no shards return to it. When the patching is done, `maintenance_mode off` restores the node from that snapshot. Removing the node is wrong — removal permanently decreases cluster capacity, and a removed node must have Redis Software uninstalled and reinstalled before it can ever rejoin.",
+  "tags": [
+    "redis",
+    "maintenance-mode",
+    "node-ops"
+  ],
+  "codeLines": [
+    "# Patch the OS on node 3 during a maintenance window",
+    "rladmin node 3 maintenance_mode on overwrite_snapshot",
+    "sudo yum update -y && sudo reboot",
+    "rladmin node 3 remove   # free the drained node so it can be patched",
+    "rladmin node 3 maintenance_mode off"
+  ],
+  "buggyLineIndex": 3
+}

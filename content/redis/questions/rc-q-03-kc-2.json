@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-03-kc-2",
+  "domainId": "rc-core-model",
+  "moduleId": "m-data-modeling",
+  "lessonId": "rc-l-03-data-modeling",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "A shopping cart maps product ids to quantities, and each quantity is adjusted on its own. Which structure fits best?",
+  "explanation": "A hash maps each product id to its quantity, so HSET and HINCRBY adjust one product at a time and HGET reads a single line of the cart. A sorted set would force a re-score on every quantity change and orders by quantity, which the cart does not need.",
+  "tags": [
+    "redis",
+    "data-modeling",
+    "hashes"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "A hash keyed by product id, holding quantities as field values"
+    },
+    {
+      "id": "b",
+      "text": "A list of product ids in the order they were added"
+    },
+    {
+      "id": "c",
+      "text": "A set of product ids"
+    },
+    {
+      "id": "d",
+      "text": "A sorted set of product ids scored by quantity"
+    }
+  ],
+  "correct": "a"
+}

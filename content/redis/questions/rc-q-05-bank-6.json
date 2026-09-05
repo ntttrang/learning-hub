@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-05-bank-6",
+  "domainId": "rc-core-cluster",
+  "moduleId": "m-clustering-ha",
+  "difficulty": "intermediate",
+  "kind": "codeReading",
+  "prompt": "What happens next in this redis-cli session against a cluster node?",
+  "explanation": "The node refuses the GET because key user:42 hashes to slot 4813, which belongs to the node at 127.0.0.1:7001. The client should reissue the GET there; the -c option makes redis-cli follow such redirects automatically.",
+  "tags": [
+    "redis",
+    "cluster",
+    "redirects"
+  ],
+  "code": "127.0.0.1:7000> GET user:42\n(error) MOVED 4813 127.0.0.1:7001",
+  "options": [
+    {
+      "id": "a",
+      "text": "The client sends GET user:42 to 127.0.0.1:7001"
+    },
+    {
+      "id": "b",
+      "text": "The client retries GET user:42 on 127.0.0.1:7000 until the slot migrates back"
+    },
+    {
+      "id": "c",
+      "text": "Node 7000 copies the key to node 7001 before answering"
+    },
+    {
+      "id": "d",
+      "text": "The cluster rebalances slot 4813 back to node 7000"
+    }
+  ],
+  "correct": "a"
+}

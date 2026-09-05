@@ -1,0 +1,41 @@
+{
+  "id": "rc-q-10-bank-2",
+  "domainId": "rc-swops-cluster",
+  "moduleId": "m-swops-cluster",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which of these are valid `rladmin status` views you can run against a Redis Software cluster?",
+  "explanation": "The documented status views are `status` itself plus `status databases`, `status endpoints`, `status modules`, `status nodes`, and `status shards`. There are no session or connection views under rladmin status — client connection state is inspected with other tooling, not these subcommands.",
+  "tags": [
+    "redis",
+    "rladmin",
+    "status"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "rladmin status databases"
+    },
+    {
+      "id": "b",
+      "text": "rladmin status endpoints"
+    },
+    {
+      "id": "c",
+      "text": "rladmin status shards"
+    },
+    {
+      "id": "d",
+      "text": "rladmin status sessions"
+    },
+    {
+      "id": "e",
+      "text": "rladmin status connections"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

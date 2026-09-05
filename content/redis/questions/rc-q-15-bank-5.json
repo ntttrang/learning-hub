@@ -1,0 +1,42 @@
+{
+  "id": "rc-q-15-bank-5",
+  "domainId": "rc-cloud-security",
+  "moduleId": "m-cloud-security",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which features control which clients can reach a Redis Cloud database at the network layer? Select all that apply.",
+  "explanation": "The CIDR allow list filters source IP ranges, VPC peering moves the database onto a private network path that only connected VPCs can use, and blocking the public endpoint on a Pro subscription rejects any connection originating outside RFC 1918 private address space. The Default user password authenticates commands once a connection exists but does not gate network reachability, and TLS encrypts the connection without deciding who may connect.",
+  "tags": [
+    "redis",
+    "cloud-security",
+    "network-security",
+    "cidr-allow-list"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "A database CIDR allow list"
+    },
+    {
+      "id": "b",
+      "text": "VPC peering between the application VPC and the Redis Cloud VPC"
+    },
+    {
+      "id": "c",
+      "text": "Blocking the public endpoint on a Pro subscription"
+    },
+    {
+      "id": "d",
+      "text": "Setting a new Default user password"
+    },
+    {
+      "id": "e",
+      "text": "Enabling TLS with the Redis Cloud certificate authority bundle"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

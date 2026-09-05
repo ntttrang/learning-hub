@@ -1,0 +1,24 @@
+{
+  "id": "rc-q-05-bank-5",
+  "domainId": "rc-core-cluster",
+  "moduleId": "m-clustering-ha",
+  "difficulty": "intermediate",
+  "kind": "fill",
+  "prompt": "Complete the sentence describing how a key's slot is computed.",
+  "explanation": "slot = CRC16(key) mod 16384. Every node can compute any key's slot locally, which is what lets clients and nodes agree on where a key belongs without a lookup.",
+  "tags": [
+    "redis",
+    "cluster",
+    "slots"
+  ],
+  "template": "The hash slot of a key is computed as CRC16(key) ___ 16384.",
+  "blanks": [
+    {
+      "answer": "mod",
+      "alternatives": [
+        "%",
+        "modulo"
+      ]
+    }
+  ]
+}

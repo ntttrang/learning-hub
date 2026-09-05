@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-01-bank-5",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "A producer runs XADD orders * customer 42. What does the asterisk ask the server to do?",
+  "explanation": "With * the server generates the entry ID itself, taking the current server time in milliseconds plus a sequence number, giving IDs like 1712345678901-0. IDs also define ordering inside the stream, so letting the server assign them keeps entries strictly increasing.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "streams"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Generate the entry ID from the current time in milliseconds and a sequence number"
+    },
+    {
+      "id": "b",
+      "text": "Insert the entry with the highest possible priority"
+    },
+    {
+      "id": "c",
+      "text": "Create the stream if it is missing and do nothing else"
+    },
+    {
+      "id": "d",
+      "text": "Mark the entry as already delivered to every consumer group"
+    }
+  ],
+  "correct": "a"
+}

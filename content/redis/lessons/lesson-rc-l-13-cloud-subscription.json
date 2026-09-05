@@ -1,0 +1,45 @@
+{
+  "id": "rc-l-13-cloud-subscription",
+  "moduleId": "m-cloud-subscription",
+  "domainId": "rc-cloud-subscription",
+  "order": 1,
+  "slug": "cloud-subscription-administration",
+  "title": "Cloud subscription administration",
+  "summary": "Account roles and access management, the Essentials/Pro billing models, card and marketplace payment wiring, subscription settings, and maintenance windows per plan.",
+  "minutes": 15,
+  "difficulty": "intermediate",
+  "references": [
+    {
+      "title": "Manage subscriptions",
+      "url": "https://redis.io/docs/latest/operate/rc/subscriptions/"
+    },
+    {
+      "title": "Billing & payments",
+      "url": "https://redis.io/docs/latest/operate/rc/billing-and-payments/"
+    },
+    {
+      "title": "Access management",
+      "url": "https://redis.io/docs/latest/operate/rc/security/access-control/access-management/"
+    },
+    {
+      "title": "Subscription and database maintenance",
+      "url": "https://redis.io/docs/latest/operate/rc/subscriptions/maintenance/"
+    }
+  ],
+  "docIds": [
+    "rc-subscriptions",
+    "rc-maintenance",
+    "rc-security"
+  ],
+  "questionIds": [
+    "rc-q-13-kc-1",
+    "rc-q-13-kc-2",
+    "rc-q-13-kc-3"
+  ],
+  "blocks": [
+    {
+      "kind": "md",
+      "body": "Subscriptions are where Redis Cloud becomes an operation: someone must pick the plan structure, wire up payment, control who can change what, and keep maintenance from landing on production traffic. This lesson covers the administration surface an associate operator is expected to own — account roles, billing and marketplace payment, subscription settings, and maintenance windows — with the facts that separate a correct answer from a plausible one.\n\n## Account roles: who can do what\n\nConsole administration starts on the **Access management** screen, which governs three things: the team (people), API keys, and SAML single sign-on. Every team member carries exactly one role, and the role matrix is a reliable exam question source:\n\n- **Owner** — full account control: access management, account settings, subscriptions, databases, payment methods, billing history, and full REST API use. Every subscription needs at least one owner; accounts can have several.\n- **Billing Admin** — billing surfaces only: add or remove payment methods, view and pay invoices, and edit subscriptions to change their payment method. Cannot create databases or subscriptions, and cannot even see database connection details.\n- **Manager** — the operations power role: create and edit subscriptions and databases, including cost-impacting changes. Can switch a subscription's payment method between methods the account already has, but cannot add or remove payment methods. Notably, Managers cannot use the REST API.\n- **Member** — day-to-day database work that does not move money: edit databases in ways that do not impact costs. Members cannot create databases at all, even cost-free ones.\n- **Viewer** — read-only in the console, including database secrets, and GET-only access through the REST API.\n- **Logs viewer** — cannot sign in to the console at all; its only power is the REST API `GET /logs/` endpoint.\n\nTwo details trip people up. Creating a subscription requires Owner or Manager — not Billing Admin, despite the billing focus of the role's name. And \"can edit a database without cost impact\" splits exactly along Member (yes) versus Viewer (no), while *creating* a database needs Manager or Owner in every case.\n\nHarden the account with the features on the same screen: **multi-factor authentication** per team member (toggleable in the Add/Edit user dialog, enforced in each member's profile), **SAML SSO** for organization-managed sign-in, and alert, operational, and billing email toggles per user.\n\n## Plans, billing structure, and payment\n\nBilling follows the plan model. **Essentials** is a fixed monthly price for a plan slot — the plan defines the database's memory and limits. **Pro** is hourly pay-as-you-go on the capacity you define; an annual Pro commitment keeps every feature, reduces the rate, and adds Premium support. Within the **Billing & Payments** screen:\n\n- **Billing History** lists transactions and is where invoices download as PDFs; some regions surface a Pay Now button.\n- **Payment Methods** holds credit cards and marketplace accounts. A business address is required before the first card.\n- **Credits** apply coupon codes to the account; charges are generally non-refundable.\n- The **Cost report** button exports a CSV breakdown of billing-unit costs per subscription, database, and month.\n\n**Marketplace billing** links a cloud-provider agreement to your Redis account: on the Payment Methods tab, choose **Add marketplace account** and connect an **AWS Marketplace** or **Google Cloud Marketplace** agreement, which then pays for Redis Cloud resources going forward. This is the \"cloud account wiring\" half of subscription administration — payment flows through the cloud vendor's bill instead of a card, useful for committed cloud spend.\n\n## Subscription settings and maintenance windows\n\nA Pro subscription carries settings every database inherits. The subscription page is where you control the **Redis major version** — major upgrades never happen automatically; Redis will not schedule an upgrade that might include breaking changes until you opt in. Minor-version and stability maintenance is automatic.\n\nMaintenance windows differ sharply by plan:\n\n- **Redis Cloud Pro** performs maintenance automatically while minimizing disruption; you can set **manual maintenance windows** (and request advance notifications through support) or temporarily **skip** maintenance.\n- **Redis Cloud Essentials** has a fixed window: **daily 12 AM to 6 AM in the region's local time zone**, used at most once per week unless urgent, and never for breaking changes.\n\nMaintenance activities include version upgrades, cluster optimization, node replacement, adding node memory, and security patches. Databases stay operational, but connections may drop for a few seconds — clients that refresh DNS on reconnect recover on their own. **Urgent maintenance** (cannot-wait security fixes) can run at any time, overriding manual windows and skips, with email notice at start and end.\n\n## The lifecycle moves an operator owns\n\nCreating a paid Essentials plan or a Pro subscription runs through the console with a payment method attached; free plans need only an account. Free Essentials databases upgrade to paid plans with no data loss — the same upgrade path later moves workloads from Essentials to Pro. Deletion is the irreversible end: databases must be active to delete, and backing up before danger-zone actions is the documented best practice. Plans aside, the pattern to internalize for the exam is which role, which screen, and which billing model each action belongs to.\n\n## Exam takeaways\n\n- Roles: Owner (everything), Billing Admin (payment methods, invoices, payment method on subscriptions only), Manager (create/edit subscriptions and databases, cannot use the REST API), Member (edit databases without cost impact), Viewer (read-only + GET-only API), Logs viewer (`GET /logs/` only, no console).\n- Only Owner and Manager can create subscriptions; only Owner manages team access; Billing Admin cannot see database connection details.\n- Billing: Essentials fixed monthly, Pro hourly pay-as-you-go, annual Pro adds savings and Premium support; Billing & Payments holds history/invoices, payment methods, credits, and the per-shard cost report CSV.\n- AWS or Google Cloud Marketplace accounts attach as payment methods and pay for Redis Cloud usage.\n- Pro: manual maintenance windows with skip and opt-in major upgrades; Essentials: daily 12 AM-6 AM region-local, at most weekly, no breaking changes; urgent maintenance overrides everything."
+    }
+  ]
+}

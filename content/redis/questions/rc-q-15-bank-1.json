@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-15-bank-1",
+  "domainId": "rc-cloud-security",
+  "moduleId": "m-cloud-security",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Under the Redis Cloud shared responsibility model, which task belongs to Redis rather than to the customer?",
+  "explanation": "Redis operates the platform: it runs and maintains the cloud infrastructure, hosts, and service software that databases run on. Everything inside and around the database — creating least-privilege users, restricting which source IPs can connect with a CIDR allow list, and enabling TLS for sensitive traffic — is the customer's half of the model.",
+  "tags": [
+    "redis",
+    "cloud-security",
+    "shared-responsibility"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Maintaining and patching the underlying cloud infrastructure that runs the database"
+    },
+    {
+      "id": "b",
+      "text": "Creating database users with only the permissions their services need"
+    },
+    {
+      "id": "c",
+      "text": "Restricting which source IP addresses can reach the database"
+    },
+    {
+      "id": "d",
+      "text": "Enabling TLS on connections that carry sensitive data"
+    }
+  ],
+  "correct": "a"
+}

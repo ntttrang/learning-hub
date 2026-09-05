@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-11-bank-1",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Which URL reaches the Cluster Manager web UI of a Redis Software cluster installed on host cluster1.local?",
+  "explanation": "The Cluster Manager UI is served over HTTPS on port 8443. Port 9443 carries the REST API, port 8070 carries the Prometheus metrics exporter, and ports in the 10000-19999 range are used for database endpoints.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "cluster-manager"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "https://cluster1.local:8443"
+    },
+    {
+      "id": "b",
+      "text": "https://cluster1.local:9443"
+    },
+    {
+      "id": "c",
+      "text": "http://cluster1.local:8070"
+    },
+    {
+      "id": "d",
+      "text": "https://cluster1.local:12000"
+    }
+  ],
+  "correct": "a"
+}

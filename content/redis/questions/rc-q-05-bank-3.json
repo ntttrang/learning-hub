@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-05-bank-3",
+  "domainId": "rc-core-cluster",
+  "moduleId": "m-clustering-ha",
+  "difficulty": "advanced",
+  "kind": "multi",
+  "prompt": "Which statements about Sentinel are correct?",
+  "explanation": "Sentinels run as separate processes, typically three or more on separate machines; they keep monitoring masters and replicas; they promote a replica when a master fails; and clients ask Sentinel which node currently plays the master role. Quorum only decides when a master is objectively down \u2014 the failover itself still needs authorization from the Sentinel majority, so lowering quorum to 1 does not remove that requirement.",
+  "tags": [
+    "redis",
+    "sentinel",
+    "ha"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Sentinels are separate processes that continuously monitor masters and replicas"
+    },
+    {
+      "id": "b",
+      "text": "Sentinel automatically promotes a replica to master when the master fails"
+    },
+    {
+      "id": "c",
+      "text": "Setting quorum to 1 removes the need for Sentinel majority agreement on the failover"
+    },
+    {
+      "id": "d",
+      "text": "Clients can ask Sentinel for the current address of a service's master"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-14-kc-2",
+  "domainId": "rc-cloud-db-admin",
+  "moduleId": "m-cloud-db-admin",
+  "lessonId": "rc-l-14-cloud-db-admin",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each Redis Cloud persistence setting to what it guarantees.",
+  "explanation": "AOF every write fsyncs each operation to disk and is Redis Cloud Pro only, giving the strongest durability. AOF every 1 second is available on paid Essentials and Pro and limits exposure to roughly one second of writes. Snapshots (1, 6, or 12 hours) recover faster but can lose everything since the last snapshot, and with persistence set to None all data is lost when the database goes down. Free Essentials plans cannot enable persistence at all.",
+  "tags": [
+    "redis",
+    "db-administration",
+    "persistence"
+  ],
+  "pairs": [
+    {
+      "left": "AOF every write",
+      "right": "Pro only; every write is fsynced to disk"
+    },
+    {
+      "left": "AOF every 1 second",
+      "right": "Limits loss to about one second of writes; paid Essentials and Pro"
+    },
+    {
+      "left": "Snapshot every 6 hours",
+      "right": "Faster recovery; can lose up to 6 hours of writes"
+    },
+    {
+      "left": "Persistence None",
+      "right": "All data is lost when the database goes down"
+    }
+  ]
+}

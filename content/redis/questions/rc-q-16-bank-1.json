@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-16-bank-1",
+  "domainId": "rc-cloud-networking",
+  "moduleId": "m-cloud-networking",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Which statement about Redis Cloud database endpoints is correct?",
+  "explanation": "Every Redis Cloud database — Essentials and Pro — has a public endpoint reachable from the internet. Redis Cloud Pro databases additionally get a private endpoint, which is usable only after a private connectivity method such as VPC peering, Google Cloud Private Service Connect, or (on AWS) Transit Gateway or PrivateLink is in place.",
+  "tags": [
+    "redis",
+    "cloud-networking",
+    "endpoints"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Every database has a public endpoint; Pro databases also have a private endpoint that requires a private connectivity method"
+    },
+    {
+      "id": "b",
+      "text": "Every database has a private endpoint; a public endpoint is optional on all plans"
+    },
+    {
+      "id": "c",
+      "text": "Essentials databases have both endpoint types, while Pro databases have only a public endpoint"
+    },
+    {
+      "id": "d",
+      "text": "Public endpoints exist only on Free plans and disappear when the database is upgraded"
+    }
+  ],
+  "correct": "a"
+}

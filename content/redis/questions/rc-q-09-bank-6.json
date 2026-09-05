@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-09-bank-6",
+  "domainId": "rc-swops-install",
+  "moduleId": "m-swops-install",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each tool or command to what it does when installing and administering Redis Software.",
+  "explanation": "`rladmin cluster create` bootstraps the first node of a new cluster, while `rladmin cluster join` adds a newly installed node to a cluster that already exists. `rlcheck` is the health verification utility that must pass on every node before an upgrade, `rladmin node maintenance_mode on` drains a node for OS patching by migrating its shards elsewhere, and `rladmin node 3 remove` permanently retires a node and frees its capacity.",
+  "tags": [
+    "redis",
+    "install",
+    "rladmin"
+  ],
+  "pairs": [
+    {
+      "left": "rladmin cluster create",
+      "right": "Bootstrap the first node of a new cluster"
+    },
+    {
+      "left": "rladmin cluster join",
+      "right": "Add a new node to an existing cluster"
+    },
+    {
+      "left": "rlcheck",
+      "right": "Run per-node verification tests before an upgrade"
+    },
+    {
+      "left": "rladmin node 2 maintenance_mode on",
+      "right": "Drain shards off a node before OS patching"
+    },
+    {
+      "left": "rladmin node 3 remove",
+      "right": "Permanently remove a node from the cluster"
+    }
+  ]
+}

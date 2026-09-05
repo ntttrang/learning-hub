@@ -1,0 +1,154 @@
+[
+  {
+    "id": "rc-core-types",
+    "order": 1,
+    "code": "D1",
+    "title": "Data structures & commands",
+    "weight": { "min": 15, "max": 25 },
+    "summary": "Strings, lists, hashes, sets, sorted sets, streams, bitmaps, hyperloglog and geospatial — the command surface and time complexity of each structure."
+  },
+  {
+    "id": "rc-core-keys",
+    "order": 2,
+    "code": "D2",
+    "title": "Keys, keyspace & expiry",
+    "weight": { "min": 5, "max": 12 },
+    "summary": "Key naming and format, generic key commands, active vs lazy expiry, TTL semantics, SCAN vs KEYS, and big-key hazards."
+  },
+  {
+    "id": "rc-core-model",
+    "order": 3,
+    "code": "D3",
+    "title": "Data modeling",
+    "weight": { "min": 8, "max": 15 },
+    "summary": "Mapping domain entities to Redis structures, one-to-many and many-to-many patterns, aggregation and secondary-index strategies, and choosing between structures."
+  },
+  {
+    "id": "rc-core-perf",
+    "order": 4,
+    "code": "D4",
+    "title": "Performance & debugging",
+    "weight": { "min": 8, "max": 16 },
+    "summary": "The single-threaded event loop, Big-O command selection, O(N) hazards, latency tooling (SLOWLOG, LATENCY, INFO, MONITOR), pipelines, and transactions."
+  },
+  {
+    "id": "rc-core-cluster",
+    "order": 5,
+    "code": "D5",
+    "title": "Replication, HA & clustering",
+    "weight": { "min": 6, "max": 14 },
+    "summary": "Replication topologies, Sentinel-managed failover, cluster topology with 16384 hash slots, hash tags, MOVED/ASK redirects, resharding and failover."
+  },
+  {
+    "id": "rc-core-persist",
+    "order": 6,
+    "code": "D6",
+    "title": "Persistence & durability",
+    "weight": { "min": 4, "max": 10 },
+    "summary": "RDB snapshots, AOF with fsync policies, rewrite, hybrid persistence, and what survives a restart under each configuration."
+  },
+  {
+    "id": "rc-core-security",
+    "order": 7,
+    "code": "D7",
+    "title": "Security & configuration",
+    "weight": { "min": 3, "max": 8 },
+    "summary": "ACL users and permissions, TLS, network exposure (bind, protected-mode), maxmemory and eviction policies, and lazy freeing."
+  },
+  {
+    "id": "rc-dev-java",
+    "order": 8,
+    "code": "D8",
+    "title": "Java clients & application patterns",
+    "weight": { "min": 8, "max": 14 },
+    "summary": "Jedis, Lettuce and Redisson trade-offs, connection pooling, serialization, pipelines and transactions from Java, plus cache-aside, sessions, rate limiting and streams in services."
+  },
+  {
+    "id": "rc-swops-install",
+    "order": 9,
+    "code": "D9",
+    "title": "Redis Software install & upgrade",
+    "weight": { "min": 20, "max": 35 },
+    "summary": "Redis Software (Enterprise) requirements, cluster bootstrap, licenses, certificates, rolling upgrades and software security patches."
+  },
+  {
+    "id": "rc-swops-cluster",
+    "order": 10,
+    "code": "D10",
+    "title": "Cluster & database operations",
+    "weight": { "min": 30, "max": 45 },
+    "summary": "Cluster lifecycle with the Cluster Manager and rladmin — node add/remove, rack awareness, DMC/proxy, database provisioning and limits, endpoints, backup/restore, and live migration."
+  },
+  {
+    "id": "rc-swops-ops",
+    "order": 11,
+    "code": "D11",
+    "title": "Monitoring & troubleshooting",
+    "weight": { "min": 25, "max": 40 },
+    "summary": "Metrics and alerts, logs, the job scheduler, support bundles, and the common failure playbooks an operator runs day to day."
+  },
+  {
+    "id": "rc-cloud-arch",
+    "order": 12,
+    "code": "D12",
+    "title": "Cloud architecture",
+    "weight": { "min": 7, "max": 12 },
+    "summary": "How Redis Cloud is put together — subscriptions, tiers (Essentials, Essentials with Redis Flex, Pro), regions, availability, and what each capability costs where."
+  },
+  {
+    "id": "rc-cloud-subscription",
+    "order": 13,
+    "code": "D13",
+    "title": "Subscription administration",
+    "weight": { "min": 9, "max": 14 },
+    "summary": "Account and subscription lifecycle — plans and pricing structure, payment, subscription settings, cloud-account/marketplace billing, and administrative access control."
+  },
+  {
+    "id": "rc-cloud-db-admin",
+    "order": 14,
+    "code": "D14",
+    "title": "Database administration",
+    "weight": { "min": 14, "max": 20 },
+    "summary": "Creating and managing Redis Cloud databases — capabilities and limits per tier, sizing, modules, versioning/cloning, configuration changes, and deletion/recovery."
+  },
+  {
+    "id": "rc-cloud-security",
+    "order": 15,
+    "code": "D15",
+    "title": "Security",
+    "weight": { "min": 12, "max": 18 },
+    "summary": "CIDR allowlists, VPC peering, TLS enforcement, ACLs and role-based access, and the shared-responsibility split owned by the operator."
+  },
+  {
+    "id": "rc-cloud-networking",
+    "order": 16,
+    "code": "D16",
+    "title": "Networking",
+    "weight": { "min": 11, "max": 17 },
+    "summary": "Private endpoints, VPC peering, Private Service Connect, prefix/DNS handling, and port/protocol realities of client connectivity."
+  },
+  {
+    "id": "rc-cloud-monitoring",
+    "order": 17,
+    "code": "D17",
+    "title": "Monitoring",
+    "weight": { "min": 8, "max": 14 },
+    "summary": "Metrics and alerting in Redis Cloud — standard vs advanced monitoring, alert thresholds and delivery, integrations (Prometheus/DataDog/New Relic/CloudWatch), and audit logs."
+  },
+  {
+    "id": "rc-cloud-automation",
+    "order": 18,
+    "code": "D18",
+    "title": "Automation",
+    "weight": { "min": 8, "max": 14 },
+    "summary": "The Redis Cloud REST API — account/subscription/database endpoints, API keys and account keys, ci/cd-friendly flows, Terraform provider basics."
+  },
+  {
+    "id": "rc-cloud-data-access",
+    "order": 19,
+    "code": "D19",
+    "title": "Data access",
+    "weight": { "min": 9, "max": 15 },
+    "summary": "Connecting clients — endpoints and ports, TLS/SNI, users and ACLs on databases, and the client-side facts (timeouts, cluster-mode/RESP handling) operators must support."
+  }
+]

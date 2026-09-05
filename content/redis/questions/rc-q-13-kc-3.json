@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-13-kc-3",
+  "domainId": "rc-cloud-subscription",
+  "moduleId": "m-cloud-subscription",
+  "lessonId": "rc-l-13-cloud-subscription",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each Redis Cloud REST API fact to the key or request it describes.",
+  "explanation": "The account key identifies the account on every request and travels in the x-api-key header; the user key is a personal secret bound to one user that travels in the x-api-secret-key header. Both keys are required on every request. The API is disabled on all accounts by default and must be enabled before first use, and user keys can be further restricted with a CIDR allow list.",
+  "tags": [
+    "redis",
+    "subscription-administration",
+    "api-keys"
+  ],
+  "pairs": [
+    {
+      "left": "Account key",
+      "right": "Identifies the account; sent in the x-api-key header"
+    },
+    {
+      "left": "User key",
+      "right": "Personal secret bound to one user; sent in the x-api-secret-key header"
+    },
+    {
+      "left": "Every API request",
+      "right": "Must include both the account key and a user key"
+    },
+    {
+      "left": "The API itself",
+      "right": "Is disabled by default and must be enabled before first use"
+    },
+    {
+      "left": "A user key with a CIDR allow list",
+      "right": "Only accepts requests from the listed source address ranges"
+    }
+  ]
+}

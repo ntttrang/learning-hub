@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-06-kc-3",
+  "domainId": "rc-core-persist",
+  "moduleId": "m-persistence",
+  "lessonId": "rc-l-06-persistence",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "A server restarts with both RDB and AOF enabled and both files present. Which dataset does Redis load?",
+  "explanation": "When AOF is enabled, Redis rebuilds the dataset from the AOF, because it is the more complete record of acknowledged writes; the RDB file is still useful for fast restarts and backups, but the AOF wins at load time.",
+  "tags": [
+    "redis",
+    "persistence",
+    "startup"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "The AOF, because it is the more complete record of acknowledged writes"
+    },
+    {
+      "id": "b",
+      "text": "The RDB, because the snapshot format loads faster"
+    },
+    {
+      "id": "c",
+      "text": "Whichever file was written most recently"
+    },
+    {
+      "id": "d",
+      "text": "Redis merges both files, applying the RDB snapshot then replaying the AOF on top"
+    }
+  ],
+  "correct": "a"
+}

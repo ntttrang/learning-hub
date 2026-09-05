@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-02-bank-2",
+  "domainId": "rc-core-keys",
+  "moduleId": "m-keys",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which statements about a SCAN iteration are correct?",
+  "explanation": "An iteration starts at cursor 0 and finishes when SCAN returns cursor 0 again; the cursor is opaque, so the only valid use is passing it back verbatim. The scan may return the same key more than once and gives no guarantee that keys added mid-iteration will appear. What it never does is block \u2014 that is the KEYS behavior it replaces.",
+  "tags": [
+    "redis",
+    "keys",
+    "scan"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "The iteration ends when SCAN returns cursor 0"
+    },
+    {
+      "id": "b",
+      "text": "The same key can be returned more than once during one full iteration"
+    },
+    {
+      "id": "c",
+      "text": "Keys added while the scan is running are not guaranteed to appear in the results"
+    },
+    {
+      "id": "d",
+      "text": "SCAN holds the server blocked until the whole keyspace has been scanned"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

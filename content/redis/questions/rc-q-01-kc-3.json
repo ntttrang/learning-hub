@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-01-kc-3",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "lessonId": "rc-l-01-data-structures",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "A marketing page reports unique daily visitors. Exact counts are unnecessary and memory must stay tiny even with millions of visitors. Which structure fits?",
+  "explanation": "A HyperLogLog gives an approximate cardinality (standard error about 0.81%) in a fixed amount of memory of roughly 12 KB per key, regardless of how many unique elements were added. Sets and sorted sets store every member and grow linearly with unique visitors.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "hyperloglog"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "A HyperLogLog keyed per day, written with PFADD"
+    },
+    {
+      "id": "b",
+      "text": "A set of visitor ids keyed per day"
+    },
+    {
+      "id": "c",
+      "text": "A list of visitor ids keyed per day"
+    },
+    {
+      "id": "d",
+      "text": "A sorted set of visitor ids scored by visit count"
+    }
+  ],
+  "correct": "a"
+}

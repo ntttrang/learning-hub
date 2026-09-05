@@ -1,0 +1,38 @@
+{
+  "id": "rc-q-02-bank-5",
+  "domainId": "rc-core-keys",
+  "moduleId": "m-keys",
+  "difficulty": "intermediate",
+  "kind": "order",
+  "prompt": "Arrange the steps of one complete SCAN iteration over the session keys.",
+  "explanation": "Iteration always starts by calling SCAN with cursor 0, each returned batch of keys is processed by the caller, the returned cursor is fed back as the next call's starting point, and the loop stops only when a call comes back with cursor 0.",
+  "tags": [
+    "redis",
+    "keys",
+    "scan"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Call SCAN 0 MATCH session:* COUNT 100"
+    },
+    {
+      "id": "b",
+      "text": "Process the batch of keys returned"
+    },
+    {
+      "id": "c",
+      "text": "Pass the returned cursor as the cursor argument of the next SCAN call"
+    },
+    {
+      "id": "d",
+      "text": "Stop when a SCAN call returns cursor 0"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c",
+    "d"
+  ]
+}

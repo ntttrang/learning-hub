@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-15-bank-3",
+  "domainId": "rc-cloud-security",
+  "moduleId": "m-cloud-security",
+  "difficulty": "advanced",
+  "kind": "single",
+  "prompt": "A Redis Cloud Pro database has a CIDR allow list enabled with the office's egress ranges. Applications also connect over VPC peering from a peered VPC. What is true about that allow list?",
+  "explanation": "The database CIDR allow list applies to both the public endpoint and the private endpoint, so traffic arriving over VPC peering (or AWS Transit Gateway) is filtered by it too — the peered VPC's source IP ranges must be added as entries. Peering grants private reachability but does not exempt the private endpoint from the allow list, and it keeps working regardless of route-table state once traffic flows.",
+  "tags": [
+    "redis",
+    "cloud-security",
+    "cidr-allow-list",
+    "vpc-peering"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "It filters both the public and the private endpoint, so the peered VPC's source IP ranges must be listed as well"
+    },
+    {
+      "id": "b",
+      "text": "It filters only the public endpoint; VPC peering is trusted and bypasses the list"
+    },
+    {
+      "id": "c",
+      "text": "VPC peering replaces the allow list, which stops applying once the peering is active"
+    },
+    {
+      "id": "d",
+      "text": "It only takes effect after the peering's route tables are updated, because filtering depends on routes"
+    }
+  ],
+  "correct": "a"
+}

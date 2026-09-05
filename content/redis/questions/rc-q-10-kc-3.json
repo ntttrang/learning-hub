@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-10-kc-3",
+  "domainId": "rc-swops-cluster",
+  "moduleId": "m-swops-cluster",
+  "lessonId": "rc-l-10-cluster-db-ops",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "A periodic database backup has run successfully. What does the backup output look like?",
+  "explanation": "Periodic backups produce compressed (.gz) RDB files in the configured storage location, and restoring means importing those files into a database. Backups are not AOF logs, not JSON dumps, and not a proprietary format that only support can open — RDB is the interchange format for both backups and imports.",
+  "tags": [
+    "redis",
+    "backup-restore",
+    "database-ops"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Compressed (.gz) RDB files that can be imported into a database"
+    },
+    {
+      "id": "b",
+      "text": "AOF log files replayed with redis-cli"
+    },
+    {
+      "id": "c",
+      "text": "A JSON export of every key and value"
+    },
+    {
+      "id": "d",
+      "text": "A proprietary image only Redis support can restore"
+    }
+  ],
+  "correct": "a"
+}

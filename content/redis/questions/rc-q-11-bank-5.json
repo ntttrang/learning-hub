@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-11-bank-5",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "difficulty": "advanced",
+  "kind": "multi",
+  "prompt": "A freshly bootstrapped cluster ships with its default alert configuration. Which alerts are enabled by default?",
+  "explanation": "Out of the box, only two cluster alerts are enabled: cluster_license_about_to_expire, which fires 7 days before the license expires by default, and cluster_users_count_approaches_limit, which fires at 90% of the 32,000-user maximum on new clusters. Capacity alerts such as node memory utilization and the multiple-nodes-down alert must be enabled explicitly.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "alerts",
+    "license"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "cluster_license_about_to_expire"
+    },
+    {
+      "id": "b",
+      "text": "cluster_users_count_approaches_limit"
+    },
+    {
+      "id": "c",
+      "text": "node_memory"
+    },
+    {
+      "id": "d",
+      "text": "cluster_multiple_nodes_down"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

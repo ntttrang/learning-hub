@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-19-kc-3",
+  "domainId": "rc-cloud-data-access",
+  "moduleId": "m-cloud-data-access",
+  "lessonId": "rc-l-19-cloud-data-access",
+  "difficulty": "beginner",
+  "kind": "matching",
+  "prompt": "Match each Redis structure to the workload it fits best.",
+  "explanation": "Structure choice should follow the data's shape and access pattern: sorted sets keep members ordered by score for leaderboards, hashes give field-level access to a named-field object, sets model unique membership, bitmaps compress per-id flags for dense integer IDs to one bit each, and JSON documents hold nested records with arrays and sub-objects. Choosing a structure this way keeps commands aligned with how the application reads and writes the data.",
+  "tags": [
+    "redis",
+    "data-access",
+    "data-modeling"
+  ],
+  "pairs": [
+    {
+      "left": "Sorted set",
+      "right": "Leaderboard ranked by score, with range queries over the ranking"
+    },
+    {
+      "left": "Hash",
+      "right": "Object with named fields, such as a user profile"
+    },
+    {
+      "left": "Set",
+      "right": "Unique tags per article, with membership tests"
+    },
+    {
+      "left": "Bitmap",
+      "right": "Compact per-user flags for dense integer IDs"
+    },
+    {
+      "left": "JSON document",
+      "right": "Nested catalog record with arrays and sub-objects"
+    }
+  ]
+}

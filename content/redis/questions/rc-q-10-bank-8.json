@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-10-bank-8",
+  "domainId": "rc-swops-cluster",
+  "moduleId": "m-swops-cluster",
+  "difficulty": "advanced",
+  "kind": "single",
+  "prompt": "An application team wants to connect with an OSS-cluster-aware client, which requires the database to expose the OSS Cluster API. Which proxy policy must the database use?",
+  "explanation": "The OSS Cluster API needs multiple proxies bound to the database — one on each node that hosts a primary shard — which is exactly the all-master-shards policy. The single policy (the default) keeps one bound proxy and cannot serve the OSS Cluster API, all-nodes places proxies on nodes regardless of shard placement and is aimed at load-balancer setups without DNS, and clients still enter through proxies; they never bypass them to hit shards directly.",
+  "tags": [
+    "redis",
+    "proxy-policy",
+    "oss-cluster-api"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "all-master-shards"
+    },
+    {
+      "id": "b",
+      "text": "single"
+    },
+    {
+      "id": "c",
+      "text": "all-nodes"
+    },
+    {
+      "id": "d",
+      "text": "No proxy policy — OSS-cluster-aware clients connect to shards directly"
+    }
+  ],
+  "correct": "a"
+}

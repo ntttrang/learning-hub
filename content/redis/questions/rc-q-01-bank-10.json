@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-01-bank-10",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each command to its time complexity.",
+  "explanation": "Direct lookups by key, field, or member are constant time; serialising a whole collection walks every element; and inserting into a sorted set costs logarithmic time because the ordering must be maintained.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "complexity"
+  ],
+  "pairs": [
+    {
+      "left": "GET key",
+      "right": "O(1)"
+    },
+    {
+      "left": "HGETALL key",
+      "right": "O(N) over the hash's fields"
+    },
+    {
+      "left": "SMEMBERS key",
+      "right": "O(N) over the set's members"
+    },
+    {
+      "left": "ZADD key score member",
+      "right": "O(log N) per member"
+    },
+    {
+      "left": "ZSCORE key member",
+      "right": "O(1)"
+    }
+  ]
+}

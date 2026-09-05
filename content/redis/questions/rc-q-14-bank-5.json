@@ -1,0 +1,41 @@
+{
+  "id": "rc-q-14-bank-5",
+  "domainId": "rc-cloud-db-admin",
+  "moduleId": "m-cloud-db-admin",
+  "difficulty": "beginner",
+  "kind": "multi",
+  "prompt": "Which storage destinations can Redis Cloud back up a database to?",
+  "explanation": "Remote backups can be stored on AWS S3, Google Cloud Storage, Azure Blob Storage, or an FTP/FTPS server, and the storage location must be prepared and reachable before backups are turned on. Redis Cloud does not keep backups on managed internal storage, and there is no automatic backup to the database instance's local disk; backups are written as RDB files to the configured destination.",
+  "tags": [
+    "redis",
+    "db-administration",
+    "backups"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "AWS S3"
+    },
+    {
+      "id": "b",
+      "text": "Google Cloud Storage"
+    },
+    {
+      "id": "c",
+      "text": "Azure Blob Storage"
+    },
+    {
+      "id": "d",
+      "text": "A Redis-managed storage area inside the Redis Cloud account"
+    },
+    {
+      "id": "e",
+      "text": "The local disk of the database's underlying instance"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

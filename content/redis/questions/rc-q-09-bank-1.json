@@ -1,0 +1,33 @@
+{
+  "id": "rc-q-09-bank-1",
+  "domainId": "rc-swops-install",
+  "moduleId": "m-swops-install",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "You need to sign in to the Cluster Manager web UI on a newly installed Redis Software node. Which port does the UI listen on by default?",
+  "explanation": "The management web UI serves HTTPS on port 8443 by default, and that port is the only one you can move to a custom value with `rladmin cluster config cm_port`. Port 9443 belongs to the REST API, 8080 is the unencrypted REST API port, and 3333 falls in the internal internode communication range.",
+  "tags": [
+    "redis",
+    "install",
+    "ports"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "8443"
+    },
+    {
+      "id": "b",
+      "text": "9443"
+    },
+    {
+      "id": "c",
+      "text": "8080"
+    },
+    {
+      "id": "d",
+      "text": "3333"
+    }
+  ],
+  "correct": "a"
+}

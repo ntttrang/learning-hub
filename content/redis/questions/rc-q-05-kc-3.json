@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-05-kc-3",
+  "domainId": "rc-core-cluster",
+  "moduleId": "m-clustering-ha",
+  "lessonId": "rc-l-05-clustering-ha",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "In a Sentinel deployment, what does the quorum setting control?",
+  "explanation": "Quorum is the number of Sentinels that must agree the master is unreachable before the master is flagged down objectively, which opens the door to a failover. Authorizing and running the failover still needs agreement among the Sentinel majority, so quorum alone does not trigger it.",
+  "tags": [
+    "redis",
+    "sentinel",
+    "failover"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "How many Sentinels must agree the master is unreachable before failover can be considered"
+    },
+    {
+      "id": "b",
+      "text": "How many replicas the master must have at all times"
+    },
+    {
+      "id": "c",
+      "text": "The percentage of clients that must reconnect after failover"
+    },
+    {
+      "id": "d",
+      "text": "How many seconds of unavailability are tolerated before clients are redirected"
+    }
+  ],
+  "correct": "a"
+}

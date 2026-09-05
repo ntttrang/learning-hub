@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-11-kc-2",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "lessonId": "rc-l-11-monitoring-troubleshooting",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "A cluster was set up without a license key. What does trial mode allow?",
+  "explanation": "Without a supplied license the cluster generates a trial license: every feature is available, but the trial is limited to 30 days and 4 shards, counting master and replica shards. The trial period starts on the day you set up the cluster on the first node, and once a real license is applied the cluster cannot go back to trial mode.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "license"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "All features for 30 days and up to 4 shards"
+    },
+    {
+      "id": "b",
+      "text": "All features for 7 days and up to 2 shards"
+    },
+    {
+      "id": "c",
+      "text": "All features for 30 days with no shard limit"
+    },
+    {
+      "id": "d",
+      "text": "Read-only access for 30 days, until a license is uploaded"
+    }
+  ],
+  "correct": "a"
+}

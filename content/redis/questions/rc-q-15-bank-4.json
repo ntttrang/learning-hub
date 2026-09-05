@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-15-bank-4",
+  "domainId": "rc-cloud-security",
+  "moduleId": "m-cloud-security",
+  "difficulty": "intermediate",
+  "kind": "single",
+  "prompt": "Which Redis Cloud console role can view all databases and their configurations — including database secrets — but cannot change any settings?",
+  "explanation": "The Viewer role can view all databases and their configurations, including database secrets, but cannot edit anything. Member can edit databases only in ways that do not impact costs. Billing Admin can see the list of databases but not their details, and Logs Viewer cannot sign in to the console at all — it only allows GET logs/ on the REST API.",
+  "tags": [
+    "redis",
+    "cloud-security",
+    "access-management",
+    "console-rbac"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Viewer"
+    },
+    {
+      "id": "b",
+      "text": "Billing Admin"
+    },
+    {
+      "id": "c",
+      "text": "Member"
+    },
+    {
+      "id": "d",
+      "text": "Logs Viewer"
+    }
+  ],
+  "correct": "a"
+}

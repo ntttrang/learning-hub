@@ -1,0 +1,38 @@
+{
+  "id": "rc-q-01-bank-8",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "difficulty": "intermediate",
+  "kind": "order",
+  "prompt": "A job queue must deliver work first-in-first-out. A producer enqueues job-1 and then job-2, and a consumer then drains the queue. Arrange the redis-cli commands in execution order so jobs are consumed FIFO.",
+  "explanation": "Each LPUSH prepends at the head, so after both pushes the list reads job-2, job-1 with job-1 at the tail. RPOP takes from the tail, which still holds the oldest entry, so the consumer receives job-1 first. Pushing and popping opposite ends is the classic FIFO pairing; pushing and popping the same end would turn the list into a stack.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "lists"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "LPUSH jobs job-1"
+    },
+    {
+      "id": "b",
+      "text": "LPUSH jobs job-2"
+    },
+    {
+      "id": "c",
+      "text": "RPOP jobs, which returns job-1"
+    },
+    {
+      "id": "d",
+      "text": "RPOP jobs, which returns job-2"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c",
+    "d"
+  ]
+}

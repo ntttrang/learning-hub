@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-19-bank-4",
+  "domainId": "rc-cloud-data-access",
+  "moduleId": "m-cloud-data-access",
+  "difficulty": "advanced",
+  "kind": "codeReading",
+  "prompt": "An application using a standard, non-cluster-aware Redis client sends commands to its Redis Cloud database endpoint and receives the replies above. What does this indicate?",
+  "explanation": "MOVED tells the client that these keys map to a hash slot served by a different shard endpoint. This is expected when the database has the OSS Cluster API enabled, a Redis Cloud Pro option found in the Performance section of the configuration: clients must first fetch the cluster topology and then connect directly to the proxy on each node that hosts a master shard, so you must use a client that supports the cluster API. Under the default clustering setup, a single endpoint automatically routes every command to the right shard and no cluster-aware client is needed, which is why the application worked until the database was switched to the OSS Cluster API.",
+  "tags": [
+    "redis",
+    "data-access",
+    "clustering"
+  ],
+  "code": "> SET session:42 \"abcdef\"\n(error) MOVED 9117 redis-12003.internal.c18.us-east1-mz.gke.cloud.rlrcp.com:12003\n> GET session:42\n(error) MOVED 9117 redis-12003.internal.c18.us-east1-mz.gke.cloud.rlrcp.com:12003",
+  "options": [
+    {
+      "id": "a",
+      "text": "The database has the OSS Cluster API enabled, so the client must be cluster-aware and route keys to the shard endpoints that own their slots"
+    },
+    {
+      "id": "b",
+      "text": "TLS was enabled without updating the client's trust store, so commands are rejected"
+    },
+    {
+      "id": "c",
+      "text": "The database user's ACL role denies SET and GET"
+    },
+    {
+      "id": "d",
+      "text": "The public endpoint has been blocked, so only private endpoints accept traffic"
+    }
+  ],
+  "correct": "a"
+}

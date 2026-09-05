@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-08-kc-1",
+  "domainId": "rc-dev-java",
+  "moduleId": "m-java-clients",
+  "lessonId": "rc-l-08-java-clients",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "Several threads in a service need to talk to Redis through Jedis. What is the recommended arrangement?",
+  "explanation": "A single Jedis instance is not thread-safe: sharing one across threads corrupts the protocol state. The standard setup is a JedisPool from which each thread borrows an instance with getResource() and returns it deterministically, typically via try-with-resources.",
+  "tags": [
+    "redis",
+    "java",
+    "jedis"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Borrow one Jedis per thread from a JedisPool and return it after use"
+    },
+    {
+      "id": "b",
+      "text": "Create one Jedis instance and share it across all threads"
+    },
+    {
+      "id": "c",
+      "text": "Wrap the Jedis instance in ConcurrentHashMap for safe sharing"
+    },
+    {
+      "id": "d",
+      "text": "Open a new TCP connection for every command, with no pooling"
+    }
+  ],
+  "correct": "a"
+}

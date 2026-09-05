@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-03-bank-3",
+  "domainId": "rc-core-model",
+  "moduleId": "m-data-modeling",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which representations can model a many-to-many relationship such as follows between users?",
+  "explanation": "The standard pattern is two sets per user \u2014 user:42:following and user:42:followers \u2014 giving O(1) writes and direct membership checks in both directions. A sorted set per relationship adds ordering by timestamp when recency matters, and a bitmap of dense integer ids is a compact special case. Concatenating all related ids into one string field destroys per-element access and forces O(N) rewrites.",
+  "tags": [
+    "redis",
+    "data-modeling",
+    "many-to-many"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "One set per direction: user:42:following and user:42:followers"
+    },
+    {
+      "id": "b",
+      "text": "A sorted set per user scored by relationship timestamp, when recency ordering matters"
+    },
+    {
+      "id": "c",
+      "text": "One hash field holding every related id as a delimited string"
+    },
+    {
+      "id": "d",
+      "text": "A bitmap of user ids per relationship, when ids are dense integers"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

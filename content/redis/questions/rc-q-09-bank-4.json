@@ -1,0 +1,20 @@
+{
+  "id": "rc-q-09-bank-4",
+  "domainId": "rc-swops-install",
+  "moduleId": "m-swops-install",
+  "difficulty": "beginner",
+  "kind": "fill",
+  "prompt": "Complete the sentence about reaching the Cluster Manager UI.",
+  "explanation": "After installation you browse to https://<node-address>:8443, accept the self-signed certificate warning, and either create a new cluster or sign in to an existing one. Port 8443 is the default Cluster Manager UI port; the REST API lives on 9443/8080 and is not used for the browser UI.",
+  "tags": [
+    "redis",
+    "install",
+    "ports"
+  ],
+  "template": "To open the Cluster Manager UI on an installed node, point a browser at https://<node-address>:___ and sign in with the cluster credentials.",
+  "blanks": [
+    {
+      "answer": "8443"
+    }
+  ]
+}

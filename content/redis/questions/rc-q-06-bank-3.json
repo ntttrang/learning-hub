@@ -1,0 +1,23 @@
+{
+  "id": "rc-q-06-bank-3",
+  "domainId": "rc-core-persist",
+  "moduleId": "m-persistence",
+  "difficulty": "advanced",
+  "kind": "fill",
+  "prompt": "Complete the sentence about hybrid persistence.",
+  "explanation": "With hybrid persistence, the rewritten AOF begins with an RDB-format preamble \u2014 a compact full snapshot \u2014 followed by the incremental AOF commands since the rewrite. This gives fast loads like RDB with the loss window of AOF.",
+  "tags": [
+    "redis",
+    "persistence",
+    "hybrid"
+  ],
+  "template": "With aof-use-rdb-preamble yes, the rewritten AOF starts with an ___ snapshot followed by incremental commands since the rewrite.",
+  "blanks": [
+    {
+      "answer": "RDB",
+      "alternatives": [
+        "rdb"
+      ]
+    }
+  ]
+}

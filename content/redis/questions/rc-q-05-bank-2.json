@@ -1,0 +1,37 @@
+{
+  "id": "rc-q-05-bank-2",
+  "domainId": "rc-core-cluster",
+  "moduleId": "m-clustering-ha",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which statements about Redis Cluster are correct?",
+  "explanation": "The cluster splits the keyspace into 16384 slots; multi-key commands work only when every key hashes to the same slot; hash tags such as {user:42}.profile force co-location by hashing only the text inside the braces; and replication is asynchronous, so a master may acknowledge writes that have not reached its replicas yet.",
+  "tags": [
+    "redis",
+    "cluster",
+    "topology"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "The keyspace is divided into 16384 hash slots distributed across master nodes"
+    },
+    {
+      "id": "b",
+      "text": "Multi-key commands work only when all involved keys hash to the same slot"
+    },
+    {
+      "id": "c",
+      "text": "Replication to replicas is synchronous, so acknowledged writes are always safe on a replica"
+    },
+    {
+      "id": "d",
+      "text": "A hash tag like the braces around user:42 makes different keys share one slot"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "d"
+  ]
+}

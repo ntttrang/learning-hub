@@ -1,0 +1,35 @@
+{
+  "id": "rc-q-13-kc-2",
+  "domainId": "rc-cloud-subscription",
+  "moduleId": "m-cloud-subscription",
+  "lessonId": "rc-l-13-cloud-subscription",
+  "difficulty": "intermediate",
+  "kind": "codeReading",
+  "prompt": "The subscription list request keeps failing. What is wrong with this request?",
+  "explanation": "Every Redis Cloud REST API request must carry both keys: the account key in the x-api-key header and a user key in the x-api-secret-key header. This request sends only the account key, so it fails authentication. The x-api-key header name is correct, GET is the right method for listing subscriptions, and the v1 path is the real API base path, so those are not the problem.",
+  "tags": [
+    "redis",
+    "subscription-administration",
+    "rest-api"
+  ],
+  "code": "curl -X GET \"https://api.redislabs.com/v1/subscriptions\" \\\n  -H \"x-api-key: $ACCOUNT_KEY\"",
+  "options": [
+    {
+      "id": "a",
+      "text": "The user key header x-api-secret-key is missing, so the request cannot authenticate"
+    },
+    {
+      "id": "b",
+      "text": "GET is not a supported method for the subscriptions endpoint"
+    },
+    {
+      "id": "c",
+      "text": "The account key must be sent in the request body, not in a header"
+    },
+    {
+      "id": "d",
+      "text": "The v1 path prefix is wrong and should be v2"
+    }
+  ],
+  "correct": "a"
+}

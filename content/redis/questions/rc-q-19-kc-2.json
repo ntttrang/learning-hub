@@ -1,0 +1,25 @@
+{
+  "id": "rc-q-19-kc-2",
+  "domainId": "rc-cloud-data-access",
+  "moduleId": "m-cloud-data-access",
+  "lessonId": "rc-l-19-cloud-data-access",
+  "difficulty": "intermediate",
+  "kind": "fill",
+  "prompt": "Complete the sentence about enabling TLS on a Redis Cloud database.",
+  "explanation": "Enabling TLS applies to new connections only: existing connections continue until clients close and reopen them, and once TLS is on, unencrypted connections are no longer permitted. This is why enabling TLS does not drop live traffic, but clients must reconnect to pick it up.",
+  "tags": [
+    "redis",
+    "data-access",
+    "tls"
+  ],
+  "template": "After you enable TLS, all ___ client connections to the database must use TLS, while existing connections keep working until clients close and reopen them.",
+  "blanks": [
+    {
+      "answer": "new",
+      "alternatives": [
+        "newly opened",
+        "newly established"
+      ]
+    }
+  ]
+}

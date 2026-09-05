@@ -1,0 +1,40 @@
+{
+  "id": "rc-q-13-bank-4",
+  "domainId": "rc-cloud-subscription",
+  "moduleId": "m-cloud-subscription",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which of these subscription administration tasks can only be completed by contacting Redis support?",
+  "explanation": "Changing or deleting an account key requires support, and migrating a database between two different Redis Cloud accounts with Active-Passive is blocked by design, so support must handle it. The other tasks are self-service: the API is enabled from the account settings, individual owners generate additional user keys themselves, and Redis Cloud Pro subscriptions can set manual maintenance windows or skip maintenance temporarily from the console.",
+  "tags": [
+    "redis",
+    "subscription-administration",
+    "api-keys"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Change or delete the account key of an active subscription"
+    },
+    {
+      "id": "b",
+      "text": "Migrate a database between two different Redis Cloud accounts using Active-Passive"
+    },
+    {
+      "id": "c",
+      "text": "Enable the Redis Cloud REST API for the account"
+    },
+    {
+      "id": "d",
+      "text": "Generate additional user keys for other owners and viewers in the same account"
+    },
+    {
+      "id": "e",
+      "text": "Skip an upcoming maintenance window temporarily on a Pro subscription"
+    }
+  ],
+  "correct": [
+    "a",
+    "b"
+  ]
+}

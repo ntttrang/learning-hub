@@ -1,0 +1,36 @@
+{
+  "id": "rc-q-05-bank-4",
+  "domainId": "rc-core-cluster",
+  "moduleId": "m-clustering-ha",
+  "difficulty": "intermediate",
+  "kind": "matching",
+  "prompt": "Match each cluster term to its meaning.",
+  "explanation": "Slot count, hash function, hash tags, and the two redirect replies are the vocabulary of cluster sharding: CRC16 selects the slot, braces pin related keys together, MOVED reports a permanent new home, and ASK is a one-shot detour during resharding.",
+  "tags": [
+    "redis",
+    "cluster",
+    "vocabulary"
+  ],
+  "pairs": [
+    {
+      "left": "16384",
+      "right": "Total number of hash slots in the cluster"
+    },
+    {
+      "left": "CRC16",
+      "right": "The hash function whose output picks a key's slot"
+    },
+    {
+      "left": "Hash tag {user:42}",
+      "right": "Forces related keys into the same slot so multi-key commands work"
+    },
+    {
+      "left": "MOVED",
+      "right": "Points the client at the node that now owns the slot permanently"
+    },
+    {
+      "left": "ASK",
+      "right": "A temporary redirect to follow for this one request during resharding"
+    }
+  ]
+}

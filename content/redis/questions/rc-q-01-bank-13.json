@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-01-bank-13",
+  "domainId": "rc-core-types",
+  "moduleId": "m-data-structures",
+  "difficulty": "intermediate",
+  "kind": "codeReading",
+  "prompt": "What does the final command return?",
+  "explanation": "post:1 holds redis and db; post:2 holds redis and cache. SINTER returns only the members present in every input set, which is exactly redis. SUNION would have returned all three distinct tags.",
+  "tags": [
+    "redis",
+    "data-structures",
+    "sets"
+  ],
+  "code": "SADD tags:post:1 redis db\nSADD tags:post:2 redis cache\nSINTER tags:post:1 tags:post:2",
+  "options": [
+    {
+      "id": "a",
+      "text": "1) \"redis\""
+    },
+    {
+      "id": "b",
+      "text": "1) \"redis\"\n2) \"db\"\n3) \"cache\""
+    },
+    {
+      "id": "c",
+      "text": "1) \"db\"\n2) \"cache\""
+    },
+    {
+      "id": "d",
+      "text": "(empty list or set)"
+    }
+  ],
+  "correct": "a"
+}

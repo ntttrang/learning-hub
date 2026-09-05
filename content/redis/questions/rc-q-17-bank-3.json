@@ -1,0 +1,41 @@
+{
+  "id": "rc-q-17-bank-3",
+  "domainId": "rc-cloud-monitoring",
+  "moduleId": "m-cloud-monitoring",
+  "difficulty": "intermediate",
+  "kind": "multi",
+  "prompt": "Which graphs are among the metric graphs shown on a Redis Cloud database's Metrics screen? (Select three.)",
+  "explanation": "The database Metrics screen graphs operations and latency (Ops/sec, reads/sec, writes/sec, other commands), used memory, total keys, connections, evicted and expired objects per second, hit ratio, and network ingress and egress bytes per second. Host-level figures such as CPU temperature and abstract application-side metrics like a connection-pool eviction rate are not among these graphs.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "metrics"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Ops/sec"
+    },
+    {
+      "id": "b",
+      "text": "Hit ratio"
+    },
+    {
+      "id": "c",
+      "text": "Network Ingress bytes/sec"
+    },
+    {
+      "id": "d",
+      "text": "Host CPU temperature"
+    },
+    {
+      "id": "e",
+      "text": "Connection pool eviction rate"
+    }
+  ],
+  "correct": [
+    "a",
+    "b",
+    "c"
+  ]
+}

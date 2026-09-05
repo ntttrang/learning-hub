@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-10-kc-1",
+  "domainId": "rc-swops-cluster",
+  "moduleId": "m-swops-cluster",
+  "lessonId": "rc-l-10-cluster-db-ops",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "What does a bare `rladmin status` command show?",
+  "explanation": "A plain `rladmin status` returns tables describing all nodes, databases, database endpoints, and shards on the cluster. It is not a latency sampler, it shows healthy resources too (that filtering is what the `issues_only` flag is for), and license usage is monitored separately through metrics, not the status tables.",
+  "tags": [
+    "redis",
+    "rladmin",
+    "status"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "The status of all nodes, databases, endpoints, and shards on the cluster"
+    },
+    {
+      "id": "b",
+      "text": "Real-time latency of every client command run in the last minute"
+    },
+    {
+      "id": "c",
+      "text": "Only the nodes that are currently down"
+    },
+    {
+      "id": "d",
+      "text": "The cluster's license usage and expiration date"
+    }
+  ],
+  "correct": "a"
+}

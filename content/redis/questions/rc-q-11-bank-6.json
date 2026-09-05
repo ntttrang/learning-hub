@@ -1,0 +1,20 @@
+{
+  "id": "rc-q-11-bank-6",
+  "domainId": "rc-swops-ops",
+  "moduleId": "m-swops-ops",
+  "difficulty": "beginner",
+  "kind": "fill",
+  "prompt": "Complete the Prometheus scrape target that collects Redis Software metrics from the v2 metrics stream engine.",
+  "explanation": "The built-in metrics_exporter process exposes Prometheus metrics over HTTPS on port 8070; the cluster-wide v2 endpoint lives at https://<cluster_name>:8070/v2 and one scrape target is enough because every node returns the full result. The deprecated v1 endpoint answered on the same port with a different path.",
+  "tags": [
+    "redis",
+    "monitoring",
+    "prometheus"
+  ],
+  "template": "scrape target: https://cluster1.local:___/v2",
+  "blanks": [
+    {
+      "answer": "8070"
+    }
+  ]
+}

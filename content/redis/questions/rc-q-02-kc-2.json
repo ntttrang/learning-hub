@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-02-kc-2",
+  "domainId": "rc-core-keys",
+  "moduleId": "m-keys",
+  "lessonId": "rc-l-02-keys-expiry",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "A session key should become permanent again, keeping its current value. Which command removes the expiry without touching the value?",
+  "explanation": "PERSIST clears the timeout and keeps the value. Commands that set a zero or negative expiry delete the key instead, and DEL removes the value along with the key.",
+  "tags": [
+    "redis",
+    "keys",
+    "ttl"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "PERSIST session:42"
+    },
+    {
+      "id": "b",
+      "text": "EXPIRE session:42 0"
+    },
+    {
+      "id": "c",
+      "text": "TTL session:42"
+    },
+    {
+      "id": "d",
+      "text": "DEL session:42"
+    }
+  ],
+  "correct": "a"
+}

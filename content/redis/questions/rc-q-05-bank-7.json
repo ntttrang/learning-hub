@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-05-bank-7",
+  "domainId": "rc-core-cluster",
+  "moduleId": "m-clustering-ha",
+  "difficulty": "advanced",
+  "kind": "codeReading",
+  "prompt": "The first MGET succeeds and the second fails. Why does the second MGET fail?",
+  "explanation": "MGET is a multi-key command, so every key must live in one slot. The braces in {user:42}:name and {user:42}:email make both keys hash on the tag user:42 \u2014 same slot, success. Without braces the full keys user:42:name and user:42:email hash independently and can land in different slots, which the cluster reports as CROSSSLOT.",
+  "tags": [
+    "redis",
+    "cluster",
+    "hash-tags"
+  ],
+  "code": "MGET {user:42}:name {user:42}:email\n1) \"Ada\"\n2) \"ada@example.com\"\nMGET user:42:name user:42:email\n(error) CROSSSLOT Keys in request don't hash to the same slot",
+  "options": [
+    {
+      "id": "a",
+      "text": "Without hash tags the two keys hash to different slots, and multi-key commands require one slot"
+    },
+    {
+      "id": "b",
+      "text": "The first MGET changed the keys' slots as a side effect"
+    },
+    {
+      "id": "c",
+      "text": "MGET is unsupported in cluster mode and only works behind Sentinel"
+    },
+    {
+      "id": "d",
+      "text": "The email key expired between the two commands"
+    }
+  ],
+  "correct": "a"
+}

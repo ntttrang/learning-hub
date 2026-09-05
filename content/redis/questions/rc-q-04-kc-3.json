@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-04-kc-3",
+  "domainId": "rc-core-perf",
+  "moduleId": "m-perf-debugging",
+  "lessonId": "rc-l-04-perf-debugging",
+  "difficulty": "beginner",
+  "kind": "single",
+  "prompt": "What is the primary benefit of pipelining many commands in one request?",
+  "explanation": "A pipeline packs many commands into one round trip: instead of paying one network round-trip time per command, the client pays roughly one per batch. It saves I/O latency, not server CPU, and it does not make the batch atomic.",
+  "tags": [
+    "redis",
+    "performance",
+    "pipelining"
+  ],
+  "options": [
+    {
+      "id": "a",
+      "text": "Many commands share one network round trip instead of paying one round trip each"
+    },
+    {
+      "id": "b",
+      "text": "Pipelined commands execute atomically as a group"
+    },
+    {
+      "id": "c",
+      "text": "The server caches pipelined responses to speed up repeats"
+    },
+    {
+      "id": "d",
+      "text": "Pipelining moves command execution to a worker thread pool"
+    }
+  ],
+  "correct": "a"
+}

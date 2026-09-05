@@ -1,0 +1,34 @@
+{
+  "id": "rc-q-09-bank-11",
+  "domainId": "rc-swops-install",
+  "moduleId": "m-swops-install",
+  "difficulty": "intermediate",
+  "kind": "codeReading",
+  "prompt": "This command ran successfully on a freshly installed node. What happened?",
+  "explanation": "`rladmin cluster join` is run on the new node itself and points at an existing cluster member — `nodes` takes the internal IP of a node already in the cluster, and the admin credentials are those of the cluster. Option B reverses the direction (you cannot push an install from the master), C describes `rladmin cluster create`, which bootstraps a new cluster, and D is what the `replace_node` flag of `cluster join` does, not a plain join.",
+  "tags": [
+    "redis",
+    "bootstrap",
+    "rladmin"
+  ],
+  "code": "$ rladmin cluster join nodes 192.0.2.2 \\\n    username admin@example.com \\\n    password admin-password\nJoining cluster... ok",
+  "options": [
+    {
+      "id": "a",
+      "text": "A newly installed node joined the cluster that has a member at 192.0.2.2"
+    },
+    {
+      "id": "b",
+      "text": "The cluster master pushed the software installation out to 192.0.2.2"
+    },
+    {
+      "id": "c",
+      "text": "A brand-new cluster was bootstrapped with this node as its first member"
+    },
+    {
+      "id": "d",
+      "text": "This node replaced a failed node without losing the failed node's shards"
+    }
+  ],
+  "correct": "a"
+}

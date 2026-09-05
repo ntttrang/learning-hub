@@ -1,0 +1,20 @@
+{
+  "id": "rc-q-10-bank-3",
+  "domainId": "rc-swops-cluster",
+  "moduleId": "m-swops-cluster",
+  "difficulty": "beginner",
+  "kind": "fill",
+  "prompt": "Complete the command that moves a shard to another node.",
+  "explanation": "`rladmin migrate shard 13 target_node 1` moves shard 13 onto node 1 within the same cluster, and the result can be confirmed with `rladmin status shards`. The verb is migrate — `bind` is for proxy policies and `tune` changes configuration parameters, so neither moves a shard.",
+  "tags": [
+    "redis",
+    "rladmin",
+    "shard-migration"
+  ],
+  "template": "To move shard 13 onto node 1 inside the same cluster, run: rladmin ___ shard 13 target_node 1",
+  "blanks": [
+    {
+      "answer": "migrate"
+    }
+  ]
+}
