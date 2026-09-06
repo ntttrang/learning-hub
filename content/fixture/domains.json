@@ -5,7 +5,8 @@
     "code": "D1",
     "title": "Core concepts",
     "weight": "35-40%",
-    "summary": "Storage models and how data lands in a lake."
+    "summary": "Storage models and how data lands in a lake.",
+    "tracks": ["Foundations"]
   },
   {
     "id": "d2",
@@ -13,6 +14,7 @@
     "code": "D2",
     "title": "Applied skills",
     "weight": { "min": 20, "max": 25 },
-    "summary": "Getting data back out with queries."
+    "summary": "Getting data back out with queries.",
+    "tracks": ["Foundations", "Applied"]
   }
 ]

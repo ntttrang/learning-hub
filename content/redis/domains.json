@@ -5,7 +5,8 @@
     "code": "D1",
     "title": "Data structures & commands",
     "weight": { "min": 15, "max": 25 },
-    "summary": "Strings, lists, hashes, sets, sorted sets, streams, bitmaps, hyperloglog and geospatial — the command surface and time complexity of each structure."
+    "summary": "Strings, lists, hashes, sets, sorted sets, streams, bitmaps, hyperloglog and geospatial — the command surface and time complexity of each structure.",
+    "tracks": ["Developer", "Software Operator"]
   },
   {
     "id": "rc-core-keys",
@@ -13,7 +14,8 @@
     "code": "D2",
     "title": "Keys, keyspace & expiry",
     "weight": { "min": 5, "max": 12 },
-    "summary": "Key naming and format, generic key commands, active vs lazy expiry, TTL semantics, SCAN vs KEYS, and big-key hazards."
+    "summary": "Key naming and format, generic key commands, active vs lazy expiry, TTL semantics, SCAN vs KEYS, and big-key hazards.",
+    "tracks": ["Developer", "Software Operator"]
   },
   {
     "id": "rc-core-model",
@@ -21,7 +23,8 @@
     "code": "D3",
     "title": "Data modeling",
     "weight": { "min": 8, "max": 15 },
-    "summary": "Mapping domain entities to Redis structures, one-to-many and many-to-many patterns, aggregation and secondary-index strategies, and choosing between structures."
+    "summary": "Mapping domain entities to Redis structures, one-to-many and many-to-many patterns, aggregation and secondary-index strategies, and choosing between structures.",
+    "tracks": ["Developer", "Software Operator"]
   },
   {
     "id": "rc-core-perf",
@@ -29,7 +32,8 @@
     "code": "D4",
     "title": "Performance & debugging",
     "weight": { "min": 8, "max": 16 },
-    "summary": "The single-threaded event loop, Big-O command selection, O(N) hazards, latency tooling (SLOWLOG, LATENCY, INFO, MONITOR), pipelines, and transactions."
+    "summary": "The single-threaded event loop, Big-O command selection, O(N) hazards, latency tooling (SLOWLOG, LATENCY, INFO, MONITOR), pipelines, and transactions.",
+    "tracks": ["Developer", "Software Operator"]
   },
   {
     "id": "rc-core-cluster",
@@ -37,7 +41,8 @@
     "code": "D5",
     "title": "Replication, HA & clustering",
     "weight": { "min": 6, "max": 14 },
-    "summary": "Replication topologies, Sentinel-managed failover, cluster topology with 16384 hash slots, hash tags, MOVED/ASK redirects, resharding and failover."
+    "summary": "Replication topologies, Sentinel-managed failover, cluster topology with 16384 hash slots, hash tags, MOVED/ASK redirects, resharding and failover.",
+    "tracks": ["Developer", "Software Operator"]
   },
   {
     "id": "rc-core-persist",
@@ -45,7 +50,8 @@
     "code": "D6",
     "title": "Persistence & durability",
     "weight": { "min": 4, "max": 10 },
-    "summary": "RDB snapshots, AOF with fsync policies, rewrite, hybrid persistence, and what survives a restart under each configuration."
+    "summary": "RDB snapshots, AOF with fsync policies, rewrite, hybrid persistence, and what survives a restart under each configuration.",
+    "tracks": ["Developer", "Software Operator"]
   },
   {
     "id": "rc-core-security",
@@ -53,7 +59,8 @@
     "code": "D7",
     "title": "Security & configuration",
     "weight": { "min": 3, "max": 8 },
-    "summary": "ACL users and permissions, TLS, network exposure (bind, protected-mode), maxmemory and eviction policies, and lazy freeing."
+    "summary": "ACL users and permissions, TLS, network exposure (bind, protected-mode), maxmemory and eviction policies, and lazy freeing.",
+    "tracks": ["Developer", "Software Operator"]
   },
   {
     "id": "rc-dev-java",
@@ -61,7 +68,8 @@
     "code": "D8",
     "title": "Java clients & application patterns",
     "weight": { "min": 8, "max": 14 },
-    "summary": "Jedis, Lettuce and Redisson trade-offs, connection pooling, serialization, pipelines and transactions from Java, plus cache-aside, sessions, rate limiting and streams in services."
+    "summary": "Jedis, Lettuce and Redisson trade-offs, connection pooling, serialization, pipelines and transactions from Java, plus cache-aside, sessions, rate limiting and streams in services.",
+    "tracks": ["Developer"]
   },
   {
     "id": "rc-swops-install",
@@ -69,7 +77,8 @@
     "code": "D9",
     "title": "Redis Software install & upgrade",
     "weight": { "min": 20, "max": 35 },
-    "summary": "Redis Software (Enterprise) requirements, cluster bootstrap, licenses, certificates, rolling upgrades and software security patches."
+    "summary": "Redis Software (Enterprise) requirements, cluster bootstrap, licenses, certificates, rolling upgrades and software security patches.",
+    "tracks": ["Software Operator"]
   },
   {
     "id": "rc-swops-cluster",
@@ -77,7 +86,8 @@
     "code": "D10",
     "title": "Cluster & database operations",
     "weight": { "min": 30, "max": 45 },
-    "summary": "Cluster lifecycle with the Cluster Manager and rladmin — node add/remove, rack awareness, DMC/proxy, database provisioning and limits, endpoints, backup/restore, and live migration."
+    "summary": "Cluster lifecycle with the Cluster Manager and rladmin — node add/remove, rack awareness, DMC/proxy, database provisioning and limits, endpoints, backup/restore, and live migration.",
+    "tracks": ["Software Operator"]
   },
   {
     "id": "rc-swops-ops",
@@ -85,7 +95,8 @@
     "code": "D11",
     "title": "Monitoring & troubleshooting",
     "weight": { "min": 25, "max": 40 },
-    "summary": "Metrics and alerts, logs, the job scheduler, support bundles, and the common failure playbooks an operator runs day to day."
+    "summary": "Metrics and alerts, logs, the job scheduler, support bundles, and the common failure playbooks an operator runs day to day.",
+    "tracks": ["Software Operator"]
   },
   {
     "id": "rc-cloud-arch",
@@ -93,7 +104,8 @@
     "code": "D12",
     "title": "Cloud architecture",
     "weight": { "min": 7, "max": 12 },
-    "summary": "How Redis Cloud is put together — subscriptions, tiers (Essentials, Essentials with Redis Flex, Pro), regions, availability, and what each capability costs where."
+    "summary": "How Redis Cloud is put together — subscriptions, tiers (Essentials, Essentials with Redis Flex, Pro), regions, availability, and what each capability costs where.",
+    "tracks": ["Cloud Operator"]
   },
   {
     "id": "rc-cloud-subscription",
@@ -101,7 +113,8 @@
     "code": "D13",
     "title": "Subscription administration",
     "weight": { "min": 9, "max": 14 },
-    "summary": "Account and subscription lifecycle — plans and pricing structure, payment, subscription settings, cloud-account/marketplace billing, and administrative access control."
+    "summary": "Account and subscription lifecycle — plans and pricing structure, payment, subscription settings, cloud-account/marketplace billing, and administrative access control.",
+    "tracks": ["Cloud Operator"]
   },
   {
     "id": "rc-cloud-db-admin",
@@ -109,7 +122,8 @@
     "code": "D14",
     "title": "Database administration",
     "weight": { "min": 14, "max": 20 },
-    "summary": "Creating and managing Redis Cloud databases — capabilities and limits per tier, sizing, modules, versioning/cloning, configuration changes, and deletion/recovery."
+    "summary": "Creating and managing Redis Cloud databases — capabilities and limits per tier, sizing, modules, versioning/cloning, configuration changes, and deletion/recovery.",
+    "tracks": ["Cloud Operator"]
   },
   {
     "id": "rc-cloud-security",
@@ -117,7 +131,8 @@
     "code": "D15",
     "title": "Security",
     "weight": { "min": 12, "max": 18 },
-    "summary": "CIDR allowlists, VPC peering, TLS enforcement, ACLs and role-based access, and the shared-responsibility split owned by the operator."
+    "summary": "CIDR allowlists, VPC peering, TLS enforcement, ACLs and role-based access, and the shared-responsibility split owned by the operator.",
+    "tracks": ["Cloud Operator"]
   },
   {
     "id": "rc-cloud-networking",
@@ -125,7 +140,8 @@
     "code": "D16",
     "title": "Networking",
     "weight": { "min": 11, "max": 17 },
-    "summary": "Private endpoints, VPC peering, Private Service Connect, prefix/DNS handling, and port/protocol realities of client connectivity."
+    "summary": "Private endpoints, VPC peering, Private Service Connect, prefix/DNS handling, and port/protocol realities of client connectivity.",
+    "tracks": ["Cloud Operator"]
   },
   {
     "id": "rc-cloud-monitoring",
@@ -133,7 +149,8 @@
     "code": "D17",
     "title": "Monitoring",
     "weight": { "min": 8, "max": 14 },
-    "summary": "Metrics and alerting in Redis Cloud — standard vs advanced monitoring, alert thresholds and delivery, integrations (Prometheus/DataDog/New Relic/CloudWatch), and audit logs."
+    "summary": "Metrics and alerting in Redis Cloud — standard vs advanced monitoring, alert thresholds and delivery, integrations (Prometheus/DataDog/New Relic/CloudWatch), and audit logs.",
+    "tracks": ["Cloud Operator"]
   },
   {
     "id": "rc-cloud-automation",
@@ -141,7 +158,8 @@
     "code": "D18",
     "title": "Automation",
     "weight": { "min": 8, "max": 14 },
-    "summary": "The Redis Cloud REST API — account/subscription/database endpoints, API keys and account keys, ci/cd-friendly flows, Terraform provider basics."
+    "summary": "The Redis Cloud REST API — account/subscription/database endpoints, API keys and account keys, ci/cd-friendly flows, Terraform provider basics.",
+    "tracks": ["Cloud Operator"]
   },
   {
     "id": "rc-cloud-data-access",
@@ -149,6 +167,7 @@
     "code": "D19",
     "title": "Data access",
     "weight": { "min": 9, "max": 15 },
-    "summary": "Connecting clients — endpoints and ports, TLS/SNI, users and ACLs on databases, and the client-side facts (timeouts, cluster-mode/RESP handling) operators must support."
+    "summary": "Connecting clients — endpoints and ports, TLS/SNI, users and ACLs on databases, and the client-side facts (timeouts, cluster-mode/RESP handling) operators must support.",
+    "tracks": ["Cloud Operator"]
   }
 ]

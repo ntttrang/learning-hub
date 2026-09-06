@@ -62,6 +62,9 @@ export function LearnIndex({ subjectId, content, index }: LearnIndexProps) {
             <header className="learn-domain-head">
               <h3 className="learn-domain-title">{domain.title}</h3>
               {domain.weight && <Pill tone="accent">Weight {weightLabel(domain.weight)}</Pill>}
+              {domain.tracks?.map((track) => (
+                <Pill key={track}>{track}</Pill>
+              ))}
             </header>
 
             {modules.map((module) => {

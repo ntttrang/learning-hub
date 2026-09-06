@@ -63,6 +63,8 @@ describe('HubHome', () => {
     expect(fixtureCard).toHaveTextContent('Labs 1/1');
     expect(fixtureCard).toHaveTextContent('No exams yet');
     expect(fixtureCard).toHaveTextContent('Continue →');
+    // Pack certs render as accent chips on the card.
+    expect(fixtureCard).toHaveTextContent('FX Associate');
 
     // A subject with no store data keeps its card but shows honest zeros —
     // every roadmap pack is installed now, so no placeholder card exists.
@@ -71,6 +73,7 @@ describe('HubHome', () => {
     expect(quiet).toHaveTextContent('0/43');
     expect(quiet).toHaveTextContent('No exams yet');
     expect(quiet).not.toHaveTextContent('Continue →');
+    expect(quiet).not.toHaveTextContent('FX Associate'); // no certs field → no cert row
     expect(quiet!.querySelector('.due-chip')).toBeNull();
   });
 

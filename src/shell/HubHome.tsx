@@ -180,6 +180,15 @@ export default function HubHome() {
                     </div>
                   </div>
                 )}
+                {subject.certs && subject.certs.length > 0 && (
+                  <div className="chips">
+                    {subject.certs.map((cert) => (
+                      <span key={cert} className="chip chip-accent">
+                        {cert}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <div className="chips">
                   {subject.modes.map((mode) => (
                     <span key={mode} className="chip">

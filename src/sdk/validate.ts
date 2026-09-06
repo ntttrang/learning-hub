@@ -51,6 +51,7 @@ export const SubjectSchema = z
     description: z.string().optional(),
     accent: z.enum(ACCENT_TOKENS),
     disclaimers: z.array(z.string()).optional(),
+    certs: z.array(z.string()).optional(),
     enabledModes: z.array(z.enum(TOOL_IDS)).min(1),
   })
   .strict();
@@ -68,6 +69,7 @@ export const DomainSchema = z
     title: z.string().min(1),
     weight: weightSchema.optional(),
     summary: z.string().optional(),
+    tracks: z.array(z.string()).optional(),
   })
   .strict();
 
@@ -268,6 +270,7 @@ export const ExamSchema = z
     id: idSchema,
     title: z.string().min(1),
     description: z.string().optional(),
+    tags: z.array(z.string()).optional(),
     durationMinutes: z.number().positive(),
     passingScore: z.number().optional(),
     selection: examSelectionSchema,

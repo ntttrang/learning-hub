@@ -3,6 +3,7 @@
   "code": "REDIS",
   "title": "Redis",
   "subtitle": "Associate Developer (Java) · Software Operator · Cloud Operator",
+  "certs": ["Developer (Java)", "Software Operator", "Cloud Operator"],
   "description": "Exam prep for the three Redis Associate certifications — shared core (data structures, keys, modeling, performance, clustering, persistence, security) plus per-track operator and Java client domains.",
   "accent": "deep-teal",
   "disclaimers": [

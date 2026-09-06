@@ -1014,6 +1014,12 @@
   gap: 6px;
   margin-top: 2px;
 }
+.practice-card-tracks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
 .practice-module {
   display: inline-flex;
   align-items: center;
@@ -1065,6 +1071,7 @@
 .learn-domain-head {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-3);
 }
 .learn-domain-title {

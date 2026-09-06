@@ -28,6 +28,8 @@ export interface SubjectCard extends SubjectPlaceholder {
   installed: boolean;
   /** Enabled tool ids from the pack — empty until the pack is installed. */
   enabledModes: string[];
+  /** Cert names from the pack; absent on placeholders. */
+  certs?: string[];
 }
 
 /** Map an accent token name to its CSS variable reference. */
@@ -81,6 +83,7 @@ function subjectToCard(subject: Subject): SubjectCard {
     modes: subject.enabledModes.map((mode) => TOOL_REGISTRY[mode]?.label ?? mode),
     installed: true,
     enabledModes: subject.enabledModes,
+    certs: subject.certs,
   };
 }
 
