@@ -73,7 +73,11 @@ describe('PracticeIndex', () => {
   it('lists the all-run plus one card per practiceable domain with counts', () => {
     draw(
       [question('q1', 'd1'), question('q2', 'd1'), question('q3', 'd2')],
-      [domain('d1', 'Tables', 1), domain('d2', 'Pipelines', 2), domain('d3', 'Empty', 3)],
+      [
+        domain('d1', 'Tables', 1),
+        { ...domain('d2', 'Pipelines', 2), tracks: ['Cloud Operator'] },
+        domain('d3', 'Empty', 3),
+      ],
     );
 
     const all = screen.getByRole('link', { name: /Everything, shuffled/ });
@@ -86,6 +90,7 @@ describe('PracticeIndex', () => {
     expect(screen.getByRole('link', { name: /Pipelines/ }).getAttribute('href')).toBe(
       '#/subject/fixture/practice/d2',
     );
+    expect(screen.getByText('Cloud Operator')).toBeInTheDocument(); // domain track pill
     expect(screen.queryByText('Empty')).toBeNull(); // zero-question domains drop out
     expect(screen.getByText(/3 questions across 2 practiceable domains/)).toBeInTheDocument();
     expect(screen.queryByText(/Focus/)).toBeNull();

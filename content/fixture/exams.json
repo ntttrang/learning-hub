@@ -3,6 +3,7 @@
     "id": "exam-practice",
     "title": "Practice set",
     "description": "Sampled across both domains with a fixed seed.",
+    "tags": ["Storage models", "Queries"],
     "durationMinutes": 15,
     "passingScore": 700,
     "selection": {

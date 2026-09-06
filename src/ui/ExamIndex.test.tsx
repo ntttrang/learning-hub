@@ -53,6 +53,9 @@ describe('ExamIndex', () => {
     expect(screen.getByText('15 min')).toBeInTheDocument();
     expect(screen.getAllByText('Pass 700/1000').length).toBe(2);
     expect(screen.getByText('Case study')).toBeInTheDocument(); // case-study exam only
+    // Exam topic tags render as leading chips (only the practice set carries tags).
+    expect(screen.getByText('Storage models')).toBeInTheDocument();
+    expect(screen.getByText('Queries')).toBeInTheDocument();
   });
 
   it('shows an empty history panel until an exam is attempted', () => {

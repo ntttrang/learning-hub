@@ -3,6 +3,7 @@
     "id": "redis-dev-mock-1",
     "title": "Redis Certified Developer — Mock Exam 1",
     "description": "Mirrors the associate developer exam scale — 65 questions, 90 minutes, 70% to pass — and samples all eight pack domains in proportion to their exam weights.",
+    "tags": ["Data structures", "Java client", "Performance"],
     "durationMinutes": 90,
     "passingScore": 700,
     "selection": {
@@ -24,6 +25,7 @@
     "id": "redis-swops-mock-1",
     "title": "Redis Certified Software Operator — Mock Exam 1",
     "description": "Mirrors the associate Software Operator exam scale — 60 questions, 60 minutes, 70% to pass (scaled 700) — sampling the three operator domains plus a core trimmed toward persistence, HA, and security for an operations focus.",
+    "tags": ["Installation", "HA & clustering", "Operations"],
     "durationMinutes": 60,
     "passingScore": 700,
     "selection": {
@@ -47,6 +49,7 @@
     "id": "redis-cloud-mock-1",
     "title": "Redis Certified Cloud Operator — Mock Exam 1",
     "description": "Mirrors the associate Cloud Operator exam scale — 65 questions, 90 minutes, 70% to pass (scaled 700) — sampling all eight official domains in proportion to their published weights.",
+    "tags": ["Cloud DB admin", "Security", "Networking"],
     "durationMinutes": 90,
     "passingScore": 700,
     "selection": {

@@ -503,6 +503,10 @@ button {
   background: var(--bg-sunken);
   color: var(--fg-2);
 }
+.chip-accent {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
 .card .foot {
   display: flex;
   align-items: center;

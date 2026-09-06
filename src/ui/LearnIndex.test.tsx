@@ -34,6 +34,10 @@ describe('LearnIndex', () => {
     expect(screen.getByText('Weight 35-40%')).toBeInTheDocument(); // string weight
     expect(screen.getByText('Weight 20–25%')).toBeInTheDocument(); // min/max weight
 
+    // Cert-track pills: d1 feeds Foundations, d2 feeds Foundations + Applied.
+    expect(screen.getAllByText('Foundations').length).toBe(2);
+    expect(screen.getByText('Applied')).toBeInTheDocument();
+
     // Module metadata: official skills + lab/question counts.
     expect(screen.getByText('Describe storage models for analytical workloads')).toBeInTheDocument();
     expect(screen.getByText('1 lab · 3 questions')).toBeInTheDocument();

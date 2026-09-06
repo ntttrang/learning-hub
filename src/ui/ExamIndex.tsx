@@ -100,6 +100,11 @@ function ExamCard({
         {exam.description ?? `A ${exam.durationMinutes}-minute mock exam.`}
       </p>
       <div className="exam-chips">
+        {exam.tags?.map((tag) => (
+          <span key={tag} className="exam-chip">
+            {tag}
+          </span>
+        ))}
         <span className="exam-chip">{paperSize} questions</span>
         <span className="exam-chip">
           <Clock size={12} strokeWidth={2} aria-hidden="true" /> {exam.durationMinutes} min

@@ -81,6 +81,13 @@ export function PracticeIndex({ subjectId, content, index }: PracticeIndexProps)
                   <Pill>{count} questions</Pill>
                 )}
               </div>
+              {domain.tracks && domain.tracks.length > 0 && (
+                <div className="practice-card-tracks">
+                  {domain.tracks.map((track) => (
+                    <Pill key={track}>{track}</Pill>
+                  ))}
+                </div>
+              )}
               <p>{domain.summary ?? `Practice the ${domain.title.toLowerCase()} material.`}</p>
               {modules.length > 0 && (
                 <div className="practice-modules">

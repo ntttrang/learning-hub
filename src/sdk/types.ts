@@ -61,6 +61,8 @@ export interface Subject {
   description?: string;
   accent: AccentToken;
   disclaimers?: string[];
+  /** Certification names this pack prepares for (hub card chips). */
+  certs?: string[];
   /** Only modes with backing content should be listed; validators enforce it. */
   enabledModes: ToolId[];
 }
@@ -78,6 +80,8 @@ export interface Domain {
   /** Official exam weight — a range ("35-40%") or min/max percent numbers. */
   weight?: string | { min: number; max: number };
   summary?: string;
+  /** Certification track(s) this domain feeds, e.g. "Software Operator". */
+  tracks?: string[];
 }
 
 /** A module groups related lessons that map to one official sub-skill. */
@@ -262,6 +266,8 @@ export interface Exam {
   id: string;
   title: string;
   description?: string;
+  /** Topic tags rendered as chips on the exam card. */
+  tags?: string[];
   durationMinutes: number;
   /** Scaled pass mark out of 1000; defaults to 700. */
   passingScore?: number;
