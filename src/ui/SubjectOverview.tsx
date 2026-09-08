@@ -2,6 +2,7 @@ import { ArrowRight, Flame } from 'lucide-react';
 import { computeStats } from '../engines/progress';
 import { useSubjectDataStore } from '../engines/subject-store';
 import type { SubjectContent, SubjectIndex } from '../content/registry';
+import { Pill } from './Pill';
 
 interface SubjectOverviewProps {
   subjectId: string;
@@ -77,7 +78,16 @@ export default function SubjectOverview({ subjectId, content, index }: SubjectOv
         <ul className="domain-rows">
           {domains.map((domain) => (
             <li key={domain.id} className="domain-row">
-              <span className="domain-name">{domain.title}</span>
+              <span className="domain-cell">
+                <span className="domain-name">{domain.title}</span>
+                {domain.tracks && domain.tracks.length > 0 && (
+                  <span className="domain-tracks">
+                    {domain.tracks.map((track) => (
+                      <Pill key={track}>{track}</Pill>
+                    ))}
+                  </span>
+                )}
+              </span>
               <span
                 className="bar"
                 role="progressbar"
