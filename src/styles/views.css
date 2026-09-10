@@ -80,6 +80,11 @@
   align-items: center;
   gap: 12px;
 }
+.domain-cell {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
 .domain-name {
   font-size: 13px;
   font-weight: 700;
@@ -87,6 +92,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.domain-tracks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 3px;
 }
 .bar {
   display: block;
