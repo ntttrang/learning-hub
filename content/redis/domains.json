@@ -169,5 +169,12 @@
     "weight": { "min": 9, "max": 15 },
     "summary": "Connecting clients — endpoints and ports, TLS/SNI, users and ACLs on databases, and the client-side facts (timeouts, cluster-mode/RESP handling) operators must support.",
     "tracks": ["Cloud Operator"]
+  },
+  {
+    "id": "rc-dev-go",
+    "order": 20,
+    "code": "D20",
+    "title": "Go clients & application patterns",
+    "summary": "Practice-oriented Go client patterns on go-redis v9: caching, locking, rate limiting, streams, pub/sub, and pipelining. The Redis Associate Developer certification is Java-specific — these labs build real client-engineering skills, not exam prep."
   }
 ]
